@@ -1088,3 +1088,4 @@ if (typeof module !== 'undefined' && module.exports) {
     const files = generateAllProducts();
     console.log(`\n🎉 تم إنشاء ${files.length} صفحة منتج بنجاح!`);
 }
+
