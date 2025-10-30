@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الطلب | متجر هدايا الإمارات</title>
+    <meta name="description" content="أكمل طلبك بسهولة. أدخل بياناتك وعنوانك في الإمارات واتمم طلبك عبر واتساب.">
+    <link rel="canonical" href="https://emirates-gifts.arabsad.com/checkout.html">
+    <link rel="preconnect" href="https://wa.me">
+    <link rel="stylesheet" href="./woodmart-lite.css">
+    
+    <!-- Critical CSS لصفحة إتمام الطلب -->
+    <style>
+        body{font-family:'Cairo',system-ui,sans-serif;background:#FEFEFE;color:#2C3E50;direction:rtl}
+        .container{max-width:800px;margin:0 auto;padding:0 15px}
+        .checkout-page{padding:20px 0;min-height:70vh}
+        .checkout-form{background:white;border-radius:15px;padding:25px;box-shadow:0 6px 20px rgba(212,175,55,0.15);margin-bottom:20px}
+        .form-group{margin-bottom:20px}
+        .form-group label{display:block;font-weight:600;margin-bottom:8px;color:#2C3E50}
+        .form-group input,.form-group textarea{width:100%;padding:12px 15px;border:2px solid rgba(212,175,55,0.2);border-radius:10px;font-size:1rem;font-family:inherit;direction:rtl;transition:border-color 0.2s ease}
+        .form-group input:focus,.form-group textarea:focus{outline:none;border-color:#D4AF37}
+        .form-group input.error{border-color:#ff4444}
+        .error-message{color:#ff4444;font-size:0.85rem;margin-top:5px;font-weight:500}
+        .required{color:#ff4444}
+        .order-summary{background:white;border-radius:15px;padding:20px;box-shadow:0 4px 12px rgba(212,175,55,0.15);margin-bottom:20px}
+        .checkout-btn{width:100%;padding:18px;background:#25D366;color:white;border:none;border-radius:25px;font-size:1.1rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;transition:background-color 0.2s ease}
+        .checkout-btn:hover{background:#128C7E}
+    </style>
+</head>
+<body>
+    <!-- الخلفية الشفافة -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    
+    <!-- القائمة الجانبية -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <div class="mobile-sidebar-logo">متجر هدايا الإمارات</div>
+            <button class="mobile-sidebar-close" id="closeSidebar">✖</button>
+        </div>
+        <nav class="mobile-sidebar-nav">
+            <a href="./">🏠 الرئيسية</a>
+            <a href="./blog.html">📝 المدونة</a>
+            <a href="./about.html">ℹ️ من نحن</a>
+            <a href="./cart.html">🛒 السلة</a>
+            <a href="./checkout.html">✅ إتمام الطلب</a>
+            <a href="https://wa.me/201110760081" target="_blank">📱 واتساب</a>
+        </nav>
+    </div>
+    
+    <header class="header">
+        <div class="header__inner container">
+            <a href="./" class="header__logo">
+                <h1>متجر هدايا الإمارات</h1>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="openSidebar">
+                <span class="menu-text">القائمة</span>
+                <span class="menu-icon">☰</span>
+            </button>
+            
+            <nav class="main-nav">
+                <a href="./">الرئيسية</a>
+                <a href="./cart.html">السلة</a>
+                <a href="https://wa.me/201110760081" target="_blank">📱 واتساب</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="checkout-page">
+        <div class="container">
+            <nav style="margin-bottom: 20px; font-size: 0.9rem; color: #8B4513;">
+                <a href="./" style="color: #D4AF37; text-decoration: none; font-weight: 600;">🏠 الرئيسية</a>
+                <span style="margin: 0 8px;">←</span>
+                <a href="./cart.html" style="color: #D4AF37; text-decoration: none; font-weight: 600;">سلة التسوق</a>
+                <span style="margin: 0 8px;">←</span>
+                <span style="font-weight: 600;">إتمام الطلب</span>
+            </nav>
+            
+            <h1 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 30px; color: #2C3E50;">✅ إتمام الطلب</h1>
+            
+            <!-- ملخص الطلب -->
+            <div id="order-summary" class="order-summary">
+                <h3 style="margin-bottom: 20px; color: #2C3E50; text-align: center;">ملخص طلبك</h3>
+                <div id="order-items" style="margin-bottom: 15px;"></div>
+                <div style="border-top: 2px solid #f0f0f0; padding-top: 15px; display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 700; color: #D4AF37;">
+                    <span>الإجمالي:</span>
+                    <span id="final-total">0 د.إ</span>
+                </div>
+            </div>
+            
+            <!-- نموذج بيانات العميل -->
+            <form id="checkout-form" class="checkout-form">
+                <h3 style="margin-bottom: 20px; color: #2C3E50;">بيانات التوصيل</h3>
+                
+                <div class="form-group">
+                    <label for="customer-name">الاسم الكامل <span class="required">*</span></label>
+                    <input type="text" id="customer-name" name="customer-name" required placeholder="أدخل اسمك الكامل">
+                    <div class="error-message" id="name-error"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-phone">رقم الجوال الإماراتي <span class="required">*</span></label>
+                    <input type="tel" id="customer-phone" name="customer-phone" required placeholder="05XXXXXXXX أو 9715XXXXXXXX" dir="ltr" style="text-align: center;">
+                    <div class="error-message" id="phone-error"></div>
+                    <small style="color: #666; font-size: 0.8rem; margin-top: 5px; display: block;">يرجى إدخال رقم جوال إماراتي صحيح</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-address">العنوان الكامل في الإمارات <span class="required">*</span></label>
+                    <textarea id="customer-address" name="customer-address" required rows="3" placeholder="العنوان الكامل مع اسم المنطقة والإمارة"></textarea>
+                    <div class="error-message" id="address-error"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="order-notes">ملاحظات الطلب (اختياري)</label>
+                    <textarea id="order-notes" name="order-notes" rows="2" placeholder="أي ملاحظات إضافية على طلبك"></textarea>
+                </div>
+                
+                <!-- معلومات الدفع -->
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center;">
+                    <h4 style="color: #2C3E50; margin-bottom: 10px;">💳 طريقة الدفع</h4>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">نحن نقبل الدفع عند الاستلام فقط</p>
+                    <div style="background: #25D366; color: white; padding: 10px; border-radius: 8px; font-weight: 600;">
+                        👍 الدفع عند الاستلام
+                    </div>
+                </div>
+                
+                <!-- زر إرسال الطلب عبر واتساب -->
+                <button type="submit" class="checkout-btn" id="submit-order">
+                    📱 إرسال الطلب عبر واتساب
+                </button>
+            </form>
+            
+            <!-- رسالة عدم وجود عناصر -->
+            <div id="empty-cart-message" style="display: none; text-align: center; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 12px rgba(212,175,55,0.15);">
+                <h2 style="color: #666; margin-bottom: 15px;">🛒 لا توجد عناصر في السلة</h2>
+                <p style="color: #888; margin-bottom: 25px;">يجب إضافة عناصر للسلة أولاً قبل إتمام الطلب</p>
+                <a href="./" style="background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%); color: #2C3E50; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                    🏠 ابدأ التسوق
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>متجر هدايا الإمارات</h3>
+                    <p>متجركم الموثوق للعطور والساعات الفاخرة. توصيل مجاني داخل الإمارات.</p>
+                    <a href="https://wa.me/201110760081" class="whatsapp-contact" target="_blank">
+                        📱 تواصل عبر واتساب
+                    </a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 متجر هدايا الإمارات</p>
+            </div>
+        </div>
+    </footer>
+    
+    <button id="back-to-top">↑</button>
+    
+    <script type="module">
+        // عناصر القائمة
+        const openBtn = document.getElementById('openSidebar');
+        const closeBtn = document.getElementById('closeSidebar');
+        const sidebar = document.getElementById('mobileSidebar');
+        const overlay = document.getElementById('mobileOverlay');
+        
+        const openSidebar = () => {
+            sidebar?.classList.add('open');
+            overlay?.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        
+        const closeSidebar = () => {
+            sidebar?.classList.remove('open');
+            overlay?.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        
+        openBtn?.addEventListener('click', openSidebar);
+        closeBtn?.addEventListener('click', closeSidebar);
+        overlay?.addEventListener('click', closeSidebar);
+        document.addEventListener('keydown', (e) => e.key === 'Escape' && closeSidebar());
+        
+        // إدارة بيانات الطلب
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        
+        // تحقق من وجود عناصر في السلة
+        const checkCartItems = () => {
+            const orderSummary = document.getElementById('order-summary');
+            const checkoutForm = document.getElementById('checkout-form');
+            const emptyMessage = document.getElementById('empty-cart-message');
+            
+            if (cart.length === 0) {
+                orderSummary.style.display = 'none';
+                checkoutForm.style.display = 'none';
+                emptyMessage.style.display = 'block';
+                return false;
+            }
+            
+            orderSummary.style.display = 'block';
+            checkoutForm.style.display = 'block';
+            emptyMessage.style.display = 'none';
+            return true;
+        };
+        
+        // عرض ملخص الطلب
+        const displayOrderSummary = () => {
+            if (!checkCartItems()) return;
+            
+            const orderItems = document.getElementById('order-items');
+            const finalTotal = document.getElementById('final-total');
+            
+            orderItems.innerHTML = cart.map(item => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <img src="${item.image_link}" alt="${item.title}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 5px;" loading="lazy">
+                        <div>
+                            <div style="font-weight: 600; font-size: 0.9rem; color: #2C3E50;">${item.title}</div>
+                            <div style="font-size: 0.8rem; color: #666;">الكمية: ${item.quantity}</div>
+                        </div>
+                    </div>
+                    <div style="font-weight: 700; color: #D4AF37;">${item.sale_price * item.quantity} د.إ</div>
+                </div>
+            `).join('');
+            
+            const total = cart.reduce((sum, item) => sum + (item.sale_price * item.quantity), 0);
+            finalTotal.textContent = `${total} د.إ`;
+        };
+        
+        // تحقق من صحة رقم الجوال الإماراتي
+        const validateUAEPhone = (phone) => {
+            // إزالة المسافات والشرطات
+            const cleanPhone = phone.replace(/[\s-]/g, '');
+            
+            // الأنماط المقبولة للأرقام الإماراتية
+            const uaePatterns = [
+                /^(9715[0-9]{8})$/, // 9715XXXXXXXX
+                /^(05[0-9]{8})$/,   // 05XXXXXXXX
+                /^(\+9715[0-9]{8})$/ // +9715XXXXXXXX
+            ];
+            
+            return uaePatterns.some(pattern => pattern.test(cleanPhone));
+        };
+        
+        // تحقق من صحة النموذج
+        const validateForm = () => {
+            let isValid = true;
+            
+            // تنظيف رسائل الخطأ السابقة
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+            document.querySelectorAll('input.error, textarea.error').forEach(el => el.classList.remove('error'));
+            
+            // تحقق من الاسم
+            const name = document.getElementById('customer-name');
+            if (!name.value.trim()) {
+                document.getElementById('name-error').textContent = 'يرجى إدخال الاسم الكامل';
+                name.classList.add('error');
+                isValid = false;
+            }
+            
+            // تحقق من رقم الجوال
+            const phone = document.getElementById('customer-phone');
+            if (!phone.value.trim()) {
+                document.getElementById('phone-error').textContent = 'يرجى إدخال رقم الجوال';
+                phone.classList.add('error');
+                isValid = false;
+            } else if (!validateUAEPhone(phone.value)) {
+                document.getElementById('phone-error').textContent = 'يرجى إدخال رقم جوال إماراتي صحيح (مثل: 05XXXXXXXX أو 9715XXXXXXXX)';
+                phone.classList.add('error');
+                isValid = false;
+            }
+            
+            // تحقق من العنوان
+            const address = document.getElementById('customer-address');
+            if (!address.value.trim()) {
+                document.getElementById('address-error').textContent = 'يرجى إدخال العنوان الكامل';
+                address.classList.add('error');
+                isValid = false;
+            }
+            
+            return isValid;
+        };
+        
+        // إرسال الطلب عبر واتساب
+        const submitOrder = () => {
+            if (!validateForm() || !checkCartItems()) return;
+            
+            const name = document.getElementById('customer-name').value;
+            const phone = document.getElementById('customer-phone').value;
+            const address = document.getElementById('customer-address').value;
+            const notes = document.getElementById('order-notes').value;
+            
+            // بناء رسالة واتساب
+            let message = `✅ **طلب جديد من متجر هدايا الإمارات**\n\n`;
+            message += `👤 **بيانات العميل:**\n`;
+            message += `• الاسم: ${name}\n`;
+            message += `• الجوال: ${phone}\n`;
+            message += `• العنوان: ${address}\n\n`;
+            
+            message += `🛒 **تفاصيل الطلب:**\n`;
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.title}\n`;
+                message += `   - السعر: ${item.sale_price} د.إ\n`;
+                message += `   - الكمية: ${item.quantity}\n`;
+                message += `   - الإجمالي: ${item.sale_price * item.quantity} د.إ\n\n`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.sale_price * item.quantity), 0);
+            message += `💰 **إجمالي الطلب: ${total} درهم إماراتي**\n\n`;
+            
+            if (notes.trim()) {
+                message += `📝 **ملاحظات:**\n${notes}\n\n`;
+            }
+            
+            message += `💳 **طريقة الدفع:** الدفع عند الاستلام\n`;
+            message += `🚚 **التوصيل:** مجاني داخل الإمارات`;
+            
+            // فتح واتساب مع الرسالة
+            const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // إظهار رسالة نجاح
+            const successMessage = document.createElement('div');
+            successMessage.style.cssText = `
+                position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                background: #25D366; color: white; padding: 20px 30px; border-radius: 15px;
+                z-index: 2000; text-align: center; font-weight: 600;
+                box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            `;
+            successMessage.innerHTML = `
+                <div style="font-size: 2rem; margin-bottom: 10px;">✅</div>
+                <div>تم إرسال طلبك بنجاح!</div>
+                <div style="font-size: 0.9rem; margin-top: 10px; opacity: 0.9;">سيتم التواصل معك قريباً</div>
+            `;
+            document.body.appendChild(successMessage);
+            
+            setTimeout(() => {
+                document.body.removeChild(successMessage);
+                // مسح السلة بعد الإرسال
+                localStorage.removeItem('cart');
+                window.location.href = './';
+            }, 3000);
+        };
+        
+        // ربط أحداث النموذج
+        document.getElementById('checkout-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            submitOrder();
+        });
+        
+        // تحميل بيانات الطلب
+        displayOrderSummary();
+    </script>
+</body>
+</html>
