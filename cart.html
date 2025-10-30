@@ -12,12 +12,39 @@
     <!-- Critical CSS لصفحة السلة -->
     <style>
         body{font-family:'Cairo',system-ui,sans-serif;background:#FEFEFE;color:#2C3E50;direction:rtl}
-        .container{max-width:800px;margin:0 auto;padding:0 15px}
-        .cart-page{padding:20px 0;min-height:60vh}
-        .empty-cart{text-align:center;padding:60px 20px;background:white;border-radius:15px;margin:20px 0}
-        .cart-item{display:grid;grid-template-columns:80px 1fr auto auto;gap:15px;align-items:center;padding:15px;border-bottom:1px solid rgba(212,175,55,0.2);background:white;border-radius:10px;margin-bottom:10px;box-shadow:0 2px 8px rgba(212,175,55,0.1)}
-        .cart-summary{background:white;padding:25px;border-radius:15px;box-shadow:0 4px 12px rgba(212,175,55,0.15);margin:20px 0;text-align:center}
-        .checkout-btn{width:100%;padding:18px;background:#25D366;color:white;border:none;border-radius:25px;font-size:1.1rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px}
+        .container{max-width:1000px;margin:0 auto;padding:0 15px}
+        .cart-page{padding:40px 20px;min-height:calc(100vh - 200px);background:#f8f9fa}
+        .cart-container{max-width:1000px;margin:0 auto;background:white;border-radius:15px;padding:40px;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
+        .cart-header{text-align:center;margin-bottom:40px;padding-bottom:20px;border-bottom:2px solid #FFD700}
+        .cart-header h1{font-size:2.5rem;color:#2c3e50;margin-bottom:10px;background:linear-gradient(135deg, #FFD700, #D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .cart-item{display:flex;align-items:center;gap:20px;padding:20px;border:1px solid #e9ecef;border-radius:12px;margin-bottom:15px;background:#fafafa;transition:all 0.3s ease}
+        .cart-item:hover{box-shadow:0 5px 15px rgba(0,0,0,0.1);border-color:#FFD700}
+        .cart-item img{width:80px;height:80px;object-fit:cover;border-radius:10px}
+        .item-details{flex:1}
+        .item-title{font-size:1.3rem;font-weight:600;color:#2c3e50;margin-bottom:5px}
+        .item-rating{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+        .item-rating .stars{color:#FFD700;font-size:16px}
+        .item-rating .rating-number{font-weight:bold;color:#2c3e50}
+        .item-price{font-size:1.2rem;font-weight:bold;color:#D4AF37}
+        .quantity-controls{display:flex;align-items:center;gap:10px;background:white;border-radius:8px;padding:8px;border:1px solid #ddd}
+        .quantity-btn{background:#667eea;color:white;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-weight:bold;display:flex;align-items:center;justify-content:center}
+        .quantity-btn:hover{background:#5a67d8}
+        .quantity-display{font-weight:bold;min-width:30px;text-align:center}
+        .remove-item{background:#e74c3c;color:white;border:none;padding:10px 15px;border-radius:8px;cursor:pointer;font-weight:600}
+        .remove-item:hover{background:#c0392b}
+        .cart-summary{background:linear-gradient(135deg, #667eea, #764ba2);color:white;padding:30px;border-radius:15px;margin-top:30px}
+        .summary-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;font-size:1.1rem}
+        .summary-total{font-size:1.5rem;font-weight:bold;padding-top:15px;border-top:1px solid rgba(255,255,255,0.3)}
+        .checkout-actions{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:30px}
+        .btn-checkout{background:#25D366;color:white;padding:18px 30px;border:none;border-radius:12px;font-size:1.1rem;font-weight:600;cursor:pointer;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.3s ease}
+        .btn-checkout:hover{background:#128C7E;transform:translateY(-2px);box-shadow:0 8px 20px rgba(37, 211, 102, 0.3)}
+        .btn-continue{background:transparent;color:#667eea;border:2px solid #667eea;padding:18px 30px;border-radius:12px;font-size:1.1rem;font-weight:600;cursor:pointer;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.3s ease}
+        .btn-continue:hover{background:#667eea;color:white;text-decoration:none}
+        .empty-cart{text-align:center;padding:60px 20px}
+        .empty-cart-icon{font-size:4rem;margin-bottom:20px;opacity:0.6}
+        .empty-cart h2{color:#2c3e50;margin-bottom:15px}
+        .empty-cart p{color:#666;margin-bottom:30px}
+        @media (max-width: 768px){.cart-container{padding:20px;margin:20px 10px}.cart-item{flex-direction:column;text-align:center;gap:15px}.cart-item img{width:120px;height:120px}.checkout-actions{grid-template-columns:1fr}.cart-header h1{font-size:2rem}}
     </style>
 </head>
 <body>
@@ -32,10 +59,9 @@
         </div>
         <nav class="mobile-sidebar-nav">
             <a href="./">🏠 الرئيسية</a>
-            <a href="./blog.html">📝 المدونة</a>
-            <a href="./about.html">ℹ️ من نحن</a>
-            <a href="./cart.html">🛒 السلة</a>
-            <a href="./checkout.html">✅ اتمام الطلب</a>
+            <a href="./blog/">📝 المدونة</a>
+            <a href="./products-showcase.html">🛍 عرض المنتجات</a>
+            <a href="./cart.html">🛍 السلة</a>
             <a href="https://wa.me/201110760081" target="_blank">📱 واتساب</a>
         </nav>
     </div>
@@ -53,50 +79,27 @@
             
             <nav class="main-nav">
                 <a href="./">الرئيسية</a>
-                <a href="./blog.html">المدونة</a>
-                <a href="./about.html">من نحن</a>
-                <a href="./cart.html">السلة</a>
-                <a href="https://wa.me/201110760081" target="_blank">📱 واتساب</a>
+                <a href="./blog/">المدونة</a>
+                <a href="./products-showcase.html">عرض المنتجات</a>
+                <a href="https://wa.me/201110760081" target="_blank">
+                    📱 واتساب
+                </a>
             </nav>
         </div>
     </header>
     
     <main class="cart-page">
-        <div class="container">
-            <nav style="margin-bottom: 20px; font-size: 0.9rem; color: #8B4513;">
-                <a href="./" style="color: #D4AF37; text-decoration: none; font-weight: 600;">🏠 الرئيسية</a>
-                <span style="margin: 0 8px;">←</span>
-                <span style="font-weight: 600;">سلة التسوق</span>
-            </nav>
-            
-            <h1 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 30px; color: #2C3E50;">🛒 سلة التسوق</h1>
-            
-            <!-- عناصر السلة -->
-            <div id="cart-items-container"></div>
-            
-            <!-- ملخص الطلب -->
-            <div id="cart-summary" class="cart-summary" style="display: none;">
-                <h3 style="margin-bottom: 15px; color: #2C3E50;">ملخص الطلب</h3>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                    <span>عدد العناصر:</span>
-                    <span id="total-items">0</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 1.3rem; font-weight: 700; color: #D4AF37; border-top: 2px solid #f0f0f0; padding-top: 15px;">
-                    <span>الإجمالي:</span>
-                    <span id="total-price">0 د.إ</span>
-                </div>
-                <a href="./checkout.html" class="checkout-btn">
-                    ✅ متابعة إتمام الطلب
-                </a>
+        <div class="cart-container">
+            <div class="cart-header">
+                <h1>🛍 سلة التسوق</h1>
+                <p>مراجعة منتجاتك قبل إتمام الطلب</p>
             </div>
             
-            <!-- رسالة السلة الفارغة -->
-            <div id="empty-cart" class="empty-cart">
-                <h2 style="font-size: 1.5rem; margin-bottom: 15px; color: #666;">🛒 سلتك فارغة</h2>
-                <p style="margin-bottom: 25px; color: #888;">لم تقم بإضافة أي منتجات بعد. ابدأ التسوق الآن!</p>
-                <a href="./" style="background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%); color: #2C3E50; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
-                    🏠 ابدأ التسوق
-                </a>
+            <div id="cart-content">
+                <!-- سيتم ملء المحتوى بواسطة JavaScript -->
+                <div class="loading-message" style="text-align: center; padding: 40px;">
+                    ⏳ جاري تحميل سلة التسوق...
+                </div>
             </div>
         </div>
     </main>
@@ -106,21 +109,21 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>متجر هدايا الإمارات</h3>
-                    <p>متجركم الموثوق للعطور والساعات الفاخرة.</p>
-                    <a href="https://wa.me/201110760081" class="whatsapp-contact" target="_blank">
+                    <p>متجركم الموثوق للعطور والساعات والهدايا الفاخرة.</p>
+                    <a href="https://wa.me/201110760081" target="_blank">
                         📱 تواصل عبر واتساب
                     </a>
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>&copy; 2025 متجر هدايا الإمارات</p>
+                <p>&copy; 2025 متجر هدايا الإمارات - جميع الحقوق محفوظة</p>
             </div>
         </div>
     </footer>
     
     <button id="back-to-top">↑</button>
     
-    <script type="module">
+    <script>
         // عناصر القائمة
         const openBtn = document.getElementById('openSidebar');
         const closeBtn = document.getElementById('closeSidebar');
@@ -144,73 +147,178 @@
         overlay?.addEventListener('click', closeSidebar);
         document.addEventListener('keydown', (e) => e.key === 'Escape' && closeSidebar());
         
-        // إدارة السلة
-        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        // إدارة السلة مع التقييمات
+        let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
         
-        const updateCartDisplay = () => {
-            const container = document.getElementById('cart-items-container');
-            const summary = document.getElementById('cart-summary');
-            const emptyCart = document.getElementById('empty-cart');
-            const totalItems = document.getElementById('total-items');
-            const totalPrice = document.getElementById('total-price');
+        // تحديث كمية المنتج
+        function updateQuantity(productId, change) {
+            const itemIndex = cart.findIndex(item => item.id === productId);
+            if (itemIndex !== -1) {
+                cart[itemIndex].quantity += change;
+                if (cart[itemIndex].quantity <= 0) {
+                    cart.splice(itemIndex, 1);
+                }
+                localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
+                displayCart();
+            }
+        }
+        
+        // حذف منتج من السلة
+        function removeItem(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
+            displayCart();
+            
+            // إظهار رسالة حذف
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed; top: 20px; right: 20px; background: #e74c3c; color: white;
+                padding: 12px 20px; border-radius: 8px; z-index: 1000;
+                font-weight: 600; opacity: 0; transition: opacity 0.3s ease;
+            `;
+            toast.textContent = '✓ تم حذف المنتج من السلة';
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.style.opacity = '1', 100);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 2000);
+        }
+        
+        // عرض محتويات السلة مع التقييمات
+        function displayCart() {
+            const cartContent = document.getElementById('cart-content');
             
             if (cart.length === 0) {
-                container.innerHTML = '';
-                summary.style.display = 'none';
-                emptyCart.style.display = 'block';
+                cartContent.innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">🛍</div>
+                        <h2>سلة التسوق فارغة</h2>
+                        <p>لا توجد منتجات في سلتك حالياً</p>
+                        <a href="./" class="btn-continue">
+                            🛍 ابدأ التسوق الآن
+                        </a>
+                    </div>
+                `;
                 return;
             }
             
-            emptyCart.style.display = 'none';
-            summary.style.display = 'block';
+            const total = cart.reduce((sum, item) => {
+                const price = parseFloat(item.sale_price || item.price || '0'.replace(/[^0-9.]/g, ''));
+                return sum + (price * item.quantity);
+            }, 0);
             
-            // عرض عناصر السلة
-            container.innerHTML = cart.map(item => `
-                <div class="cart-item">
-                    <img src="${item.image_link}" alt="${item.title}" class="cart-item-image" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;" loading="lazy">
-                    <div class="cart-item-info">
-                        <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 5px; color: #2C3E50;">${item.title}</h4>
-                        <div class="cart-item-price" style="font-weight: 700; color: #D4AF37; font-size: 1.1rem;">${item.sale_price} د.إ</div>
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            let cartHTML = '<div class="cart-items">';
+            
+            cart.forEach(item => {
+                const itemPrice = parseFloat(item.sale_price || item.price || '0'.replace(/[^0-9.]/g, ''));
+                const itemTotal = itemPrice * item.quantity;
+                
+                // إضافة تقييم المنتج إذا كان متوفر
+                const ratingHTML = item.rating ? `
+                    <div class="item-rating">
+                        <span class="stars">${'★'.repeat(Math.floor(item.rating.rating))}</span>
+                        <span class="rating-number">${item.rating.rating.toFixed(1)}</span>
+                        <span class="reviews-count">(${item.rating.count})</span>
                     </div>
-                    <div class="quantity-controls" style="display: flex; align-items: center; gap: 8px;">
-                        <button class="quantity-btn" onclick="changeQuantity('${item.id}', -1)" style="background: #f0f0f0; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-weight: 700;">-</button>
-                        <span style="font-weight: 600; min-width: 20px; text-align: center;">${item.quantity}</span>
-                        <button class="quantity-btn" onclick="changeQuantity('${item.id}', 1)" style="background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%); border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-weight: 700;">+</button>
+                ` : '';
+                
+                cartHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image_link || item.image}" alt="${item.title}">
+                        <div class="item-details">
+                            <div class="item-title">${item.title}</div>
+                            ${ratingHTML}
+                            <div class="item-price">${itemPrice.toFixed(2)} د.إ</div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span class="quantity-display">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </div>
+                        <button class="remove-item" onclick="removeItem(${item.id})">
+                            🗑️ حذف
+                        </button>
                     </div>
-                    <button class="remove-item" onclick="removeFromCart('${item.id}')" style="background: #ff4444; color: white; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; font-size: 1.1rem;">×</button>
+                `;
+            });
+            
+            cartHTML += '</div>';
+            
+            // ملخص الطلب
+            cartHTML += `
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>عدد المنتجات:</span>
+                        <span>${totalItems} قطعة</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>إجمالي المنتجات:</span>
+                        <span>${total.toFixed(2)} د.إ</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>رسوم الشحن:</span>
+                        <span style="color: #27ae60; font-weight: bold;">مجاني ✓</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>الإجمالي النهائي:</span>
+                        <span>${total.toFixed(2)} د.إ</span>
+                    </div>
+                    
+                    <div class="checkout-actions">
+                        <a href="${createWhatsAppOrderLink()}" class="btn-checkout" target="_blank">
+                            📱 إتمام الطلب عبر واتساب
+                        </a>
+                        <a href="./" class="btn-continue">
+                            🛍 متابعة التسوق
+                        </a>
+                    </div>
                 </div>
-            `).join('');
+            `;
             
-            // تحديث الملخص
-            const total = cart.reduce((sum, item) => sum + (item.sale_price * item.quantity), 0);
-            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            
-            totalItems.textContent = itemCount;
-            totalPrice.textContent = `${total} د.إ`;
-        };
+            cartContent.innerHTML = cartHTML;
+        }
         
-        // تغيير الكمية
-        window.changeQuantity = (productId, change) => {
-            const item = cart.find(item => item.id === productId);
-            if (item) {
-                item.quantity += change;
-                if (item.quantity <= 0) {
-                    cart = cart.filter(item => item.id !== productId);
+        // إنشاء رابط واتساب للطلب مع التقييمات
+        function createWhatsAppOrderLink() {
+            if (cart.length === 0) return '#';
+            
+            let message = 'مرحباً! أريد إتمام طلب من متجر هدايا الإمارات:\n\n';
+            
+            let total = 0;
+            cart.forEach((item, index) => {
+                const itemPrice = parseFloat(item.sale_price || item.price || '0'.replace(/[^0-9.]/g, ''));
+                const itemTotal = itemPrice * item.quantity;
+                total += itemTotal;
+                
+                message += `${index + 1}. ${item.title}\n`;
+                if (item.rating) {
+                    message += `   ⭐ تقييم: ${item.rating.rating.toFixed(1)} (${item.rating.count} مراجعة)\n`;
                 }
-                localStorage.setItem('cart', JSON.stringify(cart));
-                updateCartDisplay();
-            }
-        };
+                message += `   الكمية: ${item.quantity}\n`;
+                message += `   السعر: ${itemPrice.toFixed(2)} د.إ\n`;
+                message += `   الإجمالي: ${itemTotal.toFixed(2)} د.إ\n\n`;
+            });
+            
+            message += `💰 إجمالي الطلب: ${total.toFixed(2)} د.إ\n`;
+            message += `🚚 الشحن: مجاني \n\n`;
+            message += 'يرجى تأكيد الطلب وإرسال تفاصيل التوصيل.';
+            
+            return `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
+        }
         
-        // حذف من السلة
-        window.removeFromCart = (productId) => {
-            cart = cart.filter(item => item.id !== productId);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartDisplay();
-        };
+        // جعل الوظائف عامة
+        window.updateQuantity = updateQuantity;
+        window.removeItem = removeItem;
+        window.createWhatsAppOrderLink = createWhatsAppOrderLink;
         
-        // تحميل السلة عند بدء الصفحة
-        updateCartDisplay();
+        // عرض السلة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            displayCart();
+        });
     </script>
 </body>
 </html>
