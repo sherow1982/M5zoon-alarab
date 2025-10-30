@@ -1,0 +1,131 @@
+/* 
+ * قائمة جانبية محسّنة للهواتف - متجر هدايا الإمارات
+ * مستوحاة من تصميم دخون الإماراتية
+ */
+
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 350px;
+    height: 100vh;
+    background: var(--gradient-blue);
+    z-index: 10000;
+    transition: var(--transition);
+    box-shadow: -5px 0 25px var(--shadow-dark);
+    overflow-y: auto;
+}
+
+.mobile-sidebar.open {
+    right: 0;
+}
+
+.mobile-sidebar-header {
+    background: var(--gradient-gold);
+    color: var(--deep-blue);
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.mobile-sidebar-logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.mobile-sidebar-close {
+    background: transparent;
+    color: var(--deep-blue);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.mobile-sidebar-close:hover {
+    background: var(--deep-blue);
+    color: var(--light-gold);
+}
+
+.mobile-sidebar-nav {
+    padding: 20px 0;
+}
+
+.mobile-sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 25px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    border-right: 4px solid transparent;
+}
+
+.mobile-sidebar-nav a:hover,
+.mobile-sidebar-nav a.active {
+    background: rgba(255, 255, 255, 0.1);
+    border-right-color: var(--primary-gold);
+    color: var(--light-gold);
+}
+
+.mobile-sidebar-nav i {
+    font-size: 1.2rem;
+    width: 25px;
+    text-align: center;
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    backdrop-filter: blur(5px);
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* تحسينات للهواتف الصغيرة */
+@media (max-width: 380px) {
+    .mobile-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .mobile-sidebar.open {
+        right: 0;
+    }
+}
+
+/* إخفاء القائمة على الشاشات الكبيرة */
+@media (min-width: 769px) {
+    .mobile-sidebar,
+    .mobile-overlay {
+        display: none !important;
+    }
+    
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+}
