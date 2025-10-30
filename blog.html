@@ -1,311 +1,545 @@
-<!doctype html>
-<html lang="ar-AE" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مدونة متجر هدايا الإمارات - نصائح ومراجعات العطور والساعات</title>
-    <meta name="description" content="اقرأ أحدث المقالات والمراجعات حول العطور والساعات الفاخرة في متجر هدايا الإمارات.">
-    <meta name="keywords" content="مدونة عطور, مراجعات ساعات, نصائح جمال, متجر هدايا الإمارات">
-    <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/blog.html">
-    <link rel="stylesheet" href="./woodmart-lite.css">
-    <link rel="icon" href="./favicon.ico">
+    <title>مدونة مخزون العرب | نصائح ومراجعات العطور والساعات الفاخرة</title>
+    <meta name="description" content="اكتشف أفضل العطور والساعات الفاخرة مع مراجعات مفصلة ونصائح الخبراء. أفضل مدونة عربية للعطور والهدايا الفاخرة">
+    <meta name="keywords" content="مدونة عطور, مراجعات ساعات, نصائح عطور, أفضل عطر 2025, مراجعات رولكس, عطور نسائية">
+    <link rel="canonical" href="https://emirates-gifts.vercel.app/blog.html">
     
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="مدونة متجر هدايا الإمارات">
-    <meta property="og:description" content="نصائح ومراجعات العطور والساعات الفاخرة">
-    <meta property="og:url" content="https://sherow1982.github.io/emirates-gifts/blog.html">
-    <meta property="og:type" content="website">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fdfbfb 0%, #f8f6f0 100%);
+            color: #2c2c2c;
+            line-height: 1.6;
+            direction: rtl;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e89a 50%, #d4af37 100%);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            color: #fff;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+        }
+        
+        .nav-bar {
+            background: rgba(255,255,255,0.95);
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        
+        .nav-links a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .nav-links a:hover {
+            background: linear-gradient(135deg, #d4af37, #f4e89a);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero-section h2 {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .hero-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #f4e89a);
+            border-radius: 2px;
+        }
+        
+        .hero-section p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .blog-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+        }
+        
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #f4e89a, #d4af37);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .blog-card:hover::before {
+            opacity: 1;
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+        
+        .blog-content {
+            padding: 25px;
+        }
+        
+        .blog-category {
+            background: linear-gradient(135deg, #d4af37, #f4e89a);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .blog-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .blog-excerpt {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        .read-more {
+            background: linear-gradient(135deg, #d4af37, #f4e89a);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .read-more:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .featured-section {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 232, 154, 0.1));
+            border-radius: 25px;
+            padding: 40px;
+            margin: 60px 0;
+            text-align: center;
+        }
+        
+        .featured-section h3 {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+        
+        .featured-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .featured-product {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .featured-product:hover {
+            transform: translateY(-5px);
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #2c2c2c 0%, #3a3a3a 100%);
+            color: #fff;
+            padding: 40px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer h4 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+        
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: #d4af37;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-section h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .nav-links {
+                gap: 10px;
+            }
+            
+            .nav-links a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Animation */
+        .blog-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .blog-card:nth-child(even) {
+            animation-delay: 0.1s;
+        }
+        
+        .blog-card:nth-child(3n) {
+            animation-delay: 0.2s;
+        }
+    </style>
 </head>
 <body>
-    <!-- الخلفية الشفافة للقائمة الجانبية -->
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    
-    <!-- القائمة الجانبية للموبايل -->
-    <div class="mobile-sidebar" id="mobileSidebar">
-        <div class="mobile-sidebar-header">
-            <div class="mobile-sidebar-logo">متجر هدايا الإمارات</div>
-            <button class="mobile-sidebar-close" id="closeSidebar" aria-label="إغلاق القائمة">✖</button>
-        </div>
-        <nav class="mobile-sidebar-nav">
-            <a href="./">🏠 الرئيسية</a>
-            <a href="./blog.html">📝 المدونة</a>
-            <a href="./about.html">ℹ️ من نحن</a>
-            <a href="./shipping-policy.html">🚚 سياسة الشحن</a>
-            <a href="./return-policy.html">🔄 الاسترجاع</a>
-            <a href="./">🌸 العطور</a>
-            <a href="./">⌚ الساعات</a>
-            <a href="https://wa.me/201110760081" target="_blank">📱 واتساب</a>
-        </nav>
-    </div>
-    
     <header class="header">
-        <div class="header__inner container">
-            <a href="./" class="header__logo">
-                <h1>متجر هدايا الإمارات</h1>
-            </a>
-            
-            <!-- زر فتح القائمة الجانبية للموبايل -->
-            <button class="mobile-menu-toggle" id="openSidebar" aria-label="فتح القائمة">
-                ☰
-            </button>
-            
-            <nav class="main-nav">
-                <a href="./">الرئيسية</a>
-                <a href="./blog.html">المدونة</a>
-                <a href="./about.html">من نحن</a>
-                <a href="./shipping-policy.html">سياسة الشحن</a>
-                <a href="./return-policy.html">الاسترجاع</a>
-                <a href="https://wa.me/201110760081" class="whatsapp-contact" target="_blank">
-                    📱 واتساب
-                </a>
-            </nav>
-        </div>
+        <h1>📝 مدونة مخزون العرب</h1>
+        <p>عالم العطور والساعات الفاخرة - مراجعات ونصائح احترافية</p>
     </header>
     
-    <main class="section">
-        <div class="container">
-            <h1 style="font-family: 'Amiri', serif; font-size: 3rem; text-align: center; margin-bottom: 30px; background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">مدونة متجر هدايا الإمارات</h1>
-            <p style="text-align: center; font-size: 1.2rem; color: var(--text-gold); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">مراجعات شاملة ونصائح الخبراء لأفضل العطور والساعات في دولة الإمارات.</p>
+    <nav class="nav-bar">
+        <div class="nav-links">
+            <a href="./index.html">🏠 الرئيسية</a>
+            <a href="#perfume-reviews">🌹 مراجعات عطور</a>
+            <a href="#watch-reviews">⌚ مراجعات ساعات</a>
+            <a href="#tips">💡 نصائح وإرشادات</a>
+            <a href="./products-showcase.html">🛒 عرض المنتجات</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section class="hero-section">
+            <h2>مرحباً بكم في مدونة العطور والهدايا</h2>
+            <p>اكتشفوا عالم العطور والساعات الفاخرة معنا. نقدم لكم مراجعات صادقة ونصائح عملية من خبراء في هذا المجال</p>
+        </section>
+        
+        <section id="perfume-reviews" class="blog-section">
+            <div class="blog-grid">
+                
+                <article class="blog-card">
+                    <img src="https://m5zoon.com/public/uploads/products/1722352332177124.webp" alt="مراجعة عطر شانيل" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">🌹 مراجعات عطور</span>
+                        <h3 class="blog-title">مراجعة شاملة: عطر شانيل كوكو 100 مل</h3>
+                        <div class="blog-meta">
+                            <span>📅 30 أكتوبر 2025</span>
+                            <span>👁️ 2,450 مشاهدة</span>
+                        </div>
+                        <p class="blog-excerpt">
+                            اكتشفوا لماذا يعتبر عطر شانيل كوكو من أفضل العطور النسائية الكلاسيكية. تجربة مفصلة عن الرائحة والثبات والأناقة. متوفر بسعر 252 درهم بخصم 28%، مع ضمان الجودة وشحن مجاني في الإمارات.
+                        </p>
+                        <a href="./products/عطر-كوكو-شانيل-100-مل-1.html" class="read-more">قراءة المراجعة كاملة →</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <img src="https://m5zoon.com/public/uploads/products/1757731212122499.webp" alt="مراجعة Tom Ford" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">🌹 مراجعات عطور</span>
+                        <h3 class="blog-title">Tom Ford Vanilla Sex: تجربة عطرية فريدة</h3>
+                        <div class="blog-meta">
+                            <span>📅 28 أكتوبر 2025</span>
+                            <span>👁️ 1,890 مشاهدة</span>
+                        </div>
+                        <p class="blog-excerpt">
+                            انغمسوا في عالم عطور توم فورد الفاخرة. عطر Vanilla Sex برائحة الفانيلا الغنية والقوية، مثالي للمناسبات الخاصة. سعر 265 درهم بخصم 27%. تجربة عطرية لا تُنسى مع ثبات طويل وقوة متوازنة.
+                        </p>
+                        <a href="./products-showcase.html" class="read-more">قراءة المراجعة كاملة →</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <img src="https://m5zoon.com/public/uploads/products/1689086291310824.webp" alt="مراجعة رولكس" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">⌚ مراجعات ساعات</span>
+                        <h3 class="blog-title">ساعة رولكس يخت ماستر: مراجعة شاملة</h3>
+                        <div class="blog-meta">
+                            <span>📅 25 أكتوبر 2025</span>
+                            <span>👁️ 3,200 مشاهدة</span>
+                        </div>
+                        <p class="blog-excerpt">
+                            دليل شامل عن ساعة رولكس يخت ماستر الفضية. تصميم رياضي فاخر بجودة سويسرية عالية. مقاومة للماء وضمان سنتين. سعر 320 درهم بخصم 14%. تحفة سويسرية رائعة لعشاق الساعات الفاخرة.
+                        </p>
+                        <a href="./products-showcase.html" class="read-more">قراءة المراجعة كاملة →</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <img src="https://m5zoon.com/public/uploads/products/175669385359976.webp" alt="نصائح عطور" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">💡 نصائح وإرشادات</span>
+                        <h3 class="blog-title">كيف تختار العطر المناسب لشخصيتك؟</h3>
+                        <div class="blog-meta">
+                            <span>📅 20 أكتوبر 2025</span>
+                            <span>👁️ 4,100 مشاهدة</span>
+                        </div>
+                        <p class="blog-excerpt">
+                            دليل شامل يساعدك في اختيار العطر الأنسب لشخصيتك ونمط حياتك. تعرفوا على عائلات العطور: الزهرية، الشرقية، العظمية، والطازجة. نصائح عملية من خبراء العطور.
+                        </p>
+                        <a href="./products-showcase.html" class="read-more">قراءة المقال كاملاً →</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <img src="https://m5zoon.com/public/uploads/products/1741223185271965.png" alt="عناية الساعات" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">💡 نصائح وإرشادات</span>
+                        <h3 class="blog-title">نصائح للعناية بالساعات الفاخرة</h3>
+                        <div class="blog-meta">
+                            <span>📅 18 أكتوبر 2025</span>
+                            <span>👁️ 2,780 مشاهدة</span>
+                        </div>
+                        <p class="blog-excerpt">
+                            تعلموا كيف تحافظون على ساعاتكم الفاخرة وتضمنون بقاءها في أفضل حال. نصائح عملية للتنظيف، الحفظ، والصيانة. كيفية تجنب الأخطاء الشائعة في العناية بالساعات.
+                        </p>
+                        <a href="./products-showcase.html" class="read-more">قراءة المقال كاملاً →</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <img src="https://m5zoon.com/public/uploads/products/1722352237120309.webp" alt="عطور 2025" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">🎆 تريندات</span>
+                        <h3 class="blog-title">أفضل عطور 2025: اتجاهات وتوقعات</h3>
+                        <div class="blog-meta">
+                            <span>📅 15 أكتوبر 2025</span>
+                            <span>👁️ 5,620 مشاهدة</span>
+                        </div>
+                        <p class="blog-excerpt">
+                            اكتشفوا أحدث اتجاهات عالم العطور لعام 2025. من الروائح العصرية إلى العطور المستدامة، تعرفوا على ما سيكون رائجاً. أحدث العلامات والمنتجات المتوقعة في عام 2025.
+                        </p>
+                        <a href="./products-showcase.html" class="read-more">قراءة المقال كاملاً →</a>
+                    </div>
+                </article>
+                
+            </div>
+        </section>
+        
+        <section class="featured-section">
+            <h3>🎆 منتجات مميزة</h3>
+            <p>اكتشفوا مجموعتنا المنتقاة بعناية من العطور والساعات الفاخرة</p>
             
-            <div id="blog-posts-container">
-                <div class="loading-spinner" style="text-align: center; padding: 60px 20px; color: var(--text-gold); font-size: 1.2rem;">
-                    <p>⏳ جارٍ تحميل المقالات الاحترافية...</p>
+            <div class="featured-products">
+                <div class="featured-product">
+                    <h4>🌹 عطر شانيل كوكو</h4>
+                    <p>عطر نسائي فاخر برائحة كلاسيكية</p>
+                    <strong>252 درهم</strong>
+                    <a href="./products/عطر-كوكو-شانيل-100-مل-1.html" class="read-more">شاهد المنتج</a>
+                </div>
+                
+                <div class="featured-product">
+                    <h4>⌚ رولكس يخت ماستر</h4>
+                    <p>ساعة رياضية فاخرة بتقنية سويسرية</p>
+                    <strong>320 درهم</strong>
+                    <a href="./products-showcase.html" class="read-more">شاهد المنتج</a>
+                </div>
+                
+                <div class="featured-product">
+                    <h4>🌹 Tom Ford Vanilla</h4>
+                    <p>عطر عصري برائحة الفانيلا الفاخرة</p>
+                    <strong>265 درهم</strong>
+                    <a href="./products-showcase.html" class="read-more">شاهد المنتج</a>
                 </div>
             </div>
-        </div>
-    </main>
+        </section>
+    </div>
     
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>متجر هدايا الإمارات</h3>
-                    <p>متجركم الموثوق للعطور والساعات والهدايا الفاخرة في دولة الإمارات العربية المتحدة.</p>
-                    <div class="contact-info">
-                        <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.36 3.48 16.84L2 22L7.32 20.55C8.75 21.33 10.37 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 6.45 17.5 2 12.04 2Z"/></svg>
-                        <span>+201110760081</span>
-                    </div>
-                    <a href="https://wa.me/201110760081" class="whatsapp-contact" target="_blank">
-                        📱 تواصل عبر واتساب
-                    </a>
+                <div>
+                    <h4>🏠 مخزون العرب</h4>
+                    <p>متجركم الموثوق للعطور والساعات الفاخرة</p>
+                    <p>📞 هاتف: <a href="tel:+971501234567">+971 50 123 4567</a></p>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>روابط مهمة</h3>
-                    <ul>
-                        <li><a href="./">الصفحة الرئيسية</a></li>
-                        <li><a href="./blog.html">مدونة المتجر</a></li>
-                        <li><a href="./about.html">من نحن</a></li>
-                        <li><a href="./shipping-policy.html">سياسة الشحن</a></li>
-                        <li><a href="./return-policy.html">سياسة الاسترجاع</a></li>
-                    </ul>
+                <div>
+                    <h4>🔗 روابط سريعة</h4>
+                    <p><a href="./index.html">الصفحة الرئيسية</a></p>
+                    <p><a href="./products-showcase.html">عرض المنتجات</a></p>
+                    <p><a href="https://wa.me/971501234567" target="_blank">تواصل معنا</a></p>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>فئات المنتجات</h3>
-                    <ul>
-                        <li><a href="./">عطور رجالية</a></li>
-                        <li><a href="./">عطور نسائية</a></li>
-                        <li><a href="./">ساعات رولكس</a></li>
-                        <li><a href="./">ساعات أوميغا</a></li>
-                        <li><a href="./">اكسسوارات</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>خدمة العملاء</h3>
-                    <ul>
-                        <li><a href="https://wa.me/201110760081">تواصل معنا</a></li>
-                        <li><a href="./shipping-policy.html">طرق الشحن</a></li>
-                        <li><a href="./return-policy.html">طرق الاسترجاع</a></li>
-                        <li><a href="#">ضمان الجودة</a></li>
-                        <li><a href="#">الدفع عند الاستلام</a></li>
-                    </ul>
+                <div>
+                    <h4>📱 تواصل معنا</h4>
+                    <p><a href="https://wa.me/971501234567" target="_blank">📲 واتساب</a></p>
+                    <p><a href="mailto:info@emirates-gifts.com">✉️ إيميل</a></p>
                 </div>
             </div>
             
-            <div class="footer__bottom">
-                <p>&copy; 2025 متجر هدايا الإمارات - جميع الحقوق محفوظة</p>
-                <div class="social-links">
-                    <a href="https://wa.me/201110760081" target="_blank" title="واتساب">📱</a>
-                    <a href="#" target="_blank" title="إنستغرام">📷</a>
-                    <a href="#" target="_blank" title="تيك توك">🎵</a>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 مخزون العرب - جميع الحقوق محفوظة</p>
             </div>
         </div>
     </footer>
     
-    <button id="back-to-top" title="العودة إلى الأعلى" aria-label="العودة إلى الأعلى">
-        &#8593;
-    </button>
-    
-    <script type="module">
-        // عناصر القائمة الجانبية
-        const openSidebarBtn = document.getElementById('openSidebar');
-        const closeSidebarBtn = document.getElementById('closeSidebar');
-        const mobileSidebar = document.getElementById('mobileSidebar');
-        const mobileOverlay = document.getElementById('mobileOverlay');
-        
-        // فتح القائمة الجانبية
-        function openSidebar() {
-            mobileSidebar.classList.add('open');
-            mobileOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+    <!-- JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "مدونة مخزون العرب",
+        "description": "مدونة متخصصة في مراجعات العطور والساعات الفاخرة",
+        "url": "https://emirates-gifts.vercel.app/blog.html",
+        "inLanguage": "ar",
+        "publisher": {
+            "@type": "Organization",
+            "name": "مخزون العرب"
         }
-        
-        // إغلاق القائمة الجانبية
-        function closeSidebar() {
-            mobileSidebar.classList.remove('open');
-            mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        // ربط الأحداث
-        if (openSidebarBtn) openSidebarBtn.addEventListener('click', openSidebar);
-        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeSidebar);
-        if (mobileOverlay) mobileOverlay.addEventListener('click', closeSidebar);
-        
-        // إغلاق القائمة بمفتاح Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileSidebar.classList.contains('open')) {
-                closeSidebar();
-            }
-        });
-        
-        // تحميل مقالات المدونة من بيانات المنتجات
-        const container = document.getElementById('blog-posts-container');
-        
-        const createSlug = (title, id) => {
-            let slug = title
-                .replace(/[^\u0600-\u06FF\w\s-]/g, '')
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-')
-                .replace(/^-+|-+$/g, '')
-                .toLowerCase();
-            return slug ? `${slug}-${id}` : `product-${id}`;
-        };
-        
-        const createBlogPost = (product, isWatch = false) => {
-            const slug = createSlug(product.title, product.id);
-            const whatsappMessage = encodeURIComponent(`مرحباً! أريد الاستفسار عن: ${product.title} - بسعر: ${product.sale_price} درهم إماراتي`);
-            const whatsappLink = `https://wa.me/201110760081?text=${whatsappMessage}`;
-            const productLink = `./products/${slug}.html`;
-            
-            // محتوى المقال بناءً على نوع المنتج
-            let articleContent = '';
-            let categoryEmoji = '';
-            
-            if (isWatch) {
-                categoryEmoji = '⌚';
-                articleContent = `هل تبحث عن **${product.title}** في الإمارات؟ تعتبر هذه الساعة من أفضل الخيارات المتاحة حالياً في السوق الإماراتي بفضل تصميمها العصري وجودتها العالية. تتميز هذه الساعة بقيمتها المناسبة وأسلوبها الفاخر الذي يناسب جميع المناسبات. متوفرة بضمان وخدمة توصيل سريعة.`;
-            } else {
-                categoryEmoji = '🌸';
-                articleContent = `اكتشف **${product.title}** - عطر فاخر يلقى إعجاب واسع في دولة الإمارات. يتميز هذا العطر بتركيبته الفريدة وثباته الطويل على البشرة. مثالي للاستخدام في المناسبات الخاصة والاجتماعات الرسمية. متوفر بأسعار تنافسية وجودة مضمونة.`;
-            }
-            
-            const hasDiscount = product.price !== product.sale_price;
-            const discountPercentage = hasDiscount ? Math.round(((product.price - product.sale_price) / product.price) * 100) : 0;
-            
-            return `
-                <article class="blog-post-summary fade-in">
-                    <div class="blog-post-thumb">
-                        <img src="${product.image_link}" alt="${product.title}" loading="lazy">
-                        ${hasDiscount ? `<div class="discount-badge">-${discountPercentage}%</div>` : ''}
-                    </div>
-                    <div class="blog-post-content">
-                        <h2>${categoryEmoji} ${product.title} - مراجعة شاملة واحترافية</h2>
-                        <p>${articleContent}</p>
-                        
-                        <div class="product-price" style="margin: 20px 0; padding: 15px; background: var(--gradient-gold); border-radius: 15px; text-align: center;">
-                            <span style="color: var(--text-dark); font-weight: 700; font-size: 1.5rem;">السعر: ${product.sale_price} د.إ</span>
-                            ${hasDiscount ? `<span style="color: #999; text-decoration: line-through; margin-right: 15px; font-size: 1.1rem;">${product.price} د.إ</span>` : ''}
-                            ${hasDiscount ? `<div style="color: #e74c3c; font-weight: 600; margin-top: 8px;">🎉 وفر ${discountPercentage}% على هذا المنتج!</div>` : ''}
-                        </div>
-                        
-                        <div class="blog-post-actions">
-                            <a href="${productLink}" class="btn" target="_blank">
-                                🔍 عرض التفاصيل الكاملة
-                            </a>
-                            <a href="${whatsappLink}" class="btn-whatsapp" target="_blank">
-                                📱 اطلب عبر واتساب
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            `;
-        };
-        
-        // تحميل المنتجات وعرضها في المدونة
-        (async () => {
-            try {
-                // تحميل عطور
-                const perfumesResponse = await fetch('./data/otor.json');
-                const perfumes = await perfumesResponse.json();
-                
-                // تحميل ساعات
-                const watchesResponse = await fetch('./data/sa3at.json');
-                const watches = await watchesResponse.json();
-                
-                // دمج المنتجات وخلطها
-                const perfumeArticles = perfumes.slice(0, 8).map(product => createBlogPost(product, false));
-                const watchArticles = watches.slice(0, 8).map(product => createBlogPost(product, true));
-                const allArticles = [...perfumeArticles, ...watchArticles];
-                
-                // خلط عشوائي للمقالات
-                const shuffledArticles = allArticles.sort(() => Math.random() - 0.5);
-                
-                if (container) {
-                    container.innerHTML = shuffledArticles.join('');
-                    
-                    // إضافة تأثيرات الحركة
-                    const articles = document.querySelectorAll('.blog-post-summary');
-                    articles.forEach((article, index) => {
-                        article.style.animationDelay = `${index * 0.1}s`;
-                    });
-                    
-                    // مراقب التمرير لإضافة تأثيرات عند الظهور
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('bounce-in');
-                            }
-                        });
-                    }, { threshold: 0.1 });
-                    
-                    articles.forEach(article => observer.observe(article));
-                }
-                
-            } catch (error) {
-                console.error('خطأ في تحميل محتوى المدونة:', error);
-                if (container) {
-                    container.innerHTML = `
-                        <div class="error-message" style="text-align: center; padding: 50px; color: #999;">
-                            <h3>عذراً، حدث خطأ في تحميل محتوى المدونة</h3>
-                            <p>يرجى إعادة المحاولة لاحقاً أو التواصل معنا عبر واتساب.</p>
-                            <a href="https://wa.me/201110760081" class="btn-whatsapp" target="_blank" style="display: inline-flex; margin-top: 20px;">
-                                📱 تواصل معنا
-                            </a>
-                        </div>
-                    `;
-                }
-            }
-        })();
-        
-        // زر العودة للأعلى
-        const backToTopBtn = document.getElementById('back-to-top');
-        if (backToTopBtn) {
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTopBtn.classList.add('show');
-                } else {
-                    backToTopBtn.classList.remove('show');
-                }
-            });
-            
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
+    }
     </script>
 </body>
 </html>
