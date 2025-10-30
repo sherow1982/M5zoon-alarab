@@ -3,87 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مخزون العرب - منتجاتنا المميزة</title>
+    <title>عرض المنتجات - متجر هدايا الإمارات</title>
     <meta name="description" content="اكتشف مجموعتنا المميزة من العطور الفاخرة والساعات الراقية بأسعار مميزة وجودة عالية - شحن مجاني في الإمارات">
+    <link rel="stylesheet" href="./woodmart-lite.css">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Cairo', system-ui, sans-serif;
             background: linear-gradient(135deg, #fdfbfb 0%, #f8f6f0 100%);
             color: #2c2c2c;
             line-height: 1.6;
             direction: rtl;
         }
         
-        .header {
+        .showcase-header {
             background: linear-gradient(135deg, #d4af37 0%, #f4e89a 50%, #d4af37 100%);
-            padding: 20px 0;
+            padding: 40px 0;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
         }
         
-        .header h1 {
+        .showcase-header h1 {
             color: #fff;
-            font-size: 2rem;
+            font-size: 2.8rem;
             font-weight: 700;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 8px;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #fff, #f8f6f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
-        .header p {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.1rem;
+        .showcase-header p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.3rem;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 20px 15px;
+            padding: 30px 20px;
         }
         
-        .section-title {
-            text-align: center;
-            margin: 40px 0 30px;
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .filter-tab {
+            padding: 15px 30px;
+            background: #fff;
+            border: 3px solid #d4af37;
+            border-radius: 35px;
             color: #d4af37;
-            font-size: 1.8rem;
-            font-weight: 600;
-            position: relative;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
         }
         
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: 50%;
-            transform: translateX(50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #d4af37, #f4e89a);
-            border-radius: 2px;
+        .filter-tab.active,
+        .filter-tab:hover {
+            background: linear-gradient(135deg, #d4af37, #f4e89a);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
         }
         
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
         }
         
         .product-card {
             background: #fff;
-            border-radius: 20px;
-            padding: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            border: 2px solid transparent;
+            border: 3px solid transparent;
         }
         
         .product-card::before {
@@ -92,16 +100,16 @@
             top: 0;
             right: 0;
             left: 0;
-            height: 4px;
+            height: 6px;
             background: linear-gradient(90deg, #d4af37, #f4e89a, #d4af37);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
         }
         
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15);
-            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.4);
         }
         
         .product-card:hover::before {
@@ -110,154 +118,183 @@
         
         .product-image {
             width: 100%;
-            height: 140px;
+            height: 200px;
             object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            background: #f8f8f8;
-            transition: transform 0.3s ease;
+            border-radius: 18px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #f8f8f8, #f0f0f0);
+            transition: transform 0.4s ease;
         }
         
         .product-card:hover .product-image {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
         
         .category-badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 25px;
+            right: 25px;
             background: linear-gradient(135deg, #d4af37, #f4e89a);
             color: #fff;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
             z-index: 2;
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.4);
         }
         
         .product-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
-            height: 2.4em;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            height: 2.6em;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            line-height: 1.2;
+            line-height: 1.3;
         }
         
-        .rating-container {
+        .professional-rating {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
-            gap: 5px;
+            justify-content: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.2);
         }
         
-        .stars {
+        .rating-stars {
             display: flex;
-            gap: 2px;
+            gap: 3px;
+            margin-left: 8px;
         }
         
         .star {
             color: #ffd700;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         
         .star.empty {
             color: #ddd;
         }
         
-        .rating-text {
-            font-size: 0.8rem;
-            color: #666;
-            margin-right: 5px;
+        .rating-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .rating-number {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 2px;
         }
         
         .reviews-count {
+            font-size: 0.75rem;
+            color: #666;
+        }
+        
+        .professional-note {
             font-size: 0.7rem;
-            color: #999;
-            margin-right: 3px;
+            color: #27ae60;
+            font-weight: 600;
+            margin-top: 5px;
+            text-align: center;
+        }
+        
+        .features {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .feature-tag {
+            background: rgba(212, 175, 55, 0.15);
+            color: #d4af37;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 2px solid rgba(212, 175, 55, 0.3);
         }
         
         .price-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
+            background: rgba(212, 175, 55, 0.05);
+            padding: 12px;
+            border-radius: 12px;
         }
         
         .current-price {
             color: #d4af37;
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 800;
         }
         
         .original-price {
             color: #999;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             text-decoration: line-through;
-            margin-left: 5px;
+            margin-left: 8px;
         }
         
         .discount-badge {
             background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
             color: white;
-            padding: 2px 6px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-        
-        .features {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .feature-tag {
-            background: rgba(212, 175, 55, 0.1);
-            color: #d4af37;
-            padding: 2px 6px;
-            border-radius: 8px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 3px 8px rgba(255, 107, 107, 0.3);
         }
         
         .action-buttons {
             display: flex;
-            gap: 8px;
-            margin-top: 12px;
+            gap: 10px;
+            margin-top: 15px;
         }
         
         .btn {
             flex: 1;
-            padding: 8px 12px;
+            padding: 12px 16px;
             border: none;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
         
         .btn-cart {
-            background: linear-gradient(135deg, #d4af37, #f4e89a);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: #fff;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         
         .btn-cart:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
         
         .btn-whatsapp {
@@ -266,120 +303,95 @@
         }
         
         .btn-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-        }
-        
-        .filter-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        
-        .filter-tab {
-            padding: 10px 20px;
-            background: #fff;
-            border: 2px solid #d4af37;
-            border-radius: 25px;
-            color: #d4af37;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .filter-tab.active,
-        .filter-tab:hover {
-            background: linear-gradient(135deg, #d4af37, #f4e89a);
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        }
-        
-        .load-more {
-            text-align: center;
-            margin: 40px 0;
-        }
-        
-        .load-more-btn {
-            background: linear-gradient(135deg, #d4af37, #f4e89a);
-            color: #fff;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .load-more-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 50px 0 40px;
+            color: #d4af37;
+            font-size: 2.2rem;
+            font-weight: 700;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.2);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #f4e89a, #d4af37);
+            border-radius: 2px;
         }
         
         /* تحسينات للشاشات الصغيرة */
         @media (max-width: 480px) {
             .container {
-                padding: 15px 10px;
+                padding: 20px 15px;
             }
             
             .products-grid {
-                gap: 12px;
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .product-card {
-                padding: 12px;
-                border-radius: 16px;
+                padding: 16px;
+                border-radius: 20px;
             }
             
             .product-image {
-                height: 120px;
-                margin-bottom: 10px;
+                height: 160px;
+                margin-bottom: 12px;
             }
             
             .product-title {
-                font-size: 0.85rem;
-                margin-bottom: 6px;
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+            
+            .professional-rating {
+                padding: 10px;
             }
             
             .current-price {
-                font-size: 0.9rem;
+                font-size: 1.2rem;
             }
             
             .btn {
-                padding: 6px 10px;
-                font-size: 0.75rem;
+                padding: 10px 14px;
+                font-size: 0.8rem;
             }
             
-            .header h1 {
-                font-size: 1.7rem;
+            .showcase-header h1 {
+                font-size: 2.2rem;
             }
             
             .section-title {
-                font-size: 1.5rem;
-            }
-            
-            .stars {
-                gap: 1px;
-            }
-            
-            .star {
-                font-size: 0.8rem;
+                font-size: 1.8rem;
             }
         }
         
         /* للشاشات الأكبر */
         @media (min-width: 768px) {
             .products-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
             }
         }
         
         @media (min-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (min-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
@@ -387,13 +399,14 @@
         
         /* انيميشن التحميل */
         .product-card {
-            animation: fadeInUp 0.6s ease-out;
+            animation: fadeInUp 0.8s ease-out;
+            opacity: 0;
         }
         
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -401,23 +414,30 @@
             }
         }
         
-        .product-card:nth-child(even) {
-            animation-delay: 0.1s;
-        }
-        
-        .product-card:nth-child(3n) {
-            animation-delay: 0.2s;
+        .product-card.animate {
+            opacity: 1;
         }
         
         .hidden {
             display: none !important;
         }
+        
+        .loading-shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🎁 مخزون العرب</h1>
-        <p>منتجات فاخرة بأسعار مميزة - شحن مجاني في الإمارات</p>
+    <div class="showcase-header">
+        <h1>🎁 عرض منتجات متجر هدايا الإمارات</h1>
+        <p>منتجات فاخرة بأسعار مميزة مع تقييمات احترافية - شحن مجاني في الإمارات</p>
     </div>
     
     <div class="container">
@@ -428,315 +448,185 @@
         </div>
         
         <div id="products-container">
-
-        <h2 class="section-title">✨ العطور الفاخرة</h2>
-        <div class="products-grid" id="perfumes-grid">
-
-            <div class="product-card" data-category="عطور">
-                <div class="category-badge">عطور</div>
-                <img src="https://m5zoon.com/public/uploads/products/1722352332177124.webp" alt="عطر كوكو شانيل 100 مل" class="product-image" loading="lazy">
-                <h3 class="product-title">عطر كوكو شانيل 100 مل</h3>
-                
-                <div class="rating-container">
-                    <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">☆</span></div>
-                    <span class="rating-text">4.8</span>
-                    <span class="reviews-count">(127 تقييم)</span>
-                </div>
-                
-                <div class="features">
-                    <span class="feature-tag">أصلي 100%</span><span class="feature-tag">ضمان سنة</span>
-                </div>
-                
-                <div class="price-container">
-                    <div>
-                        <span class="current-price">252 درهم</span>
-                        <span class="original-price">352 درهم</span>
-                    </div>
-                    <div class="discount-badge">-28%</div>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-cart" onclick="addToCart(1, 'عطر كوكو شانيل 100 مل', 252)">
-                        🛒 أضف للسلة
-                    </button>
-                    <a href="https://wa.me/971501234567?text=مرحبا، أريد طلب عطر كوكو شانيل 100 مل بسعر 252 درهم" 
-                       class="btn btn-whatsapp" target="_blank">
-                        📱 واتساب
-                    </a>
-                </div>
+            <!-- سيتم ملء المحتوى ديناميكياً -->
+            <div class="loading-message" style="text-align: center; padding: 60px 20px; font-size: 1.2rem; color: #666;">
+                ⏳ جاري تحميل منتجات متجر هدايا الإمارات...
             </div>
-
-            <div class="product-card" data-category="عطور">
-                <div class="category-badge">عطور</div>
-                <img src="https://m5zoon.com/public/uploads/products/1720344963790342.webp" alt="عطر شانيل الجديد 100 مل" class="product-image" loading="lazy">
-                <h3 class="product-title">عطر شانيل الجديد 100 مل</h3>
-                
-                <div class="rating-container">
-                    <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                    <span class="rating-text">4.9</span>
-                    <span class="reviews-count">(203 تقييم)</span>
-                </div>
-                
-                <div class="features">
-                    <span class="feature-tag">شحن مجاني</span><span class="feature-tag">جودة عالية</span>
-                </div>
-                
-                <div class="price-container">
-                    <div>
-                        <span class="current-price">252 درهم</span>
-                        <span class="original-price">352 درهم</span>
-                    </div>
-                    <div class="discount-badge">-28%</div>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-cart" onclick="addToCart(2, 'عطر شانيل الجديد 100 مل', 252)">
-                        🛒 أضف للسلة
-                    </button>
-                    <a href="https://wa.me/971501234567?text=مرحبا، أريد طلب عطر شانيل الجديد 100 مل بسعر 252 درهم" 
-                       class="btn btn-whatsapp" target="_blank">
-                        📱 واتساب
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="عطور">
-                <div class="category-badge">عطور</div>
-                <img src="https://m5zoon.com/public/uploads/products/175669385359976.webp" alt="Eau The Audacity Penhaligons Green" class="product-image" loading="lazy">
-                <h3 class="product-title">Eau The Audacity Penhaligons Green</h3>
-                
-                <div class="rating-container">
-                    <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">☆</span></div>
-                    <span class="rating-text">4.6</span>
-                    <span class="reviews-count">(89 تقييم)</span>
-                </div>
-                
-                <div class="features">
-                    <span class="feature-tag">أصلي 100%</span><span class="feature-tag">شحن مجاني</span>
-                </div>
-                
-                <div class="price-container">
-                    <div>
-                        <span class="current-price">285 درهم</span>
-                        <span class="original-price">385 درهم</span>
-                    </div>
-                    <div class="discount-badge">-26%</div>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-cart" onclick="addToCart(7, 'Eau The Audacity Penhaligons Green', 285)">
-                        🛒 أضف للسلة
-                    </button>
-                    <a href="https://wa.me/971501234567?text=مرحبا، أريد طلب Eau The Audacity Penhaligons Green بسعر 285 درهم" 
-                       class="btn btn-whatsapp" target="_blank">
-                        📱 واتساب
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="عطور">
-                <div class="category-badge">عطور</div>
-                <img src="https://m5zoon.com/public/uploads/products/1757731212122499.webp" alt="Tom Ford Vanilla Sex" class="product-image" loading="lazy">
-                <h3 class="product-title">Tom Ford Vanilla Sex</h3>
-                
-                <div class="rating-container">
-                    <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                    <span class="rating-text">4.9</span>
-                    <span class="reviews-count">(156 تقييم)</span>
-                </div>
-                
-                <div class="features">
-                    <span class="feature-tag">ضمان سنة</span><span class="feature-tag">جودة عالية</span>
-                </div>
-                
-                <div class="price-container">
-                    <div>
-                        <span class="current-price">265 درهم</span>
-                        <span class="original-price">365 درهم</span>
-                    </div>
-                    <div class="discount-badge">-27%</div>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-cart" onclick="addToCart(10, 'Tom Ford Vanilla Sex', 265)">
-                        🛒 أضف للسلة
-                    </button>
-                    <a href="https://wa.me/971501234567?text=مرحبا، أريد طلب Tom Ford Vanilla Sex بسعر 265 درهم" 
-                       class="btn btn-whatsapp" target="_blank">
-                        📱 واتساب
-                    </a>
-                </div>
-            </div>
-
-        </div>
-
-        <h2 class="section-title">⌚ الساعات الراقية</h2>
-        <div class="products-grid" id="watches-grid">
-
-            <div class="product-card" data-category="ساعات">
-                <div class="category-badge">ساعات</div>
-                <img src="https://m5zoon.com/public/uploads/products/1689086291310824.webp" alt="ساعة رولكس يخت ماستر - فضي" class="product-image" loading="lazy">
-                <h3 class="product-title">ساعة رولكس يخت ماستر - فضي</h3>
-                
-                <div class="rating-container">
-                    <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">☆</span></div>
-                    <span class="rating-text">4.7</span>
-                    <span class="reviews-count">(94 تقييم)</span>
-                </div>
-                
-                <div class="features">
-                    <span class="feature-tag">مقاوم للماء</span><span class="feature-tag">ضمان سنتين</span>
-                </div>
-                
-                <div class="price-container">
-                    <div>
-                        <span class="current-price">320 درهم</span>
-                        <span class="original-price">370 درهم</span>
-                    </div>
-                    <div class="discount-badge">-14%</div>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-cart" onclick="addToCart(1, 'ساعة رولكس يخت ماستر - فضي', 320)">
-                        🛒 أضف للسلة
-                    </button>
-                    <a href="https://wa.me/971501234567?text=مرحبا، أريد طلب ساعة رولكس يخت ماستر - فضي بسعر 320 درهم" 
-                       class="btn btn-whatsapp" target="_blank">
-                        📱 واتساب
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="ساعات">
-                <div class="category-badge">ساعات</div>
-                <img src="https://m5zoon.com/public/uploads/products/1741223185271965.png" alt="ساعة Rolex كلاسيكية 41 ملم 2022" class="product-image" loading="lazy">
-                <h3 class="product-title">ساعة Rolex كلاسيكية 41 ملم 2022</h3>
-                
-                <div class="rating-container">
-                    <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                    <span class="rating-text">4.8</span>
-                    <span class="reviews-count">(167 تقييم)</span>
-                </div>
-                
-                <div class="features">
-                    <span class="feature-tag">معدن أصلي</span><span class="feature-tag">حركة دقيقة</span>
-                </div>
-                
-                <div class="price-container">
-                    <div>
-                        <span class="current-price">325 درهم</span>
-                        <span class="original-price">375 درهم</span>
-                    </div>
-                    <div class="discount-badge">-13%</div>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-cart" onclick="addToCart(2, 'ساعة Rolex كلاسيكية 41 ملم 2022', 325)">
-                        🛒 أضف للسلة
-                    </button>
-                    <a href="https://wa.me/971501234567?text=مرحبا، أريد طلب ساعة Rolex كلاسيكية 41 ملم 2022 بسعر 325 درهم" 
-                       class="btn btn-whatsapp" target="_blank">
-                        📱 واتساب
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="ساعات">
-                <div class="category-badge">ساعات</div>
-                <img src="https://m5zoon.com/public/uploads/products/1681005528571671.webp" alt="ساعة rolex باللون الأسود R21" class="product-image" loading="lazy">
-                <h3 class="product-title">ساعة rolex باللون الأسود R21</h3>
-                
-                <div class="rating-container">
-                    <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">☆</span></div>
-                    <span class="rating-text">4.5</span>
-                    <span class="reviews-count">(73 تقييم)</span>
-                </div>
-                
-                <div class="features">
-                    <span class="feature-tag">مقاوم للماء</span><span class="feature-tag">معدن أصلي</span>
-                </div>
-                
-                <div class="price-container">
-                    <div>
-                        <span class="current-price">314 درهم</span>
-                        <span class="original-price">364 درهم</span>
-                    </div>
-                    <div class="discount-badge">-14%</div>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-cart" onclick="addToCart(3, 'ساعة rolex باللون الأسود R21', 314)">
-                        🛒 أضف للسلة
-                    </button>
-                    <a href="https://wa.me/971501234567?text=مرحبا، أريد طلب ساعة rolex باللون الأسود R21 بسعر 314 درهم" 
-                       class="btn btn-whatsapp" target="_blank">
-                        📱 واتساب
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="ساعات">
-                <div class="category-badge">ساعات</div>
-                <img src="https://m5zoon.com/public/uploads/products/1681164046332341.webp" alt="ساعة rolex 40ملم R54" class="product-image" loading="lazy">
-                <h3 class="product-title">ساعة rolex 40ملم R54</h3>
-                
-                <div class="rating-container">
-                    <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                    <span class="rating-text">4.9</span>
-                    <span class="reviews-count">(218 تقييم)</span>
-                </div>
-                
-                <div class="features">
-                    <span class="feature-tag">ضمان سنتين</span><span class="feature-tag">حركة دقيقة</span>
-                </div>
-                
-                <div class="price-container">
-                    <div>
-                        <span class="current-price">315 درهم</span>
-                        <span class="original-price">365 درهم</span>
-                    </div>
-                    <div class="discount-badge">-14%</div>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-cart" onclick="addToCart(4, 'ساعة rolex 40ملم R54', 315)">
-                        🛒 أضف للسلة
-                    </button>
-                    <a href="https://wa.me/971501234567?text=مرحبا، أريد طلب ساعة rolex 40ملم R54 بسعر 315 درهم" 
-                       class="btn btn-whatsapp" target="_blank">
-                        📱 واتساب
-                    </a>
-                </div>
-            </div>
-
         </div>
         
-        <div class="load-more">
-            <button class="load-more-btn" onclick="loadMoreProducts()">
-                عرض المزيد من المنتجات 📦
-            </button>
+        <div class="text-center" style="margin-top: 40px;">
+            <a href="./" class="btn" style="background: linear-gradient(135deg, #d4af37, #f4e89a); color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px;">
+                🏠 العودة للصفحة الرئيسية
+            </a>
         </div>
     </div>
     
+    <!-- تحميل أنظمة التقييمات والسلة -->
+    <script src="./js/reviews-system.js"></script>
+    <script src="./js/cart-system.js"></script>
+    
     <script>
-        // إدارة السلة المحلية
-        function addToCart(id, title, price) {
-            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            
-            const existingItem = cart.find(item => item.id === id);
+        // إدارة السلة مع التقييمات
+        let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
+        
+        // دالة إضافة منتج للسلة مع التحويل التلقائي
+        function addToCart(productData) {
+            const existingItem = cart.find(item => item.id === productData.id);
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
-                cart.push({
-                    id: id,
-                    title: title,
-                    price: price,
-                    quantity: 1
+                // إضافة بيانات التقييم
+                const ratingData = window.ReviewsSystem ? window.ReviewsSystem.getProductRating(productData.title) : null;
+                cart.push({ 
+                    ...productData, 
+                    quantity: 1, 
+                    rating: ratingData,
+                    store: 'متجر هدايا الإمارات' 
                 });
             }
             
-            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
             
-            // تأثير بصري للنجاح
-            event.target.innerHTML = '✅ تم الإضافة';
-            event.target.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+            // إظهار رسالة تأكيد مع التحويل
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed; top: 20px; right: 20px; background: #25D366; color: white;
+                padding: 15px 25px; border-radius: 12px; z-index: 10000;
+                font-weight: 600; font-size: 1rem;
+                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+                transform: translateX(100%); transition: all 0.4s ease;
+            `;
+            toast.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span>✅</span>
+                    <div>
+                        <div>تم إضافة "${productData.title}" للسلة</div>
+                        <small style="opacity: 0.9;">جاري التحويل للسلة...</small>
+                    </div>
+                </div>
+            `;
             
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.style.transform = 'translateX(0)', 100);
             setTimeout(() => {
-                event.target.innerHTML = '🛒 أضف للسلة';
-                event.target.style.background = 'linear-gradient(135deg, #d4af37, #f4e89a)';
+                window.location.href = './cart.html';
             }, 2000);
+        }
+        
+        // دالة إنشاء بطاقة منتج مع التقييمات
+        function createProductCard(product, category) {
+            const hasDiscount = product.price !== product.sale_price;
+            const discountPercentage = hasDiscount ? Math.round(((product.price - product.sale_price) / product.price) * 100) : 0;
+            const whatsappMessage = encodeURIComponent(`مرحباً! أريد طلب ${product.title} من متجر هدايا الإمارات - بسعر: ${product.sale_price} درهم`);
+            
+            // الحصول على التقييم
+            const ratingData = window.ReviewsSystem ? window.ReviewsSystem.getProductRating(product.title) : {
+                rating: 4.5 + Math.random() * 0.4,
+                count: Math.floor(Math.random() * 100 + 50),
+                professionalReview: 'منتج عالي الجودة'
+            };
+            
+            const fullStars = Math.floor(ratingData.rating);
+            const hasHalfStar = ratingData.rating % 1 >= 0.5;
+            
+            return `
+                <div class="product-card" data-category="${category}">
+                    ${hasDiscount ? `<div class="discount-badge">-${discountPercentage}%</div>` : ''}
+                    <div class="category-badge">${category}</div>
+                    <img src="${product.image_link}" alt="${product.title} - متجر هدايا الإمارات" class="product-image" loading="lazy">
+                    <h3 class="product-title">${product.title}</h3>
+                    
+                    <div class="professional-rating">
+                        <div class="rating-stars">
+                            ${'★'.repeat(fullStars)}${hasHalfStar ? '☆' : ''}
+                        </div>
+                        <div class="rating-details">
+                            <span class="rating-number">${ratingData.rating.toFixed(1)}</span>
+                            <span class="reviews-count">(${ratingData.count} تقييم)</span>
+                            <div class="professional-note">✓ ${ratingData.professionalReview}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="features">
+                        <span class="feature-tag">أصلي 100%</span>
+                        <span class="feature-tag">شحن مجاني</span>
+                        <span class="feature-tag">ضمان الجودة</span>
+                    </div>
+                    
+                    <div class="price-container">
+                        <div>
+                            <span class="current-price">${product.sale_price} د.إ</span>
+                            ${hasDiscount ? `<span class="original-price">${product.price} د.إ</span>` : ''}
+                        </div>
+                        ${hasDiscount ? `<div class="discount-badge">-${discountPercentage}%</div>` : ''}
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-cart" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                            🛍 إضافة للسلة
+                        </button>
+                        <a href="https://wa.me/201110760081?text=${whatsappMessage}" class="btn btn-whatsapp" target="_blank">
+                            📱 واتساب
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // تحميل وعرض المنتجات
+        async function loadAllProducts() {
+            try {
+                const [perfumesResponse, watchesResponse] = await Promise.all([
+                    fetch('./data/otor.json'),
+                    fetch('./data/sa3at.json')
+                ]);
+                
+                const perfumes = await perfumesResponse.json();
+                const watches = await watchesResponse.json();
+                
+                const productsContainer = document.getElementById('products-container');
+                let html = '';
+                
+                // عرض العطور
+                if (perfumes.length > 0) {
+                    html += '<h2 class="section-title">✨ العطور الفاخرة</h2>';
+                    html += '<div class="products-grid">';
+                    perfumes.forEach(product => {
+                        html += createProductCard(product, 'عطور');
+                    });
+                    html += '</div>';
+                }
+                
+                // عرض الساعات
+                if (watches.length > 0) {
+                    html += '<h2 class="section-title">⌚ الساعات الراقية</h2>';
+                    html += '<div class="products-grid">';
+                    watches.forEach(product => {
+                        html += createProductCard(product, 'ساعات');
+                    });
+                    html += '</div>';
+                }
+                
+                productsContainer.innerHTML = html;
+                
+                // تفعيل الانيميشن
+                setTimeout(() => {
+                    document.querySelectorAll('.product-card').forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('animate');
+                        }, index * 100);
+                    });
+                }, 100);
+                
+            } catch (error) {
+                console.error('خطأ في تحميل المنتجات:', error);
+                document.getElementById('products-container').innerHTML = '
+                    <div style="text-align: center; padding: 40px; color: #999;">
+                        عذراً، حدث خطأ في تحميل المنتجات
+                    </div>
+                ';
+            }
         }
         
         // تصفية المنتجات
@@ -749,60 +639,29 @@
             event.target.classList.add('active');
             
             // تصفية البطاقات
-            cards.forEach(card => {
+            cards.forEach((card, index) => {
                 if (category === 'all' || card.dataset.category === category) {
                     card.style.display = 'block';
-                    card.style.animation = 'fadeInUp 0.6s ease-out';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 50);
                 } else {
-                    card.style.display = 'none';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => card.style.display = 'none', 300);
                 }
             });
         }
         
-        // تحميل المزيد
-        function loadMoreProducts() {
-            alert('سيتم إضافة المزيد من المنتجات قريباً! 🚀');
-        }
-        
-        // تحسين الأداء - Lazy Loading للصور
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.classList.add('loaded');
-                        observer.unobserve(img);
-                    }
-                });
-            });
-            
-            images.forEach(img => imageObserver.observe(img));
-        }
-        
-        // تأثير متقدم للبطاقات عند التمرير
-        const cards = document.querySelectorAll('.product-card');
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const cardObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        cards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            cardObserver.observe(card);
+        // تشغيل عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllProducts();
         });
         
+        // جعل الوظائف عامة
+        window.addToCart = addToCart;
+        window.filterProducts = filterProducts;
     </script>
     
     <!-- JSON-LD للـ SEO -->
@@ -810,13 +669,14 @@
     {
         "@context": "https://schema.org",
         "@type": "Store",
-        "name": "مخزون العرب",
+        "name": "متجر هدايا الإمارات",
         "description": "متجر إلكتروني متخصص في بيع العطور الفاخرة والساعات الراقية",
-        "url": "https://emirates-gifts.vercel.app",
+        "url": "https://emirates-gifts.arabsad.com",
         "currenciesAccepted": "AED",
-        "paymentAccepted": "Cash, Credit Card, WhatsApp Order",
-        "priceRange": "200-700 AED",
-        "areaServed": "United Arab Emirates"
+        "paymentAccepted": "Cash, WhatsApp Order",
+        "priceRange": "200-400 AED",
+        "areaServed": "United Arab Emirates",
+        "telephone": "+201110760081"
     }
     </script>
 </body>
