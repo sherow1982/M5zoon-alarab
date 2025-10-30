@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ar-AE" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدونة متجر هدايا الإمارات | مقالات عن العطور والهدايا</title>
+    <meta name="description" content="مدونة متجر هدايا الإمارات - اقرأ أحدث مقالاتنا عن العطور الفاخرة والهدايا المميزة ونصائح اختيار العطر المناسب">
+    
+    <!-- خط Cairo من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- ملف CSS الجديد المستوحى من دخون الإماراتية -->
+    <link rel="stylesheet" href="../css/dkhoon-inspired-style.css">
+    
+    <!-- أنماط إضافية للمدونة -->
+    <style>
+        .blog-hero {
+            background: var(--gradient-gold);
+            padding: 80px 0;
+            text-align: center;
+            color: var(--deep-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, var(--light-gold) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: rotate 20s linear infinite;
+        }
+        
+        .blog-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .blog-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .blog-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 8px 30px var(--shadow-light);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px var(--shadow-medium);
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+        
+        .blog-content {
+            padding: 25px;
+        }
+        
+        .blog-date {
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .blog-card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .blog-excerpt {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .blog-read-more {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        
+        .blog-read-more:hover {
+            color: var(--dark-gold);
+            gap: 12px;
+        }
+        
+        .blog-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gradient-blue);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-hero {
+                padding: 60px 0;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="../" class="logo" aria-label="الصفحة الرئيسية - هدايا الإمارات">
+                    <div class="logo-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-title">هدايا الإمارات</div>
+                        <div class="logo-subtitle">Emirates Gifts</div>
+                    </div>
+                </a>
+
+                <!-- Main Navigation -->
+                <nav class="main-nav" aria-label="القائمة الرئيسية">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="../" class="nav-link">الرئيسية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../products-showcase.html" class="nav-link">المنتجات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./" class="nav-link active">المدونة</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../cart.html" class="nav-link">السلة</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://wa.me/201110760081" class="nav-link" target="_blank">تواصل معنا</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Header Tools -->
+                <div class="header-tools">
+                    <a href="../cart.html" class="header-tool" aria-label="السلة">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                    <button class="mobile-menu-toggle" id="openSidebar" aria-label="فتح القائمة">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="section-container">
+            <h1 class="blog-title">مدونة هدايا الإمارات</h1>
+            <p class="blog-subtitle">
+                اعرف أكثر عن عالم العطور والهدايا الفاخرة، واقرأ نصائح متخصصين لاختيار أفضل المنتجات
+            </p>
+        </div>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="section">
+        <div class="section-container">
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <article class="blog-card">
+                    <div class="blog-category">دليل العطور</div>
+                    <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=500&h=300&fit=crop&crop=center" 
+                         alt="كيف تختار العطر المناسب" 
+                         class="blog-image lazyload"
+                         loading="lazy">
+                    <div class="blog-content">
+                        <div class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            30 أكتوبر 2024
+                        </div>
+                        <h2 class="blog-card-title">كيف تختار العطر المناسب لشخصيتك</h2>
+                        <p class="blog-excerpt">
+                            اكتشف أسرار اختيار العطر الذي يعبر عن شخصيتك بأفضل طريقة ممكنة. دليل شامل من خبراء متجر هدايا الإمارات.
+                        </p>
+                        <a href="./perfume-selection-guide.html" class="blog-read-more">
+                            اقرأ المزيد
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="blog-card">
+                    <div class="blog-category">عطور شرقية</div>
+                    <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=500&h=300&fit=crop&crop=center" 
+                         alt="أفضل العطور الشرقية" 
+                         class="blog-image lazyload"
+                         loading="lazy">
+                    <div class="blog-content">
+                        <div class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            28 أكتوبر 2024
+                        </div>
+                        <h2 class="blog-card-title">أفضل العطور الشرقية لعام 2024</h2>
+                        <p class="blog-excerpt">
+                            تعرّف على أجمل وأرقى العطور الشرقية التي تتميز بثباتها العالي ورائحتها المميزة التي تدوم طويلاً.
+                        </p>
+                        <a href="./best-oriental-perfumes-2024.html" class="blog-read-more">
+                            اقرأ المزيد
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="blog-card">
+                    <div class="blog-category">هدايا فاخرة</div>
+                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&h=300&fit=crop&crop=center" 
+                         alt="أفكار هدايا فاخرة" 
+                         class="blog-image lazyload"
+                         loading="lazy">
+                    <div class="blog-content">
+                        <div class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            25 أكتوبر 2024
+                        </div>
+                        <h2 class="blog-card-title">أفكار هدايا فاخرة للمناسبات الخاصة</h2>
+                        <p class="blog-excerpt">
+                            مجموعة رائعة من أفضل أفكار الهدايا الفاخرة للمناسبات الخاصة مثل أعياد الميلاد والزفاف والتخرج.
+                        </p>
+                        <a href="./luxury-gift-ideas.html" class="blog-read-more">
+                            اقرأ المزيد
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4 -->
+                <article class="blog-card">
+                    <div class="blog-category">نصائح</div>
+                    <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=500&h=300&fit=crop&crop=center" 
+                         alt="العناية بالعطور" 
+                         class="blog-image lazyload"
+                         loading="lazy">
+                    <div class="blog-content">
+                        <div class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            20 أكتوبر 2024
+                        </div>
+                        <h2 class="blog-card-title">نصائح مهمة للعناية بعطورك</h2>
+                        <p class="blog-excerpt">
+                            تعلم أفضل طرق العناية بعطورك الفاخرة للحفاظ على جودتها ورائحتها لأطول فترة ممكنة.
+                        </p>
+                        <a href="./perfume-care-tips.html" class="blog-read-more">
+                            اقرأ المزيد
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 5 -->
+                <article class="blog-card">
+                    <div class="blog-category">عطور نسائية</div>
+                    <img src="https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=500&h=300&fit=crop&crop=center" 
+                         alt="عطور نسائية مميزة" 
+                         class="blog-image lazyload"
+                         loading="lazy">
+                    <div class="blog-content">
+                        <div class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            15 أكتوبر 2024
+                        </div>
+                        <h2 class="blog-card-title">أجمل العطور النسائية للمرأة العصرية</h2>
+                        <p class="blog-excerpt">
+                            تشكيلة رائعة من أفضل العطور النسائية التي تناسب المرأة العصرية الأنيقة والمتميزة.
+                        </p>
+                        <a href="./best-womens-perfumes.html" class="blog-read-more">
+                            اقرأ المزيد
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 6 -->
+                <article class="blog-card">
+                    <div class="blog-category">ساعات فاخرة</div>
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5c54935e85b?w=500&h=300&fit=crop&crop=center" 
+                         alt="دليل اختيار الساعات" 
+                         class="blog-image lazyload"
+                         loading="lazy">
+                    <div class="blog-content">
+                        <div class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            12 أكتوبر 2024
+                        </div>
+                        <h2 class="blog-card-title">دليلك لاختيار الساعة الفاخرة المناسبة</h2>
+                        <p class="blog-excerpt">
+                            نصائح متخصصة لاختيار الساعة الفاخرة المناسبة لمعصمك وشخصيتك، مع عرض أفضل العلامات التجارية.
+                        </p>
+                        <a href="./luxury-watches-guide.html" class="blog-read-more">
+                            اقرأ المزيد
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>هدايا الإمارات</h3>
+                    <p>متجر العطور والهدايا الفاخرة الرائد في الإمارات</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="../">الرئيسية</a></li>
+                        <li><a href="../products-showcase.html">المنتجات</a></li>
+                        <li><a href="../cart.html">السلة</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // تحديث شريط التقدم
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight;
+            const winHeight = window.innerHeight;
+            const scrollPercent = scrollTop / (docHeight - winHeight);
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) {
+                progressBar.style.width = `${scrollPercent * 100}%`;
+            }
+            
+            // تأثير الهيدر
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header?.classList.add('scrolled');
+            } else {
+                header?.classList.remove('scrolled');
+            }
+            
+            // زر العودة للأعلى
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTop?.classList.add('show');
+            } else {
+                backToTop?.classList.remove('show');
+            }
+        }, { passive: true });
+        
+        document.getElementById('backToTop')?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Lazy loading للصور
+        document.addEventListener('DOMContentLoaded', () => {
+            const lazyImages = document.querySelectorAll('.lazyload');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('loaded');
+                        imageObserver.unobserve(entry.target);
+                    }
+                });
+            });
+            lazyImages.forEach(img => imageObserver.observe(img));
+        });
+    </script>
+</body>
+</html>
