@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سلة التسوق | متجر هدايا الإمارات</title>
+    <meta name="description" content="عرض وإدارة منتجاتك المختارة في سلة التسوق. اتمم طلبك بسهولع عبر واتساب">
+    <link rel="canonical" href="https://emirates-gifts.arabsad.com/cart.html">
+    <link rel="preconnect" href="https://m5zoon.com">
+    <link rel="stylesheet" href="./woodmart-lite.css">
+    
+    <!-- Critical CSS لصفحة السلة -->
+    <style>
+        body{font-family:'Cairo',system-ui,sans-serif;background:#FEFEFE;color:#2C3E50;direction:rtl}
+        .container{max-width:800px;margin:0 auto;padding:0 15px}
+        .cart-page{padding:20px 0;min-height:60vh}
+        .empty-cart{text-align:center;padding:60px 20px;background:white;border-radius:15px;margin:20px 0}
+        .cart-item{display:grid;grid-template-columns:80px 1fr auto auto;gap:15px;align-items:center;padding:15px;border-bottom:1px solid rgba(212,175,55,0.2);background:white;border-radius:10px;margin-bottom:10px;box-shadow:0 2px 8px rgba(212,175,55,0.1)}
+        .cart-summary{background:white;padding:25px;border-radius:15px;box-shadow:0 4px 12px rgba(212,175,55,0.15);margin:20px 0;text-align:center}
+        .checkout-btn{width:100%;padding:18px;background:#25D366;color:white;border:none;border-radius:25px;font-size:1.1rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px}
+    </style>
+</head>
+<body>
+    <!-- الخلفية الشفافة للقائمة -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    
+    <!-- القائمة الجانبية -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <div class="mobile-sidebar-logo">متجر هدايا الإمارات</div>
+            <button class="mobile-sidebar-close" id="closeSidebar">✖</button>
+        </div>
+        <nav class="mobile-sidebar-nav">
+            <a href="./">🏠 الرئيسية</a>
+            <a href="./blog.html">📝 المدونة</a>
+            <a href="./about.html">ℹ️ من نحن</a>
+            <a href="./cart.html">🛒 السلة</a>
+            <a href="./checkout.html">✅ اتمام الطلب</a>
+            <a href="https://wa.me/201110760081" target="_blank">📱 واتساب</a>
+        </nav>
+    </div>
+    
+    <header class="header">
+        <div class="header__inner container">
+            <a href="./" class="header__logo">
+                <h1>متجر هدايا الإمارات</h1>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="openSidebar">
+                <span class="menu-text">القائمة</span>
+                <span class="menu-icon">☰</span>
+            </button>
+            
+            <nav class="main-nav">
+                <a href="./">الرئيسية</a>
+                <a href="./blog.html">المدونة</a>
+                <a href="./about.html">من نحن</a>
+                <a href="./cart.html">السلة</a>
+                <a href="https://wa.me/201110760081" target="_blank">📱 واتساب</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="cart-page">
+        <div class="container">
+            <nav style="margin-bottom: 20px; font-size: 0.9rem; color: #8B4513;">
+                <a href="./" style="color: #D4AF37; text-decoration: none; font-weight: 600;">🏠 الرئيسية</a>
+                <span style="margin: 0 8px;">←</span>
+                <span style="font-weight: 600;">سلة التسوق</span>
+            </nav>
+            
+            <h1 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 30px; color: #2C3E50;">🛒 سلة التسوق</h1>
+            
+            <!-- عناصر السلة -->
+            <div id="cart-items-container"></div>
+            
+            <!-- ملخص الطلب -->
+            <div id="cart-summary" class="cart-summary" style="display: none;">
+                <h3 style="margin-bottom: 15px; color: #2C3E50;">ملخص الطلب</h3>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span>عدد العناصر:</span>
+                    <span id="total-items">0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 1.3rem; font-weight: 700; color: #D4AF37; border-top: 2px solid #f0f0f0; padding-top: 15px;">
+                    <span>الإجمالي:</span>
+                    <span id="total-price">0 د.إ</span>
+                </div>
+                <a href="./checkout.html" class="checkout-btn">
+                    ✅ متابعة إتمام الطلب
+                </a>
+            </div>
+            
+            <!-- رسالة السلة الفارغة -->
+            <div id="empty-cart" class="empty-cart">
+                <h2 style="font-size: 1.5rem; margin-bottom: 15px; color: #666;">🛒 سلتك فارغة</h2>
+                <p style="margin-bottom: 25px; color: #888;">لم تقم بإضافة أي منتجات بعد. ابدأ التسوق الآن!</p>
+                <a href="./" style="background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%); color: #2C3E50; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                    🏠 ابدأ التسوق
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>متجر هدايا الإمارات</h3>
+                    <p>متجركم الموثوق للعطور والساعات الفاخرة.</p>
+                    <a href="https://wa.me/201110760081" class="whatsapp-contact" target="_blank">
+                        📱 تواصل عبر واتساب
+                    </a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 متجر هدايا الإمارات</p>
+            </div>
+        </div>
+    </footer>
+    
+    <button id="back-to-top">↑</button>
+    
+    <script type="module">
+        // عناصر القائمة
+        const openBtn = document.getElementById('openSidebar');
+        const closeBtn = document.getElementById('closeSidebar');
+        const sidebar = document.getElementById('mobileSidebar');
+        const overlay = document.getElementById('mobileOverlay');
+        
+        const openSidebar = () => {
+            sidebar?.classList.add('open');
+            overlay?.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        
+        const closeSidebar = () => {
+            sidebar?.classList.remove('open');
+            overlay?.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        
+        openBtn?.addEventListener('click', openSidebar);
+        closeBtn?.addEventListener('click', closeSidebar);
+        overlay?.addEventListener('click', closeSidebar);
+        document.addEventListener('keydown', (e) => e.key === 'Escape' && closeSidebar());
+        
+        // إدارة السلة
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        
+        const updateCartDisplay = () => {
+            const container = document.getElementById('cart-items-container');
+            const summary = document.getElementById('cart-summary');
+            const emptyCart = document.getElementById('empty-cart');
+            const totalItems = document.getElementById('total-items');
+            const totalPrice = document.getElementById('total-price');
+            
+            if (cart.length === 0) {
+                container.innerHTML = '';
+                summary.style.display = 'none';
+                emptyCart.style.display = 'block';
+                return;
+            }
+            
+            emptyCart.style.display = 'none';
+            summary.style.display = 'block';
+            
+            // عرض عناصر السلة
+            container.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image_link}" alt="${item.title}" class="cart-item-image" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;" loading="lazy">
+                    <div class="cart-item-info">
+                        <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 5px; color: #2C3E50;">${item.title}</h4>
+                        <div class="cart-item-price" style="font-weight: 700; color: #D4AF37; font-size: 1.1rem;">${item.sale_price} د.إ</div>
+                    </div>
+                    <div class="quantity-controls" style="display: flex; align-items: center; gap: 8px;">
+                        <button class="quantity-btn" onclick="changeQuantity('${item.id}', -1)" style="background: #f0f0f0; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-weight: 700;">-</button>
+                        <span style="font-weight: 600; min-width: 20px; text-align: center;">${item.quantity}</span>
+                        <button class="quantity-btn" onclick="changeQuantity('${item.id}', 1)" style="background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%); border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-weight: 700;">+</button>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart('${item.id}')" style="background: #ff4444; color: white; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; font-size: 1.1rem;">×</button>
+                </div>
+            `).join('');
+            
+            // تحديث الملخص
+            const total = cart.reduce((sum, item) => sum + (item.sale_price * item.quantity), 0);
+            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            totalItems.textContent = itemCount;
+            totalPrice.textContent = `${total} د.إ`;
+        };
+        
+        // تغيير الكمية
+        window.changeQuantity = (productId, change) => {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(item => item.id !== productId);
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay();
+            }
+        };
+        
+        // حذف من السلة
+        window.removeFromCart = (productId) => {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        };
+        
+        // تحميل السلة عند بدء الصفحة
+        updateCartDisplay();
+    </script>
+</body>
+</html>
