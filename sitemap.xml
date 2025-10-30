@@ -1,144 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-    <!-- Homepage -->
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-    
-    <!-- Blog Index -->
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/blog/</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- All Product Pages -->
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/ARIAF.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Aigner-watch-1-gold.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Aigner-watch-1-silver-strab-مينا-ابيض.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Aigner-watch-1-silver-strab-مينا-اسود.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Aigner-watch-1-silvergold-مينا-ابيض.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Aigner-watch-1-silvergold-مينا-اخضر.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Aigner-watch-1-silvergold-مينا-بني.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Aigner-watch-gold-strab.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Aromatic.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Audemars-Piguet-Royal-Orange.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Autumn.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Tom-Ford-Vanilla-Sex.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/products/Rolex-Date-Just-Wimbledon.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <!-- Blog Posts -->
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/blog/watches-guide.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/blog/perfumes-guide.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/blog/luxury-gifts.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <!-- Legal Pages -->
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/privacy.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/terms.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/shipping.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.4</priority>
-    </url>
-    <url>
-        <loc>https://sherow1982.github.io/emirates-gifts/returns.html</loc>
-        <lastmod>2025-10-30</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.4</priority>
-    </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- الصفحة الرئيسية لمتجر هدايا الإمارات -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- مدونة متجر هدايا الإمارات -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/blog.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- عرض منتجات متجر هدايا الإمارات -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products-showcase.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- صفحة 404 -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/404.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Google Merchant Feed -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/merchant-feed.xml</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- منتجات العطور المميزة في متجر هدايا الإمارات -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/عطر-كوكو-شانيل-100-مل-1.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://m5zoon.com/public/uploads/products/1722352332177124.webp</image:loc>
+      <image:title>عطر كوكو شانيل 100 مل - متجر هدايا الإمارات</image:title>
+      <image:caption>عطر فاخر برائحة كلاسيكية من متجر هدايا الإمارات - 252 درهم إماراتي</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/tom-ford-vanilla-sex-10.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://m5zoon.com/public/uploads/products/1757731212122499.webp</image:loc>
+      <image:title>Tom Ford Vanilla Sex - متجر هدايا الإمارات</image:title>
+      <image:caption>عطر فاخر برائحة الفانيلا - 265 درهم إماراتي</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/eau-the-audacity-penhaligons-green-7.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://m5zoon.com/public/uploads/products/175669385359976.webp</image:loc>
+      <image:title>Eau The Audacity Penhaligons Green - متجر هدايا الإمارات</image:title>
+      <image:caption>عطر فاخر برائحة زهرية - 285 درهم إماراتي</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/kayali-eden-17.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://m5zoon.com/public/uploads/products/1757728779726395.webp</image:loc>
+      <image:title>Kayali Eden - متجر هدايا الإمارات</image:title>
+      <image:caption>عطر عصري برائحة فريدة - 270 درهم إماراتي</image:caption>
+    </image:image>
+  </url>
+
+  <!-- منتجات الساعات المميزة في متجر هدايا الإمارات -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/رولكس-يخت-ماستر-فضي-1.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://m5zoon.com/public/uploads/products/1689086291310824.webp</image:loc>
+      <image:title>ساعة رولكس يخت ماستر فضي - متجر هدايا الإمارات</image:title>
+      <image:caption>ساعة رياضية فاخرة بتقنية سويسرية - 320 درهم إماراتي</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/rolex-datejust-41-2022-2.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://m5zoon.com/public/uploads/products/1741223185271965.png</image:loc>
+      <image:title>ساعة رولكس ديت جست 41 2022 - متجر هدايا الإمارات</image:title>
+      <image:caption>ساعة كلاسيكية فاخرة 41 ملم - 325 درهم إماراتي</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/omega-seamaster-navy-blue-3.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://m5zoon.com/public/uploads/products/1741742159956354.webp</image:loc>
+      <image:title>ساعة أوميغا سي ماستر زرقاء - متجر هدايا الإمارات</image:title>
+      <image:caption>ساعة غواصة فاخرة مقاومة للماء - 310 درهم إماراتي</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/audemars-piguet-royal-orange-14.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://m5zoon.com/public/uploads/products/1741742542263842.webp</image:loc>
+      <image:title>ساعة أوديمار بيجيه رويال برتقالي - متجر هدايا الإمارات</image:title>
+      <image:caption>ساعة رياضية فاخرة بتصميم عصري - 280 درهم إماراتي</image:caption>
+    </image:image>
+  </url>
+
+  <!-- صفحات إضافية لمنتجات متجر هدايا الإمارات -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/cartier-tank-black-navy-26.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/emporio-armani-classic-45.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/burberry-heritage-collection-18.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/patek-philippe-geneve-52.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/breitling-endurance-pro-navy-16.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- عطور إضافية -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/marly-delina-la-rosee-13.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/hermes-maguet-porcelaine-46.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products/penhaligons-halfeti-leather-73.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
