@@ -6,7 +6,6 @@
     <title>متجر هدايا الإمارات - أحدث المنتجات والعروض الفاخرة</title>
     <meta name="description" content="اكتشف أفضل العروض على العطور والساعات والهدايا الفاخرة في متجر هدايا الإمارات - المتجر الإماراتي الموثوق.">
     <meta name="keywords" content="عطور فاخرة, ساعات رولكس, هدايا إماراتية, الإمارات, تسوق إلكتروني, عروض, منتجات أصلية">
-    <meta name="author" content="متجر هدايا الإمارات">
     <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/">
     <link rel="stylesheet" href="./woodmart-lite.css">
     <link rel="icon" href="./favicon.ico">
@@ -16,30 +15,6 @@
     <meta property="og:description" content="اكتشف أفضل العروض على العطور والساعات والهدايا الفاخرة">
     <meta property="og:url" content="https://sherow1982.github.io/emirates-gifts/">
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="ar_AE">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="متجر هدايا الإمارات">
-    <meta name="twitter:description" content="المتجر الإماراتي الموثوق للهدايا الفاخرة">
-    
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Store",
-      "name": "متجر هدايا الإمارات",
-      "description": "المتجر الإماراتي الموثوق للعطور والساعات والهدايا الفاخرة",
-      "url": "https://sherow1982.github.io/emirates-gifts/",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "AE"
-      },
-      "currenciesAccepted": "AED",
-      "paymentAccepted": "Cash, Credit Card",
-      "telephone": "+201110760081"
-    }
-    </script>
 </head>
 <body>
     <!-- الخلفية الشفافة للقائمة الجانبية -->
@@ -69,7 +44,7 @@
                 <h1>متجر هدايا الإمارات</h1>
             </a>
             
-            <!-- زر فتح القائمة الجانبية للموبايل مع نص القائمة -->
+            <!-- زر فتح القائمة الجانبية للموبايل -->
             <button class="mobile-menu-toggle" id="openSidebar" aria-label="فتح القائمة">
                 <span class="menu-text">القائمة</span>
                 <span class="menu-icon">☰</span>
@@ -92,25 +67,34 @@
     <main class="section">
         <div id="products-container" class="container">
             <h2>أجمل العطور والهدايا الفاخرة في الإمارات</h2>
-            <div class="products-grid" id="products-grid">
-                <div class="loading-message" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-gold); font-size: 1.2rem; font-family: 'Cairo', sans-serif;">
-                    ⏳ جارٍ تحميل المنتجات المميزة...
-                </div>
-            </div>
             
-            <!-- قسم العطور -->
-            <div id="perfumes-section" class="product-section">
-                <h3 style="font-family: 'Amiri', serif; font-size: 2.5rem; text-align: center; margin: 60px 0 40px; background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🌸 العطور الفاخرة</h3>
-                <div class="products-grid" id="perfumes-grid">
-                    <!-- عطور -->
+            <!-- عرض الفئتين جنب بعض -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin: 50px 0;" id="categories-container">
+                
+                <!-- قسم العطور -->
+                <div id="perfumes-section" class="category-section">
+                    <!-- عنوان الفئة كزر يفتح في تبويب جديد -->
+                    <div class="category-header" style="text-align: center; margin-bottom: 40px;">
+                        <a href="#perfumes-section" target="_blank" style="display: inline-block; padding: 20px 40px; background: var(--gradient-gold); color: var(--text-dark); text-decoration: none; border-radius: 25px; font-family: 'Amiri', serif; font-size: 2rem; font-weight: 700; transition: all 0.3s ease; box-shadow: 0 8px 25px var(--shadow-gold); border: 3px solid var(--border-luxury);">
+                            🌸 العطور الفاخرة
+                        </a>
+                    </div>
+                    <div class="products-grid" id="perfumes-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px;">
+                        <!-- عطور -->
+                    </div>
                 </div>
-            </div>
-            
-            <!-- قسم الساعات -->
-            <div id="watches-section" class="product-section">
-                <h3 style="font-family: 'Amiri', serif; font-size: 2.5rem; text-align: center; margin: 60px 0 40px; background: var(--gradient-royal); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">⌚ الساعات الفاخرة</h3>
-                <div class="products-grid" id="watches-grid">
-                    <!-- ساعات -->
+                
+                <!-- قسم الساعات -->
+                <div id="watches-section" class="category-section">
+                    <!-- عنوان الفئة كزر يفتح في تبويب جديد -->
+                    <div class="category-header" style="text-align: center; margin-bottom: 40px;">
+                        <a href="#watches-section" target="_blank" style="display: inline-block; padding: 20px 40px; background: var(--gradient-royal); color: white; text-decoration: none; border-radius: 25px; font-family: 'Amiri', serif; font-size: 2rem; font-weight: 700; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(65, 105, 225, 0.3); border: 3px solid rgba(65, 105, 225, 0.3);">
+                            ⌚ الساعات الفاخرة
+                        </a>
+                    </div>
+                    <div class="products-grid" id="watches-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px;">
+                        <!-- ساعات -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -121,7 +105,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>متجر هدايا الإمارات</h3>
-                    <p>متجركم الموثوق للعطور والساعات والهدايا الفاخرة في دولة الإمارات العربية المتحدة. نوفر لكم أفضل المنتجات بأسعار تنافسية وخدمة عملاء ممتازة.</p>
+                    <p>متجركم الموثوق للعطور والساعات والهدايا الفاخرة في دولة الإمارات العربية المتحدة.</p>
                     <div class="contact-info">
                         <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.36 3.48 16.84L2 22L7.32 20.55C8.75 21.33 10.37 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 6.45 17.5 2 12.04 2Z"/></svg>
                         <span>+201110760081</span>
@@ -220,7 +204,7 @@
             }
         });
         
-        // تحميل وعرض المنتجات
+        // دالة إنشاء slug للمنتج
         const createSlug = (title, id) => {
             let slug = title
                 .replace(/[^\u0600-\u06FF\w\s-]/g, '')
@@ -231,11 +215,12 @@
             return slug ? `${slug}-${id}` : `product-${id}`;
         };
         
+        // دالة إنشاء بطاقة المنتج مع رابط صحيح
         const createProductCard = (product, isWatch = false) => {
             const slug = createSlug(product.title, product.id);
             const whatsappMessage = encodeURIComponent(`مرحباً! أريد الاستفسار عن: ${product.title} - بسعر: ${product.sale_price} درهم إماراتي`);
             const whatsappLink = `https://wa.me/201110760081?text=${whatsappMessage}`;
-            const productLink = `./products/${slug}.html`;
+            const productLink = `./products/${slug}.html`; // رابط صحيح لصفحة المنتج
             
             const hasDiscount = product.price !== product.sale_price;
             const discountPercentage = hasDiscount ? Math.round(((product.price - product.sale_price) / product.price) * 100) : 0;
@@ -264,31 +249,30 @@
         // تحميل البيانات وعرض المنتجات
         (async () => {
             try {
-                const loadingMsg = document.querySelector('.loading-message');
-                if (loadingMsg) loadingMsg.innerHTML = '⏳ جارٍ تحميل العطور الفاخرة...';
+                console.log('جارٍ تحميل بيانات المنتجات...');
                 
                 // تحميل العطور
                 const perfumesResponse = await fetch('./data/otor.json');
                 const perfumes = await perfumesResponse.json();
-                
-                if (loadingMsg) loadingMsg.innerHTML = '⏳ جارٍ تحميل الساعات الفاخرة...';
+                console.log(`تم تحميل ${perfumes.length} عطر`);
                 
                 // تحميل الساعات
                 const watchesResponse = await fetch('./data/sa3at.json');
                 const watches = await watchesResponse.json();
+                console.log(`تم تحميل ${watches.length} ساعة`);
                 
-                if (loadingMsg) loadingMsg.remove();
-                
-                // عرض العطور
+                // عرض 8 عطور فقط
                 const perfumesGrid = document.getElementById('perfumes-grid');
-                if (perfumesGrid) {
-                    perfumesGrid.innerHTML = perfumes.slice(0, 12).map(product => createProductCard(product, false)).join('');
+                if (perfumesGrid && perfumes.length > 0) {
+                    perfumesGrid.innerHTML = perfumes.slice(0, 8).map(product => createProductCard(product, false)).join('');
+                    console.log('تم عرض 8 عطور');
                 }
                 
-                // عرض الساعات
+                // عرض 8 ساعات فقط
                 const watchesGrid = document.getElementById('watches-grid');
-                if (watchesGrid) {
-                    watchesGrid.innerHTML = watches.slice(0, 12).map(product => createProductCard(product, true)).join('');
+                if (watchesGrid && watches.length > 0) {
+                    watchesGrid.innerHTML = watches.slice(0, 8).map(product => createProductCard(product, true)).join('');
+                    console.log('تم عرض 8 ساعات');
                 }
                 
                 // إضافة تأثيرات الحركة للبطاقات
@@ -303,17 +287,27 @@
                 
                 cards.forEach(card => observer.observe(card));
                 
+                console.log('تم تحميل جميع المنتجات بنجاح!');
+                
             } catch (error) {
                 console.error('خطأ في تحميل المنتجات:', error);
-                const loadingMsg = document.querySelector('.loading-message');
-                if (loadingMsg) {
-                    loadingMsg.innerHTML = `
-                        <div style="text-align: center; padding: 50px; color: #999;">
-                            <h3>عذراً، حدث خطأ في تحميل المنتجات</h3>
-                            <p>يرجى إعادة المحاولة لاحقاً أو التواصل معنا عبر واتساب.</p>
-                            <a href="https://wa.me/201110760081" class="btn-whatsapp" target="_blank" style="display: inline-flex; margin-top: 20px;">
-                                📱 تواصل معنا
-                            </a>
+                const perfumesGrid = document.getElementById('perfumes-grid');
+                const watchesGrid = document.getElementById('watches-grid');
+                
+                if (perfumesGrid) {
+                    perfumesGrid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #999;">
+                            <h3>عذراً، حدث خطأ في تحميل العطور</h3>
+                            <p>يرجى إعادة المحاولة لاحقاً</p>
+                        </div>
+                    `;
+                }
+                
+                if (watchesGrid) {
+                    watchesGrid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #999;">
+                            <h3>عذراً، حدث خطأ في تحميل الساعات</h3>
+                            <p>يرجى إعادة المحاولة لاحقاً</p>
                         </div>
                     `;
                 }
@@ -339,38 +333,71 @@
         // تحسين التنقل السلس للروابط الداخلية
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                if (target) {
-                    // إغلاق القائمة الجانبية إذا كانت مفتوحة
-                    closeSidebar();
-                    // التنقل السلس
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (link.target !== '_blank') {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        closeSidebar();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             });
         });
         
-        // تحسين الأداء - تحميل الصور بكسل
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.style.opacity = '0';
-                        img.addEventListener('load', () => {
-                            img.style.opacity = '1';
-                        });
-                        imageObserver.unobserve(img);
-                    }
-                });
+        // تحسين تأثيرات عناوين الفئات
+        document.querySelectorAll('.category-header a').forEach(categoryBtn => {
+            categoryBtn.addEventListener('mouseenter', () => {
+                categoryBtn.style.transform = 'translateY(-3px) scale(1.05)';
             });
-            
-            setTimeout(() => {
-                document.querySelectorAll('.product-image').forEach(img => {
-                    imageObserver.observe(img);
-                });
-            }, 1000);
-        }
+            categoryBtn.addEventListener('mouseleave', () => {
+                categoryBtn.style.transform = '';
+            });
+        });
     </script>
+    
+    <style>
+        /* تحسينات إضافية للتصميم الجانبي */
+        @media (max-width: 768px) {
+            #categories-container {
+                grid-template-columns: 1fr !important;
+                gap: 40px;
+            }
+            
+            .section {
+                padding-top: 30px;
+            }
+            
+            #products-container h2 {
+                margin-top: 20px;
+                font-size: 2rem;
+            }
+            
+            .category-header a {
+                font-size: 1.6rem !important;
+                padding: 15px 25px !important;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px;
+            }
+            
+            .product-card {
+                max-width: 100%;
+                margin: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .category-header a {
+                font-size: 1.4rem !important;
+                padding: 12px 20px !important;
+            }
+            
+            #products-container h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </body>
 </html>
