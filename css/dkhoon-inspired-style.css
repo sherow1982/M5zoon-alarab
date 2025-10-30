@@ -216,11 +216,13 @@ body {
     z-index: -1;
 }
 
-.nav-link:hover::before {
+.nav-link:hover::before,
+.nav-link.active::before {
     left: 0;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
     color: var(--deep-blue);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px var(--shadow-light);
@@ -276,6 +278,23 @@ body {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
     40% { transform: translateY(-5px); }
     60% { transform: translateY(-3px); }
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: var(--gradient-gold);
+    color: var(--deep-blue);
+    border: none;
+    padding: 12px;
+    border-radius: var(--border-radius-small);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.mobile-menu-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px var(--shadow-light);
 }
 
 /* قسم البطل (Hero Section) */
@@ -357,6 +376,7 @@ body {
     box-shadow: 0 6px 25px var(--shadow-light);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .btn-primary::before {
@@ -392,6 +412,7 @@ body {
     align-items: center;
     gap: 12px;
     transition: var(--transition);
+    cursor: pointer;
 }
 
 .btn-secondary:hover {
@@ -778,6 +799,110 @@ body {
     object-fit: cover;
 }
 
+/* القائمة الجانبية للهواتف */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 350px;
+    height: 100vh;
+    background: var(--gradient-blue);
+    z-index: 10000;
+    transition: var(--transition);
+    box-shadow: -5px 0 25px var(--shadow-dark);
+    overflow-y: auto;
+}
+
+.mobile-sidebar.open {
+    right: 0;
+}
+
+.mobile-sidebar-header {
+    background: var(--gradient-gold);
+    color: var(--deep-blue);
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.mobile-sidebar-logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.mobile-sidebar-close {
+    background: transparent;
+    color: var(--deep-blue);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.mobile-sidebar-close:hover {
+    background: var(--deep-blue);
+    color: var(--light-gold);
+}
+
+.mobile-sidebar-nav {
+    padding: 20px 0;
+}
+
+.mobile-sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 25px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    border-right: 4px solid transparent;
+}
+
+.mobile-sidebar-nav a:hover,
+.mobile-sidebar-nav a.active {
+    background: rgba(255, 255, 255, 0.1);
+    border-right-color: var(--primary-gold);
+    color: var(--light-gold);
+}
+
+.mobile-sidebar-nav i {
+    font-size: 1.2rem;
+    width: 25px;
+    text-align: center;
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    backdrop-filter: blur(5px);
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
 /* الفوتر */
 .footer {
     background: var(--deep-blue);
@@ -854,6 +979,7 @@ body {
     justify-content: center;
     font-size: 1.2rem;
     transition: var(--transition);
+    text-decoration: none;
 }
 
 .social-link:hover {
@@ -869,29 +995,99 @@ body {
     opacity: 0.8;
 }
 
-/* زر السلة العائم */
-.cart-icon {
+/* زر العودة للأعلى */
+.back-to-top, #back-to-top {
     position: fixed;
     bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-gold);
+    color: var(--deep-blue);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 1000;
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+.back-to-top.show, #back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover, #back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow-medium);
+}
+
+/* شريط التقدم */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--gradient-gold);
+    z-index: 9999;
+    transition: width 0.1s ease;
+}
+
+/* رسائل التأكيد */
+.cart-notification {
+    position: fixed;
+    top: 20px;
     right: 20px;
     background: var(--gradient-gold);
     color: var(--deep-blue);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    text-decoration: none;
-    box-shadow: 0 4px 15px var(--shadow-light);
-    z-index: 1000;
-    transition: var(--transition);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 30px var(--shadow-medium);
+    z-index: 10000;
+    max-width: 350px;
+    animation: slideInRight 0.4s ease-out;
 }
 
-.cart-icon:hover {
-    transform: scale(1.1) translateY(-3px);
-    box-shadow: 0 8px 25px var(--shadow-medium);
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.success-icon {
+    font-size: 2rem;
+    color: var(--success-green);
+}
+
+.notification-text strong {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.notification-text p {
+    margin: 5px 0;
+    opacity: 0.9;
+}
+
+.notification-text small {
+    font-size: 0.85rem;
+    opacity: 0.8;
 }
 
 /* التصميم المتجاوب */
@@ -906,13 +1102,6 @@ body {
     
     .mobile-menu-toggle {
         display: flex;
-        background: var(--gradient-gold);
-        color: var(--deep-blue);
-        border: none;
-        padding: 12px;
-        border-radius: var(--border-radius-small);
-        font-size: 1.2rem;
-        cursor: pointer;
     }
     
     .hero-content {
@@ -959,6 +1148,11 @@ body {
     .product-image-container {
         height: 200px;
     }
+    
+    .mobile-sidebar {
+        width: 300px;
+        right: -300px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -996,6 +1190,40 @@ body {
     
     .product-image-container {
         height: 180px;
+    }
+    
+    .mobile-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .cart-notification {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .mobile-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .mobile-sidebar.open {
+        right: 0;
+    }
+}
+
+/* إخفاء القائمة على الشاشات الكبيرة */
+@media (min-width: 769px) {
+    .mobile-sidebar,
+    .mobile-overlay {
+        display: none !important;
+    }
+    
+    .mobile-menu-toggle {
+        display: none !important;
     }
 }
 
@@ -1062,95 +1290,6 @@ body {
     outline-offset: 2px;
 }
 
-/* زر العودة للأعلى */
-.back-to-top, #back-to-top {
-    position: fixed;
-    bottom: 90px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    background: var(--gradient-gold);
-    color: var(--deep-blue);
-    border: none;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition);
-    z-index: 1000;
-    box-shadow: 0 4px 15px var(--shadow-light);
-}
-
-.back-to-top.show, #back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.back-to-top:hover, #back-to-top:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px var(--shadow-medium);
-}
-
-/* شريط التقدم */
-.progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background: var(--gradient-gold);
-    z-index: 9999;
-    transition: width 0.1s ease;
-}
-
-/* تحسينات إضافية للهوية البصرية مثل دخون الإماراتية */
-.hero-title span {
-    background: var(--gradient-gold);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* تحسينات للقوائم المنسدلة */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: var(--white);
-    border-radius: var(--border-radius-small);
-    box-shadow: 0 8px 30px var(--shadow-medium);
-    padding: 15px 0;
-    min-width: 200px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: var(--transition);
-}
-
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-item {
-    display: block;
-    padding: 10px 20px;
-    color: var(--text-dark);
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.dropdown-item:hover {
-    background: var(--light-gray);
-    color: var(--primary-gold);
-}
-
 /* تحسينات نهائية */
 .fully-loaded {
     opacity: 1;
@@ -1166,5 +1305,308 @@ body {
 @media (min-width: 1400px) {
     .products-grid {
         grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* تحسينات إضافية للهوية البصرية */
+.hero-title span {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* رسائل التحميل */
+.loading-message {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    background: var(--light-gray);
+    border-radius: var(--border-radius);
+    margin: 20px 0;
+}
+
+/* أنماط إضافية للبطاقات بتصميم دخون الإماراتية */
+.emirates-element {
+    position: relative;
+}
+
+.emirates-element::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    background: var(--gradient-gold);
+    border-radius: calc(var(--border-radius) + 2px);
+    z-index: -1;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.emirates-element:hover::before {
+    opacity: 0.3;
+}
+
+/* متغيرات CSS إضافية */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-all: left;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-15 {
+    gap: 15px;
+}
+
+.gap-20 {
+    gap: 20px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+.p-30 {
+    padding: 30px;
+}
+
+/* تحسينات خاصة للمدونة */
+.blog-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 8px 30px var(--shadow-light);
+    transition: var(--transition);
+    position: relative;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px var(--shadow-medium);
+}
+
+.blog-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.blog-card:hover .blog-image {
+    transform: scale(1.05);
+}
+
+.blog-content {
+    padding: 25px;
+}
+
+.blog-date {
+    color: var(--primary-gold);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.blog-card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.blog-excerpt {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.blog-read-more {
+    color: var(--primary-gold);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.blog-read-more:hover {
+    color: var(--dark-gold);
+    gap: 12px;
+}
+
+.blog-category {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--gradient-blue);
+    color: var(--white);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* انيميشنات إضافية */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تحسينات إضافية للتفاعل */
+.has-items {
+    animation: pulse 1.5s infinite;
+}
+
+.adding {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* تحسينات الأداء */
+.will-change-transform {
+    will-change: transform;
+}
+
+.contain-layout {
+    contain: layout;
+}
+
+.contain-style {
+    contain: style;
+}
+
+.contain-paint {
+    contain: paint;
+}
+
+/* مرونة للروابط */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* تحسينات للنماذج */
+button, input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* آخر تحديثات - مع تحسينات الجودة */
+.product-card,
+.blog-card {
+    will-change: transform;
+    contain: layout style paint;
+}
+
+.product-image,
+.blog-image,
+.hero-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+}
+
+/* تحسينات للشاشات الكبيرة */
+@media (min-width: 1600px) {
+    .section-container,
+    .header-container,
+    .footer-container {
+        max-width: 1600px;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(5, 1fr);
     }
 }
