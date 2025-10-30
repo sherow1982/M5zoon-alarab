@@ -1,18 +1,51 @@
 <!doctype html>
-<html lang="ar-KW" dir="rtl">
+<html lang="ar-AE" dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المتجر الكويتي - أحدث المنتجات والعروض</title>
-    <meta name="description" content="اكتشف أفضل العروض على الإلكترونيات والأدوات المنزلية في المتجر الكويتي.">
-    <link rel="canonical" href="https://sherow1982.github.io/Kuwait-matjar/">
+    <title>مخزون العرب - أحدث المنتجات والعروض في الإمارات</title>
+    <meta name="description" content="اكتشف أفضل العروض على الإلكترونيات والأدوات المنزلية في مخزون العرب - المتجر الإماراتي الموثوق.">
+    <meta name="keywords" content="متجر إلكتروني, الإمارات, تسوق إلكتروني, عروض, منتجات">
+    <meta name="author" content="مخزون العرب">
+    <link rel="canonical" href="https://m5zoon-alarab.com/">
     <link rel="stylesheet" href="./woodmart-lite.css">
     <link rel="icon" href="./favicon.ico">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="مخزون العرب - أحدث المنتجات والعروض">
+    <meta property="og:description" content="اكتشف أفضل العروض على الإلكترونيات والأدوات ">
+    <meta property="og:url" content="https://m5zoon-alarab.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_AE">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="مخزون العرب">
+    <meta name="twitter:description" content="المتجر الإماراتي الموثوق">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "مخزون العرب",
+      "description": "المتجر الإماراتي الموثوق للإلكترونيات والأدوات المنزلية",
+      "url": "https://m5zoon-alarab.com/",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "AE"
+      },
+      "currenciesAccepted": "AED",
+      "paymentAccepted": "Cash, Credit Card"
+    }
+    </script>
 </head>
 <body>
     <header class="header">
         <div class="header__inner container">
-            <a href="./" class="header__logo"><h1>المتجر الكويتي</h1></a>
+            <a href="./" class="header__logo">
+                <h1>مخزون العرب</h1>
+            </a>
             <div class="header__spacer"></div>
             <nav class="main-nav">
                 <a href="./blog.html" target="_blank" rel="noopener noreferrer">المدونة</a>
@@ -20,11 +53,16 @@
             </nav>
         </div>
     </header>
+    
     <main class="section">
         <div id="products-container" class="container">
-            <h2>أحدث المنتجات</h2>
+            <h2>أحدث المنتجات والعروض الحصرية</h2>
+            <div class="products-grid" id="products-grid">
+                <!-- سيتم إدراج المنتجات تلقائياً بواسطة JavaScript -->
+            </div>
         </div>
     </main>
+    
     <footer class="footer">
         <nav class="footer-nav container">
             <a href="./about.html" target="_blank" rel="noopener noreferrer">من نحن</a>
@@ -32,11 +70,15 @@
             <a href="./return-policy.html" target="_blank" rel="noopener noreferrer">الاستبدال والاسترجاع</a>
         </nav>
         <div class="container footer__bottom">
-            <p>&copy; 2025 المتجر الكويتي</p>
-            <a href="https://sherow1982.github.io/Kuwait-matjar" class="btn-return-home" target="_blank" rel="noopener noreferrer">الموقع الأصلي</a>
+            <p>&copy; 2025 مخزون العرب - جميع الحقوق محفوظة</p>
+            <a href="https://m5zoon-alarab.com" class="btn-return-home" target="_blank" rel="noopener noreferrer">زيارة الموقع الرئيسي</a>
         </div>
     </footer>
-    <button id="back-to-top" title="العودة إلى الأعلى">&uarr;</button>
+    
+    <button id="back-to-top" title="العودة إلى الأعلى" aria-label="العودة إلى الأعلى">
+        &#8593;
+    </button>
+    
     <script type="module" src="./js/main.js"></script>
     <script type="module" src="./js/ui.js"></script>
 </body>
