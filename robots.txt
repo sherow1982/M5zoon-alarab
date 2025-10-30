@@ -1,8 +1,64 @@
-# robots.txt for Kuwait-matjar (GitHub Pages)
+# robots.txt لمخزون العرب - متجر العطور والساعات الفاخرة
+# محدّث في: 30 أكتوبر 2025
 
+# السماح لجميع محركات البحث بالوصول إلى جميع الصفحات
 User-agent: *
-Disallow:
+Allow: /
 
-# Sitemaps (absolute URLs)
-Sitemap: https://sherow1982.github.io/Kuwait-matjar/sitemap.xml
-Sitemap: https://sherow1982.github.io/Kuwait-matjar/sitemap-products.xml
+# تحديد موقع خريطة الموقع (Sitemap)
+Sitemap: https://emirates-gifts.vercel.app/sitemap.xml
+
+# تحديد موقع Google Merchant Feed
+Sitemap: https://emirates-gifts.vercel.app/google_merchant_feed.tsv
+
+# توجيهات خاصة لمحركات بحث مختلفة
+
+# Google و Bing - السماح بالوصول الكامل
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Google Shopping و Google Merchant - أولوية عالية
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Google-Shopping
+Allow: /
+
+# محركات بحث عربية
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 3
+
+# محركات بحث اجتماعية
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# محركات بحث متخصصة في التسوق
+User-agent: PriceGrabber
+Allow: /products/
+Allow: /products-showcase.html
+
+User-agent: Shopzilla
+Allow: /products/
+Allow: /products-showcase.html
+
+# معدل الزحف لتحسين أداء الموقع
+Crawl-delay: 1
+
+# معلومات إضافية عن الموقع
+# الموقع: https://emirates-gifts.vercel.app/
+# المتجر: مخزون العرب - عطور وساعات فاخرة
+# الدولة: دولة الإمارات العربية المتحدة
+# العملة: درهم إماراتي (AED)
+# الشحن: مجاني في جميع إمارات الدولة
