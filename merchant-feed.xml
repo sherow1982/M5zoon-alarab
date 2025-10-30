@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0" xmlns:c="http://base.google.com/cns/1.0">
+  <channel>
+    <title>متجر هدايا الإمارات - عطور وساعات فاخرة</title>
+    <link>https://emirates-gifts.vercel.app/</link>
+    <description>متجر هدايا الإمارات - وجهتك الأولى لأفضل العطور والساعات الفاخرة في دولة الإمارات العربية المتحدة مع شحن مجاني وضمان الجودة الأصلية</description>
+    <language>ar</language>
+    <pubDate>Thu, 30 Oct 2025 20:27:31 +0400</pubDate>
+    <lastBuildDate>Thu, 30 Oct 2025 20:27:31 +0400</lastBuildDate>
+    <generator>متجر هدايا الإمارات - Merchant Feed Generator</generator>
+    <webMaster>info@emirates-gifts.com (متجر هدايا الإمارات)</webMaster>
+
+    <item>
+      <g:id>EMIRATES-GIFTS-PERFUME-00001</g:id>
+      <g:title><![CDATA[عطر كوكو شانيل 100 مل - متجر هدايا الإمارات]]></g:title>
+      <g:description><![CDATA[🌸 عطر كوكو شانيل 100 مل من متجر هدايا الإمارات - عطر فاخر أصلي 100% بأعلى معايير الجودة. تركيبة عطرية مميزة وفريدة تمنحك ثباتاً استثنائياً يدوم طوال اليوم. مصنوع من أجود المكونات الطبيعية والعطرية المستوردة خصيصاً. مناسب لجميع المناسبات والأوقات مع عبوة أنيقة مثالية للإهداء. متوفر حصرياً في متجر هدايا الإمارات بسعر 252 درهم إماراتي بدلاً من 352 درهم (وفّر 28% - عرض محدود!) شحن مجاني وسريع لجميع إمارات دولة الإمارات العربية المتحدة. ضمان الأصالة والجودة مع خدمة عملاء متميزة. اطلب من متجر هدايا الإمارات الآن!]]></g:description>
+      <g:link>https://emirates-gifts.vercel.app/products/عطر-كوكو-شانيل-100-مل-1.html</g:link>
+      <g:image_link>https://m5zoon.com/public/uploads/products/1722352332177124.webp</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>352.00 AED</g:price>
+      <g:sale_price>252.00 AED</g:sale_price>
+      <g:brand><![CDATA[متجر هدايا الإمارات]]></g:brand>
+      <g:condition>new</g:condition>
+      <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrances</g:google_product_category>
+      <g:product_type><![CDATA[العطور > عطور فاخرة > متجر هدايا الإمارات]]></g:product_type>
+      <g:shipping>
+        <g:country>AE</g:country>
+        <g:service><![CDATA[توصيل مجاني - متجر هدايا الإمارات]]></g:service>
+        <g:price>0.00 AED</g:price>
+      </g:shipping>
+      <g:gtin>97100000001</g:gtin>
+      <g:mpn>EMIRATES-GIFTS-P-00001</g:mpn>
+      <g:adult>no</g:adult>
+      <g:age_group>adult</g:age_group>
+      <g:gender>unisex</g:gender>
+      <g:custom_label_0><![CDATA[عطور فاخرة]]></g:custom_label_0>
+      <g:custom_label_1><![CDATA[متجر هدايا الإمارات]]></g:custom_label_1>
+      <g:custom_label_2><![CDATA[دولة الإمارات]]></g:custom_label_2>
+      <g:custom_label_3><![CDATA[خصم 28%]]></g:custom_label_3>
+      <g:custom_label_4><![CDATA[شحن مجاني]]></g:custom_label_4>
+    </item>
+
+  </channel>
+</rss>
