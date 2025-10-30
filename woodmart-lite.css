@@ -21,6 +21,7 @@
   --shadow-gold: rgba(212, 175, 55, 0.3);
   --shadow-deep: rgba(0, 0, 0, 0.15);
   --border-luxury: rgba(212, 175, 55, 0.4);
+  --whatsapp-green: #25D366;
 }
 
 /* إعادة تعيين الأساسيات */
@@ -70,7 +71,7 @@ body::before {
   padding: 0 20px;
 }
 
-/* رأس الصفحة المبهر */
+/* رأس الصفحة الاحترافي المبهر */
 .header {
   background: var(--gradient-gold);
   box-shadow: 0 8px 32px var(--shadow-gold);
@@ -84,8 +85,16 @@ body::before {
 .header__inner {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 20px 0;
   min-height: 80px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header__logo {
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
 .header__logo h1 {
@@ -120,29 +129,29 @@ body::before {
   width: 100%;
 }
 
-.header__spacer {
-  flex: 1;
-}
-
+/* قائمة التنقل الرئيسية */
 .main-nav {
   display: flex;
-  gap: 25px;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .main-nav a {
   font-family: 'Cairo', sans-serif;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--text-dark);
   text-decoration: none;
-  padding: 12px 25px;
-  border-radius: 30px;
+  padding: 12px 20px;
+  border-radius: 25px;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(15px);
   border: 2px solid transparent;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .main-nav a::before {
@@ -160,13 +169,30 @@ body::before {
 .main-nav a:hover {
   background: rgba(255, 255, 255, 0.9);
   border-color: var(--royal-gold);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px var(--shadow-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-gold);
   color: white;
 }
 
 .main-nav a:hover::before {
   left: 0;
+}
+
+/* قائمة تنقل موبايل */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* المحتوى الرئيسي */
@@ -216,18 +242,18 @@ body::before {
   50% { width: 180px; }
 }
 
-/* شبكة المنتجات المبهرة */
+/* شبكة المنتجات المتجاوبة والمبهرة */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
   margin-top: 50px;
 }
 
 .product-card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 25px;
-  padding: 30px;
+  padding: 25px;
   box-shadow: 0 15px 40px var(--shadow-gold);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid var(--border-luxury);
@@ -258,54 +284,60 @@ body::before {
 }
 
 .product-card:hover {
-  transform: translateY(-15px) scale(1.03);
-  box-shadow: 0 25px 60px var(--shadow-deep);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px var(--shadow-deep);
   border-color: var(--royal-gold);
 }
 
 .product-image {
   width: 100%;
-  height: 220px;
+  height: 200px;
   object-fit: cover;
   border-radius: 20px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   transition: all 0.4s ease;
   border: 3px solid transparent;
 }
 
 .product-card:hover .product-image {
-  transform: scale(1.1);
+  transform: scale(1.05);
   border-color: var(--emerald-green);
-  box-shadow: 0 10px 30px rgba(80, 200, 120, 0.3);
+  box-shadow: 0 10px 25px rgba(80, 200, 120, 0.3);
 }
 
 .product-title {
   font-family: 'Cairo', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--text-dark);
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   line-height: 1.4;
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-height: 3.2rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .product-price {
   font-family: 'Amiri', serif;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   background: var(--gradient-gold);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .old-price {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #999;
   text-decoration: line-through;
   font-weight: 400;
@@ -314,7 +346,7 @@ body::before {
 .discount-badge {
   background: var(--gradient-royal);
   color: white;
-  padding: 5px 12px;
+  padding: 6px 12px;
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 600;
@@ -322,6 +354,7 @@ body::before {
   top: 15px;
   right: 15px;
   animation: pulse 2s infinite;
+  z-index: 2;
 }
 
 @keyframes pulse {
@@ -331,8 +364,9 @@ body::before {
 
 .product-buttons {
   display: flex;
-  gap: 15px;
-  margin-top: 25px;
+  gap: 10px;
+  margin-top: 20px;
+  flex-direction: column;
 }
 
 .btn-whatsapp {
@@ -352,11 +386,13 @@ body::before {
   transition: all 0.3s ease;
   flex: 1;
   box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  text-align: center;
 }
 
 .btn-whatsapp:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+  background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
 }
 
 .btn-view-product {
@@ -376,6 +412,7 @@ body::before {
   transition: all 0.3s ease;
   flex: 1;
   box-shadow: 0 4px 15px var(--shadow-gold);
+  text-align: center;
 }
 
 .btn-view-product:hover {
@@ -385,7 +422,7 @@ body::before {
   color: white;
 }
 
-/* تذييل الصفحة */
+/* تذييل الصفحة الاحترافي */
 .footer {
   background: var(--gradient-gold);
   color: var(--text-dark);
@@ -394,29 +431,82 @@ body::before {
   border-top: 4px solid var(--border-luxury);
 }
 
-.footer-nav {
-  display: flex;
-  justify-content: center;
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 40px;
   margin-bottom: 40px;
-  flex-wrap: wrap;
 }
 
-.footer-nav a {
+.footer-section h3 {
+  font-family: 'Amiri', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--border-luxury);
+  padding-bottom: 10px;
+}
+
+.footer-section p {
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
   color: var(--text-dark);
   text-decoration: none;
-  font-weight: 600;
-  padding: 12px 20px;
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.2);
+  font-weight: 500;
+  padding: 8px 0;
+  display: inline-block;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
 }
 
-.footer-nav a:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px var(--shadow-gold);
+.footer-section ul li a:hover {
+  border-bottom-color: var(--royal-gold);
+  transform: translateX(-5px);
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.contact-info svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--text-dark);
+}
+
+.whatsapp-contact {
+  background: var(--whatsapp-green);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.whatsapp-contact:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
 }
 
 .footer__bottom {
@@ -430,20 +520,27 @@ body::before {
   gap: 20px;
 }
 
-.btn-return-home {
-  background: var(--gradient-royal);
-  color: white;
-  padding: 12px 25px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(65, 105, 225, 0.3);
+.social-links {
+  display: flex;
+  gap: 15px;
 }
 
-.btn-return-home:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(65, 105, 225, 0.5);
+.social-links a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient-royal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 5px 15px rgba(65, 105, 225, 0.4);
 }
 
 /* زر العودة للأعلى */
@@ -478,25 +575,35 @@ body::before {
   color: white;
 }
 
-/* تحسينات الاستجابة */
+/* تحسينات الاستجابة للموبايل */
 @media (max-width: 768px) {
   .header__inner {
     flex-direction: column;
-    gap: 20px;
-    padding: 25px 0;
+    align-items: center;
+    padding: 20px 0;
+    gap: 15px;
   }
   
   .header__logo h1 {
     font-size: 2.2rem;
+    text-align: center;
   }
   
   .main-nav {
-    gap: 15px;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
   }
   
   .main-nav a {
     font-size: 1rem;
-    padding: 10px 18px;
+    padding: 10px 16px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
   }
   
   #products-container h2 {
@@ -506,29 +613,68 @@ body::before {
   .products-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
+    padding: 0 10px;
   }
   
   .product-card {
-    padding: 25px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 350px;
+  }
+  
+  .product-title {
+    font-size: 1.2rem;
+    min-height: 3rem;
+  }
+  
+  .product-price {
+    font-size: 1.6rem;
   }
   
   .product-buttons {
-    flex-direction: column;
+    gap: 12px;
   }
   
-  .footer-nav {
-    gap: 20px;
+  .btn-whatsapp,
+  .btn-view-product {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
   }
   
   .footer__bottom {
     flex-direction: column;
     text-align: center;
   }
+  
+  #back-to-top {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    bottom: 20px;
+    left: 20px;
+  }
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
   .products-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0;
+  }
+  
+  .product-card {
+    padding: 18px;
+    max-width: 100%;
   }
   
   .header__logo h1 {
@@ -539,9 +685,103 @@ body::before {
     font-size: 2rem;
   }
   
-  .product-card {
-    padding: 20px;
+  .product-image {
+    height: 180px;
   }
+  
+  .main-nav a {
+    font-size: 0.95rem;
+    padding: 8px 14px;
+  }
+}
+
+/* أسلوب المدونة */
+.blog-post-summary {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px var(--shadow-gold);
+  border: 2px solid var(--border-luxury);
+  transition: all 0.3s ease;
+}
+
+.blog-post-summary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px var(--shadow-deep);
+}
+
+.blog-post-thumb {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.blog-post-thumb img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.blog-post-thumb:hover img {
+  transform: scale(1.05);
+}
+
+.blog-post-content h2 {
+  font-family: 'Amiri', serif;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--text-dark);
+}
+
+.blog-post-content h2 a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.blog-post-content h2 a:hover {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blog-post-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.blog-post-actions .btn {
+  padding: 10px 20px;
+  background: var(--gradient-gold);
+  color: var(--text-dark);
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.blog-post-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px var(--shadow-gold);
+}
+
+.blog-post-actions .btn-whatsapp {
+  background: var(--whatsapp-green);
+  color: white;
+}
+
+.blog-post-actions .btn-whatsapp:hover {
+  background: #128C7E;
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
 }
 
 /* تأثيرات إضافية للفخامة */
