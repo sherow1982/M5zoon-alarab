@@ -1,64 +1,47 @@
-# robots.txt لمخزون العرب - متجر العطور والساعات الفاخرة
-# محدّث في: 30 أكتوبر 2025
+# Robots.txt محسّن لمتجر هدايا الإمارات
+# يحسّن الزحف ويحل مشاكل Google Search Console
 
-# السماح لجميع محركات البحث بالوصول إلى جميع الصفحات
 User-agent: *
 Allow: /
 
-# تحديد موقع خريطة الموقع (Sitemap)
-Sitemap: https://emirates-gifts.vercel.app/sitemap.xml
+# منع فهرسة الملفات الإدارية وغير المهمة
+Disallow: /js/
+Disallow: /css/
+Disallow: /data/
+Disallow: /temp/
+Disallow: /*?*
+Disallow: /*.json$
+Disallow: /api/
+Disallow: /admin/
 
-# تحديد موقع Google Merchant Feed
-Sitemap: https://emirates-gifts.vercel.app/google_merchant_feed.tsv
+# السماح بفهرسة الصفحات والملفات المهمة
+Allow: /products/
+Allow: /blog/
+Allow: /cart.html
+Allow: /products-showcase.html
+Allow: /index.html
+Allow: /sitemap.xml
+Allow: /merchant-feed.xml
+Allow: /favicon.ico
 
-# توجيهات خاصة لمحركات بحث مختلفة
+# خرائط الموقع (نطاق Arabsad)
+Sitemap: https://emirates-gifts.arabsad.com/sitemap.xml
+Sitemap: https://emirates-gifts.arabsad.com/merchant-feed.xml
 
-# Google و Bing - السماح بالوصول الكامل
+# Google
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
-User-agent: Bingbot
+# Bing
+User-agent: bingbot
 Allow: /
 Crawl-delay: 2
 
-# Google Shopping و Google Merchant - أولوية عالية
-User-agent: Googlebot-Image
-Allow: /
-
-User-agent: Google-Shopping
-Allow: /
-
-# محركات بحث عربية
-User-agent: YandexBot
-Allow: /
-Crawl-delay: 3
-
-# محركات بحث اجتماعية
+# Social bots
 User-agent: facebookexternalhit
 Allow: /
-
 User-agent: Twitterbot
 Allow: /
-
 User-agent: WhatsApp
 Allow: /
-
-# محركات بحث متخصصة في التسوق
-User-agent: PriceGrabber
-Allow: /products/
-Allow: /products-showcase.html
-
-User-agent: Shopzilla
-Allow: /products/
-Allow: /products-showcase.html
-
-# معدل الزحف لتحسين أداء الموقع
-Crawl-delay: 1
-
-# معلومات إضافية عن الموقع
-# الموقع: https://emirates-gifts.vercel.app/
-# المتجر: مخزون العرب - عطور وساعات فاخرة
-# الدولة: دولة الإمارات العربية المتحدة
-# العملة: درهم إماراتي (AED)
-# الشحن: مجاني في جميع إمارات الدولة
