@@ -140,21 +140,6 @@ function initScrollAnimations() {
 
 // دالة إضافة تأثيرات بصرية متقدمة
 function initVisualEffects() {
-    // تأثير التمرير الموازي للعناوين
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const header = document.querySelector('.header');
-        const title = document.querySelector('#products-container h2');
-        
-        if (header) {
-            header.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-        
-        if (title) {
-            title.style.transform = `translateY(${scrolled * 0.3}px)`;
-        }
-    });
-    
     // تأثير الفارة على بطاقات المنتجات
     document.addEventListener('mousemove', (e) => {
         const cards = document.querySelectorAll('.product-card');
@@ -166,18 +151,14 @@ function initVisualEffects() {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
             
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-    });
-    
-    // عودة البطاقة لوضعها الطبيعي عند الابتعاد
-    document.addEventListener('mouseleave', () => {
-        const cards = document.querySelectorAll('.product-card');
-        cards.forEach(card => {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            } else {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            }
         });
     });
 }
