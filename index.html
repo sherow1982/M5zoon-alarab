@@ -70,9 +70,9 @@
         </div>
         <nav class="mobile-sidebar-nav">
             <a href="./">🏠 الرئيسية</a>
-            <a href="./blog.html">📝 المدونة</a>
-            <a href="./products-showcase.html">🛒 عرض المنتجات</a>
-            <a href="./cart.html">🛒 السلة</a>
+            <a href="./blog/">📝 المدونة</a>
+            <a href="./products-showcase.html">🛍 عرض المنتجات</a>
+            <a href="./cart.html">🛍 السلة</a>
             <a href="#perfumes-section">🌸 العطور</a>
             <a href="#watches-section">⌚ الساعات</a>
             <a href="https://wa.me/201110760081" target="_blank">📱 واتساب</a>
@@ -93,10 +93,12 @@
             
             <!-- القائمة الرئيسية للسطح المكتب -->
             <nav class="main-nav">
-                <a href="./">الرئيسية</a>
-                <a href="./blog.html">المدونة</a>
-                <a href="./products-showcase.html">عرض المنتجات</a>
-                <a href="./cart.html">السلة</a>
+                <a href="./">🏠 الرئيسية</a>
+                <a href="./blog/">📝 المدونة</a>
+                <a href="./products-showcase.html">🛍 عرض المنتجات</a>
+                <a href="./cart.html">🛍 السلة</a>
+                <a href="#perfumes-section">🌸 العطور</a>
+                <a href="#watches-section">⌚ الساعات</a>
                 <a href="https://wa.me/201110760081" class="whatsapp-contact" target="_blank">
                     📱 واتساب
                 </a>
@@ -106,7 +108,7 @@
     
     <!-- زر السلة العائم -->
     <a href="./cart.html" class="cart-icon" id="cartIcon" aria-label="عرض السلة">
-        🛒
+        🛍
         <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
     </a>
     
@@ -160,10 +162,10 @@
                     <h3>روابط مهمة</h3>
                     <ul>
                         <li><a href="./">الصفحة الرئيسية</a></li>
-                        <li><a href="./blog.html">مدونة المتجر</a></li>
+                        <li><a href="./blog/">مدونة المتجر</a></li>
                         <li><a href="./products-showcase.html">عرض المنتجات</a></li>
                         <li><a href="./cart.html">سلة التسوق</a></li>
-                        <li><a href="./merchant-feed.xml">Google Merchant Feed</a></li>
+                        <li><a href="./sitemap.xml">خريطة الموقع</a></li>
                     </ul>
                 </div>
                 
@@ -183,7 +185,6 @@
                 <p>&copy; 2025 متجر هدايا الإمارات - جميع الحقوق محفوظة</p>
                 <div class="social-links" style="margin-top: 10px;">
                     <a href="https://wa.me/201110760081" target="_blank" title="واتساب متجر هدايا الإمارات">📱</a>
-                    <a href="./merchant-feed.xml" target="_blank" title="Google Merchant Feed">🛒</a>
                     <a href="./sitemap.xml" target="_blank" title="Sitemap">🗺️</a>
                 </div>
             </div>
@@ -194,7 +195,13 @@
         &#8593;
     </button>
     
-    <!-- JavaScript محسن للأداء -->
+    <!-- تحميل JavaScript محسّن -->
+    <script src="./js/ui.js" defer></script>
+    <script src="./js/reviews-system.js" defer></script>
+    <script src="./js/cart-system.js" defer></script>
+    <script src="./js/main.js" defer></script>
+    
+    <!-- JavaScript محسّن للأداء -->
     <script type="module">
         // عناصر القائمة الجانبية
         const openSidebarBtn = document.getElementById('openSidebar');
@@ -226,7 +233,7 @@
             }
         });
         
-        // إدارة السلة
+        // إدارة السلة محسّنة
         let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
         
         const updateCartBadge = () => {
@@ -258,14 +265,13 @@
                 box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
                 transform: translateX(100%); transition: transform 0.3s ease;
             `;
-            toast.textContent = `✓ تم إضافة ${product.title} للسلة - متجر هدايا الإمارات`;
+            toast.textContent = `✓ تم إضافة ${product.title} للسلة - جاري التحويل...`;
             document.body.appendChild(toast);
             
             setTimeout(() => toast.style.transform = 'translateX(0)', 100);
             setTimeout(() => {
-                toast.style.transform = 'translateX(100%)';
-                setTimeout(() => document.body.removeChild(toast), 300);
-            }, 3000);
+                window.location.href = './cart.html';
+            }, 2000);
         };
         
         // دالة إنشاء slug
@@ -289,11 +295,20 @@
             const hasDiscount = product.price !== product.sale_price;
             const discountPercentage = hasDiscount ? Math.round(((product.price - product.sale_price) / product.price) * 100) : 0;
             
+            // إضافة التقييمات
+            const ratingData = window.ReviewsSystem ? window.ReviewsSystem.getProductRating(product.title) : { rating: 4.7, count: 89 };
+            const stars = '★'.repeat(Math.floor(ratingData.rating));
+            
             return `
                 <div class="product-card fade-in" style="position: relative;">
                     ${hasDiscount ? `<div class="discount-badge">-${discountPercentage}%</div>` : ''}
                     <img src="${product.image_link}" alt="${product.title} - متجر هدايا الإمارات" class="product-image" loading="lazy" decoding="async">
                     <h3 class="product-title">${product.title}</h3>
+                    <div class="card-rating">
+                        <span class="stars">${stars}</span>
+                        <span class="rating-number">${ratingData.rating.toFixed(1)}</span>
+                        <span class="reviews-count">(${ratingData.count})</span>
+                    </div>
                     <p class="product-store" style="color: #D4AF37; font-size: 0.9rem; margin: 5px 0;">متجر هدايا الإمارات</p>
                     <div class="product-price">
                         <span>${product.sale_price} د.إ</span>
@@ -304,7 +319,7 @@
                             🔍 عرض التفاصيل
                         </a>
                         <button class="btn-add-cart" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})" type="button">
-                            🛒 إضافة للسلة
+                            🛍 إضافة للسلة
                         </button>
                         <a href="${whatsappLink}" class="btn-whatsapp" target="_blank">
                             📱 اطلب عبر واتساب
