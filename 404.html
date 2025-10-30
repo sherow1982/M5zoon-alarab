@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة غير موجودة - مخزون العرب</title>
+    <meta name="description" content="الصفحة المطلوبة غير موجودة. استعرض منتجاتنا الرائعة من العطور والساعات الفاخرة">
+    <link rel="canonical" href="https://emirates-gifts.vercel.app/404.html">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fdfbfb 0%, #f8f6f0 100%);
+            color: #2c2c2c;
+            line-height: 1.6;
+            direction: rtl;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .error-content {
+            text-align: center;
+            max-width: 600px;
+            background: #fff;
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .error-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #d4af37, #f4e89a, #d4af37);
+        }
+        
+        .error-number {
+            font-size: 8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e89a 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #f4e89a);
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #fff;
+            color: #d4af37;
+            border: 2px solid #d4af37;
+        }
+        
+        .btn-secondary:hover {
+            background: #d4af37;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #20b358);
+            color: #fff;
+        }
+        
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+        
+        .suggestions {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 232, 154, 0.1));
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .suggestions h3 {
+            color: #d4af37;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .suggestion-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .suggestion-link {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .suggestion-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+        }
+        
+        .suggestion-link h4 {
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .suggestion-link p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e89a 50%, #d4af37 100%);
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+        
+        .header h1 {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #2c2c2c 0%, #3a3a3a 100%);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+        }
+        
+        .footer a {
+            color: #d4af37;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: #f4e89a;
+        }
+        
+        /* Animations */
+        .error-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .error-number {
+            animation: bounceIn 1s ease-out 0.2s both;
+        }
+        
+        .error-title {
+            animation: slideInRight 0.8s ease-out 0.4s both;
+        }
+        
+        .error-message {
+            animation: slideInLeft 0.8s ease-out 0.6s both;
+        }
+        
+        .error-actions {
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .error-number {
+                font-size: 5rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-content {
+                padding: 30px 20px;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .suggestion-links {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Floating elements */
+        .floating-emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+        
+        .floating-emoji:nth-child(1) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-emoji:nth-child(2) {
+            top: 60%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+        
+        .floating-emoji:nth-child(3) {
+            bottom: 30%;
+            right: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-emoji">🌹</div>
+    <div class="floating-emoji">⌚</div>
+    <div class="floating-emoji">🎁</div>
+    
+    <header class="header">
+        <h1>🏠 مخزون العرب</h1>
+    </header>
+    
+    <div class="container">
+        <div class="error-content">
+            <div class="error-number">404</div>
+            <h1 class="error-title">عذراً، الصفحة غير موجودة!</h1>
+            <p class="error-message">
+                يبدو أن الصفحة التي تبحث عنها قد تم نقلها أو حذفها.<br>
+                لا تقلق! استعرض مجموعتنا الرائعة من العطور والساعات الفاخرة.
+            </p>
+            
+            <div class="error-actions">
+                <a href="./index.html" class="btn btn-primary">
+                    🏠 الصفحة الرئيسية
+                </a>
+                <a href="./products-showcase.html" class="btn btn-secondary">
+                    🛒 عرض المنتجات
+                </a>
+                <a href="https://wa.me/971501234567?text=مرحبا، أحتاج مساعدة في العثور على منتج معين" class="btn btn-whatsapp" target="_blank">
+                    📱 تواصل معنا
+                </a>
+            </div>
+            
+            <div class="suggestions">
+                <h3>🔍 إقتراحات لك</h3>
+                <div class="suggestion-links">
+                    <a href="./blog.html" class="suggestion-link">
+                        <h4>📝 مدونة المتجر</h4>
+                        <p>مراجعات ونصائح العطور والساعات</p>
+                    </a>
+                    <a href="./products/عطر-كوكو-شانيل-100-مل-1.html" class="suggestion-link">
+                        <h4>🌹 عطور فاخرة</h4>
+                        <p>عطر شانيل كوكو بخصم 28%</p>
+                    </a>
+                    <a href="./products-showcase.html" class="suggestion-link">
+                        <h4>⌚ ساعات راقية</h4>
+                        <p>مجموعة متنوعة من الساعات الفاخرة</p>
+                    </a>
+                    <a href="./products-showcase.html" class="suggestion-link">
+                        <h4>🎁 هدايا مميزة</h4>
+                        <p>هدايا فاخرة لجميع المناسبات</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2025 مخزون العرب - جميع الحقوق محفوظة</p>
+        <p>
+            <a href="./index.html">الرئيسية</a>
+            <a href="./blog.html">المدونة</a>
+            <a href="https://wa.me/971501234567" target="_blank">واتساب</a>
+        </p>
+    </footer>
+    
+    <script>
+        // إضافة تأثيرات ديناميكية
+        document.addEventListener('DOMContentLoaded', () => {
+            // تغيير لون الخلفية تدريجياً
+            let hue = 0;
+            setInterval(() => {
+                hue = (hue + 1) % 60;
+                document.documentElement.style.setProperty(
+                    '--dynamic-bg', 
+                    `hsl(${45 + hue}, 20%, 98%)`
+                );
+            }, 100);
+            
+            // تسجيل زيارة صفحة 404 للتحليل
+            console.log('404 Error - Page not found:', window.location.href);
+            
+            // اقتراح البحث التلقائي
+            const searchSuggestions = [
+                'عطور فاخرة',
+                'ساعات رولكس',
+                'هدايا إماراتية',
+                'عطور نسائية'
+            ];
+            
+            // عرض اقتراح عشوائي كل 5 ثوان
+            setInterval(() => {
+                const randomSuggestion = searchSuggestions[
+                    Math.floor(Math.random() * searchSuggestions.length)
+                ];
+                
+                const toast = document.createElement('div');
+                toast.style.cssText = `
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #d4af37, #f4e89a);
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 25px;
+                    font-size: 0.9rem;
+                    z-index: 1000;
+                    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+                    animation: slideIn 0.5s ease-out;
+                `;
+                toast.textContent = `💡 جرب البحث عن: ${randomSuggestion}`;
+                
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.style.animation = 'slideOut 0.5s ease-out';
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 500);
+                }, 3000);
+            }, 8000);
+        });
+    </script>
+    
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
+    
+    <!-- JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "صفحة غير موجودة - مخزون العرب",
+        "description": "الصفحة المطلوبة غير موجودة. استعرض منتجاتنا الرائعة",
+        "url": "https://emirates-gifts.vercel.app/404.html",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "مخزون العرب",
+            "url": "https://emirates-gifts.vercel.app/"
+        }
+    }
+    </script>
+</body>
+</html>
