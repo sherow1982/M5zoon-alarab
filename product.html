@@ -1,43 +1,191 @@
-<!doctype html>
-<html lang="ar-KW" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تفاصيل المنتج</title>
-    <meta name="description" content="">
-    <link rel="stylesheet" href="./woodmart-lite.css">
-    <link rel="icon" href="./favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منتج | متجر هدايا الإمارات</title>
+  <meta name="robots" content="noindex, follow" />
+  <link rel="preload" href="./css/performance-critical.css" as="style">
+  <link rel="stylesheet" href="./css/performance-critical.css">
+  <style>
+    .product-shell{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;background:#f5f5f5}
+    .card{max-width:1200px;width:100%;background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);overflow:hidden}
+    .card__header{padding:18px 22px;background:linear-gradient(135deg,#FFD700,#D4AF37);color:#2c3e50;font-weight:700}
+    .card__body{padding:24px}
+    .loading{opacity:.6;filter:grayscale(10%)}
+    .error{padding:22px;border-right:5px solid #e74c3c;background:#fff3f3;border-radius:10px}
+    .suggest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:16px}
+    .suggest-card{border:1px solid #eee;border-radius:12px;padding:12px;background:#fff}
+    .suggest-card img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+    .suggest-card h4{font-size:16px;margin:8px 0 6px;color:#2c3e50;line-height:1.4}
+    .suggest-card .price{display:flex;gap:10px;align-items:center}
+    .old{color:#999;text-decoration:line-through}
+    .now{color:#667eea;font-weight:700}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:10px;text-decoration:none}
+    .btn-primary{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
+    .btn-wa{background:linear-gradient(135deg,#25D366,#20b358);color:#fff}
+    .header{background:linear-gradient(135deg,#FFD700,#D4AF37);box-shadow:0 2px 10px rgba(212,175,55,.15)}
+  </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header__inner container">
-            <a href="./" class="header__logo"><h1>المتجر الكويتي</h1></a>
-            <div class="header__spacer"></div>
-            <nav class="main-nav">
-                <a href="./blog.html" target="_blank" rel="noopener noreferrer">المدونة</a>
-                <a href="./about.html" target="_blank" rel="noopener noreferrer">من نحن</a>
-            </nav>
-        </div>
-    </header>
-    <main class="section">
-        <div id="product-content" class="container">
-            <p>جارٍ تحميل المنتج...</p>
-        </div>
-    </main>
-    <footer class="footer">
-        <nav class="footer-nav container">
-            <a href="./about.html" target="_blank" rel="noopener noreferrer">من نحن</a>
-            <a href="./shipping-policy.html" target="_blank" rel="noopener noreferrer">سياسة الشحن</a>
-            <a href="./return-policy.html" target="_blank" rel="noopener noreferrer">الاستبدال والاسترجاع</a>
-        </nav>
-        <div class="container footer__bottom">
-            <p>&copy; 2025 المتجر الكويتي</p>
-            <a href="https://sherow1982.github.io/Kuwait-matjar" class="btn-return-home" target="_blank" rel="noopener noreferrer">العودة للموقع الأصلي</a>
-        </div>
-    </footer>
-    <button id="back-to-top" title="العودة إلى الأعلى">&uarr;</button>
-    <script type="module" src="./js/product.js"></script>
-    <script type="module" src="./js/ui.js"></script>
+  <header class="header">
+    <div class="container header__inner" style="max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
+      <a href="./" class="logo" style="font-weight:800;color:#2c3e50;text-decoration:none">🛍️ متجر هدايا الإمارات</a>
+      <nav class="main-nav"><a href="./">الرئيسية</a><a href="./blog.html">المدونة</a><a href="./about.html">من نحن</a></nav>
+    </div>
+  </header>
+
+  <main class="product-shell">
+    <div class="card">
+      <div class="card__header">عرض المنتج</div>
+      <div class="card__body">
+        <div id="product-root" class="loading">جاري التحميل...</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="margin-top:30px">
+    <div class="container" style="max-width:1200px;margin:0 auto;padding:20px;color:#555;text-align:center">© 2025 متجر هدايا الإمارات</div>
+  </footer>
+
+  <script>
+    // ——— إعدادات ———
+    const PRODUCTS_DIR = 'products';
+
+    // قراءة اسم الملف المطلوب من الاستعلام (?p=)
+    function getRequestedProductFile() {
+      const url = new URL(location.href);
+      // الأولوية لاسم ملف صريح ?file=... ثم سبيكة اسم ?slug=... ثم المسار نفسه
+      const direct = url.searchParams.get('file');
+      if (direct) return direct.endsWith('.html') ? direct : direct + '.html';
+
+      const slug = url.searchParams.get('slug');
+      if (slug) return slug + '.html';
+
+      // دعم المسار: /product.html?Rolex-GMT-Batman أو /product.html?رولكس-...
+      const q = url.search.replace(/^\?/,'');
+      if (q && !q.includes('=')) return decodeURIComponent(q) + '.html';
+
+      // دعم الروابط من نوع /products/اسم-الملف.html عبر الـ referrer (للاستخدام مع 404)
+      const path = url.pathname;
+      const lastSegment = path.split('/').pop();
+      if (lastSegment && lastSegment.endsWith('.html')) return lastSegment;
+
+      return null;
+    }
+
+    // توليد أكواد احتمالية من الاسم للتعامل مع العربية والرموز
+    function normalizeCandidates(name) {
+      if (!name) return [];
+      const base = decodeURIComponent(name)
+        .replace(/\s+/g, '-')
+        .replace(/ـ/g,'-')
+        .replace(/[\u064B-\u065F]/g,'') // حركات
+        .replace(/[\u0610-\u061A\u06D6-\u06ED]/g,'') // علامات قرآنية
+        .replace(/[^\w\u0600-\u06FF\-\.]/g,'')
+        .replace(/--+/g,'-')
+        .replace(/^-+|-+$/g,'');
+      const variations = new Set([
+        base,
+        base.replace(/\.html$/i,'') + '.html',
+        base.replace(/–|—/g,'-'),
+        base.replace(/_/g,'-'),
+      ]);
+      return Array.from(variations);
+    }
+
+    // تجربة تحميل ملف من المنتجات
+    async function tryFetchProduct(fileName) {
+      const url = `${PRODUCTS_DIR}/${fileName}`;
+      const res = await fetch(url, { cache: 'no-store' });
+      if (res.ok) return await res.text();
+      throw new Error(res.status + ' ' + res.statusText);
+    }
+
+    // قائمة الملفات الحالية داخل repo (مبنية عند البناء) - سيتم تحديثها أوتوماتيكياً إن لزم
+    const KNOWN_FILES = [];
+
+    // محاولة اكتشاف الملف من اسم قريب
+    async function findProductFile(requested) {
+      if (!requested) return null;
+      const candidates = normalizeCandidates(requested);
+      // جرّب المرشحين مباشرة
+      for (const c of candidates) {
+        try { await tryFetchProduct(c); return c; } catch(e) {}
+      }
+      // إن فشل، جرّب المرشحين مع ترميز URL
+      for (const c of candidates) {
+        try { await tryFetchProduct(encodeURIComponent(c)); return encodeURIComponent(c); } catch(e) {}
+      }
+      // إن فشل، وحّد شكل الشرطة
+      for (const c of candidates) {
+        const alt = c.replace(/-/g, '%20');
+        try { await tryFetchProduct(alt); return alt; } catch(e) {}
+      }
+      // كملاذ أخير، لو في قائمة معرفة مسبقاً
+      for (const known of KNOWN_FILES) {
+        if (known.toLowerCase() === requested.toLowerCase()) {
+          try { await tryFetchProduct(known); return known; } catch(e) {}
+        }
+      }
+      return null;
+    }
+
+    // إدراج HTML المنتج في الصفحة الحالية مع تصحيح روابط CSS للنسبية
+    function renderInShell(html) {
+      const root = document.getElementById('product-root');
+      // عدّل مسار الستايل إلى ../css -> ./css لأننا داخل الجذر
+      html = html.replace(/href=\"\.\.\/css\//g, 'href="./css/');
+      // عدّل روابط التنقل إلى نسبية للجذر
+      html = html.replace(/href=\"\.\.\//g, 'href="./');
+      root.innerHTML = html;
+      root.classList.remove('loading');
+    }
+
+    // عرض صفحة 404 مخصصة مع اقتراحات
+    async function render404() {
+      const root = document.getElementById('product-root');
+      // جلب قائمة من API Repo (سيتجاوز CORS أحياناً) — لذلك نضع اقتراحات ثابتة fallback
+      const suggestions = [
+        { t:'ARIAF', p:281, o:381, img:'https://m5zoon.com/public/uploads/products/1758995115569006.webp', f:'ARIAF.html' },
+        { t:'Rolex GMT Batman', p:315, o:365, img:'https://m5zoon.com/public/uploads/products/1746181464408885.webp', f:'Rolex-GMT-Batman.html' },
+        { t:'Kayali Vanilla', p:275, o:365, img:'https://m5zoon.com/public/uploads/products/1745381628569021.webp', f:'Kayali-Vanilla.html' }
+      ];
+
+      root.innerHTML = `
+        <div class="error">
+          <h3>المنتج غير موجود أو الرابط غير صحيح</h3>
+          <p>لم نتمكن من العثور على هذا المنتج. جرّب أحد المنتجات التالية:</p>
+          <div class="suggest-grid">
+            ${suggestions.map(s => `
+              <div class="suggest-card">
+                <img src="${s.img}" alt="${s.t}">
+                <h4>${s.t}</h4>
+                <div class="price"><span class="old">${s.o} د.إ</span><span class="now">${s.p} د.إ</span></div>
+                <div style="display:flex;gap:8px;margin-top:10px">
+                  <a class="btn btn-primary" href="./product.html?file=${encodeURIComponent(s.f)}">عرض المنتج</a>
+                  <a class="btn btn-wa" target="_blank" href="https://wa.me/201110760081?text=${encodeURIComponent('مرحباً، أرغب في طلب: '+s.t+'\nالسعر: '+s.p+' د.إ')}">اطلب واتساب</a>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+
+      root.classList.remove('loading');
+    }
+
+    (async function init(){
+      const requested = getRequestedProductFile();
+      const file = await findProductFile(requested);
+      if (file) {
+        try {
+          const html = await tryFetchProduct(file);
+          renderInShell(html);
+          return;
+        } catch(e) {}
+      }
+      await render404();
+    })();
+  </script>
 </body>
 </html>
-
