@@ -1,15 +1,13 @@
-// وظائف المتجر الرئيسية - مخزون العرب
+// وظائف المتجر الرئيسية - متجر هدايا الإمارات
 
 // دالة لتحويل اسم المنتج إلى سلاج عربي
 function createArabicSlug(title, id) {
-    // إزالة العلامات الخاصة والمسافات الزائدة 
     let slug = title
-        .replace(/[^\u0600-\u06FF\w\s-]/g, '') // إبقاء العربية واللاتينية والأرقام
-        .replace(/\s+/g, '-') // استبدال المسافات بشرطات
-        .replace(/-+/g, '-') // دمج الشرطات المتعددة
-        .replace(/^-+|-+$/g, '') // إزالة الشرطات في البداية والنهاية
+        .replace(/[^\u0600-\u06FF\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-+|-+$/g, '')
         .toLowerCase();
-    
     return slug ? `${slug}-${id}` : `product-${id}`;
 }
 
@@ -21,9 +19,45 @@ function calculateDiscount(originalPrice, salePrice) {
 
 // دالة إنشاء رابط واتساب
 function createWhatsAppLink(productTitle, productPrice) {
-    const phoneNumber = "201110760081"; // رقم الواتساب
-    const message = `مرحباً! أريد أن أستفسر عن هذا المنتج:\n${productTitle}\nبسعر: ${productPrice} درهم إماراتي\n\nمن متجر مخزون العرب`;
+    const phoneNumber = "201110760081";
+    const message = `مرحباً! أريد أن أستفسر عن هذا المنتج:\n${productTitle}\nبسعر: ${productPrice} درهم إماراتي\n\nمن متجر هدايا الإمارات`;
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+}
+
+// دالة تصنيف المنتجات بالفئات
+function categorizeProducts(products) {
+    const categories = {
+        'عطور رجالية': [],
+        'عطور نسائية': [],
+        'ساعات رولكس': [],
+        'ساعات أوميغا': [],
+        'هدايا فاخرة': []
+    };
+    
+    products.forEach(product => {
+        const title = product.title.toLowerCase();
+        
+        if (title.includes('ساعة')) {
+            if (title.includes('rolex') || title.includes('رولكس')) {
+                categories['ساعات رولكس'].push(product);
+            } else if (title.includes('omega') || title.includes('أوميغا')) {
+                categories['ساعات أوميغا'].push(product);
+            } else {
+                categories['هدايا فاخرة'].push(product);
+            }
+        } else if (title.includes('عطر') || title.includes('tom ford') || title.includes('kayali') || title.includes('marly') || title.includes('penhaligons')) {
+            // تصنيف بناءً على العلامة أو طبيعة العطر
+            if (title.includes('tom ford') || title.includes('رجالي') || title.includes('سوفاج') || title.includes('ايروس')) {
+                categories['عطور رجالية'].push(product);
+            } else {
+                categories['عطور نسائية'].push(product);
+            }
+        } else {
+            categories['هدايا فاخرة'].push(product);
+        }
+    });
+    
+    return categories;
 }
 
 // دالة إنشاء بطاقة المنتج
@@ -45,7 +79,7 @@ function createProductCard(product) {
                 <a href="${whatsappLink}" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
                     <span>📱</span> اشتري عبر واتساب
                 </a>
-                <a href="./product/${slug}.html" class="btn-view-product" target="_blank" rel="noopener noreferrer">
+                <a href="./products/${slug}.html" class="btn-view-product" target="_blank" rel="noopener noreferrer">
                     <span>🔍</span> شاهد المزيد
                 </a>
             </div>
@@ -53,42 +87,61 @@ function createProductCard(product) {
     `;
 }
 
-// دالة تحميل المنتجات
-async function loadProducts() {
+// دالة عرض فئة منتجات
+function createCategorySection(categoryName, products, maxProducts = 8) {
+    if (products.length === 0) return '';
+    
+    const limitedProducts = products.slice(0, maxProducts);
+    
+    return `
+        <div class="category-section">
+            <h2 class="category-title">${categoryName}</h2>
+            <div class="products-grid">
+                ${limitedProducts.map(product => createProductCard(product)).join('')}
+            </div>
+        </div>
+    `;
+}
+
+// دالة تحميل وعرض المنتجات بالفئات
+async function loadProductsByCategories() {
     try {
-        // تحميل منتجات العطور
+        // تحميل عطور
         const perfumesResponse = await fetch('./data/otor.json');
         const perfumes = await perfumesResponse.json();
         
-        // تحميل منتجات الساعات
+        // تحميل ساعات
         const watchesResponse = await fetch('./data/sa3at.json');
         const watches = await watchesResponse.json();
         
-        // دمج جميع المنتجات
+        // دمج وتصنيف المنتجات
         const allProducts = [...perfumes, ...watches];
+        const categories = categorizeProducts(allProducts);
         
-        // خلط المنتجات عشوائياً
-        const shuffledProducts = allProducts.sort(() => Math.random() - 0.5);
-        
-        // عرض أول 30 منتج
-        const productsToShow = shuffledProducts.slice(0, 30);
-        
-        const productsContainer = document.getElementById('products-grid');
+        // عرض الفئات
+        const productsContainer = document.getElementById('products-container');
         if (productsContainer) {
-            productsContainer.innerHTML = productsToShow.map(product => createProductCard(product)).join('');
+            let html = '<h2>أجمل العطور والهدايا الفاخرة في الإمارات</h2>';
+            
+            // إضافة كل فئة بحد أقصى 8 منتجات
+            Object.keys(categories).forEach(categoryName => {
+                html += createCategorySection(categoryName, categories[categoryName], 8);
+            });
+            
+            productsContainer.innerHTML = html;
             
             // إضافة تأثيرات الحركة
             const cards = document.querySelectorAll('.product-card');
             cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animationDelay = `${index * 0.05}s`;
             });
         }
         
     } catch (error) {
         console.error('خطأ في تحميل المنتجات:', error);
-        const productsContainer = document.getElementById('products-grid');
+        const productsContainer = document.getElementById('products-container');
         if (productsContainer) {
-            productsContainer.innerHTML = '<p style="text-align: center; color: #999; font-size: 1.2rem;">عذراً، حدث خطأ في تحميل المنتجات. يرجى إعادة المحاولِ لاحقاً.</p>';
+            productsContainer.innerHTML = '<p style="text-align: center; color: #999; font-size: 1.2rem;">عذراً، حدث خطأ في تحميل المنتجات. يرجى إعادة المحاولة لاحقاً.</p>';
         }
     }
 }
@@ -98,7 +151,6 @@ function initBackToTop() {
     const backToTopBtn = document.getElementById('back-to-top');
     
     if (backToTopBtn) {
-        // إظهار وإخفاء الزر حسب موقع التمرير
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 backToTopBtn.classList.add('show');
@@ -107,7 +159,6 @@ function initBackToTop() {
             }
         });
         
-        // عملية التمرير للأعلى
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -132,15 +183,13 @@ function initScrollAnimations() {
         });
     }, observerOptions);
     
-    // مراقبة بطاقات المنتجات
-    document.querySelectorAll('.product-card').forEach(card => {
-        observer.observe(card);
+    document.querySelectorAll('.product-card, .category-section').forEach(element => {
+        observer.observe(element);
     });
 }
 
-// دالة إضافة تأثيرات بصرية متقدمة
+// دالة إضافة تأثيرات بصرية
 function initVisualEffects() {
-    // تأثير الفارة على بطاقات المنتجات
     document.addEventListener('mousemove', (e) => {
         const cards = document.querySelectorAll('.product-card');
         cards.forEach(card => {
@@ -163,30 +212,29 @@ function initVisualEffects() {
     });
 }
 
-// تشغيل المتجر عند تحميل الصفحة
+// تشغيل المتجر
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('مرحباً بكم في مخزون العرب - المتجر الإماراتي الموثوق!');
+    console.log('مرحباً بكم في متجر هدايا الإمارات!');
     
-    // تحميل وعرض المنتجات
-    loadProducts();
+    // تحميل وعرض المنتجات بالفئات
+    loadProductsByCategories();
     
-    // تفعيل زر العودة للأعلى
+    // تفعيل الوظائف التفاعلية
     initBackToTop();
     
-    // تفعيل تأثيرات الحركة
     setTimeout(() => {
         initScrollAnimations();
         initVisualEffects();
     }, 1000);
     
-    // إضافة تأثير loading للصفحة
     document.body.classList.add('loaded');
 });
 
-// تصدير الدوال للاستخدام في ملفات أخرى
-window.M5zoonStore = {
+// تصدير الدوال
+window.EmiratesGiftsStore = {
     createArabicSlug,
     calculateDiscount,
     createWhatsAppLink,
-    createProductCard
+    createProductCard,
+    categorizeProducts
 };
