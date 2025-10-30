@@ -5,56 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر هدايا الإمارات - عطور وساعات فاخرة | توصيل مجاني في الإمارات</title>
     <meta name="description" content="متجر هدايا الإمارات - اكتشف أفضل العروض على العطور والساعات والهدايا الفاخرة. توصيل مجاني لجميع إمارات الدولة مع ضمان الجودة.">
-    <meta name="keywords" content="متجر هدايا الإمارات, عطور فاخرة, ساعات رولكس, هدايا إماراتية, توصيل مجاني الإمارات">
-    <link rel="canonical" href="https://emirates-gifts.arabsad.com/">
     
-    <!-- DNS Prefetch لتحسين الأداء -->
-    <link rel="dns-prefetch" href="https://m5zoon.com">
-    <link rel="dns-prefetch" href="https://wa.me">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <!-- خط Cairo من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="./css/performance-critical.css" as="style">
-    <link rel="preload" href="./js/performance-optimizer.js" as="script">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Critical CSS مدمج لتحسين LCP -->
-    <style>
-        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#2C3E50;background:#FEFEFE;direction:rtl;margin:0;padding:0;font-display:swap}
-        .container{max-width:1200px;margin:0 auto;padding:0 15px;contain:layout}
-        .header{background:linear-gradient(135deg,#FFD700 0%,#D4AF37 100%);box-shadow:0 2px 10px rgba(212,175,55,0.15);position:sticky;top:0;z-index:100;contain:layout style paint}
-        .header__inner{display:flex;align-items:center;justify-content:space-between;padding:15px 0;min-height:70px}
-        .header__logo h1{font-size:clamp(1.5rem,4vw,2rem);font-weight:700;color:#2C3E50;margin:0}
-        .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;contain:layout style paint}
-        .product-card{background:#fff;border-radius:15px;padding:15px;box-shadow:0 4px 12px rgba(0,0,0,0.1);min-height:400px;position:relative;contain:layout style paint;will-change:transform}
-        .product-image{width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:15px;aspect-ratio:1/1;transition:opacity 0.3s ease}
-        img:not(.loaded){opacity:0.7;background:linear-gradient(90deg,#f0f0f0,#e0e0e0,#f0f0f0);background-size:200% 100%;animation:shimmer 2s infinite}
-        img.loaded{opacity:1}
-        @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-        @media(max-width:768px){.header{display:none}.mobile-menu-toggle{display:flex}.products-grid{grid-template-columns:1fr}.product-card{min-height:350px}}
-    </style>
+    <!-- ملف CSS الجديد المستوحى من دخون الإماراتية -->
+    <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
     
-    <!-- ملف CSS الرئيسي محسّن -->
-    <link rel="stylesheet" href="./woodmart-lite.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="./css/performance-critical.css">
-    <noscript><link rel="stylesheet" href="./woodmart-lite.css"></noscript>
-    
-    <!-- أيقونة محسنة -->
-    <link rel="icon" href="./favicon.ico" sizes="32x32">
-    <link rel="apple-touch-icon" href="./favicon.ico">
-    
-    <!-- Open Graph محسن -->
-    <meta property="og:title" content="متجر هدايا الإمارات - عطور وهدايا فاخرة">
-    <meta property="og:description" content="متجر هدايا الإمارات - المتجر الإماراتي الموثوق للعطور والساعات الفاخرة مع توصيل مجاني">
-    <meta property="og:url" content="https://emirates-gifts.arabsad.com/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ar_AE">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="متجر هدايا الإمارات">
-    
-    <!-- Schema.org JSON-LD محسن -->
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -68,180 +31,283 @@
       },
       "currenciesAccepted": "AED",
       "paymentAccepted": "Cash, WhatsApp Order",
-      "telephone": "+201110760081",
-      "priceRange": "220-610 AED",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "1247",
-        "bestRating": "5",
-        "worstRating": "1"
-      }
+      "telephone": "+201110760081"
     }
     </script>
 </head>
 <body>
-    <!-- شريط التقدم لتحسين UX -->
-    <div class="scroll-progress" id="scrollProgress"></div>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
     
-    <!-- Skip Links للوصول -->
-    <a href="#main-content" class="skip-link">انتقال إلى المحتوى الرئيسي</a>
-    
-    <!-- الخلفية الشفافة للقائمة الجانبية -->
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    
-    <!-- القائمة الجانبية للموبايل -->
-    <div class="mobile-sidebar" id="mobileSidebar">
-        <div class="mobile-sidebar-header">
-            <div class="mobile-sidebar-logo">متجر هدايا الإمارات</div>
-            <button class="mobile-sidebar-close" id="closeSidebar" aria-label="إغلاق القائمة">✖</button>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="banner-text">
+            <i class="fas fa-shipping-fast banner-icon"></i>
+            <span>توصيل مجاني لجميع الطلبات فوق 250 درهم - اطلب الآن وادفع لاحقاً</span>
+            <i class="fas fa-gift banner-icon"></i>
         </div>
-        <nav class="mobile-sidebar-nav">
-            <a href="./">🏠 الرئيسية</a>
-            <a href="./blog/">📝 المدونة</a>
-            <a href="./products-showcase.html">🛍 عرض المنتجات</a>
-            <a href="./cart.html">🛍 السلة</a>
-            <a href="#perfumes-section">🌸 العطور</a>
-            <a href="#watches-section">⌚ الساعات</a>
-            <a href="https://wa.me/201110760081" target="_blank">📱 واتساب</a>
-        </nav>
     </div>
-    
-    <header class="header">
-        <div class="header__inner container">
-            <a href="./" class="header__logo">
-                <h1>متجر هدايا الإمارات</h1>
-            </a>
-            
-            <!-- زر فتح القائمة الجانبية للموبايل -->
-            <button class="mobile-menu-toggle" id="openSidebar" aria-label="فتح القائمة">
-                <span class="menu-text">القائمة</span>
-                <span class="menu-icon">☰</span>
-            </button>
-            
-            <!-- القائمة الرئيسية للسطح المكتب -->
-            <nav class="main-nav">
-                <a href="./">🏠 الرئيسية</a>
-                <a href="./blog/">📝 المدونة</a>
-                <a href="./products-showcase.html">🛍 عرض المنتجات</a>
-                <a href="./cart.html">🛍 السلة</a>
-                <a href="#perfumes-section">🌸 العطور</a>
-                <a href="#watches-section">⌚ الساعات</a>
-                <a href="https://wa.me/201110760081" class="whatsapp-contact" target="_blank">
-                    📱 واتساب
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="./" class="logo" aria-label="الصفحة الرئيسية - هدايا الإمارات">
+                    <div class="logo-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-title">هدايا الإمارات</div>
+                        <div class="logo-subtitle">Emirates Gifts</div>
+                    </div>
                 </a>
-            </nav>
+
+                <!-- Main Navigation -->
+                <nav class="main-nav" aria-label="القائمة الرئيسية">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="./" class="nav-link">الرئيسية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./products-showcase.html" class="nav-link">المنتجات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#perfumes-section" class="nav-link">العطور</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#watches-section" class="nav-link">الساعات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./blog/" class="nav-link">المدونة</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://wa.me/201110760081" class="nav-link" target="_blank">تواصل معنا</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Header Tools -->
+                <div class="header-tools">
+                    <a href="./cart.html" class="header-tool" aria-label="السلة">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                    </a>
+                    <button class="mobile-menu-toggle" id="openSidebar" aria-label="فتح القائمة">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
-    
-    <!-- زر السلة العائم -->
-    <a href="./cart.html" class="cart-icon" id="cartIcon" aria-label="عرض السلة">
-        🛍
-        <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
-    </a>
-    
-    <main class="section" id="main-content">
-        <div id="products-container" class="container">
-            <h1 style="font-size: clamp(2rem, 5vw, 2.5rem); font-weight: 700; text-align: center; margin: 20px 0 40px; color: #2C3E50; background: linear-gradient(135deg, #FFD700, #D4AF37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">متجر هدايا الإمارات - أجمل العطور والهدايا الفاخرة</h1>
-            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 50px;">🏆 وجهتك الأولى للعطور والساعات الفاخرة في دولة الإمارات مع شحن مجاني وضمان الجودة</p>
-            
-            <!-- عرض الفئتين جنب بعض -->
-            <div id="categories-container">
-                
-                <!-- قسم العطور -->
-                <div id="perfumes-section" class="category-section">
-                    <div class="category-header">
-                        <h2 style="color: #D4AF37; font-size: 2rem; text-align: center; margin-bottom: 30px;">
-                            🌸 عطور متجر هدايا الإمارات الفاخرة
-                        </h2>
-                    </div>
-                    <div class="products-grid" id="perfumes-grid">
-                        <div class="loading-message">⏳ جارِ تحميل العطور...</div>
-                    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    عالم من العطور<br>
+                    <span style="color: var(--primary-gold);">والهدايا الفاخرة</span>
+                </h1>
+                <p class="hero-subtitle">
+                    اكتشف أجمل التشكيلات من العطور الشرقية والغربية الفاخرة، والهدايا المميزة التي تعبر عن ذوقك الرفيع
+                </p>
+                <div class="hero-cta">
+                    <a href="#perfumes-section" class="btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        تسوق الآن
+                    </a>
+                    <a href="./products-showcase.html" class="btn-secondary">
+                        <i class="fas fa-star"></i>
+                        عرض المنتجات
+                    </a>
                 </div>
-                
-                <!-- قسم الساعات -->
-                <div id="watches-section" class="category-section">
-                    <div class="category-header">
-                        <h2 style="color: #D4AF37; font-size: 2rem; text-align: center; margin-bottom: 30px;">
-                            ⌚ ساعات متجر هدايا الإمارات الفاخرة
-                        </h2>
+            </div>
+            <div class="hero-visual">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop&crop=center" 
+                     alt="مجموعة متنوعة من العطور الفاخرة" 
+                     class="hero-image lazyload"
+                     loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Perfumes Section -->
+    <section class="section" id="main-content">
+        <div class="section-container">
+            <div id="perfumes-section" class="category-section">
+                <div class="section-header">
+                    <h2 class="section-title">عطور هدايا الإمارات الفاخرة</h2>
+                    <p class="section-subtitle">
+                        اختارنا لك أجمل العطور الشرقية والغربية التي تلائم جميع الأذواق
+                    </p>
+                </div>
+                <div class="products-grid" id="perfumes-grid">
+                    <div class="loading-message">⏳ جارِ تحميل العطور...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section class="section">
+        <div class="section-container">
+            <div class="collection-section">
+                <div class="collection-grid">
+                    <div class="collection-content">
+                        <h2 class="collection-title">مجموعة العطور الشرقية الفاخرة</h2>
+                        <p class="collection-description">
+                            استمتع برحلة عطرية لا تُنسى مع مجموعتنا الحصرية من العطور الشرقية الأصيلة. 
+                            عطور مستوحاة من التراث العربي العريق، تحمل في طياتها أجمل قصص الفخامة والأناقة.
+                        </p>
+                        <a href="#perfumes-section" class="btn-primary">
+                            <i class="fas fa-crown"></i>
+                            اكتشف المجموعة
+                        </a>
                     </div>
-                    <div class="products-grid" id="watches-grid">
-                        <div class="loading-message">⏳ جارِ تحميل الساعات...</div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop&crop=center" 
+                             alt="مجموعة العطور الشرقية الفاخرة" 
+                             class="collection-image lazyload"
+                             loading="lazy">
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-    
+    </section>
+
+    <!-- Watches Section -->
+    <section class="section">
+        <div class="section-container">
+            <div id="watches-section">
+                <div class="section-header">
+                    <h2 class="section-title">ساعات هدايا الإمارات الفاخرة</h2>
+                    <p class="section-subtitle">
+                        مجموعة حصرية من أرقى الساعات العالمية التي تجمع بين الأناقة والدقة
+                    </p>
+                </div>
+                <div class="products-grid" id="watches-grid">
+                    <div class="loading-message">⏳ جارِ تحميل الساعات...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
+        <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>متجر هدايا الإمارات</h3>
-                    <p>متجركم الموثوق للعطور والساعات والهدايا الفاخرة في دولة الإمارات العربية المتحدة.</p>
-                    <a href="https://wa.me/201110760081" class="whatsapp-contact" target="_blank">
-                        📱 تواصل عبر واتساب
-                    </a>
+                    <h3>هدايا الإمارات</h3>
+                    <p>
+                        متجر العطور والهدايا الفاخرة الرائد في دولة الإمارات العربية المتحدة. 
+                        نقدم لكم أجمل التشكيلات من العطور الشرقية والغربية.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h3>روابط مهمة</h3>
+                    <h3>روابط سريعة</h3>
                     <ul>
-                        <li><a href="./">الصفحة الرئيسية</a></li>
-                        <li><a href="./blog/">مدونة المتجر</a></li>
-                        <li><a href="./products-showcase.html">عرض المنتجات</a></li>
-                        <li><a href="./cart.html">سلة التسوق</a></li>
-                        <li><a href="./sitemap.xml">خريطة الموقع</a></li>
-                        <li><a href="./merchant-feed.xml">Google Merchant Feed</a></li>
+                        <li><a href="./">الرئيسية</a></li>
+                        <li><a href="./products-showcase.html">المنتجات</a></li>
+                        <li><a href="./blog/">المدونة</a></li>
+                        <li><a href="./cart.html">السلة</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h3>فئات متجر هدايا الإمارات</h3>
+                    <h3>خدمة العملاء</h3>
                     <ul>
-                        <li><a href="#perfumes-section">عطور رجالية</a></li>
-                        <li><a href="#perfumes-section">عطور نسائية</a></li>
-                        <li><a href="#watches-section">ساعات رولكس</a></li>
-                        <li><a href="#watches-section">ساعات أوميغا</a></li>
-                        <li><a href="./products-showcase.html">هدايا فاخرة</a></li>
+                        <li><a href="./shipping-policy.html">الشحن والتوصيل</a></li>
+                        <li><a href="./return-policy.html">سياسة الإرجاع</a></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank">الدعم الفني</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+201110760081">+20 111 076 0081</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>دبي، الإمارات العربية المتحدة</span>
+                        </li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="footer__bottom">
-                <p>&copy; 2025 متجر هدايا الإمارات - جميع الحقوق محفوظة</p>
-                <div class="social-links" style="margin-top: 10px;">
-                    <a href="https://wa.me/201110760081" target="_blank" title="واتساب متجر هدايا الإمارات">📱</a>
-                    <a href="./sitemap.xml" target="_blank" title="Sitemap">🗺️</a>
-                    <a href="./merchant-feed.xml" target="_blank" title="Google Merchant Feed">🛍</a>
-                </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
-    
-    <button id="back-to-top" title="العودة إلى الأعلى" aria-label="العودة إلى الأعلى">
-        &#8593;
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
     </button>
-    
-    <!-- تحميل JavaScript محسّن -->
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <div class="mobile-sidebar-logo">هدايا الإمارات</div>
+            <button class="mobile-sidebar-close" id="closeSidebar" aria-label="إغلاق القائمة">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-sidebar-nav">
+            <a href="./"><i class="fas fa-home"></i> الرئيسية</a>
+            <a href="./products-showcase.html"><i class="fas fa-th-large"></i> المنتجات</a>
+            <a href="#perfumes-section"><i class="fas fa-spray-can"></i> العطور</a>
+            <a href="#watches-section"><i class="fas fa-clock"></i> الساعات</a>
+            <a href="./blog/"><i class="fas fa-blog"></i> المدونة</a>
+            <a href="./cart.html"><i class="fas fa-shopping-cart"></i> السلة</a>
+            <a href="https://wa.me/201110760081" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a>
+        </nav>
+    </div>
+
+    <!-- JavaScript -->
     <script src="./js/performance-optimizer.js" defer></script>
     <script src="./js/ui.js" defer></script>
     <script src="./js/reviews-system.js" defer></script>
     <script src="./js/cart-system.js" defer></script>
     <script src="./js/main.js" defer></script>
-    <script src="./js/blog-reviews.js" defer></script>
     
-    <!-- JavaScript محسّن للأداء -->
-    <script type="module">
-        // عناصر القائمة الجانبية
+    <script>
+        // متغيرات عامة
+        let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
+        
+        // عناصر DOM
         const openSidebarBtn = document.getElementById('openSidebar');
         const closeSidebarBtn = document.getElementById('closeSidebar');
         const mobileSidebar = document.getElementById('mobileSidebar');
         const mobileOverlay = document.getElementById('mobileOverlay');
         const cartBadge = document.getElementById('cartBadge');
-        const scrollProgress = document.getElementById('scrollProgress');
+        const progressBar = document.getElementById('progressBar');
+        const backToTopBtn = document.getElementById('backToTop');
+        const header = document.getElementById('header');
         
         // وظائف القائمة الجانبية
         const openSidebar = () => {
@@ -256,19 +322,19 @@
             document.body.style.overflow = '';
         };
         
-        // ربط الأحداث
+        // ربط أحداث القائمة الجانبية
         openSidebarBtn?.addEventListener('click', openSidebar);
         closeSidebarBtn?.addEventListener('click', closeSidebar);
         mobileOverlay?.addEventListener('click', closeSidebar);
+        
+        // إغلاق القائمة بزر Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && mobileSidebar?.classList.contains('open')) {
                 closeSidebar();
             }
         });
         
-        // إدارة السلة محسّنة
-        let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
-        
+        // تحديث عداد السلة
         const updateCartBadge = () => {
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             if (totalItems > 0) {
@@ -281,17 +347,15 @@
             }
         };
         
-        const addToCart = (product) => {
+        // إضافة منتج للسلة
+        window.addToCart = (product) => {
             const existingItem = cart.find(item => item.id === product.id);
             if (existingItem) {
                 existingItem.quantity++;
             } else {
-                // إضافة تقييمات للمنتج
-                const ratingData = window.ReviewsSystem ? window.ReviewsSystem.getProductRating(product.title) : { rating: 4.7, count: 89 };
                 cart.push({ 
                     ...product, 
                     quantity: 1, 
-                    rating: ratingData,
                     store: 'متجر هدايا الإمارات',
                     addedAt: new Date().toISOString()
                 });
@@ -299,132 +363,105 @@
             localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
             updateCartBadge();
             
-            // إظهار رسالة تأكيد محسّنة
-            const toast = document.createElement('div');
-            toast.className = 'cart-notification';
-            toast.innerHTML = `
-                <div class="notification-content">
-                    <div class="success-icon">✅</div>
-                    <div class="notification-text">
-                        <strong>تم الإضافة بنجاح!</strong>
-                        <p>"${product.title}" أضيف إلى سلتك</p>
-                        <small>🔄 جاري التحويل للسلة...</small>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                window.location.href = './cart.html';
-            }, 2000);
+            // إظهار رسالة تأكيد
+            alert('تم إضافة ' + product.title + ' إلى السلة بنجاح!');
         };
         
-        // دالة إنشاء slug
-        const createSlug = (title, id) => {
-            const slug = title
-                .replace(/[^\u0600-\u06FF\w\s-]/g, '')
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-')
-                .replace(/^-+|-+$/g, '')
-                .toLowerCase();
-            return slug ? `${slug}-${id}` : `product-${id}`;
-        };
-        
-        // دالة إنشاء بطاقة المنتج محسّنة
+        // إنشاء بطاقة المنتج
         const createProductCard = (product, isWatch = false) => {
-            const slug = createSlug(product.title, product.id);
-            const whatsappMessage = encodeURIComponent(`مرحباً! أريد الاستفسار عن منتج من متجر هدايا الإمارات: ${product.title} - بسعر: ${product.sale_price} درهم`);
+            const whatsappMessage = encodeURIComponent(`مرحباً! أريد الاستفسار عن: ${product.title} - بسعر: ${product.sale_price} درهم`);
             const whatsappLink = `https://wa.me/201110760081?text=${whatsappMessage}`;
-            const productLink = `./products/${slug}.html`;
             
             const hasDiscount = product.price !== product.sale_price;
             const discountPercentage = hasDiscount ? Math.round(((product.price - product.sale_price) / product.price) * 100) : 0;
             
-            // إضافة التقييمات
-            const ratingData = window.ReviewsSystem ? window.ReviewsSystem.getProductRating(product.title) : { rating: 4.7, count: 89 };
-            const stars = '★'.repeat(Math.floor(ratingData.rating));
-            
             return `
-                <div class="product-card fade-in emirates-element" data-product-id="${product.id}">
-                    ${hasDiscount ? `<div class="discount-badge">-${discountPercentage}%</div>` : ''}
-                    <img src="${product.image_link}" alt="${product.title} - متجر هدايا الإمارات" class="product-image" loading="lazy" decoding="async" fetchpriority="${isWatch ? 'low' : 'high'}">
-                    <h3 class="product-title">${product.title}</h3>
-                    <div class="card-rating">
-                        <span class="stars">${stars}</span>
-                        <span class="rating-number">${ratingData.rating.toFixed(1)}</span>
-                        <span class="reviews-count">(${ratingData.count})</span>
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="${product.image_link}" alt="${product.title} - متجر هدايا الإمارات" class="product-image lazyload" loading="lazy">
+                        ${hasDiscount ? `<div class="product-badge">خصم ${discountPercentage}%</div>` : '<div class="product-badge">جديد</div>'}
+                        <div class="product-overlay">
+                            <button class="overlay-btn" aria-label="عرض سريع">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="overlay-btn" aria-label="إضافة للمفضلة">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
                     </div>
-                    <p class="product-store" style="color: #D4AF37; font-size: 0.9rem; margin: 5px 0;">متجر هدايا الإمارات</p>
-                    <div class="product-price">
-                        <span class="current-price">${product.sale_price} د.إ</span>
-                        ${hasDiscount ? `<span class="old-price">${product.price} د.إ</span>` : ''}
-                    </div>
-                    <div class="product-buttons">
-                        <button class="btn-add-cart" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})" type="button">
-                            🛍 إضافة للسلة
-                        </button>
-                        <a href="${whatsappLink}" class="btn-whatsapp" target="_blank">
-                            📱 اطلب عبر واتساب
-                        </a>
-                        <a href="${productLink}" class="btn-view-product">
-                            🔍 عرض التفاصيل
-                        </a>
+                    <div class="product-info">
+                        <div class="product-category">${isWatch ? 'ساعات فاخرة' : 'عطور فاخرة'}</div>
+                        <h3 class="product-title">${product.title}</h3>
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-text">(4.8 • 127 تقييم)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">${product.sale_price} د.إ</span>
+                            ${hasDiscount ? `<span class="original-price">${product.price} د.إ</span>` : ''}
+                            ${hasDiscount ? `<span class="discount">-${discountPercentage}%</span>` : ''}
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-add-cart" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                                <i class="fas fa-shopping-cart"></i>
+                                إضافة للسلة
+                            </button>
+                            <a href="${whatsappLink}" class="btn-whatsapp" target="_blank" aria-label="طلب عبر واتساب">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             `;
         };
         
-        // تحميل وعرض المنتجات بأداء محسّن
+        // تحميل المنتجات
         const loadProducts = async () => {
             try {
-                // تحميل متزامن للبيانات
                 const [perfumesResponse, watchesResponse] = await Promise.all([
                     fetch('./data/otor.json').catch(() => ({ ok: false })),
                     fetch('./data/sa3at.json').catch(() => ({ ok: false }))
                 ]);
                 
-                let perfumes = [];
-                let watches = [];
+                let perfumes = [], watches = [];
                 
-                if (perfumesResponse.ok) {
-                    perfumes = await perfumesResponse.json();
-                }
+                if (perfumesResponse.ok) perfumes = await perfumesResponse.json();
+                if (watchesResponse.ok) watches = await watchesResponse.json();
                 
-                if (watchesResponse.ok) {
-                    watches = await watchesResponse.json();
-                }
-                
-                // عرض 8 عطور فقط (تحسين LCP)
+                // عرض العطور
                 const perfumesGrid = document.getElementById('perfumes-grid');
                 if (perfumesGrid && perfumes.length > 0) {
-                    perfumesGrid.innerHTML = perfumes.slice(0, 8).map((product, index) => createProductCard(product, false)).join('');
+                    perfumesGrid.innerHTML = perfumes.slice(0, 8).map(product => createProductCard(product, false)).join('');
                 } else if (perfumesGrid) {
-                    perfumesGrid.innerHTML = '<div class="loading-message">عذراً، لا توجد عطور متاحة حالياً في متجر هدايا الإمارات</div>';
+                    perfumesGrid.innerHTML = '<div class="loading-message">عذراً، لا توجد عطور متاحة حالياً</div>';
                 }
                 
-                // عرض 8 ساعات فقط
+                // عرض الساعات
                 const watchesGrid = document.getElementById('watches-grid');
                 if (watchesGrid && watches.length > 0) {
-                    watchesGrid.innerHTML = watches.slice(0, 8).map((product, index) => createProductCard(product, true)).join('');
+                    watchesGrid.innerHTML = watches.slice(0, 8).map(product => createProductCard(product, true)).join('');
                 } else if (watchesGrid) {
-                    watchesGrid.innerHTML = '<div class="loading-message">عذراً، لا توجد ساعات متاحة حالياً في متجر هدايا الإمارات</div>';
+                    watchesGrid.innerHTML = '<div class="loading-message">عذراً، لا توجد ساعات متاحة حالياً</div>';
                 }
                 
-                // تحديث عداد السلة
                 updateCartBadge();
                 
-                // تفعيل الانيميشن بعد تحميل المحتوى
-                setTimeout(() => {
-                    document.querySelectorAll('.product-card').forEach((card, index) => {
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, index * 100);
+                // تفعيل lazy loading للصور
+                const lazyImages = document.querySelectorAll('.lazyload');
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.classList.add('loaded');
+                            observer.unobserve(img);
+                        }
                     });
-                }, 200);
+                });
+                
+                lazyImages.forEach(img => imageObserver.observe(img));
                 
             } catch (error) {
-                console.error('خطأ في تحميل منتجات متجر هدايا الإمارات:', error);
+                console.error('خطأ في تحميل المنتجات:', error);
             }
         };
         
@@ -434,53 +471,36 @@
             const docHeight = document.documentElement.scrollHeight;
             const winHeight = window.innerHeight;
             const scrollPercent = scrollTop / (docHeight - winHeight);
-            if (scrollProgress) {
-                scrollProgress.style.width = `${scrollPercent * 100}%`;
+            if (progressBar) {
+                progressBar.style.width = `${scrollPercent * 100}%`;
             }
         };
         
-        // ربط أحداث التمرير محسّن
-        let scrollTimeout;
+        // أحداث التمرير
         window.addEventListener('scroll', () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(updateScrollProgress, 16); // 60fps
+            updateScrollProgress();
+            
+            // تأثير الهيدر عند التمرير
+            if (window.scrollY > 100) {
+                header?.classList.add('scrolled');
+            } else {
+                header?.classList.remove('scrolled');
+            }
+            
+            // زر العودة للأعلى
+            if (window.scrollY > 500) {
+                backToTopBtn?.classList.add('show');
+            } else {
+                backToTopBtn?.classList.remove('show');
+            }
         }, { passive: true });
         
-        // جعل الوظائف عامة للوصول إليها
-        window.addToCart = addToCart;
-        window.updateCartBadge = updateCartBadge;
-        window.createSlug = createSlug;
-        
-        // تأخير تحميل المنتجات لتحسين LCP
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                setTimeout(loadProducts, 100); // تأخير بسيط لضمان عرض العناصر الرئيسية أولاً
-            });
-        } else {
-            loadProducts();
-        }
-        
         // زر العودة للأعلى
-        const backToTopBtn = document.getElementById('back-to-top');
-        if (backToTopBtn) {
-            let scrollTimeout;
-            window.addEventListener('scroll', () => {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    if (window.pageYOffset > 300) {
-                        backToTopBtn.classList.add('show');
-                    } else {
-                        backToTopBtn.classList.remove('show');
-                    }
-                }, 100);
-            }, { passive: true });
-            
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
+        backToTopBtn?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
         
-        // تحسين التنقل الداخلي
+        // التنقل السلس للروابط الداخلية
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             if (link.target !== '_blank') {
                 link.addEventListener('click', (e) => {
@@ -494,15 +514,8 @@
             }
         });
         
-        // إضافة Google Analytics إذا كان متاح
-        if (typeof gtag !== 'undefined') {
-            gtag('config', 'GA_MEASUREMENT_ID', {
-                custom_map: {'custom_parameter': 'emirates_gifts_store'}
-            });
-            gtag('event', 'page_view', {
-                'page_title': 'متجر هدايا الإمارات - الصفحة الرئيسية'
-            });
-        }
+        // تحميل المنتجات عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', loadProducts);
     </script>
 </body>
 </html>
