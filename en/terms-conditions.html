@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Terms & Conditions - Emirates Gifts Store | Service Terms</title>
-    <meta name="description" content="Read Emirates Gifts Terms & Conditions. Understand our service terms, customer rights, and policies for premium perfumes and luxury watches shopping.">
-    <meta name="keywords" content="terms conditions UAE, Emirates Gifts terms, service agreement, customer rights, online shopping terms">
+    <title>Terms & Conditions - Emirates Gifts Store | Service Terms & User Agreement</title>
+    <meta name="description" content="Read our terms and conditions. Learn about your rights and responsibilities when shopping at Emirates Gifts for premium perfumes and luxury watches.">
     <meta name="robots" content="index, follow">
     
     <link rel="canonical" href="https://emirates-gifts.arabsad.com/en/terms-conditions.html">
@@ -17,16 +16,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <link rel="stylesheet" href="../css/dkhoon-inspired-style.css">
-    <link rel="stylesheet" href="../css/mobile-responsive-fixes.css">
+    <link rel="stylesheet" href="../css/dkhoon-inspired-style.css?v=20251101">
+    <link rel="stylesheet" href="../css/mobile-responsive-fixes.css?v=20251101">
+    <link rel="stylesheet" href="./css/currency-fix-en.css?v=20251101">
     
     <style>
-    :root {
-        --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* English Accessibility Improvements */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--deep-blue, #1B2951);
+        color: var(--light-gold, #FFD700);
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        z-index: 10000;
+        transition: top 0.3s ease;
+        border: 2px solid var(--primary-gold, #D4AF37);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .skip-link:focus {
+        top: 10px;
+    }
+    
+    @media (max-width: 768px) {
+        .skip-link {
+            left: 20px;
+            right: 20px;
+            transform: none;
+            text-align: center;
+        }
     }
     
     body {
-        font-family: var(--font-family-primary) !important;
+        font-family: 'Inter', sans-serif !important;
         direction: ltr !important;
         text-align: left !important;
     }
@@ -42,58 +70,55 @@
         border-radius: 25px;
         padding: 8px 16px;
         font-weight: 600;
-        font-size: 14px;
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
         gap: 6px;
         text-decoration: none;
-        box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
-        border: 2px solid transparent;
         font-family: 'Cairo', sans-serif !important;
         direction: rtl;
     }
     
     .policy-content {
-        max-width: 800px;
+        max-width: 1000px;
         margin: 0 auto;
-        padding: 40px 20px;
+        padding: 60px 20px;
         line-height: 1.8;
     }
     
-    .policy-section {
-        margin-bottom: 40px;
-        background: white;
-        border-radius: 15px;
+    .terms-highlight {
+        background: linear-gradient(135deg, var(--deep-blue, #1B2951), var(--primary-blue, #2C3E50));
+        color: var(--light-gold, #FFD700);
         padding: 30px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        border-radius: 15px;
+        text-align: center;
+        margin: 40px 0;
     }
     
-    .policy-section h3 {
-        color: var(--primary-gold);
-        font-size: 24px;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .highlight-box {
-        background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
-        border-left: 5px solid #28a745;
-        padding: 25px;
-        border-radius: 10px;
+    .important-notice {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 20px;
         margin: 30px 0;
+        border-radius: 5px;
+    }
+    
+    .important-notice h3 {
+        color: #856404;
+        margin-top: 0;
     }
     </style>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <div class="progress-bar" id="progressBar"></div>
     
     <div class="top-banner">
         <div class="banner-text">
             <i class="fas fa-file-contract banner-icon"></i>
-            <span>Fair terms • Customer protection • Quality guarantee • Transparent policies</span>
+            <span>Clear terms and conditions • Transparent service agreement • Your rights protected</span>
             <i class="fas fa-balance-scale banner-icon"></i>
         </div>
     </div>
@@ -102,7 +127,7 @@
         <div class="header-container">
             <div class="header-content">
                 <a href="./" class="logo" aria-label="Home - Emirates Gifts">
-                    <div class="logo-icon"><img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;"></div>
+                    <div class="logo-icon"><img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;" loading="eager"></div>
                     <div class="logo-text">
                         <div class="logo-title">Emirates Gifts</div>
                         <div class="logo-subtitle">هدايا الإمارات</div>
@@ -113,9 +138,7 @@
                     <ul class="nav-menu">
                         <li class="nav-item"><a href="./" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="./products-showcase.html" class="nav-link" target="_blank" rel="noopener">All Products</a></li>
-                        <li class="nav-item"><a href="./#perfumes-section" class="nav-link">Perfumes</a></li>
-                        <li class="nav-item"><a href="./#watches-section" class="nav-link">Watches</a></li>
-                        <li class="nav-item"><a href="./blog/" class="nav-link" target="_blank" rel="noopener">Blog</a></li>
+                        <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
                         <li class="nav-item">
                             <a href="../" class="nav-link arabic-link" target="_blank" rel="noopener">
                                 <i class="fas fa-globe"></i> العربية
@@ -126,200 +149,239 @@
                 </nav>
 
                 <div class="header-tools">
-                    <a href="./cart.html" class="header-tool cart-icon" aria-label="View Cart" title="View Cart">
+                    <a href="./cart.html" class="header-tool cart-icon" aria-label="View Cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter">0</span>
                     </a>
-                    <a href="./checkout.html" class="header-tool order-now-btn" aria-label="Order Now" title="Order Now">
+                    <a href="./checkout.html" class="header-tool order-now-btn" aria-label="Order Now">
                         <i class="fas fa-credit-card"></i>
                         <span>Order Now</span>
                     </a>
-                    <button class="mobile-menu-toggle" id="openSidebar" aria-label="Open Menu" title="Open Menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="main-content">
+    <main id="main-content" tabindex="-1">
         <section class="page-header">
             <div class="container">
                 <div class="breadcrumb">
                     <a href="./">Home</a> <i class="fas fa-chevron-right"></i> <span>Terms & Conditions</span>
                 </div>
                 <h1 class="page-title">Terms & Conditions</h1>
-                <p class="page-subtitle">Please read our terms of service carefully before using our website and services</p>
+                <p class="page-subtitle">Service terms, user agreement, and your rights when shopping with Emirates Gifts</p>
             </div>
         </section>
 
-        <div class="policy-content">
-            <div class="highlight-box">
-                <p><strong>Effective Date:</strong> October 31, 2025</p>
-                <p>
-                    These Terms and Conditions govern your use of the Emirates Gifts Store website and services. 
-                    By accessing our website or making a purchase, you agree to be bound by these terms.
-                </p>
+        <section class="policy-content">
+            <div class="terms-highlight">
+                <i class="fas fa-handshake" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                <strong>Fair and Transparent Terms</strong>
+                <p style="margin: 10px 0 0; opacity: 0.9;">Clear agreement protecting both customers and Emirates Gifts</p>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-handshake"></i> Acceptance of Terms</h3>
-                <p>
-                    By using our website, placing an order, or engaging with our services, you acknowledge that you have read, 
-                    understood, and agree to be bound by these Terms and Conditions and our Privacy Policy.
-                </p>
+                <p><strong>Last updated:</strong> October 31, 2024</p>
+                <p>Welcome to Emirates Gifts Store. These Terms and Conditions ("Terms") govern your use of our website and services. By accessing or using our services, you agree to be bound by these Terms.</p>
+            </div>
+
+            <div class="important-notice">
+                <h3><i class="fas fa-exclamation-triangle"></i> Important Notice</h3>
+                <p>Please read these terms carefully before using our services. By making a purchase or using our website, you acknowledge that you have read, understood, and agree to these terms.</p>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-shopping-bag"></i> Products and Services</h3>
-                <p>
-                    Emirates Gifts Store specializes in premium perfumes, luxury watches, and exclusive gifts. 
-                    All products listed on our website are subject to availability.
-                </p>
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing and using the Emirates Gifts website, you accept and agree to be bound by the terms of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
                 <ul>
-                    <li>• Product descriptions and images are provided for informational purposes</li>
-                    <li>• We reserve the right to modify product offerings without notice</li>
-                    <li>• All products are guaranteed to be authentic and of premium quality</li>
-                    <li>• Prices are listed in UAE Dirhams (AED) and may change without notice</li>
+                    <li>These terms apply to all visitors, users, and customers</li>
+                    <li>Terms may be updated periodically with notice</li>
+                    <li>Continued use constitutes acceptance of updated terms</li>
                 </ul>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-credit-card"></i> Orders and Payment</h3>
-                <p>
-                    When you place an order with Emirates Gifts, you agree to the following terms:
-                </p>
+                <h2>2. Use of Website</h2>
+                <h3>Permitted Use</h3>
                 <ul>
-                    <li>• <strong>Order Confirmation:</strong> Orders are confirmed via WhatsApp or email</li>
-                    <li>• <strong>Payment Methods:</strong> We accept WhatsApp orders and cash on delivery</li>
-                    <li>• <strong>Pricing:</strong> All prices include UAE VAT where applicable</li>
-                    <li>• <strong>Order Changes:</strong> Contact us immediately for any changes or cancellations</li>
-                    <li>• <strong>Currency:</strong> All transactions are processed in UAE Dirhams (AED)</li>
+                    <li>Browse and purchase products for personal use</li>
+                    <li>Create an account and manage your orders</li>
+                    <li>Contact customer service for support</li>
+                    <li>Share product information on social media</li>
+                </ul>
+                
+                <h3>Prohibited Use</h3>
+                <ul>
+                    <li>Use the website for any unlawful purpose</li>
+                    <li>Attempt to gain unauthorized access to any part of the website</li>
+                    <li>Reproduce, distribute, or modify website content without permission</li>
+                    <li>Use automated systems to access the website (bots, crawlers)</li>
+                    <li>Post false, misleading, or defamatory content</li>
                 </ul>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-truck"></i> Delivery Terms</h3>
-                <p>
-                    Our delivery service operates under the following terms:
-                </p>
+                <h2>3. Products and Services</h2>
                 <ul>
-                    <li>• <strong>Delivery Area:</strong> We deliver to all UAE emirates</li>
-                    <li>• <strong>Delivery Time:</strong> 1-3 business days from order confirmation</li>
-                    <li>• <strong>Shipping Costs:</strong> Free shipping on all orders</li>
-                    <li>• <strong>Delivery Address:</strong> Customer must provide accurate delivery information</li>
-                    <li>• <strong>Failed Delivery:</strong> Additional delivery attempts may incur charges</li>
+                    <li><strong>Product Information:</strong> We strive to provide accurate product descriptions and images</li>
+                    <li><strong>Availability:</strong> Products are subject to availability and may be discontinued</li>
+                    <li><strong>Pricing:</strong> All prices are in UAE Dirhams (AED) and include applicable taxes</li>
+                    <li><strong>Authenticity:</strong> We guarantee the authenticity of all products sold</li>
+                    <li><strong>Quality:</strong> All products meet our quality standards and come with manufacturer warranties where applicable</li>
                 </ul>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-undo"></i> Returns and Refunds</h3>
-                <p>
-                    Our return policy provides comprehensive protection for your purchases:
-                </p>
+                <h2>4. Orders and Payment</h2>
+                <h3>Order Process</h3>
                 <ul>
-                    <li>• <strong>Return Period:</strong> 14 days from delivery date</li>
-                    <li>• <strong>Return Shipping:</strong> Fees covered by Emirates Gifts</li>
-                    <li>• <strong>Condition Requirements:</strong> Items must be unused and in original packaging</li>
-                    <li>• <strong>Refund Processing:</strong> 3-5 business days after return inspection</li>
-                    <li>• <strong>Quality Guarantee:</strong> Full refund for defective or damaged items</li>
+                    <li>Orders are confirmed via WhatsApp within 2 hours</li>
+                    <li>We reserve the right to refuse or cancel orders</li>
+                    <li>Order acceptance is subject to product availability</li>
+                    <li>Bulk orders may require special arrangements</li>
                 </ul>
-                <p>For detailed return information, please see our <a href="./return-policy.html">Return Policy</a>.</p>
-            </div>
-
-            <div class="policy-section">
-                <h3><i class="fas fa-user-check"></i> Customer Responsibilities</h3>
-                <p>
-                    As a customer of Emirates Gifts, you agree to:
-                </p>
+                
+                <h3>Payment Terms</h3>
                 <ul>
-                    <li>• Provide accurate and complete information when placing orders</li>
-                    <li>• Use our website and services in accordance with UAE laws</li>
-                    <li>• Respect intellectual property rights</li>
-                    <li>• Not engage in fraudulent or harmful activities</li>
-                    <li>• Promptly report any issues with your order or delivery</li>
+                    <li>Payment methods: WhatsApp ordering, Cash on Delivery</li>
+                    <li>Prices are in UAE Dirhams (AED)</li>
+                    <li>Payment processing is secure and protected</li>
+                    <li>Failed payments may result in order cancellation</li>
                 </ul>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-copyright"></i> Intellectual Property</h3>
-                <p>
-                    All content on the Emirates Gifts website, including text, images, logos, and designs, 
-                    is protected by intellectual property laws. You may not:
-                </p>
+                <h2>5. Shipping and Delivery</h2>
                 <ul>
-                    <li>• Copy, reproduce, or distribute our content without permission</li>
-                    <li>• Use our trademarks or logos for commercial purposes</li>
-                    <li>• Create derivative works based on our content</li>
-                    <li>• Reverse engineer any aspect of our website or services</li>
+                    <li><strong>Delivery Time:</strong> 1-3 business days across UAE</li>
+                    <li><strong>Shipping Costs:</strong> Free shipping on all orders</li>
+                    <li><strong>Delivery Areas:</strong> All UAE emirates covered</li>
+                    <li><strong>Risk of Loss:</strong> Risk passes to customer upon delivery</li>
+                    <li><strong>Delivery Issues:</strong> Must be reported within 24 hours</li>
                 </ul>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-exclamation-triangle"></i> Liability Limitations</h3>
-                <p>
-                    While we strive to provide excellent service, our liability is limited as follows:
-                </p>
+                <h2>6. Returns and Refunds</h2>
                 <ul>
-                    <li>• We are not liable for indirect, incidental, or consequential damages</li>
-                    <li>• Our maximum liability is limited to the purchase price of the relevant product</li>
-                    <li>• We are not responsible for delays due to circumstances beyond our control</li>
-                    <li>• Force majeure events may affect service availability</li>
+                    <li><strong>Return Period:</strong> 14 days from delivery date</li>
+                    <li><strong>Condition:</strong> Items must be in original, unopened condition</li>
+                    <li><strong>Shipping:</strong> Return shipping fees covered by Emirates Gifts</li>
+                    <li><strong>Refund Processing:</strong> 3-5 business days after item receipt</li>
+                    <li><strong>Exceptions:</strong> Opened perfumes cannot be returned for hygiene reasons</li>
                 </ul>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-gavel"></i> Governing Law</h3>
-                <p>
-                    These Terms and Conditions are governed by the laws of the United Arab Emirates. 
-                    Any disputes arising from these terms will be resolved in accordance with UAE jurisdiction.
-                </p>
+                <h2>7. Intellectual Property</h2>
+                <ul>
+                    <li>All website content is owned by Emirates Gifts or licensed to us</li>
+                    <li>Trademarks, logos, and brand names are protected</li>
+                    <li>Users may not reproduce content without written permission</li>
+                    <li>Product images and descriptions are proprietary</li>
+                    <li>Violation of intellectual property rights may result in legal action</li>
+                </ul>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-edit"></i> Terms Updates</h3>
-                <p>
-                    We reserve the right to update these Terms and Conditions at any time. 
-                    Material changes will be communicated via email or website notification. 
-                    Continued use of our services after changes constitutes acceptance of the new terms.
-                </p>
+                <h2>8. Privacy and Data Protection</h2>
+                <ul>
+                    <li>Personal information is collected and used according to our Privacy Policy</li>
+                    <li>Data is protected with industry-standard security measures</li>
+                    <li>Information is not sold or shared with unauthorized third parties</li>
+                    <li>Customers have rights regarding their personal data</li>
+                    <li>Cookie usage is disclosed and manageable</li>
+                </ul>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-phone"></i> Contact Information</h3>
-                <p>
-                    If you have questions about these Terms and Conditions, please contact us:
-                </p>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                        <i class="fab fa-whatsapp" style="font-size: 24px; color: #25D366; margin-bottom: 10px;"></i>
-                        <h4>WhatsApp</h4>
-                        <a href="https://wa.me/201110760081" target="_blank" rel="noopener">+20 111 076 0081</a>
-                    </div>
-                    
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                        <i class="fas fa-envelope" style="font-size: 24px; color: var(--primary-gold); margin-bottom: 10px;"></i>
-                        <h4>Email</h4>
-                        <a href="mailto:legal@emirates-gifts.com">legal@emirates-gifts.com</a>
-                    </div>
-                    
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                        <i class="fas fa-phone" style="font-size: 24px; color: #007bff; margin-bottom: 10px;"></i>
-                        <h4>Phone</h4>
-                        <a href="tel:+201110760081">+20 111 076 0081</a>
-                    </div>
+                <h2>9. Limitation of Liability</h2>
+                <ul>
+                    <li>Emirates Gifts liability is limited to the purchase price of products</li>
+                    <li>We are not liable for indirect, incidental, or consequential damages</li>
+                    <li>Force majeure events may affect service delivery</li>
+                    <li>Liability limitations apply to the fullest extent permitted by law</li>
+                    <li>Customer remedies are limited to refund or replacement</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>10. User Accounts</h2>
+                <ul>
+                    <li>Customers are responsible for account security</li>
+                    <li>Passwords must be kept confidential</li>
+                    <li>Account activity is the responsibility of the account holder</li>
+                    <li>Accounts may be suspended for policy violations</li>
+                    <li>Account information must be accurate and up-to-date</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>11. Customer Reviews and Content</h2>
+                <ul>
+                    <li>Customer reviews must be honest and based on actual experience</li>
+                    <li>Fake or misleading reviews are prohibited</li>
+                    <li>Reviews become property of Emirates Gifts</li>
+                    <li>We reserve the right to remove inappropriate content</li>
+                    <li>Reviews may be used for marketing purposes</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>12. Dispute Resolution</h2>
+                <ul>
+                    <li>Disputes will be resolved through good faith negotiation</li>
+                    <li>UAE law governs these terms and conditions</li>
+                    <li>Dubai courts have exclusive jurisdiction</li>
+                    <li>Alternative dispute resolution may be considered</li>
+                    <li>Legal action must be initiated within one year</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>13. Termination</h2>
+                <ul>
+                    <li>We may terminate or suspend access for policy violations</li>
+                    <li>Customers may discontinue use at any time</li>
+                    <li>Termination does not affect existing order obligations</li>
+                    <li>Survival clauses continue after termination</li>
+                    <li>Refunds for unused services may apply</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>14. Changes to Terms</h2>
+                <ul>
+                    <li>Terms may be updated to reflect changes in law or business practices</li>
+                    <li>Significant changes will be notified via website and email</li>
+                    <li>Continued use constitutes acceptance of updated terms</li>
+                    <li>Previous versions are archived for reference</li>
+                    <li>Material changes have a 30-day notice period</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>15. Severability</h2>
+                <p>If any provision of these Terms is found to be unenforceable, the remaining provisions will remain in full force and effect. The unenforceable provision will be replaced with a provision that achieves the same economic effect.</p>
+            </div>
+
+            <div class="contact-info">
+                <h2>16. Contact Information</h2>
+                <p>For questions about these Terms and Conditions:</p>
+                <div style="margin: 20px 0;">
+                    <p><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> <a href="https://wa.me/201110760081" target="_blank" rel="noopener">+20 111 076 0081</a></p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> legal@emirates-gifts.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Dubai, United Arab Emirates</p>
+                    <p><i class="fas fa-clock"></i> <strong>Support Hours:</strong> 24/7</p>
                 </div>
+                <p><strong>Response Time:</strong> Legal inquiries are responded to within 48 hours.</p>
             </div>
 
-            <div style="text-align: center; margin: 50px 0; padding: 40px; background: var(--primary-gold); border-radius: 15px; color: white;">
-                <h3>Ready to Shop with Confidence?</h3>
-                <p style="margin-bottom: 30px; opacity: 0.9;">Our fair terms ensure a safe and enjoyable shopping experience</p>
-                <a href="./products-showcase.html" class="btn-primary" target="_blank" rel="noopener" style="background: white; color: var(--primary-gold);">
-                    <i class="fas fa-shopping-bag"></i>
-                    Browse Our Collection
-                </a>
+            <div class="policy-section">
+                <h2>17. Entire Agreement</h2>
+                <p>These Terms, together with our Privacy Policy, Return Policy, and Shipping Policy, constitute the entire agreement between you and Emirates Gifts regarding your use of our services.</p>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -327,43 +389,44 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Emirates Gifts</h3>
-                    <p>Premium perfumes and luxury gifts with fair and transparent terms.</p>
+                    <p>Transparent terms and fair policies ensuring excellent customer experience and mutual respect.</p>
                     <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
 
                 <div class="footer-section">
-                    <h3>Legal Pages</h3>
+                    <h3>Legal Information</h3>
                     <ul>
                         <li><a href="./terms-conditions.html" class="active">Terms & Conditions</a></li>
                         <li><a href="./privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="./shipping-policy.html">Shipping Policy</a></li>
                         <li><a href="./return-policy.html">Return Policy</a></li>
-                        <li><a href="../" target="_blank" rel="noopener" style="color: #D4AF37;"><i class="fas fa-globe"></i> عربي</a></li>
+                        <li><a href="../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> عربي</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h3>Legal Support</h3>
+                    <h3>Customer Service</h3>
                     <ul>
-                        <li><i class="fas fa-envelope"></i><a href="mailto:legal@emirates-gifts.com">legal@emirates-gifts.com</a></li>
                         <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
-                        <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/201110760081" target="_blank" rel="noopener">WhatsApp Support</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:legal@emirates-gifts.com">legal@emirates-gifts.com</a></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Legal Support</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
                 <div class="footer-legal">
-                    <p>&copy; 2024 Emirates Gifts. All rights reserved. UAE Compliant.</p>
+                    <p>&copy; 2024 Emirates Gifts. All rights reserved. Governed by UAE Law.</p>
                     <div class="legal-links">
                         <a href="./privacy-policy.html">Privacy</a>
-                        <a href="./return-policy.html">Returns</a>
+                        <a href="./terms-conditions.html">Terms</a>
                         <a href="./shipping-policy.html">Shipping</a>
+                        <a href="./return-policy.html">Returns</a>
                         <a href="../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> عربي</a>
                     </div>
                 </div>
@@ -375,7 +438,49 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="../js/ui.js"></script>
-    <script src="../js/main.js"></script>
+    <!-- Load English Scripts -->
+    <script src="../js/dom-optimization.js?v=20251101" defer></script>
+    <script src="./js/ui-en.js?v=20251101" defer></script>
+    <script src="./js/main-en.js?v=20251101" defer></script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('English terms & conditions page initialized - v20251101');
+        
+        // Add scroll progress indicator
+        const progressBar = document.getElementById('progressBar');
+        if (progressBar) {
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = scrollTop / docHeight;
+                progressBar.style.width = (scrollPercent * 100) + '%';
+            });
+        }
+        
+        // Add section highlighting on scroll
+        const sections = document.querySelectorAll('.policy-section h2');
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px',
+            threshold: 0
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.color = 'var(--primary-gold, #D4AF37)';
+                    entry.target.style.transition = 'color 0.3s ease';
+                } else {
+                    entry.target.style.color = '';
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
+    </script>
 </body>
 </html>
