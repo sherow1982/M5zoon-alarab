@@ -4,8 +4,8 @@
     <title>متجر هدايا الإمارات - Emirates Gifts</title>
     <link>https://emirates-gifts.arabsad.com</link>
     <description>عطور وساعات فاخرة مع توصيل مجاني في جميع أنحاء الإمارات العربية المتحدة</description>
-    
-    <!-- فئة العطور: 2915 -->
+
+    <!-- العطور: GPC 2915 -->
     <item>
         <g:id>EG_perfume_1</g:id>
         <g:title><![CDATA[عطر كوكو شانيل 100 مل]]></g:title>
@@ -22,8 +22,25 @@
         <g:shipping><g:country>AE</g:country><g:service>توصيل مجاني</g:service><g:price>0 AED</g:price></g:shipping>
         <g:adult>false</g:adult><g:age_group>adult</g:age_group><g:gender>unisex</g:gender>
     </item>
-    
-    <!-- فئة الساعات: 201 -->
+
+    <item>
+        <g:id>EG_perfume_2</g:id>
+        <g:title><![CDATA[عطر جوتشي فلورا]]></g:title>
+        <g:description><![CDATA[عطر جوتشي فلورا - منتج فاخر عالي الجودة مع ضمان الأصالة وتوصيل مجاني لجميع إمارات الدولة]]></g:description>
+        <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=2&amp;category=perfume</g:link>
+        <g:image_link>https://m5zoon.com/public/uploads/products/1720344963790342.webp</g:image_link>
+        <g:condition>new</g:condition>
+        <g:availability>in stock</g:availability>
+        <g:price>252 AED</g:price>
+        <g:brand><![CDATA[Gucci]]></g:brand>
+        <g:mpn>EG_perfume_2</g:mpn>
+        <g:google_product_category>2915</g:google_product_category>
+        <g:product_type><![CDATA[عطور فاخرة]]></g:product_type>
+        <g:shipping><g:country>AE</g:country><g:service>توصيل مجاني</g:service><g:price>0 AED</g:price></g:shipping>
+        <g:adult>false</g:adult><g:age_group>adult</g:age_group><g:gender>unisex</g:gender>
+    </item>
+
+    <!-- الساعات: GPC 201 -->
     <item>
         <g:id>EG_watch_1</g:id>
         <g:title><![CDATA[ساعة رولكس يخت ماستر - فضي]]></g:title>
@@ -35,6 +52,23 @@
         <g:price>320 AED</g:price>
         <g:brand><![CDATA[Rolex]]></g:brand>
         <g:mpn>EG_watch_1</g:mpn>
+        <g:google_product_category>201</g:google_product_category>
+        <g:product_type><![CDATA[ساعات راقية]]></g:product_type>
+        <g:shipping><g:country>AE</g:country><g:service>توصيل مجاني</g:service><g:price>0 AED</g:price></g:shipping>
+        <g:adult>false</g:adult><g:age_group>adult</g:age_group><g:gender>unisex</g:gender>
+    </item>
+
+    <item>
+        <g:id>EG_watch_2</g:id>
+        <g:title><![CDATA[ساعة Rolex كلاسيكية 41 ملم 2022]]></g:title>
+        <g:description><![CDATA[ساعة Rolex كلاسيكية 41 ملم 2022 - ساعة فاخرة أصلية مع ضمان الجودة وتوصيل مجاني]]></g:description>
+        <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=2&amp;category=watch</g:link>
+        <g:image_link>https://m5zoon.com/public/uploads/products/1741223185271965.png</g:image_link>
+        <g:condition>new</g:condition>
+        <g:availability>in stock</g:availability>
+        <g:price>325 AED</g:price>
+        <g:brand><![CDATA[Rolex]]></g:brand>
+        <g:mpn>EG_watch_2</g:mpn>
         <g:google_product_category>201</g:google_product_category>
         <g:product_type><![CDATA[ساعات راقية]]></g:product_type>
         <g:shipping><g:country>AE</g:country><g:service>توصيل مجاني</g:service><g:price>0 AED</g:price></g:shipping>
