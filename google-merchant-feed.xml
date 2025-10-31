@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
     <channel>
-        <title><![CDATA[متجر هدايا الإمارات]]></title>
+        <title>متجر هدايا الإمارات</title>
         <link>https://emirates-gifts.arabsad.com</link>
-        <description><![CDATA[متجر إلكتروني متخصص في بيع العطور والساعات الفاخرة في دولة الإمارات العربية المتحدة مع توصيل مجاني]]></description>
+        <description>عطور وساعات فاخرة عالية الجودة مع توصيل مجاني في الإمارات</description>
         <language>ar-AE</language>
-        <lastBuildDate>Fri, 31 Oct 2025 06:52:00 GMT</lastBuildDate>
-        <generator>Emirates Gifts Store - Dynamic Feed Generator v1.0</generator>
+        <lastBuildDate>Fri, 31 Oct 2025 05:00:00 GMT</lastBuildDate>
+        <generator>Emirates Gifts Feed Generator</generator>
         
         <!-- عطور فاخرة -->
         <item>
             <g:id>PERFUME_1</g:id>
-            <title><![CDATA[عطر كوكو شانيل 100 مل]]></title>
-            <description><![CDATA[عطر كوكو شانيل 100 مل - عطور فاخرة عالية الجودة من متجر هدايا الإمارات مع توصيل مجاني في جميع إمارات الدولة. عطور أصلية بأفضل الأسعار.]]></description>
+            <title>عطر كوكو شانيل 100 مل</title>
+            <description>عطر كوكو شانيل 100 مل - عطور فاخرة عالية الجودة مع توصيل مجاني</description>
             <link>https://emirates-gifts.arabsad.com</link>
             <g:image_link>https://m5zoon.com/public/uploads/products/1722352332177124.webp</g:image_link>
             <g:condition>new</g:condition>
             <g:availability>in_stock</g:availability>
             <g:price>252 AED</g:price>
             <g:brand>Emirates Gifts</g:brand>
-            <g:gtin>12345670001017</g:gtin>
-            <g:mpn>EG-PERF-CHANEL-COCO-1</g:mpn>
+            <g:gtin>12345670000010</g:gtin>
+            <g:mpn>EG-PERF-1</g:mpn>
             <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:google_product_category>
             <g:product_type>عطور فاخرة</g:product_type>
             <g:age_group>adult</g:age_group>
@@ -39,16 +39,16 @@
         
         <item>
             <g:id>PERFUME_2</g:id>
-            <title><![CDATA[عطر جوتشي فلورا]]></title>
-            <description><![CDATA[عطر جوتشي فلورا - عطور فاخرة عالية الجودة من متجر هدايا الإمارات مع توصيل مجاني في جميع إمارات الدولة. عطور أصلية بأفضل الأسعار.]]></description>
+            <title>عطر جوتشي فلورا</title>
+            <description>عطر جوتشي فلورا - عطور فاخرة عالية الجودة مع توصيل مجاني</description>
             <link>https://emirates-gifts.arabsad.com</link>
             <g:image_link>https://m5zoon.com/public/uploads/products/1720344963790342.webp</g:image_link>
             <g:condition>new</g:condition>
             <g:availability>in_stock</g:availability>
             <g:price>252 AED</g:price>
             <g:brand>Emirates Gifts</g:brand>
-            <g:gtin>12345670002024</g:gtin>
-            <g:mpn>EG-PERF-GUCCI-FLORA-2</g:mpn>
+            <g:gtin>12345670000027</g:gtin>
+            <g:mpn>EG-PERF-2</g:mpn>
             <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:google_product_category>
             <g:product_type>عطور فاخرة</g:product_type>
             <g:age_group>adult</g:age_group>
@@ -67,16 +67,16 @@
         
         <item>
             <g:id>PERFUME_3</g:id>
-            <title><![CDATA[عطر جوتشي بلوم]]></title>
-            <description><![CDATA[عطر جوتشي بلوم - عطور فاخرة عالية الجودة من متجر هدايا الإمارات مع توصيل مجاني في جميع إمارات الدولة. عطور أصلية بأفضل الأسعار.]]></description>
+            <title>عطر جوتشي بلوم</title>
+            <description>عطر جوتشي بلوم - عطور فاخرة عالية الجودة مع توصيل مجاني</description>
             <link>https://emirates-gifts.arabsad.com</link>
             <g:image_link>https://m5zoon.com/public/uploads/products/1720344971935939.webp</g:image_link>
             <g:condition>new</g:condition>
             <g:availability>in_stock</g:availability>
             <g:price>252 AED</g:price>
             <g:brand>Emirates Gifts</g:brand>
-            <g:gtin>12345670003031</g:gtin>
-            <g:mpn>EG-PERF-GUCCI-BLOOM-3</g:mpn>
+            <g:gtin>12345670000034</g:gtin>
+            <g:mpn>EG-PERF-3</g:mpn>
             <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:google_product_category>
             <g:product_type>عطور فاخرة</g:product_type>
             <g:age_group>adult</g:age_group>
@@ -96,16 +96,16 @@
         <!-- ساعات فاخرة -->
         <item>
             <g:id>WATCH_1</g:id>
-            <title><![CDATA[ساعة رولكس يخت ماستر - فضي]]></title>
-            <description><![CDATA[ساعة رولكس يخت ماستر - فضي - ساعات أنيقة عالية الجودة من متجر هدايا الإمارات مع توصيل مجاني في جميع إمارات الدولة. ساعات عالية الجودة بضمان الجودة.]]></description>
+            <title>ساعة رولكس يخت ماستر - فضي</title>
+            <description>ساعة رولكس يخت ماستر - فضي - ساعات فاخرة عالية الجودة مع توصيل مجاني</description>
             <link>https://emirates-gifts.arabsad.com</link>
             <g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
             <g:condition>new</g:condition>
             <g:availability>in_stock</g:availability>
             <g:price>320 AED</g:price>
             <g:brand>Emirates Gifts</g:brand>
-            <g:gtin>12345671000013</g:gtin>
-            <g:mpn>EG-WATCH-ROLEX-YACHT-1</g:mpn>
+            <g:gtin>12345671000010</g:gtin>
+            <g:mpn>EG-WATCH-1</g:mpn>
             <g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:google_product_category>
             <g:product_type>ساعات فاخرة</g:product_type>
             <g:age_group>adult</g:age_group>
@@ -124,16 +124,16 @@
         
         <item>
             <g:id>WATCH_2</g:id>
-            <title><![CDATA[ساعة Rolex كلاسيكية 41 ملم 2022]]></title>
-            <description><![CDATA[ساعة Rolex كلاسيكية 41 ملم 2022 - ساعات أنيقة عالية الجودة من متجر هدايا الإمارات مع توصيل مجاني في جميع إمارات الدولة. ساعات عالية الجودة بضمان الجودة.]]></description>
+            <title>ساعة Rolex كلاسيكية 41 ملم 2022</title>
+            <description>ساعة Rolex كلاسيكية 41 ملم 2022 - ساعات فاخرة عالية الجودة مع توصيل مجاني</description>
             <link>https://emirates-gifts.arabsad.com</link>
             <g:image_link>https://m5zoon.com/public/uploads/products/1741223185271965.png</g:image_link>
             <g:condition>new</g:condition>
             <g:availability>in_stock</g:availability>
             <g:price>325 AED</g:price>
             <g:brand>Emirates Gifts</g:brand>
-            <g:gtin>12345671000020</g:gtin>
-            <g:mpn>EG-WATCH-ROLEX-CLASSIC-2</g:mpn>
+            <g:gtin>12345671000027</g:gtin>
+            <g:mpn>EG-WATCH-2</g:mpn>
             <g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:google_product_category>
             <g:product_type>ساعات فاخرة</g:product_type>
             <g:age_group>adult</g:age_group>
@@ -152,16 +152,16 @@
         
         <item>
             <g:id>WATCH_3</g:id>
-            <title><![CDATA[ساعة اوميغا سواتش بيبي بلو]]></title>
-            <description><![CDATA[ساعة اوميغا سواتش بيبي بلو - ساعات أنيقة عالية الجودة من متجر هدايا الإمارات مع توصيل مجاني في جميع إمارات الدولة. ساعات عالية الجودة بضمان الجودة.]]></description>
+            <title>ساعة اوميغا سواتش بيبي بلو</title>
+            <description>ساعة اوميغا سواتش بيبي بلو - ساعات فاخرة عالية الجودة مع توصيل مجاني</description>
             <link>https://emirates-gifts.arabsad.com</link>
             <g:image_link>https://m5zoon.com/public/uploads/products/1720305672749191.webp</g:image_link>
             <g:condition>new</g:condition>
             <g:availability>in_stock</g:availability>
             <g:price>325 AED</g:price>
             <g:brand>Emirates Gifts</g:brand>
-            <g:gtin>12345671000037</g:gtin>
-            <g:mpn>EG-WATCH-OMEGA-SWATCH-3</g:mpn>
+            <g:gtin>12345671000034</g:gtin>
+            <g:mpn>EG-WATCH-3</g:mpn>
             <g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:google_product_category>
             <g:product_type>ساعات فاخرة</g:product_type>
             <g:age_group>adult</g:age_group>
