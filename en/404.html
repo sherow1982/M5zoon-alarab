@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Page Not Found - Emirates Gifts Store</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Explore our premium perfumes and luxury watches collection instead.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+    :root {
+        --primary-gold: #D4AF37;
+        --deep-blue: #1B2951;
+        --light-gold: #FFD700;
+        --success-green: #27ae60;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, var(--deep-blue) 0%, #2c3e50 100%);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        direction: ltr;
+        text-align: center;
+    }
+    
+    .error-container {
+        max-width: 600px;
+        padding: 40px 20px;
+        text-align: center;
+    }
+    
+    .error-code {
+        font-size: 8rem;
+        font-weight: 900;
+        color: var(--primary-gold);
+        margin-bottom: 20px;
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        animation: pulse 2s ease-in-out infinite alternate;
+    }
+    
+    .error-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: white;
+    }
+    
+    .error-message {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 40px;
+        line-height: 1.6;
+    }
+    
+    .error-actions {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+    }
+    
+    .btn {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary-gold), #B8941F);
+        color: var(--deep-blue);
+    }
+    
+    .btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #B8941F, var(--primary-gold));
+    }
+    
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .search-suggestions {
+        margin-top: 40px;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+    }
+    
+    .suggestions-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--light-gold);
+    }
+    
+    .suggestions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .suggestion-link {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .suggestion-link:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: var(--light-gold);
+        transform: translateY(-2px);
+    }
+    
+    .emoji {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        display: block;
+    }
+    
+    @keyframes pulse {
+        from { transform: scale(1); }
+        to { transform: scale(1.05); }
+    }
+    
+    @media (max-width: 768px) {
+        .error-code {
+            font-size: 5rem;
+        }
+        
+        .error-title {
+            font-size: 2rem;
+        }
+        
+        .error-message {
+            font-size: 1.1rem;
+        }
+        
+        .error-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .btn {
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .suggestions-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Oops! Page Not Found</h1>
+        <p class="error-message">
+            The page you're looking for seems to have vanished into thin air, just like the perfect scent on a busy day. 
+            But don't worry – let's get you back on track to discover our amazing collection!
+        </p>
+        
+        <div class="error-actions">
+            <a href="./" class="btn btn-primary">
+                <i class="fas fa-home"></i>
+                Back to Home
+            </a>
+            <a href="./products-showcase.html" class="btn btn-secondary" target="_blank" rel="noopener">
+                <i class="fas fa-shopping-bag"></i>
+                Shop All Products
+            </a>
+            <a href="https://wa.me/201110760081" class="btn btn-secondary" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i>
+                Get Help
+            </a>
+        </div>
+        
+        <div class="search-suggestions">
+            <h2 class="suggestions-title">
+                <i class="fas fa-compass"></i>
+                Explore Our Collections
+            </h2>
+            <p style="margin-bottom: 25px; opacity: 0.9;">Maybe you were looking for one of these popular sections?</p>
+            
+            <div class="suggestions-grid">
+                <a href="./#perfumes-section" class="suggestion-link">
+                    <span class="emoji">🌸</span>
+                    <strong>Premium Perfumes</strong>
+                    <br><small>Eastern & Western fragrances</small>
+                </a>
+                
+                <a href="./#watches-section" class="suggestion-link">
+                    <span class="emoji">⏰</span>
+                    <strong>Luxury Watches</strong>
+                    <br><small>Elegant timepieces</small>
+                </a>
+                
+                <a href="./about.html" class="suggestion-link">
+                    <span class="emoji">✨</span>
+                    <strong>About Us</strong>
+                    <br><small>Our story & mission</small>
+                </a>
+                
+                <a href="./contact.html" class="suggestion-link">
+                    <span class="emoji">📞</span>
+                    <strong>Contact Support</strong>
+                    <br><small>24/7 customer service</small>
+                </a>
+                
+                <a href="./faq.html" class="suggestion-link">
+                    <span class="emoji">❓</span>
+                    <strong>FAQ</strong>
+                    <br><small>Quick answers</small>
+                </a>
+                
+                <a href="./blog/" class="suggestion-link" target="_blank" rel="noopener">
+                    <span class="emoji">📝</span>
+                    <strong>Blog</strong>
+                    <br><small>Tips & guides</small>
+                </a>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; opacity: 0.7; font-size: 0.9rem;">
+            <p>
+                If you believe this is an error, please 
+                <a href="https://wa.me/201110760081" 
+                   target="_blank" 
+                   rel="noopener" 
+                   style="color: var(--light-gold); text-decoration: none; font-weight: 600;">
+                    contact our support team
+                </a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+    // Auto-redirect popular misspellings and common URLs
+    const currentPath = window.location.pathname.toLowerCase();
+    const redirectMap = {
+        '/en/perfume': '/en/#perfumes-section',
+        '/en/perfumes': '/en/#perfumes-section',
+        '/en/watch': '/en/#watches-section',
+        '/en/watches': '/en/#watches-section',
+        '/en/product': '/en/products-showcase.html',
+        '/en/products': '/en/products-showcase.html',
+        '/en/shop': '/en/products-showcase.html',
+        '/en/store': '/en/products-showcase.html',
+        '/en/order': '/en/checkout.html',
+        '/en/buy': '/en/checkout.html'
+    };
+    
+    if (redirectMap[currentPath]) {
+        console.log(`Auto-redirecting from ${currentPath} to ${redirectMap[currentPath]}`);
+        setTimeout(() => {
+            window.location.href = redirectMap[currentPath];
+        }, 2000);
+        
+        // Show redirect message
+        const redirectMessage = document.createElement('div');
+        redirectMessage.style.cssText = `
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: rgba(37, 211, 102, 0.9); color: white;
+            padding: 15px 25px; border-radius: 25px;
+            font-weight: 600; animation: slideInUp 0.5s ease;
+        `;
+        redirectMessage.innerHTML = `
+            <i class="fas fa-route"></i>
+            Redirecting you to the right place in 2 seconds...
+        `;
+        document.body.appendChild(redirectMessage);
+    }
+    
+    // Log 404 for analytics
+    console.log('404 Error - Page not found:', window.location.href);
+    
+    // Track back button usage
+    window.addEventListener('popstate', function() {
+        console.log('User used back button from 404 page');
+    });
+    
+    // Add slide in animation CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideInUp {
+            from {
+                transform: translate(-50%, 100%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    </script>
+</body>
+</html>
