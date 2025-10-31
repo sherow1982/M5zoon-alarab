@@ -73,12 +73,35 @@
     }
     </script>
     
-    <!-- Force Cache Refresh CSS -->
+    <!-- Accessibility and Cache Refresh Styles -->
     <style>
+    /* رابط تخطي المحتوى - للوصول العربي */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--deep-blue, #1B2951);
+        color: var(--light-gold, #FFD700);
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        font-family: 'Cairo', sans-serif;
+        z-index: 10000;
+        transition: top 0.3s ease;
+        border: 2px solid var(--primary-gold, #D4AF37);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .skip-link:focus {
+        top: 10px;
+    }
+    
     /* إجبار تحديث التخزين المؤقت */
     .top-banner {
-        background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B8860B 100%);
-        color: #1B2951;
+        background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B8860B 100%) !important;
+        color: #1B2951 !important;
         padding: 12px 0;
         text-align: center;
         font-weight: 600;
@@ -98,6 +121,13 @@
         font-family: 'Cairo', sans-serif !important;
         direction: rtl !important;
         text-align: center !important;
+    }
+    
+    .banner-text span {
+        font-family: 'Cairo', sans-serif !important;
+        direction: rtl !important;
+        color: #1B2951 !important;
+        font-weight: 600 !important;
     }
     
     /* ستايل زر English */
@@ -125,22 +155,15 @@
         border-color: #D4AF37;
     }
     
-    .english-link i {
-        font-size: 16px;
-        animation: spin 2s infinite linear;
-    }
-    
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    
-    .english-link:hover i {
-        animation-duration: 0.5s;
-    }
-    
     /* تحسينات الجوال */
     @media (max-width: 768px) {
+        .skip-link {
+            left: 20px;
+            right: 20px;
+            transform: none;
+            text-align: center;
+        }
+        
         .english-link {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white !important;
@@ -150,58 +173,6 @@
             font-weight: bold;
             border: 2px solid #D4AF37;
         }
-        
-        .english-link:hover {
-            background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
-            color: white !important;
-        }
-        
-        .mobile-sidebar-nav .english-link {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white !important;
-            border: 2px solid #D4AF37;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-    }
-    
-    /* إضافة تأثيرات للروابط في الفوتر */
-    .footer-section a[href*="/en/"] {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white !important;
-        padding: 8px 15px;
-        border-radius: 20px;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        font-weight: bold;
-        border: 1px solid #D4AF37;
-    }
-    
-    .footer-section a[href*="/en/"]:hover {
-        background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-    }
-    
-    .legal-links a[href*="/en/"] {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white !important;
-        padding: 8px 15px;
-        border-radius: 20px;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-weight: bold;
-        border: 1px solid #D4AF37;
-        transition: all 0.3s ease;
-    }
-    
-    .legal-links a[href*="/en/"]:hover {
-        background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
-        transform: translateY(-2px);
     }
     
     /* تحسينات الأداء */
@@ -213,18 +184,15 @@
         contain: layout style;
         will-change: transform;
     }
-    
-    /* تحميل متقدم للخطوط */
-    @font-face {
-        font-family: 'Cairo';
-        font-display: swap;
-    }
     </style>
 </head>
 <body>
+    <!-- رابط تخطي المحتوى بالعربية للوصول -->
+    <a href="#main-content" class="skip-link">انتقل إلى المحتوى الرئيسي</a>
+    
     <div class="progress-bar" id="progressBar"></div>
     
-    <!-- الشريط العلوي باللغة العربية الصحيحة -->
+    <!-- الشريط العلوي بالنص العربي الصحيح -->
     <div class="top-banner">
         <div class="banner-text">
             <i class="fas fa-shipping-fast banner-icon"></i>
@@ -277,176 +245,178 @@
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    عالم من العطور<br>
-                    <span style="color: var(--primary-gold);">والهدايا عالية الجودة</span>
-                </h1>
-                <p class="hero-subtitle">
-                    اكتشف أجمل التشكيلات من العطور الشرقية والغربية عالية الجودة، والهدايا المميزة التي تعبر عن ذوقك الرفيع
-                </p>
-                <div class="hero-cta">
-                    <a href="#perfumes-section" class="btn-primary">
-                        <i class="fas fa-shopping-bag"></i>
-                        تسوق الآن
-                    </a>
-                    <a href="./products-showcase.html" class="btn-secondary" target="_blank" rel="noopener">
-                        <i class="fas fa-star"></i>
-                        شاهد جميع المنتجات
-                    </a>
-                    <a href="./checkout.html" class="btn-secondary order-now-btn">
-                        <i class="fas fa-credit-card"></i>
-                        إتمام الطلب
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop&crop=center" 
-                     alt="مجموعة متنوعة من العطور عالية الجودة" 
-                     class="hero-image lazyload"
-                     loading="eager"
-                     fetchpriority="high"
-                     decoding="async">
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم العطور المميزة -->
-    <section class="section" id="main-content">
-        <div class="section-container">
-            <div id="perfumes-section" class="category-section">
-                <div class="section-header">
-                    <h2 class="section-title">عطور هدايا الإمارات عالية الجودة</h2>
-                    <p class="section-subtitle">
-                        اخترنا لك أجمل العطور الشرقية والغربية عالية الجودة التي تلائم جميع الأذواق مع تقييمات عملائنا ⭐
+    <main id="main-content" tabindex="-1">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        عالم من العطور<br>
+                        <span style="color: var(--primary-gold);">والهدايا عالية الجودة</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        اكتشف أجمل التشكيلات من العطور الشرقية والغربية عالية الجودة، والهدايا المميزة التي تعبر عن ذوقك الرفيع
                     </p>
-                    <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
-                        <i class="fas fa-arrow-left"></i>
-                        شاهد جميع العطور
-                    </a>
-                </div>
-                <div class="products-grid" id="perfumes-grid">
-                    <div class="loading-message">⏳ جارِ تحميل العطور عالية الجودة مع التقييمات...</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم مجموعة العطور الشرقية -->
-    <section class="section">
-        <div class="section-container">
-            <div class="collection-section">
-                <div class="collection-grid">
-                    <div class="collection-content">
-                        <h2 class="collection-title">مجموعة العطور الشرقية عالية الجودة</h2>
-                        <p class="collection-description">
-                            استمتع برحلة عطرية لا تُنسى مع مجموعتنا الحصرية من العطور الشرقية عالية الجودة التي تحمل في طياتها أجمل قصص الفخامة
-                        </p>
+                    <div class="hero-cta">
                         <a href="#perfumes-section" class="btn-primary">
-                            <i class="fas fa-crown"></i>
-                            اكتشف المجموعة
+                            <i class="fas fa-shopping-bag"></i>
+                            تسوق الآن
+                        </a>
+                        <a href="./products-showcase.html" class="btn-secondary" target="_blank" rel="noopener">
+                            <i class="fas fa-star"></i>
+                            شاهد جميع المنتجات
+                        </a>
+                        <a href="./checkout.html" class="btn-secondary order-now-btn">
+                            <i class="fas fa-credit-card"></i>
+                            إتمام الطلب
                         </a>
                     </div>
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop&crop=center" 
-                             alt="مجموعة العطور الشرقية عالية الجودة" 
-                             class="collection-image lazyload"
-                             loading="lazy"
-                             decoding="async">
+                </div>
+                <div class="hero-visual">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop&crop=center" 
+                         alt="مجموعة متنوعة من العطور عالية الجودة" 
+                         class="hero-image lazyload"
+                         loading="eager"
+                         fetchpriority="high"
+                         decoding="async">
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم العطور المميزة -->
+        <section class="section">
+            <div class="section-container">
+                <div id="perfumes-section" class="category-section" tabindex="-1">
+                    <div class="section-header">
+                        <h2 class="section-title">عطور هدايا الإمارات عالية الجودة</h2>
+                        <p class="section-subtitle">
+                            اخترنا لك أجمل العطور الشرقية والغربية عالية الجودة التي تلائم جميع الأذواق مع تقييمات عملائنا ⭐
+                        </p>
+                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                            <i class="fas fa-arrow-left"></i>
+                            شاهد جميع العطور
+                        </a>
+                    </div>
+                    <div class="products-grid" id="perfumes-grid">
+                        <div class="loading-message">⏳ جارِ تحميل العطور عالية الجودة مع التقييمات...</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- قسم الساعات -->
-    <section class="section">
-        <div class="section-container">
-            <div id="watches-section">
+        <!-- قسم مجموعة العطور الشرقية -->
+        <section class="section">
+            <div class="section-container">
+                <div class="collection-section">
+                    <div class="collection-grid">
+                        <div class="collection-content">
+                            <h2 class="collection-title">مجموعة العطور الشرقية عالية الجودة</h2>
+                            <p class="collection-description">
+                                استمتع برحلة عطرية لا تُنسى مع مجموعتنا الحصرية من العطور الشرقية عالية الجودة التي تحمل في طياتها أجمل قصص الفخامة
+                            </p>
+                            <a href="#perfumes-section" class="btn-primary">
+                                <i class="fas fa-crown"></i>
+                                اكتشف المجموعة
+                            </a>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop&crop=center" 
+                                 alt="مجموعة العطور الشرقية عالية الجودة" 
+                                 class="collection-image lazyload"
+                                 loading="lazy"
+                                 decoding="async">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الساعات -->
+        <section class="section">
+            <div class="section-container">
+                <div id="watches-section" tabindex="-1">
+                    <div class="section-header">
+                        <h2 class="section-title">ساعات هدايا الإمارات عالية الجودة</h2>
+                        <p class="section-subtitle">
+                            مجموعة حصرية من أرقى الساعات عالية الجودة التي تجمع بين الأناقة والدقة مع تقييمات ممتازة 🎆
+                        </p>
+                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                            <i class="fas fa-arrow-left"></i>
+                            شاهد جميع الساعات
+                        </a>
+                    </div>
+                    <div class="products-grid" id="watches-grid">
+                        <div class="loading-message">⏳ جارِ تحميل الساعات عالية الجودة مع التقييمات...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم المنتجات المميزة -->
+        <section class="section">
+            <div class="section-container">
                 <div class="section-header">
-                    <h2 class="section-title">ساعات هدايا الإمارات عالية الجودة</h2>
-                    <p class="section-subtitle">
-                        مجموعة حصرية من أرقى الساعات عالية الجودة التي تجمع بين الأناقة والدقة مع تقييمات ممتازة 🎆
-                    </p>
-                    <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
-                        <i class="fas fa-arrow-left"></i>
-                        شاهد جميع الساعات
-                    </a>
+                    <h2 class="section-title">منتجات مميزة عالية الجودة مع تقييمات عملائنا 🌟</h2>
+                    <p class="section-subtitle">مجموعة مختارة من أفضل المنتجات عالية الجودة مع تقييمات إماراتية موثقة</p>
+                    <div class="cta-group">
+                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                            <i class="fas fa-th-large"></i>
+                            شاهد الكل
+                        </a>
+                        <a href="./checkout.html" class="view-all-link order-now-btn">
+                            <i class="fas fa-credit-card"></i>
+                            اطلب فوراً
+                        </a>
+                    </div>
                 </div>
-                <div class="products-grid" id="watches-grid">
-                    <div class="loading-message">⏳ جارِ تحميل الساعات عالية الجودة مع التقييمات...</div>
+                <div class="products-grid" id="featuredProducts">
+                    <div class="loading-message">⏳ جارِ تحميل المنتجات المميزة عالية الجودة مع التقييمات...</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- قسم المنتجات المميزة -->
-    <section class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">منتجات مميزة عالية الجودة مع تقييمات عملائنا 🌟</h2>
-                <p class="section-subtitle">مجموعة مختارة من أفضل المنتجات عالية الجودة مع تقييمات إماراتية موثقة</p>
-                <div class="cta-group">
-                    <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
-                        <i class="fas fa-th-large"></i>
-                        شاهد الكل
-                    </a>
-                    <a href="./checkout.html" class="view-all-link order-now-btn">
-                        <i class="fas fa-credit-card"></i>
-                        اطلب فوراً
-                    </a>
+        <!-- قسم أفضل العروض -->
+        <section class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">🔥 أفضل العروض عالية الجودة مع تقييمات ممتازة</h2>
+                    <p class="section-subtitle">اغتنم فرصة الحصول على عروض حصرية بخصومات مميزة على منتجات عالية الجودة</p>
+                </div>
+                <div class="products-grid" id="bestDeals">
+                    <div class="loading-message">⏳ جارِ تحميل العروض عالية الجودة...</div>
                 </div>
             </div>
-            <div class="products-grid" id="featuredProducts">
-                <div class="loading-message">⏳ جارِ تحميل المنتجات المميزة عالية الجودة مع التقييمات...</div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- قسم أفضل العروض -->
-    <section class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">🔥 أفضل العروض عالية الجودة مع تقييمات ممتازة</h2>
-                <p class="section-subtitle">اغتنم فرصة الحصول على عروض حصرية بخصومات مميزة على منتجات عالية الجودة</p>
-            </div>
-            <div class="products-grid" id="bestDeals">
-                <div class="loading-message">⏳ جارِ تحميل العروض عالية الجودة...</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم معلومات الشحن والإرجاع -->
-    <section class="section">
-        <div class="section-container">
-            <div class="info-section">
-                <div class="info-cards">
-                    <div class="info-card">
-                        <i class="fas fa-shipping-fast"></i>
-                        <h3>شحن سريع</h3>
-                        <p>توصيل خلال <strong>1-3 أيام عمل</strong> لجميع إمارات الدولة</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-undo"></i>
-                        <h3>ضمان الإرجاع</h3>
-                        <p>إرجاع لمدة <strong>14 يوم + مصاريف الشحن</strong> مع ضمان الجودة</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>جودة عالية</h3>
-                        <p>جميع منتجاتنا عالية الجودة 100% مع ضمان الاستبدال</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fab fa-whatsapp"></i>
-                        <h3>طلب فوري</h3>
-                        <p>طلب مباشر عبر واتساب مع رد فوري وخدمة 24/7</p>
+        <!-- قسم معلومات الشحن والإرجاع -->
+        <section class="section">
+            <div class="section-container">
+                <div class="info-section">
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <i class="fas fa-shipping-fast"></i>
+                            <h3>شحن سريع</h3>
+                            <p>توصيل خلال <strong>1-3 أيام عمل</strong> لجميع إمارات الدولة</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-undo"></i>
+                            <h3>ضمان الإرجاع</h3>
+                            <p>إرجاع لمدة <strong>14 يوم + مصاريف الشحن</strong> مع ضمان الجودة</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>جودة عالية</h3>
+                            <p>جميع منتجاتنا عالية الجودة 100% مع ضمان الاستبدال</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3>طلب فوري</h3>
+                            <p>طلب مباشر عبر واتساب مع رد فوري وخدمة 24/7</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="footer-container">
@@ -570,6 +540,10 @@
         const bannerText = document.querySelector('.banner-text span');
         if (bannerText) {
             bannerText.textContent = 'توصيل خلال 1-3 أيام عمل • ضمان إرجاع 14 يوم + مصاريف الشحن';
+            bannerText.style.fontFamily = 'Cairo, sans-serif';
+            bannerText.style.direction = 'rtl';
+            bannerText.style.color = '#1B2951';
+            bannerText.style.fontWeight = '600';
         }
         
         // تأكد من أن النظام المصحح هو الوحيد المستخدم
@@ -599,6 +573,11 @@
                 registration.unregister();
             }
         });
+    }
+    
+    // إجبار تحديث الصفحة إذا كانت محملة من Cache
+    if (performance.getEntriesByType('navigation')[0].type === 'back_forward') {
+        location.reload(true);
     }
     </script>
 </body>
