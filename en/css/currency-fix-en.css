@@ -1,0 +1,203 @@
+/* Currency Fix for English Version - AED Only */
+
+/* Remove all dollar signs and currency symbols, show AED only */
+.current-price,
+.price,
+.original-price,
+.sale-price,
+.total-price,
+.subtotal,
+.cart-item-price,
+.product-price .current-price,
+.product-price .original-price {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+}
+
+/* Add AED suffix via CSS */
+.current-price::after,
+.price::after {
+    content: " AED" !important;
+    color: #666;
+    font-size: 0.85em;
+    font-weight: 400;
+    margin-left: 2px;
+}
+
+.original-price::after,
+.sale-price::after {
+    content: " AED" !important;
+    color: #999;
+    font-size: 0.85em;
+    font-weight: 400;
+    margin-left: 2px;
+}
+
+.total-price::after,
+.subtotal::after {
+    content: " AED" !important;
+    color: #333;
+    font-size: 0.85em;
+    font-weight: 400;
+    margin-left: 2px;
+}
+
+/* Cart specific currency fixes */
+.cart-item-price::after {
+    content: " AED" !important;
+    color: #666;
+    font-size: 0.85em;
+    font-weight: 400;
+}
+
+.cart-item-total::after {
+    content: " AED" !important;
+    color: #D4AF37;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+/* Checkout currency fixes */
+#cartSubtotal::after,
+#cartVat::after,
+#cartTotal::after,
+#subtotalAmount::after,
+#vatAmount::after,
+#totalAmount::after,
+#finalAmount::after {
+    content: "" !important; /* Remove ::after since AED is already in text */
+}
+
+/* Price highlighting */
+.current-price {
+    color: #D4AF37;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.original-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 0.9em;
+    margin-right: 8px;
+}
+
+/* Product card price styling */
+.product-price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 10px 0;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Remove any unwanted currency symbols via JavaScript */
+[data-currency="AED"] {
+    position: relative;
+}
+
+[data-currency="AED"]::before {
+    content: attr(data-currency-symbol);
+    font-size: 0.85em;
+    color: #666;
+    margin-right: 2px;
+}
+
+/* Notification currency fixes */
+.notification .current-price::after,
+.notification .price::after {
+    content: " AED";
+}
+
+/* Summary and checkout currency */
+.cart-summary .price::after,
+.order-summary .price::after,
+.checkout-summary .price::after {
+    content: " AED" !important;
+}
+
+/* Mobile responsive currency */
+@media (max-width: 768px) {
+    .current-price::after,
+    .price::after,
+    .original-price::after {
+        font-size: 0.8em;
+    }
+    
+    .product-price {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+}
+
+/* Hide any USD or dollar symbols */
+.currency-usd,
+.currency-dollar,
+[data-currency="USD"],
+[data-currency="$"] {
+    display: none !important;
+}
+
+/* Force AED display */
+.currency-aed,
+[data-currency="AED"] {
+    display: inline !important;
+}
+
+/* Price formatting consistency */
+.price-display {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #D4AF37;
+}
+
+.price-display::after {
+    content: " AED";
+    color: #666;
+    font-weight: 400;
+    font-size: 0.85em;
+}
+
+/* Override any conflicting styles */
+.product-card .current-price,
+.cart-item .current-price,
+.checkout-page .current-price {
+    color: #D4AF37 !important;
+    font-weight: 700 !important;
+}
+
+.product-card .current-price::after,
+.cart-item .current-price::after,
+.checkout-page .current-price::after {
+    content: " AED" !important;
+    color: #666 !important;
+    font-weight: 400 !important;
+    font-size: 0.85em !important;
+}
+
+/* Remove content from elements that should not have ::after */
+.cart-summary [id$="Amount"]::after,
+.checkout-summary [id$="Amount"]::after,
+.order-summary [id$="Amount"]::after {
+    content: "" !important;
+}
+
+/* Ensure proper spacing */
+.price-with-currency {
+    letter-spacing: normal;
+    word-spacing: normal;
+}
+
+.price-number {
+    display: inline;
+}
+
+.price-currency {
+    display: inline;
+    margin-left: 3px;
+    color: #666;
+    font-size: 0.85em;
+    font-weight: 400;
+}
