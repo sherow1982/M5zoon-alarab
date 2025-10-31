@@ -1,12 +1,11 @@
-// نظام الرسائل المنبثقة المحسّن - رسالة واحدة فقط
-class SmartPopupNotifications {
+// نظام الرسالة المنبثقة الوحيدة - محسن للموبايل
+class SinglePopupNotification {
     constructor() {
         this.customerNames = [
             'أحمد المنصوري', 'محمد النقبي', 'سالم الشامسي', 'خالد البلوشي', 'راشد الكعبي',
             'عبدالله الزعابي', 'سعيد المهيري', 'فيصل العتيبة', 'طارق الطاير',
-            'حمدان بن راشد', 'زايد الشرقي', 'ماجد النيادي', 'جاسم الحوسني',
-            'فاطمة النعيمي', 'عائشة الشحي', 'مريم البدواوي', 'نورا الطنيجي',
-            'سارة القبيسي', 'شما المزروعي', 'هند الرميثي', 'لطيفة الشرهان'
+            'فاطمة النعيمي', 'عائشة الشحي', 'مريم البدواوي', 'نورا الطنيجي', 'سارة القبيسي',
+            'شما المزروعي', 'هند الرميثي', 'لطيفة الشرهان'
         ];
         
         this.products = [
@@ -17,162 +16,165 @@ class SmartPopupNotifications {
         ];
         
         this.isActive = true;
-        this.currentNotification = null;
-        this.notificationInterval = null;
-        this.lastShownTime = 0;
+        this.currentPopup = null;
+        this.popupInterval = null;
     }
 
     getRandomData() {
         const customer = this.customerNames[Math.floor(Math.random() * this.customerNames.length)];
         const product = this.products[Math.floor(Math.random() * this.products.length)];
-        return { customer, product };
+        const timeAgo = Math.floor(Math.random() * 15) + 1;
+        return { customer, product, timeAgo };
     }
 
-    createSingleNotification() {
-        // تأكد من عدم وجود رسالة قديمة
-        if (this.currentNotification) {
-            this.hideNotification();
+    showPopup() {
+        // إزالة أي رسالة موجودة
+        if (this.currentPopup) {
+            this.hidePopup();
         }
 
-        const { customer, product } = this.getRandomData();
+        const { customer, product, timeAgo } = this.getRandomData();
         
-        this.currentNotification = document.createElement('div');
-        this.currentNotification.className = 'smart-popup-notification';
+        this.currentPopup = document.createElement('div');
+        this.currentPopup.className = 'single-popup-notification';
         
-        // أنماط CSS مدمجة لضمان التوافق مع جميع الأجهزة
-        this.currentNotification.style.cssText = `
+        // تطبيق الأنماط مباشرة
+        this.currentPopup.style.cssText = `
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #25D366, #20B358);
             color: white;
-            padding: 20px;
+            padding: 20px 25px;
             border-radius: 20px;
-            box-shadow: 0 10px 35px rgba(102, 126, 234, 0.4);
-            z-index: 10001;
-            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.3);
+            z-index: 10000;
+            font-family: 'Cairo', Arial, sans-serif;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
             max-width: 380px;
-            width: calc(100vw - 40px);
-            animation: popupSlideIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: popupBounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             cursor: pointer;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(15px);
-            transform-origin: bottom right;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
         `;
 
-        this.currentNotification.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 15px; position: relative;">
-                <button onclick="window.SmartPopupNotifications.hideNotification()" 
-                        style="position: absolute; top: -10px; right: -10px; 
-                               background: rgba(255, 255, 255, 0.9); color: #333; 
-                               border: none; width: 30px; height: 30px; 
+        this.currentPopup.innerHTML = `
+            <div style="display: flex; align-items: flex-start; gap: 15px; position: relative;">
+                <!-- زر الإغلاق الواضح -->
+                <button onclick="window.SinglePopupSystem.hidePopup()" 
+                        style="position: absolute; top: -15px; right: -15px; 
+                               background: #ff4757; color: white; 
+                               border: none; width: 35px; height: 35px; 
                                border-radius: 50%; cursor: pointer; 
-                               font-size: 16px; font-weight: bold;
-                               box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+                               font-size: 18px; font-weight: bold;
+                               box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
                                display: flex; align-items: center; justify-content: center;
                                transition: all 0.3s ease;"
-                        onmouseover="this.style.background='#ff4757'; this.style.color='white'; this.style.transform='scale(1.1)'"
-                        onmouseout="this.style.background='rgba(255, 255, 255, 0.9)'; this.style.color='#333'; this.style.transform='scale(1)'"
+                        onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 6px 20px rgba(255, 71, 87, 0.6)'"
+                        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(255, 71, 87, 0.4)'"
                         aria-label="إغلاق الإشعار">
-                    ×
+                    ✕
                 </button>
                 
-                <div style="flex-shrink: 0; margin-top: 5px;">
-                    <div style="width: 55px; height: 55px; background: rgba(255, 255, 255, 0.25); 
+                <!-- أيقونة التسوق -->
+                <div style="flex-shrink: 0; margin-top: 3px;">
+                    <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); 
                                 border-radius: 50%; display: flex; align-items: center; 
-                                justify-content: center; font-size: 24px;
-                                box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);">
+                                justify-content: center; font-size: 22px;
+                                box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);">
                         🛍️
                     </div>
                 </div>
                 
+                <!-- محتوى الرسالة -->
                 <div style="flex: 1; line-height: 1.4;">
-                    <div style="font-size: 13px; opacity: 0.85; margin-bottom: 3px;">
-                        📷 عميل جديد اشترى الآن:
+                    <div style="font-size: 12px; opacity: 0.8; margin-bottom: 4px; display: flex; align-items: center; gap: 5px;">
+                        🔥 عميل جديد اشترى الآن:
                     </div>
-                    <div style="font-weight: 800; margin-bottom: 8px; color: #FFD700; font-size: 17px;">
+                    <div style="font-weight: 800; margin-bottom: 8px; color: #FFD700; font-size: 16px;">
                         ${customer}
                     </div>
-                    <div style="font-size: 14px; opacity: 0.95; line-height: 1.3;">
-                        "اشترى ${product} مع ضمان الجودة"
+                    <div style="font-size: 13px; opacity: 0.9; line-height: 1.3; margin-bottom: 6px;">
+                        "${product}"
                     </div>
-                    <div style="font-size: 11px; margin-top: 6px; opacity: 0.7; display: flex; align-items: center; gap: 5px;">
-                        <i class="fas fa-clock" style="font-size: 10px;"></i>
-                        منذ ${Math.floor(Math.random() * 15) + 1} دقيقة
+                    <div style="font-size: 11px; opacity: 0.7; display: flex; align-items: center; gap: 5px;">
+                        ⏰ منذ ${timeAgo} دقيقة • مع ضمان الجودة
                     </div>
                 </div>
             </div>
         `;
 
-        document.body.appendChild(this.currentNotification);
+        document.body.appendChild(this.currentPopup);
         
-        // إخفاء تلقائي بعد 12 ثانية
+        // إخفاء تلقائي بعد 10 ثوانٍ
         setTimeout(() => {
-            this.hideNotification();
-        }, 12000);
+            this.hidePopup();
+        }, 10000);
         
-        // حدث النقر للانتقال للمنتجات
-        this.currentNotification.addEventListener('click', (e) => {
+        // النقر للانتقال للمنتجات
+        this.currentPopup.addEventListener('click', (e) => {
             if (!e.target.closest('button')) {
                 window.open('./products-showcase.html', '_blank');
             }
         });
     }
 
-    hideNotification() {
-        if (this.currentNotification && this.currentNotification.parentNode) {
-            this.currentNotification.style.animation = 'popupSlideOut 0.5s ease-in forwards';
+    hidePopup() {
+        if (this.currentPopup && this.currentPopup.parentNode) {
+            this.currentPopup.style.animation = 'popupBounceOut 0.5s ease-in forwards';
             setTimeout(() => {
-                if (this.currentNotification && this.currentNotification.parentNode) {
-                    this.currentNotification.remove();
-                    this.currentNotification = null;
+                if (this.currentPopup && this.currentPopup.parentNode) {
+                    this.currentPopup.remove();
+                    this.currentPopup = null;
                 }
             }, 500);
         }
     }
 
-    startNotifications() {
+    startSystem() {
         if (!this.isActive) return;
 
-        // عرض أول رسالة بعد 8 ثوانِ
+        console.log('🔔 تم تشغيل نظام الرسالة المنبثقة - كل 20 ثانية');
+        
+        // أول رسالة بعد 6 ثوانِ
         setTimeout(() => {
-            this.createSingleNotification();
-        }, 8000);
+            this.showPopup();
+        }, 6000);
 
         // تكرار كل 20 ثانية (رسالة واحدة فقط)
-        this.notificationInterval = setInterval(() => {
-            if (this.isActive && !this.currentNotification) {
-                this.createSingleNotification();
+        this.popupInterval = setInterval(() => {
+            if (this.isActive && !this.currentPopup) {
+                this.showPopup();
             }
         }, 20000);
     }
 
-    stopNotifications() {
+    stopSystem() {
         this.isActive = false;
-        if (this.notificationInterval) {
-            clearInterval(this.notificationInterval);
-            this.notificationInterval = null;
+        if (this.popupInterval) {
+            clearInterval(this.popupInterval);
+            this.popupInterval = null;
         }
-        this.hideNotification();
+        this.hidePopup();
     }
 
-    addResponsiveCSS() {
-        if (document.querySelector('#smart-popup-css')) return;
+    addPopupStyles() {
+        // تجنب إضافة الأنماط أكثر من مرة
+        if (document.querySelector('#single-popup-styles')) return;
         
         const style = document.createElement('style');
-        style.id = 'smart-popup-css';
+        style.id = 'single-popup-styles';
         style.textContent = `
-            /* أنماشن الرسائل المنبثقة */
-            @keyframes popupSlideIn {
+            /* أنيميشن الرسالة المنبثقة */
+            @keyframes popupBounceIn {
                 0% { 
-                    transform: translateX(120%) scale(0.8); 
+                    transform: translateX(120%) scale(0.7); 
                     opacity: 0; 
                 }
-                50% {
-                    transform: translateX(0) scale(1.05);
-                    opacity: 0.8;
+                60% {
+                    transform: translateX(-10px) scale(1.05);
+                    opacity: 0.9;
                 }
                 100% { 
                     transform: translateX(0) scale(1); 
@@ -180,50 +182,63 @@ class SmartPopupNotifications {
                 }
             }
             
-            @keyframes popupSlideOut {
+            @keyframes popupBounceOut {
                 0% { 
                     transform: translateX(0) scale(1); 
                     opacity: 1; 
                 }
                 100% { 
-                    transform: translateX(120%) scale(0.9); 
+                    transform: translateX(120%) scale(0.8); 
                     opacity: 0; 
                 }
             }
             
             /* تأثيرات التفاعل */
-            .smart-popup-notification:hover {
-                transform: translateY(-5px) scale(1.02);
-                box-shadow: 0 15px 45px rgba(102, 126, 234, 0.6);
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            .single-popup-notification:hover {
+                transform: translateY(-3px) scale(1.02) !important;
+                box-shadow: 0 15px 50px rgba(37, 211, 102, 0.5) !important;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
             }
             
-            /* تصميم متجاوب للهواتف */
-            @media (max-width: 768px) {
-                .smart-popup-notification {
+            /* تصميم متجاوب للهواتف الذكية */
+            @media (max-width: 480px) {
+                .single-popup-notification {
+                    left: 10px !important;
+                    right: 10px !important;
+                    bottom: 10px !important;
+                    max-width: none !important;
+                    width: calc(100vw - 20px) !important;
+                    padding: 16px 18px !important;
+                    font-size: 14px !important;
+                    border-radius: 16px !important;
+                }
+                
+                .single-popup-notification button {
+                    top: -12px !important;
+                    right: -12px !important;
+                    width: 32px !important;
+                    height: 32px !important;
+                    font-size: 16px !important;
+                }
+            }
+            
+            /* تصميم للهواتف المتوسطة */
+            @media (min-width: 481px) and (max-width: 768px) {
+                .single-popup-notification {
                     left: 15px !important;
                     right: 15px !important;
                     bottom: 15px !important;
                     max-width: none !important;
                     width: calc(100vw - 30px) !important;
-                    padding: 18px !important;
+                    padding: 18px 20px !important;
                     font-size: 15px !important;
-                    border-radius: 18px !important;
-                }
-                
-                .smart-popup-notification button {
-                    top: -8px !important;
-                    right: -8px !important;
-                    width: 32px !important;
-                    height: 32px !important;
-                    font-size: 18px !important;
                 }
             }
             
-            /* تصميم متجاوب للأجهزة اللوحية */
+            /* تصميم للتابلت */
             @media (min-width: 769px) and (max-width: 1024px) {
-                .smart-popup-notification {
-                    max-width: 350px !important;
+                .single-popup-notification {
+                    max-width: 360px !important;
                     bottom: 25px !important;
                     right: 25px !important;
                     font-size: 15px !important;
@@ -232,7 +247,7 @@ class SmartPopupNotifications {
             
             /* تصميم للشاشات الكبيرة */
             @media (min-width: 1025px) {
-                .smart-popup-notification {
+                .single-popup-notification {
                     max-width: 400px !important;
                     bottom: 30px !important;
                     right: 30px !important;
@@ -240,56 +255,155 @@ class SmartPopupNotifications {
                 }
             }
             
-            /* تصميم للشاشات العريضة جداً */
-            @media (min-width: 1400px) {
-                .smart-popup-notification {
-                    max-width: 450px !important;
-                    bottom: 40px !important;
-                    right: 40px !important;
-                    font-size: 17px !important;
-                }
+            /* تأكد من ظهور الرسالة فوق كل شيء */
+            .single-popup-notification {
+                z-index: 999999 !important;
             }
         `;
         
         document.head.appendChild(style);
     }
-
-    init() {
-        if (!this.isActive) return;
-        
-        console.log('🔔 تم تفعيل نظام الرسائل المنبثقة الذكي');
-        
-        // إضافة CSS
-        this.addResponsiveCSS();
-        
-        // بدء عرض الرسائل
-        this.startNotifications();
-    }
-
-    destroy() {
-        console.log('📵 تم إيقاف نظام الرسائل المنبثقة');
-        this.stopNotifications();
-    }
 }
 
-// تشغيل النظام
+// النظام الرئيسي
 document.addEventListener('DOMContentLoaded', function() {
-    // إنشاء مثيل عام للنظام
-    window.SmartPopupNotifications = new SmartPopupNotifications();
+    const popupSystem = new SinglePopupNotification();
     
-    // بدء النظام بعد تحميل الصفحة بالكامل
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            window.SmartPopupNotifications.init();
-        }, 3000);
-    });
+    // إضافة الأنماط
+    popupSystem.addPopupStyles();
     
-    // إيقاف عند إغلاق النافذة
-    window.addEventListener('beforeunload', () => {
-        if (window.SmartPopupNotifications) {
-            window.SmartPopupNotifications.destroy();
+    // إنشاء نظام الرسالة الواحدة
+    let currentNotification = null;
+    let notificationTimer = null;
+    
+    function showSingleNotification() {
+        // إزالة أي رسالة موجودة
+        if (currentNotification) {
+            hideSingleNotification();
         }
+        
+        const data = popupSystem.getRandomData();
+        
+        currentNotification = document.createElement('div');
+        currentNotification.className = 'single-popup-notification';
+        
+        // تطبيق التصميم المتجاوب
+        currentNotification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #25D366, #20B358);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.3);
+            z-index: 999999;
+            font-family: 'Cairo', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            max-width: 380px;
+            animation: popupBounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        `;
+
+        currentNotification.innerHTML = `
+            <div style="display: flex; align-items: flex-start; gap: 15px; position: relative;">
+                <!-- زر الإغلاق الواضح -->
+                <button onclick="hideSingleNotification()" 
+                        style="position: absolute; top: -15px; right: -15px; 
+                               background: #ff4757; color: white; 
+                               border: none; width: 35px; height: 35px; 
+                               border-radius: 50%; cursor: pointer; 
+                               font-size: 18px; font-weight: bold;
+                               box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+                               display: flex; align-items: center; justify-content: center;
+                               transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='scale(1.15)'"
+                        onmouseout="this.style.transform='scale(1)'"
+                        title="إغلاق">
+                    ✕
+                </button>
+                
+                <!-- رمز التسوق -->
+                <div style="flex-shrink: 0; margin-top: 3px;">
+                    <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); 
+                                border-radius: 50%; display: flex; align-items: center; 
+                                justify-content: center; font-size: 24px;">
+                        🛍️
+                    </div>
+                </div>
+                
+                <!-- محتوى الرسالة -->
+                <div style="flex: 1; line-height: 1.4;">
+                    <div style="font-size: 12px; opacity: 0.85; margin-bottom: 4px;">
+                        🔥 عميل جديد اشترى:
+                    </div>
+                    <div style="font-weight: 800; margin-bottom: 8px; color: #FFD700; font-size: 16px;">
+                        ${data.customer}
+                    </div>
+                    <div style="font-size: 13px; opacity: 0.9; line-height: 1.3; margin-bottom: 6px;">
+                        "${data.product}"
+                    </div>
+                    <div style="font-size: 11px; opacity: 0.7; display: flex; align-items: center; gap: 5px;">
+                        ⏰ منذ ${data.timeAgo} دقيقة
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(currentNotification);
+        
+        // إخفاء تلقائي بعد 12 ثانية
+        setTimeout(() => {
+            hideSingleNotification();
+        }, 12000);
+        
+        // النقر للانتقال للمنتجات
+        currentNotification.addEventListener('click', (e) => {
+            if (!e.target.closest('button')) {
+                window.open('./products-showcase.html', '_blank');
+            }
+        });
+    }
+    
+    function hideSingleNotification() {
+        if (currentNotification && currentNotification.parentNode) {
+            currentNotification.style.animation = 'popupBounceOut 0.5s ease-in forwards';
+            setTimeout(() => {
+                if (currentNotification && currentNotification.parentNode) {
+                    currentNotification.remove();
+                    currentNotification = null;
+                }
+            }, 500);
+        }
+    }
+    
+    // جعل الدوال متاحة عالمياً
+    window.showSingleNotification = showSingleNotification;
+    window.hideSingleNotification = hideSingleNotification;
+    window.SinglePopupSystem = { hidePopup: hideSingleNotification };
+    
+    // بدء النظام بعد تحميل الصفحة
+    window.addEventListener('load', () => {
+        // أول رسالة بعد 8 ثوانٍ
+        setTimeout(showSingleNotification, 8000);
+        
+        // تكرار كل 20 ثانية (رسالة واحدة فقط)
+        notificationTimer = setInterval(() => {
+            if (!currentNotification) {
+                showSingleNotification();
+            }
+        }, 20000);
     });
     
-    console.log('🎆 تم تحميل نظام الرسائل المنبثقة الذكي - رسالة واحدة كل 20 ثانية');
+    // إيقاف عند إغلاق الصفحة
+    window.addEventListener('beforeunload', () => {
+        if (notificationTimer) {
+            clearInterval(notificationTimer);
+        }
+        hideSingleNotification();
+    });
+    
+    console.log('🎯 تم تفعيل نظام الرسالة المنبثقة الواحدة - كل 20 ثانية مع تصميم متجاوب');
 });
