@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جميع المنتجات - متجر هدايا الإمارات</title>
-    <meta name="description" content="استعرض جميع العطور والساعات والهدايا الفاخرة. بحث وفلترة متقدمة للعثور على منتجاتك المفضلة بأفضل الأسعار.">
+    <title>جميع المنتجات مع التقييمات - متجر هدايا الإمارات</title>
+    <meta name="description" content="استعرض جميع العطور والساعات والهدايا الفاخرة مع تقييمات عملائنا الإماراتيين. بحث وفلترة متقدمة للعثور على منتجاتك المفضلة بأفضل الأسعار.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
+    <link rel="stylesheet" href="./css/reviews-system.css">
     
     <style>
         .products-showcase-container {
@@ -126,6 +127,47 @@
             color: var(--deep-blue);
         }
         
+        .quick-checkout-banner {
+            background: linear-gradient(135deg, #25D366, #20B358);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+        
+        .quick-checkout-banner h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .quick-checkout-banner p {
+            margin: 0 0 15px 0;
+            opacity: 0.9;
+        }
+        
+        .checkout-cta {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 25px;
+            border: 2px solid white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .checkout-cta:hover {
+            background: white;
+            color: #25D366;
+            transform: translateY(-2px);
+        }
+        
         @media (max-width: 768px) {
             .showcase-title {
                 font-size: 2.2rem;
@@ -143,6 +185,11 @@
             .search-group {
                 max-width: 100%;
                 order: -1;
+            }
+            
+            .quick-checkout-banner {
+                margin: 15px;
+                padding: 20px 15px;
             }
         }
     </style>
@@ -175,6 +222,10 @@
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
                     </a>
+                    <a href="./checkout.html" class="header-tool" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; border-radius: 8px; padding: 8px 12px;">
+                        <i class="fas fa-credit-card"></i>
+                        <span style="font-size: 0.8rem; font-weight: 600;">اطلب فوراً</span>
+                    </a>
                     <a href="./" class="header-tool"><i class="fas fa-home"></i></a>
                 </div>
             </div>
@@ -182,11 +233,21 @@
     </header>
 
     <main class="products-showcase-container">
+        <!-- لافتة إتمام الطلب السريع -->
+        <div class="quick-checkout-banner">
+            <h3>🚀 إتمام الطلب السريع</h3>
+            <p>هل لديك عناصر في السلة؟ اتمم طلبك بسهولة وسرعة</p>
+            <a href="./checkout.html" class="checkout-cta">
+                <i class="fas fa-credit-card"></i>
+                اطلب فوراً عبر واتساب
+            </a>
+        </div>
+        
         <div class="showcase-header">
-            <h1 class="showcase-title">🎆 جميع منتجاتنا</h1>
+            <h1 class="showcase-title">🎆 جميع منتجاتنا مع التقييمات</h1>
             <p class="showcase-subtitle">
-                استعرض مجموعتنا الشاملة من العطور الفاخرة والساعات الأنيقة<br>
-                وابحث عن منتجاتك المفضلة بسهولة
+                استعرض مجموعتنا الشاملة من العطور الفاخرة والساعات الأنيقة مع تقييمات حقيقية من عملائنا في الإمارات<br>
+                وابحث عن منتجاتك المفضلة بسهولة ⭐
             </p>
         </div>
         
@@ -218,18 +279,26 @@
                 <label class="sort-label">ترتيب حسب:</label>
                 <select class="sort-select" id="sortSelect">
                     <option value="newest">الأحدث</option>
+                    <option value="rating">الأعلى تقييماً</option>
                     <option value="price-low">السعر: من الأقل للأعلى</option>
                     <option value="price-high">السعر: من الأعلى للأقل</option>
-                    <option value="rating">الأعلى تقييماً</option>
                 </select>
             </div>
         </div>
         
         <div class="products-grid" id="allProductsGrid">
-            <div style="text-align: center; padding: 60px 20px; font-size: 1.5rem; color: var(--primary-gold);">
+            <div style="text-align: center; padding: 60px 20px; font-size: 1.5rem; color: var(--primary-gold); grid-column: 1 / -1;">
                 <i class="fas fa-spinner" style="font-size: 2rem; animation: spin 1s linear infinite; margin-bottom: 20px; display: block;"></i>
-                <div>جارِ تحميل جميع المنتجات...</div>
+                <div>🌟 جارِ تحميل جميع المنتجات مع التقييمات...</div>
             </div>
+        </div>
+        
+        <!-- رابط سريع لإتمام الطلب -->
+        <div style="text-align: center; margin-top: 40px; padding: 20px;">
+            <a href="./checkout.html" class="btn-primary" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; font-size: 1.2rem; padding: 18px 35px; border-radius: 15px; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);">
+                <i class="fas fa-credit-card"></i>
+                إتمام الطلب فوراً
+            </a>
         </div>
     </main>
 
@@ -240,6 +309,14 @@
                     <h3>هدايا الإمارات</h3>
                     <p>متجر العطور والهدايا الفاخرة الرائد في الإمارات</p>
                 </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="./">الرئيسية</a></li>
+                        <li><a href="./cart.html">السلة</a></li>
+                        <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">إتمام الطلب</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
@@ -247,6 +324,8 @@
         </div>
     </footer>
 
+    <!-- تحميل نظام التقييمات أولاً -->
+    <script src="./js/uae-reviews-generator.js" defer></script>
     <script src="./js/products-loader.js" defer></script>
     <script src="./js/buttons-fix.js" defer></script>
     <script src="./js/cart-system.js" defer></script>
