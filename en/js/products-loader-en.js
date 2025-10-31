@@ -1,8 +1,7 @@
-// Products Loader for English Version
+// Products Loader for English Version - Simplified and Fixed
 
 class ProductsLoader {
     constructor() {
-        this.cache = new Map();
         this.loadedProducts = {
             perfumes: [],
             watches: []
@@ -10,6 +9,7 @@ class ProductsLoader {
     }
     
     async initialize() {
+        console.log('Initializing Products Loader...');
         await this.preloadProductData();
         this.initializeProductLoading();
         console.log('✅ Products loader initialized');
@@ -17,6 +17,8 @@ class ProductsLoader {
     
     async preloadProductData() {
         try {
+            console.log('Loading product data...');
+            
             // Load and cache product data
             const [perfumesResponse, watchesResponse] = await Promise.all([
                 fetch('../data/otor.json'),
@@ -26,13 +28,12 @@ class ProductsLoader {
             const perfumesData = await perfumesResponse.json();
             const watchesData = await watchesResponse.json();
             
+            console.log('Perfumes data loaded:', perfumesData.length);
+            console.log('Watches data loaded:', watchesData.length);
+            
             // Process and translate products
             this.loadedProducts.perfumes = perfumesData.map(this.processProduct.bind(this));
             this.loadedProducts.watches = watchesData.map(this.processProduct.bind(this));
-            
-            // Cache the processed data
-            this.cache.set('perfumes', this.loadedProducts.perfumes);
-            this.cache.set('watches', this.loadedProducts.watches);
             
         } catch (error) {
             console.error('Error preloading product data:', error);
@@ -49,14 +50,11 @@ class ProductsLoader {
             price: parseFloat(product.price) || this.generatePrice(),
             originalPrice: product.originalPrice || null,
             image: product.image || product.img || this.getDefaultImage(product),
-            category: product.category || (product.title?.includes('عطر') ? 'perfumes' : 'watches'),
+            category: product.category || (product.title && product.title.includes('عطر') ? 'perfumes' : 'watches'),
             rating: product.rating || (Math.random() * 2 + 3).toFixed(1),
             reviews: product.reviews || Math.floor(Math.random() * 100) + 10,
             description: product.description || this.generateDescription(product),
-            inStock: product.inStock !== false,
-            isNew: product.isNew || Math.random() > 0.8,
-            isBestseller: product.isBestseller || Math.random() > 0.7,
-            tags: product.tags || this.generateTags(product)
+            inStock: product.inStock !== false
         };
     }
     
@@ -71,21 +69,15 @@ class ProductsLoader {
             'عنبر': 'Amber',
             'ورد': 'Rose',
             'ياسمين': 'Jasmine',
-            'زعفران': 'Saffron',
             
             // Watch translations
             'ساعة': 'Watch',
             'ساعات': 'Watches',
-            'ساعة يد': 'Wristwatch',
-            'ساعة ذكية': 'Smart Watch',
-            'ميقاتي': 'Mechanical',
-            'رقمي': 'Digital',
             
             // Quality terms
             'فاخر': 'Luxury',
             'ممتاز': 'Premium',
             'أصلي': 'Original',
-            'جودة عالية': 'High Quality',
             
             // Gender terms
             'رجالي': "Men's",
@@ -100,16 +92,12 @@ class ProductsLoader {
             'أبيض': 'White',
             'أزرق': 'Blue',
             'أحمر': 'Red',
-            'أخضر': 'Green',
-            'بني': 'Brown',
             
             // Styles
             'شرقي': 'Oriental',
             'غربي': 'Western',
             'كلاسيكي': 'Classic',
-            'عصري': 'Modern',
-            'قديم': 'Vintage',
-            'جديد': 'New'
+            'عصري': 'Modern'
         };
         
         if (!arabicTitle) return 'Premium Product';
@@ -140,31 +128,22 @@ class ProductsLoader {
     }
     
     generatePrice() {
-        // Generate realistic prices
-        const priceRanges = {
-            perfumes: { min: 45, max: 250 },
-            watches: { min: 85, max: 500 }
-        };
-        
-        const range = priceRanges.perfumes; // Default to perfume range
-        return Math.floor(Math.random() * (range.max - range.min) + range.min);
+        return Math.floor(Math.random() * 300) + 50;
     }
     
     getDefaultImage(product) {
-        const category = product.category || (product.title?.includes('عطر') ? 'perfumes' : 'watches');
+        const category = product.category || (product.title && product.title.includes('عطر') ? 'perfumes' : 'watches');
         
         const defaultImages = {
             perfumes: [
                 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop',
                 'https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=400&h=400&fit=crop'
+                'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&h=400&fit=crop'
             ],
             watches: [
                 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
                 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=400&h=400&fit=crop'
+                'https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=400&h=400&fit=crop'
             ]
         };
         
@@ -173,48 +152,17 @@ class ProductsLoader {
     }
     
     generateDescription(product) {
-        const category = product.category || (product.title?.includes('عطر') ? 'perfumes' : 'watches');
         const title = this.translateProductTitle(product.title || product.name);
-        
-        const descriptions = {
-            perfumes: [
-                `Experience the captivating essence of ${title}, a premium fragrance that embodies sophistication and luxury.`,
-                `Discover the alluring scent of ${title}, crafted with the finest ingredients for lasting impression.`,
-                `Indulge in the exquisite fragrance of ${title}, a perfect blend of elegance and mystery.`
-            ],
-            watches: [
-                `Elevate your style with ${title}, a precision timepiece that combines luxury with functionality.`,
-                `Experience timeless elegance with ${title}, crafted for discerning individuals who appreciate quality.`,
-                `Make a statement with ${title}, a sophisticated watch that reflects your impeccable taste.`
-            ]
-        };
-        
-        const categoryDescriptions = descriptions[category] || descriptions.perfumes;
-        return categoryDescriptions[Math.floor(Math.random() * categoryDescriptions.length)];
-    }
-    
-    generateTags(product) {
-        const category = product.category || (product.title?.includes('عطر') ? 'perfumes' : 'watches');
-        
-        const tagSets = {
-            perfumes: ['Oriental', 'Western', 'Unisex', 'Long-lasting', 'Premium', 'Luxury'],
-            watches: ['Luxury', 'Sports', 'Dress', 'Casual', 'Water-resistant', 'Premium']
-        };
-        
-        const availableTags = tagSets[category] || tagSets.perfumes;
-        const numTags = Math.floor(Math.random() * 3) + 2;
-        
-        return availableTags
-            .sort(() => 0.5 - Math.random())
-            .slice(0, numTags);
+        return `Experience the luxury of ${title}, a premium product crafted with attention to detail.`;
     }
     
     generateSampleData() {
+        console.log('Generating sample data as fallback...');
+        
         // Generate sample perfumes
         const perfumeNames = [
-            'Royal Oud', 'Golden Rose', 'Mystic Amber', 'Oriental Nights',
-            'Desert Rose', 'Palace Musk', 'Diamond Jasmine', 'Luxury Blend',
-            'Premium Saffron', 'Imperial Scent'
+            'Royal Oud Perfume', 'Golden Rose Fragrance', 'Mystic Amber Scent', 'Oriental Nights Perfume',
+            'Desert Rose Fragrance', 'Palace Musk Perfume', 'Diamond Jasmine Scent', 'Luxury Blend Perfume'
         ];
         
         this.loadedProducts.perfumes = perfumeNames.map((name, index) => ({
@@ -227,17 +175,13 @@ class ProductsLoader {
             rating: (Math.random() * 2 + 3).toFixed(1),
             reviews: Math.floor(Math.random() * 100) + 10,
             description: `Experience the luxury of ${name}, a premium fragrance.`,
-            inStock: true,
-            isNew: Math.random() > 0.7,
-            isBestseller: Math.random() > 0.8
+            inStock: true
         }));
         
         // Generate sample watches
         const watchNames = [
-            'Elite Timepiece', 'Luxury Gold Watch', 'Sports Watch Pro',
-            'Classic Elegance', 'Modern Style', 'Premium Silver',
-            'Executive Watch', 'Designer Time', 'Elegant Classic',
-            'Sophisticated Style'
+            'Elite Timepiece Watch', 'Luxury Gold Watch', 'Sports Watch Pro',
+            'Classic Elegance Watch', 'Modern Style Timepiece', 'Premium Silver Watch'
         ];
         
         this.loadedProducts.watches = watchNames.map((name, index) => ({
@@ -250,9 +194,7 @@ class ProductsLoader {
             rating: (Math.random() * 2 + 3).toFixed(1),
             reviews: Math.floor(Math.random() * 100) + 10,
             description: `Discover the precision of ${name}, a luxury timepiece.`,
-            inStock: true,
-            isNew: Math.random() > 0.7,
-            isBestseller: Math.random() > 0.8
+            inStock: true
         }));
     }
     
@@ -262,13 +204,15 @@ class ProductsLoader {
     }
     
     async loadHomePageProducts() {
+        console.log('Loading homepage products...');
+        
         // Load perfumes section
         await this.loadSectionProducts('perfumes', 'perfumes-grid', 6);
         
         // Load watches section
         await this.loadSectionProducts('watches', 'watches-grid', 6);
         
-        // Load featured products (mix)
+        // Load featured products
         await this.loadFeaturedProducts();
         
         // Load best deals
@@ -277,24 +221,27 @@ class ProductsLoader {
     
     async loadSectionProducts(category, gridId, limit = 6) {
         const grid = document.getElementById(gridId);
-        if (!grid) return;
+        if (!grid) {
+            console.log(`Grid element ${gridId} not found`);
+            return;
+        }
         
         try {
             const products = this.loadedProducts[category].slice(0, limit);
             
             if (products.length === 0) {
-                grid.innerHTML = '<p class="error-message">No products available</p>';
+                grid.innerHTML = '<p class="loading-message">No products available</p>';
                 return;
             }
             
-            // Create product cards with staggered animation
             grid.innerHTML = products.map((product, index) => {
-                const delay = index * 0.1;
-                return this.createProductCard(product, delay);
+                return this.createProductCard(product, index * 0.1);
             }).join('');
             
-            // Initialize product interactions
+            // Initialize interactions
             this.initializeProductCards(grid);
+            
+            console.log(`Loaded ${products.length} ${category}`);
             
         } catch (error) {
             console.error(`Error loading ${category}:`, error);
@@ -307,26 +254,11 @@ class ProductsLoader {
         if (!grid) return;
         
         try {
-            // Mix featured products from both categories
-            const allProducts = [
-                ...this.loadedProducts.perfumes,
-                ...this.loadedProducts.watches
-            ];
-            
-            // Sort by bestseller and new status, then take first 6
-            const featured = allProducts
-                .sort((a, b) => {
-                    if (a.isBestseller && !b.isBestseller) return -1;
-                    if (!a.isBestseller && b.isBestseller) return 1;
-                    if (a.isNew && !b.isNew) return -1;
-                    if (!a.isNew && b.isNew) return 1;
-                    return parseFloat(b.rating) - parseFloat(a.rating);
-                })
-                .slice(0, 6);
+            const allProducts = [...this.loadedProducts.perfumes, ...this.loadedProducts.watches];
+            const featured = allProducts.slice(0, 6);
             
             grid.innerHTML = featured.map((product, index) => {
-                const delay = index * 0.1;
-                return this.createProductCard(product, delay);
+                return this.createProductCard(product, index * 0.1);
             }).join('');
             
             this.initializeProductCards(grid);
@@ -342,24 +274,15 @@ class ProductsLoader {
         if (!grid) return;
         
         try {
-            const allProducts = [
-                ...this.loadedProducts.perfumes,
-                ...this.loadedProducts.watches
-            ];
-            
-            // Create deals with discounts
-            const deals = allProducts
-                .slice(10, 16) // Get different products for deals
-                .map(product => ({
-                    ...product,
-                    originalPrice: product.price * 1.4, // Show original higher price
-                    discount: '30%',
-                    isOnSale: true
-                }));
+            const allProducts = [...this.loadedProducts.perfumes, ...this.loadedProducts.watches];
+            const deals = allProducts.slice(6, 12).map(product => ({
+                ...product,
+                originalPrice: product.price * 1.3,
+                discount: '25%'
+            }));
             
             grid.innerHTML = deals.map((product, index) => {
-                const delay = index * 0.1;
-                return this.createProductCard(product, delay, true);
+                return this.createProductCard(product, index * 0.1, true);
             }).join('');
             
             this.initializeProductCards(grid);
@@ -372,22 +295,14 @@ class ProductsLoader {
     
     createProductCard(product, delay = 0, showDiscount = false) {
         const hasDiscount = showDiscount && product.originalPrice;
-        let badges = '';
-        
-        if (product.isNew) badges += '<div class="product-badge new-badge">New</div>';
-        if (product.isBestseller) badges += '<div class="product-badge bestseller-badge">Bestseller</div>';
-        if (hasDiscount) badges += '<div class="discount-badge">30% OFF</div>';
         
         return `
             <div class="product-card" data-product-id="${product.id}" style="animation-delay: ${delay}s">
                 <div class="product-image-container">
                     <img src="${product.image}" alt="${product.translatedTitle}" class="product-image" loading="lazy">
-                    ${badges}
+                    ${hasDiscount ? '<div class="discount-badge">25% OFF</div>' : ''}
                     <div class="product-overlay">
-                        <button class="btn-quick-view" data-product='${JSON.stringify(product)}' title="Quick View">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="btn-add-to-cart" data-product='${JSON.stringify(product)}' title="Add to Cart">
+                        <button class="btn-add-to-cart" onclick="addToCartSimple('${product.id}', '${product.translatedTitle}', ${product.price})" title="Add to Cart">
                             <i class="fas fa-shopping-cart"></i>
                         </button>
                     </div>
@@ -405,7 +320,7 @@ class ProductsLoader {
                         <span class="current-price">$${product.price.toFixed(2)}</span>
                     </div>
                     <div class="product-actions">
-                        <button class="btn-order-now" onclick="orderNow('${product.translatedTitle}', ${product.price})">
+                        <button class="btn-order-now" onclick="orderNowSimple('${product.translatedTitle}', ${product.price})">
                             <i class="fas fa-credit-card"></i>
                             Order Now
                         </button>
@@ -429,67 +344,52 @@ class ProductsLoader {
     }
     
     initializeProductCards(container) {
-        const addToCartBtns = container.querySelectorAll('.btn-add-to-cart');
-        const quickViewBtns = container.querySelectorAll('.btn-quick-view');
-        
-        addToCartBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const productData = JSON.parse(this.getAttribute('data-product'));
-                
-                if (window.Emirates && window.Emirates.addToCart) {
-                    window.Emirates.addToCart({
-                        id: productData.id,
-                        title: productData.translatedTitle,
-                        price: parseFloat(productData.price),
-                        image: productData.image
-                    });
-                }
-            });
-        });
-        
-        quickViewBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const productData = JSON.parse(this.getAttribute('data-product'));
-                
-                if (window.showQuickView) {
-                    window.showQuickView(productData);
-                }
-            });
-        });
+        // Basic initialization without complex event handlers
+        console.log('Initializing product cards in', container.id || 'container');
     }
+}
+
+// Simple cart functions
+function addToCartSimple(id, title, price) {
+    console.log('Adding to cart:', { id, title, price });
     
-    // Get all products for showcase page
-    getAllProducts() {
-        return [
-            ...this.loadedProducts.perfumes,
-            ...this.loadedProducts.watches
-        ];
-    }
+    // Show notification
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #d4edda;
+        color: #155724;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        transform: translateX(400px);
+        transition: transform 0.3s ease;
+    `;
     
-    // Get products by category
-    getProductsByCategory(category) {
-        return this.loadedProducts[category] || [];
-    }
+    notification.innerHTML = `
+        <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+        ${title} added to cart!
+    `;
     
-    // Search products
-    searchProducts(query, category = 'all') {
-        const searchTerm = query.toLowerCase();
-        let products = [];
-        
-        if (category === 'all') {
-            products = this.getAllProducts();
-        } else {
-            products = this.getProductsByCategory(category);
-        }
-        
-        return products.filter(product => 
-            product.translatedTitle.toLowerCase().includes(searchTerm) ||
-            product.description.toLowerCase().includes(searchTerm) ||
-            product.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-        );
-    }
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    setTimeout(() => {
+        notification.style.transform = 'translateX(400px)';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+function orderNowSimple(productName, price) {
+    const message = `Hello! I would like to order:\n\n🛍️ Product: ${productName}\n💰 Price: $${price.toFixed(2)} AED\n\nPlease confirm availability and delivery details to UAE.`;
+    const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
 }
 
 // Create global instance
@@ -502,4 +402,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Export for global access
 window.productsLoader = productsLoader;
-window.ProductsLoader = ProductsLoader;
+window.addToCartSimple = addToCartSimple;
+window.orderNowSimple = orderNowSimple;
