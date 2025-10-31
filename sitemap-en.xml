@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- English Home Page -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/" />
+  </url>
+  
+  <!-- English Products Showcase -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/products-showcase.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/products-showcase.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/products-showcase.html" />
+  </url>
+  
+  <!-- English Shopping Cart -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/cart.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/cart.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/cart.html" />
+  </url>
+  
+  <!-- English Checkout -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/checkout.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/checkout.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/checkout.html" />
+  </url>
+  
+  <!-- English About Page -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/about.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/about.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/about.html" />
+  </url>
+  
+  <!-- English Blog -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/blog/</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/blog/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/blog/" />
+  </url>
+  
+  <!-- English Policy Pages -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/shipping-policy.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/shipping-policy.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/shipping-policy.html" />
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/return-policy.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/return-policy.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/return-policy.html" />
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/privacy-policy.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/privacy-policy.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/privacy-policy.html" />
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/terms-conditions.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/terms-conditions.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/terms-conditions.html" />
+  </url>
+  
+  <!-- English Product Details Page Template -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/product-details.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/product-details.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/product-details.html" />
+  </url>
+  
+  <!-- Category Sections -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/#perfumes-section</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/#perfumes-section" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/#perfumes-section" />
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/#watches-section</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/#watches-section" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/#watches-section" />
+  </url>
+  
+</urlset>
