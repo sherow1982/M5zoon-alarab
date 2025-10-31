@@ -1,5 +1,5 @@
 // نظام تحميل وعرض المنتجات الديناميكي - متجر هدايا الإمارات
-// يحمّل جميع المنتجات من ملفات JSON ويعرضها تلقائياً مع الروابط الجميلة
+// يحمّل جميع المنتجات من ملفات JSON ويعرضها تلقائياً مع الروابط الجميلة والأزرار
 
 (function() {
     'use strict';
@@ -24,8 +24,68 @@
     // إنشاء رابط المسار الجميل
     function buildPrettyURL(product) {
         const slug = arabicSlugify(product.title);
-        const baseUrl = 'https://sherow1982.github.io/emirates-gifts';
-        return `${baseUrl}/product/${encodeURIComponent(slug)}`;
+        const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '');
+        return `${baseUrl}/product/${encodeURIComponent(slug)}?id=${product.id}&category=${product.categoryEn}`;
+    }
+    
+    // إضافة للسلة
+    function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
+        const existingIndex = cart.findIndex(item => item.id === product.id);
+        
+        if (existingIndex !== -1) {
+            cart[existingIndex].quantity += 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        
+        localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
+        
+        // تحديث شارة السلة
+        updateCartBadge();
+        
+        // رسالة نجاح
+        showCartSuccess(product.title);
+    }
+    
+    function updateCartBadge() {
+        const cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const badges = document.querySelectorAll('.cart-badge, #cartBadge');
+        
+        badges.forEach(badge => {
+            if (badge) {
+                badge.textContent = totalItems;
+                badge.style.display = totalItems > 0 ? 'flex' : 'none';
+            }
+        });
+    }
+    
+    function showCartSuccess(productTitle) {
+        // إزالة الرسالة السابقة إن وجدت
+        const existingMsg = document.querySelector('.cart-success-popup');
+        if (existingMsg) existingMsg.remove();
+        
+        const successMsg = document.createElement('div');
+        successMsg.className = 'cart-success-popup';
+        successMsg.style.cssText = `
+            position: fixed; top: 20px; right: 20px; z-index: 10000;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white; padding: 15px 20px; border-radius: 12px;
+            font-weight: 600; box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+            animation: slideInRight 0.4s ease-out;
+            max-width: 300px; font-size: 14px;
+        `;
+        
+        successMsg.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-check-circle"></i>
+                <span>تم إضافة "${productTitle}" للسلة!</span>
+            </div>
+        `;
+        
+        document.body.appendChild(successMsg);
+        setTimeout(() => successMsg.remove(), 3000);
     }
     
     async function loadRatingsData() {
@@ -97,9 +157,9 @@
         const hasDiscount = product.price !== product.sale_price;
         const discountPercentage = hasDiscount ? Math.round(((product.price - product.sale_price) / product.price) * 100) : 0;
         const rating = ratingsData[product.id.toString()] || getDefaultRating(product);
-        const stars = '★'.repeat(Math.floor(rating.rating));
-        const productJSON = JSON.stringify(product).replace(/"/g, '&quot;');
+        const stars = '⭐'.repeat(Math.floor(rating.rating));
         const prettyUrl = buildPrettyURL(product);
+        const whatsappMessage = encodeURIComponent(`مرحباً! أريد طلب "${product.title}" بسعر ${product.sale_price} درهم مع التوصيل المجاني`);
         
         return `
             <div class="product-card emirates-element" data-product-id="${product.id}" data-category="${product.categoryEn}" style="animation-delay: ${index * 0.1}s;">
@@ -114,13 +174,14 @@
                         `<div class="product-badge new-badge">جديد</div>`
                     }
                     
-                    <div class="product-category-badge" style="position: absolute; top: 10px; left: 10px; background: rgba(212, 175, 55, 0.9); color: var(--deep-blue); padding: 4px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; z-index: 2;">
+                    <div class="product-category-badge" style="position: absolute; top: 10px; left: 10px; background: rgba(212, 175, 55, 0.9); color: #2c3e50; padding: 4px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; z-index: 2;">
                         ${product.categoryIcon} ${product.category}
                     </div>
                     
                     <div class="product-overlay">
-                        <a href="${prettyUrl}" class="overlay-btn eye-link" title="عرض التفاصيل">
+                        <a href="${prettyUrl}" class="overlay-btn eye-link" title="عرض التفاصيل" style="display: flex; align-items: center; justify-content: center; gap: 5px; text-decoration: none; color: white; font-size: 0.9rem; font-weight: 600;">
                             <i class="fas fa-eye"></i>
+                            <span>التفاصيل</span>
                         </a>
                     </div>
                 </div>
@@ -128,50 +189,54 @@
                 <div class="product-info">
                     <div class="product-category">${product.categoryIcon} ${product.category}</div>
                     <h3 class="product-title">
-                        <a href="${prettyUrl}" class="product-title-link" style="color: inherit; text-decoration: none;">
+                        <a href="${prettyUrl}" class="product-title-link" style="color: inherit; text-decoration: none; font-weight: 700;">
                             ${product.title}
                         </a>
                     </h3>
                     
-                    <div class="product-rating">
-                        <div class="stars">${stars}</div>
-                        <span class="rating-text">(${rating.rating.toFixed(1)} • ${rating.count} تقييم)</span>
+                    <div class="product-rating" style="margin: 10px 0;">
+                        <div class="stars" style="color: #FFD700; font-size: 1.2rem;">${stars}</div>
+                        <span class="rating-text" style="font-size: 0.9rem; color: #666; font-weight: 600;">(${rating.rating.toFixed(1)} • ${rating.count} تقييم)</span>
                     </div>
                     
                     ${rating.professional_review ? 
-                        `<div class="professional-review-badge" style="background: rgba(39, 174, 96, 0.1); color: #27ae60; padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin: 5px 0; display: flex; align-items: center; gap: 4px; border: 1px solid rgba(39, 174, 96, 0.2);">
+                        `<div class="professional-review-badge" style="background: rgba(39, 174, 96, 0.1); color: #27ae60; padding: 6px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: 600; margin: 8px 0; display: flex; align-items: center; gap: 5px; border: 1px solid rgba(39, 174, 96, 0.3);">
                             <i class="fas fa-check-circle"></i> ${rating.professional_review}
                         </div>` : ''
                     }
                     
-                    <div class="product-price">
-                        <span class="current-price">${product.sale_price} د.إ</span>
-                        ${hasDiscount ? `<span class="original-price">${product.price} د.إ</span>` : ''}
+                    <div class="product-price" style="margin: 15px 0;">
+                        <span class="current-price" style="font-size: 1.3rem; font-weight: 800; color: #27ae60;">${product.sale_price} د.إ</span>
+                        ${hasDiscount ? `<span class="original-price" style="font-size: 1rem; color: #e74c3c; text-decoration: line-through; margin-right: 10px;">${product.price} د.إ</span>` : ''}
                     </div>
                     
-                    <div class="product-actions">
-                        <button class="btn-add-cart" data-product="${productJSON}">
+                    <div class="product-actions" style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-top: 15px;">
+                        <button class="btn-add-cart" 
+                                onclick="addProductToCart('${product.id}', '${product.title.replace(/'/g, "\\'")}')"
+                                style="background: linear-gradient(135deg, #FFD700, #D4AF37); color: #2c3e50; border: none; padding: 12px 15px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 6px;">
                             <i class="fas fa-shopping-cart"></i>
-                            إضافة للسلة
+                            <span>للسلة</span>
                         </button>
+                        <a href="https://wa.me/201110760081?text=${whatsappMessage}" 
+                           target="_blank"
+                           class="btn-whatsapp"
+                           style="background: linear-gradient(135deg, #25D366, #20B358); color: white; text-decoration: none; padding: 12px 15px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.3s ease;">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>واتساب</span>
+                        </a>
                     </div>
                 </div>
             </div>
         `;
     }
     
-    // دالة فتح تفاصيل المنتج (global function) - محدثة للمسار الجميل
-    window.openProductDetails = function(productId, category) {
+    // دالة إضافة للسلة - عامة
+    window.addProductToCart = function(productId, productTitle) {
         const product = allProducts.find(p => p.id.toString() === productId.toString());
         if (product) {
-            const prettyUrl = buildPrettyURL(product);
-            console.log(`✅ فتح رابط جميل: ${prettyUrl}`);
-            window.location.href = prettyUrl;
+            addToCart(product);
         } else {
-            // fallback للرابط القديم
-            const detailsURL = `./product-details.html?id=${productId}&category=${category}`;
-            console.log(`⚠️ fallback رابط: ${detailsURL}`);
-            window.location.href = detailsURL;
+            console.error('لم يتم العثور على المنتج:', productId);
         }
     };
     
@@ -179,9 +244,9 @@
         const baseRating = product.type === 'perfume' ? 4.6 : 4.7;
         return {
             rating: baseRating + Math.random() * 0.3,
-            count: Math.floor(Math.random() * 150 + 50),
+            count: Math.floor(Math.random() * 150 + 80),
             professional_review: product.type === 'perfume' ? 
-                '✓ عطر عالي الجودة' : '✓ ساعة فاخرة موثوقة'
+                '✓ عطر موثق عالي الجودة' : '✓ ساعة فاخرة معتمدة'
         };
     }
     
@@ -196,9 +261,9 @@
         
         if (productsToShow.length === 0) {
             container.innerHTML = `
-                <div class="no-products" style="text-align: center; padding: 60px 20px; color: var(--text-light);">
+                <div class="no-products" style="text-align: center; padding: 60px 20px; color: #666;">
                     <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; display: block;"></i>
-                    <h3 style="margin: 10px 0; color: var(--deep-blue);">لا توجد منتجات</h3>
+                    <h3 style="margin: 10px 0; color: #2c3e50;">لا توجد منتجات</h3>
                     <p>عذراً، لا توجد منتجات متاحة حالياً.</p>
                 </div>
             `;
@@ -211,13 +276,10 @@
         
         container.innerHTML = productsHTML;
         
-        // تفعيل الأزرار بعد إنشاء HTML
+        // تحديث شارة السلة بعد العرض
         setTimeout(() => {
-            if (window.ButtonsFix) {
-                window.ButtonsFix.fixAddToCartButtons();
-                window.ButtonsFix.addRatingsToCards();
-            }
-        }, 500);
+            updateCartBadge();
+        }, 300);
         
         console.log(`✅ تم عرض ${productsToShow.length} منتج في ${containerId}`);
     }
@@ -332,6 +394,17 @@
                 .product-card {
                     opacity: 0;
                     animation: fadeInUp 0.6s ease-out forwards;
+                    background: white;
+                    border-radius: 15px;
+                    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+                    overflow: hidden;
+                    transition: all 0.3s ease;
+                    border: 1px solid rgba(212, 175, 55, 0.1);
+                }
+                
+                .product-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
                 }
                 
                 @keyframes fadeInUp {
@@ -339,14 +412,29 @@
                     100% { opacity: 1; transform: translateY(0); }
                 }
                 
+                @keyframes slideInRight {
+                    0% { transform: translateX(100%); opacity: 0; }
+                    100% { transform: translateX(0); opacity: 1; }
+                }
+                
                 .product-title-link:hover {
                     color: var(--primary-gold) !important;
                     transition: color 0.3s ease;
                 }
                 
-                .eye-link {
-                    text-decoration: none;
-                    color: inherit;
+                .btn-add-cart:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+                }
+                
+                .btn-whatsapp:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+                }
+                
+                .eye-link:hover {
+                    background: rgba(212, 175, 55, 0.9) !important;
+                    color: #2c3e50 !important;
                 }
                 
                 .discount-badge {
@@ -366,11 +454,11 @@
                 }
                 
                 .filter-btn {
-                    background: var(--white);
-                    border: 2px solid var(--primary-gold);
-                    color: var(--primary-gold);
+                    background: white;
+                    border: 2px solid #D4AF37;
+                    color: #D4AF37;
                     padding: 10px 20px;
-                    border-radius: var(--border-radius-small);
+                    border-radius: 8px;
                     font-weight: 600;
                     cursor: pointer;
                     transition: all 0.3s ease;
@@ -378,41 +466,20 @@
                 
                 .filter-btn.active,
                 .filter-btn:hover {
-                    background: var(--gradient-gold);
-                    color: var(--deep-blue);
+                    background: linear-gradient(135deg, #FFD700, #D4AF37);
+                    color: #2c3e50;
                     transform: translateY(-2px);
                 }
                 
-                .search-input {
-                    flex: 1;
-                    max-width: 300px;
-                    padding: 12px 15px;
-                    border: 2px solid var(--light-gray);
-                    border-radius: var(--border-radius-small);
-                    font-family: 'Cairo', sans-serif;
-                    font-size: 1rem;
-                }
-                
-                .search-input:focus {
-                    outline: none;
-                    border-color: var(--primary-gold);
-                }
-                
-                .sort-select {
-                    padding: 10px 15px;
-                    border: 2px solid var(--light-gray);
-                    border-radius: var(--border-radius-small);
-                    background: var(--white);
-                    font-family: 'Cairo', sans-serif;
-                    font-size: 0.9rem;
-                }
-                
                 @media (max-width: 768px) {
+                    .product-actions {
+                        grid-template-columns: 1fr !important;
+                        gap: 10px !important;
+                    }
                     .filter-controls {
                         flex-direction: column;
                         align-items: stretch;
                     }
-                    .search-input { max-width: 100%; }
                 }
             `;
             document.head.appendChild(style);
@@ -429,6 +496,9 @@
         } else if (currentPage === 'products-showcase.html') {
             loadProductsShowcase();
         }
+        
+        // تحديث شارة السلة في البداية
+        updateCartBadge();
     }
     
     window.ProductsLoader = {
@@ -442,7 +512,9 @@
         getAllProducts: () => allProducts,
         getRatingsData: () => ratingsData,
         arabicSlugify,
-        buildPrettyURL
+        buildPrettyURL,
+        addToCart,
+        updateCartBadge
     };
     
     if (document.readyState === 'loading') {
