@@ -1,9 +1,9 @@
-// وضاـف المتجر الرئيسية المحسّنة - متجر هدايا الإمارات
+// وضاءف المتجر الرئيسية المحسّنة - متجر هدايا الإمارات
 // متوافق مع التصميم الجديد المستوحى من دخون الإماراتية
 // مع دعم صفحات تفاصيل المنتجات الديناميكية
 
 // متغيرات عامة
-let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
+let cart = JSON.parse(localStorage.getItem('emirates_shopping_cart') || '[]');
 let isLoading = false;
 
 // دالة لتحويل اسم المنتج إلى سلاج عربي
@@ -26,7 +26,11 @@ function calculateDiscount(originalPrice, salePrice) {
 // دالة إنشاء رابط واتساب
 function createWhatsAppLink(productTitle, productPrice) {
     const phoneNumber = "201110760081";
-    const message = `مرحباً! أريد الاستفسار عن هذا المنتج:\n${productTitle}\nبسعر: ${productPrice} درهم إماراتي\n\nمن متجر هدايا الإمارات`;
+    const message = `مرحباً! أريد الاستفسار عن هذا المنتج:
+${productTitle}
+بسعر: ${productPrice} درهم إماراتي
+
+من متجر هدايا الإمارات`;
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 }
 
@@ -81,7 +85,7 @@ window.addToCart = function(productData) {
         }
         
         // حفظ في التخزين المحلي
-        localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
+        localStorage.setItem('emirates_shopping_cart', JSON.stringify(cart));
         
         // تحديث عداد السلة
         updateCartBadge();
@@ -102,7 +106,7 @@ function updateCartBadge() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     
     // البحث عن جميع عدادات السلة
-    const badges = document.querySelectorAll('.cart-badge, #cartBadge, .cart-counter, #cart-count');
+    const badges = document.querySelectorAll('.cart-badge, #cartBadge, .cart-counter, #cart-count, .mobile-cart-counter');
     
     badges.forEach(badge => {
         if (totalItems > 0) {
@@ -216,7 +220,7 @@ function createProductCard(product, categoryType = 'general') {
                     `<div class="product-badge new-badge">جديد</div>`
                 }
                 <div class="product-overlay">
-                    <a href="./product-details.html?id=${product.id}" class="overlay-btn quick-view-btn" title="عرض التفاصيل">
+                    <a href="./product-details.html?id=${product.id}" class="overlay-btn quick-view-btn" title="عرض التفاصيل" target="_blank">
                         <i class="fas fa-eye"></i>
                     </a>
                     <button class="overlay-btn wishlist-btn" title="إضافة للمفضلة" onclick="addToWishlist('${product.id}')">
@@ -253,7 +257,7 @@ function createProductCard(product, categoryType = 'general') {
                     <a href="${whatsappLink}" class="btn-whatsapp" target="_blank" rel="noopener noreferrer" title="طلب عبر واتساب">
                         <i class="fab fa-whatsapp"></i>
                     </a>
-                    <a href="./product-details.html?id=${product.id}" class="btn-view-product" title="عرض التفاصيل">
+                    <a href="./product-details.html?id=${product.id}" class="btn-view-product" title="عرض التفاصيل" target="_blank">
                         <i class="fas fa-info-circle"></i>
                         التفاصيل
                     </a>
@@ -347,6 +351,46 @@ async function loadMainProducts() {
             watchesGrid.innerHTML = '<div class="no-products">عذراً، لا توجد ساعات متاحة حالياً</div>';
         }
         
+        // عرض منتجات مميزة (مزيج من العطور والساعات)
+        const featuredGrid = document.getElementById('featuredProducts');
+        if (featuredGrid) {
+            const allProducts = [...perfumes, ...watches];
+            if (allProducts.length > 0) {
+                // اختيار عشوائي مع تفضيل المنتجات ذات الخصومات
+                const featured = allProducts
+                    .sort(() => 0.5 - Math.random())
+                    .slice(0, 12);
+                    
+                featuredGrid.innerHTML = featured
+                    .map(product => createProductCard(product, 'mixed'))
+                    .join('');
+            } else {
+                featuredGrid.innerHTML = '<div class="no-products">عذراً، لا توجد منتجات متاحة حالياً</div>';
+            }
+        }
+        
+        // عرض أفضل العروض (منتجات بخصومات)
+        const bestDealsGrid = document.getElementById('bestDeals');
+        if (bestDealsGrid) {
+            const allProducts = [...perfumes, ...watches];
+            const dealsProducts = allProducts
+                .filter(product => parseFloat(product.price) > parseFloat(product.sale_price))
+                .sort((a, b) => {
+                    const discountA = calculateDiscount(a.price, a.sale_price);
+                    const discountB = calculateDiscount(b.price, b.sale_price);
+                    return discountB - discountA;
+                })
+                .slice(0, 6);
+                
+            if (dealsProducts.length > 0) {
+                bestDealsGrid.innerHTML = dealsProducts
+                    .map(product => createProductCard(product, 'deal'))
+                    .join('');
+            } else {
+                bestDealsGrid.innerHTML = '<div class="no-products">عذراً، لا توجد عروض متاحة حالياً</div>';
+            }
+        }
+        
         // تحديث عداد السلة
         updateCartBadge();
         
@@ -367,7 +411,7 @@ async function loadMainProducts() {
     } catch (error) {
         console.error('خطأ في تحميل المنتجات:', error);
         
-        const grids = document.querySelectorAll('#perfumes-grid, #watches-grid');
+        const grids = document.querySelectorAll('#perfumes-grid, #watches-grid, #featuredProducts, #bestDeals');
         grids.forEach(grid => {
             if (grid) {
                 grid.innerHTML = `
