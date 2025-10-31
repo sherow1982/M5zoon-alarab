@@ -1,7 +1,5 @@
-// Emirates Gifts - English Version Main JavaScript - Simplified
-
-// Global Variables
-let cart = JSON.parse(localStorage.getItem('emirates-cart-en') || '[]');
+// Emirates Gifts - English Version Main JavaScript - Fixed
+// Removed cart variable conflict
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
@@ -13,7 +11,7 @@ function initializeApp() {
     initializeNavigation();
     initializeMobileMenu();
     initializeBackToTop();
-    initializeCart();
+    initializeCartSystem();
     
     console.log('✅ Emirates Gifts English version initialized');
 }
@@ -118,110 +116,139 @@ function initializeBackToTop() {
     }
 }
 
-// Cart Management
-function initializeCart() {
-    updateCartCounter();
+// Cart Management - Fixed
+function initializeCartSystem() {
+    updateCartCounterMain();
     
     // Listen for cart updates
     window.addEventListener('cartUpdated', function() {
-        updateCartCounter();
-        saveCart();
+        updateCartCounterMain();
     });
 }
 
-function updateCartCounter() {
-    const cartCounters = document.querySelectorAll('.cart-counter');
-    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-    
-    cartCounters.forEach(counter => {
-        counter.textContent = totalItems;
-        counter.style.display = totalItems > 0 ? 'flex' : 'none';
-    });
-}
-
-function addToCart(product) {
-    const existingItem = cart.find(item => item.id === product.id);
-    
-    if (existingItem) {
-        existingItem.quantity = (existingItem.quantity || 1) + 1;
-    } else {
-        cart.push({
-            id: product.id,
-            title: product.title,
-            price: product.price,
-            image: product.image,
-            quantity: 1
+function updateCartCounterMain() {
+    try {
+        const cartData = JSON.parse(localStorage.getItem('emirates_shopping_cart') || '[]');
+        const cartCounters = document.querySelectorAll('.cart-counter, .mobile-cart-counter');
+        const totalItems = cartData.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        
+        cartCounters.forEach(counter => {
+            if (counter) {
+                counter.textContent = totalItems;
+                counter.style.display = totalItems > 0 ? 'flex' : 'none';
+            }
         });
+    } catch (error) {
+        console.error('Error updating cart counter:', error);
     }
-    
-    // Dispatch cart updated event
-    window.dispatchEvent(new CustomEvent('cartUpdated'));
-    
-    // Show success notification
-    showNotification('Product added to cart!', 'success');
 }
 
-function saveCart() {
-    localStorage.setItem('emirates-cart-en', JSON.stringify(cart));
+// Simple Add to Cart Function
+function addToCartSimple(productId, productName, price, image) {
+    try {
+        const cartData = JSON.parse(localStorage.getItem('emirates_shopping_cart') || '[]');
+        const existingItem = cartData.find(item => item.id === productId);
+        
+        if (existingItem) {
+            existingItem.quantity = (existingItem.quantity || 1) + 1;
+        } else {
+            cartData.push({
+                id: productId,
+                name: productName,
+                price: parseFloat(price),
+                image: image || '',
+                quantity: 1,
+                addedAt: new Date().toISOString()
+            });
+        }
+        
+        localStorage.setItem('emirates_shopping_cart', JSON.stringify(cartData));
+        updateCartCounterMain();
+        showNotificationMain('Product added to cart!', 'success');
+        
+    } catch (error) {
+        console.error('Error adding to cart:', error);
+        showNotificationMain('Error adding product to cart', 'error');
+    }
 }
 
 // Order Now Function
-function orderNow(productName, price) {
-    const message = `Hello! I'm interested in ordering:\n\n📱 Product: ${productName}\n💰 Price: $${price.toFixed(2)} AED\n\nPlease provide more details about availability and delivery to UAE.`;
+function orderNowSimple(productName, price) {
+    const message = `Hello! I'm interested in ordering:\n\n📱 Product: ${productName}\n💰 Price: ${price.toFixed(2)} AED\n\nPlease provide more details about availability and delivery to UAE.`;
     const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }
 
-// Notification System
-function showNotification(message, type = 'info') {
+// Notification System - Fixed
+function showNotificationMain(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.main-notification');
+    existingNotifications.forEach(notification => notification.remove());
+    
     const notification = document.createElement('div');
+    notification.className = 'main-notification';
     notification.style.cssText = `
         position: fixed;
-        top: 20px;
+        top: 100px;
         right: 20px;
-        background: ${type === 'success' ? '#d4edda' : '#d1ecf1'};
-        color: ${type === 'success' ? '#155724' : '#0c5460'};
+        background: ${type === 'success' ? '#d4edda' : type === 'error' ? '#f8d7da' : '#d1ecf1'};
+        color: ${type === 'success' ? '#155724' : type === 'error' ? '#721c24' : '#0c5460'};
+        border: 1px solid ${type === 'success' ? '#c3e6cb' : type === 'error' ? '#f5c6cb' : '#bee5eb'};
         padding: 15px 20px;
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 10000;
+        z-index: 10001;
         transform: translateX(400px);
         transition: transform 0.3s ease;
         display: flex;
         align-items: center;
         gap: 10px;
+        font-family: 'Inter', sans-serif;
+        max-width: 300px;
+        font-size: 14px;
     `;
     
     notification.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check' : 'info'}-circle"></i>
+        <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation-triangle' : 'info'}-circle"></i>
         <span>${message}</span>
-        <button onclick="this.parentElement.remove()" style="background: none; border: none; color: inherit; cursor: pointer; margin-left: 10px;">
+        <button onclick="this.parentElement.remove()" style="background: none; border: none; color: inherit; cursor: pointer; margin-left: 10px; font-size: 16px;">
             <i class="fas fa-times"></i>
         </button>
     `;
     
     document.body.appendChild(notification);
     
+    // Animate in
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
     
+    // Auto remove
     setTimeout(() => {
         notification.style.transform = 'translateX(400px)';
-        setTimeout(() => notification.remove(), 300);
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 300);
     }, 4000);
 }
 
 // Export functions for global access
 window.Emirates = {
-    addToCart,
-    orderNow,
-    showNotification,
-    closeMobileMenu
+    addToCartSimple,
+    orderNowSimple,
+    showNotificationMain,
+    closeMobileMenu,
+    updateCartCounterMain
 };
 
-// Global functions
-window.orderNow = orderNow;
-window.addToCartSimple = addToCartSimple;
+// Global functions for backward compatibility
 window.orderNowSimple = orderNowSimple;
-window.showNotification = showNotification;
+window.addToCartSimple = addToCartSimple;
+window.showNotificationMain = showNotificationMain;
+window.updateCartCounterMain = updateCartCounterMain;
+
+console.log('✅ Emirates Gifts English main system loaded successfully');
+console.log('🛍️ Cart system integrated with localStorage');
+console.log('💬 WhatsApp integration ready');
