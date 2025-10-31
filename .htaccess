@@ -1,9 +1,9 @@
 # Emirates Gifts Store - Enhanced .htaccess Configuration
 # Security, Performance, SEO Optimization for UAE Market
-# Updated: November 1, 2025 - Complete Security & Performance Overhaul
+# Updated: November 1, 2025 - CSP Fixed for Inline Scripts
 
 # ================================
-# SECURITY HEADERS - ENHANCED
+# SECURITY HEADERS - ENHANCED & CSP FIXED
 # ================================
 RewriteEngine On
 Options +FollowSymlinks -Indexes
@@ -21,11 +21,11 @@ Options +FollowSymlinks -Indexes
     # Strict referrer policy for privacy
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     
-    # Enhanced Content Security Policy
-    Header always set Content-Security-Policy "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me;"
+    # Fixed Content Security Policy - Allow inline scripts with unsafe-inline
+    Header always set Content-Security-Policy "default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http:; connect-src 'self' https: wss:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me; frame-src 'self' https://wa.me; media-src 'self' https:;"
     
     # Permissions Policy (formerly Feature Policy)
-    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self), payment=(self)"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self), payment=(self), autoplay=(self)"
     
     # Remove server signatures for security
     Header unset Server
@@ -38,7 +38,9 @@ Options +FollowSymlinks -Indexes
     
     # Prevent information disclosure
     Header always set X-Robots-Tag "index, follow"
-header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # HSTS for HTTPS enforcement
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 </IfModule>
 
 # ================================
@@ -110,14 +112,14 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
     ExpiresByType application/font-woff "access plus 1 year"
     ExpiresByType application/font-woff2 "access plus 1 year"
     
-    # Data files - 6 hours for fresh product updates
-    ExpiresByType application/json "access plus 6 hours"
-    ExpiresByType text/xml "access plus 6 hours"
-    ExpiresByType application/xml "access plus 6 hours"
-    ExpiresByType application/rss+xml "access plus 6 hours"
+    # Data files - 3 hours for fresh product updates
+    ExpiresByType application/json "access plus 3 hours"
+    ExpiresByType text/xml "access plus 3 hours"
+    ExpiresByType application/xml "access plus 3 hours"
+    ExpiresByType application/rss+xml "access plus 3 hours"
     
-    # HTML files - 3 hours for fresh content
-    ExpiresByType text/html "access plus 3 hours"
+    # HTML files - 1 hour for fresh content
+    ExpiresByType text/html "access plus 1 hour"
     
     # Default cache
     ExpiresDefault "access plus 1 week"
@@ -141,13 +143,15 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
     Require all denied
 </FilesMatch>
 
-# Block direct PHP file access (if any future PHP files)
-<FilesMatch "\.php$">
-    # Allow only specific PHP files if needed
+# Allow JSON files for product data but restrict direct access
+<FilesMatch "\.json$">
     <RequireAny>
+        # Allow same origin access
+        Require expr "%{HTTP_REFERER} =~ /emirates-gifts\.arabsad\.com/"
+        # Allow localhost for development
         Require local
+        # Allow specific IPs if needed
         Require ip 127.0.0.1
-        # Add your server IP here if needed
     </RequireAny>
 </FilesMatch>
 
@@ -160,7 +164,7 @@ RewriteCond %{REQUEST_URI} ^/$
 RewriteCond %{QUERY_STRING} !lang=ar
 RewriteRule ^(.*)$ /en/ [R=302,L]
 
-# Clean product URLs
+# Clean product URLs with better parameter handling
 RewriteRule ^product/([a-zA-Z0-9_-]+)/?$ product-details.html?id=$1 [L,QSA]
 RewriteRule ^en/product/([a-zA-Z0-9_-]+)/?$ en/product-details.html?id=$1 [L,QSA]
 
@@ -169,6 +173,10 @@ RewriteRule ^perfumes/?$ products-showcase.html?category=perfumes [L,QSA]
 RewriteRule ^watches/?$ products-showcase.html?category=watches [L,QSA]
 RewriteRule ^en/perfumes/?$ en/products-showcase.html?category=perfumes [L,QSA] 
 RewriteRule ^en/watches/?$ en/products-showcase.html?category=watches [L,QSA]
+
+# Brand and search URLs with proper encoding
+RewriteRule ^search/([^/]+)/?$ products-showcase.html?search=$1 [L,QSA]
+RewriteRule ^en/search/([^/]+)/?$ en/products-showcase.html?search=$1 [L,QSA]
 
 # Clean URLs - remove .html extension
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -200,7 +208,7 @@ ErrorDocument 503 /503.html
 # ================================
 # ENHANCED SECURITY BLOCKS
 # ================================
-# Block malicious query strings
+# Block malicious query strings with better regex
 RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
 RewriteCond %{QUERY_STRING} GLOBALS(=|\[|%[0-9A-Z]{0,2}) [OR]
 RewriteCond %{QUERY_STRING} _REQUEST(=|\[|%[0-9A-Z]{0,2}) [OR]
@@ -245,15 +253,15 @@ RewriteRule .* - [F,L]
         Header set Expires "Thu, 31 Dec 2025 23:59:59 GMT"
     </FilesMatch>
     
-    # Cache HTML files for better SEO
+    # Cache HTML files for faster loading
     <FilesMatch "\.(html|htm)$">
-        Header set Cache-Control "public, max-age=10800, must-revalidate"
+        Header set Cache-Control "public, max-age=3600, must-revalidate"
         Header set Pragma "public"
     </FilesMatch>
     
-    # Cache data files with shorter expiry
+    # Cache data files with shorter expiry for product updates
     <FilesMatch "\.(json|xml|txt|rss|tsv)$">
-        Header set Cache-Control "public, max-age=21600"
+        Header set Cache-Control "public, max-age=10800"
         Header set Pragma "public"
     </FilesMatch>
     
@@ -293,22 +301,10 @@ RewriteRule .* - [F,L]
     BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 </IfModule>
 
-# Alternative compression method
-<IfModule mod_gzip.c>
-    mod_gzip_on Yes
-    mod_gzip_dechunk Yes
-    mod_gzip_item_include file \.(html?|txt|css|js|php|pl|json|xml)$
-    mod_gzip_item_include handler ^cgi-script$
-    mod_gzip_item_include mime ^text/.*
-    mod_gzip_item_include mime ^application/x-javascript.*
-    mod_gzip_item_exclude mime ^image/.*
-    mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
-</IfModule>
-
 # ================================
 # SEO URL STRUCTURE ENHANCED
 # ================================
-# Handle multilingual URLs with hreflang support
+# Handle multilingual URLs
 RewriteRule ^ar/?$ / [R=301,L]
 RewriteRule ^arabic/?$ / [R=301,L]
 
@@ -318,22 +314,18 @@ RewriteRule ^(ساعات|watches)/?$ products-showcase.html?category=watches [L,
 RewriteRule ^en/perfumes/?$ en/products-showcase.html?category=perfumes [L,QSA]
 RewriteRule ^en/watches/?$ en/products-showcase.html?category=watches [L,QSA]
 
-# Brand and search URLs
-RewriteRule ^search/([^/]+)/?$ products-showcase.html?search=$1 [L,QSA]
-RewriteRule ^en/search/([^/]+)/?$ en/products-showcase.html?search=$1 [L,QSA]
-
 # Legacy URL redirects for SEO preservation
-Redirect 301 /products.html /products-showcase.html
-Redirect 301 /shop.html /products-showcase.html
-Redirect 301 /store.html /products-showcase.html
+Redirect 301 /products.html /products-showcase
+Redirect 301 /shop.html /products-showcase
+Redirect 301 /store.html /products-showcase
 Redirect 301 /blog.html /blog/
-Redirect 301 /contact.html /about.html
-Redirect 301 /support.html /about.html
+Redirect 301 /contact.html /about
+Redirect 301 /support.html /about
 
 # ================================
 # SECURITY AGAINST ATTACKS
 # ================================
-# Block WordPress-specific attacks (even though we're not using WordPress)
+# Block WordPress-specific attacks
 RewriteCond %{REQUEST_URI} ^.*wp-.*
 RewriteRule .* - [F,L]
 
@@ -369,20 +361,7 @@ RewriteRule .* - [F,L]
     AddType text/xml .xml
     AddType text/plain .txt
     AddType application/xml .xml
-</IfModule>
-
-# Sitemap and feed accessibility
-RewriteRule ^sitemap\.xml$ /sitemap.xml [L,E=no-gzip:1]
-RewriteRule ^product-feed\.xml$ /product-feed.xml [L,E=no-gzip:1]
-RewriteRule ^robots\.txt$ /robots.txt [L,E=no-gzip:1]
-RewriteRule ^google-merchant-feed\.xml$ /google-merchant-feed-complete.xml [L,E=no-gzip:1]
-RewriteRule ^merchant-feed\.xml$ /google-merchant-feed-complete.xml [L,E=no-gzip:1]
-
-# ================================
-# CONTENT TYPE OPTIMIZATION
-# ================================
-<IfModule mod_mime.c>
-    # Enhanced MIME types
+    AddType text/html .html .htm
     AddType application/javascript .js
     AddType text/css .css
     AddType image/svg+xml .svg .svgz
@@ -390,26 +369,37 @@ RewriteRule ^merchant-feed\.xml$ /google-merchant-feed-complete.xml [L,E=no-gzip
     AddType font/woff .woff
     AddType font/ttf .ttf
     AddType font/otf .otf
-    AddType application/json .json
-    AddType text/xml .xml
     AddType image/webp .webp
     AddType image/avif .avif
-    AddType application/xml .xml
-    AddType text/plain .txt
-    AddType application/rss+xml .rss
+    AddType application/manifest+json .webmanifest
     
     # Set charset for text files
     AddCharset UTF-8 .html .css .js .json .xml .txt
 </IfModule>
 
+# Sitemap and feed accessibility
+RewriteRule ^sitemap\.xml$ /sitemap.xml [L,E=no-gzip:1]
+RewriteRule ^product-feed\.xml$ /product-feed.xml [L,E=no-gzip:1]
+RewriteRule ^robots\.txt$ /robots.txt [L,E=no-gzip:1]
+RewriteRule ^site\.webmanifest$ /site.webmanifest [L,E=no-gzip:1]
+RewriteRule ^google-merchant-feed\.xml$ /google-merchant-feed-complete.xml [L,E=no-gzip:1]
+RewriteRule ^merchant-feed\.xml$ /google-merchant-feed-complete.xml [L,E=no-gzip:1]
+
 # ================================
-# CORS HEADERS FOR FONTS
+# CORS HEADERS FOR FONTS AND ASSETS
 # ================================
 <IfModule mod_headers.c>
-    <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|css)$">
+    <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|css|js)$">
         Header set Access-Control-Allow-Origin "*"
         Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
-        Header set Access-Control-Allow-Headers "Content-Type"
+        Header set Access-Control-Allow-Headers "Content-Type, Accept, Authorization"
+    </FilesMatch>
+    
+    # JSON files CORS for AJAX requests
+    <FilesMatch "\.json$">
+        Header set Access-Control-Allow-Origin "https://emirates-gifts.arabsad.com"
+        Header set Access-Control-Allow-Methods "GET, OPTIONS"
+        Header set Access-Control-Allow-Headers "Content-Type, Accept"
     </FilesMatch>
 </IfModule>
 
@@ -423,6 +413,7 @@ RewriteRule ^merchant-feed\.xml$ /google-merchant-feed-complete.xml [L,E=no-gzip
     H2PushPriority image/png after 32
     H2PushPriority application/javascript interleaved
     H2PushPriority font/woff2 before
+    H2PushPriority application/json after 16
 </IfModule>
 
 # ================================
@@ -451,6 +442,28 @@ ServerTokens Prod
 </IfModule>
 
 # ================================
+# UAE-SPECIFIC OPTIMIZATIONS
+# ================================
+# Add UAE-specific headers
+<IfModule mod_headers.c>
+    Header set X-Country "AE"
+    Header set X-Region "GCC"
+    Header set X-Language "ar-AE"
+    Header set X-Currency "AED"
+</IfModule>
+
+# ================================
+# PRODUCT DETAILS URL HANDLING
+# ================================
+# Handle product detail parameters safely
+RewriteCond %{QUERY_STRING} ^type=([a-zA-Z]+)&id=([a-zA-Z0-9_-]+)&?.*$
+RewriteRule ^product-details\.html$ /product-details.html [L,QSA]
+
+# Ensure product details page loads correctly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^product-details\.html$ /product-details.html [L,QSA]
+
+# ================================
 # MAINTENANCE MODE (DISABLED)
 # ================================
 # Uncomment the lines below to enable maintenance mode
@@ -459,22 +472,4 @@ ServerTokens Prod
 # RewriteRule .* /maintenance.html [R=503,L]
 # ErrorDocument 503 /maintenance.html
 
-# ================================
-# DEVELOPMENT HELPERS (REMOVE IN PRODUCTION)
-# ================================
-# Allow source maps in development only
-# <FilesMatch "\.map$">
-#     Require local
-# </FilesMatch>
-
-# ================================
-# UAE-SPECIFIC OPTIMIZATIONS
-# ================================
-# Add UAE-specific headers
-<IfModule mod_headers.c>
-    Header set X-Country "AE"
-    Header set X-Region "GCC"
-    Header set X-Language "ar-AE"
-</IfModule>
-
-# End of .htaccess
+# End of Enhanced .htaccess
