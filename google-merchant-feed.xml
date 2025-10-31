@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
   <channel>
     <title>متجر هدايا الإمارات - فيد المنتجات الشامل</title>
     <link>https://emirates-gifts.arabsad.com</link>
     <description>فيد جوجل مرشنت سنتر الشامل لجميع منتجات متجر هدايا الإمارات - عطور وساعات فاخرة بأفضل الأسعار</description>
-    <lastBuildDate>Fri, 31 Oct 2025 07:42:15 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Oct 2025 07:49:00 +0000</lastBuildDate>
 
     <item>
       <g:id>perfume_1</g:id>
       <g:title>عطر كوكو شانيل 100 مل</g:title>
-      <g:description>عطر فاخر عطر كوكو شانيل 100 مل بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً من أفضل الماركات العالمية. متوفر الآن في متجر هدايا الإمارات بأفضل الأسعار مع التوصيل المجاني.</g:description>
-      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_1&category=perfume&slug=%D8%B9%D8%B7%D8%B1-%D9%83%D9%88%D9%83%D9%88-%D8%B4%D8%A7%D9%86%D9%8A%D9%84-100-%D9%85%D9%84</g:link>
+      <g:description>عطر فاخر كوكو شانيل بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً من أفضل الماركات العالمية. متوفر بأفضل الأسعار مع التوصيل المجاني.</g:description>
+      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_1&amp;category=perfume&amp;slug=perfume-chanel-100ml</g:link>
       <g:image_link>https://m5zoon.com/public/uploads/products/1722352332177124.webp</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
@@ -21,7 +21,7 @@
       <g:size>100ml</g:size>
       <g:shipping>
         <g:country>AE</g:country>
-        <g:service>التوصيل المجاني</g:service>
+        <g:service>Free Shipping</g:service>
         <g:price>0.00 AED</g:price>
       </g:shipping>
       <g:shipping_weight>0.3 kg</g:shipping_weight>
@@ -31,8 +31,8 @@
     <item>
       <g:id>perfume_2</g:id>
       <g:title>عطر جوتشي فلورا</g:title>
-      <g:description>عطر فاخر عطر جوتشي فلورا بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً من أفضل الماركات العالمية. متوفر الآن في متجر هدايا الإمارات بأفضل الأسعار مع التوصيل المجاني.</g:description>
-      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_2&category=perfume&slug=%D8%B9%D8%B7%D8%B1-%D8%AC%D9%88%D8%AA%D8%B4%D9%8A-%D9%81%D9%84%D9%88%D8%B1%D8%A7</g:link>
+      <g:description>عطر فاخر جوتشي فلورا بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً من أفضل الماركات العالمية. متوفر بأفضل الأسعار مع التوصيل المجاني.</g:description>
+      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_2&amp;category=perfume&amp;slug=perfume-gucci-flora</g:link>
       <g:image_link>https://m5zoon.com/public/uploads/products/1720344963790342.webp</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
@@ -43,7 +43,7 @@
       <g:size>100ml</g:size>
       <g:shipping>
         <g:country>AE</g:country>
-        <g:service>التوصيل المجاني</g:service>
+        <g:service>Free Shipping</g:service>
         <g:price>0.00 AED</g:price>
       </g:shipping>
       <g:shipping_weight>0.3 kg</g:shipping_weight>
@@ -51,10 +51,32 @@
     </item>
 
     <item>
+      <g:id>perfume_4</g:id>
+      <g:title>عطر سوفاج ديور 100 مل</g:title>
+      <g:description>عطر فاخر سوفاج ديور بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً من أفضل الماركات العالمية. متوفر بأفضل الأسعار مع التوصيل المجاني.</g:description>
+      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_4&amp;category=perfume&amp;slug=perfume-dior-sauvage-100ml</g:link>
+      <g:image_link>https://m5zoon.com/public/uploads/products/1720344979304336.webp</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in stock</g:availability>
+      <g:price>252.00 AED</g:price>
+      <g:brand>Dior</g:brand>
+      <g:product_type>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:size>100ml</g:size>
+      <g:shipping>
+        <g:country>AE</g:country>
+        <g:service>Free Shipping</g:service>
+        <g:price>0.00 AED</g:price>
+      </g:shipping>
+      <g:shipping_weight>0.3 kg</g:shipping_weight>
+      <g:mpn>perfume_4</g:mpn>
+    </item>
+
+    <item>
       <g:id>watch_1</g:id>
       <g:title>ساعة رولكس يخت ماستر فضي</g:title>
-      <g:description>ساعة فاخرة ساعة رولكس يخت ماستر فضي بتصميم أنيق ومواصفات احترافية عالية الجودة ومقاومة للماء. ضمان الجودة من متجر هدايا الإمارات مع التوصيل المجاني.</g:description>
-      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_1&category=watch&slug=%D8%B3%D8%A7%D8%B9%D8%A9-%D8%B1%D9%88%D9%84%D9%83%D8%B3-%D9%8A%D8%AE%D8%AA-%D9%85%D8%A7%D8%B3%D8%AA%D8%B1-%D9%81%D8%B6%D9%8A</g:link>
+      <g:description>ساعة فاخرة رولكس يخت ماستر بتصميم أنيق ومواصفات احترافية عالية الجودة ومقاومة للماء. ضمان الجودة مع التوصيل المجاني.</g:description>
+      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_1&amp;category=watch&amp;slug=rolex-yacht-master-silver</g:link>
       <g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
@@ -62,9 +84,10 @@
       <g:brand>Rolex</g:brand>
       <g:product_type>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:product_type>
       <g:google_product_category>201</g:google_product_category>
+      <g:color>فضي</g:color>
       <g:shipping>
         <g:country>AE</g:country>
-        <g:service>التوصيل المجاني</g:service>
+        <g:service>Free Shipping</g:service>
         <g:price>0.00 AED</g:price>
       </g:shipping>
       <g:shipping_weight>0.5 kg</g:shipping_weight>
@@ -74,8 +97,8 @@
     <item>
       <g:id>watch_6</g:id>
       <g:title>ساعة rolex باللون الذهبي والأسود</g:title>
-      <g:description>ساعة فاخرة ساعة rolex باللون الذهبي والأسود بتصميم أنيق ومواصفات احترافية عالية الجودة ومقاومة للماء. ضمان الجودة من متجر هدايا الإمارات مع التوصيل المجاني.</g:description>
-      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_6&category=watch&slug=%D8%B3%D8%A7%D8%B9%D8%A9-rolex-%D8%A8%D8%A7%D9%84%D9%84%D9%88%D9%86-%D8%A7%D9%84%D8%B0%D9%87%D8%A8%D9%8A-%D9%88%D8%A7%D9%84%D8%A3%D8%B3%D9%88%D8%AF</g:link>
+      <g:description>ساعة فاخرة rolex بتصميم أنيق ومواصفات احترافية عالية الجودة ومقاومة للماء. ضمان الجودة مع التوصيل المجاني.</g:description>
+      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_6&amp;category=watch&amp;slug=rolex-gold-black</g:link>
       <g:image_link>https://m5zoon.com/public/uploads/products/1757284688463569.webp</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
@@ -86,11 +109,53 @@
       <g:color>ذهبي / أسود</g:color>
       <g:shipping>
         <g:country>AE</g:country>
-        <g:service>التوصيل المجاني</g:service>
+        <g:service>Free Shipping</g:service>
         <g:price>0.00 AED</g:price>
       </g:shipping>
       <g:shipping_weight>0.5 kg</g:shipping_weight>
       <g:mpn>watch_6</g:mpn>
+    </item>
+
+    <item>
+      <g:id>watch_15</g:id>
+      <g:title>ساعة سربنتي توبوغاس</g:title>
+      <g:description>ساعة فاخرة سربنتي توبوغاس بتصميم أنيق ومواصفات احترافية عالية الجودة ومقاومة للماء. ضمان الجودة مع التوصيل المجاني.</g:description>
+      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_15&amp;category=watch&amp;slug=serpenti-tubogas</g:link>
+      <g:image_link>https://m5zoon.com/public/uploads/products/1741220746882687.png</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in stock</g:availability>
+      <g:price>420.00 AED</g:price>
+      <g:brand>Bulgari</g:brand>
+      <g:product_type>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:product_type>
+      <g:google_product_category>201</g:google_product_category>
+      <g:shipping>
+        <g:country>AE</g:country>
+        <g:service>Free Shipping</g:service>
+        <g:price>0.00 AED</g:price>
+      </g:shipping>
+      <g:shipping_weight>0.5 kg</g:shipping_weight>
+      <g:mpn>watch_15</g:mpn>
+    </item>
+
+    <item>
+      <g:id>watch_88</g:id>
+      <g:title>ساعة رولكس بتصميم الكعبة</g:title>
+      <g:description>ساعة فاخرة رولكس بتصميم الكعبة الإسلامي بتصميم أنيق ومواصفات احترافية عالية الجودة ومقاومة للماء. ضمان الجودة مع التوصيل المجاني.</g:description>
+      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_88&amp;category=watch&amp;slug=rolex-kaaba-design</g:link>
+      <g:image_link>https://m5zoon.com/public/uploads/products/1750340228334282.webp</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in stock</g:availability>
+      <g:price>490.00 AED</g:price>
+      <g:brand>Rolex</g:brand>
+      <g:product_type>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:product_type>
+      <g:google_product_category>201</g:google_product_category>
+      <g:shipping>
+        <g:country>AE</g:country>
+        <g:service>Free Shipping</g:service>
+        <g:price>0.00 AED</g:price>
+      </g:shipping>
+      <g:shipping_weight>0.5 kg</g:shipping_weight>
+      <g:mpn>watch_88</g:mpn>
     </item>
 
   </channel>
