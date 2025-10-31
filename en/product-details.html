@@ -2,715 +2,291 @@
 <html lang="en-US" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title id="productTitle">Product Details - Emirates Gifts Store</title>
-    <meta name="description" id="productDescription" content="Discover premium product details with customer reviews and fast UAE delivery.">
-    <meta name="robots" content="index, follow">
-    
-    <link rel="canonical" id="canonicalUrl" href="https://emirates-gifts.arabsad.com/en/product-details.html">
-    <link rel="alternate" hreflang="ar" id="arabicUrl" href="https://emirates-gifts.arabsad.com/product-details.html">
-    <link rel="alternate" hreflang="en" id="englishUrl" href="https://emirates-gifts.arabsad.com/en/product-details.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Emirates Gifts Store</title>
+    <meta name="description" content="Product details from Emirates Gifts Store - Premium perfumes and luxury watches">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <link rel="stylesheet" href="../css/dkhoon-inspired-style.css">
     <link rel="stylesheet" href="../css/mobile-responsive-fixes.css">
-    <link rel="stylesheet" href="../css/reviews-system.css">
-    <link rel="stylesheet" href="../css/emirates-reviews-style.css">
-    <link rel="stylesheet" href="../css/english-version-styles.css">
-    
-    <script type="application/ld+json" id="productSchema">
-    {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": "Premium Product",
-      "description": "Premium product from Emirates Gifts Store",
-      "brand": {
-        "@type": "Brand",
-        "name": "Emirates Gifts"
-      },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "AED",
-        "price": "0",
-        "availability": "https://schema.org/InStock",
-        "seller": {
-          "@type": "Organization",
-          "name": "Emirates Gifts Store"
-        }
-      }
-    }
-    </script>
     
     <style>
-    /* Product Details Page Styles */
-    .product-details-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px 20px;
-    }
-    
-    .product-main {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        margin-bottom: 60px;
-    }
-    
-    .product-images {
-        position: relative;
-    }
-    
-    .main-image {
-        width: 100%;
-        height: 500px;
-        object-fit: cover;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    
-    .product-info {
-        text-align: left;
-    }
-    
-    .product-title {
-        font-size: 32px;
-        font-weight: 700;
-        color: #1a1a1a;
-        margin-bottom: 15px;
-        line-height: 1.3;
-    }
-    
-    .product-price {
-        font-size: 28px;
-        font-weight: 700;
-        color: var(--primary-gold);
-        margin-bottom: 20px;
-    }
-    
-    .product-description {
-        font-size: 16px;
-        line-height: 1.7;
-        color: #555;
-        margin-bottom: 30px;
-    }
-    
-    .product-features {
-        background: #f8f9fa;
-        padding: 25px;
-        border-radius: 15px;
-        margin-bottom: 30px;
-    }
-    
-    .product-features h4 {
-        color: var(--primary-gold);
-        margin-bottom: 15px;
-        font-size: 18px;
-    }
-    
-    .features-list {
-        list-style: none;
-        padding: 0;
-    }
-    
-    .features-list li {
-        padding: 8px 0;
-        border-bottom: 1px solid #e9ecef;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .features-list li:last-child {
-        border-bottom: none;
-    }
-    
-    .features-list i {
-        color: var(--primary-gold);
-        width: 16px;
-    }
-    
-    .product-actions {
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-        margin-bottom: 40px;
-    }
-    
-    .quantity-selector {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-    
-    .quantity-label {
-        font-weight: 600;
-        color: #333;
-    }
-    
-    .quantity-controls {
-        display: flex;
-        align-items: center;
-        border: 2px solid #e1e5e9;
-        border-radius: 8px;
-        overflow: hidden;
-    }
-    
-    .quantity-btn {
-        background: #f8f9fa;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: background 0.3s ease;
-    }
-    
-    .quantity-btn:hover {
-        background: #e9ecef;
-    }
-    
-    .quantity-input {
-        border: none;
-        padding: 10px 15px;
-        text-align: center;
-        width: 60px;
-        font-weight: 600;
-    }
-    
-    .reviews-section {
-        margin-top: 60px;
-        padding: 40px 0;
-        border-top: 2px solid #f0f0f0;
-    }
-    
-    .reviews-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 40px;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-    
-    .reviews-summary {
-        text-align: left;
-    }
-    
-    .reviews-filters {
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-    
-    .filter-btn {
-        padding: 8px 16px;
-        border: 2px solid #e1e5e9;
-        background: white;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-weight: 500;
-        font-size: 14px;
-    }
-    
-    .filter-btn.active {
-        background: var(--primary-gold);
-        color: white;
-        border-color: var(--primary-gold);
-    }
-    
-    .filter-btn:hover {
-        border-color: var(--primary-gold);
-    }
+    body { font-family: 'Inter', sans-serif; direction: ltr; text-align: left; }
+    .logo-subtitle { font-family: 'Cairo', sans-serif; direction: rtl; }
+    .product-details-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .product-header { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .product-image { width: 100%; max-width: 500px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .product-info { padding: 20px; }
+    .product-title-main { font-size: 2rem; font-weight: 800; color: #2c3e50; margin-bottom: 20px; }
+    .product-price-main { font-size: 2rem; font-weight: 900; color: #27ae60; margin: 20px 0; }
+    .breadcrumb { margin-bottom: 30px; color: #666; }
+    .breadcrumb a { color: #D4AF37; text-decoration: none; }
+    .product-actions-main { display: flex; gap: 15px; margin-top: 30px; }
+    .btn-main { padding: 15px 30px; border-radius: 10px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; }
+    .btn-primary-main { background: linear-gradient(135deg, #D4AF37, #B8860B); color: white; border: none; }
+    .btn-whatsapp-main { background: #25D366; color: white; border: none; }
+    .btn-primary-main:hover, .btn-whatsapp-main:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+    .category-badge-main { background: rgba(212, 175, 55, 0.2); color: #B8860B; padding: 8px 15px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-weight: 600; }
+    .error-message { text-align: center; padding: 60px; color: #e74c3c; }
+    .loading-message { text-align: center; padding: 60px; color: #666; }
     
     @media (max-width: 768px) {
-        .product-main {
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-        
-        .product-title {
-            font-size: 24px;
-        }
-        
-        .product-price {
-            font-size: 22px;
-        }
-        
-        .product-actions {
-            flex-direction: column;
-        }
-        
-        .reviews-header {
-            flex-direction: column;
-            align-items: flex-start;
-        }
+        .product-header { grid-template-columns: 1fr; gap: 30px; }
+        .product-title-main { font-size: 1.5rem; }
+        .product-actions-main { flex-direction: column; }
     }
     </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
     
-    <div class="top-banner">
-        <div class="banner-text">
-            <i class="fas fa-shipping-fast banner-icon"></i>
-            <span>Express delivery 1-3 business days • 14-day return guarantee + shipping fees</span>
-            <i class="fas fa-star banner-icon"></i>
-        </div>
-    </div>
-
-    <header class="header" id="header">
+    <header class="header">
         <div class="header-container">
             <div class="header-content">
-                <a href="../" class="logo" aria-label="Home - Emirates Gifts">
-                    <div class="logo-icon"><img src="../../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;"></div>
+                <a href="./" class="logo">
+                    <div class="logo-icon"><img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px;"></div>
                     <div class="logo-text">
                         <div class="logo-title">Emirates Gifts</div>
                         <div class="logo-subtitle">هدايا الإمارات</div>
                     </div>
                 </a>
-
-                <nav class="main-nav" aria-label="Main Navigation">
-                    <ul class="nav-menu">
-                        <li class="nav-item"><a href="../" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="../products-showcase.html" class="nav-link" target="_blank" rel="noopener">All Products</a></li>
-                        <li class="nav-item"><a href="../#perfumes-section" class="nav-link">Perfumes</a></li>
-                        <li class="nav-item"><a href="../#watches-section" class="nav-link">Watches</a></li>
-                        <li class="nav-item"><a href="../blog/" class="nav-link" target="_blank" rel="noopener">Blog</a></li>
-                        <li class="nav-item">
-                            <a href="../../" class="nav-link arabic-link" target="_blank" rel="noopener">
-                                <i class="fas fa-globe"></i> العربية
-                            </a>
-                        </li>
-                        <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link" target="_blank" rel="noopener">Contact</a></li>
-                    </ul>
-                </nav>
-
+                
                 <div class="header-tools">
-                    <a href="../cart.html" class="header-tool cart-icon" aria-label="View Cart" title="View Cart">
+                    <a href="./cart.html" class="header-tool cart-icon">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter">0</span>
                     </a>
-                    <a href="../checkout.html" class="header-tool order-now-btn" aria-label="Order Now" title="Order Now">
-                        <i class="fas fa-credit-card"></i>
-                        <span>Order Now</span>
-                    </a>
-                    <button class="mobile-menu-toggle" id="openSidebar" aria-label="Open Menu" title="Open Menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
+                    <a href="./" class="btn-secondary">Back to Home</a>
                 </div>
             </div>
         </div>
     </header>
-
+    
     <main class="main-content">
         <div class="product-details-container">
             <div class="breadcrumb">
-                <a href="../">Home</a> <i class="fas fa-chevron-right"></i> 
-                <a href="../products-showcase.html" target="_blank" rel="noopener">Products</a> <i class="fas fa-chevron-right"></i> 
-                <span id="breadcrumbProduct">Product Details</span>
+                <a href="./">Home</a> &gt; 
+                <span id="categoryBreadcrumb">Products</span> &gt;
+                <span id="productBreadcrumb">Product Details</span>
             </div>
             
-            <div class="product-main" id="productMain">
-                <div class="loading-message" id="productLoading">⏳ Loading product details...</div>
-            </div>
-            
-            <!-- Reviews Section -->
-            <div class="reviews-section" id="reviewsSection" style="display: none;">
-                <div class="reviews-header">
-                    <div class="reviews-summary">
-                        <h3>Customer Reviews</h3>
-                        <div class="rating-summary" id="ratingSummary">
-                            <div class="average-rating">
-                                <span class="rating-score">4.8</span>
-                                <div class="rating-stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <span class="rating-count">(Based on 127 reviews)</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="reviews-filters">
-                        <button class="filter-btn active" data-filter="all">All Reviews</button>
-                        <button class="filter-btn" data-filter="verified">Verified Purchases</button>
-                        <button class="filter-btn" data-filter="high-rating">4-5 Stars</button>
-                    </div>
-                </div>
-                
-                <div class="reviews-list" id="reviewsList">
-                    <!-- Reviews will be loaded here -->
-                </div>
-                
-                <button class="btn-secondary" id="showMoreReviews" style="display: none; margin: 30px auto;">
-                    <i class="fas fa-plus"></i>
-                    Show More Reviews
-                </button>
-            </div>
-            
-            <!-- Related Products -->
-            <div class="related-products-section">
-                <h3>You May Also Like</h3>
-                <div class="products-grid" id="relatedProductsGrid">
-                    <div class="loading-message">⏳ Loading related products...</div>
+            <div id="productContent">
+                <div class="loading-message">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 20px;"></i>
+                    <h3>Loading product details...</h3>
                 </div>
             </div>
         </div>
     </main>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Emirates Gifts</h3>
-                    <p>Premium perfumes and luxury gifts with authentic quality guarantee.</p>
-                    <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Quick Actions</h3>
-                    <ul>
-                        <li><a href="../">Back to Home</a></li>
-                        <li><a href="../products-showcase.html" target="_blank" rel="noopener">All Products</a></li>
-                        <li><a href="../cart.html">View Cart</a></li>
-                        <li><a href="../checkout.html" style="color: #25D366; font-weight: bold;">Complete Order</a></li>
-                        <li><a href="../../" target="_blank" rel="noopener" style="color: #D4AF37;"><i class="fas fa-globe"></i> عربي</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Customer Support</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
-                        <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/201110760081" target="_blank" rel="noopener">WhatsApp 24/7</a></li>
-                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="footer-legal">
-                    <p>&copy; 2024 Emirates Gifts. All rights reserved.</p>
-                    <div class="legal-links">
-                        <a href="../privacy-policy.html">Privacy</a>
-                        <a href="../terms-conditions.html">Terms</a>
-                        <a href="../../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> عربي</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <button class="back-to-top" id="backToTop" aria-label="Back to Top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    <div class="mobile-sidebar" id="mobileSidebar">
-        <div class="mobile-sidebar-header">
-            <div class="mobile-sidebar-logo">Emirates Gifts</div>
-            <button class="mobile-sidebar-close" id="closeSidebar" aria-label="Close Menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <nav class="mobile-sidebar-nav">
-            <a href="../"><i class="fas fa-home"></i> Home</a>
-            <a href="../products-showcase.html" target="_blank" rel="noopener"><i class="fas fa-th-large"></i> All Products</a>
-            <a href="../cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
-            <a href="../checkout.html" class="order-now-btn"><i class="fas fa-credit-card"></i> Order Now</a>
-            <a href="../../" target="_blank" rel="noopener" class="arabic-link"><i class="fas fa-globe"></i> عربي</a>
-            <a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </nav>
-    </div>
-
-    <script src="../../js/ui.js"></script>
-    <script src="../../js/cart-system.js"></script>
-    <script src="../../js/reviews-system.js"></script>
-    <script src="../../js/products-loader.js"></script>
-    <script src="../../js/main.js"></script>
-    <script src="../js/english-version.js"></script>
     
     <script>
-    // Product Details Page for English Version
-    document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('id');
-        const language = urlParams.get('lang') || 'en';
+    // English Product Details Loading System
+    (function() {
+        'use strict';
         
-        if (productId) {
-            loadProductDetailsEN(productId);
-        } else {
-            // Redirect to products page if no ID provided
-            window.location.href = '../products-showcase.html';
+        // Product translation mapping (same as loader)
+        const translations = {
+            'عطر كوكو شانيل': 'Chanel Coco Perfume',
+            'عطر جوتشي فلورا': 'Gucci Flora Perfume',
+            'عطر جوتشي بلوم': 'Gucci Bloom Perfume',
+            'عطر سوفاج ديور': 'Dior Sauvage Perfume',
+            'Tom Ford': 'Tom Ford',
+            'ساعة رولكس': 'Rolex Watch',
+            'ساعة اوميغا': 'Omega Watch',
+            'Audemars Piguet': 'Audemars Piguet'
+        };
+        
+        function translateTitle(arabicTitle) {
+            if (!arabicTitle) return 'Premium Product';
+            
+            let englishTitle = arabicTitle;
+            Object.keys(translations).forEach(arabic => {
+                if (arabicTitle.includes(arabic)) {
+                    englishTitle = englishTitle.replace(arabic, translations[arabic]);
+                }
+            });
+            
+            return englishTitle
+                .replace(/عطر\s*/g, '')
+                .replace(/ساعة\s*/g, '')
+                .replace(/\s+مل\s*/, 'ml ')
+                .replace(/\s+ملم\s*/, 'mm ')
+                .replace(/\s+/g, ' ')
+                .trim() || 'Premium Product';
         }
         
-        // Setup review filters
-        setupReviewFiltersEN();
-    });
-    
-    function loadProductDetailsEN(productId) {
-        // Simulate loading product data (in real implementation, this would fetch from API/JSON)
-        setTimeout(() => {
-            displayProductDetailsEN({
-                id: productId,
-                name: 'Premium Eastern Perfume',
-                price: 299,
-                originalPrice: 399,
-                description: 'Exquisite premium Eastern fragrance with notes of rose, oud, and amber. Perfect for special occasions and daily elegance.',
-                image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=500&h=500&fit=crop',
-                category: 'Perfumes',
-                brand: 'Emirates Collection',
-                inStock: true,
-                rating: 4.8,
-                reviewCount: 127,
-                features: [
-                    'Premium quality ingredients',
-                    'Long-lasting fragrance',
-                    'Elegant bottle design',
-                    'Perfect for gifting',
-                    'Unisex appeal'
-                ]
-            });
-        }, 1000);
-    }
-    
-    function displayProductDetailsEN(product) {
-        // Update page title and meta
-        document.title = `${product.name} - Emirates Gifts Store | Premium ${product.category}`;
-        document.getElementById('productDescription').content = `${product.description} Fast UAE delivery in 1-3 business days.`;
-        
-        // Update URLs
-        const productUrl = `https://emirates-gifts.arabsad.com/en/product-details.html?id=${product.id}`;
-        document.getElementById('canonicalUrl').href = productUrl;
-        document.getElementById('englishUrl').href = productUrl;
-        document.getElementById('arabicUrl').href = `https://emirates-gifts.arabsad.com/product-details.html?id=${product.id}`;
-        
-        // Update structured data
-        const schema = {
-            "@context": "https://schema.org",
-            "@type": "Product",
-            "name": product.name,
-            "description": product.description,
-            "brand": {
-                "@type": "Brand",
-                "name": product.brand
-            },
-            "offers": {
-                "@type": "Offer",
-                "priceCurrency": "AED",
-                "price": product.price,
-                "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-                "seller": {
-                    "@type": "Organization",
-                    "name": "Emirates Gifts Store"
-                }
-            },
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": product.rating,
-                "reviewCount": product.reviewCount
-            }
-        };
-        document.getElementById('productSchema').textContent = JSON.stringify(schema, null, 2);
-        
-        // Create product HTML
-        const productHTML = `
-            <div class="product-images">
-                <img src="${product.image}" alt="${product.name}" class="main-image">
-            </div>
+        async function loadEnglishProductDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productType = urlParams.get('type');
+            const productId = urlParams.get('id');
+            const source = urlParams.get('source');
             
-            <div class="product-info">
-                <h1 class="product-title">${product.name}</h1>
-                <div class="product-price">
-                    <span class="current-price">${product.price}</span>
-                    ${product.originalPrice ? `<span class="original-price" style="text-decoration: line-through; color: #999; margin-left: 10px; font-size: 20px;">${product.originalPrice}</span>` : ''}
-                </div>
-                <p class="product-description">${product.description}</p>
+            console.log('🔍 Loading English product details:', { productType, productId, source });
+            
+            if (!productType || !productId) {
+                showError('Incomplete product information');
+                return;
+            }
+            
+            let productData = null;
+            
+            try {
+                if (productType === 'perfume' || source === 'otor') {
+                    const response = await fetch('../data/otor.json');
+                    if (response.ok) {
+                        const perfumes = await response.json();
+                        productData = perfumes.find(p => p.id === productId);
+                        if (productData) {
+                            productData.type = 'Perfume';
+                            productData.category = 'Perfumes';
+                            productData.icon = '🌸';
+                            productData.titleEN = translateTitle(productData.title);
+                        }
+                    }
+                } else if (productType === 'watch' || source === 'sa3at') {
+                    const response = await fetch('../data/sa3at.json');
+                    if (response.ok) {
+                        const watches = await response.json();
+                        productData = watches.find(p => p.id === productId);
+                        if (productData) {
+                            productData.type = 'Watch';
+                            productData.category = 'Watches';
+                            productData.icon = '⏰';
+                            productData.titleEN = translateTitle(productData.title);
+                        }
+                    }
+                }
                 
-                <div class="product-features">
-                    <h4>Product Features</h4>
-                    <ul class="features-list">
-                        ${product.features.map(feature => `
-                            <li><i class="fas fa-check"></i> ${feature}</li>
-                        `).join('')}
-                    </ul>
-                </div>
+                if (productData) {
+                    displayEnglishProductDetails(productData);
+                } else {
+                    showError('Product not found');
+                }
                 
-                <div class="quantity-selector">
-                    <label class="quantity-label" for="quantity">Quantity:</label>
-                    <div class="quantity-controls">
-                        <button type="button" class="quantity-btn" onclick="updateQuantity(-1)">-</button>
-                        <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="10">
-                        <button type="button" class="quantity-btn" onclick="updateQuantity(1)">+</button>
+            } catch (error) {
+                console.error('Error loading English product details:', error);
+                showError('Error loading product');
+            }
+        }
+        
+        function displayEnglishProductDetails(product) {
+            const hasDiscount = parseFloat(product.price) > parseFloat(product.sale_price);
+            const discountPercent = hasDiscount ? Math.round(((parseFloat(product.price) - parseFloat(product.sale_price)) / parseFloat(product.price)) * 100) : 0;
+            
+            document.getElementById('categoryBreadcrumb').textContent = product.category;
+            document.getElementById('productBreadcrumb').textContent = product.titleEN;
+            document.title = `${product.titleEN} - Emirates Gifts Store`;
+            
+            const productHTML = `
+                <div class="product-header">
+                    <div class="product-image-section">
+                        <img src="${product.image_link}" alt="${product.titleEN}" class="product-image" 
+                             onerror="this.src='https://via.placeholder.com/500x500/D4AF37/FFFFFF?text=${product.type}'">
+                    </div>
+                    
+                    <div class="product-info">
+                        <div class="category-badge-main">${product.icon} ${product.category}</div>
+                        
+                        <h1 class="product-title-main">${product.titleEN}</h1>
+                        
+                        <div class="product-description" style="color: #666; line-height: 1.6; margin: 20px 0;">
+                            ${product.type === 'Perfume' ? 
+                                'Premium quality perfume with exquisite fragrance composition and long-lasting scent. Perfect for all occasions, reflecting elegance and distinction.' :
+                                'High-quality luxury watch with elegant design and professional specifications. Combines style with advanced functionality for all occasions.'
+                            }
+                        </div>
+                        
+                        <div class="product-price-section">
+                            <div class="product-price-main">${parseFloat(product.sale_price).toFixed(2)} <span style="font-size: 1.2rem;">AED</span></div>
+                            ${hasDiscount ? `<div class="original-price" style="font-size: 1.2rem; color: #e74c3c; text-decoration: line-through;">${parseFloat(product.price).toFixed(2)} AED</div>` : ''}
+                            ${hasDiscount ? `<div class="discount-badge" style="background: #e74c3c; color: white; padding: 5px 10px; border-radius: 5px; display: inline-block; margin-top: 10px;">${discountPercent}% OFF</div>` : ''}
+                        </div>
+                        
+                        <div class="product-features" style="margin: 30px 0;">
+                            <h3 style="color: #2c3e50; margin-bottom: 15px;">Product Features:</h3>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 8px 0; color: #666;"><i class="fas fa-check" style="color: #27ae60; margin-right: 10px;"></i> Premium quality guaranteed</li>
+                                <li style="padding: 8px 0; color: #666;"><i class="fas fa-check" style="color: #27ae60; margin-right: 10px;"></i> Delivery within 1-3 business days</li>
+                                <li style="padding: 8px 0; color: #666;"><i class="fas fa-check" style="color: #27ae60; margin-right: 10px;"></i> 14-day return + shipping fees</li>
+                                <li style="padding: 8px 0; color: #666;"><i class="fas fa-check" style="color: #27ae60; margin-right: 10px;"></i> 24/7 customer service</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="product-actions-main">
+                            <button class="btn-main btn-primary-main" onclick="addToCartFromDetailsEN('${product.id}')">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                            
+                            <button class="btn-main btn-whatsapp-main" onclick="orderViaWhatsAppEN('${product.id}', '${product.titleEN}', '${product.sale_price}')">
+                                <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                            </button>
+                            
+                            <a href="./checkout.html" class="btn-main btn-primary-main">
+                                <i class="fas fa-credit-card"></i> Order Now
+                            </a>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="product-actions">
-                    <button class="btn-primary add-to-cart-btn" onclick="addToCartEN('${product.id}')">
-                        <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
-                    </button>
-                    <button class="btn-primary order-now-btn" onclick="orderNowEN('${product.id}')">
-                        <i class="fas fa-credit-card"></i>
-                        Order Now
-                    </button>
-                    <a href="https://wa.me/201110760081?text=Hi! I'm interested in: ${product.name} (${product.price} AED)" class="btn-secondary" target="_blank" rel="noopener">
-                        <i class="fab fa-whatsapp"></i>
-                        WhatsApp
+            `;
+            
+            document.getElementById('productContent').innerHTML = productHTML;
+        }
+        
+        function showError(message) {
+            document.getElementById('productContent').innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                    <h2>${message}</h2>
+                    <p>Please try again or return to homepage</p>
+                    <a href="./" class="btn-primary-main btn-main" style="margin-top: 20px; display: inline-block; text-decoration: none;">
+                        <i class="fas fa-home"></i> Back to Home
                     </a>
                 </div>
-                
-                <div class="delivery-info" style="background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 30px 0;">
-                    <h4 style="color: #28a745; margin-bottom: 15px;"><i class="fas fa-shipping-fast"></i> Delivery Information</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> Free express delivery within 1-3 business days</li>
-                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> 14-day return guarantee + return shipping fees covered</li>
-                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> Secure packaging with premium materials</li>
-                        <li><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> 24/7 customer support via WhatsApp</li>
-                    </ul>
-                </div>
-            </div>
-        `;
+            `;
+        }
         
-        document.getElementById('productMain').innerHTML = productHTML;
-        document.getElementById('breadcrumbProduct').textContent = product.name;
+        // Interaction functions
+        window.addToCartFromDetailsEN = function(productId) {
+            console.log('Adding to cart from English details page:', productId);
+            alert('Product added to cart!');
+        };
         
-        // Show reviews section
-        document.getElementById('reviewsSection').style.display = 'block';
+        window.orderViaWhatsAppEN = function(productId, productTitle, price) {
+            const message = `Hello! I want to order this product:\n\n🎁 ${productTitle}\n💰 ${price} AED\n📱 From Emirates Gifts Store\n\nI would like to know about ordering and delivery details.`;
+            const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        };
         
-        // Load reviews and related products
-        setTimeout(() => {
-            loadProductReviewsEN(product.id);
-            loadRelatedProductsEN(product.category);
-        }, 500);
+        function updateCartCounterEN() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('emirates_shopping_cart') || '[]');
+                const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                const counter = document.querySelector('.cart-counter');
+                if (counter) {
+                    counter.textContent = totalItems;
+                    counter.style.display = totalItems > 0 ? 'flex' : 'none';
+                }
+            } catch (error) {
+                console.error('Error updating English cart counter:', error);
+            }
+        }
         
-        // Update currency display
-        setTimeout(() => {
-            window.EmiratesGiftsEN.updateCurrency();
-        }, 100);
-    }
-    
-    function updateQuantity(change) {
-        const quantityInput = document.getElementById('quantity');
-        const currentValue = parseInt(quantityInput.value) || 1;
-        const newValue = Math.max(1, Math.min(10, currentValue + change));
-        quantityInput.value = newValue;
-    }
-    
-    function addToCartEN(productId) {
-        const quantity = document.getElementById('quantity').value;
-        // Add to cart logic here
-        console.log(`Adding ${quantity} of product ${productId} to cart`);
+        function init() {
+            loadEnglishProductDetails();
+            updateCartCounterEN();
+        }
         
-        // Show success message
-        showNotificationEN('Product added to cart successfully!', 'success');
-    }
-    
-    function orderNowEN(productId) {
-        const quantity = document.getElementById('quantity').value;
-        // Add to cart and redirect to checkout
-        addToCartEN(productId);
-        setTimeout(() => {
-            window.location.href = '../checkout.html';
-        }, 500);
-    }
-    
-    function loadProductReviewsEN(productId) {
-        // Load and display reviews (placeholder)
-        const reviewsHTML = `
-            <div class="review-item">
-                <div class="review-header">
-                    <div class="review-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="review-author">Ahmed K. - Dubai</div>
-                    <div class="review-verified"><i class="fas fa-check-circle"></i> Verified Purchase</div>
-                </div>
-                <div class="review-text">Excellent quality perfume with amazing longevity. The fragrance is sophisticated and perfect for both day and evening wear. Highly recommended!</div>
-                <div class="review-helpful">
-                    <button class="helpful-btn" data-review-id="1">
-                        <i class="fas fa-thumbs-up"></i> Helpful (23)
-                    </button>
-                </div>
-            </div>
-        `;
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
         
-        document.getElementById('reviewsList').innerHTML = reviewsHTML;
-    }
-    
-    function loadRelatedProductsEN(category) {
-        // Load related products (placeholder)
-        document.getElementById('relatedProductsGrid').innerHTML = '<div class="loading-message">⏳ Loading related premium products...</div>';
-    }
-    
-    function setupReviewFiltersEN() {
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                const filter = this.getAttribute('data-filter');
-                filterReviewsEN(filter);
-            });
-        });
-    }
-    
-    function filterReviewsEN(filter) {
-        // Filter reviews based on selection
-        console.log(`Filtering reviews by: ${filter}`);
-    }
-    
-    function showNotificationEN(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.innerHTML = `
-            <i class="fas fa-${type === 'success' ? 'check' : 'info'}-circle"></i>
-            <span>${message}</span>
-        `;
-        
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: ${type === 'success' ? '#d4edda' : '#d1ecf1'};
-            color: ${type === 'success' ? '#155724' : '#0c5460'};
-            padding: 15px 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 10000;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-        `;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        setTimeout(() => {
-            notification.style.transform = 'translateX(400px)';
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-    }
+    })();
     </script>
 </body>
 </html>
