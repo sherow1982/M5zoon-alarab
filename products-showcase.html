@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جميع المنتجات مع التقييمات - متجر هدايا الإمارات</title>
-    <meta name="description" content="استعرض جميع العطور والساعات والهدايا الفاخرة مع تقييمات عملائنا الإماراتيين. بحث وفلترة متقدمة للعثور على منتجاتك المفضلة بأفضل الأسعار.">
+    <title>جميع المنتجات مع التقييمات - متجر هدايا الإمارات عالي الجودة</title>
+    <meta name="description" content="استعرض جميع العطور والساعات والهدايا عالية الجودة مع تقييمات عملائنا الإماراتيين. شحن خلال 1-3 أيام عمل وضمان إرجاع 14 يوم + مصاريف الشحن.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -168,6 +168,73 @@
             transform: translateY(-2px);
         }
         
+        /* تحسينات للبطاقات الأيقونية */
+        .product-card {
+            text-align: center !important;
+        }
+        
+        .card-actions-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .icon-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1.2rem;
+        }
+        
+        .icon-btn:hover {
+            background: #D4AF37;
+            border-color: #D4AF37;
+            color: white;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .icon-btn.cart-icon-btn:hover {
+            background: #25D366;
+            border-color: #25D366;
+        }
+        
+        .icon-btn.wish-icon-btn:hover {
+            background: #e74c3c;
+            border-color: #e74c3c;
+        }
+        
+        .btn-tooltip {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+            z-index: 1000;
+            font-weight: 600;
+        }
+        
+        .icon-btn:hover .btn-tooltip {
+            opacity: 1;
+        }
+        
         @media (max-width: 768px) {
             .showcase-title {
                 font-size: 2.2rem;
@@ -191,11 +258,31 @@
                 margin: 15px;
                 padding: 20px 15px;
             }
+            
+            .icon-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- بانر علوي محدث -->
+    <div class="top-banner">
+        <div class="banner-text">
+            <i class="fas fa-shipping-fast banner-icon"></i>
+            <span>توصيل خلال 1-3 أيام عمل • ضمان إرجاع 14 يوم + مصاريف الشحن</span>
+            <i class="fas fa-gift banner-icon"></i>
+        </div>
+    </div>
     
     <header class="header" id="header">
         <div class="header-container">
@@ -218,11 +305,11 @@
                 </nav>
 
                 <div class="header-tools">
-                    <a href="./cart.html" class="header-tool">
+                    <a href="./cart.html" class="header-tool cart-icon">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                        <span class="cart-counter" id="cartBadge" style="display: none;">0</span>
                     </a>
-                    <a href="./checkout.html" class="header-tool" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; border-radius: 8px; padding: 8px 12px;">
+                    <a href="./checkout.html" class="header-tool order-now-btn" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; border-radius: 8px; padding: 8px 12px;">
                         <i class="fas fa-credit-card"></i>
                         <span style="font-size: 0.8rem; font-weight: 600;">اطلب فوراً</span>
                     </a>
@@ -237,17 +324,17 @@
         <div class="quick-checkout-banner">
             <h3>🚀 إتمام الطلب السريع</h3>
             <p>هل لديك عناصر في السلة؟ اتمم طلبك بسهولة وسرعة</p>
-            <a href="./checkout.html" class="checkout-cta">
+            <a href="./checkout.html" class="checkout-cta order-now-btn">
                 <i class="fas fa-credit-card"></i>
                 اطلب فوراً عبر واتساب
             </a>
         </div>
         
         <div class="showcase-header">
-            <h1 class="showcase-title">🎆 جميع منتجاتنا مع التقييمات</h1>
+            <h1 class="showcase-title">🎆 جميع منتجاتنا عالية الجودة مع التقييمات</h1>
             <p class="showcase-subtitle">
-                استعرض مجموعتنا الشاملة من العطور الفاخرة والساعات الأنيقة مع تقييمات حقيقية من عملائنا في الإمارات<br>
-                وابحث عن منتجاتك المفضلة بسهولة ⭐
+                استعرض مجموعتنا الشاملة من العطور والساعات والهدايا عالية الجودة مع تقييمات حقيقية من عملائنا في الإمارات<br>
+                <strong>شحن خلال 1-3 أيام عمل • ضمان إرجاع 14 يوم + مصاريف الشحن</strong> ⭐
             </p>
         </div>
         
@@ -264,6 +351,10 @@
                 <button class="filter-btn" data-filter="watches">
                     <i class="fas fa-clock"></i>
                     الساعات
+                </button>
+                <button class="filter-btn" data-filter="jewelry">
+                    <i class="fas fa-gem"></i>
+                    المجوهرات
                 </button>
             </div>
             
@@ -289,16 +380,38 @@
         <div class="products-grid" id="allProductsGrid">
             <div style="text-align: center; padding: 60px 20px; font-size: 1.5rem; color: var(--primary-gold); grid-column: 1 / -1;">
                 <i class="fas fa-spinner" style="font-size: 2rem; animation: spin 1s linear infinite; margin-bottom: 20px; display: block;"></i>
-                <div>🌟 جارِ تحميل جميع المنتجات مع التقييمات...</div>
+                <div>🌟 جارِ تحميل جميع المنتجات عالية الجودة مع التقييمات...</div>
             </div>
         </div>
         
         <!-- رابط سريع لإتمام الطلب -->
         <div style="text-align: center; margin-top: 40px; padding: 20px;">
-            <a href="./checkout.html" class="btn-primary" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; font-size: 1.2rem; padding: 18px 35px; border-radius: 15px; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);">
+            <a href="./checkout.html" class="btn-primary order-now-btn" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; font-size: 1.2rem; padding: 18px 35px; border-radius: 15px; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);">
                 <i class="fas fa-credit-card"></i>
                 إتمام الطلب فوراً
             </a>
+        </div>
+        
+        <!-- معلومات الخدمة -->
+        <div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 15px; padding: 30px; margin-top: 40px; text-align: center;">
+            <h3 style="color: var(--primary-gold); margin-bottom: 20px;">خدماتنا المميزة</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="padding: 15px;">
+                    <i class="fas fa-truck" style="font-size: 2rem; color: var(--primary-gold); margin-bottom: 10px;"></i>
+                    <h4>شحن خلال 1-3 أيام عمل</h4>
+                    <p>توصيل سريع لجميع إمارات الدولة</p>
+                </div>
+                <div style="padding: 15px;">
+                    <i class="fas fa-undo" style="font-size: 2rem; color: var(--primary-gold); margin-bottom: 10px;"></i>
+                    <h4>ضمان إرجاع 14 يوم</h4>
+                    <p>إرجاع مجاني + مصاريف الشحن</p>
+                </div>
+                <div style="padding: 15px;">
+                    <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--primary-gold); margin-bottom: 10px;"></i>
+                    <h4>منتجات عالية الجودة</h4>
+                    <p>ضمان الجودة والأصالة</p>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -307,7 +420,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>هدايا الإمارات</h3>
-                    <p>متجر العطور والهدايا الفاخرة الرائد في الإمارات</p>
+                    <p>متجر العطور والهدايا عالية الجودة الرائد في الإمارات</p>
                 </div>
                 <div class="footer-section">
                     <h3>روابط سريعة</h3>
@@ -317,6 +430,14 @@
                         <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">إتمام الطلب</a></li>
                     </ul>
                 </div>
+                <div class="footer-section">
+                    <h3>خدمة العملاء</h3>
+                    <ul>
+                        <li>شحن خلال 1-3 أيام عمل</li>
+                        <li>إرجاع 14 يوم + مصاريف شحن</li>
+                        <li><a href="https://wa.me/201110760081" target="_blank">الدعم الفني</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
@@ -324,36 +445,118 @@
         </div>
     </footer>
 
-    <!-- تحميل نظام التقييمات أولاً -->
-    <script src="./js/uae-reviews-generator.js" defer></script>
-    <script src="./js/products-loader.js" defer></script>
-    <script src="./js/buttons-fix.js" defer></script>
-    <script src="./js/cart-system.js" defer></script>
-    <script src="./js/main.js" defer></script>
-    <script src="./js/ui.js" defer></script>
+    <!-- تحميل النظم الجديدة أولاً -->
+    <script src="./js/global-text-cleaner.js"></script>
+    <script src="./js/site-update-system.js"></script>
+    <script src="./js/corrected-reviews-system.js"></script>
+    <script src="./js/enhanced-cart-system.js"></script>
+    
+    <!-- النظم الموجودة -->
+    <script src="./js/uae-reviews-generator.js"></script>
+    <script src="./js/products-loader.js"></script>
+    <script src="./js/buttons-fix.js"></script>
+    <script src="./js/cart-system.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/ui.js"></script>
     
     <script>
-        function updateCartBadge() {
-            const cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const badge = document.getElementById('cartBadge');
-            
-            if (badge) {
-                badge.textContent = totalItems;
-                badge.style.display = totalItems > 0 ? 'flex' : 'none';
-            }
-        }
-        
         document.addEventListener('DOMContentLoaded', function() {
+            // تحديث عداد السلة
+            function updateCartBadge() {
+                const cart = JSON.parse(localStorage.getItem('emirates_shopping_cart') || '[]');
+                const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                const badge = document.getElementById('cartBadge');
+                
+                if (badge) {
+                    badge.textContent = totalItems;
+                    badge.style.display = totalItems > 0 ? 'flex' : 'none';
+                }
+            }
+            
             updateCartBadge();
+            
+            // مراقبة تحديثات السلة
+            window.addEventListener('storage', updateCartBadge);
+            
+            // تطبيق النظم الجديدة على البطاقات المحملة ديناميكياً
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.addedNodes.length > 0) {
+                        mutation.addedNodes.forEach((node) => {
+                            if (node.nodeType === 1 && node.classList?.contains('product-card')) {
+                                // تطبيق التحسينات على البطاقة الجديدة
+                                enhanceProductCard(node);
+                            }
+                        });
+                    }
+                });
+            });
+            
+            observer.observe(document.getElementById('allProductsGrid'), {
+                childList: true,
+                subtree: true
+            });
+            
+            function enhanceProductCard(card) {
+                // ضمان وسطية المحتوى
+                card.style.textAlign = 'center';
+                
+                // تحويل الأزرار لأيقونات
+                const buttons = card.querySelectorAll('button, .btn');
+                buttons.forEach(btn => {
+                    if (btn.textContent.includes('اطلب') || btn.textContent.includes('السلة')) {
+                        btn.innerHTML = '<i class="fas fa-shopping-cart"></i><span class="btn-tooltip">أضف للسلة</span>';
+                        btn.className = 'icon-btn cart-icon-btn';
+                    } else if (btn.textContent.includes('تفاصيل') || btn.textContent.includes('عرض')) {
+                        btn.innerHTML = '<i class="fas fa-eye"></i><span class="btn-tooltip">عرض التفاصيل</span>';
+                        btn.className = 'icon-btn view-icon-btn';
+                    } else if (btn.textContent.includes('مفضل') || btn.textContent.includes('قلب')) {
+                        btn.innerHTML = '<i class="fas fa-heart"></i><span class="btn-tooltip">إضافة للمفضلة</span>';
+                        btn.className = 'icon-btn wish-icon-btn';
+                    }
+                });
+                
+                // جعل النقر على البطاقة يفتح المنتج في تبويب جديد
+                const productLink = card.querySelector('a[href*="products/"]');
+                if (productLink) {
+                    productLink.target = '_blank';
+                    
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', (e) => {
+                        if (!e.target.closest('.icon-btn, button, .btn')) {
+                            window.open(productLink.href, '_blank');
+                        }
+                    });
+                }
+                
+                // ضمان وجود وصف المنتج
+                let description = card.querySelector('.product-description');
+                if (!description || !description.textContent.trim()) {
+                    if (!description) {
+                        description = document.createElement('div');
+                        description.className = 'product-description';
+                        card.appendChild(description);
+                    }
+                    
+                    const productName = card.querySelector('.product-name, .product-title')?.textContent || '';
+                    if (productName.includes('ساعة') || productName.includes('watch')) {
+                        description.textContent = 'ساعة عالية الجودة بتصميم أنيق ومواصفات احترافية مناسبة لجميع المناسبات';
+                    } else if (productName.includes('عطر') || productName.includes('perfume')) {
+                        description.textContent = 'عطر فاخر برائحة مميزة وثبات عالي يدوم طوال اليوم بتركيبة عالية الجودة';
+                    } else {
+                        description.textContent = 'منتج عالي الجودة بمواصفات ممتازة وتصميم مميز بأفضل الأسعار';
+                    }
+                    
+                    description.style.cssText = `
+                        font-size: 0.85rem;
+                        color: #666;
+                        margin: 10px 0;
+                        line-height: 1.4;
+                        text-align: center;
+                    `;
+                }
+            }
         });
     </script>
-    
-    <style>
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
 </body>
 </html>
