@@ -1,43 +1,1 @@
-[
-  {
-    "productId": "perfume_1",
-    "productTitle": "عطر كوكو شانيل 100 مل",
-    "category": "perfumes",
-    "reviews": [
-      {
-        "id": "review_perfume1_20241127_9",
-        "author": "رقية الجنيبي",
-        "rating": 5,
-        "comment": "ثبات ممتاز وسعر مناسب، راضي عن الشراء 💯",
-        "date": "2024-11-27T09:48:28.043063",
-        "verified": true,
-        "helpful": 7,
-        "location": null
-      },
-      {
-        "id": "review_perfume1_20241119_10",
-        "author": "سارة القبيسي",
-        "rating": 4,
-        "comment": "عطر مميز جداً وثباته قوي! أنصح فيه بشدة 🌹",
-        "date": "2024-11-19T15:54:46.043063",
-        "verified": true,
-        "helpful": 16,
-        "location": "رأس الخيمة"
-      }
-    ],
-    "averageRating": 4.8,
-    "totalCount": 10,
-    "generatedAt": "2025-10-31T07:30:47.043063"
-  },
-  {
-    "productId": "perfume_2",
-    "productTitle": "عطر جوتشي فلورا",
-    "category": "perfumes",
-    "reviews": [
-      {"id": "review_perfume_2_20230912_0", "author": "أحمد المنصوري", "rating": 5, "comment": "عطر رائع وثبات ممتاز، يدوم لساعات طويلة 🌹", "date": "2023-09-12T10:15:00", "verified": true, "helpful": 12, "location": "أبوظبي"}
-    ],
-    "averageRating": 4.8,
-    "totalCount": 12,
-    "generatedAt": "2025-10-31T08:18:00"
-  }
-]
+[{"productId":"perfume_1","productTitle":"عطر كوكو شانيل 100 مل","category":"perfumes","reviews":[{"id":"review_perfume1_20241127_9","author":"رقية الجنيبي","rating":5,"comment":"ثبات ممتاز وسعر مناسب، راضي عن الشراء 💯","date":"2024-11-27T09:48:28.043063","verified":true,"helpful":7,"location":null},{"id":"review_perfume1_20241119_10","author":"سارة القبيسي","rating":4,"comment":"عطر مميز جداً وثباته قوي! أنصح فيه بشدة 🌹","date":"2024-11-19T15:54:46.043063","verified":true,"helpful":16,"location":"رأس الخيمة"},{"id":"review_perfume1_20221129_5","author":"مجد المرر","rating":5,"comment":"عطر بتركيبة فريدة، استخدمه يومياً والكل يسأل عن اسمه 🔥","date":"2022-11-29T15:38:28.043063","verified":true,"helpful":20,"location":null},{"id":"review_perfume1_20220406_3","author":"زايد الشرقي","rating":4,"comment":"عطر نسائي ناعم ومميز، يناسب جميع المناسبات 💖","date":"2022-04-06T11:02:06.043063","verified":false,"helpful":9,"location":null},{"id":"review_perfume1_20210910_16","author":"ماجد النيادي","rating":5,"comment":"ثبات ممتاز وسعر مناسب، راضي عن الشراء 💯","date":"2021-09-10T17:32:50.043063","verified":true,"helpful":17,"location":null},{"id":"review_perfume1_20210817_2","author":"مريم البدواوي","rating":5,"comment":"رائحة جميلة وفخمة، يدوم لساعات طويلة ⭐","date":"2021-08-17T06:35:53.043063","verified":true,"helpful":22,"location":"الفجيرة"},{"id":"review_perfume1_20210517_12","author":"إيمان الكندي","rating":5,"comment":"تغليف فاخر وجودة عالية، متجر موثوق 📦","date":"2021-05-17T12:14:41.043063","verified":false,"helpful":2,"location":"دبي"},{"id":"review_perfume1_20210509_8","author":"فاطمة النعيمي","rating":5,"comment":"عطر رجالي راقي، حصلت عليه كهدية وكان اختيار موفق 👌","date":"2021-05-09T03:21:16.043063","verified":true,"helpful":15,"location":null},{"id":"review_perfume1_20200825_0","author":"أحمد المنصوري","rating":5,"comment":"عطر مميز جداً وثباته قوي! أنصح فيه بشدة 🌹","date":"2020-08-25T22:44:58.043063","verified":true,"helpful":18,"location":null}],"averageRating":4.8,"totalCount":10,"generatedAt":"2025-10-31T07:30:47.043063"}]
