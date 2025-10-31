@@ -3,104 +3,291 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Emirates Gifts Store - Premium Perfumes & Luxury Watches | 1-3 Day Delivery</title>
-    <meta name="description" content="Emirates Gifts Store - Discover the finest collection of premium perfumes and luxury watches. Fast 1-3 day delivery with 14-day return guarantee + return shipping.">
+    <title>Emirates Gifts Store - Premium Perfumes & Watches | 1-3 Business Days Delivery</title>
+    <meta name="description" content="Emirates Gifts Store - Discover the best premium perfume and watch deals in UAE. Fast delivery within 1-3 business days + 14-day return guarantee + shipping fees covered.">
+    <meta name="keywords" content="emirates gifts, premium perfumes UAE, luxury watches Dubai, Arabic perfumes, Western fragrances, fast delivery UAE, premium gifts Dubai">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Emirates Gifts Store">
+    <meta name="language" content="en">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Emirates Gifts Store - Premium Perfumes & Watches">
+    <meta property="og:description" content="Discover premium Eastern and Western perfumes, luxury watches and gifts. Fast UAE delivery in 1-3 business days.">
+    <meta property="og:url" content="https://emirates-gifts.arabsad.com/en/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://emirates-gifts.arabsad.com/favicon.ico">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Emirates Gifts Store">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Emirates Gifts Store - Premium Perfumes & Watches">
+    <meta name="twitter:description" content="Discover premium Eastern and Western perfumes, luxury watches and gifts.">
+    <meta name="twitter:image" content="https://emirates-gifts.arabsad.com/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://emirates-gifts.arabsad.com/en/">
+    <link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/">
+    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Core CSS Files -->
-    <link rel="stylesheet" href="./css/luxury-american-style.css">
-    <link rel="stylesheet" href="./css/mobile-responsive.css">
-    <link rel="stylesheet" href="./css/reviews-system-en.css">
-    <link rel="stylesheet" href="./css/navigation-effects.css">
-    <link rel="stylesheet" href="./css/premium-components.css">
+    <link rel="stylesheet" href="../css/dkhoon-inspired-style.css">
+    <link rel="stylesheet" href="../css/mobile-responsive-fixes.css">
+    <link rel="stylesheet" href="../css/reviews-system.css">
+    <link rel="stylesheet" href="../css/emirates-reviews-style.css">
+    <link rel="stylesheet" href="../css/fixed-navigation-buttons.css">
+    <link rel="stylesheet" href="../css/button-spacing-fixes.css">
+    <link rel="stylesheet" href="../css/final-button-appearance-fix.css">
     
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Store",
       "name": "Emirates Gifts Store",
-      "description": "Premium perfumes and luxury watches from the UAE",
+      "description": "The trusted Emirati store for premium perfumes, luxury watches and exclusive gifts",
       "url": "https://emirates-gifts.arabsad.com/en/",
       "address": {
         "@type": "PostalAddress",
-        "addressCountry": "AE"
+        "addressCountry": "AE",
+        "addressRegion": "Dubai"
       },
-      "currenciesAccepted": "USD, AED",
+      "currenciesAccepted": "AED",
       "paymentAccepted": "Cash, WhatsApp Order",
-      "telephone": "+201110760081"
+      "telephone": "+201110760081",
+      "email": "info@emirates-gifts.com",
+      "openingHours": "Mo-Su 00:00-23:59",
+      "priceRange": "$$",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "287"
+      }
     }
     </script>
+    
+    <style>
+    /* English Version Optimizations */
+    :root {
+        --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    body {
+        font-family: var(--font-family-primary) !important;
+        direction: ltr !important;
+        text-align: left !important;
+    }
+    
+    .logo-subtitle {
+        font-family: 'Cairo', sans-serif !important;
+        direction: rtl !important;
+    }
+    
+    /* Arabic Link Style */
+    .arabic-link {
+        background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+        color: white !important;
+        border-radius: 25px;
+        padding: 8px 16px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
+        border: 2px solid transparent;
+        font-family: 'Cairo', sans-serif !important;
+        direction: rtl;
+    }
+    
+    .arabic-link:hover {
+        background: linear-gradient(135deg, #8B0000 0%, #C8102E 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(200, 16, 46, 0.5);
+        color: white !important;
+        border-color: #D4AF37;
+    }
+    
+    .arabic-link i {
+        font-size: 16px;
+        animation: spin 2s infinite linear;
+    }
+    
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .arabic-link:hover i {
+        animation-duration: 0.5s;
+    }
+    
+    /* LTR specific adjustments */
+    .nav-menu {
+        flex-direction: row;
+    }
+    
+    .view-all-link i {
+        transform: rotate(180deg);
+    }
+    
+    .hero-cta {
+        justify-content: flex-start;
+    }
+    
+    .section-header {
+        text-align: left;
+    }
+    
+    .collection-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .collection-content {
+        text-align: left;
+    }
+    
+    .footer-content {
+        text-align: left;
+    }
+    
+    /* Currency display for English version */
+    .price::after {
+        content: " AED";
+    }
+    
+    .original-price::after {
+        content: " AED";
+    }
+    
+    .total-price::after {
+        content: " AED";
+    }
+    
+    /* Mobile Improvements */
+    @media (max-width: 768px) {
+        .arabic-link {
+            background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+            color: white !important;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 5px 0;
+            font-weight: bold;
+            border: 2px solid #D4AF37;
+        }
+        
+        .arabic-link:hover {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+            color: white !important;
+        }
+        
+        .mobile-sidebar-nav .arabic-link {
+            background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+            color: white !important;
+            border: 2px solid #D4AF37;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .collection-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    /* Footer link styles */
+    .footer-section a[href*="../"] {
+        background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+        color: white !important;
+        padding: 8px 15px;
+        border-radius: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-weight: bold;
+        border: 1px solid #D4AF37;
+        font-family: 'Cairo', sans-serif !important;
+        direction: rtl;
+    }
+    
+    .footer-section a[href*="../"]:hover {
+        background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    }
+    
+    .legal-links a[href*="../"] {
+        background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+        color: white !important;
+        padding: 8px 15px;
+        border-radius: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: bold;
+        border: 1px solid #D4AF37;
+        transition: all 0.3s ease;
+        font-family: 'Cairo', sans-serif !important;
+        direction: rtl;
+    }
+    
+    .legal-links a[href*="../"]:hover {
+        background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+        transform: translateY(-2px);
+    }
+    </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
     
     <div class="top-banner">
-        <div class="banner-content">
-            <div class="banner-item">
-                <i class="fas fa-shipping-fast"></i>
-                <span>Free Shipping on Orders Over $50</span>
-            </div>
-            <div class="banner-item">
-                <i class="fas fa-shield-alt"></i>
-                <span>14-Day Return Guarantee + Return Shipping</span>
-            </div>
-            <div class="banner-item">
-                <i class="fas fa-award"></i>
-                <span>Premium Quality Guaranteed</span>
-            </div>
+        <div class="banner-text">
+            <i class="fas fa-shipping-fast banner-icon"></i>
+            <span>Delivery within 1-3 business days • 14-day return guarantee + shipping fees</span>
+            <i class="fas fa-gift banner-icon"></i>
         </div>
     </div>
 
     <header class="header" id="header">
         <div class="header-container">
             <div class="header-content">
-                <a href="./" class="logo" aria-label="Emirates Gifts Store Homepage">
-                    <div class="logo-icon">
-                        <img src="../favicon.ico" alt="Emirates Gifts" class="logo-image">
-                    </div>
+                <a href="./" class="logo" aria-label="Home - Emirates Gifts">
+                    <div class="logo-icon"><img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;"></div>
                     <div class="logo-text">
                         <div class="logo-title">Emirates Gifts</div>
-                        <div class="logo-subtitle">Premium Collection</div>
+                        <div class="logo-subtitle">هدايا الإمارات</div>
                     </div>
                 </a>
 
                 <nav class="main-nav" aria-label="Main Navigation">
                     <ul class="nav-menu">
                         <li class="nav-item"><a href="./" class="nav-link active" aria-current="page">Home</a></li>
-                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link" target="_blank" rel="noopener">All Products</a></li>
+                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link" target="_blank" rel="noopener">View All Products</a></li>
                         <li class="nav-item"><a href="#perfumes-section" class="nav-link">Perfumes</a></li>
                         <li class="nav-item"><a href="#watches-section" class="nav-link">Watches</a></li>
                         <li class="nav-item"><a href="./blog/" class="nav-link" target="_blank" rel="noopener">Blog</a></li>
-                        <li class="nav-item dropdown">
-                            <span class="nav-link dropdown-toggle" role="button" tabindex="0">More <i class="fas fa-chevron-down"></i></span>
-                            <ul class="dropdown-menu">
-                                <li><a href="./about.html" class="dropdown-link"><i class="fas fa-info-circle"></i> About Us</a></li>
-                                <li><a href="./shipping-policy.html" class="dropdown-link"><i class="fas fa-shipping-fast"></i> Shipping Policy</a></li>
-                                <li><a href="./return-policy.html" class="dropdown-link"><i class="fas fa-undo"></i> Return Policy</a></li>
-                                <li><a href="./privacy-policy.html" class="dropdown-link"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
-                                <li><a href="./terms-conditions.html" class="dropdown-link"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a href="../" class="nav-link arabic-link" target="_blank" rel="noopener">
+                                <i class="fas fa-globe"></i> العربية
+                            </a>
                         </li>
-                        <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link whatsapp-link" target="_blank" rel="noopener">Contact</a></li>
+                        <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link" target="_blank" rel="noopener">Contact</a></li>
                     </ul>
                 </nav>
 
                 <div class="header-tools">
-                    <div class="language-switcher">
-                        <a href="../" class="lang-link" title="العربية">
-                            <img src="https://flagcdn.com/24x18/ae.png" alt="Arabic" class="flag-icon">
-                            AR
-                        </a>
-                    </div>
                     <a href="./cart.html" class="header-tool cart-icon" aria-label="View Cart" title="View Cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter">0</span>
                     </a>
-                    <a href="./checkout.html" class="header-tool order-btn" aria-label="Order Now" title="Order Now">
+                    <a href="./checkout.html" class="header-tool order-now-btn" aria-label="Order Now" title="Order Now">
                         <i class="fas fa-credit-card"></i>
                         <span>Order Now</span>
                     </a>
@@ -112,294 +299,210 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-background">
-                <div class="hero-overlay"></div>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    A World of Premium<br>
+                    <span style="color: var(--primary-gold);">Perfumes & Luxury Gifts</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Discover the most exquisite collections of premium Eastern and Western perfumes, and distinctive luxury gifts that express your refined taste
+                </p>
+                <div class="hero-cta">
+                    <a href="#perfumes-section" class="btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        Shop Now
+                    </a>
+                    <a href="./products-showcase.html" class="btn-secondary" target="_blank" rel="noopener">
+                        <i class="fas fa-star"></i>
+                        View All Products
+                    </a>
+                    <a href="./checkout.html" class="btn-secondary order-now-btn">
+                        <i class="fas fa-credit-card"></i>
+                        Complete Order
+                    </a>
+                </div>
             </div>
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        Luxury Perfumes<br>
-                        <span class="hero-accent">& Premium Watches</span>
-                    </h1>
-                    <p class="hero-subtitle">
-                        Discover our exquisite collection of premium fragrances and luxury timepieces, 
-                        carefully curated to reflect your sophisticated taste and style.
+            <div class="hero-visual">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop&crop=center" 
+                     alt="Diverse collection of premium perfumes" 
+                     class="hero-image lazyload"
+                     loading="eager"
+                     fetchpriority="high">
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Perfumes Section -->
+    <section class="section" id="main-content">
+        <div class="section-container">
+            <div id="perfumes-section" class="category-section">
+                <div class="section-header">
+                    <h2 class="section-title">Emirates Gifts Premium Perfumes</h2>
+                    <p class="section-subtitle">
+                        We've curated the most beautiful Eastern and Western premium perfumes that suit all preferences with our verified customer reviews ⭐
                     </p>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Premium Products</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">10K+</span>
-                            <span class="stat-label">Happy Customers</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">98%</span>
-                            <span class="stat-label">Satisfaction Rate</span>
-                        </div>
-                    </div>
-                    <div class="hero-cta">
-                        <a href="#perfumes-section" class="btn-primary">
-                            <i class="fas fa-shopping-bag"></i>
-                            Shop Collection
-                        </a>
-                        <a href="./products-showcase.html" class="btn-secondary" target="_blank" rel="noopener">
-                            <i class="fas fa-star"></i>
-                            View All Products
-                        </a>
-                    </div>
+                    <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                        <i class="fas fa-arrow-left"></i>
+                        View All Perfumes
+                    </a>
                 </div>
-                <div class="hero-visual">
-                    <div class="hero-image-container">
-                        <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop&crop=center" 
-                             alt="Luxury perfume collection" 
-                             class="hero-image lazyload"
-                             loading="eager"
-                             fetchpriority="high">
-                        <div class="hero-badge">
-                            <i class="fas fa-award"></i>
-                            <span>Premium Quality</span>
-                        </div>
-                    </div>
+                <div class="products-grid" id="perfumes-grid">
+                    <div class="loading-message">⏳ Loading premium perfumes with customer reviews...</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Premium Perfumes Section -->
-        <section class="section" id="main-content">
-            <div class="section-container">
-                <div id="perfumes-section" class="category-section">
-                    <div class="section-header">
-                        <div class="section-badge">Premium Collection</div>
-                        <h2 class="section-title">Exquisite Perfumes</h2>
-                        <p class="section-subtitle">
-                            Indulge in our carefully curated selection of premium fragrances, 
-                            featuring both oriental and western scents that captivate and inspire.
+    <!-- Eastern Perfumes Collection Section -->
+    <section class="section">
+        <div class="section-container">
+            <div class="collection-section">
+                <div class="collection-grid">
+                    <div class="collection-content">
+                        <h2 class="collection-title">Premium Eastern Perfumes Collection</h2>
+                        <p class="collection-description">
+                            Experience an unforgettable fragrance journey with our exclusive collection of premium Eastern perfumes that embody the most beautiful stories of luxury and tradition
                         </p>
-                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
-                            <span>View All Perfumes</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="products-grid" id="perfumes-grid">
-                        <div class="loading-message">
-                            <div class="loading-spinner"></div>
-                            <span>Loading premium perfumes...</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Oriental Collection Showcase -->
-        <section class="section showcase-section">
-            <div class="section-container">
-                <div class="showcase-content">
-                    <div class="showcase-text">
-                        <div class="showcase-badge">Exclusive</div>
-                        <h2 class="showcase-title">Oriental Fragrance Collection</h2>
-                        <p class="showcase-description">
-                            Embark on an olfactory journey through the mystique of the Orient with our 
-                            exclusive collection of premium oriental fragrances, each telling a story 
-                            of luxury and sophistication.
-                        </p>
-                        <div class="showcase-features">
-                            <div class="feature-item">
-                                <i class="fas fa-gem"></i>
-                                <span>Rare Ingredients</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-certificate"></i>
-                                <span>Authentic Quality</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-crown"></i>
-                                <span>Luxury Experience</span>
-                            </div>
-                        </div>
                         <a href="#perfumes-section" class="btn-primary">
                             <i class="fas fa-crown"></i>
-                            Explore Collection
+                            Discover Collection
                         </a>
                     </div>
-                    <div class="showcase-visual">
+                    <div>
                         <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop&crop=center" 
-                             alt="Oriental perfume collection" 
-                             class="showcase-image lazyload"
+                             alt="Premium Eastern perfumes collection" 
+                             class="collection-image lazyload"
                              loading="lazy">
-                        <div class="showcase-overlay">
-                            <div class="overlay-content">
-                                <i class="fas fa-play-circle"></i>
-                                <span>Discover the Story</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Luxury Watches Section -->
-        <section class="section">
-            <div class="section-container">
-                <div id="watches-section">
-                    <div class="section-header">
-                        <div class="section-badge">Timepiece Excellence</div>
-                        <h2 class="section-title">Luxury Watches</h2>
-                        <p class="section-subtitle">
-                            Discover our exclusive collection of luxury timepieces that combine 
-                            precision engineering with timeless elegance and sophisticated design.
-                        </p>
-                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
-                            <span>View All Watches</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="products-grid" id="watches-grid">
-                        <div class="loading-message">
-                            <div class="loading-spinner"></div>
-                            <span>Loading luxury watches...</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Products Section -->
-        <section class="section featured-section">
-            <div class="section-container">
+    <!-- Watches Section -->
+    <section class="section">
+        <div class="section-container">
+            <div id="watches-section">
                 <div class="section-header">
-                    <div class="section-badge">Editor's Choice</div>
-                    <h2 class="section-title">Featured Products</h2>
+                    <h2 class="section-title">Emirates Gifts Premium Watches</h2>
                     <p class="section-subtitle">
-                        Handpicked selections from our premium collection, featuring the most sought-after 
-                        perfumes and watches with exceptional customer reviews.
+                        An exclusive collection of the finest premium watches that perfectly combine elegance and precision with outstanding customer reviews 🎆
                     </p>
-                    <div class="cta-group">
-                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
-                            <i class="fas fa-th-large"></i>
-                            <span>View All</span>
-                        </a>
-                        <a href="./checkout.html" class="view-all-link order-link">
-                            <i class="fas fa-credit-card"></i>
-                            <span>Order Now</span>
-                        </a>
-                    </div>
+                    <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                        <i class="fas fa-arrow-left"></i>
+                        View All Watches
+                    </a>
                 </div>
-                <div class="products-grid" id="featuredProducts">
-                    <div class="loading-message">
-                        <div class="loading-spinner"></div>
-                        <span>Loading featured products...</span>
-                    </div>
+                <div class="products-grid" id="watches-grid">
+                    <div class="loading-message">⏳ Loading premium watches with customer reviews...</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Special Offers Section -->
-        <section class="section offers-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="section-badge hot">🔥 Hot Deals</div>
-                    <h2 class="section-title">Special Offers</h2>
-                    <p class="section-subtitle">
-                        Don't miss out on these exclusive deals and limited-time offers on our 
-                        premium collection of perfumes and luxury watches.
-                    </p>
-                </div>
-                <div class="products-grid" id="bestDeals">
-                    <div class="loading-message">
-                        <div class="loading-spinner"></div>
-                        <span>Loading special offers...</span>
-                    </div>
+    <!-- Featured Products Section -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Premium Featured Products with Customer Reviews 🌟</h2>
+                <p class="section-subtitle">A carefully selected collection of our best premium products with verified Emirati customer reviews</p>
+                <div class="cta-group">
+                    <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                        <i class="fas fa-th-large"></i>
+                        View All
+                    </a>
+                    <a href="./checkout.html" class="view-all-link order-now-btn">
+                        <i class="fas fa-credit-card"></i>
+                        Order Now
+                    </a>
                 </div>
             </div>
-        </section>
+            <div class="products-grid" id="featuredProducts">
+                <div class="loading-message">⏳ Loading premium featured products with reviews...</div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Service Features Section -->
-        <section class="section services-section">
-            <div class="section-container">
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-shipping-fast"></i>
-                        </div>
-                        <h3 class="service-title">Fast Shipping</h3>
-                        <p class="service-description">
-                            Delivery within <strong>1-3 business days</strong> to all UAE emirates
-                        </p>
-                        <div class="service-badge">Free on $50+</div>
+    <!-- Best Deals Section -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">🔥 Best Premium Deals with Excellent Reviews</h2>
+                <p class="section-subtitle">Take advantage of our exclusive offers with special discounts on premium quality products</p>
+            </div>
+            <div class="products-grid" id="bestDeals">
+                <div class="loading-message">⏳ Loading premium deals...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shipping and Return Information Section -->
+    <section class="section">
+        <div class="section-container">
+            <div class="info-section">
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3>Express Shipping</h3>
+                        <p>Fast delivery within <strong>1-3 business days</strong> to all UAE emirates</p>
                     </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-undo"></i>
-                        </div>
-                        <h3 class="service-title">Return Guarantee</h3>
-                        <p class="service-description">
-                            <strong>14-day return policy</strong> with return shipping included
-                        </p>
-                        <div class="service-badge">No Questions</div>
+                    <div class="info-card">
+                        <i class="fas fa-undo"></i>
+                        <h3>Return Guarantee</h3>
+                        <p>Easy returns within <strong>14 days + return shipping fees</strong> with quality guarantee</p>
                     </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="service-title">Premium Quality</h3>
-                        <p class="service-description">
-                            100% authentic products with quality guarantee and replacement warranty
-                        </p>
-                        <div class="service-badge">Certified</div>
+                    <div class="info-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Premium Quality</h3>
+                        <p>All our products are 100% premium quality with replacement guarantee</p>
                     </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <h3 class="service-title">Instant Order</h3>
-                        <p class="service-description">
-                            Direct WhatsApp ordering with instant response and 24/7 customer service
-                        </p>
-                        <div class="service-badge">24/7 Support</div>
+                    <div class="info-card">
+                        <i class="fab fa-whatsapp"></i>
+                        <h3>Instant Order</h3>
+                        <p>Direct ordering via WhatsApp with instant response and 24/7 customer service</p>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 class="footer-title">Emirates Gifts</h3>
-                    <p class="footer-description">
-                        The leading destination for premium perfumes and luxury watches in the UAE. 
-                        We offer the finest collection of authentic, high-quality products.
+                    <h3>Emirates Gifts</h3>
+                    <p>
+                        The leading premium perfumes and luxury gifts store in the United Arab Emirates. 
+                        We offer you the most beautiful premium collections with authentic quality
                     </p>
                     <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link whatsapp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
 
                 <div class="footer-section">
-                    <h3 class="footer-title">Quick Links</h3>
-                    <ul class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
                         <li><a href="./">Home</a></li>
-                        <li><a href="./products-showcase.html" target="_blank" rel="noopener">All Products</a></li>
+                        <li><a href="./products-showcase.html" target="_blank" rel="noopener">View All Products</a></li>
                         <li><a href="./blog/" target="_blank" rel="noopener">Blog</a></li>
                         <li><a href="./cart.html">Shopping Cart</a></li>
                         <li><a href="./about.html">About Us</a></li>
-                        <li><a href="./checkout.html" class="highlight-link">Order Now</a></li>
+                        <li><a href="../" target="_blank" rel="noopener" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe"></i> النسخة العربية</a></li>
+                        <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">Complete Order</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h3 class="footer-title">Policies & Terms</h3>
-                    <ul class="footer-links">
-                        <li><a href="./shipping-policy.html"><i class="fas fa-shipping-fast"></i> Shipping Policy (1-3 Days)</a></li>
-                        <li><a href="./return-policy.html"><i class="fas fa-undo"></i> Return Policy (14 Days + Shipping)</a></li>
+                    <h3>Policies & Terms</h3>
+                    <ul>
+                        <li><a href="./shipping-policy.html"><i class="fas fa-shipping-fast"></i> Shipping Policy (1-3 business days)</a></li>
+                        <li><a href="./return-policy.html"><i class="fas fa-undo"></i> Return Policy (14 days + shipping fees)</a></li>
                         <li><a href="./privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
                         <li><a href="./terms-conditions.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
                         <li><a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fas fa-headset"></i> Customer Support</a></li>
@@ -407,8 +510,8 @@
                 </div>
 
                 <div class="footer-section">
-                    <h3 class="footer-title">Contact Us</h3>
-                    <ul class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul>
                         <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
                         <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
                         <li><i class="fas fa-map-marker-alt"></i><span>Dubai, United Arab Emirates</span></li>
@@ -419,18 +522,19 @@
 
             <div class="footer-bottom">
                 <div class="footer-legal">
-                    <p>&copy; 2024 Emirates Gifts Store. All rights reserved.</p>
+                    <p>&copy; 2024 Emirates Gifts. All rights reserved.</p>
                     <div class="legal-links">
                         <a href="./privacy-policy.html">Privacy</a>
                         <a href="./terms-conditions.html">Terms</a>
                         <a href="./shipping-policy.html">Shipping</a>
                         <a href="./return-policy.html">Returns</a>
+                        <a href="../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> العربية</a>
                     </div>
                 </div>
-                <div class="footer-features">
-                    <span><i class="fas fa-truck"></i> 1-3 Day Shipping</span>
-                    <span><i class="fas fa-undo"></i> 14-Day Returns + Shipping</span>
-                    <span><i class="fas fa-star"></i> Premium Quality Guaranteed</span>
+                <div class="shipping-return-footer-info">
+                    <span><i class="fas fa-truck"></i> Shipping within 1-3 business days</span>
+                    <span><i class="fas fa-undo"></i> Return within 14 days + shipping fees</span>
+                    <span><i class="fas fa-star"></i> Premium quality guaranteed</span>
                 </div>
             </div>
         </div>
@@ -440,7 +544,6 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Mobile Menu -->
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-sidebar" id="mobileSidebar">
         <div class="mobile-sidebar-header">
@@ -451,7 +554,7 @@
         </div>
         <nav class="mobile-sidebar-nav">
             <a href="./"><i class="fas fa-home"></i> Home</a>
-            <a href="./products-showcase.html" target="_blank" rel="noopener"><i class="fas fa-th-large"></i> All Products</a>
+            <a href="./products-showcase.html" target="_blank" rel="noopener"><i class="fas fa-th-large"></i> View All Products</a>
             <a href="#perfumes-section"><i class="fas fa-spray-can"></i> Perfumes</a>
             <a href="#watches-section"><i class="fas fa-clock"></i> Watches</a>
             <a href="./blog/" target="_blank" rel="noopener"><i class="fas fa-blog"></i> Blog</a>
@@ -461,23 +564,18 @@
             <a href="./privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
             <a href="./terms-conditions.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
             <a href="./cart.html"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-counter mobile-cart-counter">0</span></a>
+            <a href="../" target="_blank" rel="noopener" class="arabic-link"><i class="fas fa-globe"></i> النسخة العربية</a>
             <a href="./checkout.html" class="order-now-btn"><i class="fas fa-credit-card"></i> Order Now</a>
             <a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <div class="language-switcher-mobile">
-                <a href="../" class="lang-link-mobile">
-                    <img src="https://flagcdn.com/24x18/ae.png" alt="Arabic" class="flag-icon">
-                    Switch to Arabic
-                </a>
-            </div>
         </nav>
     </div>
 
-    <!-- JavaScript Files -->
-    <script src="./js/ui-en.js"></script>
-    <script src="./js/cart-system-en.js"></script>
-    <script src="./js/reviews-system-en.js"></script>
-    <script src="./js/popup-system-en.js"></script>
-    <script src="./js/products-loader-en.js"></script>
-    <script src="./js/main-en.js"></script>
+    <!-- Load Systems in Correct Order -->
+    <script src="../js/ui.js"></script>
+    <script src="../js/cart-system.js"></script>
+    <script src="../js/reviews-system.js"></script>
+    <script src="../js/popup-system.js"></script>
+    <script src="../js/products-loader.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
