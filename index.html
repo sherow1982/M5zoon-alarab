@@ -122,10 +122,59 @@
         </div>
     </section>
 
-    <!-- باقي الأقسام بدون تغيير -->
-    <!-- ... نفس المحتوى ... -->
+    <!-- قسم العطور المميزة -->
+    <section class="section" id="main-content">
+        <div class="section-container">
+            <div id="perfumes-section" class="category-section">
+                <div class="section-header">
+                    <h2 class="section-title">عطور هدايا الإمارات عالية الجودة</h2>
+                    <p class="section-subtitle">
+                        اخترنا لك أجمل العطور الشرقية والغربية عالية الجودة التي تلائم جميع الأذواق مع تقييمات عملائنا ⭐
+                    </p>
+                    <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                        <i class="fas fa-arrow-left"></i>
+                        عرض جميع العطور
+                    </a>
+                </div>
+                <div class="products-grid" id="perfumes-grid">
+                    <div class="loading-message">⏳ جارِ تحميل العطور عالية الجودة مع التقييمات...</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- تحميل الأنظمة بالترتيب الصحيح -->
+    <!-- قسم مجموعة العطور الشرقية -->
+    <section class="section">
+        <div class="section-container">
+            <div class="collection-section">
+                <div class="collection-grid">
+                    <div class="collection-content">
+                        <h2 class="collection-title">مجموعة العطور الشرقية عالية الجودة</h2>
+                        <p class="collection-description">
+                            استمتع برحلة عطرية لا تُنسى مع مجموعتنا الحصرية من العطور الشرقية عالية الجودة التي تحمل في طياتها أجمل قصص الفخامة
+                        </p>
+                        <a href="#perfumes-section" class="btn-primary">
+                            <i class="fas fa-crown"></i>
+                            اكتشف المجموعة
+                        </a>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop&crop=center" 
+                             alt="مجموعة العطور الشرقية عالية الجودة" 
+                             class="collection-image lazyload"
+                             loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- باقي المحتوى -->
+
+    <!-- تحميل نظام التنظيف أولاً -->
+    <script src="./js/layout-cleanup.js" defer></script>
+    
+    <!-- تحميل باقي السكريپتات -->
     <script src="./js/complete-text-replacement.js" defer></script>
     <script src="./js/navigation-buttons-fix.js" defer></script>
     <script src="./js/enhanced-button-functions.js" defer></script>
@@ -151,54 +200,18 @@
     <script src="./js/ui.js" defer></script>
     <script src="./js/performance-optimizer.js" defer></script>
     
-    <!-- سكريپت إضافي لإزالة العناصر المزعجة -->
+    <!-- سكريپت تفعيل نهائي -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // إزالة أي نصوص عائمة أو عشوائية
-        function cleanFloatingTexts() {
-            const unwantedSelectors = [
-                '.random-product-message',
-                '.product-description-overlay', 
-                '.floating-text',
-                '.overlay-text',
-                '.random-text',
-                '.product-overlay-text',
-                '.product-floating-description',
-                '.random-product-info'
-            ];
-            
-            unwantedSelectors.forEach(selector => {
-                const elements = document.querySelectorAll(selector);
-                elements.forEach(el => {
-                    el.style.display = 'none';
-                    el.remove();
-                });
-            });
-        }
-        
-        // تشغيل دورية لإزالة العناصر المزعجة
-        cleanFloatingTexts();
-        setInterval(cleanFloatingTexts, 2000);
-        
-        // تنظيف المحتوى عند تحميل المنتجات
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    setTimeout(cleanFloatingTexts, 500);
-                }
-            });
-        });
-        
-        const productGrids = document.querySelectorAll('.products-grid');
-        productGrids.forEach(grid => {
-            observer.observe(grid, { childList: true, subtree: true });
-        });
-    });
-    
     window.addEventListener('load', function() {
         setTimeout(function() {
             document.querySelector('.nav-menu')?.classList.add('loaded');
             document.querySelector('.header-tools')?.classList.add('loaded');
+            
+            // تفعيل نظام التنظيف مرة أخيرة
+            if (window.EmiratesGiftsCleanup) {
+                window.EmiratesGiftsCleanup.performFullCleanup();
+            }
+            
             console.log('🎉 تم تحميل وإصلاح متجر هدايا الإمارات بنجاح');
         }, 1000);
     });
