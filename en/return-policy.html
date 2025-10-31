@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Return Policy - Emirates Gifts Store | 14-Day Return Guarantee</title>
-    <meta name="description" content="Emirates Gifts return policy: Easy 14-day returns with return shipping fees covered. Quality guarantee on all premium perfumes and luxury watches.">
-    <meta name="keywords" content="return policy UAE, 14 day returns, Emirates Gifts returns, quality guarantee, customer satisfaction">
+    <title>Return Policy - Emirates Gifts Store | 14-Day Return Guarantee + Shipping Fees</title>
+    <meta name="description" content="Read our comprehensive return policy. 14-day return guarantee plus shipping fees covered for premium perfumes and luxury watches. Easy returns process.">
     <meta name="robots" content="index, follow">
     
     <link rel="canonical" href="https://emirates-gifts.arabsad.com/en/return-policy.html">
@@ -17,16 +16,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <link rel="stylesheet" href="../css/dkhoon-inspired-style.css">
-    <link rel="stylesheet" href="../css/mobile-responsive-fixes.css">
+    <link rel="stylesheet" href="../css/dkhoon-inspired-style.css?v=20251101">
+    <link rel="stylesheet" href="../css/mobile-responsive-fixes.css?v=20251101">
+    <link rel="stylesheet" href="./css/currency-fix-en.css?v=20251101">
     
     <style>
-    :root {
-        --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* English Accessibility Improvements */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--deep-blue, #1B2951);
+        color: var(--light-gold, #FFD700);
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        z-index: 10000;
+        transition: top 0.3s ease;
+        border: 2px solid var(--primary-gold, #D4AF37);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .skip-link:focus {
+        top: 10px;
+    }
+    
+    @media (max-width: 768px) {
+        .skip-link {
+            left: 20px;
+            right: 20px;
+            transform: none;
+            text-align: center;
+        }
     }
     
     body {
-        font-family: var(--font-family-primary) !important;
+        font-family: 'Inter', sans-serif !important;
         direction: ltr !important;
         text-align: left !important;
     }
@@ -42,40 +70,31 @@
         border-radius: 25px;
         padding: 8px 16px;
         font-weight: 600;
-        font-size: 14px;
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
         gap: 6px;
         text-decoration: none;
-        box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
-        border: 2px solid transparent;
         font-family: 'Cairo', sans-serif !important;
         direction: rtl;
     }
     
     .policy-content {
-        max-width: 800px;
+        max-width: 1000px;
         margin: 0 auto;
-        padding: 40px 20px;
+        padding: 60px 20px;
         line-height: 1.8;
     }
     
-    .policy-section {
-        margin-bottom: 40px;
-        background: white;
-        border-radius: 15px;
+    .return-highlight {
+        background: linear-gradient(135deg, var(--light-gold, #FFD700), var(--primary-gold, #D4AF37));
+        color: var(--deep-blue, #1B2951);
         padding: 30px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-    
-    .policy-section h3 {
-        color: var(--primary-gold);
-        font-size: 24px;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        border-radius: 15px;
+        text-align: center;
+        margin: 40px 0;
+        font-weight: 600;
+        font-size: 1.2rem;
     }
     
     .return-steps {
@@ -85,58 +104,52 @@
         margin: 40px 0;
     }
     
-    .step-card {
-        background: #f8f9fa;
+    .return-step {
+        background: white;
+        padding: 30px;
         border-radius: 15px;
-        padding: 30px 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         text-align: center;
-        border: 2px solid #e9ecef;
         transition: all 0.3s ease;
     }
     
-    .step-card:hover {
-        border-color: var(--primary-gold);
+    .return-step:hover {
         transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
     
     .step-number {
-        background: var(--primary-gold);
-        color: white;
-        width: 40px;
-        height: 40px;
+        background: var(--primary-gold, #D4AF37);
+        color: var(--deep-blue, #1B2951);
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-weight: 900;
+        font-size: 1.5rem;
         margin: 0 auto 20px;
-        font-weight: bold;
-        font-size: 18px;
     }
     
-    .highlight-box {
-        background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
-        border-left: 5px solid #28a745;
-        padding: 25px;
-        border-radius: 10px;
-        margin: 30px 0;
-    }
-    
-    .warning-box {
-        background: linear-gradient(135deg, #fff3cd 0%, #fefefe 100%);
-        border-left: 5px solid #ffc107;
-        padding: 25px;
-        border-radius: 10px;
-        margin: 30px 0;
+    .step-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--deep-blue, #1B2951);
+        margin-bottom: 15px;
     }
     </style>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <div class="progress-bar" id="progressBar"></div>
     
     <div class="top-banner">
         <div class="banner-text">
             <i class="fas fa-undo banner-icon"></i>
-            <span>14-day return guarantee + return shipping fees covered • Customer satisfaction guaranteed</span>
+            <span>14-day return guarantee + shipping fees covered • Hassle-free returns</span>
             <i class="fas fa-shield-alt banner-icon"></i>
         </div>
     </div>
@@ -145,7 +158,7 @@
         <div class="header-container">
             <div class="header-content">
                 <a href="./" class="logo" aria-label="Home - Emirates Gifts">
-                    <div class="logo-icon"><img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;"></div>
+                    <div class="logo-icon"><img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;" loading="eager"></div>
                     <div class="logo-text">
                         <div class="logo-title">Emirates Gifts</div>
                         <div class="logo-subtitle">هدايا الإمارات</div>
@@ -156,9 +169,7 @@
                     <ul class="nav-menu">
                         <li class="nav-item"><a href="./" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="./products-showcase.html" class="nav-link" target="_blank" rel="noopener">All Products</a></li>
-                        <li class="nav-item"><a href="./#perfumes-section" class="nav-link">Perfumes</a></li>
-                        <li class="nav-item"><a href="./#watches-section" class="nav-link">Watches</a></li>
-                        <li class="nav-item"><a href="./blog/" class="nav-link" target="_blank" rel="noopener">Blog</a></li>
+                        <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
                         <li class="nav-item">
                             <a href="../" class="nav-link arabic-link" target="_blank" rel="noopener">
                                 <i class="fas fa-globe"></i> العربية
@@ -169,193 +180,181 @@
                 </nav>
 
                 <div class="header-tools">
-                    <a href="./cart.html" class="header-tool cart-icon" aria-label="View Cart" title="View Cart">
+                    <a href="./cart.html" class="header-tool cart-icon" aria-label="View Cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter">0</span>
                     </a>
-                    <a href="./checkout.html" class="header-tool order-now-btn" aria-label="Order Now" title="Order Now">
+                    <a href="./checkout.html" class="header-tool order-now-btn" aria-label="Order Now">
                         <i class="fas fa-credit-card"></i>
                         <span>Order Now</span>
                     </a>
-                    <button class="mobile-menu-toggle" id="openSidebar" aria-label="Open Menu" title="Open Menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="main-content">
+    <main id="main-content" tabindex="-1">
         <section class="page-header">
             <div class="container">
                 <div class="breadcrumb">
                     <a href="./">Home</a> <i class="fas fa-chevron-right"></i> <span>Return Policy</span>
                 </div>
                 <h1 class="page-title">Return Policy</h1>
-                <p class="page-subtitle">Your satisfaction is our priority - Easy 14-day returns with return shipping fees covered</p>
+                <p class="page-subtitle">14-day return guarantee with shipping fees covered for your complete satisfaction</p>
             </div>
         </section>
 
-        <div class="policy-content">
-            <div class="highlight-box">
-                <h3><i class="fas fa-shield-alt"></i> Our Return Guarantee</h3>
-                <p>
-                    At Emirates Gifts, your satisfaction is our top priority. We offer a comprehensive 
-                    <strong>14-day return policy with return shipping fees covered</strong> to ensure you shop with complete confidence.
-                </p>
+        <section class="policy-content">
+            <div class="return-highlight">
+                <i class="fas fa-undo" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                <strong>14-Day Return Guarantee + Shipping Fees Covered</strong>
+                <p style="margin: 10px 0 0;">We stand behind every product we sell with our comprehensive return policy</p>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-clock"></i> Return Timeline</h3>
-                <p>
-                    You have <strong>14 calendar days</strong> from the date you receive your order to initiate a return. 
-                    This generous timeframe allows you to thoroughly evaluate your purchase and ensure it meets your expectations.
-                </p>
+                <p><strong>Last updated:</strong> October 31, 2024</p>
+                <p>At Emirates Gifts, your satisfaction is our top priority. We offer a comprehensive 14-day return policy with shipping fees covered to ensure you're completely happy with your purchase.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>1. Return Period</h2>
                 <ul>
-                    <li>• <strong>Return Period:</strong> 14 days from delivery date</li>
-                    <li>• <strong>Return Shipping:</strong> Fees covered by Emirates Gifts</li>
-                    <li>• <strong>Processing Time:</strong> 3-5 business days after we receive your return</li>
-                    <li>• <strong>Refund Method:</strong> Original payment method or store credit</li>
+                    <li><strong>Return Window:</strong> 14 calendar days from the date of delivery</li>
+                    <li><strong>Shipping Fees:</strong> We cover return shipping fees for your convenience</li>
+                    <li><strong>Refund Processing:</strong> Full refund processed within 3-5 business days</li>
+                    <li><strong>Return Authorization:</strong> Contact us via WhatsApp to initiate return</li>
                 </ul>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-list-check"></i> Return Eligibility</h3>
-                <p>To be eligible for a return, your item must meet the following conditions:</p>
-                <ul>
-                    <li>• Item must be in its original, unused condition</li>
-                    <li>• Original packaging and tags must be intact</li>
-                    <li>• Perfumes must be unopened and sealed</li>
-                    <li>• Watches must be unworn with original documentation</li>
-                    <li>• All accessories and certificates must be included</li>
-                </ul>
-            </div>
-
-            <div class="policy-section">
-                <h3><i class="fas fa-route"></i> How to Return Your Items</h3>
-                <p>Returning your purchase is simple and convenient:</p>
-                
+                <h2>2. Easy Return Process</h2>
                 <div class="return-steps">
-                    <div class="step-card">
+                    <div class="return-step">
                         <div class="step-number">1</div>
-                        <h4>Contact Us</h4>
-                        <p>Reach out via WhatsApp or phone within 14 days of receiving your order</p>
+                        <h3 class="step-title">Contact Us</h3>
+                        <p>Message us on WhatsApp at <a href="https://wa.me/201110760081" target="_blank" rel="noopener">+20 111 076 0081</a> with your order details</p>
                     </div>
                     
-                    <div class="step-card">
+                    <div class="return-step">
                         <div class="step-number">2</div>
-                        <h4>Return Authorization</h4>
-                        <p>We'll provide you with return instructions and arrange pickup at no cost to you</p>
+                        <h3 class="step-title">Get Authorization</h3>
+                        <p>Receive return authorization number and free return shipping label</p>
                     </div>
                     
-                    <div class="step-card">
+                    <div class="return-step">
                         <div class="step-number">3</div>
-                        <h4>Package & Ship</h4>
-                        <p>Pack items securely in original packaging and hand over to our courier</p>
+                        <h3 class="step-title">Pack & Ship</h3>
+                        <p>Pack item securely in original packaging and schedule pickup</p>
                     </div>
                     
-                    <div class="step-card">
+                    <div class="return-step">
                         <div class="step-number">4</div>
-                        <h4>Refund Processing</h4>
-                        <p>Once we receive and inspect your return, we'll process your refund within 3-5 business days</p>
+                        <h3 class="step-title">Get Refund</h3>
+                        <p>Full refund processed within 3-5 business days after we receive the item</p>
                     </div>
                 </div>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-exclamation-circle"></i> Non-Returnable Items</h3>
-                <p>For hygiene and safety reasons, the following items cannot be returned:</p>
+                <h2>3. Return Conditions</h2>
+                <h3>Eligible for Return:</h3>
                 <ul>
-                    <li>• Opened or used perfumes and cosmetic products</li>
-                    <li>• Personalized or customized items</li>
-                    <li>• Items damaged by misuse or normal wear</li>
-                    <li>• Items returned after the 14-day period</li>
+                    <li>Items in original, unopened condition</li>
+                    <li>Original packaging and accessories included</li>
+                    <li>Return within 14 days of delivery</li>
+                    <li>Proof of purchase (order confirmation)</li>
+                </ul>
+                
+                <h3>Not Eligible for Return:</h3>
+                <ul>
+                    <li>Opened perfume bottles (for hygiene reasons)</li>
+                    <li>Items damaged by customer misuse</li>
+                    <li>Items without original packaging</li>
+                    <li>Returns requested after 14-day window</li>
                 </ul>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-money-bill-wave"></i> Refund Process</h3>
-                <p>
-                    Once your return is received and inspected, we will send you an email notification 
-                    to confirm receipt of your returned item.
-                </p>
+                <h2>4. Refund Information</h2>
                 <ul>
-                    <li>• <strong>Inspection Time:</strong> 1-2 business days upon receipt</li>
-                    <li>• <strong>Refund Processing:</strong> 3-5 business days after approval</li>
-                    <li>• <strong>Return Shipping:</strong> Fully covered by Emirates Gifts</li>
-                    <li>• <strong>Refund Method:</strong> Same as original payment or store credit (your choice)</li>
-                </ul>
-            </div>
-
-            <div class="warning-box">
-                <h3><i class="fas fa-info-circle"></i> Important Return Information</h3>
-                <p>
-                    <strong>Return Shipping Fees Covered:</strong> Unlike many retailers, Emirates Gifts covers 
-                    all return shipping costs. This means you can return items at absolutely no cost to you, 
-                    demonstrating our commitment to customer satisfaction.
-                </p>
-            </div>
-
-            <div class="policy-section">
-                <h3><i class="fas fa-exchange-alt"></i> Exchanges</h3>
-                <p>
-                    We currently process returns for refund or store credit. If you would like to exchange an item 
-                    for a different size, color, or model, please return the original item and place a new order 
-                    for your preferred choice.
-                </p>
-            </div>
-
-            <div class="policy-section">
-                <h3><i class="fas fa-tools"></i> Damaged or Defective Items</h3>
-                <p>
-                    If you receive a damaged or defective item, please contact us immediately. We will:
-                </p>
-                <ul>
-                    <li>• Arrange immediate pickup of the defective item</li>
-                    <li>• Send a replacement item at no charge</li>
-                    <li>• Cover all shipping costs both ways</li>
-                    <li>• Expedite the replacement process</li>
+                    <li><strong>Refund Method:</strong> Original payment method or bank transfer</li>
+                    <li><strong>Processing Time:</strong> 3-5 business days after item receipt</li>
+                    <li><strong>Shipping Fees:</strong> Covered by Emirates Gifts</li>
+                    <li><strong>Refund Amount:</strong> Full purchase amount including taxes</li>
+                    <li><strong>Currency:</strong> Refunds processed in AED</li>
                 </ul>
             </div>
 
             <div class="policy-section">
-                <h3><i class="fas fa-phone-alt"></i> Contact Us for Returns</h3>
-                <p>
-                    Our customer service team is ready to help you with your return request:
-                </p>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                        <i class="fab fa-whatsapp" style="font-size: 24px; color: #25D366; margin-bottom: 10px;"></i>
-                        <h4>WhatsApp</h4>
-                        <a href="https://wa.me/201110760081" target="_blank" rel="noopener">+20 111 076 0081</a>
-                        <p><small>Instant response 24/7</small></p>
-                    </div>
-                    
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                        <i class="fas fa-phone" style="font-size: 24px; color: var(--primary-gold); margin-bottom: 10px;"></i>
-                        <h4>Phone Support</h4>
-                        <a href="tel:+201110760081">+20 111 076 0081</a>
-                        <p><small>Available 24/7</small></p>
-                    </div>
-                    
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                        <i class="fas fa-envelope" style="font-size: 24px; color: #007bff; margin-bottom: 10px;"></i>
-                        <h4>Email Support</h4>
-                        <a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a>
-                        <p><small>Response within 2 hours</small></p>
-                    </div>
+                <h2>5. Exchanges</h2>
+                <ul>
+                    <li>Product exchanges available for size, color, or fragrance variations</li>
+                    <li>Exchange shipping covered by Emirates Gifts</li>
+                    <li>Same-value exchanges processed immediately</li>
+                    <li>Price difference applies for higher-value items</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. Damaged or Defective Items</h2>
+                <ul>
+                    <li>Report damaged items within 24 hours of delivery</li>
+                    <li>Photo evidence required for damage assessment</li>
+                    <li>Immediate replacement or full refund provided</li>
+                    <li>No return shipping required for damaged items</li>
+                    <li>Expedited replacement shipping at no cost</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>7. Return Shipping</h2>
+                <ul>
+                    <li><strong>Shipping Costs:</strong> Fully covered by Emirates Gifts</li>
+                    <li><strong>Pickup Service:</strong> Free pickup arranged at your location</li>
+                    <li><strong>Packaging:</strong> Use original packaging when possible</li>
+                    <li><strong>Insurance:</strong> All returns insured for full value</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>8. Special Circumstances</h2>
+                <h3>Gift Returns</h3>
+                <ul>
+                    <li>Gift recipients can return items without original receipt</li>
+                    <li>Store credit provided when original payment method unavailable</li>
+                    <li>Gift return period extended to 30 days during special occasions</li>
+                </ul>
+                
+                <h3>Bulk Orders</h3>
+                <ul>
+                    <li>Special return terms apply to orders over 10 items</li>
+                    <li>Contact customer service for bulk return authorization</li>
+                    <li>Partial returns accepted for bulk orders</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>9. Quality Guarantee</h2>
+                <p>We guarantee the quality and authenticity of all our products. If you receive an item that doesn't meet our quality standards:</p>
+                <ul>
+                    <li>Full refund plus compensation for inconvenience</li>
+                    <li>Free expedited replacement if available</li>
+                    <li>Personal apology from our customer service team</li>
+                    <li>Quality investigation to prevent future issues</li>
+                </ul>
+            </div>
+
+            <div class="contact-info">
+                <h2>10. Contact for Returns</h2>
+                <p>To initiate a return or for any return-related questions:</p>
+                <div style="margin: 20px 0;">
+                    <p><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> <a href="https://wa.me/201110760081" target="_blank" rel="noopener">+20 111 076 0081</a></p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> returns@emirates-gifts.com</p>
+                    <p><i class="fas fa-clock"></i> <strong>Support Hours:</strong> 24/7</p>
                 </div>
+                <p><strong>Response Time:</strong> Return requests processed within 2 hours during business hours.</p>
             </div>
-
-            <div style="text-align: center; margin: 50px 0; padding: 40px; background: var(--primary-gold); border-radius: 15px; color: white;">
-                <h3>Shop with Complete Confidence</h3>
-                <p style="margin-bottom: 30px; opacity: 0.9;">Your satisfaction is guaranteed with our comprehensive return policy</p>
-                <a href="./products-showcase.html" class="btn-primary" target="_blank" rel="noopener" style="background: white; color: var(--primary-gold);">
-                    <i class="fas fa-shopping-bag"></i>
-                    Start Shopping Now
-                </a>
-            </div>
-        </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -363,32 +362,32 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Emirates Gifts</h3>
-                    <p>Premium perfumes and luxury gifts with 14-day return guarantee.</p>
+                    <p>Hassle-free returns and exchanges with shipping fees covered for your complete satisfaction.</p>
                     <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
 
                 <div class="footer-section">
-                    <h3>Customer Policies</h3>
+                    <h3>Return Information</h3>
                     <ul>
-                        <li><a href="./shipping-policy.html">Shipping Policy</a></li>
-                        <li><a href="./return-policy.html" class="active">Return Policy</a></li>
-                        <li><a href="./privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="./terms-conditions.html">Terms & Conditions</a></li>
-                        <li><a href="../" target="_blank" rel="noopener" style="color: #D4AF37;"><i class="fas fa-globe"></i> عربي</a></li>
+                        <li><i class="fas fa-undo"></i> 14-day return window</li>
+                        <li><i class="fas fa-shipping-fast"></i> Free return shipping</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Full refund guarantee</li>
+                        <li><i class="fas fa-headset"></i> 24/7 return support</li>
+                        <li><a href="../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> عربي</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h3>Customer Support</h3>
+                    <h3>Customer Service</h3>
                     <ul>
                         <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
-                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
-                        <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/201110760081" target="_blank" rel="noopener">WhatsApp 24/7</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:returns@emirates-gifts.com">returns@emirates-gifts.com</a></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Return Support</a></li>
                     </ul>
                 </div>
             </div>
@@ -400,6 +399,7 @@
                         <a href="./privacy-policy.html">Privacy</a>
                         <a href="./terms-conditions.html">Terms</a>
                         <a href="./shipping-policy.html">Shipping</a>
+                        <a href="./return-policy.html">Returns</a>
                         <a href="../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> عربي</a>
                     </div>
                 </div>
@@ -411,7 +411,46 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="../js/ui.js"></script>
-    <script src="../js/main.js"></script>
+    <!-- Load English Scripts -->
+    <script src="../js/dom-optimization.js?v=20251101" defer></script>
+    <script src="./js/ui-en.js?v=20251101" defer></script>
+    <script src="./js/main-en.js?v=20251101" defer></script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('English return policy page initialized - v20251101');
+        
+        // Add animation to return steps on scroll
+        const returnSteps = document.querySelectorAll('.return-step');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    }, index * 150);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        returnSteps.forEach(step => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateY(30px)';
+            observer.observe(step);
+        });
+        
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    });
+    </script>
 </body>
 </html>
