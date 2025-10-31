@@ -1,10 +1,12 @@
 # Robots.txt محسّن لمتجر هدايا الإمارات
+# Enhanced Robots.txt for Emirates Gifts Store
 # يحسّن الزحف ويحل مشاكل Google Search Console
 
 User-agent: *
 Allow: /
 
 # منع فهرسة الملفات الإدارية وغير المهمة
+# Block administrative and non-essential files
 Disallow: /js/
 Disallow: /css/
 Disallow: /data/
@@ -13,23 +15,57 @@ Disallow: /*?*
 Disallow: /*.json$
 Disallow: /api/
 Disallow: /admin/
+Disallow: /*.py$
+Disallow: /*.md$
+Disallow: /.git/
+Disallow: /.github/
 
 # السماح بفهرسة الصفحات والملفات المهمة
+# Allow indexing of important pages and files
 Allow: /products/
 Allow: /blog/
+Allow: /en/
+Allow: /en/blog/
+Allow: /en/products/
 Allow: /cart.html
+Allow: /en/cart.html
 Allow: /products-showcase.html
+Allow: /en/products-showcase.html
 Allow: /index.html
+Allow: /en/index.html
 Allow: /sitemap.xml
+Allow: /sitemap-en.xml
 Allow: /merchant-feed.xml
+Allow: /google-merchant-feed-complete.xml
 Allow: /favicon.ico
+Allow: /about.html
+Allow: /en/about.html
+Allow: /shipping-policy.html
+Allow: /en/shipping-policy.html
+Allow: /return-policy.html
+Allow: /en/return-policy.html
+Allow: /privacy-policy.html
+Allow: /en/privacy-policy.html
+Allow: /terms-conditions.html
+Allow: /en/terms-conditions.html
+Allow: /checkout.html
+Allow: /en/checkout.html
+Allow: /product-details.html
+Allow: /en/product-details.html
 
 # خرائط الموقع (نطاق Arabsad)
+# Sitemaps (Arabsad domain)
 Sitemap: https://emirates-gifts.arabsad.com/sitemap.xml
-Sitemap: https://emirates-gifts.arabsad.com/merchant-feed.xml
+Sitemap: https://emirates-gifts.arabsad.com/sitemap-en.xml
+Sitemap: https://emirates-gifts.arabsad.com/google-merchant-feed-complete.xml
 
 # Google
 User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Google Images
+User-agent: Googlebot-Image
 Allow: /
 Crawl-delay: 1
 
@@ -38,10 +74,35 @@ User-agent: bingbot
 Allow: /
 Crawl-delay: 2
 
-# Social bots
+# Yandex
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 3
+
+# Social media bots
 User-agent: facebookexternalhit
 Allow: /
 User-agent: Twitterbot
 Allow: /
 User-agent: WhatsApp
 Allow: /
+User-agent: LinkedInBot
+Allow: /
+User-agent: Applebot
+Allow: /
+
+# Shopping bots
+User-agent: Shopping
+Allow: /
+User-agent: Google-Shopping
+Allow: /
+
+# Bad bots to block
+User-agent: SemrushBot
+Disallow: /
+User-agent: AhrefsBot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: DotBot
+Disallow: /
