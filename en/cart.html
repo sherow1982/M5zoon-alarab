@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Emirates Gifts Store | Review Your Premium Selection</title>
+    <meta name="description" content="Review your selection of premium perfumes and luxury watches. Secure checkout with fast delivery and return guarantee.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="./css/luxury-american-style.css">
+    <link rel="stylesheet" href="./css/mobile-responsive.css">
+    <link rel="stylesheet" href="./css/premium-components.css">
+    <link rel="stylesheet" href="./css/cart-checkout.css">
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <div class="header-content">
+                <a href="./" class="logo">
+                    <div class="logo-icon">
+                        <img src="../favicon.ico" alt="Emirates Gifts" class="logo-image">
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-title">Emirates Gifts</div>
+                        <div class="logo-subtitle">Premium Collection</div>
+                    </div>
+                </a>
+
+                <nav class="main-nav">
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a href="./" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link">All Products</a></li>
+                        <li class="nav-item"><a href="./cart.html" class="nav-link active">Cart</a></li>
+                        <li class="nav-item"><a href="./checkout.html" class="nav-link">Checkout</a></li>
+                        <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link whatsapp-link" target="_blank">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-tools">
+                    <div class="language-switcher">
+                        <a href="../cart.html" class="lang-link">
+                            <img src="https://flagcdn.com/24x18/ae.png" alt="Arabic" class="flag-icon">
+                            AR
+                        </a>
+                    </div>
+                    <a href="./cart.html" class="header-tool cart-icon active">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-counter">0</span>
+                    </a>
+                    <a href="./checkout.html" class="header-tool order-btn">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Checkout</span>
+                    </a>
+                    <button class="mobile-menu-toggle" id="openSidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Cart Hero -->
+        <section class="cart-hero">
+            <div class="hero-content">
+                <div class="breadcrumb">
+                    <a href="./">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Shopping Cart</span>
+                </div>
+                <h1 class="hero-title">Your Shopping Cart</h1>
+                <p class="hero-subtitle">
+                    Review your premium selection before proceeding to checkout
+                </p>
+            </div>
+        </section>
+
+        <!-- Cart Content -->
+        <section class="cart-section">
+            <div class="cart-container">
+                <div class="cart-content">
+                    <!-- Cart Items -->
+                    <div class="cart-items" id="cartItems">
+                        <div class="loading-message">
+                            <div class="loading-spinner"></div>
+                            <span>Loading your cart...</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Cart Summary -->
+                    <div class="cart-summary" id="cartSummary">
+                        <div class="summary-card">
+                            <h3 class="summary-title">Order Summary</h3>
+                            <div class="summary-details">
+                                <div class="summary-row">
+                                    <span>Subtotal:</span>
+                                    <span id="subtotal">$0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Shipping:</span>
+                                    <span id="shipping">Free</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Tax:</span>
+                                    <span id="tax">$0.00</span>
+                                </div>
+                                <div class="summary-row total">
+                                    <span>Total:</span>
+                                    <span id="total">$0.00</span>
+                                </div>
+                            </div>
+                            <div class="summary-actions">
+                                <button class="btn-primary btn-checkout" id="proceedCheckout">
+                                    <i class="fas fa-credit-card"></i>
+                                    Proceed to Checkout
+                                </button>
+                                <a href="./products-showcase.html" class="btn-secondary">
+                                    <i class="fas fa-shopping-bag"></i>
+                                    Continue Shopping
+                                </a>
+                            </div>
+                            <div class="security-badges">
+                                <div class="security-badge">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Secure Checkout</span>
+                                </div>
+                                <div class="security-badge">
+                                    <i class="fas fa-lock"></i>
+                                    <span>SSL Protected</span>
+                                </div>
+                                <div class="security-badge">
+                                    <i class="fas fa-undo"></i>
+                                    <span>14-Day Returns</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Empty Cart State -->
+                <div class="empty-cart" id="emptyCart" style="display: none;">
+                    <div class="empty-cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h2>Your Cart is Empty</h2>
+                    <p>Looks like you haven't added any items to your cart yet. Browse our premium collection and find something you love!</p>
+                    <div class="empty-cart-actions">
+                        <a href="./products-showcase.html" class="btn-primary">
+                            <i class="fas fa-shopping-bag"></i>
+                            Start Shopping
+                        </a>
+                        <a href="./" class="btn-secondary">
+                            <i class="fas fa-home"></i>
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendations -->
+        <section class="recommendations-section" id="recommendationsSection" style="display: none;">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">You Might Also Like</h2>
+                    <p class="section-subtitle">Complete your collection with these premium selections</p>
+                </div>
+                <div class="products-grid" id="recommendedProducts">
+                    <!-- Recommended products will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Emirates Gifts</h3>
+                    <p class="footer-description">
+                        Your premier destination for luxury perfumes and premium watches.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://wa.me/201110760081" class="social-link whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="./">Home</a></li>
+                        <li><a href="./products-showcase.html">All Products</a></li>
+                        <li><a href="./cart.html" class="highlight-link">Shopping Cart</a></li>
+                        <li><a href="./checkout.html" class="highlight-link">Checkout</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="./shipping-policy.html">Shipping Info</a></li>
+                        <li><a href="./return-policy.html">Returns & Exchanges</a></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank">24/7 Customer Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i>Dubai, UAE</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Emirates Gifts Store. All rights reserved.</p>
+                <div class="footer-features">
+                    <span><i class="fas fa-truck"></i> Fast Shipping</span>
+                    <span><i class="fas fa-undo"></i> Easy Returns</span>
+                    <span><i class="fas fa-star"></i> Premium Quality</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <div class="mobile-sidebar-logo">Emirates Gifts</div>
+            <button class="mobile-sidebar-close" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-sidebar-nav">
+            <a href="./"><i class="fas fa-home"></i> Home</a>
+            <a href="./products-showcase.html"><i class="fas fa-th-large"></i> All Products</a>
+            <a href="./cart.html" class="active"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="./checkout.html"><i class="fas fa-credit-card"></i> Checkout</a>
+            <a href="https://wa.me/201110760081" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <div class="language-switcher-mobile">
+                <a href="../cart.html" class="lang-link-mobile">
+                    <img src="https://flagcdn.com/24x18/ae.png" alt="Arabic" class="flag-icon">
+                    Switch to Arabic
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="./js/main-en.js"></script>
+    <script src="./js/cart-en.js"></script>
+</body>
+</html>
