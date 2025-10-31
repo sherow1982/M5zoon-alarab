@@ -57,6 +57,34 @@
             z-index: 1;
         }
         
+        .blog-cta {
+            margin-top: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .checkout-blog-cta {
+            background: linear-gradient(135deg, #25D366, #20B358);
+            color: white;
+            padding: 12px 25px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .checkout-blog-cta:hover {
+            background: linear-gradient(135deg, #20B358, #1e8449);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+        
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -153,6 +181,12 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+            
+            .checkout-blog-cta {
+                margin: 5px;
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
         }
         
         @keyframes rotate {
@@ -205,6 +239,11 @@
                 <div class="header-tools">
                     <a href="../cart.html" class="header-tool" aria-label="السلة">
                         <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                    </a>
+                    <a href="../checkout.html" class="header-tool" aria-label="إتمام الطلب" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; border-radius: 8px; padding: 8px 12px;">
+                        <i class="fas fa-credit-card"></i>
+                        <span style="font-size: 0.8rem; font-weight: 600;">اطلب</span>
                     </a>
                     <button class="mobile-menu-toggle" id="openSidebar" aria-label="فتح القائمة">
                         <i class="fas fa-bars"></i>
@@ -221,6 +260,16 @@
             <p class="blog-subtitle">
                 اعرف أكثر عن عالم العطور والهدايا الفاخرة، واقرأ نصائح متخصصين لاختيار أفضل المنتجات
             </p>
+            <div class="blog-cta">
+                <a href="../products-showcase.html" class="btn-primary">
+                    <i class="fas fa-shopping-bag"></i>
+                    تسوق الآن
+                </a>
+                <a href="../checkout.html" class="checkout-blog-cta">
+                    <i class="fas fa-credit-card"></i>
+                    إتمام الطلب
+                </a>
+            </div>
         </div>
     </section>
 
@@ -366,6 +415,22 @@
                     </div>
                 </article>
             </div>
+            
+            <!-- رابط سريع لإتمام الطلب -->
+            <div style="text-align: center; margin-top: 50px; padding: 30px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 215, 0, 0.1)); border-radius: 20px; border: 2px solid rgba(212, 175, 55, 0.2);">
+                <h3 style="color: var(--text-dark); margin-bottom: 15px; font-size: 1.4rem;">🚀 جاهز لإتمام طلبك؟</h3>
+                <p style="color: var(--text-light); margin-bottom: 20px;">اطلب منتجاتك المفضلة بسهولة عبر نظام الطلب الاحترافي</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="../checkout.html" class="btn-primary" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; border: none; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);">
+                        <i class="fas fa-credit-card"></i>
+                        إتمام الطلب الاحترافي
+                    </a>
+                    <a href="../cart.html" class="btn-secondary">
+                        <i class="fas fa-shopping-cart"></i>
+                        عرض السلة
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -391,6 +456,7 @@
                         <li><a href="../">الرئيسية</a></li>
                         <li><a href="../products-showcase.html">المنتجات</a></li>
                         <li><a href="../cart.html">السلة</a></li>
+                        <li><a href="../checkout.html" style="color: #25D366; font-weight: bold;">إتمام الطلب</a></li>
                     </ul>
                 </div>
             </div>
@@ -407,6 +473,18 @@
 
     <!-- JavaScript -->
     <script>
+        // تحديث شارة السلة
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const badge = document.getElementById('cartBadge');
+            
+            if (badge) {
+                badge.textContent = totalItems;
+                badge.style.display = totalItems > 0 ? 'flex' : 'none';
+            }
+        }
+        
         // تحديث شريط التقدم
         window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset;
@@ -441,6 +519,8 @@
         
         // Lazy loading للصور
         document.addEventListener('DOMContentLoaded', () => {
+            updateCartBadge();
+            
             const lazyImages = document.querySelectorAll('.lazyload');
             const imageObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
