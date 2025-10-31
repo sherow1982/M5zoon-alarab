@@ -1,180 +1,97 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
-<channel>
-<title>متجر هدايا الإمارات - عطور وساعات عالية الجودة</title>
-<link>https://emirates-gifts.arabsad.com</link>
-<description>متجر متخصص في بيع العطور والساعات عالية الجودة مع توصيل سريع في دولة الإمارات</description>
-<language>ar-AE</language>
-<lastBuildDate>Fri, 31 Oct 2025 08:15:00 GMT</lastBuildDate>
-<generator>Emirates Gifts Store - FIXED LINKS v5.0</generator>
+  <channel>
+    <title>متجر هدايا الإمارات - فيد المنتجات الشامل</title>
+    <link>https://emirates-gifts.arabsad.com</link>
+    <description>فيد جوجل مرشنت سنتر الشامل لجميع منتجات متجر هدايا الإمارات - عطور وساعات فاخرة بأفضل الأسعار</description>
+    <lastBuildDate>Fri, 31 Oct 2025 07:42:15 +0000</lastBuildDate>
 
-<item>
-<g:id>EMIRATES-PERFUME-001</g:id>
-<title>عطر كوكو شانيل 100 مل</title>
-<description>عطر كوكو شانيل 100 مل - عطور فاخرة عالية الجودة مع ضمان الأصالة وتوصيل سريع لجميع إمارات الدولة</description>
-<link>https://emirates-gifts.arabsad.com/products/chanel-coco-100ml.html</link>
-<g:image_link>https://m5zoon.com/public/uploads/products/1722352332177124.webp</g:image_link>
-<g:condition>new</g:condition>
-<g:availability>in stock</g:availability>
-<g:price>252 AED</g:price>
-<g:brand>Emirates Gifts</g:brand>
-<g:mpn>EG-CHANEL-COCO-100ML</g:mpn>
-<g:identifier_exists>false</g:identifier_exists>
-<g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:google_product_category>
-<g:product_type>عطور فاخرة</g:product_type>
-<g:age_group>adult</g:age_group>
-<g:gender>unisex</g:gender>
-<g:shipping>
-<g:country>AE</g:country>
-<g:service>توصيل سريع</g:service>
-<g:price>0 AED</g:price>
-</g:shipping>
-<g:shipping_weight>0.5 kg</g:shipping_weight>
-<g:tax>
-<g:country>AE</g:country>
-<g:rate>0</g:rate>
-</g:tax>
-</item>
+    <item>
+      <g:id>perfume_1</g:id>
+      <g:title>عطر كوكو شانيل 100 مل</g:title>
+      <g:description>عطر فاخر عطر كوكو شانيل 100 مل بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً من أفضل الماركات العالمية. متوفر الآن في متجر هدايا الإمارات بأفضل الأسعار مع التوصيل المجاني.</g:description>
+      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_1&category=perfume&slug=%D8%B9%D8%B7%D8%B1-%D9%83%D9%88%D9%83%D9%88-%D8%B4%D8%A7%D9%86%D9%8A%D9%84-100-%D9%85%D9%84</g:link>
+      <g:image_link>https://m5zoon.com/public/uploads/products/1722352332177124.webp</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in stock</g:availability>
+      <g:price>252.00 AED</g:price>
+      <g:brand>Chanel</g:brand>
+      <g:product_type>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:size>100ml</g:size>
+      <g:shipping>
+        <g:country>AE</g:country>
+        <g:service>التوصيل المجاني</g:service>
+        <g:price>0.00 AED</g:price>
+      </g:shipping>
+      <g:shipping_weight>0.3 kg</g:shipping_weight>
+      <g:mpn>perfume_1</g:mpn>
+    </item>
 
-<item>
-<g:id>EMIRATES-PERFUME-002</g:id>
-<title>عطر جوتشي فلورا للنساء</title>
-<description>عطر جوتشي فلورا للنساء - عطور فاخرة عالية الجودة مع ضمان الأصالة وتوصيل سريع لجميع إمارات الدولة</description>
-<link>https://emirates-gifts.arabsad.com/products/gucci-flora.html</link>
-<g:image_link>https://m5zoon.com/public/uploads/products/1720344963790342.webp</g:image_link>
-<g:condition>new</g:condition>
-<g:availability>in stock</g:availability>
-<g:price>252 AED</g:price>
-<g:brand>Emirates Gifts</g:brand>
-<g:mpn>EG-GUCCI-FLORA-50ML</g:mpn>
-<g:identifier_exists>false</g:identifier_exists>
-<g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:google_product_category>
-<g:product_type>عطور فاخرة</g:product_type>
-<g:age_group>adult</g:age_group>
-<g:gender>unisex</g:gender>
-<g:shipping>
-<g:country>AE</g:country>
-<g:service>توصيل سريع</g:service>
-<g:price>0 AED</g:price>
-</g:shipping>
-<g:shipping_weight>0.5 kg</g:shipping_weight>
-<g:tax>
-<g:country>AE</g:country>
-<g:rate>0</g:rate>
-</g:tax>
-</item>
+    <item>
+      <g:id>perfume_2</g:id>
+      <g:title>عطر جوتشي فلورا</g:title>
+      <g:description>عطر فاخر عطر جوتشي فلورا بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً من أفضل الماركات العالمية. متوفر الآن في متجر هدايا الإمارات بأفضل الأسعار مع التوصيل المجاني.</g:description>
+      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_2&category=perfume&slug=%D8%B9%D8%B7%D8%B1-%D8%AC%D9%88%D8%AA%D8%B4%D9%8A-%D9%81%D9%84%D9%88%D8%B1%D8%A7</g:link>
+      <g:image_link>https://m5zoon.com/public/uploads/products/1720344963790342.webp</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in stock</g:availability>
+      <g:price>252.00 AED</g:price>
+      <g:brand>Gucci</g:brand>
+      <g:product_type>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:size>100ml</g:size>
+      <g:shipping>
+        <g:country>AE</g:country>
+        <g:service>التوصيل المجاني</g:service>
+        <g:price>0.00 AED</g:price>
+      </g:shipping>
+      <g:shipping_weight>0.3 kg</g:shipping_weight>
+      <g:mpn>perfume_2</g:mpn>
+    </item>
 
-<item>
-<g:id>EMIRATES-PERFUME-003</g:id>
-<title>عطر جوتشي بلوم الأنثوي</title>
-<description>عطر جوتشي بلوم الأنثوي - عطور فاخرة عالية الجودة مع ضمان الأصالة وتوصيل سريع لجميع إمارات الدولة</description>
-<link>https://emirates-gifts.arabsad.com/products/gucci-bloom.html</link>
-<g:image_link>https://m5zoon.com/public/uploads/products/1720344971935939.webp</g:image_link>
-<g:condition>new</g:condition>
-<g:availability>in stock</g:availability>
-<g:price>252 AED</g:price>
-<g:brand>Emirates Gifts</g:brand>
-<g:mpn>EG-GUCCI-BLOOM-100ML</g:mpn>
-<g:identifier_exists>false</g:identifier_exists>
-<g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:google_product_category>
-<g:product_type>عطور فاخرة</g:product_type>
-<g:age_group>adult</g:age_group>
-<g:gender>unisex</g:gender>
-<g:shipping>
-<g:country>AE</g:country>
-<g:service>توصيل سريع</g:service>
-<g:price>0 AED</g:price>
-</g:shipping>
-<g:shipping_weight>0.5 kg</g:shipping_weight>
-<g:tax>
-<g:country>AE</g:country>
-<g:rate>0</g:rate>
-</g:tax>
-</item>
+    <item>
+      <g:id>watch_1</g:id>
+      <g:title>ساعة رولكس يخت ماستر فضي</g:title>
+      <g:description>ساعة فاخرة ساعة رولكس يخت ماستر فضي بتصميم أنيق ومواصفات احترافية عالية الجودة ومقاومة للماء. ضمان الجودة من متجر هدايا الإمارات مع التوصيل المجاني.</g:description>
+      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_1&category=watch&slug=%D8%B3%D8%A7%D8%B9%D8%A9-%D8%B1%D9%88%D9%84%D9%83%D8%B3-%D9%8A%D8%AE%D8%AA-%D9%85%D8%A7%D8%B3%D8%AA%D8%B1-%D9%81%D8%B6%D9%8A</g:link>
+      <g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in stock</g:availability>
+      <g:price>320.00 AED</g:price>
+      <g:brand>Rolex</g:brand>
+      <g:product_type>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:product_type>
+      <g:google_product_category>201</g:google_product_category>
+      <g:shipping>
+        <g:country>AE</g:country>
+        <g:service>التوصيل المجاني</g:service>
+        <g:price>0.00 AED</g:price>
+      </g:shipping>
+      <g:shipping_weight>0.5 kg</g:shipping_weight>
+      <g:mpn>watch_1</g:mpn>
+    </item>
 
-<item>
-<g:id>EMIRATES-WATCH-001</g:id>
-<title>ساعة رولكس يخت ماستر فضية</title>
-<description>ساعة رولكس يخت ماستر فضية - ساعات فاخرة عالية الجودة مع ضمان الأصالة وتوصيل سريع لجميع إمارات الدولة</description>
-<link>https://emirates-gifts.arabsad.com/products/rolex-yacht-master-silver.html</link>
-<g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
-<g:condition>new</g:condition>
-<g:availability>in stock</g:availability>
-<g:price>320 AED</g:price>
-<g:brand>Emirates Gifts</g:brand>
-<g:mpn>EG-ROLEX-YACHT-MASTER</g:mpn>
-<g:identifier_exists>false</g:identifier_exists>
-<g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:google_product_category>
-<g:product_type>ساعات فاخرة</g:product_type>
-<g:age_group>adult</g:age_group>
-<g:gender>unisex</g:gender>
-<g:shipping>
-<g:country>AE</g:country>
-<g:service>توصيل سريع</g:service>
-<g:price>0 AED</g:price>
-</g:shipping>
-<g:shipping_weight>0.8 kg</g:shipping_weight>
-<g:tax>
-<g:country>AE</g:country>
-<g:rate>0</g:rate>
-</g:tax>
-</item>
+    <item>
+      <g:id>watch_6</g:id>
+      <g:title>ساعة rolex باللون الذهبي والأسود</g:title>
+      <g:description>ساعة فاخرة ساعة rolex باللون الذهبي والأسود بتصميم أنيق ومواصفات احترافية عالية الجودة ومقاومة للماء. ضمان الجودة من متجر هدايا الإمارات مع التوصيل المجاني.</g:description>
+      <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_6&category=watch&slug=%D8%B3%D8%A7%D8%B9%D8%A9-rolex-%D8%A8%D8%A7%D9%84%D9%84%D9%88%D9%86-%D8%A7%D9%84%D8%B0%D9%87%D8%A8%D9%8A-%D9%88%D8%A7%D9%84%D8%A3%D8%B3%D9%88%D8%AF</g:link>
+      <g:image_link>https://m5zoon.com/public/uploads/products/1757284688463569.webp</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in stock</g:availability>
+      <g:price>310.00 AED</g:price>
+      <g:brand>Rolex</g:brand>
+      <g:product_type>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:product_type>
+      <g:google_product_category>201</g:google_product_category>
+      <g:color>ذهبي / أسود</g:color>
+      <g:shipping>
+        <g:country>AE</g:country>
+        <g:service>التوصيل المجاني</g:service>
+        <g:price>0.00 AED</g:price>
+      </g:shipping>
+      <g:shipping_weight>0.5 kg</g:shipping_weight>
+      <g:mpn>watch_6</g:mpn>
+    </item>
 
-<item>
-<g:id>EMIRATES-WATCH-002</g:id>
-<title>ساعة رولكس كلاسيكية 41 ملم</title>
-<description>ساعة رولكس كلاسيكية 41 ملم - ساعات فاخرة عالية الجودة مع ضمان الأصالة وتوصيل سريع لجميع إمارات الدولة</description>
-<link>https://emirates-gifts.arabsad.com/products/ساعة-Rolex-كلاسيكية-41-ملم-2022.html</link>
-<g:image_link>https://m5zoon.com/public/uploads/products/1741223185271965.png</g:image_link>
-<g:condition>new</g:condition>
-<g:availability>in stock</g:availability>
-<g:price>325 AED</g:price>
-<g:brand>Emirates Gifts</g:brand>
-<g:mpn>EG-ROLEX-CLASSIC-41MM</g:mpn>
-<g:identifier_exists>false</g:identifier_exists>
-<g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:google_product_category>
-<g:product_type>ساعات فاخرة</g:product_type>
-<g:age_group>adult</g:age_group>
-<g:gender>unisex</g:gender>
-<g:shipping>
-<g:country>AE</g:country>
-<g:service>توصيل سريع</g:service>
-<g:price>0 AED</g:price>
-</g:shipping>
-<g:shipping_weight>0.8 kg</g:shipping_weight>
-<g:tax>
-<g:country>AE</g:country>
-<g:rate>0</g:rate>
-</g:tax>
-</item>
-
-<item>
-<g:id>EMIRATES-WATCH-003</g:id>
-<title>ساعة أوميغا سواتش بيبي بلو</title>
-<description>ساعة أوميغا سواتش بيبي بلو - ساعات فاخرة عالية الجودة مع ضمان الأصالة وتوصيل سريع لجميع إمارات الدولة</description>
-<link>https://emirates-gifts.arabsad.com/products/omega-swatch-baby-blue.html</link>
-<g:image_link>https://m5zoon.com/public/uploads/products/1720305672749191.webp</g:image_link>
-<g:condition>new</g:condition>
-<g:availability>in stock</g:availability>
-<g:price>325 AED</g:price>
-<g:brand>Emirates Gifts</g:brand>
-<g:mpn>EG-OMEGA-SWATCH-BLUE</g:mpn>
-<g:identifier_exists>false</g:identifier_exists>
-<g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:google_product_category>
-<g:product_type>ساعات فاخرة</g:product_type>
-<g:age_group>adult</g:age_group>
-<g:gender>unisex</g:gender>
-<g:shipping>
-<g:country>AE</g:country>
-<g:service>توصيل سريع</g:service>
-<g:price>0 AED</g:price>
-</g:shipping>
-<g:shipping_weight>0.8 kg</g:shipping_weight>
-<g:tax>
-<g:country>AE</g:country>
-<g:rate>0</g:rate>
-</g:tax>
-</item>
-
-</channel>
+  </channel>
 </rss>
