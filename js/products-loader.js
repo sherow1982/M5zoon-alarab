@@ -1,5 +1,5 @@
-// نظام تحميل وعرض المنتجات الديناميكي - متجر هدايا الإمارات
-// يحمّل جميع المنتجات من ملفات JSON ويعرضها تلقائياً مع الروابط الجميلة والأزرار والتقييمات
+// نظام تحميل وعرض المنتجات الديناميكي المحسن - متجر هدايا الإمارات
+// أزرار أيقونية + وظائف متقدمة + فتح في تبويب جديد + أوصاف تلقائية
 
 (function() {
     'use strict';
@@ -26,34 +26,66 @@
         return `./product-details.html?id=${product.id}&category=${product.categoryEn}&slug=${encodeURIComponent(slug)}`;
     }
     
-    // إضافة للسلة
+    // إضافة للسلة مع النظام المحسن
     function addToCart(product) {
-        let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
-        const existingIndex = cart.findIndex(item => item.id === product.id);
+        const productData = {
+            id: product.id,
+            name: product.title,
+            price: parseFloat(product.sale_price),
+            priceText: product.sale_price + ' درهم',
+            image: product.image_link,
+            url: buildPrettyURL(product),
+            quantity: 1,
+            timestamp: new Date().toISOString()
+        };
         
-        if (existingIndex !== -1) {
-            cart[existingIndex].quantity += 1;
+        if (window.EmiratesCart) {
+            window.EmiratesCart.addToCartQuick(productData);
         } else {
-            cart.push({ 
-                ...product, 
-                quantity: 1,
-                addedAt: new Date().toISOString()
-            });
+            // نظام بديل
+            let cart = JSON.parse(localStorage.getItem('emirates_shopping_cart') || '[]');
+            const existingIndex = cart.findIndex(item => item.id === product.id);
+            
+            if (existingIndex !== -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push(productData);
+            }
+            
+            localStorage.setItem('emirates_shopping_cart', JSON.stringify(cart));
+            updateCartBadge();
+            showCartSuccess(product.title);
         }
+    }
+    
+    // طلب فوري مع النظام المحسن
+    function orderNow(product) {
+        const productData = {
+            id: product.id,
+            name: product.title,
+            price: parseFloat(product.sale_price),
+            priceText: product.sale_price + ' درهم',
+            image: product.image_link,
+            url: buildPrettyURL(product),
+            quantity: 1,
+            timestamp: new Date().toISOString()
+        };
         
-        localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
-        
-        // تحديث شارة السلة
-        updateCartBadge();
-        
-        // رسالة نجاح
-        showCartSuccess(product.title);
+        if (window.EmiratesCart) {
+            window.EmiratesCart.orderNow(productData);
+        } else {
+            // نظام بديل: إضافة للسلة ثم انتقال
+            addToCart(product);
+            setTimeout(() => {
+                window.open('./cart.html', '_blank');
+            }, 1500);
+        }
     }
     
     function updateCartBadge() {
-        const cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const badges = document.querySelectorAll('.cart-badge, #cartBadge');
+        const cart = JSON.parse(localStorage.getItem('emirates_shopping_cart') || '[]');
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const badges = document.querySelectorAll('.cart-counter, .cart-badge, #cartBadge');
         
         badges.forEach(badge => {
             if (badge) {
@@ -64,32 +96,34 @@
     }
     
     function showCartSuccess(productTitle) {
-        // إزالة الرسالة السابقة إن وجدت
+        if (window.EmiratesCart) return; // النظام المحسن يتولى الإشعارات
+        
         const existingMsg = document.querySelector('.cart-success-popup');
         if (existingMsg) existingMsg.remove();
         
         const successMsg = document.createElement('div');
         successMsg.className = 'cart-success-popup';
         successMsg.style.cssText = `
-            position: fixed; top: 20px; right: 20px; z-index: 10000;
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            position: fixed; top: 90px; right: 20px; z-index: 10000;
+            background: linear-gradient(135deg, #25D366, #20B358);
             color: white; padding: 15px 20px; border-radius: 12px;
-            font-weight: 600; box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+            font-weight: 600; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
             animation: slideInRight 0.4s ease-out;
             max-width: 300px; font-size: 14px;
+            font-family: 'Cairo', sans-serif;
         `;
         
         successMsg.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                 <i class="fas fa-check-circle"></i>
                 <span>تم إضافة "${productTitle}" للسلة!</span>
             </div>
-            <div style="margin-top: 8px; display: flex; gap: 10px;">
-                <a href="./cart.html" style="background: rgba(255,255,255,0.2); color: white; padding: 4px 8px; border-radius: 6px; text-decoration: none; font-size: 0.8rem;">
-                    <i class="fas fa-shopping-cart"></i> عرض السلة
+            <div style="display: flex; gap: 8px;">
+                <a href="./cart.html" target="_blank" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 10px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">
+                    <i class="fas fa-shopping-cart"></i> السلة
                 </a>
-                <a href="./checkout.html" style="background: rgba(255,255,255,0.2); color: white; padding: 4px 8px; border-radius: 6px; text-decoration: none; font-size: 0.8rem;">
-                    <i class="fas fa-credit-card"></i> إتمام الطلب
+                <a href="./checkout.html" target="_blank" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 10px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">
+                    <i class="fas fa-credit-card"></i> اطلب فوراً
                 </a>
             </div>
         `;
@@ -152,7 +186,6 @@
         const hasDiscount = parseFloat(product.price) !== parseFloat(product.sale_price);
         const discountPercentage = hasDiscount ? Math.round(((parseFloat(product.price) - parseFloat(product.sale_price)) / parseFloat(product.price)) * 100) : 0;
         const prettyUrl = buildPrettyURL(product);
-        const whatsappMessage = encodeURIComponent(`مرحباً! أريد طلب "${product.title}" بسعر ${product.sale_price} درهم مع التوصيل المجاني`);
         
         // الحصول على التقييمات من النظام الثابت
         let averageRating = 4.5;
@@ -168,8 +201,25 @@
             }
         }
         
+        // وصف تلقائي مناسب لنوع المنتج
+        let productDescription = '';
+        if (product.type === 'perfume') {
+            productDescription = 'عطر فاخر بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً بأناقة وجاذبية';
+        } else if (product.type === 'watch') {
+            productDescription = 'ساعة عالية الجودة بتصميم أنيق ومواصفات احترافية مناسبة لجميع المناسبات';
+        } else {
+            productDescription = 'منتج عالي الجودة بمواصفات ممتازة وتصميم مميز بأفضل الأسعار';
+        }
+        
         return `
-            <div class="product-card emirates-element" data-product-id="${product.id}" data-category="${product.categoryEn}" style="animation-delay: ${index * 0.1}s;">
+            <div class="product-card emirates-element" 
+                 data-product-id="${product.id}" 
+                 data-category="${product.categoryEn}" 
+                 data-product-name="${product.title.replace(/'/g, "\'")}"
+                 data-product-price="${product.sale_price}"
+                 style="animation-delay: ${index * 0.1}s; text-align: center; cursor: pointer;"
+                 onclick="openProductInNewTab('${prettyUrl}', event)">
+                 
                 <div class="product-image-container">
                     <img src="${product.image_link}" 
                          alt="${product.title}" 
@@ -182,61 +232,74 @@
                         `<div class="product-badge new-badge">جديد</div>`
                     }
                     
-                    <div class="product-category-badge" style="position: absolute; top: 10px; left: 10px; background: rgba(212, 175, 55, 0.95); color: #2c3e50; padding: 6px 10px; border-radius: 15px; font-size: 0.75rem; font-weight: 600; z-index: 2; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                    <div class="product-category-badge">
                         ${product.categoryIcon} ${product.category}
-                    </div>
-                    
-                    <div class="product-overlay">
-                        <a href="${prettyUrl}" target="_blank" class="overlay-btn eye-link" title="عرض التفاصيل" style="display: flex; align-items: center; justify-content: center; gap: 5px; text-decoration: none; color: white; font-size: 0.9rem; font-weight: 600;">
-                            <i class="fas fa-eye"></i>
-                            <span>التفاصيل</span>
-                        </a>
                     </div>
                 </div>
                 
                 <div class="product-info">
-                    <div class="product-category">${product.categoryIcon} ${product.category}</div>
                     <h3 class="product-title">
-                        <a href="${prettyUrl}" target="_blank" class="product-title-link" style="color: inherit; text-decoration: none; font-weight: 700;">
+                        <a href="${prettyUrl}" target="_blank" class="product-title-link">
                             ${product.title}
                         </a>
                     </h3>
                     
+                    <!-- الوصف التلقائي -->
+                    <div class="product-description" style="font-size: 0.85rem; color: #666; margin: 8px 0; line-height: 1.4; text-align: center; padding: 0 10px;">
+                        ${productDescription}
+                    </div>
+                    
                     <!-- السعر -->
-                    <div class="product-price" style="margin: 12px 0;">
+                    <div class="product-price" style="margin: 12px 0; text-align: center;">
                         <span class="current-price" style="font-size: 1.4rem; font-weight: 900; color: #27ae60;">${parseFloat(product.sale_price).toFixed(2)} د.إ</span>
                         ${hasDiscount ? `<span class="original-price" style="font-size: 1rem; color: #e74c3c; text-decoration: line-through; margin-right: 10px;">${parseFloat(product.price).toFixed(2)} د.إ</span>` : ''}
                     </div>
                     
                     <!-- التقييمات -->
-                    <div class="product-rating-display" style="display: flex; align-items: center; gap: 8px; margin: 12px 0; padding: 8px 12px; background: rgba(255, 215, 0, 0.1); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.3);">
+                    <div class="product-rating-display" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px 0; padding: 8px 12px; background: rgba(255, 215, 0, 0.1); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.3);">
                         <div class="stars" style="color: #FFD700; font-size: 1rem;">${starsHTML}</div>
                         <span class="rating-number" style="font-weight: bold; color: #D4AF37; font-size: 0.9rem;">${averageRating.toFixed(1)}</span>
-                        <span class="reviews-count" style="color: #666; font-size: 0.85rem;">(مراجعة ${totalReviews})</span>
+                        <span class="reviews-count" style="color: #666; font-size: 0.85rem;">(${totalReviews})</span>
                         <span class="verified-badge" style="background: #25D366; color: white; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 600;">✓ موثق</span>
                     </div>
                     
-                    <div class="product-actions" style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-top: 15px;">
-                        <button class="btn-add-cart" 
-                                onclick="addProductToCart('${product.id}', '${product.title.replace(/'/g, "\\'")}')"
-                                style="background: linear-gradient(135deg, #FFD700, #D4AF37); color: #2c3e50; border: none; padding: 12px 15px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 6px; position: relative; overflow: hidden;">
+                    <!-- الأزرار الأيقونية الجديدة -->
+                    <div class="card-actions-container" style="display: flex; justify-content: center; gap: 8px; margin-top: 15px; flex-wrap: wrap;">
+                        <!-- زر إضافة للسلة -->
+                        <button class="icon-btn cart-icon-btn add-to-cart-btn" 
+                                data-product-id="${product.id}"
+                                onclick="addProductToCart('${product.id}', event)"
+                                title="أضف للسلة">
                             <i class="fas fa-shopping-cart"></i>
-                            <span>للسلة</span>
+                            <span class="btn-tooltip">أضف للسلة</span>
                         </button>
-                        <a href="https://wa.me/201110760081?text=${whatsappMessage}" 
-                           target="_blank"
-                           class="btn-whatsapp"
-                           style="background: linear-gradient(135deg, #25D366, #20B358); color: white; text-decoration: none; padding: 12px 15px; border-radius: 10px; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.3s ease;">
+                        
+                        <!-- زر اطلب فوراً -->
+                        <button class="icon-btn order-now-icon-btn order-now-btn" 
+                                data-product-id="${product.id}"
+                                onclick="orderProductNow('${product.id}', event)"
+                                title="اطلب فوراً" 
+                                style="background: linear-gradient(135deg, #25D366, #20B358); color: white; border-color: #25D366;">
+                            <i class="fas fa-bolt"></i>
+                            <span class="btn-tooltip">اطلب فوراً</span>
+                        </button>
+                        
+                        <!-- زر واتساب -->
+                        <button class="icon-btn whatsapp-icon-btn" 
+                                onclick="sendWhatsAppOrder('${product.id}', event)"
+                                title="طلب عبر واتساب" 
+                                style="background: #25D366; color: white; border-color: #25D366;">
                             <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                    
-                    <!-- رابط سريع لإتمام الطلب -->
-                    <div style="margin-top: 10px; text-align: center;">
-                        <a href="./checkout.html" style="color: #D4AF37; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 6px 12px; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 6px; transition: all 0.3s ease;">
-                            <i class="fas fa-credit-card"></i>
-                            اطلب فوراً
-                        </a>
+                            <span class="btn-tooltip">واتساب</span>
+                        </button>
+                        
+                        <!-- زر عرض تفاصيل -->
+                        <button class="icon-btn details-icon-btn" 
+                                onclick="openProductInNewTab('${prettyUrl}', event)"
+                                title="عرض التفاصيل">
+                            <i class="fas fa-eye"></i>
+                            <span class="btn-tooltip">التفاصيل</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -265,14 +328,56 @@
         return stars;
     }
     
-    // دالة إضافة للسلة - عامة
-    window.addProductToCart = function(productId, productTitle) {
+    // وظائف عامة للأزرار
+    window.addProductToCart = function(productId, event) {
+        if (event) {
+            event.stopPropagation();
+            event.preventDefault();
+        }
+        
         const product = allProducts.find(p => p.id.toString() === productId.toString());
         if (product) {
             addToCart(product);
-        } else {
-            console.error('لم يتم العثور على المنتج:', productId);
         }
+    };
+    
+    window.orderProductNow = function(productId, event) {
+        if (event) {
+            event.stopPropagation();
+            event.preventDefault();
+        }
+        
+        const product = allProducts.find(p => p.id.toString() === productId.toString());
+        if (product) {
+            orderNow(product);
+        }
+    };
+    
+    window.sendWhatsAppOrder = function(productId, event) {
+        if (event) {
+            event.stopPropagation();
+            event.preventDefault();
+        }
+        
+        const product = allProducts.find(p => p.id.toString() === productId.toString());
+        if (product) {
+            const message = `مرحباً! أريد طلب هذا المنتج:
+
+🎁 ${product.title}
+💰 ${product.sale_price} درهم
+
+أريد معرفة تفاصيل الطلب والتوصيل.`;
+            const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    };
+    
+    window.openProductInNewTab = function(url, event) {
+        if (event) {
+            event.stopPropagation();
+            event.preventDefault();
+        }
+        window.open(url, '_blank');
     };
     
     function displayProducts(products, containerId, limit = null) {
@@ -290,9 +395,7 @@
                     <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; display: block; opacity: 0.6;"></i>
                     <h3 style="margin: 10px 0; color: #2c3e50;">لا توجد منتجات مطابقة</h3>
                     <p>عذراً، لا توجد منتجات مطابقة لبحثك.</p>
-                    <button onclick="location.reload()" style="background: var(--primary-gold); color: #2c3e50; border: none; padding: 10px 20px; border-radius: 8px; margin-top: 15px; font-weight: 600; cursor: pointer;">
-                        إعادة تحميل
-                    </button>
+                    <button onclick="location.reload()" class="btn-primary">إعادة تحميل</button>
                 </div>
             `;
             return;
@@ -304,9 +407,12 @@
         
         container.innerHTML = productsHTML;
         
-        // تحديث شارة السلة بعد العرض
+        // تطبيق التحسينات على البطاقات الجديدة
         setTimeout(() => {
             updateCartBadge();
+            if (window.enhancedProductCards) {
+                window.enhancedProductCards.enhanceAllCards();
+            }
         }, 300);
         
         console.log(`✅ تم عرض ${productsToShow.length} منتج في ${containerId}`);
@@ -323,7 +429,6 @@
             }
         }, 100);
         
-        // timeout احتياطي بعد 5 ثوانِ
         setTimeout(() => {
             clearInterval(waitForReviews);
             displayHomeProducts();
@@ -362,7 +467,6 @@
     async function loadProductsShowcase() {
         await loadAllProducts();
         
-        // انتظار تحميل نظام التقييمات
         const waitForReviews = setInterval(() => {
             if (window.persistentReviews && window.persistentReviews.isInitialized) {
                 clearInterval(waitForReviews);
@@ -473,12 +577,113 @@
                     transition: all 0.4s ease;
                     border: 1px solid rgba(212, 175, 55, 0.15);
                     position: relative;
+                    cursor: pointer;
+                    text-align: center;
                 }
                 
                 .product-card:hover {
                     transform: translateY(-8px);
                     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
                     border-color: rgba(212, 175, 55, 0.4);
+                }
+                
+                .product-category-badge {
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    background: rgba(212, 175, 55, 0.95);
+                    color: #2c3e50;
+                    padding: 6px 10px;
+                    border-radius: 15px;
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    z-index: 2;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                }
+                
+                .icon-btn {
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                    border: 2px solid #ddd;
+                    background: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    position: relative;
+                    font-size: 1.2rem;
+                    color: #666;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                }
+                
+                .icon-btn:hover {
+                    background: #D4AF37;
+                    border-color: #D4AF37;
+                    color: white;
+                    transform: translateY(-3px) scale(1.1);
+                    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+                }
+                
+                .icon-btn.order-now-icon-btn:hover {
+                    background: linear-gradient(135deg, #20B358, #1e8449) !important;
+                    border-color: #20B358;
+                    box-shadow: 0 6px 20px rgba(32, 179, 88, 0.4);
+                }
+                
+                .icon-btn.whatsapp-icon-btn:hover {
+                    background: #20B358 !important;
+                    border-color: #20B358;
+                    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+                }
+                
+                .icon-btn.details-icon-btn:hover {
+                    background: #007bff;
+                    border-color: #007bff;
+                    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+                }
+                
+                .btn-tooltip {
+                    position: absolute;
+                    bottom: -40px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0,0,0,0.9);
+                    color: white;
+                    padding: 6px 12px;
+                    border-radius: 8px;
+                    font-size: 0.75rem;
+                    opacity: 0;
+                    transition: all 0.3s ease;
+                    white-space: nowrap;
+                    z-index: 1001;
+                    font-weight: 600;
+                    pointer-events: none;
+                }
+                
+                .icon-btn:hover .btn-tooltip {
+                    opacity: 1;
+                    bottom: -35px;
+                }
+                
+                .product-description {
+                    font-size: 0.85rem !important;
+                    color: #666 !important;
+                    margin: 8px 0 !important;
+                    line-height: 1.4 !important;
+                    text-align: center !important;
+                    padding: 0 10px;
+                }
+                
+                .card-actions-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 8px;
+                    margin-top: 15px;
+                    padding: 10px 0;
+                    flex-wrap: wrap;
                 }
                 
                 @keyframes fadeInUp {
@@ -496,89 +701,44 @@
                     transition: color 0.3s ease;
                 }
                 
-                .btn-add-cart:hover {
-                    transform: translateY(-3px);
-                    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
-                }
-                
-                .btn-whatsapp:hover {
-                    transform: translateY(-3px);
-                    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-                }
-                
-                .eye-link:hover {
-                    background: rgba(212, 175, 55, 0.95) !important;
-                    color: #2c3e50 !important;
-                }
-                
-                .discount-badge {
-                    background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
-                    color: white;
-                    padding: 6px 12px;
-                    border-radius: 15px;
-                    font-size: 0.8rem;
-                    font-weight: 700;
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    z-index: 3;
-                    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
-                }
-                
-                .new-badge {
-                    background: linear-gradient(135deg, #27ae60, #229954) !important;
-                    color: white;
-                    padding: 6px 12px;
-                    border-radius: 15px;
-                    font-size: 0.8rem;
-                    font-weight: 700;
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    z-index: 3;
-                    box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
-                }
-                
-                .filter-btn {
-                    background: white;
-                    border: 2px solid #D4AF37;
-                    color: #D4AF37;
-                    padding: 12px 24px;
-                    border-radius: 10px;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    font-family: 'Cairo', sans-serif;
-                }
-                
-                .filter-btn.active,
-                .filter-btn:hover {
-                    background: linear-gradient(135deg, #FFD700, #D4AF37);
-                    color: #2c3e50;
-                    transform: translateY(-2px);
-                    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
-                }
-                
-                .product-rating-display:hover {
-                    background: rgba(255, 215, 0, 0.2);
-                    border-color: rgba(255, 215, 0, 0.5);
-                }
-                
-                .product-actions a:hover {
-                    opacity: 0.9;
-                }
-                
+                /* تحسينات للهواتف */
                 @media (max-width: 768px) {
                     .product-actions {
                         grid-template-columns: 1fr !important;
                         gap: 8px !important;
                     }
+                    
                     .filter-controls {
                         flex-direction: column;
                         align-items: stretch;
                     }
+                    
                     .product-card {
                         margin-bottom: 20px;
+                    }
+                    
+                    .icon-btn {
+                        width: 42px;
+                        height: 42px;
+                        font-size: 1.1rem;
+                    }
+                    
+                    .card-actions-container {
+                        gap: 6px;
+                        margin-top: 12px;
+                    }
+                    
+                    .btn-tooltip {
+                        font-size: 0.7rem;
+                        padding: 4px 8px;
+                    }
+                }
+                
+                @media (max-width: 480px) {
+                    .icon-btn {
+                        width: 38px;
+                        height: 38px;
+                        font-size: 1rem;
                     }
                 }
             `;
@@ -614,6 +774,7 @@
         arabicSlugify,
         buildPrettyURL,
         addToCart,
+        orderNow,
         updateCartBadge,
         generateStarsHTML
     };
