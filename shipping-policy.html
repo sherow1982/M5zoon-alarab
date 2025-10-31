@@ -1,152 +1,343 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar-AE" dir="rtl">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سياسة الشحن - متجر هدايا الإمارات</title>
-    <meta name="description" content="اقرأ سياسة الشحن والتوصيل في متجر هدايا الإمارات. بيانات شاملة حول أوقات التوصيل ورسوم الشحن.">
-    <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/shipping-policy.html">
-    <link rel="stylesheet" href="./woodmart-lite.css">
-    <link rel="icon" href="./favicon.ico">
+    <title>سياسة الشحن والتوصيل | متجر هدايا الإمارات</title>
+    <meta name="description" content="اعرف سياسة الشحن والتوصيل في متجر هدايا الإمارات - توصيل مجاني لجميع إمارات الدولة وأوقات التوصيل وشروط الشحن">
+    
+    <!-- خط Cairo من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- ملف CSS الجديد المستوحى من دخون الإماراتية -->
+    <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
+    
+    <style>
+        .policy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 40px var(--shadow-medium);
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .policy-hero {
+            background: var(--gradient-gold);
+            padding: 80px 0;
+            text-align: center;
+            color: var(--deep-blue);
+        }
+        
+        .policy-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+        
+        .policy-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .policy-content h2 {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-gold);
+        }
+        
+        .policy-content h3 {
+            color: var(--deep-blue);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 25px 0 15px;
+        }
+        
+        .policy-content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+        
+        .policy-content ul {
+            margin: 15px 0;
+            padding-right: 25px;
+        }
+        
+        .policy-content li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        
+        .highlight-box {
+            background: var(--light-blue);
+            border-right: 4px solid var(--primary-gold);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: var(--border-radius-small);
+        }
+        
+        .contact-section {
+            background: var(--gradient-blue);
+            color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .contact-section h3 {
+            color: var(--light-gold) !important;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .policy-content {
+                padding: 30px 20px;
+                margin: 15px;
+                margin-top: -30px;
+            }
+            
+            .policy-hero {
+                padding: 60px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header__inner container">
-            <a href="./" class="header__logo">
-                <h1>متجر هدايا الإمارات</h1>
-            </a>
-            <nav class="main-nav">
-                <a href="./">الرئيسية</a>
-                <a href="./blog.html">المدونة</a>
-                <a href="./about.html">من نحن</a>
-                <a href="./shipping-policy.html">سياسة الشحن</a>
-                <a href="./return-policy.html">الاسترجاع</a>
-                <a href="https://wa.me/201110760081" class="whatsapp-contact" target="_blank">
-                    📱 واتساب
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="./" class="logo" aria-label="الصفحة الرئيسية - هدايا الإمارات">
+                    <div class="logo-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-title">هدايا الإمارات</div>
+                        <div class="logo-subtitle">Emirates Gifts</div>
+                    </div>
                 </a>
-            </nav>
+
+                <!-- Header Tools -->
+                <div class="header-tools">
+                    <a href="./cart.html" class="header-tool" aria-label="السلة">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                    <a href="./" class="header-tool" aria-label="الرئيسية">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
+
+    <!-- Policy Hero -->
+    <section class="policy-hero">
+        <div class="section-container">
+            <h1 class="policy-title">سياسة الشحن والتوصيل</h1>
+            <p class="policy-subtitle">
+                اعرف كل شيء عن سياسة الشحن والتوصيل في متجر هدايا الإمارات
+            </p>
+        </div>
+    </section>
     
-    <main class="section">
-        <div class="container">
-            <h1>سياسة الشحن والتوصيل</h1>
-            
+    <!-- Policy Content -->
+    <section class="section">
+        <div class="section-container">
             <div class="policy-content">
-                <h2>معلومات عامة</h2>
-                <p>في متجر هدايا الإمارات، نحرص على ضمان وصول طلباتكم بأمان وفي أقصر وقت ممكن.</p>
+                <h2>🚚 الشحن المجاني</h2>
+                <p>
+                    يقدم متجر هدايا الإمارات خدمة الشحن المجاني لجميع إمارات دولة الإمارات العربية المتحدة للطلبات فوق 250 درهم.
+                </p>
                 
-                <h3>مناطق التوصيل</h3>
+                <div class="highlight-box">
+                    <strong>✅ شحن مجاني لجميع الطلبات فوق 250 درهم</strong><br>
+                    • التوصيل خلال 24-48 ساعة<br>
+                    • خدمة عملاء عربية 100%<br>
+                    • تغليف آمن ومحمي
+                </div>
+
+                <h3>🏠 المناطق المشمولة بالتوصيل</h3>
                 <ul>
-                    <li>جميع إمارات دولة الإمارات العربية المتحدة</li>
-                    <li>دبي وأبو ظبي والشارقة</li>
-                    <li>عجمان وأم القيوين ورأس الخيمة والفجيرة</li>
+                    <li>🏙️ دبي</li>
+                    <li>🏙️ أبو ظبي</li>
+                    <li>🏙️ الشارقة</li>
+                    <li>🏙️ عجمان</li>
+                    <li>🏙️ أم القيوين</li>
+                    <li>🏙️ رأس الخيمة</li>
+                    <li>🏙️ الفجيرة</li>
                 </ul>
+
+                <h2>⏰ أوقات التوصيل</h2>
                 
-                <h3>أوقات التوصيل</h3>
+                <h3>التوصيل العادي</h3>
                 <ul>
-                    <li><strong>التوصيل العادي:</strong> 2-3 أيام عمل</li>
-                    <li><strong>التوصيل السريع:</strong> 24 ساعة (متاح في دبي وأبو ظبي)</li>
-                    <li><strong>التوصيل في نفس اليوم:</strong> متاح للطلبات قبل الساعة 2 ظهراً</li>
+                    <li>• دبي وأبو ظبي: 24-48 ساعة</li>
+                    <li>• باقي الإمارات: 48-72 ساعة</li>
+                    <li>• المناطق النائية: 3-5 أيام عمل</li>
                 </ul>
-                
-                <h3>رسوم الشحن</h3>
+
+                <h3>التوصيل السريع</h3>
                 <ul>
-                    <li><strong>التوصيل المجاني:</strong> للطلبات فوق 300 درهم إماراتي</li>
-                    <li><strong>رسوم التوصيل العادي:</strong> 25 درهم إماراتي</li>
-                    <li><strong>رسوم التوصيل السريع:</strong> 50 درهم إماراتي</li>
-                    <li><strong>رسوم التوصيل في نفس اليوم:</strong> 75 درهم إماراتي</li>
+                    <li>• خدمة متاحة في دبي وأبو ظبي</li>
+                    <li>• التوصيل خلال 12-24 ساعة</li>
+                    <li>• رسوم إضافية: 50 درهم</li>
                 </ul>
-                
-                <h3>طرق الدفع</h3>
+
+                <h2>📦 تغليف المنتجات</h2>
+                <p>
+                    نحن في متجر هدايا الإمارات نهتم بتغليف منتجاتنا بعناية فائقة لضمان وصولها إليكم بأفضل حالة.
+                </p>
                 <ul>
-                    <li>الدفع عند الاستلام (نقدي)</li>
-                    <li>بطاقات الائتمان والخصم</li>
-                    <li>التحويل البنكي</li>
-                    <li>محافظ إلكترونية</li>
+                    <li>• تغليف خاص مقاوم للعطور</li>
+                    <li>• صناديق فاخرة للساعات</li>
+                    <li>• ورق هدايا مجاني</li>
+                    <li>• بطاقة ضمان مع كل منتج</li>
                 </ul>
+
+                <h2>💰 رسوم الشحن</h2>
                 
-                <h3>طريقة الطلب</h3>
-                <p>يمكنكم الطلب بسهولة من خلال:</p>
+                <div class="highlight-box">
+                    <strong>🎆 عرض خاص:</strong> شحن مجاني لجميع الطلبات فوق 250 درهم
+                </div>
+                
                 <ul>
-                    <li>التواصل عبر واتساب على الرقم: +201110760081</li>
-                    <li>إرسال صور المنتجات المرغوب بها</li>
-                    <li>تأكيد بيانات التوصيل والدفع</li>
+                    <li>• الطلبات أقل من 250 درهم: 25 درهم رسوم شحن</li>
+                    <li>• التوصيل السريع (دبي وأبو ظبي): 50 درهم</li>
+                    <li>• المناطق النائية: 35 درهم</li>
                 </ul>
-                
+
+                <h2>📱 طريقة الطلب</h2>
+                <p>
+                    يمكنكم طلب منتجاتنا بسهولة عبر واتساب أو من خلال موقعنا الإلكتروني.
+                </p>
+                <ul>
+                    <li>1️⃣ اختر منتجاتك</li>
+                    <li>2️⃣ أضفها إلى السلة</li>
+                    <li>3️⃣ اضغط على "إتمام الطلب عبر واتساب"</li>
+                    <li>4️⃣ أرسل تفاصيل التوصيل</li>
+                    <li>5️⃣ سيتم تأكيد الطلب فوراً</li>
+                </ul>
+
+                <h2>🛑 ضمان الجودة</h2>
+                <p>
+                    جميع منتجاتنا أصلية 100% ومضمونة الجودة. في حالة وجود أي مشكلة في المنتج، نحن مسؤولون عن استبداله أو إرجاع قيمته.
+                </p>
+
+                <h3>👥 خدمة العملاء</h3>
+                <ul>
+                    <li>• خدمة عملاء 24/7</li>
+                    <li>• فريق خدمة عربي</li>
+                    <li>• استجابة سريعة عبر واتساب</li>
+                    <li>• حل فوري للمشاكل</li>
+                </ul>
+
+                <h2>👍 تتبع طلبك</h2>
+                <p>
+                    بعد تأكيد الطلب، سيتم إرسال رقم تتبع عبر واتساب يمكنك من خلاله متابعة حالة طلبك لحظة بلحظة.
+                </p>
+
                 <div class="contact-section">
-                    <h3>للاستفسار والطلب</h3>
-                    <p>للحصول على مزيد من المعلومات أو لتقديم طلب جديد، اتصل بنا عبر واتساب الآن.</p>
-                    <a href="https://wa.me/201110760081" class="whatsapp-contact" target="_blank">
-                        📱 اطلب عبر واتساب
+                    <h3>📞 هل لديك استفسار؟</h3>
+                    <p>تواصل معنا عبر واتساب للحصول على إجابات فورية</p>
+                    <a href="https://wa.me/201110760081" class="btn-primary" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        تواصل عبر واتساب
                     </a>
+                    <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">
+                        هاتف: +20 111 076 0081<br>
+                        أوقات العمل: يومياً 9:00 ص - 10:00 م
+                    </p>
                 </div>
             </div>
         </div>
-    </main>
-    
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
+        <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>متجر هدايا الإمارات</h3>
-                    <p>متجركم الموثوق للعطور والساعات والهدايا الفاخرة في دولة الإمارات.</p>
-                    <div class="contact-info">
-                        <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.36 3.48 16.84L2 22L7.32 20.55C8.75 21.33 10.37 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 6.45 17.5 2 12.04 2Z"/></svg>
-                        <span>+201110760081</span>
+                    <h3>هدايا الإمارات</h3>
+                    <p>متجر العطور والهدايا الفاخرة الرائد في الإمارات</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
-                    <a href="https://wa.me/201110760081" class="whatsapp-contact" target="_blank">
-                        📱 تواصل عبر واتساب
-                    </a>
                 </div>
-                
                 <div class="footer-section">
-                    <h3>روابط مهمة</h3>
+                    <h3>روابط سريعة</h3>
                     <ul>
-                        <li><a href="./">الصفحة الرئيسية</a></li>
-                        <li><a href="./blog.html">مدونة المتجر</a></li>
-                        <li><a href="./about.html">من نحن</a></li>
-                        <li><a href="./shipping-policy.html">سياسة الشحن</a></li>
-                        <li><a href="./return-policy.html">سياسة الاسترجاع</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>فئات المنتجات</h3>
-                    <ul>
-                        <li><a href="#">عطور رجالية</a></li>
-                        <li><a href="#">عطور نسائية</a></li>
-                        <li><a href="#">ساعات رولكس</a></li>
-                        <li><a href="#">ساعات أوميغا</a></li>
-                        <li><a href="#">هدايا فاخرة</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>خدمة العملاء</h3>
-                    <ul>
-                        <li><a href="https://wa.me/201110760081">تواصل معنا</a></li>
-                        <li><a href="./shipping-policy.html">طرق الشحن</a></li>
-                        <li><a href="./return-policy.html">طرق الاسترجاع</a></li>
-                        <li><a href="#">ضمان الجودة</a></li>
-                        <li><a href="#">الدفع عند الاستلام</a></li>
+                        <li><a href="./">الرئيسية</a></li>
+                        <li><a href="./products-showcase.html">المنتجات</a></li>
+                        <li><a href="./cart.html">السلة</a></li>
+                        <li><a href="./return-policy.html">سياسة الإرجاع</a></li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="footer__bottom">
-                <p>&copy; 2025 متجر هدايا الإمارات - جميع الحقوق محفوظة</p>
-                <div class="social-links">
-                    <a href="https://wa.me/201110760081" target="_blank" title="واتساب">📱</a>
-                    <a href="#" target="_blank" title="إنستغرام">📷</a>
-                    <a href="#" target="_blank" title="تيك توك">🎵</a>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
-    
-    <button id="back-to-top" title="العودة إلى الأعلى">↑</button>
-    
-    <script type="module" src="./js/ui.js"></script>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // تحديث شريط التقدم
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight;
+            const winHeight = window.innerHeight;
+            const scrollPercent = scrollTop / (docHeight - winHeight);
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) {
+                progressBar.style.width = `${scrollPercent * 100}%`;
+            }
+            
+            // تأثير الهيدر
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header?.classList.add('scrolled');
+            } else {
+                header?.classList.remove('scrolled');
+            }
+            
+            // زر العودة للأعلى
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTop?.classList.add('show');
+            } else {
+                backToTop?.classList.remove('show');
+            }
+        }, { passive: true });
+        
+        document.getElementById('backToTop')?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
