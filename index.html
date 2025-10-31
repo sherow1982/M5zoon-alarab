@@ -44,7 +44,7 @@
     <header class="header" id="header">
         <div class="header-container">
             <div class="header-content">
-                <a href="./" class="logo" aria-label="الصفحة الرئيسية - هدايا الإمارات">
+                <a href="./" class="logo" aria-label="الصفحة الرئيسيع - هدايا الإمارات">
                     <div class="logo-icon"><img src="./favicon.ico" alt="هدايا الإمارات" style="width: 32px; height: 32px; object-fit: contain;"></div>
                     <div class="logo-text">
                         <div class="logo-title">هدايا الإمارات</div>
@@ -95,7 +95,7 @@
                         <i class="fas fa-shopping-bag"></i>
                         تسوق الآن
                     </a>
-                    <a href="./products-showcase.html" class="btn-secondary">
+                    <a href="./products-showcase.html" class="btn-secondary" target="_blank">
                         <i class="fas fa-star"></i>
                         عرض المنتجات
                     </a>
@@ -124,12 +124,12 @@
                     <p class="section-subtitle">
                         اخترنا لك أجمل العطور الشرقية والغربية التي تلائم جميع الأذواق مع تقييمات عملائنا ⭐
                     </p>
-                    <a href="./products-showcase.html" class="view-all-link">
+                    <a href="./products-showcase.html" class="view-all-link" target="_blank">
                         <i class="fas fa-arrow-left"></i>
                         عرض جميع العطور
                     </a>
                 </div>
-                <div class="products-grid" id="latestPerfumes">
+                <div class="products-grid" id="perfumes-grid">
                     <div class="loading-message">⏳ جارِ تحميل العطور مع التقييمات...</div>
                 </div>
             </div>
@@ -144,7 +144,7 @@
                     <div class="collection-content">
                         <h2 class="collection-title">مجموعة العطور الشرقية الفاخرة</h2>
                         <p class="collection-description">
-                            استمتع برحلة عطرية لا تُنسى مع مجموعتنا الحصرية من العطور الشرقية الأصيلة. عطور مستوحاة من التراث العربي العريق، تحمل في طياتها أجمل قصص الفخامة والأناقة
+                            استمتع برحلة عطرية لا تُنسى مع مجموعتنا الحصرية من العطور الشرقية التي تحمل في طياتها أجمل قصص الفخامة والأناقة
                         </p>
                         <a href="#perfumes-section" class="btn-primary">
                             <i class="fas fa-crown"></i>
@@ -171,12 +171,12 @@
                     <p class="section-subtitle">
                         مجموعة حصرية من أرقى الساعات العالمية التي تجمع بين الأناقة والدقة مع تقييمات ممتازة 🎆
                     </p>
-                    <a href="./products-showcase.html" class="view-all-link">
+                    <a href="./products-showcase.html" class="view-all-link" target="_blank">
                         <i class="fas fa-arrow-left"></i>
                         عرض جميع الساعات
                     </a>
                 </div>
-                <div class="products-grid" id="latestWatches">
+                <div class="products-grid" id="watches-grid">
                     <div class="loading-message">⏳ جارِ تحميل الساعات مع التقييمات...</div>
                 </div>
             </div>
@@ -188,7 +188,7 @@
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-title">منتجات مميزة مع تقييمات عملائنا 🌟</h2>
-                <p class="section-subtitle">مجموعة مختارة من أفضل المنتجات مع تقييمات إماراتية أصيلة</p>
+                <p class="section-subtitle">مجموعة مختارة من أفضل المنتجات مع تقييمات إماراتية موثقة</p>
                 <a href="./checkout.html" class="view-all-link" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; padding: 10px 20px; border-radius: 10px;">
                     <i class="fas fa-credit-card"></i>
                     اطلب فوراً
@@ -292,6 +292,9 @@
 
     <!-- تحميل نظام التقييمات أولاً -->
     <script src="./js/uae-reviews-generator.js" defer></script>
+    <script src="./js/persistent-reviews-system.js" defer></script>
+    <script src="./js/enhanced-whatsapp-system.js" defer></script>
+    <script src="./js/popup-notifications.js" defer></script>
     <script src="./js/products-loader.js" defer></script>
     <script src="./js/slug-router.js" defer></script>
     <script src="./js/buttons-fix.js" defer></script>
