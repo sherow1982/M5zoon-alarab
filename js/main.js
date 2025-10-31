@@ -1,4 +1,9 @@
 // وظائف المتجر الرئيسية المحسّنة - متجر هدايا الإمارات
+// متوافق مع التصميم الجديد المستوحى من دخون الإماراتية
+
+// متغيرات عامة
+let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
+let isLoading = false;
 
 // دالة لتحويل اسم المنتج إلى سلاج عربي
 function createArabicSlug(title, id) {
@@ -20,29 +25,26 @@ function calculateDiscount(originalPrice, salePrice) {
 // دالة إنشاء رابط واتساب
 function createWhatsAppLink(productTitle, productPrice) {
     const phoneNumber = "201110760081";
-    const message = `مرحباً! أريد أن أستفسر عن هذا المنتج:\n${productTitle}\nبسعر: ${productPrice} درهم إماراتي\n\nمن متجر هدايا الإمارات`;
+    const message = `مرحباً! أريد الاستفسار عن هذا المنتج:\n${productTitle}\nبسعر: ${productPrice} درهم إماراتي\n\nمن متجر هدايا الإمارات`;
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 }
 
-// دالة الحصول على تقييم المنتج (متكاملة مع reviews-system.js)
+// دالة الحصول على تقييم المنتج
 function getProductRating(productTitle) {
     // التحقق من وجود نظام التقييمات
-    if (window.ReviewsSystem && window.ReviewsSystem.getProductRating) {
+    if (typeof window !== 'undefined' && window.ReviewsSystem && window.ReviewsSystem.getProductRating) {
         return window.ReviewsSystem.getProductRating(productTitle);
     }
     
-    // فولباك محلي
+    // فولباك محلي مع تقييمات واقعية
     const slug = productTitle.toLowerCase();
     const ratings = {
-        'ariaf': { rating: 4.8, count: 94 },
-        'glory': { rating: 4.7, count: 118 },
-        'tom-ford': { rating: 4.9, count: 127 },
-        'marly': { rating: 4.9, count: 145 },
-        'kayali': { rating: 4.6, count: 134 },
-        'rolex': { rating: 4.9, count: 234 },
-        'audemars': { rating: 4.8, count: 89 },
-        'patek': { rating: 4.9, count: 67 },
-        'omega': { rating: 4.8, count: 112 }
+        'ariaf': { rating: 4.8, count: 94, professionalReview: 'عطر فاخر عالي الجودة' },
+        'glory': { rating: 4.7, count: 118, professionalReview: 'عطر مميز بثبات طويل' },
+        'tom ford': { rating: 4.9, count: 127, professionalReview: 'عطر ماركة عالمية' },
+        'kayali': { rating: 4.6, count: 134, professionalReview: 'عطر عصري مميز' },
+        'rolex': { rating: 4.9, count: 234, professionalReview: 'ساعة فاخرة مقاومة للماء' },
+        'omega': { rating: 4.8, count: 112, professionalReview: 'ساعة راقية دقيقة' }
     };
     
     for (let key in ratings) {
@@ -51,419 +53,609 @@ function getProductRating(productTitle) {
     
     return { 
         rating: 4.5 + Math.random() * 0.4, 
-        count: Math.floor(Math.random() * 100 + 50) 
+        count: Math.floor(Math.random() * 100 + 50),
+        professionalReview: 'منتج عالي الجودة'
     };
 }
 
-// دالة إنشاء HTML التقييمات للبطاقات
-function createCardRatingHTML(rating, count) {
-    const stars = '★'.repeat(Math.floor(rating));
-    return `
-        <div class="card-rating">
-            <span class="stars">${stars}</span>
-            <span class="rating-number">${rating.toFixed(1)}</span>
-            <span class="reviews-count">(${count})</span>
-        </div>
-    `;
-}
-
-// دالة تصنيف المنتجات بالفئات
-function categorizeProducts(products) {
-    const categories = {
-        'عطور رجالية': [],
-        'عطور نسائية': [],
-        'ساعات رولكس': [],
-        'ساعات فاخرة': [],
-        'هدايا مميزة': []
-    };
+// دالة إضافة منتج للسلة مع تأكيد مرئي
+window.addToCart = function(productData) {
+    if (isLoading) return;
     
-    products.forEach(product => {
-        const title = product.title.toLowerCase();
+    try {
+        const existingIndex = cart.findIndex(item => item.id === productData.id);
         
-        if (title.includes('ساعة')) {
-            if (title.includes('rolex') || title.includes('رولكس')) {
-                categories['ساعات رولكس'].push(product);
-            } else {
-                categories['ساعات فاخرة'].push(product);
-            }
-        } else if (title.includes('عطر') || title.includes('tom ford') || title.includes('kayali') || title.includes('marly')) {
-            if (title.includes('tom ford') || title.includes('رجالي') || title.includes('سوفاج')) {
-                categories['عطور رجالية'].push(product);
-            } else {
-                categories['عطور نسائية'].push(product);
-            }
+        if (existingIndex !== -1) {
+            cart[existingIndex].quantity += 1;
         } else {
-            categories['هدايا مميزة'].push(product);
+            // إضافة بيانات إضافية
+            const ratingData = getProductRating(productData.title);
+            cart.push({
+                ...productData,
+                quantity: 1,
+                rating: ratingData,
+                store: 'متجر هدايا الإمارات',
+                addedAt: new Date().toISOString()
+            });
         }
-    });
-    
-    return categories;
-}
-
-// دالة إنشاء بطاقة المنتج مع التقييمات
-function createProductCard(product) {
-    const discount = calculateDiscount(product.price, product.sale_price);
-    const slug = createArabicSlug(product.title, product.id);
-    const whatsappLink = createWhatsAppLink(product.title, product.sale_price);
-    
-    // الحصول على التقييم
-    const ratingData = getProductRating(product.title);
-    const ratingHTML = createCardRatingHTML(ratingData.rating, ratingData.count);
-    
-    return `
-        <div class="product-card fade-in">
-            ${discount > 0 ? `<div class="discount-badge">-${discount}%</div>` : ''}
-            <img src="${product.image_link}" alt="${product.title}" class="product-image" loading="lazy">
-            <h3 class="product-title">${product.title}</h3>
-            ${ratingHTML}
-            <div class="product-price">
-                <span class="sale-price">${product.sale_price} د.إ</span>
-                ${product.price !== product.sale_price ? `<span class="old-price">${product.price} د.إ</span>` : ''}
-            </div>
-            <div class="product-buttons">
-                <button class="btn-add-to-cart" data-product='${JSON.stringify(product)}' data-rating='${JSON.stringify(ratingData)}'>
-                    <span>🛒</span> أضف للسلة
-                </button>
-                <a href="${whatsappLink}" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
-                    <span>📱</span> واتساب
-                </a>
-                <a href="./products/${slug}.html" class="btn-view-product">
-                    <span>🔍</span> شاهد المزيد
-                </a>
-            </div>
-        </div>
-    `;
-}
-
-// دالة عرض فئة منتجات
-function createCategorySection(categoryName, products, maxProducts = 8) {
-    if (products.length === 0) return '';
-    
-    const limitedProducts = products.slice(0, maxProducts);
-    
-    return `
-        <div class="category-section">
-            <h2 class="category-title">${categoryName}</h2>
-            <div class="products-grid">
-                ${limitedProducts.map(product => createProductCard(product)).join('')}
-            </div>
-        </div>
-    `;
-}
-
-// دالة إضافة منتج للسلة مع التحويل التلقائي
-function addToCart(productData, ratingData) {
-    let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart')) || [];
-    
-    const existingIndex = cart.findIndex(item => item.id === productData.id);
-    if (existingIndex !== -1) {
-        cart[existingIndex].quantity += 1;
-    } else {
-        cart.push({
-            ...productData,
-            quantity: 1,
-            rating: ratingData,
-            addedAt: new Date().toISOString()
-        });
+        
+        // حفظ في التخزين المحلي
+        localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
+        
+        // تحديث عداد السلة
+        updateCartBadge();
+        
+        // إظهار رسالة تأكيد محسّنة
+        showSuccessNotification(productData.title);
+        
+        console.log('تم إضافة المنتج للسلة:', productData.title);
+        
+    } catch (error) {
+        console.error('خطأ في إضافة المنتج للسلة:', error);
+        alert('عذراً، حدث خطأ. يرجى المحاولة مرة أخرى.');
     }
-    
-    localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
-    updateCartCounter();
-    showAddToCartNotification(productData.title);
-    
-    // التوجه لصفحة السلة بعد ثانيتين
-    setTimeout(() => {
-        window.location.href = './cart.html';
-    }, 2000);
-}
+};
 
 // دالة تحديث عداد السلة
-function updateCartCounter() {
-    const cart = JSON.parse(localStorage.getItem('emirates-gifts-cart')) || [];
+function updateCartBadge() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     
-    const counters = document.querySelectorAll('.cart-counter, #cart-count, .cart-badge, #cartBadge');
-    counters.forEach(counter => {
-        counter.textContent = totalItems;
-        counter.style.display = totalItems > 0 ? 'inline-block' : 'none';
-        
+    // البحث عن جميع عدادات السلة
+    const badges = document.querySelectorAll('.cart-badge, #cartBadge, .cart-counter, #cart-count');
+    
+    badges.forEach(badge => {
         if (totalItems > 0) {
-            counter.classList.add('has-items');
+            badge.textContent = totalItems;
+            badge.style.display = 'flex';
+            badge.classList.add('has-items');
         } else {
-            counter.classList.remove('has-items');
+            badge.style.display = 'none';
+            badge.classList.remove('has-items');
         }
     });
 }
 
-// دالة إظهار رسالة إضافة للسلة
-function showAddToCartNotification(productTitle) {
-    const existingNotification = document.querySelector('.cart-notification');
-    if (existingNotification) existingNotification.remove();
+// دالة إظهار رسالة نجاح محسّنة
+function showSuccessNotification(productTitle) {
+    // إزالة أي رسالة سابقة
+    const existing = document.querySelector('.success-notification');
+    if (existing) existing.remove();
     
     const notification = document.createElement('div');
-    notification.className = 'cart-notification';
+    notification.className = 'success-notification';
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #25D366, #128C7E);
+        color: white;
+        padding: 20px 25px;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
+        z-index: 10000;
+        font-family: 'Cairo', sans-serif;
+        font-weight: 600;
+        max-width: 350px;
+        animation: slideInRight 0.4s ease-out;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+    `;
+    
     notification.innerHTML = `
-        <div class="notification-content">
-            <div class="success-icon">✅</div>
-            <div class="notification-text">
-                <strong>تم الإضافة بنجاح!</strong>
-                <p>"${productTitle}" أضيف إلى سلة التسوق</p>
-                <small>🔄 جاري التحويل للسلة...</small>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="font-size: 2rem;">✅</div>
+            <div>
+                <div style="font-size: 1.1rem; margin-bottom: 5px;">تم الإضافة بنجاح!</div>
+                <div style="font-size: 0.9rem; opacity: 0.9; line-height: 1.4;">
+                    "${productTitle.length > 30 ? productTitle.substring(0, 30) + '...' : productTitle}" أُضيف إلى سلة التسوق
+                </div>
+                <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">
+                    🛍️ عرض السلة | 📱 طلب عبر واتساب
+                </div>
             </div>
         </div>
     `;
     
     document.body.appendChild(notification);
+    
+    // إزالة الرسالة بعد مدة
     setTimeout(() => {
-        if (notification.parentNode) notification.remove();
-    }, 2500);
-}
-
-// دالة تحميل وعرض المنتجات بالفئات
-async function loadProductsByCategories() {
-    try {
-        const perfumesResponse = await fetch('./data/otor.json');
-        const perfumes = await perfumesResponse.json();
-        
-        const watchesResponse = await fetch('./data/sa3at.json');
-        const watches = await watchesResponse.json();
-        
-        const allProducts = [...perfumes, ...watches];
-        const categories = categorizeProducts(allProducts);
-        
-        const productsContainer = document.getElementById('products-container');
-        if (productsContainer) {
-            let html = '<h2>أجمل العطور والهدايا الفاخرة</h2>';
-            
-            Object.keys(categories).forEach(categoryName => {
-                html += createCategorySection(categoryName, categories[categoryName], 8);
-            });
-            
-            productsContainer.innerHTML = html;
-            addCartButtonListeners();
-            
-            const cards = document.querySelectorAll('.product-card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.05}s`;
-            });
+        if (notification.parentNode) {
+            notification.style.animation = 'slideOutRight 0.4s ease-in';
+            setTimeout(() => notification.remove(), 400);
         }
-        
-    } catch (error) {
-        console.error('خطأ في تحميل المنتجات:', error);
-        const productsContainer = document.getElementById('products-container');
-        if (productsContainer) {
-            productsContainer.innerHTML = '<p style="text-align: center; color: #999; font-size: 1.2rem;">عذراً، حدث خطأ في تحميل المنتجات. يرجى إعادة المحاولة لاحقاً.</p>';
-        }
+    }, 3500);
+    
+    // إضافة انيميشن CSS إذا لم تكن موجودة
+    if (!document.querySelector('#notification-animations')) {
+        const style = document.createElement('style');
+        style.id = 'notification-animations';
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
     }
 }
 
-// دالة إضافة مستمعي أزرار السلة
-function addCartButtonListeners() {
-    const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
+// دالة إنشاء بطاقة منتج محسّنة
+function createProductCard(product, categoryType = 'general') {
+    const discount = calculateDiscount(product.price, product.sale_price);
+    const whatsappLink = createWhatsAppLink(product.title, product.sale_price);
+    const ratingData = getProductRating(product.title);
     
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const originalHTML = this.innerHTML;
-            this.innerHTML = '<span>⏳</span> جاري الإضافة...';
-            this.disabled = true;
-            this.style.background = '#95a5a6';
-            
-            const productData = JSON.parse(this.getAttribute('data-product'));
-            const ratingData = JSON.parse(this.getAttribute('data-rating') || '{}');
-            
-            setTimeout(() => {
-                addToCart(productData, ratingData);
-            }, 800);
+    const hasDiscount = product.price !== product.sale_price;
+    const stars = '★'.repeat(Math.floor(ratingData.rating));
+    
+    // تصحيح بيانات المنتج للJSON
+    const safeProductData = {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        sale_price: product.sale_price,
+        image_link: product.image_link,
+        image: product.image_link
+    };
+    
+    return `
+        <div class="product-card emirates-element" data-product-id="${product.id}">
+            <div class="product-image-container">
+                <img src="${product.image_link}" 
+                     alt="${product.title} - متجر هدايا الإمارات" 
+                     class="product-image lazyload" 
+                     loading="lazy" 
+                     onerror="this.src='https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=هدايا+الإمارات'">
+                ${hasDiscount ? 
+                    `<div class="product-badge discount-badge">خصم ${discount}%</div>` : 
+                    `<div class="product-badge new-badge">جديد</div>`
+                }
+                <div class="product-overlay">
+                    <button class="overlay-btn quick-view-btn" title="عرض سريع" onclick="showQuickView('${product.id}')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="overlay-btn wishlist-btn" title="إضافة للمفضلة" onclick="addToWishlist('${product.id}')">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <button class="overlay-btn share-btn" title="مشاركة" onclick="shareProduct('${product.id}', '${product.title}')">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-category">${categoryType === 'perfume' ? 'عطور فاخرة' : categoryType === 'watch' ? 'ساعات فاخرة' : 'هدايا مميزة'}</div>
+                <h3 class="product-title">${product.title}</h3>
+                <div class="product-rating">
+                    <div class="stars">${stars}</div>
+                    <span class="rating-text">(${ratingData.rating.toFixed(1)} • ${ratingData.count} تقييم)</span>
+                </div>
+                ${ratingData.professionalReview ? `
+                    <div class="professional-review">
+                        <i class="fas fa-check-circle"></i>
+                        ${ratingData.professionalReview}
+                    </div>
+                ` : ''}
+                <div class="product-price">
+                    <span class="current-price">${product.sale_price} د.إ</span>
+                    ${hasDiscount ? `<span class="original-price">${product.price} د.إ</span>` : ''}
+                    ${hasDiscount ? `<span class="discount-percent">-${discount}%</span>` : ''}
+                </div>
+                <div class="product-actions">
+                    <button class="btn-add-cart" onclick="addToCart(${JSON.stringify(safeProductData).replace(/"/g, '&quot;')})">
+                        <i class="fas fa-shopping-cart"></i>
+                        إضافة للسلة
+                    </button>
+                    <a href="${whatsappLink}" class="btn-whatsapp" target="_blank" rel="noopener noreferrer" title="طلب عبر واتساب">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// وظائف إضافية للتفاعل
+window.showQuickView = function(productId) {
+    alert(`عرض سريع للمنتج ${productId} - قريباً سيتم تفعيل هذه الميزة`);
+};
+
+window.addToWishlist = function(productId) {
+    alert(`تم إضافة المنتج ${productId} للمفضلة - قريباً سيتم تفعيل هذه الميزة`);
+};
+
+window.shareProduct = function(productId, productTitle) {
+    if (navigator.share) {
+        navigator.share({
+            title: productTitle,
+            text: `شاهد هذا المنتج الرائع من متجر هدايا الإمارات`,
+            url: window.location.href
         });
+    } else {
+        // فولباك للمتصفحات القديمة
+        const url = window.location.href;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('تم نسخ رابط المنتج!');
+            });
+        } else {
+            prompt('انسخ الرابط:', url);
+        }
+    }
+};
+
+// دالة تحميل وعرض المنتجات الرئيسية
+async function loadMainProducts() {
+    if (isLoading) return;
+    isLoading = true;
+    
+    try {
+        // عرض رسالة تحميل
+        const loadingElements = document.querySelectorAll('.loading-message');
+        loadingElements.forEach(el => {
+            el.innerHTML = '⏳ جارِ تحميل منتجات متجر هدايا الإمارات...';
+        });
+        
+        // تحميل بيانات المنتجات
+        const [perfumesResponse, watchesResponse] = await Promise.all([
+            fetch('./data/otor.json').catch(err => {
+                console.warn('لم يتم العثور على بيانات العطور:', err);
+                return { ok: false };
+            }),
+            fetch('./data/sa3at.json').catch(err => {
+                console.warn('لم يتم العثور على بيانات الساعات:', err);
+                return { ok: false };
+            })
+        ]);
+        
+        let perfumes = [], watches = [];
+        
+        if (perfumesResponse.ok) {
+            perfumes = await perfumesResponse.json();
+            console.log(`تم تحميل ${perfumes.length} عطر`);
+        }
+        
+        if (watchesResponse.ok) {
+            watches = await watchesResponse.json();
+            console.log(`تم تحميل ${watches.length} ساعة`);
+        }
+        
+        // عرض العطور
+        const perfumesGrid = document.getElementById('perfumes-grid');
+        if (perfumesGrid && perfumes.length > 0) {
+            perfumesGrid.innerHTML = perfumes.slice(0, 8)
+                .map(product => createProductCard(product, 'perfume'))
+                .join('');
+        } else if (perfumesGrid) {
+            perfumesGrid.innerHTML = '<div class="no-products">عذراً، لا توجد عطور متاحة حالياً</div>';
+        }
+        
+        // عرض الساعات
+        const watchesGrid = document.getElementById('watches-grid');
+        if (watchesGrid && watches.length > 0) {
+            watchesGrid.innerHTML = watches.slice(0, 8)
+                .map(product => createProductCard(product, 'watch'))
+                .join('');
+        } else if (watchesGrid) {
+            watchesGrid.innerHTML = '<div class="no-products">عذراً، لا توجد ساعات متاحة حالياً</div>';
+        }
+        
+        // تحديث عداد السلة
+        updateCartBadge();
+        
+        // تفعيل الانيميشن للبطاقات
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }, 200);
+        
+        // تفعيل lazy loading للصور
+        initLazyLoading();
+        
+    } catch (error) {
+        console.error('خطأ في تحميل المنتجات:', error);
+        
+        const grids = document.querySelectorAll('#perfumes-grid, #watches-grid');
+        grids.forEach(grid => {
+            if (grid) {
+                grid.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        عذراً، حدث خطأ في تحميل المنتجات
+                        <br><small>يرجى إعادة تحميل الصفحة</small>
+                    </div>
+                `;
+            }
+        });
+    } finally {
+        isLoading = false;
+    }
+}
+
+// دالة تفعيل lazy loading للصور
+function initLazyLoading() {
+    const lazyImages = document.querySelectorAll('img.lazyload');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.classList.remove('lazyload');
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.01
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+    } else {
+        // فولباك للمتصفحات القديمة
+        lazyImages.forEach(img => {
+            img.classList.remove('lazyload');
+            img.classList.add('loaded');
+        });
+    }
+}
+
+// دالة تفعيل التنقل السلس للروابط الداخلية
+function initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        if (link.getAttribute('target') !== '_blank') {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // إغلاق القائمة الجانبية إن كانت مفتوحة
+                    const sidebar = document.getElementById('mobileSidebar');
+                    const overlay = document.getElementById('mobileOverlay');
+                    if (sidebar && sidebar.classList.contains('open')) {
+                        sidebar.classList.remove('open');
+                        overlay?.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                    
+                    // التنقل السلس
+                    targetElement.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            });
+        }
     });
 }
 
-// دالة زر العودة للأعلى
-function initBackToTop() {
-    const backToTopBtn = document.getElementById('back-to-top');
+// دالة تفعيل أزرار القائمة الجانبية
+function initMobileSidebar() {
+    const openBtn = document.getElementById('openSidebar');
+    const closeBtn = document.getElementById('closeSidebar');
+    const sidebar = document.getElementById('mobileSidebar');
+    const overlay = document.getElementById('mobileOverlay');
     
-    if (backToTopBtn) {
-        let scrollTimeout;
-        window.addEventListener('scroll', () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                if (window.pageYOffset > 300) {
+    const openSidebar = () => {
+        sidebar?.classList.add('open');
+        overlay?.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+    
+    const closeSidebar = () => {
+        sidebar?.classList.remove('open');
+        overlay?.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+    
+    openBtn?.addEventListener('click', openSidebar);
+    closeBtn?.addEventListener('click', closeSidebar);
+    overlay?.addEventListener('click', closeSidebar);
+    
+    // إغلاق بزر Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar?.classList.contains('open')) {
+            closeSidebar();
+        }
+    });
+}
+
+// دالة تفعيل شريط التقدم وزر العودة للأعلى
+function initScrollFeatures() {
+    const progressBar = document.getElementById('progressBar');
+    const backToTopBtn = document.getElementById('backToTop');
+    const header = document.getElementById('header');
+    
+    let scrollTimeout;
+    
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight;
+            const winHeight = window.innerHeight;
+            const scrollPercent = scrollTop / (docHeight - winHeight);
+            
+            // شريط التقدم
+            if (progressBar) {
+                progressBar.style.width = `${Math.min(scrollPercent * 100, 100)}%`;
+            }
+            
+            // تأثير الهيدر
+            if (header) {
+                if (scrollTop > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            
+            // زر العودة للأعلى
+            if (backToTopBtn) {
+                if (scrollTop > 500) {
                     backToTopBtn.classList.add('show');
                 } else {
                     backToTopBtn.classList.remove('show');
                 }
-            }, 100);
-        }, { passive: true });
-        
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-}
-
-// دالة إضافة تأثيرات الحركة عند التمرير
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
             }
-        });
-    }, observerOptions);
+        }, 16); // ~60fps
+    }, { passive: true });
     
-    document.querySelectorAll('.product-card, .category-section').forEach(element => {
-        observer.observe(element);
+    // زر العودة للأعلى
+    backToTopBtn?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
 
-// CSS للتقييمات والسلة (في حال عدم تحميل الملفات المنفصلة)
-function addMainCSS() {
-    if (!document.querySelector('#main-enhanced-css')) {
-        const css = `
-            <style id="main-enhanced-css">
-            .card-rating {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                margin: 12px 0;
-                padding: 10px;
-                background: rgba(255, 215, 0, 0.1);
-                border-radius: 10px;
-                border: 1px solid rgba(255, 215, 0, 0.2);
+// دالة إضافة CSS إضافي للتحسينات
+function addEnhancedCSS() {
+    if (!document.querySelector('#enhanced-main-css')) {
+        const style = document.createElement('style');
+        style.id = 'enhanced-main-css';
+        style.textContent = `
+            .product-card {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             }
-            .card-rating .stars {
-                color: #FFD700;
-                font-size: 16px;
-                text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            
+            .product-card.loaded {
+                opacity: 1;
+                transform: translateY(0);
             }
-            .card-rating .rating-number {
-                font-weight: bold;
-                color: #2c3e50;
-                font-size: 15px;
-            }
-            .card-rating .reviews-count {
+            
+            .no-products, .error-message {
+                text-align: center;
+                padding: 40px 20px;
                 color: #666;
-                font-size: 12px;
+                font-size: 1.1rem;
+                background: #f8f9fa;
+                border-radius: 12px;
+                border: 2px dashed #ddd;
             }
-            .btn-add-to-cart {
-                background: linear-gradient(135deg, #667eea, #764ba2);
-                color: white;
-                border: none;
-                padding: 12px 20px;
-                border-radius: 8px;
+            
+            .error-message {
+                color: #e74c3c;
+                background: #fff5f5;
+                border-color: #e74c3c;
+            }
+            
+            .error-message i {
+                font-size: 2rem;
+                margin-bottom: 15px;
+                display: block;
+            }
+            
+            .professional-review {
+                background: rgba(39, 174, 96, 0.1);
+                color: #27ae60;
+                padding: 8px 12px;
+                border-radius: 20px;
+                font-size: 0.85rem;
                 font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                width: 100%;
+                margin: 10px 0;
                 display: flex;
                 align-items: center;
-                justify-content: center;
-                gap: 8px;
-                min-height: 44px;
-                margin-bottom: 8px;
+                gap: 6px;
             }
-            .btn-add-to-cart:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            
+            .professional-review i {
+                font-size: 0.9rem;
             }
-            .btn-add-to-cart:disabled {
-                cursor: not-allowed;
-                transform: none;
-                box-shadow: none;
+            
+            /* تحسينات الأداء */
+            .product-card {
+                contain: layout style paint;
+                will-change: transform, opacity;
             }
-            .cart-notification {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: linear-gradient(135deg, #27ae60, #2ecc71);
-                color: white;
-                padding: 20px;
-                border-radius: 12px;
-                box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
-                z-index: 10000;
-                animation: slideInNotification 0.5s ease-out;
-                max-width: 350px;
+            
+            .product-image {
+                will-change: transform;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: optimize-contrast;
             }
-            .notification-content {
-                display: flex;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            .success-icon {
-                font-size: 24px;
-                margin-top: 2px;
-            }
-            .notification-text strong {
-                font-size: 16px;
-                display: block;
-                margin-bottom: 5px;
-            }
-            .notification-text p {
-                margin: 0 0 8px 0;
-                font-size: 14px;
-                opacity: 0.9;
-            }
-            .notification-text small {
-                font-size: 12px;
-                opacity: 0.8;
-            }
-            @keyframes slideInNotification {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
+            
+            /* تحسينات للجوال */
             @media (max-width: 768px) {
-                .cart-notification {
+                .success-notification {
                     right: 10px;
                     left: 10px;
                     max-width: none;
                 }
+                
+                .product-actions {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                
+                .btn-add-cart {
+                    width: 100%;
+                }
+                
+                .btn-whatsapp {
+                    width: 100%;
+                    justify-content: center;
+                }
             }
-            </style>
         `;
-        document.head.insertAdjacentHTML('beforeend', css);
+        document.head.appendChild(style);
     }
 }
 
-// تشغيل المتجر المحسّن
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('مرحباً بكم في متجر هدايا الإمارات!');
+// تفعيل جميع الميزات عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 تم تحميل متجر هدايا الإمارات بنجاح!');
     
-    // إضافة CSS الأساسي
-    addMainCSS();
+    // إضافة CSS محسّن
+    addEnhancedCSS();
     
     // تحديث عداد السلة
-    updateCartCounter();
+    updateCartBadge();
     
-    // تحميل وعرض المنتجات بالفئات
-    loadProductsByCategories();
+    // تحميل المنتجات
+    loadMainProducts();
     
-    // تفعيل الوظائف التفاعلية
-    initBackToTop();
+    // تفعيل الميزات التفاعلية
+    initMobileSidebar();
+    initScrollFeatures();
+    initSmoothScrolling();
     
+    // تأخير بسيط لتفعيل الانيميشن
     setTimeout(() => {
-        initScrollAnimations();
-        document.body.classList.add('loaded');
-    }, 1000);
+        document.body.classList.add('page-loaded');
+    }, 500);
 });
 
-// تصدير الدوال للاستخدام العام
-window.EmiratesGiftsStore = {
-    createArabicSlug,
-    calculateDiscount,
-    createWhatsAppLink,
-    createProductCard,
-    categorizeProducts,
-    addToCart,
-    getProductRating,
-    updateCartCounter,
-    showAddToCartNotification,
-    addCartButtonListeners
-};
+// تفعيل إعادة تحميل المنتجات في حالة الرجوع للصفحة
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+        // الصفحة محمّلة من الذاكرة
+        updateCartBadge();
+    }
+});
+
+// تصدير الدوال الرئيسية للاستخدام الخارجي
+if (typeof window !== 'undefined') {
+    window.EmiratesGiftsStore = {
+        createArabicSlug,
+        calculateDiscount,
+        createWhatsAppLink,
+        createProductCard,
+        addToCart: window.addToCart,
+        getProductRating,
+        updateCartBadge,
+        showSuccessNotification,
+        loadMainProducts,
+        cart: () => cart
+    };
+}
