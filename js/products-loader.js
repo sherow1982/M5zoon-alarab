@@ -1,5 +1,5 @@
 // نظام تحميل وعرض المنتجات الديناميكي - متجر هدايا الإمارات
-// يحمّل جميع المنتجات من ملفات JSON ويعرضها تلقائياً
+// يحمّل جميع المنتجات من ملفات JSON ويعرضها تلقائياً مع الروابط الجميلة
 
 (function() {
     'use strict';
@@ -7,6 +7,26 @@
     let allProducts = [];
     let ratingsData = {};
     let isLoading = false;
+    
+    // توليد slug عربي آمن
+    function arabicSlugify(text) {
+        if (!text) return '';
+        return text
+            .replace(/[\u0617-\u061A\u064B-\u0652]/g, '') // إزالة التشكيل
+            .replace(/[\u200B-\u200F\uFEFF]/g, '')     // مسافات صفرية
+            .replace(/["'`^~!@#$%&*()+=\[\]{}|;:,.<>?\\\/]/g, ' ') // رموز
+            .replace(/\s+/g, ' ').trim() // مسافات متكررة
+            .replace(/[^\w\s-]/g, '') // إبقاء الأحرف والأرقام فقط
+            .replace(/\s+/g, '-') // استبدال المسافات بشرطات
+            .replace(/-+/g, '-'); // معالجة شرطات متعددة
+    }
+    
+    // إنشاء رابط المسار الجميل
+    function buildPrettyURL(product) {
+        const slug = arabicSlugify(product.title);
+        const baseUrl = 'https://sherow1982.github.io/emirates-gifts';
+        return `${baseUrl}/product/${encodeURIComponent(slug)}`;
+    }
     
     async function loadRatingsData() {
         try {
@@ -79,6 +99,7 @@
         const rating = ratingsData[product.id.toString()] || getDefaultRating(product);
         const stars = '★'.repeat(Math.floor(rating.rating));
         const productJSON = JSON.stringify(product).replace(/"/g, '&quot;');
+        const prettyUrl = buildPrettyURL(product);
         
         return `
             <div class="product-card emirates-element" data-product-id="${product.id}" data-category="${product.categoryEn}" style="animation-delay: ${index * 0.1}s;">
@@ -98,15 +119,19 @@
                     </div>
                     
                     <div class="product-overlay">
-                        <div class="overlay-btn eye-link" title="عرض التفاصيل" onclick="openProductDetails('${product.id}', '${product.categoryEn}')">
+                        <a href="${prettyUrl}" class="overlay-btn eye-link" title="عرض التفاصيل">
                             <i class="fas fa-eye"></i>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 
                 <div class="product-info">
                     <div class="product-category">${product.categoryIcon} ${product.category}</div>
-                    <h3 class="product-title">${product.title}</h3>
+                    <h3 class="product-title">
+                        <a href="${prettyUrl}" class="product-title-link" style="color: inherit; text-decoration: none;">
+                            ${product.title}
+                        </a>
+                    </h3>
                     
                     <div class="product-rating">
                         <div class="stars">${stars}</div>
@@ -135,11 +160,19 @@
         `;
     }
     
-    // دالة فتح تفاصيل المنتج (global function)
+    // دالة فتح تفاصيل المنتج (global function) - محدثة للمسار الجميل
     window.openProductDetails = function(productId, category) {
-        const detailsURL = `./product-details.html?id=${productId}&category=${category}`;
-        console.log(`✅ فتح رابط التفاصيل: ${detailsURL}`);
-        window.location.href = detailsURL;
+        const product = allProducts.find(p => p.id.toString() === productId.toString());
+        if (product) {
+            const prettyUrl = buildPrettyURL(product);
+            console.log(`✅ فتح رابط جميل: ${prettyUrl}`);
+            window.location.href = prettyUrl;
+        } else {
+            // fallback للرابط القديم
+            const detailsURL = `./product-details.html?id=${productId}&category=${category}`;
+            console.log(`⚠️ fallback رابط: ${detailsURL}`);
+            window.location.href = detailsURL;
+        }
     };
     
     function getDefaultRating(product) {
@@ -306,6 +339,16 @@
                     100% { opacity: 1; transform: translateY(0); }
                 }
                 
+                .product-title-link:hover {
+                    color: var(--primary-gold) !important;
+                    transition: color 0.3s ease;
+                }
+                
+                .eye-link {
+                    text-decoration: none;
+                    color: inherit;
+                }
+                
                 .discount-badge {
                     background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
                 }
@@ -397,7 +440,9 @@
         setupFiltering,
         setupSorting,
         getAllProducts: () => allProducts,
-        getRatingsData: () => ratingsData
+        getRatingsData: () => ratingsData,
+        arabicSlugify,
+        buildPrettyURL
     };
     
     if (document.readyState === 'loading') {
