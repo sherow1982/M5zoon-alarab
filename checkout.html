@@ -593,7 +593,8 @@
     </button>
 
     <script>
-        let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
+        // استخدام مفتاح التخزين الموحد
+        let cart = JSON.parse(localStorage.getItem('emirates_shopping_cart') || '[]');
         let orderTotalCost = 0; // متغير عام للتكلفة الإجمالية
         
         function updateCartBadge() {
@@ -818,7 +819,7 @@
                 // إزالة شاشة التحميل
                 document.body.removeChild(loadingOverlay);
                 
-                // عرض رسالة نجاح
+                // عرض رسالة نجاح بسيطة
                 showSuccessMessage();
                 
             }, 2000);
@@ -838,7 +839,7 @@
             setTimeout(() => {
                 document.body.removeChild(successMessage);
                 // مسح السلة بعد الإرسال الناجح
-                localStorage.removeItem('emirates-gifts-cart');
+                localStorage.removeItem('emirates_shopping_cart');
                 window.location.href = './';
             }, 4000);
         }
