@@ -67,7 +67,7 @@
                 <nav class="main-nav" aria-label="القائمة الرئيسية">
                     <ul class="nav-menu">
                         <li class="nav-item">
-                            <a href="./" class="nav-link">الرئيسية</a>
+                            <a href="./" class="nav-link active">الرئيسية</a>
                         </li>
                         <li class="nav-item">
                             <a href="./products-showcase.html" class="nav-link">المنتجات</a>
@@ -82,7 +82,7 @@
                             <a href="./blog/" class="nav-link">المدونة</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://wa.me/201110760081" class="nav-link" target="_blank">تواصل معنا</a>
+                            <a href="https://wa.me/201110760081" class="nav-link" target="_blank">تواصل</a>
                         </li>
                     </ul>
                 </nav>
@@ -127,7 +127,8 @@
                 <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop&crop=center" 
                      alt="مجموعة متنوعة من العطور الفاخرة" 
                      class="hero-image lazyload"
-                     loading="lazy">
+                     loading="eager"
+                     fetchpriority="high">
             </div>
         </div>
     </section>
@@ -139,7 +140,7 @@
                 <div class="section-header">
                     <h2 class="section-title">عطور هدايا الإمارات الفاخرة</h2>
                     <p class="section-subtitle">
-                        اختارنا لك أجمل العطور الشرقية والغربية التي تلائم جميع الأذواق
+                        اخترنا لك أجمل العطور الشرقية والغربية التي تلائم جميع الأذواق
                     </p>
                 </div>
                 <div class="products-grid" id="perfumes-grid">
@@ -157,8 +158,7 @@
                     <div class="collection-content">
                         <h2 class="collection-title">مجموعة العطور الشرقية الفاخرة</h2>
                         <p class="collection-description">
-                            استمتع برحلة عطرية لا تُنسى مع مجموعتنا الحصرية من العطور الشرقية الأصيلة. 
-                            عطور مستوحاة من التراث العربي العريق، تحمل في طياتها أجمل قصص الفخامة والأناقة.
+                            استمتع برحلة عطرية لا تُنسى مع مجموعتنا الحصرية من العطور الشرقية الأصيلة. عطور مستوحاة من التراث العربي العريق، تحمل في طياتها أجمل قصص الفخامة والأناقة
                         </p>
                         <a href="#perfumes-section" class="btn-primary">
                             <i class="fas fa-crown"></i>
@@ -201,7 +201,7 @@
                     <h3>هدايا الإمارات</h3>
                     <p>
                         متجر العطور والهدايا الفاخرة الرائد في دولة الإمارات العربية المتحدة. 
-                        نقدم لكم أجمل التشكيلات من العطور الشرقية والغربية.
+                        نقدم لكم أجمل التشكيلات من العطور الشرقية والغربية
                     </p>
                     <div class="social-links">
                         <a href="https://wa.me/201110760081" class="social-link" target="_blank">
@@ -288,234 +288,12 @@
         </nav>
     </div>
 
-    <!-- JavaScript -->
-    <script src="./js/performance-optimizer.js" defer></script>
-    <script src="./js/ui.js" defer></script>
-    <script src="./js/reviews-system.js" defer></script>
+    <!-- JavaScript Files - ترتيب محسن لتجنب التعارضات -->
+    <script src="./js/buttons-fix.js" defer></script>
     <script src="./js/cart-system.js" defer></script>
+    <script src="./js/reviews-system.js" defer></script>
     <script src="./js/main.js" defer></script>
-    
-    <script>
-        // متغيرات عامة
-        let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
-        
-        // عناصر DOM
-        const openSidebarBtn = document.getElementById('openSidebar');
-        const closeSidebarBtn = document.getElementById('closeSidebar');
-        const mobileSidebar = document.getElementById('mobileSidebar');
-        const mobileOverlay = document.getElementById('mobileOverlay');
-        const cartBadge = document.getElementById('cartBadge');
-        const progressBar = document.getElementById('progressBar');
-        const backToTopBtn = document.getElementById('backToTop');
-        const header = document.getElementById('header');
-        
-        // وظائف القائمة الجانبية
-        const openSidebar = () => {
-            mobileSidebar?.classList.add('open');
-            mobileOverlay?.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        };
-        
-        const closeSidebar = () => {
-            mobileSidebar?.classList.remove('open');
-            mobileOverlay?.classList.remove('active');
-            document.body.style.overflow = '';
-        };
-        
-        // ربط أحداث القائمة الجانبية
-        openSidebarBtn?.addEventListener('click', openSidebar);
-        closeSidebarBtn?.addEventListener('click', closeSidebar);
-        mobileOverlay?.addEventListener('click', closeSidebar);
-        
-        // إغلاق القائمة بزر Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileSidebar?.classList.contains('open')) {
-                closeSidebar();
-            }
-        });
-        
-        // تحديث عداد السلة
-        const updateCartBadge = () => {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            if (totalItems > 0) {
-                cartBadge.textContent = totalItems;
-                cartBadge.style.display = 'flex';
-                cartBadge.classList.add('has-items');
-            } else {
-                cartBadge.style.display = 'none';
-                cartBadge.classList.remove('has-items');
-            }
-        };
-        
-        // إضافة منتج للسلة
-        window.addToCart = (product) => {
-            const existingItem = cart.find(item => item.id === product.id);
-            if (existingItem) {
-                existingItem.quantity++;
-            } else {
-                cart.push({ 
-                    ...product, 
-                    quantity: 1, 
-                    store: 'متجر هدايا الإمارات',
-                    addedAt: new Date().toISOString()
-                });
-            }
-            localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
-            updateCartBadge();
-            
-            // إظهار رسالة تأكيد
-            alert('تم إضافة ' + product.title + ' إلى السلة بنجاح!');
-        };
-        
-        // إنشاء بطاقة المنتج
-        const createProductCard = (product, isWatch = false) => {
-            const whatsappMessage = encodeURIComponent(`مرحباً! أريد الاستفسار عن: ${product.title} - بسعر: ${product.sale_price} درهم`);
-            const whatsappLink = `https://wa.me/201110760081?text=${whatsappMessage}`;
-            
-            const hasDiscount = product.price !== product.sale_price;
-            const discountPercentage = hasDiscount ? Math.round(((product.price - product.sale_price) / product.price) * 100) : 0;
-            
-            return `
-                <div class="product-card">
-                    <div class="product-image-container">
-                        <img src="${product.image_link}" alt="${product.title} - متجر هدايا الإمارات" class="product-image lazyload" loading="lazy">
-                        ${hasDiscount ? `<div class="product-badge">خصم ${discountPercentage}%</div>` : '<div class="product-badge">جديد</div>'}
-                        <div class="product-overlay">
-                            <button class="overlay-btn" aria-label="عرض سريع">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="overlay-btn" aria-label="إضافة للمفضلة">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">${isWatch ? 'ساعات فاخرة' : 'عطور فاخرة'}</div>
-                        <h3 class="product-title">${product.title}</h3>
-                        <div class="product-rating">
-                            <div class="stars">★★★★★</div>
-                            <span class="rating-text">(4.8 • 127 تقييم)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">${product.sale_price} د.إ</span>
-                            ${hasDiscount ? `<span class="original-price">${product.price} د.إ</span>` : ''}
-                            ${hasDiscount ? `<span class="discount">-${discountPercentage}%</span>` : ''}
-                        </div>
-                        <div class="product-actions">
-                            <button class="btn-add-cart" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
-                                <i class="fas fa-shopping-cart"></i>
-                                إضافة للسلة
-                            </button>
-                            <a href="${whatsappLink}" class="btn-whatsapp" target="_blank" aria-label="طلب عبر واتساب">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `;
-        };
-        
-        // تحميل المنتجات
-        const loadProducts = async () => {
-            try {
-                const [perfumesResponse, watchesResponse] = await Promise.all([
-                    fetch('./data/otor.json').catch(() => ({ ok: false })),
-                    fetch('./data/sa3at.json').catch(() => ({ ok: false }))
-                ]);
-                
-                let perfumes = [], watches = [];
-                
-                if (perfumesResponse.ok) perfumes = await perfumesResponse.json();
-                if (watchesResponse.ok) watches = await watchesResponse.json();
-                
-                // عرض العطور
-                const perfumesGrid = document.getElementById('perfumes-grid');
-                if (perfumesGrid && perfumes.length > 0) {
-                    perfumesGrid.innerHTML = perfumes.slice(0, 8).map(product => createProductCard(product, false)).join('');
-                } else if (perfumesGrid) {
-                    perfumesGrid.innerHTML = '<div class="loading-message">عذراً، لا توجد عطور متاحة حالياً</div>';
-                }
-                
-                // عرض الساعات
-                const watchesGrid = document.getElementById('watches-grid');
-                if (watchesGrid && watches.length > 0) {
-                    watchesGrid.innerHTML = watches.slice(0, 8).map(product => createProductCard(product, true)).join('');
-                } else if (watchesGrid) {
-                    watchesGrid.innerHTML = '<div class="loading-message">عذراً، لا توجد ساعات متاحة حالياً</div>';
-                }
-                
-                updateCartBadge();
-                
-                // تفعيل lazy loading للصور
-                const lazyImages = document.querySelectorAll('.lazyload');
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.classList.add('loaded');
-                            observer.unobserve(img);
-                        }
-                    });
-                });
-                
-                lazyImages.forEach(img => imageObserver.observe(img));
-                
-            } catch (error) {
-                console.error('خطأ في تحميل المنتجات:', error);
-            }
-        };
-        
-        // تحديث شريط التقدم
-        const updateScrollProgress = () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight;
-            const winHeight = window.innerHeight;
-            const scrollPercent = scrollTop / (docHeight - winHeight);
-            if (progressBar) {
-                progressBar.style.width = `${scrollPercent * 100}%`;
-            }
-        };
-        
-        // أحداث التمرير
-        window.addEventListener('scroll', () => {
-            updateScrollProgress();
-            
-            // تأثير الهيدر عند التمرير
-            if (window.scrollY > 100) {
-                header?.classList.add('scrolled');
-            } else {
-                header?.classList.remove('scrolled');
-            }
-            
-            // زر العودة للأعلى
-            if (window.scrollY > 500) {
-                backToTopBtn?.classList.add('show');
-            } else {
-                backToTopBtn?.classList.remove('show');
-            }
-        }, { passive: true });
-        
-        // زر العودة للأعلى
-        backToTopBtn?.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        
-        // التنقل السلس للروابط الداخلية
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            if (link.target !== '_blank') {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const target = document.querySelector(link.getAttribute('href'));
-                    if (target) {
-                        closeSidebar();
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                });
-            }
-        });
-        
-        // تحميل المنتجات عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', loadProducts);
-    </script>
+    <script src="./js/ui.js" defer></script>
+    <script src="./js/performance-optimizer.js" defer></script>
 </body>
 </html>
