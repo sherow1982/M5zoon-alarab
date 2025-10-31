@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
+    <link rel="stylesheet" href="./css/reviews-system.css">
     
     <script type="application/ld+json">
     {
@@ -67,6 +68,10 @@
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
                     </a>
+                    <a href="./checkout.html" class="header-tool" aria-label="إتمام الطلب" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; border-radius: 8px; padding: 8px 12px;">
+                        <i class="fas fa-credit-card"></i>
+                        <span style="font-size: 0.8rem; font-weight: 600;">اطلب فوراً</span>
+                    </a>
                     <button class="mobile-menu-toggle" id="openSidebar" aria-label="فتح القائمة">
                         <i class="fas fa-bars"></i>
                     </button>
@@ -94,6 +99,10 @@
                         <i class="fas fa-star"></i>
                         عرض المنتجات
                     </a>
+                    <a href="./checkout.html" class="btn-secondary" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; border: none; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
+                        <i class="fas fa-credit-card"></i>
+                        إتمام الطلب
+                    </a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -113,7 +122,7 @@
                 <div class="section-header">
                     <h2 class="section-title">عطور هدايا الإمارات الفاخرة</h2>
                     <p class="section-subtitle">
-                        اخترنا لك أجمل العطور الشرقية والغربية التي تلائم جميع الأذواق
+                        اخترنا لك أجمل العطور الشرقية والغربية التي تلائم جميع الأذواق مع تقييمات عملائنا ⭐
                     </p>
                     <a href="./products-showcase.html" class="view-all-link">
                         <i class="fas fa-arrow-left"></i>
@@ -121,7 +130,7 @@
                     </a>
                 </div>
                 <div class="products-grid" id="latestPerfumes">
-                    <div class="loading-message">⏳ جارِ تحميل العطور...</div>
+                    <div class="loading-message">⏳ جارِ تحميل العطور مع التقييمات...</div>
                 </div>
             </div>
         </div>
@@ -160,7 +169,7 @@
                 <div class="section-header">
                     <h2 class="section-title">ساعات هدايا الإمارات الفاخرة</h2>
                     <p class="section-subtitle">
-                        مجموعة حصرية من أرقى الساعات العالمية التي تجمع بين الأناقة والدقة
+                        مجموعة حصرية من أرقى الساعات العالمية التي تجمع بين الأناقة والدقة مع تقييمات ممتازة 🎆
                     </p>
                     <a href="./products-showcase.html" class="view-all-link">
                         <i class="fas fa-arrow-left"></i>
@@ -168,7 +177,7 @@
                     </a>
                 </div>
                 <div class="products-grid" id="latestWatches">
-                    <div class="loading-message">⏳ جارِ تحميل الساعات...</div>
+                    <div class="loading-message">⏳ جارِ تحميل الساعات مع التقييمات...</div>
                 </div>
             </div>
         </div>
@@ -178,11 +187,15 @@
     <section class="section">
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-title">منتجات مميزة</h2>
-                <p class="section-subtitle">مجموعة مختارة من أفضل المنتجات المتاحة</p>
+                <h2 class="section-title">منتجات مميزة مع تقييمات عملائنا 🌟</h2>
+                <p class="section-subtitle">مجموعة مختارة من أفضل المنتجات مع تقييمات إماراتية أصيلة</p>
+                <a href="./checkout.html" class="view-all-link" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; padding: 10px 20px; border-radius: 10px;">
+                    <i class="fas fa-credit-card"></i>
+                    اطلب فوراً
+                </a>
             </div>
             <div class="products-grid" id="featuredProducts">
-                <div class="loading-message">⏳ جارِ تحميل المنتجات المميزة...</div>
+                <div class="loading-message">⏳ جارِ تحميل المنتجات المميزة مع التقييمات...</div>
             </div>
         </div>
     </section>
@@ -191,8 +204,8 @@
     <section class="section">
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-title">🔥 أفضل العروض</h2>
-                <p class="section-subtitle">اغتنم فرصة الحصول على عروض حصرية بخصومات مميزة</p>
+                <h2 class="section-title">🔥 أفضل العروض مع تقييمات ممتازة</h2>
+                <p class="section-subtitle">اغتنم فرصة الحصول على عروض حصرية بخصومات مميزة وتقييمات عالية</p>
             </div>
             <div class="products-grid" id="bestDeals">
                 <div class="loading-message">⏳ جارِ تحميل العروض...</div>
@@ -224,6 +237,7 @@
                         <li><a href="./products-showcase.html">المنتجات</a></li>
                         <li><a href="./blog/">المدونة</a></li>
                         <li><a href="./cart.html">السلة</a></li>
+                        <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">إتمام الطلب</a></li>
                     </ul>
                 </div>
 
@@ -271,10 +285,13 @@
             <a href="#watches-section"><i class="fas fa-clock"></i> الساعات</a>
             <a href="./blog/"><i class="fas fa-blog"></i> المدونة</a>
             <a href="./cart.html"><i class="fas fa-shopping-cart"></i> السلة</a>
+            <a href="./checkout.html" style="background: linear-gradient(135deg, #25D366, #20B358); color: white; border-radius: 8px;"><i class="fas fa-credit-card"></i> اطلب فوراً</a>
             <a href="https://wa.me/201110760081" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a>
         </nav>
     </div>
 
+    <!-- تحميل نظام التقييمات أولاً -->
+    <script src="./js/uae-reviews-generator.js" defer></script>
     <script src="./js/products-loader.js" defer></script>
     <script src="./js/slug-router.js" defer></script>
     <script src="./js/buttons-fix.js" defer></script>
