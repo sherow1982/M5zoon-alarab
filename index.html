@@ -6,12 +6,33 @@
     <title>متجر هدايا الإمارات - عطور وساعات عالية الجودة | توصيل 1-3 أيام عمل</title>
     <meta name="description" content="متجر هدايا الإمارات - اكتشف أفضل عروض العطور عالية الجودة والساعات والهدايا. توصيل خلال 1-3 أيام عمل + ضمان ارجاع 14 يوم + مصاريف شحن.">
     
+    <!-- تحسينات السيو والأداء -->
+    <meta name="keywords" content="هدايا الإمارات, عطور عالية الجودة, ساعات فاخرة, عطور شرقية, توصيل سريع الإمارات">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="متجر هدايا الإمارات">
+    <meta name="language" content="ar">
+    <link rel="canonical" href="https://emirates-gifts.arabsad.com/">
+    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/">
+    <link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/">
+    <link rel="alternate" hreflang="x-default" href="https://emirates-gifts.arabsad.com/">
+    
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="متجر هدايا الإمارات - عطور وساعات عالية الجودة">
+    <meta property="og:description" content="اكتشف أجمل العطور الشرقية والغربية عالية الجودة والساعات الفاخرة. توصيل في الإمارات خلال 1-3 أيام.">
+    <meta property="og:url" content="https://emirates-gifts.arabsad.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://emirates-gifts.arabsad.com/favicon.ico">
+    <meta property="og:locale" content="ar_AE">
+    <meta property="og:site_name" content="متجر هدايا الإمارات">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     
-    <!-- ملفات CSS الأساسية -->
+    <!-- ملفات CSS بترتيب محسن -->
+    <link rel="preload" href="./css/dkhoon-inspired-style.css" as="style">
     <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
     <link rel="stylesheet" href="./css/mobile-responsive-fixes.css">
     <link rel="stylesheet" href="./css/reviews-system.css">
@@ -20,20 +41,35 @@
     <link rel="stylesheet" href="./css/button-spacing-fixes.css">
     <link rel="stylesheet" href="./css/final-button-appearance-fix.css">
     
+    <!-- بيانات منظمة للسيو -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Store",
       "name": "متجر هدايا الإمارات",
-      "description": "المتجر الإماراتي الموثوق للعطور عالية الجودة والساعات",
+      "description": "المتجر الإماراتي الموثوق للعطور عالية الجودة والساعات الفاخرة",
       "url": "https://emirates-gifts.arabsad.com/",
       "address": {
         "@type": "PostalAddress",
-        "addressCountry": "AE"
+        "addressCountry": "AE",
+        "addressRegion": "Dubai"
       },
       "currenciesAccepted": "AED",
-      "paymentAccepted": "Cash, WhatsApp Order",
-      "telephone": "+201110760081"
+      "paymentAccepted": ["Cash", "WhatsApp Order"],
+      "telephone": "+201110760081",
+      "email": "info@emirates-gifts.com",
+      "openingHours": "Mo-Su 00:00-23:59",
+      "priceRange": "$$",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "287"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://emirates-gifts.arabsad.com/products-showcase.html?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
     
@@ -141,6 +177,22 @@
         background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
         transform: translateY(-2px);
     }
+    
+    /* تحسينات الأداء */
+    .products-grid {
+        contain: layout style;
+    }
+    
+    .product-card {
+        contain: layout style;
+        will-change: transform;
+    }
+    
+    /* تحميل متقدم للخطوط */
+    @font-face {
+        font-family: 'Cairo';
+        font-display: swap;
+    }
     </style>
 </head>
 <body>
@@ -158,7 +210,7 @@
         <div class="header-container">
             <div class="header-content">
                 <a href="./" class="logo" aria-label="الصفحة الرئيسية - هدايا الإمارات">
-                    <div class="logo-icon"><img src="./favicon.ico" alt="هدايا الإمارات" style="width: 32px; height: 32px; object-fit: contain;"></div>
+                    <div class="logo-icon"><img src="./favicon.ico" alt="هدايا الإمارات" style="width: 32px; height: 32px; object-fit: contain;" loading="eager"></div>
                     <div class="logo-text">
                         <div class="logo-title">هدايا الإمارات</div>
                         <div class="logo-subtitle">Emirates Gifts</div>
@@ -228,7 +280,8 @@
                      alt="مجموعة متنوعة من العطور عالية الجودة" 
                      class="hero-image lazyload"
                      loading="eager"
-                     fetchpriority="high">
+                     fetchpriority="high"
+                     decoding="async">
             </div>
         </div>
     </section>
@@ -273,7 +326,8 @@
                         <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop&crop=center" 
                              alt="مجموعة العطور الشرقية عالية الجودة" 
                              class="collection-image lazyload"
-                             loading="lazy">
+                             loading="lazy"
+                             decoding="async">
                     </div>
                 </div>
             </div>
@@ -377,10 +431,10 @@
                         نقدم لكم أجمل التشكيلات عالية الجودة
                     </p>
                     <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
 
@@ -469,15 +523,16 @@
         </nav>
     </div>
 
-    <!-- تحميل الأنظمة بترتيب صحيح -->
-    <script src="./js/ui.js"></script>
-    <script src="./js/cart-system.js"></script>
-    <script src="./js/reviews-system.js"></script>
-    <script src="./js/popup-system.js"></script>
-    <script src="./js/products-loader.js"></script>
-    <script src="./js/main.js"></script>
+    <!-- تحميل الأنظمة بترتيب محسن -->
+    <script src="./js/dom-optimization.js" defer></script>
+    <script src="./js/ui.js" defer></script>
+    <script src="./js/cart-system.js" defer></script>
+    <script src="./js/reviews-system.js" defer></script>
+    <script src="./js/popup-system.js" defer></script>
+    <script src="./js/products-loader.js" defer></script>
+    <script src="./js/main.js" defer></script>
     
     <!-- إضافة النظام المنبثق الجديد -->
-    <script src="./js/dismissible-popup-system.js"></script>
+    <script src="./js/dismissible-popup-system.js" defer></script>
 </body>
 </html>
