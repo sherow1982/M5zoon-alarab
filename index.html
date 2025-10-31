@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- ملفات CSS بالترتيب الصحيح -->
+    <!-- ملفات CSS الأساسية فقط -->
     <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
     <link rel="stylesheet" href="./css/mobile-responsive-fixes.css">
     <link rel="stylesheet" href="./css/reviews-system.css">
@@ -336,31 +336,18 @@
         </nav>
     </div>
 
-    <!-- تحميل الأنظمة الأساسية فقط -->
-    <script src="./js/navigation-buttons-fix.js" defer></script>
-    <script src="./js/enhanced-button-functions.js" defer></script>
+    <!-- تحميل الأنظمة الأساسية الضرورية فقط -->
     <script src="./js/ab-notifications-toggle.js" defer></script>
-    
-    <!-- الأنظمة الأساسية الموجودة -->
-    <script src="./js/uae-reviews-generator.js" defer></script>
-    <script src="./js/persistent-reviews-system.js" defer></script>
-    <script src="./js/enhanced-whatsapp-system.js" defer></script>
-    <script src="./js/popup-notifications.js" defer></script>
     <script src="./js/products-loader.js" defer></script>
-    <script src="./js/slug-router.js" defer></script>
-    <script src="./js/buttons-fix.js" defer></script>
     <script src="./js/cart-system.js" defer></script>
     <script src="./js/reviews-system.js" defer></script>
     <script src="./js/main.js" defer></script>
     <script src="./js/ui.js" defer></script>
-    <script src="./js/performance-optimizer.js" defer></script>
     
     <!-- سكريپت تفعيل بسيط -->
     <script>
     window.addEventListener('load', function() {
         setTimeout(function() {
-            document.querySelector('.nav-menu')?.classList.add('loaded');
-            document.querySelector('.header-tools')?.classList.add('loaded');
             console.log('🎉 تم تحميل متجر هدايا الإمارات بنجاح');
         }, 1000);
     });
