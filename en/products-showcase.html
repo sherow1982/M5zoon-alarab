@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Emirates Gifts Store | Premium Perfumes & Luxury Watches</title>
+    <meta name="description" content="Browse our complete collection of premium perfumes and luxury watches. Authentic products with fast delivery and quality guarantee.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="./css/luxury-american-style.css">
+    <link rel="stylesheet" href="./css/mobile-responsive.css">
+    <link rel="stylesheet" href="./css/premium-components.css">
+    <link rel="stylesheet" href="./css/products-showcase.css">
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <div class="header-content">
+                <a href="./" class="logo">
+                    <div class="logo-icon">
+                        <img src="../favicon.ico" alt="Emirates Gifts" class="logo-image">
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-title">Emirates Gifts</div>
+                        <div class="logo-subtitle">Premium Collection</div>
+                    </div>
+                </a>
+
+                <nav class="main-nav">
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a href="./" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link active">All Products</a></li>
+                        <li class="nav-item"><a href="./" class="nav-link">Perfumes</a></li>
+                        <li class="nav-item"><a href="./" class="nav-link">Watches</a></li>
+                        <li class="nav-item"><a href="./blog/" class="nav-link">Blog</a></li>
+                        <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link whatsapp-link" target="_blank">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-tools">
+                    <div class="language-switcher">
+                        <a href="../products-showcase.html" class="lang-link">
+                            <img src="https://flagcdn.com/24x18/ae.png" alt="Arabic" class="flag-icon">
+                            AR
+                        </a>
+                    </div>
+                    <a href="./cart.html" class="header-tool cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-counter">0</span>
+                    </a>
+                    <a href="./checkout.html" class="header-tool order-btn">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Order Now</span>
+                    </a>
+                    <button class="mobile-menu-toggle" id="openSidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="products-hero">
+            <div class="hero-content">
+                <div class="breadcrumb">
+                    <a href="./">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>All Products</span>
+                </div>
+                <h1 class="hero-title">Premium Collection</h1>
+                <p class="hero-subtitle">
+                    Explore our complete range of luxury perfumes and premium watches, 
+                    each carefully selected for quality and authenticity.
+                </p>
+            </div>
+        </section>
+
+        <!-- Filters & Search -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="search-bar">
+                    <div class="search-input-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search products..." class="search-input">
+                        <button class="search-clear" id="searchClear" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <label class="filter-label">Category:</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="perfumes">Perfumes</option>
+                            <option value="watches">Watches</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Sort by:</label>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="default">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                    </div>
+                    
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid" title="Grid View">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button class="view-btn" data-view="list" title="List View">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <div class="products-container">
+                <div class="section-header">
+                    <div class="results-info">
+                        <span class="results-count" id="resultsCount">Loading products...</span>
+                        <div class="view-options">
+                            <span class="per-page-label">Show:</span>
+                            <select id="perPageSelect" class="per-page-select">
+                                <option value="12">12 per page</option>
+                                <option value="24" selected>24 per page</option>
+                                <option value="48">48 per page</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="products-grid" id="productsGrid">
+                    <div class="loading-message">
+                        <div class="loading-spinner"></div>
+                        <span>Loading premium products...</span>
+                    </div>
+                </div>
+                
+                <div class="pagination" id="pagination" style="display: none;">
+                    <button class="pagination-btn" id="prevPage" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                        Previous
+                    </button>
+                    <div class="pagination-numbers" id="paginationNumbers"></div>
+                    <button class="pagination-btn" id="nextPage">
+                        Next
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="why-choose-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Why Choose Emirates Gifts?</h2>
+                    <p class="section-subtitle">
+                        We're committed to providing you with the finest luxury products and exceptional service.
+                    </p>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3 class="benefit-title">100% Authentic</h3>
+                        <p class="benefit-description">
+                            All our products are guaranteed authentic with certificates of authenticity.
+                        </p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3 class="benefit-title">Fast Delivery</h3>
+                        <p class="benefit-description">
+                            Quick 1-3 day shipping to all UAE emirates with secure packaging.
+                        </p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="benefit-title">24/7 Support</h3>
+                        <p class="benefit-description">
+                            Round-the-clock customer service via WhatsApp for immediate assistance.
+                        </p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <h3 class="benefit-title">Easy Returns</h3>
+                        <p class="benefit-description">
+                            14-day return policy with return shipping included for your peace of mind.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Emirates Gifts</h3>
+                    <p class="footer-description">
+                        Your premier destination for luxury perfumes and premium watches in the UAE.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://wa.me/201110760081" class="social-link whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="./">Home</a></li>
+                        <li><a href="./products-showcase.html">All Products</a></li>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./cart.html">Shopping Cart</a></li>
+                        <li><a href="./checkout.html" class="highlight-link">Order Now</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="./shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="./return-policy.html">Return Policy</a></li>
+                        <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="./terms-conditions.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact Info</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i>Dubai, United Arab Emirates</li>
+                        <li><i class="fas fa-clock"></i>24/7 Customer Service</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Emirates Gifts Store. All rights reserved.</p>
+                <div class="footer-features">
+                    <span><i class="fas fa-truck"></i> Fast Shipping</span>
+                    <span><i class="fas fa-undo"></i> Easy Returns</span>
+                    <span><i class="fas fa-star"></i> Premium Quality</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <div class="mobile-sidebar-logo">Emirates Gifts</div>
+            <button class="mobile-sidebar-close" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-sidebar-nav">
+            <a href="./"><i class="fas fa-home"></i> Home</a>
+            <a href="./products-showcase.html" class="active"><i class="fas fa-th-large"></i> All Products</a>
+            <a href="./cart.html"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-counter mobile-cart-counter">0</span></a>
+            <a href="./checkout.html"><i class="fas fa-credit-card"></i> Order Now</a>
+            <a href="https://wa.me/201110760081" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <div class="language-switcher-mobile">
+                <a href="../products-showcase.html" class="lang-link-mobile">
+                    <img src="https://flagcdn.com/24x18/ae.png" alt="Arabic" class="flag-icon">
+                    Switch to Arabic
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="./js/main-en.js"></script>
+    <script src="./js/products-showcase-en.js"></script>
+</body>
+</html>
