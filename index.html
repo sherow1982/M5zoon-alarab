@@ -67,11 +67,13 @@
                         <li class="nav-item"><a href="#watches-section" class="nav-link">الساعات</a></li>
                         <li class="nav-item"><a href="./blog/" class="nav-link" target="_blank" rel="noopener">المدونة</a></li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle">المزيد <i class="fas fa-chevron-down"></i></a>
+                            <span class="nav-link dropdown-toggle" role="button" tabindex="0">المزيد <i class="fas fa-chevron-down"></i></span>
                             <ul class="dropdown-menu">
                                 <li><a href="./about.html" class="dropdown-link"><i class="fas fa-info-circle"></i> من نحن</a></li>
                                 <li><a href="./shipping-policy.html" class="dropdown-link"><i class="fas fa-shipping-fast"></i> سياسة الشحن</a></li>
                                 <li><a href="./return-policy.html" class="dropdown-link"><i class="fas fa-undo"></i> سياسة الإرجاع</a></li>
+                                <li><a href="./privacy-policy.html" class="dropdown-link"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
+                                <li><a href="./terms-conditions.html" class="dropdown-link"><i class="fas fa-file-contract"></i> الشروط والأحكام</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link" target="_blank" rel="noopener">تواصل</a></li>
@@ -355,6 +357,8 @@
             <a href="./about.html"><i class="fas fa-info-circle"></i> من نحن</a>
             <a href="./shipping-policy.html"><i class="fas fa-shipping-fast"></i> سياسة الشحن</a>
             <a href="./return-policy.html"><i class="fas fa-undo"></i> سياسة الإرجاع</a>
+            <a href="./privacy-policy.html"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a>
+            <a href="./terms-conditions.html"><i class="fas fa-file-contract"></i> الشروط والأحكام</a>
             <a href="./cart.html"><i class="fas fa-shopping-cart"></i> السلة <span class="cart-counter mobile-cart-counter">0</span></a>
             <a href="./checkout.html" class="order-now-btn"><i class="fas fa-credit-card"></i> اطلب فوراً</a>
             <a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> واتساب</a>
@@ -383,54 +387,142 @@
         position: relative;
     }
     
+    .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        user-select: none;
+    }
+    
+    .dropdown-toggle:hover {
+        color: #D4AF37;
+    }
+    
+    .dropdown-toggle i {
+        transition: transform 0.3s ease;
+        font-size: 12px;
+    }
+    
+    .dropdown:hover .dropdown-toggle i {
+        transform: rotate(180deg);
+    }
+    
     .dropdown-menu {
         display: none;
         position: absolute;
-        top: 100%;
+        top: calc(100% + 10px);
         right: 0;
-        background: #ffffff;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+        border: 1px solid #e8ecef;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         z-index: 1000;
-        min-width: 200px;
-        padding: 10px 0;
+        min-width: 280px;
+        padding: 15px 0;
+        opacity: 0;
+        transform: translateY(-15px);
+        transition: all 0.4s ease;
+        overflow: hidden;
     }
     
     .dropdown:hover .dropdown-menu {
         display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .dropdown-menu::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        right: 20px;
+        width: 16px;
+        height: 16px;
+        background: #ffffff;
+        border: 1px solid #e8ecef;
+        border-bottom: none;
+        border-right: none;
+        transform: rotate(45deg);
     }
     
     .dropdown-link {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 10px 20px;
+        gap: 12px;
+        padding: 14px 25px;
         color: #333;
         text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
         transition: all 0.3s ease;
+        border-bottom: 1px solid transparent;
+        position: relative;
     }
     
     .dropdown-link:hover {
-        background: #f8f9fa;
+        background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+        color: #ffffff;
+        transform: translateX(-3px);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+    
+    .dropdown-link i {
+        width: 18px;
         color: #D4AF37;
+        transition: all 0.3s ease;
+        font-size: 16px;
+    }
+    
+    .dropdown-link:hover i {
+        color: #ffffff;
+        transform: scale(1.1);
+    }
+    
+    /* تأثيرات خاصة للروابط */
+    .dropdown-link[href*="shipping"] {
+        border-right: 3px solid #00A16B;
+    }
+    
+    .dropdown-link[href*="return"] {
+        border-right: 3px solid #C8102E;
+    }
+    
+    .dropdown-link[href*="about"] {
+        border-right: 3px solid #1a1a1a;
+    }
+    
+    .dropdown-link[href*="privacy"] {
+        border-right: 3px solid #3498db;
+    }
+    
+    .dropdown-link[href*="terms"] {
+        border-right: 3px solid #9b59b6;
     }
     
     .legal-links {
         display: flex;
-        gap: 15px;
-        margin-top: 10px;
+        gap: 20px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .legal-links a {
         color: #666;
         text-decoration: none;
         font-size: 14px;
-        transition: color 0.3s ease;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 15px;
     }
     
     .legal-links a:hover {
         color: #D4AF37;
+        background: rgba(212, 175, 55, 0.1);
+        transform: translateY(-2px);
     }
     
     .footer-legal {
@@ -438,13 +530,64 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e8ecef;
     }
     
     @media (max-width: 768px) {
         .footer-legal {
             flex-direction: column;
             text-align: center;
+            gap: 15px;
+        }
+        
+        .legal-links {
+            justify-content: center;
+        }
+        
+        .dropdown-menu {
+            position: static;
+            display: block !important;
+            opacity: 1 !important;
+            transform: none !important;
+            box-shadow: none;
+            border: none;
+            background: transparent;
+            padding: 0;
+            margin: 10px 0;
+        }
+        
+        .dropdown-menu::before {
+            display: none;
+        }
+        
+        .dropdown-link {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            border-right: none !important;
+        }
+        
+        .dropdown-link:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: #D4AF37;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .dropdown-link:hover i {
+            color: #D4AF37;
+        }
+    }
+    
+    /* تحسين العرض في الجوال */
+    @media (max-width: 1024px) {
+        .dropdown-menu {
+            right: -20px;
         }
     }
     </style>
