@@ -161,9 +161,9 @@ class ReviewsSystemEN {
     }
     
     generatePremiumReviews() {
-        const premiumReviews = [
+        return [
             {
-                id: 'premium_review_1',
+                id: 'premium_review_1_en',
                 author: 'Ahmed K.',
                 rating: 5,
                 date: '2025-10-30',
@@ -173,7 +173,7 @@ class ReviewsSystemEN {
                 productId: 'perfume_1'
             },
             {
-                id: 'premium_review_2',
+                id: 'premium_review_2_en',
                 author: 'Sara M.',
                 rating: 5,
                 date: '2025-10-29',
@@ -183,7 +183,7 @@ class ReviewsSystemEN {
                 productId: 'watch_1'
             },
             {
-                id: 'premium_review_3',
+                id: 'premium_review_3_en',
                 author: 'Omar R.',
                 rating: 5,
                 date: '2025-10-28',
@@ -193,7 +193,7 @@ class ReviewsSystemEN {
                 productId: 'perfume_4'
             },
             {
-                id: 'premium_review_4',
+                id: 'premium_review_4_en',
                 author: 'Fatima H.',
                 rating: 5,
                 date: '2025-10-27',
@@ -203,7 +203,7 @@ class ReviewsSystemEN {
                 productId: 'perfume_1'
             },
             {
-                id: 'premium_review_5',
+                id: 'premium_review_5_en',
                 author: 'Khalid A.',
                 rating: 5,
                 date: '2025-10-26',
@@ -213,7 +213,7 @@ class ReviewsSystemEN {
                 productId: 'watch_88'
             },
             {
-                id: 'premium_review_6',
+                id: 'premium_review_6_en',
                 author: 'Noor Al.',
                 rating: 4,
                 date: '2025-10-25',
@@ -223,7 +223,7 @@ class ReviewsSystemEN {
                 productId: 'perfume_10'
             },
             {
-                id: 'premium_review_7',
+                id: 'premium_review_7_en',
                 author: 'Ali M.',
                 rating: 5,
                 date: '2025-10-24',
@@ -233,7 +233,7 @@ class ReviewsSystemEN {
                 productId: 'perfume_30'
             },
             {
-                id: 'premium_review_8',
+                id: 'premium_review_8_en',
                 author: 'Layla H.',
                 rating: 5,
                 date: '2025-10-23',
@@ -243,7 +243,7 @@ class ReviewsSystemEN {
                 productId: 'watch_15'
             },
             {
-                id: 'premium_review_9',
+                id: 'premium_review_9_en',
                 author: 'Hassan M.',
                 rating: 5,
                 date: '2025-10-22',
@@ -253,7 +253,7 @@ class ReviewsSystemEN {
                 productId: 'watch_76'
             },
             {
-                id: 'premium_review_10',
+                id: 'premium_review_10_en',
                 author: 'Mariam A.',
                 rating: 4,
                 date: '2025-10-21',
@@ -263,148 +263,6 @@ class ReviewsSystemEN {
                 productId: 'general'
             }
         ];
-        
-        return arabicReviews.map((review, index) => {
-            // Use the premium reviews we generated above if available
-            if (index < premiumReviews.length) {
-                return {
-                    ...premiumReviews[index],
-                    id: review.id || premiumReviews[index].id
-                };
-            }
-            
-            // For additional reviews, translate
-            let translatedText = review.comment || review.text || 'منتج ممتاز';
-            
-            // Apply translations
-            Object.keys(translationMap).forEach(arabic => {
-                const regex = new RegExp(arabic, 'gi');
-                translatedText = translatedText.replace(regex, translationMap[arabic]);
-            });
-            
-            // If still contains Arabic, use contextual template
-            if (/[\u0600-\u06FF]/.test(translatedText) || translatedText === review.comment) {
-                translatedText = this.getContextualTemplate(review.productId || index);
-            }
-            
-            return {
-                id: review.id || `review_${index}_en`,
-                author: this.translateName(review.author || review.name || 'أحمد') + '.',
-                rating: review.rating || (Math.random() > 0.15 ? (Math.random() > 0.4 ? 5 : 4) : 3),
-                date: review.date || this.generateRandomDate(),
-                text: translatedText.trim(),
-                verified: review.verified !== false,
-                helpful: this.helpfulVotes[review.id] || Math.floor(Math.random() * 12),
-                productId: review.productId || 'general',
-                location: review.location || this.getRandomUAECity(),
-                images: review.images || []
-            };
-        });
-        
-        const premiumReviews = [
-            {
-                id: 'premium_review_1',
-                author: 'Ahmed K.',
-                rating: 5,
-                date: '2025-10-30',
-                text: 'Outstanding premium perfume collection! The Chanel Coco fragrance is authentic with exceptional longevity. Emirates Gifts provided excellent customer service with fast delivery within 2 days to Dubai. The packaging was luxurious and professional. Highly recommend for anyone seeking genuine luxury fragrances in UAE.',
-                verified: true,
-                location: 'Dubai, UAE',
-                productId: 'perfume_1'
-            },
-            {
-                id: 'premium_review_2',
-                author: 'Sara M.',
-                rating: 5,
-                date: '2025-10-29',
-                text: 'Exceptional luxury timepiece! The Rolex Yacht Master Silver is exactly as described with impeccable craftsmanship. The watch arrived perfectly packaged with all authenticity certificates. Fast UAE delivery and outstanding customer support. Perfect for business and formal occasions. Five stars!',
-                verified: true,
-                location: 'Abu Dhabi, UAE',
-                productId: 'watch_1'
-            },
-            {
-                id: 'premium_review_3',
-                author: 'Omar R.',
-                rating: 5,
-                date: '2025-10-28',
-                text: 'Incredible Dior Sauvage experience! The fragrance is powerful yet sophisticated with amazing projection. Authentic bottle with premium quality ingredients. Emirates Gifts delivered within 24 hours to Sharjah with secure packaging. Will definitely order more designer fragrances from this store.',
-                verified: true,
-                location: 'Sharjah, UAE',
-                productId: 'perfume_4'
-            }
-        ];
-    }
-    
-    generatePremiumReviews() {
-        return [
-            {
-                id: 'premium_review_1',
-                author: 'Ahmed K.',
-                rating: 5,
-                date: '2025-10-30',
-                text: 'Outstanding premium perfume! The fragrance quality is exceptional with long-lasting scent. Emirates Gifts provided excellent customer service and fast delivery within 2 days to Dubai. Authentic product with luxurious packaging. Highly recommend!',
-                verified: true,
-                location: 'Dubai, UAE',
-                productId: 'perfume_1'
-            },
-            {
-                id: 'premium_review_2',
-                author: 'Sara M.',
-                rating: 5,
-                date: '2025-10-29',
-                text: 'Exceptional luxury watch! The craftsmanship is impeccable and the design is elegant. Perfect timing accuracy and beautiful finishing. Fast UAE delivery with professional packaging. Emirates Gifts is the best for luxury timepieces!',
-                verified: true,
-                location: 'Abu Dhabi, UAE',
-                productId: 'watch_1'
-            },
-            {
-                id: 'premium_review_3',
-                author: 'Omar A.',
-                rating: 5,
-                date: '2025-10-28',
-                text: 'Amazing Dior Sauvage fragrance! Authentic with powerful projection and excellent longevity. Professional customer service and lightning-fast delivery to Sharjah. The bottle quality is premium and exactly as expected. Will order again!',
-                verified: true,
-                location: 'Sharjah, UAE',
-                productId: 'perfume_4'
-            },
-            {
-                id: 'premium_review_4',
-                author: 'Fatima H.',
-                rating: 5,
-                date: '2025-10-27',
-                text: 'Perfect luxury shopping experience! Premium quality products with outstanding customer service. Fast delivery to Ajman and beautiful presentation. The fragrance collection is authentic and beautifully curated. Emirates Gifts exceeded expectations!',
-                verified: true,
-                location: 'Ajman, UAE',
-                productId: 'general'
-            },
-            {
-                id: 'premium_review_5',
-                author: 'Khalid R.',
-                rating: 5,
-                date: '2025-10-26',
-                text: 'Magnificent special edition Rolex! The Kaaba design is unique and spiritually meaningful. Outstanding Swiss quality with premium materials. Fast delivery and excellent communication from Emirates Gifts team. A truly special timepiece!',
-                verified: true,
-                location: 'Dubai, UAE',
-                productId: 'watch_88'
-            }
-        ];
-    }
-    
-    getContextualTemplate(productId) {
-        const templates = [
-            'Excellent product with premium quality! Fast delivery and professional service.',
-            'Amazing fragrance with long-lasting scent. Highly recommend!',
-            'Perfect luxury timepiece with elegant design. Great value!',
-            'Outstanding quality and beautiful packaging. Will order again!',
-            'Very satisfied with the premium quality. Quick UAE delivery.',
-            'Impressive craftsmanship and authentic product. Five stars!',
-            'Beautiful design with premium materials. Highly recommended!',
-            'Great customer service and quality products. Fast shipping.',
-            'Love this premium collection! Elegant and sophisticated.',
-            'Exceptional quality with perfect presentation. Excellent!'
-        ];
-        
-        return templates[Math.floor(Math.random() * templates.length)];
     }
     
     generateRandomDate() {
@@ -561,7 +419,6 @@ class ReviewsSystemEN {
         `;
     }
     
-    // All other methods remain the same as in the comprehensive system above...
     createReviewsSection() {
         const reviewsHTML = '<div id="reviewsContainer" class="reviews-container"></div>';
         
@@ -663,8 +520,27 @@ class ReviewsSystemEN {
     }
     
     showNotification(message, type = 'info') {
-        // Implementation similar to main system
         console.log(`Notification (${type}): ${message}`);
+        
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed; top: 100px; right: 20px; z-index: 10001;
+            background: ${type === 'success' ? '#d4edda' : '#d1ecf1'};
+            color: ${type === 'success' ? '#155724' : '#0c5460'};
+            border: 1px solid ${type === 'success' ? '#c3e6cb' : '#bee5eb'};
+            padding: 12px 20px; border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: slideIn 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        `;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check' : 'info'}-circle"></i>
+            ${message}
+        `;
+        
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
     }
     
     addReviewStyles() {
@@ -693,6 +569,7 @@ class ReviewsSystemEN {
             .helpful-btn { background: transparent; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; color: #666; display: flex; align-items: center; gap: 6px; font-size: 14px; }
             .helpful-btn.voted { background: #D4AF37; border-color: #D4AF37; color: white; cursor: default; }
             .load-more-btn { background: linear-gradient(135deg, #D4AF37, #B8941F); color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; transition: all 0.3s ease; font-weight: 600; display: flex; align-items: center; gap: 8px; margin: 20px auto; }
+            @keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
             @media (max-width: 768px) {
                 .reviews-section { padding: 20px 15px; margin: 20px 0; }
                 .reviews-filters { flex-direction: column; align-items: center; }
@@ -708,9 +585,9 @@ class ReviewsSystemEN {
 }
 
 // Create global instance
-const reviewsSystemEN = new ReviewsSystemEN();
-window.reviewsSystemEN = reviewsSystemEN;
-window.loadReviewsForProduct = (productId) => reviewsSystemEN.renderReviewsSection(productId);
+const englishReviewsSystem = new ReviewsSystemEN();
+window.reviewsSystemEN = englishReviewsSystem;
+window.loadReviewsForProduct = (productId) => englishReviewsSystem.renderReviewsSection(productId);
 
 // Auto-initialize for product pages
 document.addEventListener('DOMContentLoaded', function() {
@@ -719,7 +596,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (productId) {
         setTimeout(() => {
-            reviewsSystemEN.renderReviewsSection(productId);
+            englishReviewsSystem.renderReviewsSection(productId);
         }, 1500);
     }
     
