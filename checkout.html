@@ -16,7 +16,6 @@
     
     <!-- ملف CSS الجديد المستوحى من دخون الإماراتية -->
     <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
-    <link rel="stylesheet" href="./css/reviews-system.css">
     
     <style>
         .checkout-hero {
@@ -67,7 +66,7 @@
             z-index: 2;
         }
         
-        .checkout-form-section {
+        .checkout-form-section, .order-summary-section {
             background: var(--white);
             border-radius: var(--border-radius);
             padding: 35px;
@@ -76,11 +75,6 @@
         }
         
         .order-summary-section {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            padding: 35px;
-            box-shadow: 0 15px 40px var(--shadow-medium);
-            height: fit-content;
             position: sticky;
             top: 20px;
         }
@@ -146,7 +140,6 @@
             margin-top: 5px;
         }
         
-        /* ملخص الطلب */
         .order-item {
             display: flex;
             align-items: center;
@@ -187,7 +180,6 @@
             font-size: 1.1rem;
         }
         
-        /* ملخص التكلفة */
         .cost-summary {
             background: var(--gradient-blue);
             color: var(--white);
@@ -211,7 +203,6 @@
             border-top: 2px solid rgba(255, 255, 255, 0.3);
         }
         
-        /* الدفع والشحن */
         .payment-methods {
             background: #f8f9fa;
             padding: 20px;
@@ -241,7 +232,6 @@
             text-align: center;
         }
         
-        /* أزرار الإجراءات */
         .checkout-actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -298,7 +288,6 @@
             transform: translateY(-2px);
         }
         
-        /* رسالة السلة الفارغة */
         .empty-cart-checkout {
             text-align: center;
             padding: 80px 20px;
@@ -311,7 +300,6 @@
             opacity: 0.6;
         }
         
-        /* رسائل الحالة */
         .success-message {
             position: fixed;
             top: 50%;
@@ -364,7 +352,6 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* تصميم متجاوب */
         @media (max-width: 768px) {
             .checkout-main {
                 grid-template-columns: 1fr;
@@ -393,16 +380,14 @@
     </style>
 </head>
 <body>
-    <!-- شريط التقدم -->
     <div class="progress-bar" id="progressBar"></div>
     
-    <!-- الهيدر -->
     <header class="header" id="header">
         <div class="header-container">
             <div class="header-content">
                 <a href="./" class="logo" aria-label="الصفحة الرئيسية - هدايا الإمارات">
                     <div class="logo-icon">
-                        <img src="./favicon.ico" alt="هدايا الإمارات" style="width: 32px; height: 32px; object-fit: contain;">
+                        <i class="fas fa-gem"></i>
                     </div>
                     <div class="logo-text">
                         <div class="logo-title">هدايا الإمارات</div>
@@ -426,7 +411,6 @@
         </div>
     </header>
 
-    <!-- قسم العنوان -->
     <section class="checkout-hero">
         <div class="section-container">
             <h1 class="checkout-title">💳 إتمام الطلب</h1>
@@ -436,9 +420,7 @@
         </div>
     </section>
 
-    <!-- المحتوى الرئيسي -->
     <main class="checkout-main">
-        <!-- قسم نموذج الطلب -->
         <section class="checkout-form-section">
             <h2 class="section-title">
                 📄 بيانات التوصيل
@@ -500,7 +482,6 @@
                     <textarea id="order-notes" name="order-notes" class="form-input" rows="2" placeholder="أي ملاحظات أو طلبات خاصة..."></textarea>
                 </div>
                 
-                <!-- طرق الدفع -->
                 <div class="payment-methods">
                     <h4 style="color: #2C3E50; margin-bottom: 15px;">💳 طريقة الدفع</h4>
                     <div class="payment-method">
@@ -511,7 +492,6 @@
                     </p>
                 </div>
                 
-                <!-- معلومات الشحن -->
                 <div class="shipping-info">
                     <h4 style="color: #25D366; margin-bottom: 10px;">🚚 معلومات الشحن</h4>
                     <ul style="list-style: none; padding: 0; margin: 0; text-align: right; color: #2C3E50;">
@@ -524,7 +504,6 @@
             </form>
         </section>
         
-        <!-- قسم ملخص الطلب -->
         <section class="order-summary-section">
             <h2 class="section-title">
                 📊 ملخص الطلب
@@ -567,7 +546,6 @@
             </div>
         </section>
         
-        <!-- رسالة السلة الفارغة -->
         <div id="empty-cart-message" class="empty-cart-checkout" style="display: none;">
             <div class="empty-icon">🛍️</div>
             <h2 style="color: #666; margin-bottom: 15px;">لا توجد عناصر في السلة</h2>
@@ -585,7 +563,6 @@
         </div>
     </main>
 
-    <!-- الفوتر -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
@@ -601,8 +578,6 @@
                 <div class="footer-section">
                     <h3>خدمة العملاء</h3>
                     <ul>
-                        <li><a href="./shipping-policy.html">الشحن والتوصيل</a></li>
-                        <li><a href="./return-policy.html">سياسة الإرجاع</a></li>
                         <li><a href="https://wa.me/201110760081" target="_blank">الدعم الفني</a></li>
                     </ul>
                 </div>
@@ -613,16 +588,14 @@
         </div>
     </footer>
 
-    <!-- زر العودة للأعلى -->
     <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- JavaScript لنظام إتمام الطلب -->
     <script>
         let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
+        let orderTotalCost = 0; // متغير عام للتكلفة الإجمالية
         
-        // تحديث شارة السلة
         function updateCartBadge() {
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             const badge = document.getElementById('cartBadge');
@@ -633,45 +606,45 @@
             }
         }
         
-        // تحقق من وجود عناصر في السلة
         function checkCartItems() {
             const formSection = document.querySelector('.checkout-form-section');
             const summarySection = document.querySelector('.order-summary-section');
             const emptyMessage = document.getElementById('empty-cart-message');
             
             if (cart.length === 0) {
-                formSection.style.display = 'none';
-                summarySection.style.display = 'none';
-                emptyMessage.style.display = 'block';
+                if (formSection) formSection.style.display = 'none';
+                if (summarySection) summarySection.style.display = 'none';
+                if (emptyMessage) emptyMessage.style.display = 'block';
                 return false;
             }
             
-            formSection.style.display = 'block';
-            summarySection.style.display = 'block';
-            emptyMessage.style.display = 'none';
+            if (formSection) formSection.style.display = 'block';
+            if (summarySection) summarySection.style.display = 'block';
+            if (emptyMessage) emptyMessage.style.display = 'none';
             return true;
         }
         
-        // عرض عناصر الطلب
         function displayOrderItems() {
             if (!checkCartItems()) return;
             
             const orderItemsContainer = document.getElementById('order-items');
             const costSummary = document.getElementById('cost-summary');
             
+            if (!orderItemsContainer) return;
+            
             let html = '';
-            let totalCost = 0;
+            orderTotalCost = 0;
             let totalItems = 0;
             
             cart.forEach(item => {
                 const itemPrice = parseFloat(item.sale_price || item.price || '0');
                 const itemTotal = itemPrice * item.quantity;
-                totalCost += itemTotal;
+                orderTotalCost += itemTotal;
                 totalItems += item.quantity;
                 
                 html += `
                     <div class="order-item">
-                        <img src="${item.image_link || item.image}" alt="${item.title}" loading="lazy">
+                        <img src="${item.image_link || item.image || 'https://via.placeholder.com/60x60/D4AF37/FFFFFF?text=هدية'}" alt="${item.title}" loading="lazy">
                         <div class="item-info">
                             <div class="item-name">${item.title}</div>
                             <div class="item-details">الكمية: ${item.quantity} | السعر: ${itemPrice.toFixed(2)} د.إ</div>
@@ -684,14 +657,17 @@
             orderItemsContainer.innerHTML = html;
             
             // تحديث ملخص التكلفة
-            document.getElementById('items-count').textContent = `${totalItems} قطعة`;
-            document.getElementById('subtotal').textContent = `${totalCost.toFixed(2)} د.إ`;
-            document.getElementById('final-total').textContent = `${totalCost.toFixed(2)} د.إ`;
+            const itemsCountEl = document.getElementById('items-count');
+            const subtotalEl = document.getElementById('subtotal');
+            const finalTotalEl = document.getElementById('final-total');
             
-            costSummary.style.display = 'block';
+            if (itemsCountEl) itemsCountEl.textContent = `${totalItems} قطعة`;
+            if (subtotalEl) subtotalEl.textContent = `${orderTotalCost.toFixed(2)} د.إ`;
+            if (finalTotalEl) finalTotalEl.textContent = `${orderTotalCost.toFixed(2)} د.إ`;
+            
+            if (costSummary) costSummary.style.display = 'block';
         }
         
-        // تحقق من صحة رقم الجوال الإماراتي
         function validateUAEPhone(phone) {
             const cleanPhone = phone.replace(/[\s-]/g, '');
             const uaePatterns = [
@@ -702,7 +678,6 @@
             return uaePatterns.some(pattern => pattern.test(cleanPhone));
         }
         
-        // تحقق من صحة النموذج
         function validateForm() {
             let isValid = true;
             
@@ -710,54 +685,54 @@
             document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
             document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
             
-            // تحقق من الاسم
             const name = document.getElementById('customer-name');
-            if (!name.value.trim()) {
-                document.getElementById('name-error').textContent = 'يرجى إدخال الاسم الكامل';
-                name.classList.add('error');
+            if (!name || !name.value.trim()) {
+                const nameError = document.getElementById('name-error');
+                if (nameError) nameError.textContent = 'يرجى إدخال الاسم الكامل';
+                if (name) name.classList.add('error');
                 isValid = false;
             }
             
-            // تحقق من رقم الجوال
             const phone = document.getElementById('customer-phone');
-            if (!phone.value.trim()) {
-                document.getElementById('phone-error').textContent = 'يرجى إدخال رقم الجوال';
-                phone.classList.add('error');
+            if (!phone || !phone.value.trim()) {
+                const phoneError = document.getElementById('phone-error');
+                if (phoneError) phoneError.textContent = 'يرجى إدخال رقم الجوال';
+                if (phone) phone.classList.add('error');
                 isValid = false;
             } else if (!validateUAEPhone(phone.value)) {
-                document.getElementById('phone-error').textContent = 'يرجى إدخال رقم جوال إماراتي صحيح';
-                phone.classList.add('error');
+                const phoneError = document.getElementById('phone-error');
+                if (phoneError) phoneError.textContent = 'يرجى إدخال رقم جوال إماراتي صحيح';
+                if (phone) phone.classList.add('error');
                 isValid = false;
             }
             
-            // تحقق من الإمارة
             const emirate = document.getElementById('customer-emirate');
-            if (!emirate.value) {
-                document.getElementById('emirate-error').textContent = 'يرجى اختيار الإمارة';
-                emirate.classList.add('error');
+            if (!emirate || !emirate.value) {
+                const emirateError = document.getElementById('emirate-error');
+                if (emirateError) emirateError.textContent = 'يرجى اختيار الإمارة';
+                if (emirate) emirate.classList.add('error');
                 isValid = false;
             }
             
-            // تحقق من المنطقة
             const area = document.getElementById('customer-area');
-            if (!area.value.trim()) {
-                document.getElementById('area-error').textContent = 'يرجى إدخال المنطقة';
-                area.classList.add('error');
+            if (!area || !area.value.trim()) {
+                const areaError = document.getElementById('area-error');
+                if (areaError) areaError.textContent = 'يرجى إدخال المنطقة';
+                if (area) area.classList.add('error');
                 isValid = false;
             }
             
-            // تحقق من العنوان
             const address = document.getElementById('customer-address');
-            if (!address.value.trim()) {
-                document.getElementById('address-error').textContent = 'يرجى إدخال العنوان التفصيلي';
-                address.classList.add('error');
+            if (!address || !address.value.trim()) {
+                const addressError = document.getElementById('address-error');
+                if (addressError) addressError.textContent = 'يرجى إدخال العنوان التفصيلي';
+                if (address) address.classList.add('error');
                 isValid = false;
             }
             
             return isValid;
         }
         
-        // إرسال الطلب عبر واتساب
         function submitOrder(event) {
             event.preventDefault();
             
@@ -779,13 +754,13 @@
             
             // جمع بيانات العميل
             const customerData = {
-                name: document.getElementById('customer-name').value.trim(),
-                phone: document.getElementById('customer-phone').value.trim(),
-                emirate: document.getElementById('customer-emirate').value,
-                area: document.getElementById('customer-area').value.trim(),
-                address: document.getElementById('customer-address').value.trim(),
-                preferredTime: document.getElementById('preferred-time').value,
-                notes: document.getElementById('order-notes').value.trim()
+                name: document.getElementById('customer-name')?.value.trim() || '',
+                phone: document.getElementById('customer-phone')?.value.trim() || '',
+                emirate: document.getElementById('customer-emirate')?.value || '',
+                area: document.getElementById('customer-area')?.value.trim() || '',
+                address: document.getElementById('customer-address')?.value.trim() || '',
+                preferredTime: document.getElementById('preferred-time')?.value || '',
+                notes: document.getElementById('order-notes')?.value.trim() || ''
             };
             
             // بناء رسالة واتساب احترافية
@@ -814,20 +789,15 @@
                 message += `   • السعر: ${itemPrice.toFixed(2)} د.إ\n`;
                 message += `   • الكمية: ${item.quantity}\n`;
                 message += `   • الإجمالي: ${itemTotal.toFixed(2)} د.إ\n`;
-                
-                // إضافة تقييم إذا كان متاحاً
-                if (item.rating) {
-                    message += `   ⭐ تقييم: ${item.rating.rating}/5 (${item.rating.count} مراجعة)\n`;
-                }
             });
             
             // ملخص التكلفة
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             message += `\n📊 **ملخص الطلب:**\n`;
             message += `• عدد القطع: ${totalItems}\n`;
-            message += `• إجمالي المنتجات: ${totalCost.toFixed(2)} د.إ\n`;
+            message += `• إجمالي المنتجات: ${orderTotalCost.toFixed(2)} د.إ\n`;
             message += `• الشحن: **مجاني ✅**\n`;
-            message += `• **الإجمالي النهائي: ${totalCost.toFixed(2)} درهم إماراتي**\n\n`;
+            message += `• **الإجمالي النهائي: ${orderTotalCost.toFixed(2)} درهم إماراتي**\n\n`;
             
             // معلومات الدفع والتوصيل
             message += `💳 **طريقة الدفع:** الدفع عند الاستلام\n`;
@@ -854,7 +824,6 @@
             }, 2000);
         }
         
-        // عرض رسالة النجاح
         function showSuccessMessage() {
             const successMessage = document.createElement('div');
             successMessage.className = 'success-message';
@@ -874,7 +843,6 @@
             }, 4000);
         }
         
-        // دالة مساعدة لأسماء الإمارات
         function getEmirateName(emirateCode) {
             const emirates = {
                 'dubai': '🏆 دبي',
@@ -908,7 +876,6 @@
                 progressBar.style.width = `${scrollPercent * 100}%`;
             }
             
-            // زر العودة للأعلى
             const backToTop = document.getElementById('backToTop');
             if (window.scrollY > 500) {
                 backToTop?.classList.add('show');
