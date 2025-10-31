@@ -6,18 +6,12 @@
     <title>متجر هدايا الإمارات - عطور وساعات فاخرة | توصيل مجاني في الإمارات</title>
     <meta name="description" content="متجر هدايا الإمارات - اكتشف أفضل العروض على العطور والساعات والهدايا الفاخرة. توصيل مجاني لجميع إمارات الدولة مع ضمان الجودة.">
     
-    <!-- خط Cairo من Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- ملف CSS الجديد المستوحى من دخون الإماراتية -->
     <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
     
-    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -36,10 +30,8 @@
     </script>
 </head>
 <body>
-    <!-- Progress Bar -->
     <div class="progress-bar" id="progressBar"></div>
     
-    <!-- Top Banner -->
     <div class="top-banner">
         <div class="banner-text">
             <i class="fas fa-shipping-fast banner-icon"></i>
@@ -48,46 +40,28 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header class="header" id="header">
         <div class="header-container">
             <div class="header-content">
-                <!-- Logo -->
                 <a href="./" class="logo" aria-label="الصفحة الرئيسية - هدايا الإمارات">
-                    <div class="logo-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
+                    <div class="logo-icon"><i class="fas fa-gem"></i></div>
                     <div class="logo-text">
                         <div class="logo-title">هدايا الإمارات</div>
                         <div class="logo-subtitle">Emirates Gifts</div>
                     </div>
                 </a>
 
-                <!-- Main Navigation -->
                 <nav class="main-nav" aria-label="القائمة الرئيسية">
                     <ul class="nav-menu">
-                        <li class="nav-item">
-                            <a href="./" class="nav-link active">الرئيسية</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./products-showcase.html" class="nav-link">المنتجات</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#perfumes-section" class="nav-link">العطور</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#watches-section" class="nav-link">الساعات</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./blog/" class="nav-link">المدونة</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://wa.me/201110760081" class="nav-link" target="_blank">تواصل</a>
-                        </li>
+                        <li class="nav-item"><a href="./" class="nav-link active">الرئيسية</a></li>
+                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link">المنتجات</a></li>
+                        <li class="nav-item"><a href="#perfumes-section" class="nav-link">العطور</a></li>
+                        <li class="nav-item"><a href="#watches-section" class="nav-link">الساعات</a></li>
+                        <li class="nav-item"><a href="./blog/" class="nav-link">المدونة</a></li>
+                        <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link" target="_blank">تواصل</a></li>
                     </ul>
                 </nav>
 
-                <!-- Header Tools -->
                 <div class="header-tools">
                     <a href="./cart.html" class="header-tool" aria-label="السلة">
                         <i class="fas fa-shopping-cart"></i>
@@ -101,7 +75,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
@@ -133,7 +106,7 @@
         </div>
     </section>
 
-    <!-- Featured Perfumes Section -->
+    <!-- قسم العطور المميزة -->
     <section class="section" id="main-content">
         <div class="section-container">
             <div id="perfumes-section" class="category-section">
@@ -142,15 +115,19 @@
                     <p class="section-subtitle">
                         اخترنا لك أجمل العطور الشرقية والغربية التي تلائم جميع الأذواق
                     </p>
+                    <a href="./products-showcase.html" class="view-all-link">
+                        <i class="fas fa-arrow-left"></i>
+                        عرض جميع العطور
+                    </a>
                 </div>
-                <div class="products-grid" id="perfumes-grid">
+                <div class="products-grid" id="latestPerfumes">
                     <div class="loading-message">⏳ جارِ تحميل العطور...</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Collection Section -->
+    <!-- قسم مجموعة العطور الشرقية -->
     <section class="section">
         <div class="section-container">
             <div class="collection-section">
@@ -176,7 +153,7 @@
         </div>
     </section>
 
-    <!-- Watches Section -->
+    <!-- قسم الساعات -->
     <section class="section">
         <div class="section-container">
             <div id="watches-section">
@@ -185,15 +162,44 @@
                     <p class="section-subtitle">
                         مجموعة حصرية من أرقى الساعات العالمية التي تجمع بين الأناقة والدقة
                     </p>
+                    <a href="./products-showcase.html" class="view-all-link">
+                        <i class="fas fa-arrow-left"></i>
+                        عرض جميع الساعات
+                    </a>
                 </div>
-                <div class="products-grid" id="watches-grid">
+                <div class="products-grid" id="latestWatches">
                     <div class="loading-message">⏳ جارِ تحميل الساعات...</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- قسم المنتجات المميزة -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">منتجات مميزة</h2>
+                <p class="section-subtitle">مجموعة مختارة من أفضل المنتجات المتاحة</p>
+            </div>
+            <div class="products-grid" id="featuredProducts">
+                <div class="loading-message">⏳ جارِ تحميل المنتجات المميزة...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم أفضل العروض -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">🔥 أفضل العروض</h2>
+                <p class="section-subtitle">اغتنم فرصة الحصول على عروض حصرية بخصومات مميزة</p>
+            </div>
+            <div class="products-grid" id="bestDeals">
+                <div class="loading-message">⏳ جارِ تحميل العروض...</div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
@@ -204,18 +210,10 @@
                         نقدم لكم أجمل التشكيلات من العطور الشرقية والغربية
                     </p>
                     <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
 
@@ -241,18 +239,9 @@
                 <div class="footer-section">
                     <h3>تواصل معنا</h3>
                     <ul>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+201110760081">+20 111 076 0081</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>دبي، الإمارات العربية المتحدة</span>
-                        </li>
+                        <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>دبي، الإمارات العربية المتحدة</span></li>
                     </ul>
                 </div>
             </div>
@@ -263,19 +252,15 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Mobile Sidebar -->
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-sidebar" id="mobileSidebar">
         <div class="mobile-sidebar-header">
             <div class="mobile-sidebar-logo">هدايا الإمارات</div>
-            <button class="mobile-sidebar-close" id="closeSidebar" aria-label="إغلاق القائمة">
-                <i class="fas fa-times"></i>
-            </button>
+            <button class="mobile-sidebar-close" id="closeSidebar" aria-label="إغلاق القائمة"><i class="fas fa-times"></i></button>
         </div>
         <nav class="mobile-sidebar-nav">
             <a href="./"><i class="fas fa-home"></i> الرئيسية</a>
@@ -288,7 +273,8 @@
         </nav>
     </div>
 
-    <!-- JavaScript Files - ترتيب محسن لتجنب التعارضات -->
+    <!-- ملفات JavaScript بترتيب محسّن -->
+    <script src="./js/products-loader.js" defer></script>
     <script src="./js/buttons-fix.js" defer></script>
     <script src="./js/cart-system.js" defer></script>
     <script src="./js/reviews-system.js" defer></script>
