@@ -1,5 +1,5 @@
 // نظام إشعارات المبيعات الذكي - متجر هدايا الإمارات
-// عرض إشعارات مبيعات حديثة بأسماء عملاء حقيقيين وروابط منتجات فعلية
+// عرض إشعارات مبيعات حديثة بأسماء عملاء حقيقيين مع روابط صحيحة لصفحة المنتجات
 
 window.EmiratesSalesNotifications = {
     isActive: true,
@@ -46,12 +46,12 @@ window.EmiratesSalesNotifications = {
             
             if (perfumesResponse.ok) {
                 const perfumes = await perfumesResponse.json();
-                products = [...products, ...perfumes];
+                products = [...products, ...perfumes.map(p => ({ ...p, type: 'perfume', category: 'عطور' }))];
             }
             
             if (watchesResponse.ok) {
                 const watches = await watchesResponse.json();
-                products = [...products, ...watches];
+                products = [...products, ...watches.map(p => ({ ...p, type: 'watch', category: 'ساعات' }))];
             }
             
             // فلترة وتنظيف البيانات
@@ -65,9 +65,9 @@ window.EmiratesSalesNotifications = {
             
             // بيانات احتياطية
             this.productsData = [
-                { id: '1', title: 'عطر ARIAF فاخر' },
-                { id: '2', title: 'عطر Kayali Vanilla' },
-                { id: '5', title: 'عطر Marly Delina' }
+                { id: 'perfume_1', title: 'عطر كوكو شانيل 100 مل', type: 'perfume', category: 'عطور' },
+                { id: 'perfume_2', title: 'عطر جوتشي فلورا', type: 'perfume', category: 'عطور' },
+                { id: 'perfume_5', title: 'عطر فرزاتشي ايروس', type: 'perfume', category: 'عطور' }
             ];
             
             return this.productsData;
@@ -92,6 +92,7 @@ window.EmiratesSalesNotifications = {
             verified: randomCustomer.verified,
             productName: randomProduct.title,
             productId: randomProduct.id,
+            productType: randomProduct.type,
             timeAgo: randomTime
         };
     },
@@ -109,8 +110,8 @@ window.EmiratesSalesNotifications = {
         notification.className = 'sales-notification';
         
         // تحديد الأيقونة واللون حسب نوع المنتج
-        const isWatch = sale.productName.includes('ساعة') || sale.productName.toLowerCase().includes('watch');
-        const isPerfume = sale.productName.includes('عطر') || sale.productName.toLowerCase().includes('perfume');
+        const isWatch = sale.productName.includes('ساعة') || sale.productType === 'watch';
+        const isPerfume = sale.productName.includes('عطر') || sale.productType === 'perfume';
         
         let icon, borderColor, bgGradient;
         
@@ -128,6 +129,9 @@ window.EmiratesSalesNotifications = {
             bgGradient = 'linear-gradient(135deg, #00A16B 0%, #008055 100%)';
         }
         
+        // استخدام رابط صحيح لصفحة المنتجات
+        const productUrl = `./products-showcase.html#product-${sale.productId}`;
+        
         notification.innerHTML = `
             <div class="notification-content">
                 <div class="notification-icon" style="background: ${bgGradient};">
@@ -143,7 +147,7 @@ window.EmiratesSalesNotifications = {
                     
                     <div class="purchase-info">
                         <span class="action-text">اشترى</span>
-                        <a href="./product-details.html?id=${sale.productId}" 
+                        <a href="${productUrl}" 
                            class="product-link" 
                            target="_blank" 
                            rel="noopener"
@@ -556,7 +560,8 @@ window.EmiratesSalesNotifications = {
             productName,
             productId,
             timeAgo: 'منذ لحظات',
-            verified: true
+            verified: true,
+            productType: productName.includes('عطر') ? 'perfume' : 'watch'
         };
         
         // عرض فوري
@@ -575,12 +580,26 @@ window.EmiratesSalesNotifications = {
         const notification = document.createElement('div');
         notification.className = 'sales-notification';
         
-        const isPerfume = saleData.productName.includes('عطر');
-        const icon = isPerfume ? '🌿' : '🎁';
-        const borderColor = isPerfume ? '#D4AF37' : '#C8102E';
-        const bgGradient = isPerfume ? 
-            'linear-gradient(135deg, #D4AF37 0%, #B8941F 100%)' : 
-            'linear-gradient(135deg, #C8102E 0%, #A0001C 100%)';
+        const isPerfume = saleData.productName.includes('عطر') || saleData.productType === 'perfume';
+        const isWatch = saleData.productName.includes('ساعة') || saleData.productType === 'watch';
+        
+        let icon, borderColor, bgGradient;
+        if (isWatch) {
+            icon = '⏰';
+            borderColor = '#C8102E';
+            bgGradient = 'linear-gradient(135deg, #C8102E 0%, #A0001C 100%)';
+        } else if (isPerfume) {
+            icon = '🌿';
+            borderColor = '#D4AF37';
+            bgGradient = 'linear-gradient(135deg, #D4AF37 0%, #B8941F 100%)';
+        } else {
+            icon = '🎁';
+            borderColor = '#00A16B';
+            bgGradient = 'linear-gradient(135deg, #00A16B 0%, #008055 100%)';
+        }
+        
+        // استخدام الرابط الصحيح لصفحة المنتجات
+        const productUrl = `./products-showcase.html#product-${saleData.productId}`;
         
         notification.innerHTML = `
             <div class="notification-content">
@@ -597,7 +616,7 @@ window.EmiratesSalesNotifications = {
                     
                     <div class="purchase-info">
                         <span class="action-text">اشترى</span>
-                        <a href="./product-details.html?id=${saleData.productId}" 
+                        <a href="${productUrl}" 
                            class="product-link" 
                            target="_blank" 
                            rel="noopener"
