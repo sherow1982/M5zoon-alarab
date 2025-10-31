@@ -1,4 +1,4 @@
-// نظام الرسالة المنبثقة الوحيدة - محسن للموبايل
+// نظام الرسالة المنبثقة الوحيدة - حسب الصورة المطلوبة
 class SinglePopupNotification {
     constructor() {
         this.customerNames = [
@@ -9,7 +9,7 @@ class SinglePopupNotification {
         ];
         
         this.products = [
-            'عطر كوكو شانيل 100 مل', 'عطر جوتشي فلورا', 'عطر جوتشي بلوم',
+            'عطر جديد اشتري الآن', 'عطر كوكو شانيل 100 مل', 'عطر جوتشي فلورا', 'عطر جوتشي بلوم',
             'عطر سوفاج ديور 100 مل', 'عطر فرزاتشي ايروس',
             'ساعة رولكس يخت ماستر', 'ساعة Rolex كلاسيكية',
             'ساعة اوميغا سواتش', 'ساعة رولكس أنيقة'
@@ -38,16 +38,16 @@ class SinglePopupNotification {
         this.currentPopup = document.createElement('div');
         this.currentPopup.className = 'single-popup-notification';
         
-        // تطبيق الأنماط مباشرة
+        // تطبيق الأنماط مباشرة - نفس تصميم الصورة المرفقة
         this.currentPopup.style.cssText = `
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: linear-gradient(135deg, #25D366, #20B358);
+            background: linear-gradient(135deg, #8B4CE6, #A855F7);
             color: white;
             padding: 20px 25px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 10px 40px rgba(139, 76, 230, 0.3);
             z-index: 10000;
             font-family: 'Cairo', Arial, sans-serif;
             font-weight: 600;
@@ -61,45 +61,41 @@ class SinglePopupNotification {
 
         this.currentPopup.innerHTML = `
             <div style="display: flex; align-items: flex-start; gap: 15px; position: relative;">
-                <!-- زر الإغلاق الواضح -->
+                <!-- زر الإغلاق -->
                 <button onclick="window.SinglePopupSystem.hidePopup()" 
-                        style="position: absolute; top: -15px; right: -15px; 
-                               background: #ff4757; color: white; 
+                        style="position: absolute; top: -15px; left: -15px; 
+                               background: rgba(255, 255, 255, 0.9); color: #666; 
                                border: none; width: 35px; height: 35px; 
                                border-radius: 50%; cursor: pointer; 
                                font-size: 18px; font-weight: bold;
-                               box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
                                display: flex; align-items: center; justify-content: center;
                                transition: all 0.3s ease;"
-                        onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 6px 20px rgba(255, 71, 87, 0.6)'"
-                        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(255, 71, 87, 0.4)'"
+                        onmouseover="this.style.background='#fff'; this.style.color='#000'"
+                        onmouseout="this.style.background='rgba(255, 255, 255, 0.9)'; this.style.color='#666'"
                         aria-label="إغلاق الإشعار">
                     ✕
                 </button>
                 
-                <!-- أيقونة التسوق -->
+                <!-- أيقونة حسب الصورة -->
                 <div style="flex-shrink: 0; margin-top: 3px;">
                     <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); 
                                 border-radius: 50%; display: flex; align-items: center; 
                                 justify-content: center; font-size: 22px;
                                 box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);">
-                        🛍️
+                        🎁
                     </div>
                 </div>
                 
-                <!-- محتوى الرسالة -->
+                <!-- محتوى الرسالة - نفس تصميم الصورة -->
                 <div style="flex: 1; line-height: 1.4;">
-                    <div style="font-size: 12px; opacity: 0.8; margin-bottom: 4px; display: flex; align-items: center; gap: 5px;">
-                        🔥 عميل جديد اشترى الآن:
+                    <div style="font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #FFD700;">
+                        عميل جديد اشترى الآن:
                     </div>
-                    <div style="font-weight: 800; margin-bottom: 8px; color: #FFD700; font-size: 16px;">
-                        ${customer}
+                    <div style="font-size: 15px; margin-bottom: 4px; opacity: 0.95;">
+                        "اشتري عطر فرانسي ليمس مع ضمان الجودة"
                     </div>
-                    <div style="font-size: 13px; opacity: 0.9; line-height: 1.3; margin-bottom: 6px;">
-                        "${product}"
-                    </div>
-                    <div style="font-size: 11px; opacity: 0.7; display: flex; align-items: center; gap: 5px;">
-                        ⏰ منذ ${timeAgo} دقيقة • مع ضمان الجودة
+                    <div style="font-size: 12px; opacity: 0.8; display: flex; align-items: center; gap: 5px;">
+                        ⏰ منذ دقيقة • مع ضمان الجودة
                     </div>
                 </div>
             </div>
@@ -196,7 +192,7 @@ class SinglePopupNotification {
             /* تأثيرات التفاعل */
             .single-popup-notification:hover {
                 transform: translateY(-3px) scale(1.02) !important;
-                box-shadow: 0 15px 50px rgba(37, 211, 102, 0.5) !important;
+                box-shadow: 0 15px 50px rgba(139, 76, 230, 0.5) !important;
                 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
             }
             
@@ -215,7 +211,7 @@ class SinglePopupNotification {
                 
                 .single-popup-notification button {
                     top: -12px !important;
-                    right: -12px !important;
+                    left: -12px !important;
                     width: 32px !important;
                     height: 32px !important;
                     font-size: 16px !important;
@@ -232,26 +228,6 @@ class SinglePopupNotification {
                     width: calc(100vw - 30px) !important;
                     padding: 18px 20px !important;
                     font-size: 15px !important;
-                }
-            }
-            
-            /* تصميم للتابلت */
-            @media (min-width: 769px) and (max-width: 1024px) {
-                .single-popup-notification {
-                    max-width: 360px !important;
-                    bottom: 25px !important;
-                    right: 25px !important;
-                    font-size: 15px !important;
-                }
-            }
-            
-            /* تصميم للشاشات الكبيرة */
-            @media (min-width: 1025px) {
-                .single-popup-notification {
-                    max-width: 400px !important;
-                    bottom: 30px !important;
-                    right: 30px !important;
-                    font-size: 16px !important;
                 }
             }
             
@@ -272,6 +248,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // إضافة الأنماط
     popupSystem.addPopupStyles();
     
+    // إزالة أي رسائل منبثقة أخرى موجودة
+    const removeOtherPopups = () => {
+        document.querySelectorAll('.notification, .popup, .toast, .alert, .banner:not(.top-banner)').forEach(el => {
+            if (!el.classList.contains('single-popup-notification')) {
+                el.remove();
+            }
+        });
+    };
+    
     // إنشاء نظام الرسالة الواحدة
     let currentNotification = null;
     let notificationTimer = null;
@@ -282,21 +267,22 @@ document.addEventListener('DOMContentLoaded', function() {
             hideSingleNotification();
         }
         
-        const data = popupSystem.getRandomData();
+        // إزالة أي رسائل أخرى
+        removeOtherPopups();
         
         currentNotification = document.createElement('div');
         currentNotification.className = 'single-popup-notification';
         
-        // تطبيق التصميم المتجاوب
+        // تطبيق التصميم المتجاوب - نفس الصورة المرفقة
         currentNotification.style.cssText = `
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: linear-gradient(135deg, #25D366, #20B358);
+            background: linear-gradient(135deg, #8B4CE6, #A855F7);
             color: white;
             padding: 20px 25px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 10px 40px rgba(139, 76, 230, 0.3);
             z-index: 999999;
             font-family: 'Cairo', Arial, sans-serif;
             font-weight: 600;
@@ -309,44 +295,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
         currentNotification.innerHTML = `
             <div style="display: flex; align-items: flex-start; gap: 15px; position: relative;">
-                <!-- زر الإغلاق الواضح -->
+                <!-- زر الإغلاق -->
                 <button onclick="hideSingleNotification()" 
-                        style="position: absolute; top: -15px; right: -15px; 
-                               background: #ff4757; color: white; 
+                        style="position: absolute; top: -15px; left: -15px; 
+                               background: rgba(255, 255, 255, 0.9); color: #666; 
                                border: none; width: 35px; height: 35px; 
                                border-radius: 50%; cursor: pointer; 
                                font-size: 18px; font-weight: bold;
-                               box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
                                display: flex; align-items: center; justify-content: center;
                                transition: all 0.3s ease;"
-                        onmouseover="this.style.transform='scale(1.15)'"
-                        onmouseout="this.style.transform='scale(1)'"
+                        onmouseover="this.style.background='#fff'; this.style.color='#000'"
+                        onmouseout="this.style.background='rgba(255, 255, 255, 0.9)'; this.style.color='#666'"
                         title="إغلاق">
                     ✕
                 </button>
                 
-                <!-- رمز التسوق -->
+                <!-- رمز حسب الصورة -->
                 <div style="flex-shrink: 0; margin-top: 3px;">
                     <div style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); 
                                 border-radius: 50%; display: flex; align-items: center; 
                                 justify-content: center; font-size: 24px;">
-                        🛍️
+                        🎁
                     </div>
                 </div>
                 
-                <!-- محتوى الرسالة -->
+                <!-- محتوى الرسالة - نفس النص من الصورة -->
                 <div style="flex: 1; line-height: 1.4;">
-                    <div style="font-size: 12px; opacity: 0.85; margin-bottom: 4px;">
-                        🔥 عميل جديد اشترى:
+                    <div style="font-size: 16px; opacity: 0.9; margin-bottom: 8px; color: #FFD700; font-weight: 600;">
+                        عميل جديد اشترى الآن:
                     </div>
-                    <div style="font-weight: 800; margin-bottom: 8px; color: #FFD700; font-size: 16px;">
-                        ${data.customer}
+                    <div style="font-size: 15px; margin-bottom: 4px; opacity: 0.95;">
+                        "اشتري عطر فرانسي ليمس مع ضمان الجودة"
                     </div>
-                    <div style="font-size: 13px; opacity: 0.9; line-height: 1.3; margin-bottom: 6px;">
-                        "${data.product}"
-                    </div>
-                    <div style="font-size: 11px; opacity: 0.7; display: flex; align-items: center; gap: 5px;">
-                        ⏰ منذ ${data.timeAgo} دقيقة
+                    <div style="font-size: 12px; opacity: 0.8; display: flex; align-items: center; gap: 5px;">
+                        ⏰ منذ دقيقة • مع ضمان الجودة
                     </div>
                 </div>
             </div>
@@ -386,6 +368,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // بدء النظام بعد تحميل الصفحة
     window.addEventListener('load', () => {
+        // إزالة أي رسائل أخرى أولاً
+        removeOtherPopups();
+        
         // أول رسالة بعد 8 ثوانٍ
         setTimeout(showSingleNotification, 8000);
         
@@ -405,5 +390,15 @@ document.addEventListener('DOMContentLoaded', function() {
         hideSingleNotification();
     });
     
-    console.log('🎯 تم تفعيل نظام الرسالة المنبثقة الواحدة - كل 20 ثانية مع تصميم متجاوب');
+    // مراقبة إضافة عناصر جديدة وإزالة أي رسائل منبثقة أخرى
+    const observer = new MutationObserver(() => {
+        removeOtherPopups();
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+    
+    console.log('🎯 تم تفعيل نظام الرسالة المنبثقة الواحدة فقط - حسب الصورة المطلوبة');
 });
