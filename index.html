@@ -11,18 +11,577 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- تحميل CSS موحد مضغوط -->
-    <link rel="stylesheet" href="./assets/css/app.min.css">
+    <!-- ملفات CSS الأساسية فقط -->
+    <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
+    <link rel="stylesheet" href="./css/mobile-responsive-fixes.css">
+    <link rel="stylesheet" href="./css/reviews-system.css">
+    <link rel="stylesheet" href="./css/emirates-reviews-style.css">
+    <link rel="stylesheet" href="./css/fixed-navigation-buttons.css">
+    <link rel="stylesheet" href="./css/button-spacing-fixes.css">
+    <link rel="stylesheet" href="./css/final-button-appearance-fix.css">
     
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Store","name":"متجر هدايا الإمارات","description":"المتجر الإماراتي الموثوق للعطور عالية الجودة والساعات","url":"https://emirates-gifts.arabsad.com/","address":{"@type":"PostalAddress","addressCountry":"AE"},"currenciesAccepted":"AED","paymentAccepted":"Cash, WhatsApp Order","telephone":"+201110760081"}
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "متجر هدايا الإمارات",
+      "description": "المتجر الإماراتي الموثوق للعطور عالية الجودة والساعات",
+      "url": "https://emirates-gifts.arabsad.com/",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "AE"
+      },
+      "currenciesAccepted": "AED",
+      "paymentAccepted": "Cash, WhatsApp Order",
+      "telephone": "+201110760081"
+    }
     </script>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
-    <!-- باقي الصفحة كما هي -->
     
-    <!-- تحميل JS موحد مضغوط -->
-    <script src="./assets/js/app.min.js" defer></script>
+    <div class="top-banner">
+        <div class="banner-text">
+            <i class="fas fa-shipping-fast banner-icon"></i>
+            <span>توصيل خلال 1-3 أيام عمل • ضمان إرجاع 14 يوم + مصاريف الشحن</span>
+            <i class="fas fa-gift banner-icon"></i>
+        </div>
+    </div>
+
+    <header class="header" id="header">
+        <div class="header-container">
+            <div class="header-content">
+                <a href="./" class="logo" aria-label="الصفحة الرئيسية - هدايا الإمارات">
+                    <div class="logo-icon"><img src="./favicon.ico" alt="هدايا الإمارات" style="width: 32px; height: 32px; object-fit: contain;"></div>
+                    <div class="logo-text">
+                        <div class="logo-title">هدايا الإمارات</div>
+                        <div class="logo-subtitle">Emirates Gifts</div>
+                    </div>
+                </a>
+
+                <nav class="main-nav" aria-label="القائمة الرئيسية">
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a href="./" class="nav-link active" aria-current="page">الرئيسية</a></li>
+                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link" target="_blank" rel="noopener">المنتجات</a></li>
+                        <li class="nav-item"><a href="#perfumes-section" class="nav-link">العطور</a></li>
+                        <li class="nav-item"><a href="#watches-section" class="nav-link">الساعات</a></li>
+                        <li class="nav-item"><a href="./blog/" class="nav-link" target="_blank" rel="noopener">المدونة</a></li>
+                        <li class="nav-item dropdown">
+                            <span class="nav-link dropdown-toggle" role="button" tabindex="0">المزيد <i class="fas fa-chevron-down"></i></span>
+                            <ul class="dropdown-menu">
+                                <li><a href="./about.html" class="dropdown-link"><i class="fas fa-info-circle"></i> من نحن</a></li>
+                                <li><a href="./shipping-policy.html" class="dropdown-link"><i class="fas fa-shipping-fast"></i> سياسة الشحن</a></li>
+                                <li><a href="./return-policy.html" class="dropdown-link"><i class="fas fa-undo"></i> سياسة الإرجاع</a></li>
+                                <li><a href="./privacy-policy.html" class="dropdown-link"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
+                                <li><a href="./terms-conditions.html" class="dropdown-link"><i class="fas fa-file-contract"></i> الشروط والأحكام</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link" target="_blank" rel="noopener">تواصل</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-tools">
+                    <a href="./cart.html" class="header-tool cart-icon" aria-label="عرض السلة" title="عرض السلة">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-counter">0</span>
+                    </a>
+                    <a href="./checkout.html" class="header-tool order-now-btn" aria-label="إتمام الطلب فوراً" title="إتمام الطلب فوراً">
+                        <i class="fas fa-credit-card"></i>
+                        <span>اطلب فوراً</span>
+                    </a>
+                    <button class="mobile-menu-toggle" id="openSidebar" aria-label="فتح القائمة" title="فتح القائمة">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    عالم من العطور<br>
+                    <span style="color: var(--primary-gold);">والهدايا عالية الجودة</span>
+                </h1>
+                <p class="hero-subtitle">
+                    اكتشف أجمل التشكيلات من العطور الشرقية والغربية عالية الجودة، والهدايا المميزة التي تعبر عن ذوقك الرفيع
+                </p>
+                <div class="hero-cta">
+                    <a href="#perfumes-section" class="btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        تسوق الآن
+                    </a>
+                    <a href="./products-showcase.html" class="btn-secondary" target="_blank" rel="noopener">
+                        <i class="fas fa-star"></i>
+                        عرض المنتجات
+                    </a>
+                    <a href="./checkout.html" class="btn-secondary order-now-btn">
+                        <i class="fas fa-credit-card"></i>
+                        إتمام الطلب
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop&crop=center" 
+                     alt="مجموعة متنوعة من العطور عالية الجودة" 
+                     class="hero-image lazyload"
+                     loading="eager"
+                     fetchpriority="high">
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم العطور المميزة -->
+    <section class="section" id="main-content">
+        <div class="section-container">
+            <div id="perfumes-section" class="category-section">
+                <div class="section-header">
+                    <h2 class="section-title">عطور هدايا الإمارات عالية الجودة</h2>
+                    <p class="section-subtitle">
+                        اخترنا لك أجمل العطور الشرقية والغربية عالية الجودة التي تلائم جميع الأذواق مع تقييمات عملائنا ⭐
+                    </p>
+                    <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                        <i class="fas fa-arrow-left"></i>
+                        عرض جميع العطور
+                    </a>
+                </div>
+                <div class="products-grid" id="perfumes-grid">
+                    <div class="loading-message">⏳ جارِ تحميل العطور عالية الجودة مع التقييمات...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم مجموعة العطور الشرقية -->
+    <section class="section">
+        <div class="section-container">
+            <div class="collection-section">
+                <div class="collection-grid">
+                    <div class="collection-content">
+                        <h2 class="collection-title">مجموعة العطور الشرقية عالية الجودة</h2>
+                        <p class="collection-description">
+                            استمتع برحلة عطرية لا تُنسى مع مجموعتنا الحصرية من العطور الشرقية عالية الجودة التي تحمل في طياتها أجمل قصص الفخامة
+                        </p>
+                        <a href="#perfumes-section" class="btn-primary">
+                            <i class="fas fa-crown"></i>
+                            اكتشف المجموعة
+                        </a>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop&crop=center" 
+                             alt="مجموعة العطور الشرقية عالية الجودة" 
+                             class="collection-image lazyload"
+                             loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الساعات -->
+    <section class="section">
+        <div class="section-container">
+            <div id="watches-section">
+                <div class="section-header">
+                    <h2 class="section-title">ساعات هدايا الإمارات عالية الجودة</h2>
+                    <p class="section-subtitle">
+                        مجموعة حصرية من أرقى الساعات عالية الجودة التي تجمع بين الأناقة والدقة مع تقييمات ممتازة 🎆
+                    </p>
+                    <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                        <i class="fas fa-arrow-left"></i>
+                        عرض جميع الساعات
+                    </a>
+                </div>
+                <div class="products-grid" id="watches-grid">
+                    <div class="loading-message">⏳ جارِ تحميل الساعات عالية الجودة مع التقييمات...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات المميزة -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">منتجات مميزة عالية الجودة مع تقييمات عملائنا 🌟</h2>
+                <p class="section-subtitle">مجموعة مختارة من أفضل المنتجات عالية الجودة مع تقييمات إماراتية موثقة</p>
+                <div class="cta-group">
+                    <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                        <i class="fas fa-th-large"></i>
+                        عرض الكل
+                    </a>
+                    <a href="./checkout.html" class="view-all-link order-now-btn">
+                        <i class="fas fa-credit-card"></i>
+                        اطلب فوراً
+                    </a>
+                </div>
+            </div>
+            <div class="products-grid" id="featuredProducts">
+                <div class="loading-message">⏳ جارِ تحميل المنتجات المميزة عالية الجودة مع التقييمات...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم أفضل العروض -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">🔥 أفضل العروض عالية الجودة مع تقييمات ممتازة</h2>
+                <p class="section-subtitle">اغتنم فرصة الحصول على عروض حصرية بخصومات مميزة على منتجات عالية الجودة</p>
+            </div>
+            <div class="products-grid" id="bestDeals">
+                <div class="loading-message">⏳ جارِ تحميل العروض عالية الجودة...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم معلومات الشحن والإرجاع -->
+    <section class="section">
+        <div class="section-container">
+            <div class="info-section">
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3>شحن سريع</h3>
+                        <p>توصيل خلال <strong>1-3 أيام عمل</strong> لجميع إمارات الدولة</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-undo"></i>
+                        <h3>ضمان الإرجاع</h3>
+                        <p>إرجاع لمدة <strong>14 يوم + مصاريف الشحن</strong> مع ضمان الجودة</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>جودة عالية</h3>
+                        <p>جميع منتجاتنا عالية الجودة 100% مع ضمان الاستبدال</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fab fa-whatsapp"></i>
+                        <h3>طلب فوري</h3>
+                        <p>طلب مباشر عبر واتساب مع رد فوري وخدمة 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>هدايا الإمارات</h3>
+                    <p>
+                        متجر العطور عالية الجودة والهدايا الرائد في دولة الإمارات العربية المتحدة. 
+                        نقدم لكم أجمل التشكيلات عالية الجودة
+                    </p>
+                    <div class="social-links">
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="./">الرئيسية</a></li>
+                        <li><a href="./products-showcase.html" target="_blank" rel="noopener">المنتجات</a></li>
+                        <li><a href="./blog/" target="_blank" rel="noopener">المدونة</a></li>
+                        <li><a href="./cart.html">السلة</a></li>
+                        <li><a href="./about.html">من نحن</a></li>
+                        <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">إتمام الطلب</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>السياسات والشروط</h3>
+                    <ul>
+                        <li><a href="./shipping-policy.html"><i class="fas fa-shipping-fast"></i> سياسة الشحن (1-3 أيام عمل)</a></li>
+                        <li><a href="./return-policy.html"><i class="fas fa-undo"></i> سياسة الإرجاع (14 يوم + مصاريف شحن)</a></li>
+                        <li><a href="./privacy-policy.html"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
+                        <li><a href="./terms-conditions.html"><i class="fas fa-file-contract"></i> الشروط والأحكام</a></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fas fa-headset"></i> الدعم الفني</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>دبي، الإمارات العربية المتحدة</span></li>
+                        <li><i class="fas fa-clock"></i><span>خدمة العملاء: 24/7</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
+                    <div class="legal-links">
+                        <a href="./privacy-policy.html">الخصوصية</a>
+                        <a href="./terms-conditions.html">الشروط</a>
+                        <a href="./shipping-policy.html">الشحن</a>
+                        <a href="./return-policy.html">الإرجاع</a>
+                    </div>
+                </div>
+                <div class="shipping-return-footer-info">
+                    <span><i class="fas fa-truck"></i> شحن خلال 1-3 أيام عمل</span>
+                    <span><i class="fas fa-undo"></i> إرجاع خلال 14 يوم + مصاريف الشحن</span>
+                    <span><i class="fas fa-star"></i> جودة عالية مضمونة</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <div class="mobile-sidebar-logo">هدايا الإمارات</div>
+            <button class="mobile-sidebar-close" id="closeSidebar" aria-label="إغلاق القائمة">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-sidebar-nav">
+            <a href="./"><i class="fas fa-home"></i> الرئيسية</a>
+            <a href="./products-showcase.html" target="_blank" rel="noopener"><i class="fas fa-th-large"></i> المنتجات</a>
+            <a href="#perfumes-section"><i class="fas fa-spray-can"></i> العطور</a>
+            <a href="#watches-section"><i class="fas fa-clock"></i> الساعات</a>
+            <a href="./blog/" target="_blank" rel="noopener"><i class="fas fa-blog"></i> المدونة</a>
+            <a href="./about.html"><i class="fas fa-info-circle"></i> من نحن</a>
+            <a href="./shipping-policy.html"><i class="fas fa-shipping-fast"></i> سياسة الشحن</a>
+            <a href="./return-policy.html"><i class="fas fa-undo"></i> سياسة الإرجاع</a>
+            <a href="./privacy-policy.html"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a>
+            <a href="./terms-conditions.html"><i class="fas fa-file-contract"></i> الشروط والأحكام</a>
+            <a href="./cart.html"><i class="fas fa-shopping-cart"></i> السلة <span class="cart-counter mobile-cart-counter">0</span></a>
+            <a href="./checkout.html" class="order-now-btn"><i class="fas fa-credit-card"></i> اطلب فوراً</a>
+            <a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> واتساب</a>
+        </nav>
+    </div>
+
+    <!-- تحميل الأنظمة بترتيب صحيح -->
+    <script src="./js/ui.js"></script>
+    <script src="./js/cart-system.js"></script>
+    <script src="./js/reviews-system.js"></script>
+    <script src="./js/popup-system.js"></script>
+    <script src="./js/products-loader.js"></script>
+    <script src="./js/main.js"></script>
+    
+    <style>
+    /* إضافة ستايل القائمة المنسدلة */
+    .dropdown {
+        position: relative;
+    }
+    
+    .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        user-select: none;
+    }
+    
+    .dropdown-toggle:hover {
+        color: #D4AF37;
+    }
+    
+    .dropdown-toggle i {
+        transition: transform 0.3s ease;
+        font-size: 12px;
+    }
+    
+    .dropdown:hover .dropdown-toggle i {
+        transform: rotate(180deg);
+    }
+    
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+        border: 1px solid #e8ecef;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        min-width: 280px;
+        padding: 15px 0;
+        opacity: 0;
+        transform: translateY(-15px);
+        transition: all 0.4s ease;
+        overflow: hidden;
+    }
+    
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .dropdown-menu::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        right: 20px;
+        width: 16px;
+        height: 16px;
+        background: #ffffff;
+        border: 1px solid #e8ecef;
+        border-bottom: none;
+        border-right: none;
+        transform: rotate(45deg);
+    }
+    
+    .dropdown-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 25px;
+        color: #333;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid transparent;
+        position: relative;
+    }
+    
+    .dropdown-link:hover {
+        background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+        color: #ffffff;
+        transform: translateX(-3px);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+    
+    .dropdown-link i {
+        width: 18px;
+        color: #D4AF37;
+        transition: all 0.3s ease;
+        font-size: 16px;
+    }
+    
+    .dropdown-link:hover i {
+        color: #ffffff;
+        transform: scale(1.1);
+    }
+    
+    /* تأثيرات خاصة للروابط */
+    .dropdown-link[href*="shipping"] {
+        border-right: 3px solid #00A16B;
+    }
+    
+    .dropdown-link[href*="return"] {
+        border-right: 3px solid #C8102E;
+    }
+    
+    .dropdown-link[href*="about"] {
+        border-right: 3px solid #1a1a1a;
+    }
+    
+    .dropdown-link[href*="privacy"] {
+        border-right: 3px solid #3498db;
+    }
+    
+    .dropdown-link[href*="terms"] {
+        border-right: 3px solid #9b59b6;
+    }
+    
+    .legal-links {
+        display: flex;
+        gap: 20px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .legal-links a {
+        color: #666;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 15px;
+    }
+    
+    .legal-links a:hover {
+        color: #D4AF37;
+        background: rgba(212, 175, 55, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .footer-legal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e8ecef;
+    }
+    
+    @media (max-width: 768px) {
+        .footer-legal {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+        
+        .legal-links {
+            justify-content: center;
+        }
+        
+        .dropdown-menu {
+            position: static;
+            display: block !important;
+            opacity: 1 !important;
+            transform: none !important;
+            box-shadow: none;
+            border: none;
+            background: transparent;
+            padding: 0;
+            margin: 10px 0;
+        }
+        
+        .dropdown-menu::before {
+            display: none;
+        }
+        
+        .dropdown-link {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            border-right: none !important;
+        }
+        
+        .dropdown-link:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: #D4AF37;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .dropdown-link:hover i {
+            color: #D4AF37;
+        }
+    }
+    
+    /* تحسين العرض في الجوال */
+    @media (max-width: 1024px) {
+        .dropdown-menu {
+            right: -20px;
+        }
+    }
+    </style>
 </body>
 </html>
