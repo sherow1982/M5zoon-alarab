@@ -476,6 +476,15 @@
         .star.filled { color: #FFD700; }
         .star.half { color: #FFD700; opacity: 0.6; }
         .star.empty { color: #ddd; }
+        
+        .error-message {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 2px dashed #ddd;
+        }
     </style>
 </head>
 <body>
@@ -495,8 +504,8 @@
                 <nav class="main-nav">
                     <ul class="nav-menu">
                         <li class="nav-item"><a href="./" class="nav-link">الرئيسية</a></li>
-                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link">المنتجات</a></li>
-                        <li class="nav-item"><a href="./blog/" class="nav-link">المدونة</a></li>
+                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link" target="_blank">المنتجات</a></li>
+                        <li class="nav-item"><a href="./blog/" class="nav-link" target="_blank">المدونة</a></li>
                         <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link" target="_blank">تواصل</a></li>
                     </ul>
                 </nav>
@@ -564,13 +573,13 @@
     </button>
 
     <!-- JavaScript -->
-    <script src="./js/uae-reviews-generator.js" defer></script>
-    <script src="./js/persistent-reviews-system.js" defer></script>
-    <script src="./js/enhanced-whatsapp-system.js" defer></script>
-    <script src="./js/popup-notifications.js" defer></script>
+    <script src="./js/reviews-system.js" defer></script>
+    <script src="./js/cart-system.js" defer></script>
+    <script src="./js/ui.js" defer></script>
     
     <script>
         let currentProduct = null;
+        const CART_STORAGE_KEY = 'emirates_shopping_cart'; // مفتاح موحد
         
         // استخراج معرف المنتج من URL
         function getProductIdFromURL() {
@@ -578,9 +587,11 @@
             return urlParams.get('id');
         }
         
-        // تحميل بيانات المنتج
+        // تحميل بيانات المنتج بشكل صحيح
         async function loadProductData(productId) {
             try {
+                console.log(`🔍 بحث عن المنتج بمعرف: ${productId}`);
+                
                 const [perfumesResponse, watchesResponse] = await Promise.all([
                     fetch('./data/otor.json').catch(() => ({ ok: false })),
                     fetch('./data/sa3at.json').catch(() => ({ ok: false }))
@@ -588,17 +599,53 @@
                 
                 let allProducts = [];
                 
+                // تحميل العطور مع تحديد النوع
                 if (perfumesResponse.ok) {
                     const perfumes = await perfumesResponse.json();
-                    allProducts.push(...perfumes.map(p => ({ ...p, type: 'perfume', category: 'عطور' })));
+                    console.log(`✅ تم تحميل ${perfumes.length} عطر`);
+                    allProducts.push(...perfumes.map(p => ({ 
+                        ...p, 
+                        type: 'perfume', 
+                        category: 'عطور',
+                        dataSource: 'perfumes'
+                    })));
                 }
                 
+                // تحميل الساعات مع تحديد النوع
                 if (watchesResponse.ok) {
                     const watches = await watchesResponse.json();
-                    allProducts.push(...watches.map(p => ({ ...p, type: 'watch', category: 'ساعات' })));
+                    console.log(`✅ تم تحميل ${watches.length} ساعة`);
+                    allProducts.push(...watches.map(p => ({ 
+                        ...p, 
+                        type: 'watch', 
+                        category: 'ساعات',
+                        dataSource: 'watches'
+                    })));
                 }
                 
-                return allProducts.find(p => p.id.toString() === productId.toString());
+                console.log(`📊 إجمالي المنتجات: ${allProducts.length}`);
+                
+                // بحث دقيق عن المنتج بمعرف مطابق تماماً
+                const foundProduct = allProducts.find(p => {
+                    const match = p.id.toString() === productId.toString();
+                    if (match) {
+                        console.log(`✅ تم العثور على المنتج:`, {
+                            id: p.id,
+                            title: p.title,
+                            type: p.type,
+                            category: p.category,
+                            dataSource: p.dataSource
+                        });
+                    }
+                    return match;
+                });
+                
+                if (!foundProduct) {
+                    console.warn(`⚠️ لم يتم العثور على منتج بمعرف: ${productId}`);
+                    console.log('🔍 المعرفات المتاحة:', allProducts.map(p => ({ id: p.id, title: p.title, type: p.type })));
+                }
+                
+                return foundProduct;
                 
             } catch (error) {
                 console.error('خطأ في تحميل بيانات المنتج:', error);
@@ -613,6 +660,23 @@
             
             document.title = `${product.title} - متجر هدايا الإمارات`;
             
+            // وصف مفصل بناء على نوع المرتج
+            let detailedDescription = '';
+            if (product.type === 'perfume') {
+                detailedDescription = 'عطر فاخر بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً. مزيج مثالي من الأناقة والجاذبية ليناسب جميع المناسبات المميزة.';
+            } else if (product.type === 'watch') {
+                detailedDescription = 'ساعة عالية الجودة بتصميم أنيق ومواصفات احترافية. مقاومة للماء والخدوش مع دقة عالية تناسب جميع المناسبات.';
+            } else {
+                detailedDescription = 'منتج عالي الجودة بمواصفات ممتازة وتصميم مميز بأفضل الأسعار.';
+            }
+            
+            const whatsappMessage = `مرحباً! أريد طلب هذا المنتج:
+
+🎁 ${product.title}
+💰 ${product.sale_price} درهم
+
+أريد معرفة تفاصيل الطلب والتوصيل.`;
+            
             const html = `
                 <div class="product-detail-grid">
                     <!-- قسم الصورة -->
@@ -626,10 +690,15 @@
                     <!-- قسم المعلومات -->
                     <div class="product-info-section">
                         <div class="product-category-tag">
-                            ${product.type === 'perfume' ? '🌸 عطور فاخرة' : '⏰ ساعات فاخرة'}
+                            ${product.type === 'perfume' ? '🌸 عطور فاخرة' : product.type === 'watch' ? '⏰ ساعات فاخرة' : '🎁 هدايا مميزة'}
                         </div>
                         
                         <h1 class="product-main-title">${product.title}</h1>
+                        
+                        <div class="product-description" style="background: rgba(212, 175, 55, 0.1); padding: 20px; border-radius: 15px; margin: 20px 0; color: var(--text-dark); line-height: 1.6; font-size: 1.05rem;">
+                            <i class="fas fa-info-circle" style="color: var(--primary-gold); margin-left: 8px;"></i>
+                            ${detailedDescription}
+                        </div>
                         
                         <!-- ملخص التقييمات -->
                         <div id="product-rating-summary">
@@ -647,7 +716,7 @@
                                 <i class="fas fa-shopping-cart"></i>
                                 إضافة للسلة
                             </button>
-                            <a href="#" id="whatsapp-order-btn" class="btn-whatsapp-detail">
+                            <a href="https://wa.me/201110760081?text=${encodeURIComponent(whatsappMessage)}" class="btn-whatsapp-detail" target="_blank">
                                 <i class="fab fa-whatsapp"></i>
                                 واتساب
                             </a>
@@ -657,8 +726,8 @@
                             <h4><i class="fas fa-shipping-fast"></i> معلومات التوصيل</h4>
                             <ul class="delivery-points">
                                 <li><i class="fas fa-check-circle" style="color: #25D366;"></i> توصيل مجاني في جميع إمارات الدولة</li>
-                                <li><i class="fas fa-clock" style="color: #3498db;"></i> توصيل خلال 24-48 ساعة</li>
-                                <li><i class="fas fa-shield-alt" style="color: #e67e22;"></i> ضمان استرداد المال 14 يوم</li>
+                                <li><i class="fas fa-clock" style="color: #3498db;"></i> توصيل خلال 1-3 أيام عمل</li>
+                                <li><i class="fas fa-shield-alt" style="color: #e67e22;"></i> ضمان استرداد المال 14 يوم + مصاريف شحن</li>
                                 <li><i class="fas fa-money-bill" style="color: #f39c12;"></i> دفع عند الاستلام</li>
                             </ul>
                         </div>
@@ -697,11 +766,11 @@
             }
         }
         
-        // إضافة للسلة
+        // إضافة للسلة مع المفتاح الصحيح
         function addProductToCart() {
             if (!currentProduct) return;
             
-            let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
+            let cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]');
             const existingIndex = cart.findIndex(item => item.id === currentProduct.id);
             
             if (existingIndex !== -1) {
@@ -710,10 +779,10 @@
                 cart.push({ ...currentProduct, quantity: 1 });
             }
             
-            localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
+            localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
             updateCartBadge();
             
-            // عرض رسالة نجاح
+            // عرض رسالة نجاح بسيطة
             const notification = document.createElement('div');
             notification.style.cssText = `
                 position: fixed; top: 20px; right: 20px; z-index: 10000;
@@ -738,8 +807,8 @@
         
         // تحديث شارة السلة
         function updateCartBadge() {
-            const cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]');
+            const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
             const badge = document.getElementById('cartBadge');
             
             if (badge) {
@@ -754,10 +823,10 @@
             
             if (!productId) {
                 document.getElementById('product-detail-content').innerHTML = `
-                    <div style="text-align: center; padding: 100px 20px; color: #666;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px; display: block;"></i>
-                        <h2>لم يتم العثور على المنتج</h2>
-                        <p>عذراً، لا يمكن العثور على المنتج المطلوب</p>
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px; display: block; color: #e74c3c;"></i>
+                        <h2 style="color: #e74c3c; margin-bottom: 15px;">لم يتم العثور على المنتج</h2>
+                        <p style="color: #666; margin-bottom: 25px;">عذراً، لا يمكن العثور على المنتج المطلوب</p>
                         <a href="./products-showcase.html" class="btn-primary">
                             <i class="fas fa-arrow-right"></i>
                             عودة للمنتجات
@@ -767,22 +836,36 @@
                 return;
             }
             
+            console.log(`🔄 بدء تحميل المنتج بمعرف: ${productId}`);
             currentProduct = await loadProductData(productId);
             
             if (!currentProduct) {
                 document.getElementById('product-detail-content').innerHTML = `
-                    <div style="text-align: center; padding: 100px 20px; color: #666;">
-                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; display: block;"></i>
-                        <h2>المنتج غير موجود</h2>
-                        <p>عذراً، المنتج المطلوب غير متاح حالياً</p>
-                        <a href="./products-showcase.html" class="btn-primary">
-                            <i class="fas fa-shopping-bag"></i>
-                            تصفح المنتجات الأخرى
-                        </a>
+                    <div class="error-message">
+                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; display: block; color: #f39c12;"></i>
+                        <h2 style="color: #f39c12; margin-bottom: 15px;">المنتج غير موجود</h2>
+                        <p style="color: #666; margin-bottom: 25px;">عذراً، المنتج المطلوب غير متاح حالياً</p>
+                        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                            <a href="./products-showcase.html" class="btn-primary">
+                                <i class="fas fa-shopping-bag"></i>
+                                تصفح المنتجات الأخرى
+                            </a>
+                            <a href="./" class="btn-secondary">
+                                <i class="fas fa-home"></i>
+                                الرئيسية
+                            </a>
+                        </div>
                     </div>
                 `;
                 return;
             }
+            
+            console.log('✅ تم العثور على المنتج بنجاح:', {
+                id: currentProduct.id,
+                title: currentProduct.title,
+                type: currentProduct.type,
+                category: currentProduct.category
+            });
             
             displayProductDetails(currentProduct);
             
@@ -829,6 +912,23 @@
         document.addEventListener('DOMContentLoaded', function() {
             updateCartBadge();
             initProductPage();
+            
+            // إضافة CSS للرسائل
+            if (!document.querySelector('#slideAnimations')) {
+                const style = document.createElement('style');
+                style.id = 'slideAnimations';
+                style.textContent = `
+                    @keyframes slideInRight {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOutRight {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
         });
     </script>
 </body>
