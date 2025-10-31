@@ -4,6 +4,9 @@
   {"id": "3", "rating": 4.8, "count": 189, "review": "عطر رجالي قوي بطابع شرقي", "professional_review": "✓ عطر شرقي فاخر", "verified_purchase": true},
   {"id": "4", "rating": 4.8, "count": 201, "review": "عطر سوفاج ديور أصلي بثبات ممتاز", "professional_review": "✓ عطر فرنسي فاخر", "verified_purchase": true},
   {"id": "5", "rating": 4.7, "count": 167, "review": "عطر فرزاتشي مميز للشباب", "professional_review": "✓ عطر عصري جذاب", "verified_purchase": true},
+  {"id": "6", "rating": 4.3, "count": 87, "review": "فواحة عطرية ذكية رائعة", "professional_review": "✓ تقنية متقدمة", "verified_purchase": true},
+  {"id": "7", "rating": 4.5, "count": 98, "review": "عطر أخضر منعش رائع", "professional_review": "✓ عطر إنجليزي مميز", "verified_purchase": true},
+  {"id": "10", "rating": 4.6, "count": 123, "review": "Tom Ford عطر فاخر جداً", "professional_review": "✓ عطر نيشي ممتاز", "verified_purchase": true},
   {"id": "26", "rating": 4.9, "count": 278, "review": "عطر Glory من أجمل العطور", "professional_review": "✓ عطر فاخر مميز", "verified_purchase": true},
   {"id": "27", "rating": 4.8, "count": 194, "review": "عطر ARIAF عربي أصيل", "professional_review": "✓ عطر عربي تراثي", "verified_purchase": true},
   {"id": "36", "rating": 4.9, "count": 156, "review": "Tom Ford Bitter Peach عطر رائع", "professional_review": "✓ عطر نيشي فاخر", "verified_purchase": true},
@@ -13,8 +16,10 @@
   {"id": "2", "rating": 4.8, "count": 167, "review": "ساعة Rolex كلاسيكية ممتازة", "professional_review": "✓ ساعة رولكس موثوقة", "verified_purchase": true},
   {"id": "8", "rating": 4.7, "count": 145, "review": "ساعة أوميغا جميلة ومقاومة", "professional_review": "✓ ساعة رياضية متينة", "verified_purchase": true},
   {"id": "31", "rating": 4.9, "count": 89, "review": "ساعة رولكس يخت ماستر فاخرة", "professional_review": "✓ ساعة فاخرة عالية الجودة", "verified_purchase": true},
+  {"id": "37", "rating": 4.8, "count": 134, "review": "ساعة رولكس أنيقة باللون الأزرق", "professional_review": "✓ ساعة رولكس موثوقة", "verified_purchase": true},
   {"id": "73", "rating": 4.8, "count": 134, "review": "ساعة رولكس فاخرة مع العلبة الأصلية", "professional_review": "✓ ساعة أسود أنيقة", "verified_purchase": true},
   {"id": "88", "rating": 4.9, "count": 178, "review": "ساعة رولكس بتصميم الكعبة رائعة", "professional_review": "✓ تصميم إسلامي مميز", "verified_purchase": true},
   {"id": "93", "rating": 4.8, "count": 112, "review": "ساعة Burberry فاخرة جداً", "professional_review": "✓ ساعة بريطانية أصلية", "verified_purchase": true},
-  {"id": "104", "rating": 4.9, "count": 267, "review": "Patek Philippe ساعة راقية جداً", "professional_review": "✓ ساعة سويسرية فاخرة", "verified_purchase": true}
+  {"id": "104", "rating": 4.9, "count": 267, "review": "Patek Philippe ساعة راقية جداً", "professional_review": "✓ ساعة سويسرية فاخرة", "verified_purchase": true},
+  {"id": "20", "rating": 4.4, "count": 93, "review": "ساعة ذكية مع هدية رائعة", "professional_review": "✓ ساعة ذكية متقدمة", "verified_purchase": true}
 ]
