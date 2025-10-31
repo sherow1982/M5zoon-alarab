@@ -1,108 +1,219 @@
-# Robots.txt محسّن لمتجر هدايا الإمارات
-# Enhanced Robots.txt for Emirates Gifts Store
-# يحسّن الزحف ويحل مشاكل Google Search Console
+# Robots.txt for Emirates Gifts Store (emirates-gifts.arabsad.com)
+# Enhanced for SEO optimization and faster page speed
+# Updated: October 31, 2025
 
 User-agent: *
+
+# Allow all important content and pages
 Allow: /
-
-# منع فهرسة الملفات الإدارية وغير المهمة
-# Block administrative and non-essential files
-Disallow: /js/
-Disallow: /css/
-Disallow: /data/
-Disallow: /temp/
-Disallow: /*?*
-Disallow: /*.json$
-Disallow: /api/
-Disallow: /admin/
-Disallow: /*.py$
-Disallow: /*.md$
-Disallow: /.git/
-Disallow: /.github/
-
-# السماح بفهرسة الصفحات والملفات المهمة
-# Allow indexing of important pages and files
-Allow: /products/
-Allow: /blog/
 Allow: /en/
-Allow: /en/blog/
-Allow: /en/products/
-Allow: /cart.html
-Allow: /en/cart.html
-Allow: /products-showcase.html
-Allow: /en/products-showcase.html
 Allow: /index.html
 Allow: /en/index.html
-Allow: /sitemap.xml
-Allow: /sitemap-en.xml
-Allow: /merchant-feed.xml
-Allow: /google-merchant-feed-complete.xml
-Allow: /favicon.ico
-Allow: /about.html
-Allow: /en/about.html
-Allow: /shipping-policy.html
-Allow: /en/shipping-policy.html
-Allow: /return-policy.html
-Allow: /en/return-policy.html
-Allow: /privacy-policy.html
-Allow: /en/privacy-policy.html
-Allow: /terms-conditions.html
-Allow: /en/terms-conditions.html
-Allow: /checkout.html
-Allow: /en/checkout.html
+Allow: /products-showcase.html
+Allow: /en/products-showcase.html
 Allow: /product-details.html
 Allow: /en/product-details.html
 
-# خرائط الموقع (نطاق Arabsad)
-# Sitemaps (Arabsad domain)
-Sitemap: https://emirates-gifts.arabsad.com/sitemap.xml
-Sitemap: https://emirates-gifts.arabsad.com/sitemap-en.xml
-Sitemap: https://emirates-gifts.arabsad.com/google-merchant-feed-complete.xml
+# Allow shopping and checkout pages
+Allow: /cart.html
+Allow: /en/cart.html
+Allow: /checkout.html
+Allow: /en/checkout.html
 
-# Google
+# Allow policy and information pages
+Allow: /shipping-policy.html
+Allow: /return-policy.html
+Allow: /privacy-policy.html
+Allow: /terms-conditions.html
+Allow: /about.html
+Allow: /en/shipping-policy.html
+Allow: /en/return-policy.html
+Allow: /en/privacy-policy.html
+Allow: /en/terms-conditions.html
+Allow: /en/about.html
+
+# Allow blog sections
+Allow: /blog/
+Allow: /en/blog/
+
+# Allow essential files for proper indexing
+Allow: /favicon.ico
+Allow: /sitemap.xml
+Allow: /product-feed.xml
+
+# Allow product data for feeds
+Allow: /data/otor.json
+Allow: /data/sa3at.json
+Allow: /data/reviews.json
+
+# Disallow unnecessary files to reduce crawl budget waste
+Disallow: /js/
+Disallow: /css/
+Disallow: /en/js/
+Disallow: /en/css/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /README.md
+Disallow: /LICENSE
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /admin/
+Disallow: /*.json$ 
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Prevent indexing of search result pages and filters to avoid duplicate content
+Disallow: /*?search=*
+Disallow: /*?sort=*&page=*
+Disallow: /*?filter=*&page=*
+Disallow: /*?page=*&sort=*
+
+# Allow clean category and brand filters
+Allow: /*?category=perfumes
+Allow: /*?category=watches
+Allow: /*?sort=price-asc
+Allow: /*?sort=rating
+Allow: /*?search=chanel
+Allow: /*?search=dior
+Allow: /*?search=rolex
+
+# Crawl delay to be server-friendly
+Crawl-delay: 1
+
+# Specific instructions for major search engines
+
+# Google Bot - Most important for our region
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0.5
+
+# Google Images - Important for product images
+User-agent: Googlebot-Image
+Allow: /
+Allow: /images/
+Allow: /media/
 Crawl-delay: 1
 
-# Google Images
-User-agent: Googlebot-Image
+# Google Shopping - Essential for e-commerce
+User-agent: Google-Shopping
+Allow: /
+Allow: /product-details.html
+Allow: /en/product-details.html
+Allow: /product-feed.xml
+Allow: /data/otor.json
+Allow: /data/sa3at.json
+Crawl-delay: 0.5
+
+# Bing Bot - Secondary search engine
+User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
-# Bing
-User-agent: bingbot
+# Yandex - For international coverage
+User-agent: YandexBot
 Allow: /
 Crawl-delay: 2
 
-# Yandex
-User-agent: YandexBot
+# Baidu - For broader international reach
+User-agent: Baiduspider
 Allow: /
-Crawl-delay: 3
+Crawl-delay: 2
 
-# Social media bots
+# Social Media Bots (Essential for sharing)
 User-agent: facebookexternalhit
 Allow: /
+Allow: /en/
+Crawl-delay: 1
+
 User-agent: Twitterbot
 Allow: /
-User-agent: WhatsApp
-Allow: /
+Allow: /en/
+Crawl-delay: 1
+
 User-agent: LinkedInBot
 Allow: /
+Allow: /en/
+Crawl-delay: 1
+
+User-agent: WhatsApp
+Allow: /
+Allow: /en/
+Allow: /product-details.html
+Allow: /en/product-details.html
+Crawl-delay: 1
+
+# Apple Bot (for Siri and Safari)
 User-agent: Applebot
 Allow: /
+Allow: /en/
+Crawl-delay: 1
 
-# Shopping bots
+# Shopping and Price Comparison Bots
 User-agent: Shopping
-Allow: /
-User-agent: Google-Shopping
-Allow: /
+Allow: /product-details.html
+Allow: /en/product-details.html
+Allow: /products-showcase.html
+Allow: /en/products-showcase.html
+Allow: /product-feed.xml
+Crawl-delay: 2
 
-# Bad bots to block
-User-agent: SemrushBot
-Disallow: /
+# Block aggressive SEO crawlers to save resources
 User-agent: AhrefsBot
-Disallow: /
+Crawl-delay: 10
+Disallow: /js/
+Disallow: /css/
+
+User-agent: SemrushBot
+Crawl-delay: 10
+Disallow: /js/
+Disallow: /css/
+
 User-agent: MJ12bot
-Disallow: /
+Crawl-delay: 10
+Disallow: /js/
+Disallow: /css/
+
 User-agent: DotBot
+Crawl-delay: 5
+
+# Block known bad bots and scrapers
+User-agent: SiteBot
 Disallow: /
+
+User-agent: WebCopier
+Disallow: /
+
+User-agent: WebZIP
+Disallow: /
+
+User-agent: HTTrack
+Disallow: /
+
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: Wayback
+Disallow: /
+
+User-agent: Nuclei
+Disallow: /
+
+User-agent: sqlmap
+Disallow: /
+
+User-agent: Nikto
+Disallow: /
+
+# Block AI training crawlers (optional)
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: OpenAI-SearchBot
+Disallow: /
+
+# Sitemap declarations
+Sitemap: https://emirates-gifts.arabsad.com/sitemap.xml
+Sitemap: https://emirates-gifts.arabsad.com/product-feed.xml
+
+# Host declaration for canonical domain
+Host: emirates-gifts.arabsad.com
