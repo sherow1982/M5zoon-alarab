@@ -1,380 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
-<channel>
-    <title>Emirates Gifts Store - Complete Product Feed</title>
-    <description>Comprehensive product catalog for Emirates Gifts Store featuring premium perfumes, luxury watches and exclusive gifts with fast UAE delivery</description>
-    <link>https://emirates-gifts.arabsad.com</link>
-    <language>ar-AE</language>
-    <lastBuildDate>Fri, 31 Oct 2025 20:31:00 +0200</lastBuildDate>
-    <generator>Emirates Gifts Store Feed Generator v2.0</generator>
-    <managingEditor>info@emirates-gifts.com (Emirates Gifts Store)</managingEditor>
-    <webMaster>webmaster@emirates-gifts.com (Emirates Gifts Webmaster)</webMaster>
-    <copyright>Copyright 2024 Emirates Gifts Store. All rights reserved.</copyright>
-    <category>Premium Perfumes, Luxury Watches, Exclusive Gifts</category>
-    <ttl>720</ttl>
-    <image>
-        <url>https://emirates-gifts.arabsad.com/favicon.ico</url>
-        <title>Emirates Gifts Store</title>
-        <link>https://emirates-gifts.arabsad.com</link>
-    </image>
-    
-    <!-- Store Information -->
-    <item>
-        <g:id>store_main_info</g:id>
-        <title>متجر هدايا الإمارات - العطور والساعات الفاخرة | التسليم خلال 1-3 أيام عمل</title>
-        <description>متجر هدايا الإمارات الرائد في بيع العطور الفاخرة والساعات الأنيقة والهدايا المميزة. نوفر لك أجمل المجموعات المختارة بعناية مع التسليم السريع خلال 1-3 أيام عمل وضمان الإرجاع خلال 14 يوم + رسوم الشحن. خدمة عملاء 24/7 عبر الواتساب.</description>
-        <g:product_type>معلومات المتجر > الخدمات > التسليم والإرجاع</g:product_type>
-        <g:google_product_category>Business &amp; Industrial > Business Services</g:google_product_category>
-        <g:price>0 AED</g:price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Emirates Gifts</g:brand>
-        <g:mpn>EMIRATES-GIFTS-MAIN</g:mpn>
-        <g:image_link>https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop</g:image_link>
-        <link>https://emirates-gifts.arabsad.com</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Express Delivery</g:service>
-            <g:price>0 AED</g:price>
-        </g:shipping>
-        <g:custom_label_0>Premium Store</g:custom_label_0>
-        <g:custom_label_1>Fast Delivery UAE</g:custom_label_1>
-        <g:custom_label_2>14-Day Return</g:custom_label_2>
-        <g:age_group>adult</g:age_group>
-        <g:gender>unisex</g:gender>
-    </item>
-    
-    <!-- Featured Perfume - Chanel Coco -->
-    <item>
-        <g:id>perfume_1</g:id>
-        <title>عطر كوكو شانيل 100 مل - النسخة الأصلية</title>
-        <description>عطر كوكو شانيل الأصلي بحجم 100 مل - عطر نسائي فاخر وأنيق من شانيل بتركيبة كلاسيكية خالدة. رائحة مميزة تدوم طويلاً مع لمسة من الأناقة الفرنسية الراقية.</description>
-        <g:product_type>العطور > عطور نسائية > عطور فاخرة</g:product_type>
-        <g:google_product_category>Health &amp; Beauty > Personal Care > Cosmetics > Fragrance</g:google_product_category>
-        <g:price>352 AED</g:price>
-        <g:sale_price>252 AED</g:sale_price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Chanel</g:brand>
-        <g:gtin>3145891165203</g:gtin>
-        <g:mpn>CHANEL-COCO-100ML-ORIGINAL</g:mpn>
-        <g:image_link>https://m5zoon.com/public/uploads/products/1722352332177124.webp</g:image_link>
-        <link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_1</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Express</g:service>
-            <g:price>0 AED</g:price>
-        </g:shipping>
-        <g:shipping_weight>0.3 kg</g:shipping_weight>
-        <g:custom_label_0>Premium Perfume</g:custom_label_0>
-        <g:custom_label_1>Fast Delivery 1-3 Days</g:custom_label_1>
-        <g:custom_label_2>100% Original</g:custom_label_2>
-        <g:age_group>adult</g:age_group>
-        <g:gender>female</g:gender>
-        <g:size>100ml</g:size>
-        <g:color>Classic</g:color>
-        <g:material>Glass Bottle</g:material>
-    </item>
-    
-    <!-- Featured Perfume - Dior Sauvage -->
-    <item>
-        <g:id>perfume_4</g:id>
-        <title>عطر سوفاج ديور 100 مل - للرجال</title>
-        <description>عطر سوفاج ديور الأصلي للرجال بحجم 100 مل - عطر رجالي قوي وجذاب بتركيبة خشبية حارة مع نفحات البرغموت والفلفل الأسود. رائحة مميزة تناسب الرجل العصري والأنيق.</description>
-        <g:product_type>العطور > عطور رجالية > عطور فاخرة</g:product_type>
-        <g:google_product_category>Health &amp; Beauty > Personal Care > Cosmetics > Fragrance</g:google_product_category>
-        <g:price>352 AED</g:price>
-        <g:sale_price>252 AED</g:sale_price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Dior</g:brand>
-        <g:gtin>3348901419628</g:gtin>
-        <g:mpn>DIOR-SAUVAGE-100ML-MEN</g:mpn>
-        <g:image_link>https://m5zoon.com/public/uploads/products/1720344979304336.webp</g:image_link>
-        <link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_4</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Express</g:service>
-            <g:price>0 AED</g:price>
-        </g:shipping>
-        <g:shipping_weight>0.3 kg</g:shipping_weight>
-        <g:custom_label_0>Men's Perfume</g:custom_label_0>
-        <g:custom_label_1>Designer Fragrance</g:custom_label_1>
-        <g:custom_label_2>Best Seller</g:custom_label_2>
-        <g:age_group>adult</g:age_group>
-        <g:gender>male</g:gender>
-        <g:size>100ml</g:size>
-        <g:color>Sauvage</g:color>
-        <g:material>Glass Bottle</g:material>
-    </item>
-    
-    <!-- Premium Watch - Rolex Yacht Master Silver -->
-    <item>
-        <g:id>watch_1</g:id>
-        <title>ساعة رولكس يخت ماستر - فضي | ساعة فاخرة عالية الجودة</title>
-        <description>ساعة رولكس يخت ماستر باللون الفضي الكلاسيكي - ساعة فاخرة عالية الجودة بتصميم أنيق ومقاومة للماء. تناسب المناسبات الرسمية والكاجوال مع دقة عالية في قياس الوقت.</description>
-        <g:product_type>الساعات > ساعات رجالية > ساعات فاخرة</g:product_type>
-        <g:google_product_category>Apparel &amp; Accessories > Jewelry > Watches</g:google_product_category>
-        <g:price>370 AED</g:price>
-        <g:sale_price>320 AED</g:sale_price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Rolex</g:brand>
-        <g:gtin>7612345678901</g:gtin>
-        <g:mpn>ROLEX-YACHT-MASTER-SILVER-41MM</g:mpn>
-        <g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
-        <link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_1</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Express</g:service>
-            <g:price>0 AED</g:price>
-        </g:shipping>
-        <g:shipping_weight>0.15 kg</g:shipping_weight>
-        <g:custom_label_0>Luxury Watch</g:custom_label_0>
-        <g:custom_label_1>Water Resistant</g:custom_label_1>
-        <g:custom_label_2>Premium Quality</g:custom_label_2>
-        <g:age_group>adult</g:age_group>
-        <g:gender>male</g:gender>
-        <g:size>41mm</g:size>
-        <g:color>Silver</g:color>
-        <g:material>Stainless Steel</g:material>
-    </item>
-    
-    <!-- Premium Eastern Fragrance -->
-    <item>
-        <g:id>perfume_30</g:id>
-        <title>عود البراية - عطر شرقي فاخر أصيل</title>
-        <description>عود البراية - عطر شرقي فاخر بالعود الطبيعي والمسك الأصيل. تركيبة تراثية أصيلة تجمع بين عبق الماضي وأناقة الحاضر. مثالي للمناسبات الخاصة والاستخدام اليومي.</description>
-        <g:product_type>العطور > العطور الشرقية > عود طبيعي</g:product_type>
-        <g:google_product_category>Health &amp; Beauty > Personal Care > Cosmetics > Fragrance</g:google_product_category>
-        <g:price>390 AED</g:price>
-        <g:sale_price>290 AED</g:sale_price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Emirates Traditional</g:brand>
-        <g:gtin>9876543210987</g:gtin>
-        <g:mpn>OUD-ALBRAYEH-PREMIUM</g:mpn>
-        <g:image_link>https://m5zoon.com/public/uploads/products/1758995285297398.webp</g:image_link>
-        <link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_30</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Express</g:service>
-            <g:price>0 AED</g:price>
-        </g:shipping>
-        <g:shipping_weight>0.2 kg</g:shipping_weight>
-        <g:custom_label_0>Traditional Oud</g:custom_label_0>
-        <g:custom_label_1>Emirates Heritage</g:custom_label_1>
-        <g:custom_label_2>Natural Ingredients</g:custom_label_2>
-        <g:age_group>adult</g:age_group>
-        <g:gender>unisex</g:gender>
-        <g:size>50ml</g:size>
-        <g:color>Natural Oud</g:color>
-        <g:material>Crystal Bottle</g:material>
-    </item>
-    
-    <!-- Premium Collection Summary -->
-    <item>
-        <g:id>collection_all_products</g:id>
-        <title>جميع المنتجات - مجموعة شاملة من 263 منتج فاخر</title>
-        <description>تصفح مجموعتنا الكاملة من 66 عطر فاخر و197 ساعة أنيقة مع التقييمات المتميزة من العملاء. جميع منتجاتنا عالية الجودة مع ضمان الاستبدال والإرجاع. التسليم السريع في جميع أنحاء دولة الإمارات العربية المتحدة خلال 1-3 أيام عمل.</description>
-        <g:product_type>مجموعات مميزة > جميع المنتجات > عطور وساعات</g:product_type>
-        <g:google_product_category>Health &amp; Beauty > Personal Care > Cosmetics > Fragrance</g:google_product_category>
-        <g:price>200 AED</g:price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Emirates Gifts</g:brand>
-        <g:mpn>ALL-PRODUCTS-COLLECTION</g:mpn>
-        <g:image_link>https://emirates-gifts.arabsad.com/favicon.ico</g:image_link>
-        <link>https://emirates-gifts.arabsad.com/products-showcase.html</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Express</g:service>
-            <g:price>0 AED</g:price>
-        </g:shipping>
-        <g:custom_label_0>Complete Collection</g:custom_label_0>
-        <g:custom_label_1>263 Products</g:custom_label_1>
-        <g:custom_label_2>Premium Quality</g:custom_label_2>
-        <g:age_group>adult</g:age_group>
-        <g:gender>unisex</g:gender>
-    </item>
-    
-    <!-- Perfumes Collection Summary -->
-    <item>
-        <g:id>perfumes_collection</g:id>
-        <title>مجموعة العطور الفاخرة - 66 عطر شرقي وغربي مميز</title>
-        <description>اكتشف مجموعتنا الرائعة من 66 عطر فاخر تشمل العطور الشرقية الأصيلة والعطور الغربية المميزة. من شانيل وديور وجوتشي وتوم فورد وغيرها من الماركات العالمية. جميع العطور أصلية 100% مع ضمان الجودة.</description>
-        <g:product_type>العطور > مجموعات العطور > شرقية وغربية</g:product_type>
-        <g:google_product_category>Health &amp; Beauty > Personal Care > Cosmetics > Fragrance</g:google_product_category>
-        <g:price>250 AED</g:price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Various Premium Brands</g:brand>
-        <g:mpn>PERFUMES-COLLECTION-66</g:mpn>
-        <g:image_link>https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop</g:image_link>
-        <link>https://emirates-gifts.arabsad.com/products-showcase.html?category=perfumes</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Express</g:service>
-            <g:price>0 AED</g:price>
-        </g:shipping>
-        <g:custom_label_0>Perfume Collection</g:custom_label_0>
-        <g:custom_label_1>66 Premium Fragrances</g:custom_label_1>
-        <g:custom_label_2>Eastern & Western</g:custom_label_2>
-        <g:age_group>adult</g:age_group>
-        <g:gender>unisex</g:gender>
-    </item>
-    
-    <!-- Watches Collection Summary -->
-    <item>
-        <g:id>watches_collection</g:id>
-        <title>مجموعة الساعات الفاخرة - 197 ساعة أنيقة ومميزة</title>
-        <description>استكشف مجموعتنا الواسعة من 197 ساعة فاخرة للرجال والنساء من أشهر الماركات العالمية مثل رولكس وأوميغا وكارتييه وأوديمار بيغيه. ساعات كلاسيكية ورياضية وأنيقة لجميع المناسبات.</description>
-        <g:product_type>الساعات > مجموعات الساعات > رجالية ونسائية</g:product_type>
-        <g:google_product_category>Apparel &amp; Accessories > Jewelry > Watches</g:google_product_category>
-        <g:price>350 AED</g:price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Various Luxury Brands</g:brand>
-        <g:mpn>WATCHES-COLLECTION-197</g:mpn>
-        <g:image_link>https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&h=600&fit=crop</g:image_link>
-        <link>https://emirates-gifts.arabsad.com/products-showcase.html?category=watches</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Express</g:service>
-            <g:price>0 AED</g:price>
-        </g:shipping>
-        <g:custom_label_0>Watch Collection</g:custom_label_0>
-        <g:custom_label_1>197 Premium Timepieces</g:custom_label_1>
-        <g:custom_label_2>Luxury Brands</g:custom_label_2>
-        <g:age_group>adult</g:age_group>
-        <g:gender>unisex</g:gender>
-    </item>
-    
-    <!-- Special Islamic Design Watch -->
-    <item>
-        <g:id>watch_88</g:id>
-        <title>ساعة رولكس بتصميم الكعبة المشرفة - قطعة مقدسة فريدة</title>
-        <description>ساعة رولكس مميزة بتصميم الكعبة المشرفة - قطعة فريدة ومقدسة تجمع بين الفخامة والمعنى الديني العميق. تصميم إسلامي أنيق مع جودة رولكس الاستثنائية.</description>
-        <g:product_type>الساعات > ساعات مميزة > تصاميم إسلامية</g:product_type>
-        <g:google_product_category>Apparel &amp; Accessories > Jewelry > Watches</g:google_product_category>
-        <g:price>540 AED</g:price>
-        <g:sale_price>490 AED</g:sale_price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Rolex</g:brand>
-        <g:gtin>7612345678988</g:gtin>
-        <g:mpn>ROLEX-KAABA-DESIGN-SPECIAL</g:mpn>
-        <g:image_link>https://m5zoon.com/public/uploads/products/1750340228334282.webp</g:image_link>
-        <link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_88</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Express</g:service>
-            <g:price>0 AED</g:price>
-        </g:shipping>
-        <g:shipping_weight>0.18 kg</g:shipping_weight>
-        <g:custom_label_0>Islamic Design</g:custom_label_0>
-        <g:custom_label_1>Special Edition</g:custom_label_1>
-        <g:custom_label_2>Religious Significance</g:custom_label_2>
-        <g:age_group>adult</g:age_group>
-        <g:gender>male</g:gender>
-        <g:size>40mm</g:size>
-        <g:color>Gold Black</g:color>
-        <g:material>Premium Metal</g:material>
-    </item>
-    
-    <!-- Store Services -->
-    <item>
-        <g:id>delivery_service</g:id>
-        <title>خدمة التسليم السريع - التوصيل خلال 1-3 أيام عمل في جميع أنحاء الإمارات</title>
-        <description>نوفر خدمة التسليم السريع والموثوق خلال 1-3 أيام عمل إلى جميع إمارات دولة الإمارات العربية المتحدة. فريق توصيل محترف وتغليف آمن لضمان وصول منتجاتك في أفضل حالة.</description>
-        <g:product_type>خدمات المتجر > التسليم > الشحن السريع</g:product_type>
-        <g:google_product_category>Business &amp; Industrial > Business Services > Shipping Services</g:google_product_category>
-        <g:price>0 AED</g:price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Emirates Gifts</g:brand>
-        <g:mpn>DELIVERY-SERVICE-UAE</g:mpn>
-        <g:image_link>https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&h=600&fit=crop</g:image_link>
-        <link>https://emirates-gifts.arabsad.com/shipping-policy.html</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Express</g:service>
-            <g:price>0 AED</g:price>
-        </g:shipping>
-        <g:custom_label_0>Fast Delivery</g:custom_label_0>
-        <g:custom_label_1>1-3 Business Days</g:custom_label_1>
-        <g:custom_label_2>All UAE Emirates</g:custom_label_2>
-    </item>
-    
-    <!-- Return Policy -->
-    <item>
-        <g:id>return_policy</g:id>
-        <title>ضمان الإرجاع - إرجاع مجاني خلال 14 يوم + رسوم الشحن</title>
-        <description>نوفر ضمان الإرجاع المريح خلال 14 يوم من تاريخ الاستلام + تحمل العميل رسوم شحن الإرجاع. جودة المنتج مضمونة مع إمكانية الاستبدال أو استرداد القيمة كاملة حسب رغبة العميل.</description>
-        <g:product_type>خدمات المتجر > الإرجاع > ضمان الجودة</g:product_type>
-        <g:google_product_category>Business &amp; Industrial > Business Services</g:google_product_category>
-        <g:price>0 AED</g:price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Emirates Gifts</g:brand>
-        <g:mpn>RETURN-POLICY-14DAYS</g:mpn>
-        <g:image_link>https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop</g:image_link>
-        <link>https://emirates-gifts.arabsad.com/return-policy.html</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Return Service</g:service>
-            <g:price>Customer Pays Return Shipping</g:price>
-        </g:shipping>
-        <g:custom_label_0>Return Guarantee</g:custom_label_0>
-        <g:custom_label_1>14-Day Policy</g:custom_label_1>
-        <g:custom_label_2>Quality Assured</g:custom_label_2>
-    </item>
-    
-    <!-- Contact and Support -->
-    <item>
-        <g:id>customer_support</g:id>
-        <title>خدمة العملاء المتميزة - دعم فني 24/7 عبر الواتساب والهاتف</title>
-        <description>فريق خدمة العملاء المحترف متاح 24/7 للرد على استفساراتكم ومساعدتكم في اختيار المنتج المناسب وتتبع طلباتكم. تواصلوا معنا عبر الواتساب +201110760081 أو البريد الإلكتروني للحصول على أفضل خدمة.</description>
-        <g:product_type>خدمات المتجر > دعم العملاء > خدمة فنية</g:product_type>
-        <g:google_product_category>Business &amp; Industrial > Business Services > Customer Support</g:google_product_category>
-        <g:price>0 AED</g:price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Emirates Gifts</g:brand>
-        <g:mpn>CUSTOMER-SUPPORT-24-7</g:mpn>
-        <g:image_link>https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=600&fit=crop</g:image_link>
-        <link>https://wa.me/201110760081</link>
-        <g:custom_label_0>24/7 Support</g:custom_label_0>
-        <g:custom_label_1>WhatsApp Available</g:custom_label_1>
-        <g:custom_label_2>Expert Assistance</g:custom_label_2>
-        <g:phone_number>+201110760081</g:phone_number>
-    </item>
-    
-    <!-- English Version Link -->
-    <item>
-        <g:id>english_version</g:id>
-        <title>English Version - Emirates Gifts Store | Premium Perfumes &amp; Watches</title>
-        <description>Browse Emirates Gifts Store in English. Discover our complete collection of premium perfumes, luxury watches and exclusive gifts with fast UAE delivery in 1-3 business days. Customer reviews available.</description>
-        <g:product_type>Store Information > Language Options > English Version</g:product_type>
-        <g:google_product_category>Business &amp; Industrial > Business Services</g:google_product_category>
-        <g:price>0 AED</g:price>
-        <g:availability>in stock</g:availability>
-        <g:condition>new</g:condition>
-        <g:brand>Emirates Gifts</g:brand>
-        <g:mpn>ENGLISH-VERSION-SITE</g:mpn>
-        <g:image_link>https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop</g:image_link>
-        <link>https://emirates-gifts.arabsad.com/en/</link>
-        <g:shipping>
-            <g:country>AE</g:country>
-            <g:service>Express</g:service>
-            <g:price>0 AED</g:price>
-        </g:shipping>
-        <g:custom_label_0>English Site</g:custom_label_0>
-        <g:custom_label_1>International Access</g:custom_label_1>
-        <g:custom_label_2>Full Translation</g:custom_label_2>
-        <g:age_group>adult</g:age_group>
-        <g:gender>unisex</g:gender>
-    </item>
-    
-</channel>
-</rss>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:g="http://base.google.com/ns/1.0">
+  <id>https://emirates-gifts.arabsad.com/product-feed.xml</id>
+  <title>Emirates Gifts Store - Product Feed</title>
+  <link href="https://emirates-gifts.arabsad.com/" rel="alternate" type="text/html"/>
+  <link href="https://emirates-gifts.arabsad.com/product-feed.xml" rel="self" type="application/atom+xml"/>
+  <updated>2025-10-31T20:00:00Z</updated>
+  <author>
+    <name>Emirates Gifts Store</name>
+    <email>info@emirates-gifts.com</email>
+  </author>
+  <subtitle>Complete product feed for all Emirates Gifts products including perfumes and watches</subtitle>
+  
+  <!-- Sample Products - This would be dynamically generated -->
+  <entry>
+    <id>https://emirates-gifts.arabsad.com/product/perfume_1</id>
+    <title>شانيل كوكو عطر فاخر 100مل</title>
+    <link href="https://emirates-gifts.arabsad.com/product-details.html?id=perfume_1" rel="alternate" type="text/html"/>
+    <updated>2025-10-31T20:00:00Z</updated>
+    <summary>عطر شانيل كوكو فاخر بتركيبة عالية الجودة 100مل</summary>
+    <g:price>345.00 AED</g:price>
+    <g:availability>in stock</g:availability>
+    <g:condition>new</g:condition>
+    <g:brand>Chanel</g:brand>
+    <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:category>
+    <category term="perfumes"/>
+  </entry>
+  
+  <entry>
+    <id>https://emirates-gifts.arabsad.com/product/watch_1</id>
+    <title>رولكس يخت ماستر فضي فاخر</title>
+    <link href="https://emirates-gifts.arabsad.com/product-details.html?id=watch_1" rel="alternate" type="text/html"/>
+    <updated>2025-10-31T20:00:00Z</updated>
+    <summary>ساعة رولكس يخت ماستر فضية فاخرة عالية الجودة</summary>
+    <g:price>1850.00 AED</g:price>
+    <g:availability>in stock</g:availability>
+    <g:condition>new</g:condition>
+    <g:brand>Rolex</g:brand>
+    <g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:category>
+    <category term="watches"/>
+  </entry>
+</feed>

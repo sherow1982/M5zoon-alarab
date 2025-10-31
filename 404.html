@@ -1,160 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar-AE" dir="rtl">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - الصفحة غير موجودة | متجر هدايا الإمارات</title>
-    <meta name="description" content="الصفحة التي تبحث عنها غير موجودة. عد إلى متجر هدايا الإمارات">
+    <title>الصفحة غير موجودة - متجر هدايا الإمارات</title>
+    <meta name="description" content="الصفحة التي تبحث عنها غير موجودة. ارجع إلى متجر هدايا الإمارات للعطور والهدايا عالية الجودة.">
+    <link rel="canonical" href="https://emirates-gifts.arabsad.com/404.html">
+    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/404.html">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #2C3E50; direction: rtl; margin: 0; padding: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-        .error-container { background: rgba(255, 255, 255, 0.95); padding: 60px 40px; border-radius: 25px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); text-align: center; max-width: 600px; width: 90%; }
-        .error-icon { font-size: 6rem; margin-bottom: 20px; }
-        .error-code { font-size: 4rem; font-weight: 800; color: #e74c3c; margin: 0; }
-        .error-title { font-size: 2rem; font-weight: 700; color: #2c3e50; margin: 20px 0; }
-        .error-description { font-size: 1.2rem; color: #666; margin-bottom: 40px; }
-        .error-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
-        .btn { padding: 15px 25px; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease; }
-        .btn-primary { background: linear-gradient(135deg, #FFD700, #D4AF37); color: #2c3e50; }
-        .btn-secondary { background: transparent; color: #667eea; border: 2px solid #667eea; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
-        .redirect-message { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 15px; border-radius: 8px; margin: 20px 0; display: none; }
-        .loading { display: inline-block; width: 20px; height: 20px; border: 3px solid #f3f3f3; border-top: 3px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @media (max-width: 768px) { .error-actions { grid-template-columns: 1fr; } .error-container { padding: 40px 25px; } }
+    body{font-family:'Cairo',sans-serif;margin:0;background:linear-gradient(135deg,#f8f9ff,#fff);color:#2c3e50;text-align:center;padding:50px 20px}
+    .error-container{max-width:600px;margin:0 auto}
+    .error-code{font-size:8rem;font-weight:900;color:#D4AF37;margin:0;text-shadow:2px 2px 4px rgba(0,0,0,0.1)}
+    .error-title{font-size:2rem;margin:20px 0;color:#2c3e50}
+    .error-text{font-size:1.1rem;color:#666;margin-bottom:30px;line-height:1.6}
+    .back-home{background:linear-gradient(135deg,#D4AF37,#B8941F);color:#fff;padding:15px 30px;border:none;border-radius:25px;font-size:1.1rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all 0.3s ease}
+    .back-home:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(212,175,55,0.3)}
+    .search-suggestions{margin-top:40px;text-align:right}
+    .search-suggestions h3{color:#D4AF37;margin-bottom:15px}
+    .suggestion-links{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+    .suggestion-links a{background:#fff;color:#2c3e50;padding:10px 20px;border-radius:20px;text-decoration:none;border:2px solid #D4AF37;transition:all 0.3s ease}
+    .suggestion-links a:hover{background:#D4AF37;color:#fff}
+    @media (max-width:768px){.error-code{font-size:4rem}.error-title{font-size:1.5rem}.suggestion-links{flex-direction:column;align-items:center}}
     </style>
 </head>
 <body>
     <div class="error-container">
-        <div class="error-icon">🗺️</div>
-        <h1 class="error-code">404</h1>
-        <h2 class="error-title">الصفحة غير موجودة</h2>
-        <p class="error-description">عذراً، الصفحة التي تبحث عنها غير موجودة.<br> عد إلى متجر هدايا الإمارات واكتشف منتجاتنا الرائعة.</p>
+        <div class="error-code">404</div>
+        <h1 class="error-title">الصفحة غير موجودة</h1>
+        <p class="error-text">
+            عذراً، الصفحة التي تبحث عنها غير موجودة أو تم نقلها.<br>
+            يمكنك العودة إلى الصفحة الرئيسية أو تصفح مجموعتنا من العطور والهدايا عالية الجودة.
+        </p>
         
-        <div id="redirectMessage" class="redirect-message">
-            <div class="loading"></div>
-            جارٍ البحث عن المنتج وإعادة التوجيه...
+        <a href="/" class="back-home">
+            <i class="fas fa-home"></i>
+            العودة للرئيسية
+        </a>
+        
+        <div class="search-suggestions">
+            <h3>روابط مفيدة</h3>
+            <div class="suggestion-links">
+                <a href="/products-showcase.html">جميع المنتجات</a>
+                <a href="/#perfumes-section">العطور</a>
+                <a href="/#watches-section">الساعات</a>
+                <a href="/about.html">من نحن</a>
+                <a href="/en/">🌍 English</a>
+                <a href="https://wa.me/201110760081">💬 تواصل معنا</a>
+            </div>
         </div>
-        
-        <div class="error-actions">
-            <a href="./" class="btn btn-primary">🏠 العودة للرئيسية</a>
-            <a href="./products-showcase.html" class="btn btn-secondary">🛍 تصفح المنتجات</a>
-        </div>
-        
-        <div style="margin-top: 30px; color: #666; font-size: 0.9rem;">🏆 <strong>متجر هدايا الإمارات</strong> - وجهتك الموثوقة للعطور والهدايا الفاخرة</div>
     </div>
-
-    <script>
-        // Enhanced product redirect logic for Google Merchant Feed URLs
-        const productMappings = {
-            'chanel-coco-perfume-100ml': 'chanel-coco-100ml.html',
-            'gucci-flora-women-perfume': 'gucci-flora.html',
-            'gucci-bloom-feminine-perfume': 'gucci-bloom.html',
-            'rolex-yacht-master-silver-watch': 'rolex-yacht-master-silver.html',
-            'rolex-classic-watch-41mm': 'ساعة-Rolex-كلاسيكية-41-ملم-2022.html',
-            'omega-swatch-baby-blue-watch': 'omega-swatch-baby-blue.html',
-            'dior-sauvage-100ml-perfume': 'dior-sauvage-100ml.html',
-            'tom-ford-bitter-peach': 'Tom-Ford-Bitter-Peach.html',
-            'versace-eros-perfume': 'versace-eros.html',
-            'rolex-datejust-blue-silver': 'Rolex-Datejust-Blue-silver.html',
-            'rolex-submariner-green': 'Rolex-Submariner-Green-COPY-1-AUTOMATIC.html',
-            'rolex-gmt-batman': 'Rolex-GMT-Batman.html',
-            'audemars-piguet-royal-orange': 'Audemars-Piguet-Royal-Orange.html',
-            'patek-philippe-geneve': 'Patek-philippe-geneve-black-copy-1.html',
-            'cartier-tank-black': 'Cartier-Tank-اسود-كحلي.html',
-            'burberry-watch-silver': 'Burberry-watches-سيلفر.html',
-            'emporio-armani-women-watch': 'Emporio-Armani-Watch-For-Women-ابيض.html',
-            'couple-rolex-watch-gold': 'Couple-Rolex-watch-gold.html',
-            'kayali-vanilla-candy': 'Kayali-Vanilla.html',
-            'marly-delina': 'Marly-Delina.html',
-            'glory-perfume': 'Glory.html',
-            'ariaf-perfume': 'ARIAF.html'
-        };
-
-        // Additional keyword-based mappings for flexible matching
-        const keywordMappings = {
-            'chanel': ['chanel-coco-100ml.html'],
-            'gucci': ['gucci-flora.html', 'gucci-bloom.html'],
-            'rolex': ['rolex-yacht-master-silver.html', 'Rolex-Datejust-Blue-silver.html', 'Rolex-GMT-Batman.html'],
-            'omega': ['omega-swatch-baby-blue.html'],
-            'dior': ['dior-sauvage-100ml.html'],
-            'versace': ['versace-eros.html'],
-            'tom-ford': ['Tom-Ford-Bitter-Peach.html'],
-            'kayali': ['Kayali-Vanilla.html'],
-            'marly': ['Marly-Delina.html'],
-            'glory': ['Glory.html'],
-            'ariaf': ['ARIAF.html']
-        };
-
-        function attemptRedirect() {
-            const currentPath = window.location.pathname;
-            const productMatch = currentPath.match(/\/product\/([^/]+)\/?$/);
-            
-            if (productMatch) {
-                const searchName = productMatch[1].toLowerCase();
-                const redirectMessage = document.getElementById('redirectMessage');
-                
-                // Show redirect message
-                redirectMessage.style.display = 'block';
-                
-                // Check direct mapping first
-                if (productMappings[searchName]) {
-                    setTimeout(() => {
-                        window.location.href = '/products/' + productMappings[searchName];
-                    }, 1500);
-                    return true;
-                }
-                
-                // Try keyword-based matching
-                for (const [keyword, files] of Object.entries(keywordMappings)) {
-                    if (searchName.includes(keyword)) {
-                        setTimeout(() => {
-                            window.location.href = '/products/' + files[0];
-                        }, 1500);
-                        return true;
-                    }
-                }
-                
-                // Try partial string matching
-                for (const [key, value] of Object.entries(productMappings)) {
-                    const keyParts = key.split('-');
-                    const searchParts = searchName.split('-');
-                    let matchCount = 0;
-                    
-                    for (const part of searchParts) {
-                        if (keyParts.some(keyPart => keyPart.includes(part) || part.includes(keyPart))) {
-                            matchCount++;
-                        }
-                    }
-                    
-                    if (matchCount >= 2) {
-                        setTimeout(() => {
-                            window.location.href = '/products/' + value;
-                        }, 1500);
-                        return true;
-                    }
-                }
-                
-                // Hide redirect message if no match found
-                setTimeout(() => {
-                    redirectMessage.style.display = 'none';
-                }, 3000);
-            }
-            return false;
-        }
-
-        // Execute redirect logic on page load
-        document.addEventListener('DOMContentLoaded', attemptRedirect);
-
-        // Analytics tracking for 404 errors
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'page_not_found', {
-                'page_location': window.location.href,
-                'page_title': document.title,
-                'custom_parameters': {
-                    'attempted_product': window.location.pathname
-                }
-            });
-        }
-    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" defer></script>
 </body>
 </html>

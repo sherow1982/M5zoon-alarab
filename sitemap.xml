@@ -1,454 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    
-    <!-- Main Homepage (Arabic) -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/" />
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://emirates-gifts.arabsad.com/" />
-    </url>
-    
-    <!-- English Homepage -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://emirates-gifts.arabsad.com/" />
-    </url>
-    
-    <!-- Products Showcase Pages -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/products-showcase.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/products-showcase.html" />
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/products-showcase.html" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/products-showcase.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/products-showcase.html" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/products-showcase.html" />
-    </url>
-    
-    <!-- Product Detail Pages (Arabic) -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/product-details.html" />
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/product-details.html" />
-    </url>
-    
-    <!-- Featured Products (Arabic) -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_1</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_4</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=watch_1</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=watch_88</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Product Detail Pages (English) -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/product-details.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/product-details.html" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/product-details.html" />
-    </url>
-    
-    <!-- Shopping Cart Pages -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/cart.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/cart.html" />
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/cart.html" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/cart.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/cart.html" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/cart.html" />
-    </url>
-    
-    <!-- Checkout Pages -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/checkout.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/checkout.html" />
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/checkout.html" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/checkout.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/checkout.html" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/checkout.html" />
-    </url>
-    
-    <!-- Policy Pages (Arabic) -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/shipping-policy.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/shipping-policy.html" />
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/shipping-policy.html" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/return-policy.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/return-policy.html" />
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/return-policy.html" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/privacy-policy.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/privacy-policy.html" />
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/privacy-policy.html" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/terms-conditions.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/terms-conditions.html" />
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/terms-conditions.html" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/about.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/about.html" />
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/about.html" />
-    </url>
-    
-    <!-- Policy Pages (English) -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/shipping-policy.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/shipping-policy.html" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/shipping-policy.html" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/return-policy.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/return-policy.html" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/return-policy.html" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/privacy-policy.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/privacy-policy.html" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/privacy-policy.html" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/terms-conditions.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/terms-conditions.html" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/terms-conditions.html" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/about.html</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/about.html" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/about.html" />
-    </url>
-    
-    <!-- Blog Sections -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/blog/</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/blog/" />
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/blog/" />
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/blog/</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/blog/" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/blog/" />
-    </url>
-    
-    <!-- Product Feed -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-feed.xml</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Featured Products (Top Selling) -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_1</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_2</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_3</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_4</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_5</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_10</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Featured Watches -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=watch_1</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=watch_2</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=watch_15</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/product-details.html?id=watch_88</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Category Pages -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/products-showcase.html?category=perfumes</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/products-showcase.html?category=watches</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/products-showcase.html?category=perfumes</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/products-showcase.html?category=watches</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Brand Collections -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/products-showcase.html?search=chanel</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/products-showcase.html?search=dior</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/products-showcase.html?search=rolex</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/products-showcase.html?search=tom+ford</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <!-- English Brand Collections -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/products-showcase.html?search=chanel</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/products-showcase.html?search=dior</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/products-showcase.html?search=rolex</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <!-- Special Collections -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/products-showcase.html?sort=price-asc</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/products-showcase.html?sort=rating</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/products-showcase.html?sort=price-asc</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/en/products-showcase.html?sort=rating</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <!-- Data Files (for API/Feed access) -->
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/data/otor.json</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.4</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/data/sa3at.json</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.4</priority>
-    </url>
-    
-    <url>
-        <loc>https://emirates-gifts.arabsad.com/data/reviews.json</loc>
-        <lastmod>2025-10-31T18:45:00+02:00</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-    </url>
-    
+  <!-- Main Pages -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/" />
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/" />
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/products-showcase.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/products-showcase.html" />
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/en/products-showcase.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/products-showcase.html" />
+  </url>
+  
+  <!-- Category Pages -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/perfumes</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/watches</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Policy Pages -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/about.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/shipping-policy.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/return-policy.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/privacy-policy.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/terms-conditions.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Blog Section -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/blog/</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Cart and Checkout -->
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/cart.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <url>
+    <loc>https://emirates-gifts.arabsad.com/checkout.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.4</priority>
+  </url>
 </urlset>
