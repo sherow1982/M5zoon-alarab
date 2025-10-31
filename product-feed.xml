@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+    <channel>
+        <title>متجر هدايا الإمارات - كتالوج المنتجات</title>
+        <link>https://emirates-gifts.arabsad.com/</link>
+        <description>جميع منتجات متجر هدايا الإمارات عالية الجودة - عطور وساعات وهدايا فاخرة</description>
+        <language>ar-AE</language>
+        <lastBuildDate>2025-10-31T11:00:00+02:00</lastBuildDate>
+        
+        <!-- عطر كوكو شانيل -->
+        <item>
+            <g:id>perfume_1</g:id>
+            <g:title>عطر كوكو شانيل 100 مل</g:title>
+            <g:description>عطر فاخر بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً. مزيج مثالي من الأناقة والجاذبية</g:description>
+            <g:availability>in stock</g:availability>
+            <g:condition>new</g:condition>
+            <g:price>450.00 AED</g:price>
+            <g:sale_price>299.99 AED</g:sale_price>
+            <g:brand>Chanel</g:brand>
+            <g:product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:product_category>
+            <g:image_link>https://images.unsplash.com/photo-1541643600914-78b084683601?w=400</g:image_link>
+            <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_1&amp;category=perfume&amp;slug=-</g:link>
+            <g:shipping_weight>0.3 kg</g:shipping_weight>
+            <g:mpn>CHANEL_COCO_100ML</g:mpn>
+        </item>
+        
+        <!-- عطر جوتشي فلورا -->
+        <item>
+            <g:id>perfume_2</g:id>
+            <g:title>عطر جوتشي فلورا</g:title>
+            <g:description>عطر زهري أنيق بتركيبة ناعمة ومميزة للنساء العصريات</g:description>
+            <g:availability>in stock</g:availability>
+            <g:condition>new</g:condition>
+            <g:price>380.00 AED</g:price>
+            <g:sale_price>249.99 AED</g:sale_price>
+            <g:brand>Gucci</g:brand>
+            <g:product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:product_category>
+            <g:image_link>https://images.unsplash.com/photo-1588405748880-12d1d2a59a21?w=400</g:image_link>
+            <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_2&amp;category=perfume&amp;slug=-</g:link>
+            <g:shipping_weight>0.3 kg</g:shipping_weight>
+            <g:mpn>GUCCI_FLORA_75ML</g:mpn>
+        </item>
+        
+        <!-- عطر جوتشي بلوم -->
+        <item>
+            <g:id>perfume_3</g:id>
+            <g:title>عطر جوتشي بلوم</g:title>
+            <g:description>عطر زهري حديث بتركيبة جريئة ومنعشة من جوتشي</g:description>
+            <g:availability>in stock</g:availability>
+            <g:condition>new</g:condition>
+            <g:price>420.00 AED</g:price>
+            <g:sale_price>279.99 AED</g:sale_price>
+            <g:brand>Gucci</g:brand>
+            <g:product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:product_category>
+            <g:image_link>https://images.unsplash.com/photo-1594736797933-d0301ba2fe65?w=400</g:image_link>
+            <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_3&amp;category=perfume&amp;slug=-</g:link>
+            <g:shipping_weight>0.3 kg</g:shipping_weight>
+            <g:mpn>GUCCI_BLOOM_100ML</g:mpn>
+        </item>
+        
+        <!-- ساعة رولكس يخت ماستر -->
+        <item>
+            <g:id>watch_1</g:id>
+            <g:title>ساعة رولكس يخت ماستر - فضي</g:title>
+            <g:description>ساعة رولكس فاخرة بتصميم كلاسيكي ودقة عالية. مقاومة للماء مع جودة سويسرية</g:description>
+            <g:availability>in stock</g:availability>
+            <g:condition>new</g:condition>
+            <g:price>8500.00 AED</g:price>
+            <g:sale_price>5999.99 AED</g:sale_price>
+            <g:brand>Rolex</g:brand>
+            <g:product_category>Jewelry &amp; Watches &gt; Watches</g:product_category>
+            <g:image_link>https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400</g:image_link>
+            <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_1&amp;category=watch&amp;slug=-</g:link>
+            <g:shipping_weight>0.2 kg</g:shipping_weight>
+            <g:mpn>ROLEX_YACHT_MASTER_41MM</g:mpn>
+        </item>
+        
+        <!-- عطر سوفاج ديور -->
+        <item>
+            <g:id>perfume_4</g:id>
+            <g:title>عطر سوفاج ديور 100 مل</g:title>
+            <g:description>عطر رجالي قوي ومميز من ديور بتركيبة خشبية حارة</g:description>
+            <g:availability>in stock</g:availability>
+            <g:condition>new</g:condition>
+            <g:price>520.00 AED</g:price>
+            <g:sale_price>349.99 AED</g:sale_price>
+            <g:brand>Dior</g:brand>
+            <g:product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:product_category>
+            <g:image_link>https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400</g:image_link>
+            <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_4&amp;category=perfume&amp;slug=-</g:link>
+            <g:shipping_weight>0.3 kg</g:shipping_weight>
+            <g:mpn>DIOR_SAUVAGE_100ML</g:mpn>
+        </item>
+        
+        <!-- عطر فرزاتشي ايروس -->
+        <item>
+            <g:id>perfume_5</g:id>
+            <g:title>عطر فرزاتشي ايروس</g:title>
+            <g:description>عطر رجالي جذاب ومثير من فرزاتشي بتركيبة منعشة</g:description>
+            <g:availability>in stock</g:availability>
+            <g:condition>new</g:condition>
+            <g:price>390.00 AED</g:price>
+            <g:sale_price>259.99 AED</g:sale_price>
+            <g:brand>Versace</g:brand>
+            <g:product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:product_category>
+            <g:image_link>https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400</g:image_link>
+            <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=perfume_5&amp;category=perfume&amp;slug=-</g:link>
+            <g:shipping_weight>0.3 kg</g:shipping_weight>
+            <g:mpn>VERSACE_EROS_100ML</g:mpn>
+        </item>
+        
+        <!-- ساعة رولكس كلاسيكية -->
+        <item>
+            <g:id>watch_2</g:id>
+            <g:title>ساعة Rolex كلاسيكية 41 ملم 2022</g:title>
+            <g:description>ساعة رولكس كلاسيكية بتصميم أنيق وجودة عالمية استثنائية</g:description>
+            <g:availability>in stock</g:availability>
+            <g:condition>new</g:condition>
+            <g:price>7200.00 AED</g:price>
+            <g:sale_price>4899.99 AED</g:sale_price>
+            <g:brand>Rolex</g:brand>
+            <g:product_category>Jewelry &amp; Watches &gt; Watches</g:product_category>
+            <g:image_link>https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=400</g:image_link>
+            <g:link>https://emirates-gifts.arabsad.com/product-details.html?id=watch_2&amp;category=watch&amp;slug=-</g:link>
+            <g:shipping_weight>0.2 kg</g:shipping_weight>
+            <g:mpn>ROLEX_CLASSIC_41MM_2022</g:mpn>
+        </item>
+        
+    </channel>
+</rss>
