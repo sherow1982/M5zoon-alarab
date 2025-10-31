@@ -1,8 +1,9 @@
 // نظام بطاقات المنتجات المحسن - متجر هدايا الإمارات
-// أزرار أيقونية + وظائف متقدمة + فتح في تبويب جديد + أوصاف تلقائية
+// الأيقونات في صف واحد فقط + فتح في تبويب جديد + وصف تلقائي
 
 class EnhancedProductCards {
     constructor() {
+        this.processedCards = new Set();
         this.init();
     }
 
@@ -10,7 +11,7 @@ class EnhancedProductCards {
         this.enhanceExistingCards();
         this.observeNewCards();
         this.addCardStyles();
-        console.log('🎴 تم تفعيل نظام بطاقات المنتجات المحسن');
+        console.log('🌴 تم تفعيل نظام بطاقات المنتجات - صف واحد فقط');
     }
 
     enhanceExistingCards() {
@@ -45,8 +46,13 @@ class EnhancedProductCards {
     }
 
     enhanceCard(card) {
-        if (card.dataset.enhanced === 'true') return;
-        card.dataset.enhanced = 'true';
+        const cardId = card.dataset.productId || Math.random().toString(36).substr(2, 9);
+        
+        // تجنب التكرار
+        if (this.processedCards.has(cardId)) return;
+        this.processedCards.add(cardId);
+        
+        card.dataset.productId = cardId;
 
         // ضمان وسطية المحتوى
         this.centerCardContent(card);
@@ -54,14 +60,16 @@ class EnhancedProductCards {
         // ضمان وجود وصف للمنتج
         this.ensureProductDescription(card);
         
-        // تحويل الأزرار لأيقونات
-        this.convertButtonsToIcons(card);
+        // إزالة أي أزرار موجودة وإضافة الأيقونات الجديدة
+        this.replaceWithIconButtons(card);
         
         // إضافة وظيفة فتح في تبويب جديد
         this.addNewTabFunctionality(card);
         
         // تحسين مظهر البطاقة
         this.improveCardAppearance(card);
+        
+        console.log(`✅ تم تحسين بطاقة: ${cardId}`);
     }
 
     centerCardContent(card) {
@@ -107,12 +115,6 @@ class EnhancedProductCards {
                         ساعة عالية الجودة بتصميم أنيق ومواصفات احترافية مناسبة لجميع المناسبات
                     </p>
                 `;
-            } else if (productName.includes('مجوهرات') || productName.includes('jewelry')) {
-                description.innerHTML = `
-                    <p style="font-size: 0.85rem; color: #666; margin: 8px 0; line-height: 1.4;">
-                        قطعة مجوهرات عالية الجودة بحرفية متقنة وتصميم عصري أنيق
-                    </p>
-                `;
             } else {
                 description.innerHTML = `
                     <p style="font-size: 0.85rem; color: #666; margin: 8px 0; line-height: 1.4;">
@@ -123,9 +125,13 @@ class EnhancedProductCards {
         }
     }
 
-    convertButtonsToIcons(card) {
+    replaceWithIconButtons(card) {
+        // إزالة أي أزرار قديمة في البطاقة
+        const oldButtons = card.querySelectorAll('.btn, button, .card-actions, .product-actions, .buttons-container, .icon-buttons-row');
+        oldButtons.forEach(btn => btn.remove());
+        
         // بحث عن حاوي الأزرار أو إنشاؤه
-        let actionsContainer = card.querySelector('.card-actions, .product-actions, .buttons-container');
+        let actionsContainer = card.querySelector('.card-actions-container');
         
         if (!actionsContainer) {
             actionsContainer = document.createElement('div');
@@ -133,65 +139,43 @@ class EnhancedProductCards {
             card.appendChild(actionsContainer);
         }
         
-        // حذف الأزرار القديمة
-        const oldButtons = card.querySelectorAll('button, .btn:not(.icon-btn)');
-        oldButtons.forEach(btn => {
-            if (!btn.classList.contains('icon-btn')) {
-                btn.remove();
-            }
-        });
-        
-        // إنشاء أزرار أيقونية جديدة
-        const iconButtons = this.createIconButtons(card);
+        // إنشاء الأيقونات الجديدة - صف واحد فقط
+        const iconButtons = this.createSingleRowIcons(card);
         actionsContainer.innerHTML = iconButtons;
         
         // ربط الوظائف
         this.attachButtonFunctions(card);
     }
 
-    createIconButtons(card) {
+    createSingleRowIcons(card) {
         const productData = this.extractProductData(card);
         
         return `
-            <div class="icon-buttons-row">
+            <div class="single-icon-row">
                 <!-- زر إضافة للسلة -->
-                <button class="icon-btn cart-icon-btn add-to-cart-btn" 
+                <button class="single-icon-btn cart-btn" 
                         data-product-id="${productData.id}"
                         data-product-name="${productData.name}"
                         data-product-price="${productData.price}"
                         title="أضف للسلة">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="btn-tooltip">أضف للسلة</span>
-                </button>
-                
-                <!-- زر اطلب فوراً -->
-                <button class="icon-btn order-now-icon-btn order-now-btn" 
-                        data-product-id="${productData.id}"
-                        data-product-name="${productData.name}"
-                        data-product-price="${productData.price}"
-                        title="اطلب فوراً" 
-                        style="background: linear-gradient(135deg, #25D366, #20B358); color: white; border-color: #25D366;">
-                    <i class="fas fa-bolt"></i>
-                    <span class="btn-tooltip">اطلب فوراً</span>
                 </button>
                 
                 <!-- زر واتساب -->
-                <button class="icon-btn whatsapp-icon-btn" 
+                <button class="single-icon-btn whatsapp-btn" 
                         data-product-id="${productData.id}"
                         data-product-name="${productData.name}"
                         data-product-price="${productData.price}"
                         title="طلب عبر واتساب" 
-                        style="background: #25D366; color: white; border-color: #25D366;">
+                        style="background: #25D366; border-color: #25D366; color: white;">
                     <i class="fab fa-whatsapp"></i>
-                    <span class="btn-tooltip">طلب عبر واتساب</span>
                 </button>
                 
                 <!-- زر عرض تفاصيل -->
-                <button class="icon-btn details-icon-btn" 
+                <button class="single-icon-btn details-btn" 
                         data-product-url="${productData.url}"
-                        title="عرض التفاصيل">
+                        title="شاهد التفاصيل">
                     <i class="fas fa-eye"></i>
-                    <span class="btn-tooltip">عرض التفاصيل</span>
                 </button>
             </div>
         `;
@@ -223,28 +207,18 @@ class EnhancedProductCards {
     }
 
     attachButtonFunctions(card) {
-        // وظيفة إضافة للسلة
-        const addToCartBtn = card.querySelector('.add-to-cart-btn');
-        if (addToCartBtn) {
-            addToCartBtn.addEventListener('click', (e) => {
+        // ووظيفة إضافة للسلة
+        const cartBtn = card.querySelector('.cart-btn');
+        if (cartBtn) {
+            cartBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                this.addToCart(addToCartBtn);
-            });
-        }
-        
-        // وظيفة اطلب فوراً
-        const orderNowBtn = card.querySelector('.order-now-btn');
-        if (orderNowBtn) {
-            orderNowBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                this.orderNow(orderNowBtn);
+                this.addToCart(cartBtn);
             });
         }
         
         // وظيفة واتساب
-        const whatsappBtn = card.querySelector('.whatsapp-icon-btn');
+        const whatsappBtn = card.querySelector('.whatsapp-btn');
         if (whatsappBtn) {
             whatsappBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -254,7 +228,7 @@ class EnhancedProductCards {
         }
         
         // وظيفة عرض تفاصيل
-        const detailsBtn = card.querySelector('.details-icon-btn');
+        const detailsBtn = card.querySelector('.details-btn');
         if (detailsBtn) {
             detailsBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -276,7 +250,7 @@ class EnhancedProductCards {
             // إضافة وظيفة النقر على البطاقة
             card.addEventListener('click', (e) => {
                 // تجنب فتح الرابط عند الضغط على الأزرار
-                if (e.target.closest('.icon-btn, button, .btn')) {
+                if (e.target.closest('.single-icon-btn, button, .btn')) {
                     return;
                 }
                 
@@ -334,36 +308,11 @@ class EnhancedProductCards {
         if (window.EmiratesCart) {
             window.EmiratesCart.addToCartQuick(productData);
         } else {
-            // استخدام النظام التقليدي
             this.addToCartFallback(productData);
         }
         
         // تأثير بصري
         this.animateButton(button, 'success');
-    }
-
-    orderNow(button) {
-        const productData = {
-            id: button.dataset.productId,
-            name: button.dataset.productName,
-            price: parseFloat(button.dataset.productPrice) || 0,
-            priceText: button.dataset.productPrice + ' درهم',
-            image: button.closest('.product-card')?.querySelector('img')?.src || '/images/placeholder.jpg',
-            quantity: 1,
-            timestamp: new Date().toISOString()
-        };
-        
-        if (window.EmiratesCart) {
-            window.EmiratesCart.orderNow(productData);
-        } else {
-            // إضافة للسلة وانتقال
-            this.addToCartFallback(productData);
-            setTimeout(() => {
-                window.open('./cart.html', '_blank');
-            }, 1000);
-        }
-        
-        this.animateButton(button, 'order');
     }
 
     sendWhatsAppMessage(button) {
@@ -425,7 +374,6 @@ class EnhancedProductCards {
     animateButton(button, type) {
         const colors = {
             success: '#25D366',
-            order: '#D4AF37', 
             whatsapp: '#25D366',
             details: '#007bff'
         };
@@ -483,25 +431,26 @@ class EnhancedProductCards {
         const style = document.createElement('style');
         style.id = 'enhanced-product-cards-styles';
         style.textContent = `
+            /* حاوي الأيقونات */
             .card-actions-container {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: 8px;
                 margin-top: 15px;
                 padding: 10px 0;
-                flex-wrap: wrap;
             }
             
-            .icon-buttons-row {
+            /* صف الأيقونات الواحد */
+            .single-icon-row {
                 display: flex;
-                gap: 8px;
+                gap: 10px;
                 justify-content: center;
                 align-items: center;
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
             }
             
-            .icon-btn {
+            /* زر الأيقونة الواحد */
+            .single-icon-btn {
                 width: 45px;
                 height: 45px;
                 border-radius: 50%;
@@ -518,7 +467,7 @@ class EnhancedProductCards {
                 box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             }
             
-            .icon-btn:hover {
+            .single-icon-btn:hover {
                 background: #D4AF37;
                 border-color: #D4AF37;
                 color: white;
@@ -526,52 +475,19 @@ class EnhancedProductCards {
                 box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
             }
             
-            .icon-btn.cart-icon-btn:hover {
-                background: #D4AF37;
-                border-color: #D4AF37;
-            }
-            
-            .icon-btn.order-now-icon-btn:hover {
-                background: linear-gradient(135deg, #20B358, #1e8449) !important;
-                border-color: #20B358;
-                box-shadow: 0 6px 20px rgba(32, 179, 88, 0.4);
-            }
-            
-            .icon-btn.whatsapp-icon-btn:hover {
+            .single-icon-btn.whatsapp-btn:hover {
                 background: #20B358 !important;
                 border-color: #20B358;
                 box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
             }
             
-            .icon-btn.details-icon-btn:hover {
+            .single-icon-btn.details-btn:hover {
                 background: #007bff;
                 border-color: #007bff;
                 box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
             }
             
-            .btn-tooltip {
-                position: absolute;
-                bottom: -40px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: rgba(0,0,0,0.9);
-                color: white;
-                padding: 6px 12px;
-                border-radius: 8px;
-                font-size: 0.75rem;
-                opacity: 0;
-                transition: all 0.3s ease;
-                white-space: nowrap;
-                z-index: 1001;
-                font-weight: 600;
-                pointer-events: none;
-            }
-            
-            .icon-btn:hover .btn-tooltip {
-                opacity: 1;
-                bottom: -35px;
-            }
-            
+            /* بطاقة المنتج */
             .product-card {
                 text-align: center !important;
                 position: relative;
@@ -626,28 +542,30 @@ class EnhancedProductCards {
             
             /* تحسينات للهواتف */
             @media (max-width: 768px) {
-                .icon-btn {
+                .single-icon-btn {
                     width: 42px;
                     height: 42px;
                     font-size: 1.1rem;
                 }
                 
-                .card-actions-container {
-                    gap: 6px;
-                    margin-top: 12px;
+                .single-icon-row {
+                    gap: 8px;
                 }
                 
-                .btn-tooltip {
-                    font-size: 0.7rem;
-                    padding: 4px 8px;
+                .card-actions-container {
+                    margin-top: 12px;
                 }
             }
             
             @media (max-width: 480px) {
-                .icon-btn {
+                .single-icon-btn {
                     width: 38px;
                     height: 38px;
                     font-size: 1rem;
+                }
+                
+                .single-icon-row {
+                    gap: 6px;
                 }
             }
         `;
@@ -658,13 +576,13 @@ class EnhancedProductCards {
     }
 
     // وظيفة عامة لتحسين جميع البطاقات
-    enhanceAllCards() {
+    refreshAllCards() {
+        this.processedCards.clear();
         document.querySelectorAll('.product-card, .product-item').forEach(card => {
-            card.dataset.enhanced = 'false'; // إعادة تعيين
             this.enhanceCard(card);
         });
         
-        console.log('🔄 تم تحسين جميع بطاقات المنتجات');
+        console.log('🔄 تم تحسين جميع بطاقات المنتجات - صف واحد فقط');
     }
 }
 
@@ -680,7 +598,12 @@ window.enhancedProductCards = enhancedProductCards;
 document.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.altKey && (e.key === 'e' || e.key === 'E')) {
         e.preventDefault();
-        enhancedProductCards.enhanceAllCards();
-        alert('✅ تم تحسين جميع بطاقات المنتجات!');
+        enhancedProductCards.refreshAllCards();
+        alert('✅ تم تحسين جميع بطاقات المنتجات - صف واحد فقط!');
     }
 });
+
+// تحديث تلقائي عند تحميل المنتجات
+setInterval(() => {
+    enhancedProductCards.refreshAllCards();
+}, 30000); // كل 30 ثانية
