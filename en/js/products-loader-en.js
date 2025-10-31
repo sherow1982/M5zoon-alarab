@@ -1,4 +1,4 @@
-// Products Loader for English Version - Fixed for Homepage IDs
+// Products Loader for English Version - Fixed Images and Currency
 
 class ProductsLoader {
     constructor() {
@@ -16,7 +16,7 @@ class ProductsLoader {
         await this.preloadProductData();
         this.initializeProductLoading();
         this.isInitialized = true;
-        console.log('✅ Products loader initialized');
+        console.log('✅ Products loader initialized with real data');
     }
     
     async preloadProductData() {
@@ -35,62 +35,115 @@ class ProductsLoader {
             const perfumesData = await perfumesResponse.json();
             const watchesData = await watchesResponse.json();
             
-            console.log('Perfumes data loaded:', perfumesData.length);
-            console.log('Watches data loaded:', watchesData.length);
+            console.log('Raw perfumes data loaded:', perfumesData.length);
+            console.log('Raw watches data loaded:', watchesData.length);
             
-            // Process and translate products
-            this.loadedProducts.perfumes = perfumesData.map((product, index) => this.processProduct(product, index, 'perfumes'));
-            this.loadedProducts.watches = watchesData.map((product, index) => this.processProduct(product, index, 'watches'));
+            // Process perfumes with actual images
+            this.loadedProducts.perfumes = perfumesData.map((product, index) => {
+                return {
+                    id: product.id || `perfume-${index}`,
+                    originalTitle: product.title || product.name,
+                    translatedTitle: this.translateProductTitle(product.title || product.name),
+                    price: parseFloat(product.sale_price || product.price) || 150,
+                    originalPrice: product.price && product.sale_price && parseFloat(product.price) > parseFloat(product.sale_price) ? parseFloat(product.price) : null,
+                    // Use actual image from data
+                    image: product.image_link || product.image || this.getFallbackPerfumeImage(),
+                    category: 'perfumes',
+                    rating: (Math.random() * 1.5 + 3.5).toFixed(1),
+                    reviews: Math.floor(Math.random() * 100) + 25,
+                    hasDiscount: product.price && product.sale_price && parseFloat(product.sale_price) < parseFloat(product.price),
+                    isNew: Math.random() > 0.85,
+                    isBestseller: Math.random() > 0.8,
+                    inStock: true
+                };
+            });
+            
+            // Process watches with actual images
+            this.loadedProducts.watches = watchesData.map((product, index) => {
+                return {
+                    id: product.id || `watch-${index}`,
+                    originalTitle: product.title || product.name,
+                    translatedTitle: this.translateProductTitle(product.title || product.name),
+                    price: parseFloat(product.sale_price || product.price) || 250,
+                    originalPrice: product.price && product.sale_price && parseFloat(product.price) > parseFloat(product.sale_price) ? parseFloat(product.price) : null,
+                    // Use actual image from data
+                    image: product.image_link || product.image || this.getFallbackWatchImage(),
+                    category: 'watches',
+                    rating: (Math.random() * 1.5 + 3.5).toFixed(1),
+                    reviews: Math.floor(Math.random() * 100) + 25,
+                    hasDiscount: product.price && product.sale_price && parseFloat(product.sale_price) < parseFloat(product.price),
+                    isNew: Math.random() > 0.85,
+                    isBestseller: Math.random() > 0.8,
+                    inStock: true
+                };
+            });
+            
+            console.log('Processed perfumes:', this.loadedProducts.perfumes.length);
+            console.log('Processed watches:', this.loadedProducts.watches.length);
             
         } catch (error) {
-            console.error('Error preloading product data:', error);
+            console.error('Error loading product data:', error);
             this.generateSampleData();
         }
     }
     
-    processProduct(product, index, category) {
-        return {
-            id: product.id || `${category}-${index}`,
-            title: product.title || product.name || 'Premium Product',
-            translatedTitle: this.translateProductTitle(product.title || product.name),
-            price: parseFloat(product.price) || this.generatePrice(category),
-            originalPrice: product.originalPrice || null,
-            image: product.image || product.img || this.getDefaultImage(category),
-            category: category,
-            rating: product.rating || (Math.random() * 1.5 + 3.5).toFixed(1),
-            reviews: product.reviews || Math.floor(Math.random() * 80) + 20,
-            description: product.description || this.generateDescription(product.title || product.name),
-            inStock: product.inStock !== false,
-            isNew: Math.random() > 0.8,
-            isBestseller: Math.random() > 0.7
-        };
+    getFallbackPerfumeImage() {
+        const perfumeImages = [
+            'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&h=400&fit=crop'
+        ];
+        return perfumeImages[Math.floor(Math.random() * perfumeImages.length)];
+    }
+    
+    getFallbackWatchImage() {
+        const watchImages = [
+            'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=400&h=400&fit=crop'
+        ];
+        return watchImages[Math.floor(Math.random() * watchImages.length)];
     }
     
     translateProductTitle(arabicTitle) {
         const translations = {
-            // Perfume translations
+            // Perfume terms
             'عطر': 'Perfume',
-            'عطور': 'Perfumes', 
-            'رائحة': 'Fragrance',
+            'عطور': 'Perfumes',
+            'رائحة': 'Fragrance', 
+            'دخون': 'Incense',
             'عبير': 'Oud',
             'مسك': 'Musk',
             'عنبر': 'Amber',
             'ورد': 'Rose',
             'ياسمين': 'Jasmine',
-            'زعفران': 'Saffron',
             
-            // Watch translations
+            // Watch terms
             'ساعة': 'Watch',
             'ساعات': 'Watches',
+            
+            // Brands
+            'شانيل': 'Chanel',
+            'ديور': 'Dior', 
+            'جوتشي': 'Gucci',
+            'رولكس': 'Rolex',
+            'اوميغا': 'Omega',
+            'فرزاتشي': 'Versace',
+            'بربيري': 'Burberry',
+            'كارتييه': 'Cartier',
             
             // Quality terms
             'فاخر': 'Luxury',
             'ممتاز': 'Premium',
             'أصلي': 'Original',
+            'راقيه': 'Elite',
+            'راقية': 'Elite',
             
-            // Gender terms
+            // Gender
             'رجالي': "Men's",
             'نسائي': "Women's",
+            'رجال': 'Men',
+            'نساء': 'Women',
             
             // Colors
             'ذهبي': 'Gold',
@@ -100,116 +153,131 @@ class ProductsLoader {
             'أزرق': 'Blue',
             'أحمر': 'Red',
             'أخضر': 'Green',
+            'بني': 'Brown',
+            'كحلي': 'Navy',
+            'رصاصي': 'Grey',
+            'بيج': 'Beige',
+            'زرقاء': 'Blue',
+            'زهري': 'Pink',
+            'بنفسجي': 'Purple',
+            'بيبي بلو': 'Baby Blue',
+            'نبيتي': 'Wine',
+            'هافان': 'Havana',
+            'صفراء': 'Yellow',
+            'سبرايت': 'Sprite',
+            'تشوكلاته': 'Chocolate',
+            'منت': 'Mint',
+            'اليف بلو': 'Olive',
+            'ايس بلو': 'Ice Blue',
             
             // Styles
-            'شرقي': 'Oriental',
-            'غربي': 'Western',
             'كلاسيكي': 'Classic',
-            'عصري': 'Modern'
+            'عصري': 'Modern',
+            'شرقي': 'Oriental',
+            'غربي': 'Western'
         };
         
         if (!arabicTitle) {
-            const productTypes = [
-                'Luxury Perfume', 'Premium Watch', 'Designer Fragrance',
-                'Elegant Timepiece', 'Oriental Scent', 'Classic Watch',
-                'Modern Perfume', 'Vintage Watch', 'Exclusive Fragrance'
-            ];
-            return productTypes[Math.floor(Math.random() * productTypes.length)];
+            return 'Premium Product';
         }
         
         let translated = arabicTitle;
+        
+        // Apply all translations
         Object.keys(translations).forEach(arabic => {
-            const regex = new RegExp(arabic, 'g');
+            const regex = new RegExp(arabic, 'gi');
             translated = translated.replace(regex, translations[arabic]);
         });
         
-        // If no translation happened, generate based on type
-        if (translated === arabicTitle) {
-            const productTypes = [
-                'Premium Perfume', 'Luxury Watch', 'Designer Fragrance',
-                'Elegant Timepiece', 'Oriental Scent', 'Classic Watch'
-            ];
-            return productTypes[Math.floor(Math.random() * productTypes.length)];
+        // Clean up the translation
+        translated = translated
+            .replace(/\s+/g, ' ')  // Remove extra spaces
+            .replace(/[\u0660-\u0669]/g, (match) => {
+                // Convert Arabic numerals to English
+                const arabicNumerals = '\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669';
+                return arabicNumerals.indexOf(match).toString();
+            })
+            .replace(/\s*\+\s*/g, ' + ')  // Clean up plus signs
+            .replace(/\s*\&\s*/g, ' & ')  // Clean up ampersands
+            .trim();
+        
+        // If translation didn't work or still has Arabic
+        if (!translated || translated === arabicTitle || /[\u0600-\u06FF]/.test(translated)) {
+            // Generate based on category indicators
+            if (arabicTitle.includes('عطر') || arabicTitle.includes('رائحة')) {
+                return this.generatePerfumeName();
+            } else if (arabicTitle.includes('ساعة')) {
+                return this.generateWatchName();
+            } else {
+                return 'Premium Product';
+            }
         }
         
-        // Capitalize and clean up
+        // Capitalize properly
         return translated
             .split(' ')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .map(word => {
+                if (word.length > 0) {
+                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                }
+                return word;
+            })
             .join(' ')
             .trim();
     }
     
-    generatePrice(category) {
-        return category === 'perfumes' 
-            ? Math.floor(Math.random() * 200) + 50
-            : Math.floor(Math.random() * 400) + 100;
+    generatePerfumeName() {
+        const perfumeNames = [
+            'Luxury Oriental Perfume', 'Premium Rose Fragrance', 'Royal Oud Scent',
+            'Golden Amber Perfume', 'Elite Eastern Fragrance', 'Designer Perfume',
+            'Classic Arabian Scent', 'Premium Floral Perfume', 'Luxury Musk Fragrance'
+        ];
+        return perfumeNames[Math.floor(Math.random() * perfumeNames.length)];
     }
     
-    getDefaultImage(category) {
-        const defaultImages = {
-            perfumes: [
-                'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&h=400&fit=crop'
-            ],
-            watches: [
-                'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=400&h=400&fit=crop'
-            ]
-        };
-        
-        const images = defaultImages[category] || defaultImages.perfumes;
-        return images[Math.floor(Math.random() * images.length)];
-    }
-    
-    generateDescription(title) {
-        return `Experience the luxury of ${this.translateProductTitle(title)}, a premium product with excellent quality.`;
+    generateWatchName() {
+        const watchNames = [
+            'Luxury Gold Watch', 'Premium Silver Timepiece', 'Elite Sports Watch',
+            'Classic Dress Watch', 'Designer Watch', 'Modern Chronograph',
+            'Executive Timepiece', 'Elegant Watch', 'Professional Watch'
+        ];
+        return watchNames[Math.floor(Math.random() * watchNames.length)];
     }
     
     generateSampleData() {
         console.log('Generating sample data as fallback...');
         
-        const perfumeNames = [
-            'Royal Oud Perfume', 'Golden Rose Fragrance', 'Mystic Amber Scent', 'Oriental Nights',
-            'Desert Rose Fragrance', 'Palace Musk', 'Diamond Jasmine', 'Luxury Eastern Blend'
-        ];
-        
-        this.loadedProducts.perfumes = perfumeNames.map((name, index) => ({
-            id: `perfume-${index + 1}`,
-            title: name,
-            translatedTitle: name,
+        // Generate sample perfumes
+        this.loadedProducts.perfumes = Array.from({length: 20}, (_, index) => ({
+            id: `perfume-sample-${index + 1}`,
+            originalTitle: 'Sample Perfume',
+            translatedTitle: this.generatePerfumeName(),
             price: Math.floor(Math.random() * 200) + 50,
-            image: this.getDefaultImage('perfumes'),
+            image: this.getFallbackPerfumeImage(),
             category: 'perfumes',
             rating: (Math.random() * 1.5 + 3.5).toFixed(1),
-            reviews: Math.floor(Math.random() * 80) + 20,
+            reviews: Math.floor(Math.random() * 100) + 25,
             inStock: true
         }));
         
-        const watchNames = [
-            'Elite Timepiece', 'Luxury Gold Watch', 'Sports Watch Pro',
-            'Classic Elegance', 'Modern Timepiece', 'Premium Silver Watch'
-        ];
-        
-        this.loadedProducts.watches = watchNames.map((name, index) => ({
-            id: `watch-${index + 1}`,
-            title: name,
-            translatedTitle: name,
+        // Generate sample watches
+        this.loadedProducts.watches = Array.from({length: 15}, (_, index) => ({
+            id: `watch-sample-${index + 1}`,
+            originalTitle: 'Sample Watch',
+            translatedTitle: this.generateWatchName(),
             price: Math.floor(Math.random() * 400) + 100,
-            image: this.getDefaultImage('watches'),
+            image: this.getFallbackWatchImage(),
             category: 'watches',
             rating: (Math.random() * 1.5 + 3.5).toFixed(1),
-            reviews: Math.floor(Math.random() * 80) + 20,
+            reviews: Math.floor(Math.random() * 100) + 25,
             inStock: true
         }));
     }
     
     initializeProductLoading() {
-        console.log('Starting product loading for homepage...');
+        console.log('Loading products for homepage sections...');
         
-        // Load each section with delay for smooth loading
+        // Load each section with proper delays
         setTimeout(() => this.loadSectionProducts('perfumes', 'perfumes-grid', 6), 500);
         setTimeout(() => this.loadSectionProducts('watches', 'watches-grid', 6), 1000);
         setTimeout(() => this.loadFeaturedProducts(), 1500);
@@ -239,7 +307,7 @@ class ProductsLoader {
             
             grid.innerHTML = productsHTML;
             
-            // Initialize product interactions
+            // Initialize interactions
             this.initializeProductCards(grid);
             
             console.log(`✅ Loaded ${products.length} ${category} to ${gridId}`);
@@ -258,16 +326,10 @@ class ProductsLoader {
         }
         
         try {
-            // Mix of perfumes and watches for featured
-            const allProducts = [...this.loadedProducts.perfumes, ...this.loadedProducts.watches];
-            const featured = allProducts
-                .filter(product => product.isBestseller || product.isNew)
-                .slice(0, 6);
-            
-            if (featured.length === 0) {
-                // Fallback to first 6 products
-                featured.push(...allProducts.slice(0, 6));
-            }
+            // Get best products from both categories
+            const bestPerfumes = this.loadedProducts.perfumes.slice(0, 3);
+            const bestWatches = this.loadedProducts.watches.slice(0, 3);
+            const featured = [...bestPerfumes, ...bestWatches];
             
             const productsHTML = featured.map((product, index) => {
                 return this.createProductCard(product, index * 0.1);
@@ -292,13 +354,22 @@ class ProductsLoader {
         }
         
         try {
-            const allProducts = [...this.loadedProducts.perfumes, ...this.loadedProducts.watches];
-            const deals = allProducts.slice(6, 12).map(product => ({
+            // Get products with discounts or create discounts
+            const perfumesWithDeals = this.loadedProducts.perfumes.slice(3, 6).map(product => ({
                 ...product,
-                originalPrice: (product.price * 1.3).toFixed(2),
-                discount: '25%',
-                hasDiscount: true
+                originalPrice: product.originalPrice || (product.price * 1.25),
+                hasDiscount: true,
+                discountPercent: '20%'
             }));
+            
+            const watchesWithDeals = this.loadedProducts.watches.slice(3, 6).map(product => ({
+                ...product,
+                originalPrice: product.originalPrice || (product.price * 1.3),
+                hasDiscount: true,
+                discountPercent: '25%'
+            }));
+            
+            const deals = [...perfumesWithDeals, ...watchesWithDeals];
             
             const productsHTML = deals.map((product, index) => {
                 return this.createProductCard(product, index * 0.1);
@@ -316,24 +387,34 @@ class ProductsLoader {
     }
     
     createProductCard(product, delay = 0) {
+        // Create badges
         let badges = '';
         if (product.isNew) badges += '<div class="product-badge new-badge">New</div>';
         if (product.isBestseller) badges += '<div class="product-badge bestseller-badge">Bestseller</div>';
-        if (product.hasDiscount) badges += '<div class="discount-badge">25% OFF</div>';
+        if (product.hasDiscount && product.originalPrice) {
+            const discountPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+            badges += `<div class="discount-badge">${discountPercent}% OFF</div>`;
+        }
         
         return `
             <div class="product-card" data-product-id="${product.id}" style="animation-delay: ${delay}s">
                 <div class="product-image-container">
-                    <img src="${product.image}" alt="${product.translatedTitle}" class="product-image" loading="lazy" onerror="handleImageError(this)">
+                    <img src="${product.image}" 
+                         alt="${product.translatedTitle}" 
+                         class="product-image" 
+                         loading="lazy" 
+                         onerror="this.src='${product.category === 'perfumes' ? this.getFallbackPerfumeImage() : this.getFallbackWatchImage()}'">
                     ${badges}
                     <div class="product-overlay">
-                        <button class="btn-add-to-cart" onclick="addToCartSimple('${product.id}', '${product.translatedTitle}', ${product.price}, '${product.image}')" title="Add to Cart">
+                        <button class="btn-add-to-cart" 
+                                onclick="addToCartSimple('${product.id}', '${product.translatedTitle.replace(/'/g, "\\'")}'', ${product.price}, '${product.image}')" 
+                                title="Add to Cart">
                             <i class="fas fa-shopping-cart"></i>
                         </button>
                     </div>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">${product.category === 'perfumes' ? 'Perfume' : 'Watch'}</div>
+                    <div class="product-category">${product.category === 'perfumes' ? 'Premium Perfume' : 'Luxury Watch'}</div>
                     <h3 class="product-title">${product.translatedTitle}</h3>
                     <div class="product-rating">
                         <div class="stars">
@@ -343,11 +424,12 @@ class ProductsLoader {
                         <span class="review-count">(${product.reviews} reviews)</span>
                     </div>
                     <div class="product-price">
-                        ${product.hasDiscount ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
-                        <span class="current-price">$${product.price.toFixed(2)}</span>
+                        ${product.hasDiscount && product.originalPrice ? 
+                            `<span class="original-price">${product.originalPrice.toFixed(2)}</span>` : ''}
+                        <span class="current-price">${product.price.toFixed(2)}</span>
                     </div>
                     <div class="product-actions">
-                        <button class="btn-order-now" onclick="orderNowSimple('${product.translatedTitle}', ${product.price})">
+                        <button class="btn-order-now" onclick="orderNowSimple('${product.translatedTitle.replace(/'/g, "\\'")}'', ${product.price})">
                             <i class="fas fa-credit-card"></i>
                             Order Now
                         </button>
@@ -371,14 +453,13 @@ class ProductsLoader {
     }
     
     initializeProductCards(container) {
-        console.log(`Initialized product cards in ${container.id || 'container'}`);
+        console.log(`Initializing product cards in ${container.id}`);
         
-        // Add click handlers for product cards to open in new tab
+        // Make product cards clickable to open in new tab
         const productCards = container.querySelectorAll('.product-card');
         productCards.forEach(card => {
-            // Make entire card clickable (excluding buttons)
             card.addEventListener('click', function(e) {
-                // Don't trigger if clicking on a button
+                // Don't trigger if clicking on buttons
                 if (e.target.closest('button') || e.target.closest('a')) {
                     return;
                 }
@@ -389,18 +470,17 @@ class ProductsLoader {
             });
             
             card.style.cursor = 'pointer';
+            card.title = 'Click to view details (opens in new tab)';
         });
     }
 }
 
-// Simple global functions
+// Global Cart and Order Functions
 function addToCartSimple(id, title, price, image) {
     console.log('Adding to cart:', { id, title, price });
     
-    // Get existing cart
     let cart = JSON.parse(localStorage.getItem('emirates-cart-en') || '[]');
     
-    // Check if item exists
     const existingItem = cart.find(item => item.id === id);
     
     if (existingItem) {
@@ -415,19 +495,20 @@ function addToCartSimple(id, title, price, image) {
         });
     }
     
-    // Save cart
     localStorage.setItem('emirates-cart-en', JSON.stringify(cart));
-    
-    // Update counter
     updateCartCounter();
-    
-    // Show notification
-    showSimpleNotification(`${title} added to cart!`);
+    showNotificationFixed(`${title} added to cart!`, 'success');
+}
+
+function orderNowSimple(productName, price) {
+    const message = `Hello! I would like to order:\n\n🛍️ Product: ${productName}\n💰 Price: ${price.toFixed(2)} AED\n\nPlease confirm availability and delivery details to UAE.`;
+    const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
 }
 
 function updateCartCounter() {
     const cart = JSON.parse(localStorage.getItem('emirates-cart-en') || '[]');
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
     
     const counters = document.querySelectorAll('.cart-counter');
     counters.forEach(counter => {
@@ -436,31 +517,39 @@ function updateCartCounter() {
     });
 }
 
-function orderNowSimple(productName, price) {
-    const message = `Hello! I would like to order:\n\n🛍️ Product: ${productName}\n💰 Price: $${price.toFixed(2)} AED\n\nPlease confirm availability and delivery details.`;
-    const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-}
-
-function showSimpleNotification(message) {
+function showNotificationFixed(message, type = 'info') {
     const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    
+    const bgColor = type === 'success' ? '#d4edda' : '#d1ecf1';
+    const textColor = type === 'success' ? '#155724' : '#0c5460';
+    const icon = type === 'success' ? 'check-circle' : 'info-circle';
+    
+    notification.innerHTML = `
+        <i class="fas fa-${icon}"></i>
+        <span>${message}</span>
+        <button class="notification-close" onclick="this.parentElement.remove()">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+    
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: #d4edda;
-        color: #155724;
+        background: ${bgColor};
+        color: ${textColor};
         padding: 15px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border-radius: 10px;
+        box-shadow: 0 6px 25px rgba(0,0,0,0.15);
         z-index: 10000;
         transform: translateX(400px);
-        transition: transform 0.3s ease;
-    `;
-    
-    notification.innerHTML = `
-        <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
-        ${message}
+        transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 300px;
+        font-weight: 500;
     `;
     
     document.body.appendChild(notification);
@@ -471,15 +560,12 @@ function showSimpleNotification(message) {
     
     setTimeout(() => {
         notification.style.transform = 'translateX(400px)';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
-}
-
-// Handle image errors
-function handleImageError(img) {
-    console.log('Image error, using fallback');
-    img.src = 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop';
-    img.style.opacity = '0.8';
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 300);
+    }, 4000);
 }
 
 // Create global instance
@@ -488,6 +574,11 @@ const productsLoader = new ProductsLoader();
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     productsLoader.initialize();
+    
+    // Update cart counter on page load
+    setTimeout(() => {
+        updateCartCounter();
+    }, 1000);
 });
 
 // Export for global access
@@ -495,4 +586,4 @@ window.productsLoader = productsLoader;
 window.addToCartSimple = addToCartSimple;
 window.orderNowSimple = orderNowSimple;
 window.updateCartCounter = updateCartCounter;
-window.handleImageError = handleImageError;
+window.showNotificationFixed = showNotificationFixed;
