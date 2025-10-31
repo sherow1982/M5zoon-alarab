@@ -4,172 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">تفاصيل المنتج - متجر هدايا الإمارات</title>
-    <meta name="description" id="pageDescription" content="اعرض تفاصيل كاملة عن المنتج مع صور عالية الجودة وتقييمات العملاء - متجر هدايا الإمارات">
+    <meta name="description" id="pageDescription" content="اعرض تفاصيل كاملة عن المنتج مع صور عالية الجودة وتقييمات العملاء">
     
-    <!-- خط Cairo من Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- ملف CSS الجديد المستوحى من دخون الإماراتية -->
     <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
     
     <style>
-        .product-details-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .product-main {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 80px;
-        }
-        
-        .product-gallery {
-            position: relative;
-        }
-        
-        .main-image {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            box-shadow: 0 15px 40px var(--shadow-medium);
-        }
-        
-        .product-info {
-            padding: 20px 0;
-        }
-        
-        .product-category {
-            color: var(--primary-gold);
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-        
-        .product-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--deep-blue);
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .product-rating {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            padding: 15px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: var(--border-radius-small);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-        
-        .stars {
-            color: var(--light-gold);
-            font-size: 1.4rem;
-        }
-        
-        .rating-details {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .rating-number {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary-gold);
-        }
-        
-        .reviews-count {
-            color: var(--text-light);
-            font-weight: 500;
-        }
-        
-        .professional-badge {
-            background: var(--success-green);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .product-price {
-            margin: 30px 0;
-        }
-        
-        .current-price {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--primary-gold);
-            margin-left: 15px;
-        }
-        
-        .original-price {
-            font-size: 1.4rem;
-            color: var(--text-light);
-            text-decoration: line-through;
-            margin-left: 10px;
-        }
-        
-        .discount-badge {
-            background: var(--danger-red);
-            color: white;
-            padding: 8px 15px;
-            border-radius: var(--border-radius-small);
-            font-weight: 700;
-            font-size: 1rem;
-        }
-        
-        .product-actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 40px;
-        }
-        
-        .btn-add-to-cart {
-            flex: 2;
-            background: var(--gradient-gold);
-            color: var(--deep-blue);
-            padding: 18px 30px;
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .btn-whatsapp {
-            flex: 1;
-            background: var(--success-green);
-            color: white;
-            padding: 18px 30px;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: var(--transition);
-        }
+        .product-details-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .product-main { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 80px; }
+        .product-gallery { position: relative; }
+        .main-image { width: 100%; height: 500px; object-fit: cover; border-radius: var(--border-radius); box-shadow: 0 15px 40px var(--shadow-medium); }
+        .product-info { padding: 20px 0; }
+        .product-category { color: var(--primary-gold); font-weight: 600; font-size: 1rem; margin-bottom: 10px; }
+        .product-title { font-size: 2.5rem; font-weight: 900; color: var(--deep-blue); margin-bottom: 20px; line-height: 1.2; }
+        .product-rating { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: var(--border-radius-small); border: 1px solid rgba(255, 215, 0, 0.2); }
+        .stars { color: var(--light-gold); font-size: 1.4rem; }
+        .rating-details { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .rating-number { font-size: 1.2rem; font-weight: 700; color: var(--primary-gold); }
+        .reviews-count { color: var(--text-light); font-weight: 500; }
+        .professional-badge { background: var(--success-green); color: white; padding: 4px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: 600; }
+        .product-price { margin: 30px 0; }
+        .current-price { font-size: 2.2rem; font-weight: 900; color: var(--primary-gold); margin-left: 15px; }
+        .original-price { font-size: 1.4rem; color: var(--text-light); text-decoration: line-through; margin-left: 10px; }
+        .product-actions { display: flex; gap: 15px; margin-top: 40px; }
+        .btn-add-to-cart { flex: 2; background: var(--gradient-gold); color: var(--deep-blue); padding: 18px 30px; border: none; border-radius: var(--border-radius); font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-whatsapp { flex: 1; background: var(--success-green); color: white; padding: 18px 30px; border-radius: var(--border-radius); text-decoration: none; font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition); }
+        @media (max-width: 768px) { .product-main { grid-template-columns: 1fr; gap: 40px; } .product-title { font-size: 2rem; } .current-price { font-size: 1.8rem; } .product-actions { flex-direction: column; } }
     </style>
 </head>
 <body>
@@ -224,7 +87,10 @@
         
         function getProductIdFromURL() {
             const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('id') || urlParams.get('product') || null;
+            return {
+                id: urlParams.get('id'),
+                category: urlParams.get('category')
+            };
         }
         
         async function loadRatingsData() {
@@ -242,8 +108,10 @@
         }
         
         async function loadProductDetails() {
-            const productId = getProductIdFromURL();
+            const { id: productId, category } = getProductIdFromURL();
             const container = document.getElementById('productDetailsContainer');
+            
+            console.log(`🔍 بحث عن منتج ID: ${productId}, Category: ${category}`);
             
             if (!productId) {
                 showNotFoundMessage();
@@ -251,30 +119,64 @@
             }
             
             try {
-                const [perfumesResponse, watchesResponse] = await Promise.all([
-                    fetch('./data/otor.json').catch(() => ({ ok: false })),
-                    fetch('./data/sa3at.json').catch(() => ({ ok: false }))
-                ]);
+                let dataFile = null;
+                let categoryLabel = '';
                 
-                let allProducts = [];
-                
-                if (perfumesResponse.ok) {
-                    const perfumes = await perfumesResponse.json();
-                    allProducts.push(...perfumes.map(p => ({...p, category: 'عطور'})));
-                }
-                
-                if (watchesResponse.ok) {
-                    const watches = await watchesResponse.json();
-                    allProducts.push(...watches.map(p => ({...p, category: 'ساعات'})));
-                }
-                
-                // البحث عن المنتج - مطابقة string مع string
-                const product = allProducts.find(p => p.id.toString() === productId.toString());
-                
-                if (product) {
-                    displayProductDetails(product);
+                // تحديد المصدر بناءً على الفئة
+                if (category === 'perfume') {
+                    dataFile = './data/otor.json';
+                    categoryLabel = 'عطور';
+                } else if (category === 'watch') {
+                    dataFile = './data/sa3at.json';
+                    categoryLabel = 'ساعات';
                 } else {
-                    showNotFoundMessage();
+                    // fallback: محاولة البحث في كلا المصدرين
+                    const [perfumesResponse, watchesResponse] = await Promise.all([
+                        fetch('./data/otor.json').catch(() => ({ ok: false })),
+                        fetch('./data/sa3at.json').catch(() => ({ ok: false }))
+                    ]);
+                    
+                    let allProducts = [];
+                    
+                    if (perfumesResponse.ok) {
+                        const perfumes = await perfumesResponse.json();
+                        allProducts.push(...perfumes.map(p => ({...p, category: 'عطور'})));
+                    }
+                    
+                    if (watchesResponse.ok) {
+                        const watches = await watchesResponse.json();
+                        allProducts.push(...watches.map(p => ({...p, category: 'ساعات'})));
+                    }
+                    
+                    const product = allProducts.find(p => p.id.toString() === productId.toString());
+                    
+                    if (product) {
+                        console.log(`✅ وُجد المنتج: ${product.title} (فئة: ${product.category})`);
+                        displayProductDetails(product);
+                    } else {
+                        console.warn(`❌ لم يوجد منتج بمعرف: ${productId}`);
+                        showNotFoundMessage();
+                    }
+                    return;
+                }
+                
+                // تحميل من مصدر محدد
+                const response = await fetch(dataFile);
+                
+                if (response.ok) {
+                    const products = await response.json();
+                    const product = products.find(p => p.id.toString() === productId.toString());
+                    
+                    if (product) {
+                        product.category = categoryLabel;
+                        console.log(`✅ وُجد المنتج: ${product.title} (فئة: ${categoryLabel})`);
+                        displayProductDetails(product);
+                    } else {
+                        console.warn(`❌ لم يوجد منتج بمعرف: ${productId} في فئة: ${categoryLabel}`);
+                        showNotFoundMessage();
+                    }
+                } else {
+                    throw new Error(`خطأ في تحميل بيانات ${categoryLabel}`);
                 }
                 
             } catch (error) {
@@ -285,6 +187,8 @@
         
         function displayProductDetails(product) {
             const container = document.getElementById('productDetailsContainer');
+            
+            console.log(`🎨 عرض تفاصيل المنتج: ${product.title}`);
             
             document.getElementById('pageTitle').textContent = `${product.title} - متجر هدايا الإمارات`;
             
