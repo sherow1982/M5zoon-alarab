@@ -8,7 +8,6 @@
     let ratingsData = {};
     let isLoading = false;
     
-    // تحميل بيانات التقييمات
     async function loadRatingsData() {
         try {
             const response = await fetch('./data/ratings.json');
@@ -24,7 +23,6 @@
         }
     }
     
-    // تحميل جميع المنتجات
     async function loadAllProducts() {
         if (isLoading) return allProducts;
         isLoading = true;
@@ -75,7 +73,6 @@
         return allProducts;
     }
     
-    // إنشاء HTML لبطاقة المنتج
     function createProductCard(product, index = 0) {
         const hasDiscount = product.price !== product.sale_price;
         const discountPercentage = hasDiscount ? Math.round(((product.price - product.sale_price) / product.price) * 100) : 0;
@@ -84,7 +81,7 @@
         const productJSON = JSON.stringify(product).replace(/"/g, '&quot;');
         
         return `
-            <div class="product-card emirates-element" data-product-id="${product.id}" style="animation-delay: ${index * 0.1}s;">
+            <div class="product-card emirates-element" data-product-id="${product.id}" data-category="${product.categoryEn}" style="animation-delay: ${index * 0.1}s;">
                 <div class="product-image-container">
                     <img src="${product.image_link}" 
                          alt="${product.title}" 
@@ -96,16 +93,19 @@
                         `<div class="product-badge new-badge">جديد</div>`
                     }
                     
-                    <div class="product-category-badge">${product.categoryIcon} ${product.category}</div>
+                    <div class="product-category-badge" style="position: absolute; top: 10px; left: 10px; background: rgba(212, 175, 55, 0.9); color: var(--deep-blue); padding: 4px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; z-index: 2;">
+                        ${product.categoryIcon} ${product.category}
+                    </div>
                     
                     <div class="product-overlay">
-                        <div class="overlay-btn eye-link" title="عرض التفاصيل">
+                        <div class="overlay-btn eye-link" title="عرض التفاصيل" onclick="openProductDetails('${product.id}', '${product.categoryEn}')">
                             <i class="fas fa-eye"></i>
                         </div>
                     </div>
                 </div>
                 
                 <div class="product-info">
+                    <div class="product-category">${product.categoryIcon} ${product.category}</div>
                     <h3 class="product-title">${product.title}</h3>
                     
                     <div class="product-rating">
@@ -114,7 +114,7 @@
                     </div>
                     
                     ${rating.professional_review ? 
-                        `<div class="professional-review-badge">
+                        `<div class="professional-review-badge" style="background: rgba(39, 174, 96, 0.1); color: #27ae60; padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin: 5px 0; display: flex; align-items: center; gap: 4px; border: 1px solid rgba(39, 174, 96, 0.2);">
                             <i class="fas fa-check-circle"></i> ${rating.professional_review}
                         </div>` : ''
                     }
@@ -135,7 +135,13 @@
         `;
     }
     
-    // تقييم افتراضي
+    // دالة فتح تفاصيل المنتج (global function)
+    window.openProductDetails = function(productId, category) {
+        const detailsURL = `./product-details.html?id=${productId}&category=${category}`;
+        console.log(`✅ فتح رابط التفاصيل: ${detailsURL}`);
+        window.location.href = detailsURL;
+    };
+    
     function getDefaultRating(product) {
         const baseRating = product.type === 'perfume' ? 4.6 : 4.7;
         return {
@@ -146,7 +152,6 @@
         };
     }
     
-    // عرض المنتجات في حاوية محددة
     function displayProducts(products, containerId, limit = null) {
         const container = document.getElementById(containerId);
         if (!container) {
@@ -158,9 +163,9 @@
         
         if (productsToShow.length === 0) {
             container.innerHTML = `
-                <div class="no-products">
-                    <i class="fas fa-search" style="font-size: 3rem; color: var(--text-light); margin-bottom: 20px;"></i>
-                    <h3>لا توجد منتجات</h3>
+                <div class="no-products" style="text-align: center; padding: 60px 20px; color: var(--text-light);">
+                    <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; display: block;"></i>
+                    <h3 style="margin: 10px 0; color: var(--deep-blue);">لا توجد منتجات</h3>
                     <p>عذراً، لا توجد منتجات متاحة حالياً.</p>
                 </div>
             `;
@@ -177,15 +182,13 @@
         setTimeout(() => {
             if (window.ButtonsFix) {
                 window.ButtonsFix.fixAddToCartButtons();
-                window.ButtonsFix.fixEyeButtons();
                 window.ButtonsFix.addRatingsToCards();
             }
-        }, 100);
+        }, 500);
         
         console.log(`✅ تم عرض ${productsToShow.length} منتج في ${containerId}`);
     }
     
-    // عرض المنتجات للصفحة الرئيسية
     async function loadHomePageProducts() {
         await Promise.all([loadRatingsData(), loadAllProducts()]);
         
@@ -215,18 +218,13 @@
         displayProducts(bestDeals, 'bestDeals', 6);
     }
     
-    // عرض المنتجات لصفحة عرض المنتجات
     async function loadProductsShowcase() {
         await Promise.all([loadRatingsData(), loadAllProducts()]);
-        
         displayProducts(allProducts, 'allProductsGrid');
-        
-        // إعداد الفلترة
         setupFiltering();
         setupSorting();
     }
     
-    // إعداد نظام الفلترة
     function setupFiltering() {
         const filterButtons = document.querySelectorAll('.filter-btn');
         const searchInput = document.getElementById('searchInput');
@@ -235,11 +233,9 @@
             button.addEventListener('click', function() {
                 const filter = this.getAttribute('data-filter');
                 
-                // تحديث الأزرار النشطة
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
                 
-                // فلترة المنتجات
                 let filteredProducts = allProducts;
                 
                 if (filter === 'perfumes') {
@@ -252,7 +248,6 @@
             });
         });
         
-        // البحث
         if (searchInput) {
             searchInput.addEventListener('input', function() {
                 const searchTerm = this.value.toLowerCase();
@@ -264,7 +259,6 @@
         }
     }
     
-    // إعداد نظام الترتيب
     function setupSorting() {
         const sortSelect = document.getElementById('sortSelect');
         
@@ -289,7 +283,6 @@
                         break;
                     case 'newest':
                     default:
-                        // الترتيب الافتراضي
                         break;
                 }
                 
@@ -298,7 +291,6 @@
         }
     }
     
-    // إضافة CSS للبطاقات
     function addProductsCSS() {
         if (!document.querySelector('#products-loader-css')) {
             const style = document.createElement('style');
@@ -310,41 +302,8 @@
                 }
                 
                 @keyframes fadeInUp {
-                    0% {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
-                    100% {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                
-                .product-category-badge {
-                    position: absolute;
-                    top: 10px;
-                    left: 10px;
-                    background: rgba(212, 175, 55, 0.9);
-                    color: var(--deep-blue);
-                    padding: 4px 8px;
-                    border-radius: 12px;
-                    font-size: 0.7rem;
-                    font-weight: 600;
-                    z-index: 2;
-                }
-                
-                .professional-review-badge {
-                    background: rgba(39, 174, 96, 0.1);
-                    color: #27ae60;
-                    padding: 4px 8px;
-                    border-radius: 12px;
-                    font-size: 0.75rem;
-                    font-weight: 600;
-                    margin: 5px 0;
-                    display: flex;
-                    align-items: center;
-                    gap: 4px;
-                    border: 1px solid rgba(39, 174, 96, 0.2);
+                    0% { opacity: 0; transform: translateY(30px); }
+                    100% { opacity: 1; transform: translateY(0); }
                 }
                 
                 .discount-badge {
@@ -353,17 +312,6 @@
                 
                 .new-badge {
                     background: linear-gradient(135deg, #27ae60, #229954) !important;
-                }
-                
-                .no-products {
-                    text-align: center;
-                    padding: 60px 20px;
-                    color: var(--text-light);
-                }
-                
-                .no-products h3 {
-                    margin: 10px 0;
-                    color: var(--deep-blue);
                 }
                 
                 .filter-controls {
@@ -421,33 +369,25 @@
                         flex-direction: column;
                         align-items: stretch;
                     }
-                    
-                    .search-input {
-                        max-width: 100%;
-                    }
+                    .search-input { max-width: 100%; }
                 }
             `;
             document.head.appendChild(style);
         }
     }
     
-    // التهيئة الرئيسية
     function init() {
         addProductsCSS();
         
-        // تحديد نوع الصفحة وتحميل المنتجات المناسبة
         const currentPage = window.location.pathname.split('/').pop();
         
         if (currentPage === '' || currentPage === 'index.html') {
-            // الصفحة الرئيسية
             loadHomePageProducts();
         } else if (currentPage === 'products-showcase.html') {
-            // صفحة عرض المنتجات
             loadProductsShowcase();
         }
     }
     
-    // تصدير الوظائف للاستخدام الخارجي
     window.ProductsLoader = {
         loadAllProducts,
         loadHomePageProducts,
@@ -460,7 +400,6 @@
         getRatingsData: () => ratingsData
     };
     
-    // تشغيل عند تحميل الصفحة
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
