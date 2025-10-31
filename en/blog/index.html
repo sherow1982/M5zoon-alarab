@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Blog - Emirates Gifts Store | Perfume & Luxury Watch Guides</title>
-    <meta name="description" content="Discover expert guides about premium perfumes, luxury watches, and gift selection. Learn about fragrance families, watch care, and latest trends in luxury gifts.">
-    <meta name="keywords" content="perfume guide, luxury watch care, gift selection tips, fragrance families, premium brands, UAE luxury lifestyle">
+    <title>Blog - Emirates Gifts Store | Perfume Tips, Luxury Guides & Gift Ideas</title>
+    <meta name="description" content="Discover expert tips on perfumes, luxury watches, and gift ideas. Learn about fragrance selection, care tips, and latest trends in premium lifestyle products.">
+    <meta name="keywords" content="perfume tips, luxury watches guide, gift ideas UAE, fragrance selection, Arabian perfumes, Western perfumes">
     <meta name="robots" content="index, follow">
     
     <link rel="canonical" href="https://emirates-gifts.arabsad.com/en/blog/">
@@ -17,50 +17,83 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <link rel="stylesheet" href="../../css/dkhoon-inspired-style.css">
-    <link rel="stylesheet" href="../../css/mobile-responsive-fixes.css">
-    <link rel="stylesheet" href="../css/english-version-styles.css">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Blog",
-      "name": "Emirates Gifts Blog",
-      "description": "Expert guides about premium perfumes, luxury watches, and gift selection",
-      "url": "https://emirates-gifts.arabsad.com/en/blog/",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Emirates Gifts Store",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://emirates-gifts.arabsad.com/favicon.ico"
-        }
-      }
-    }
-    </script>
+    <link rel="stylesheet" href="../../css/dkhoon-inspired-style.css?v=20251101">
+    <link rel="stylesheet" href="../../css/mobile-responsive-fixes.css?v=20251101">
+    <link rel="stylesheet" href="../css/currency-fix-en.css?v=20251101">
     
     <style>
-    /* Blog-specific styles */
-    .blog-hero {
-        background: linear-gradient(135deg, var(--primary-gold) 0%, #B8941F 100%);
-        color: white;
-        padding: 80px 0;
-        text-align: center;
+    /* English Accessibility Improvements */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--deep-blue, #1B2951);
+        color: var(--light-gold, #FFD700);
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        z-index: 10000;
+        transition: top 0.3s ease;
+        border: 2px solid var(--primary-gold, #D4AF37);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .skip-link:focus {
+        top: 10px;
+    }
+    
+    @media (max-width: 768px) {
+        .skip-link {
+            left: 20px;
+            right: 20px;
+            transform: none;
+            text-align: center;
+        }
+    }
+    
+    body {
+        font-family: 'Inter', sans-serif !important;
+        direction: ltr !important;
+        text-align: left !important;
+    }
+    
+    .logo-subtitle {
+        font-family: 'Cairo', sans-serif !important;
+        direction: rtl !important;
+    }
+    
+    .arabic-link {
+        background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+        color: white !important;
+        border-radius: 25px;
+        padding: 8px 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        font-family: 'Cairo', sans-serif !important;
+        direction: rtl;
     }
     
     .blog-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 40px;
-        margin: 60px 0;
+        gap: 30px;
+        margin: 40px 0;
     }
     
     .blog-card {
         background: white;
-        border-radius: 15px;
+        border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         transition: all 0.3s ease;
+        position: relative;
     }
     
     .blog-card:hover {
@@ -72,26 +105,40 @@
         width: 100%;
         height: 250px;
         object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .blog-card:hover .blog-image {
+        transform: scale(1.05);
     }
     
     .blog-content {
         padding: 30px;
     }
     
-    .blog-category {
-        color: var(--primary-gold);
-        font-size: 14px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+    .blog-meta {
+        display: flex;
+        align-items: center;
+        gap: 15px;
         margin-bottom: 15px;
+        color: #666;
+        font-size: 0.9rem;
+    }
+    
+    .blog-category {
+        background: var(--primary-gold, #D4AF37);
+        color: var(--deep-blue, #1B2951);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.8rem;
     }
     
     .blog-title {
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 700;
+        color: var(--deep-blue, #1B2951);
         margin-bottom: 15px;
-        color: #1a1a1a;
         line-height: 1.3;
     }
     
@@ -101,51 +148,52 @@
         margin-bottom: 20px;
     }
     
-    .blog-meta {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        font-size: 14px;
-        color: #999;
-        margin-bottom: 20px;
-    }
-    
-    .blog-date {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-    
-    .blog-read-time {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-    
-    .read-more-btn {
-        color: var(--primary-gold);
-        font-weight: 600;
+    .blog-read-more {
+        color: var(--primary-gold, #D4AF37);
         text-decoration: none;
+        font-weight: 600;
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 5px;
         transition: all 0.3s ease;
     }
     
-    .read-more-btn:hover {
-        color: #B8941F;
-        transform: translateX(5px);
+    .blog-read-more:hover {
+        color: var(--deep-blue, #1B2951);
+        gap: 10px;
+    }
+    
+    .featured-article {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+    
+    @media (max-width: 768px) {
+        .featured-article {
+            grid-template-columns: 1fr;
+        }
+        
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
     }
     </style>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <div class="progress-bar" id="progressBar"></div>
     
     <div class="top-banner">
         <div class="banner-text">
             <i class="fas fa-blog banner-icon"></i>
-            <span>Expert guides • Luxury lifestyle tips • Premium product insights</span>
-            <i class="fas fa-star banner-icon"></i>
+            <span>Expert tips & guides • Perfume care • Luxury lifestyle • Gift ideas</span>
+            <i class="fas fa-lightbulb banner-icon"></i>
         </div>
     </div>
 
@@ -153,7 +201,7 @@
         <div class="header-container">
             <div class="header-content">
                 <a href="../" class="logo" aria-label="Home - Emirates Gifts">
-                    <div class="logo-icon"><img src="../../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;"></div>
+                    <div class="logo-icon"><img src="../../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;" loading="eager"></div>
                     <div class="logo-text">
                         <div class="logo-title">Emirates Gifts</div>
                         <div class="logo-subtitle">هدايا الإمارات</div>
@@ -164,9 +212,8 @@
                     <ul class="nav-menu">
                         <li class="nav-item"><a href="../" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="../products-showcase.html" class="nav-link" target="_blank" rel="noopener">All Products</a></li>
-                        <li class="nav-item"><a href="../#perfumes-section" class="nav-link">Perfumes</a></li>
-                        <li class="nav-item"><a href="../#watches-section" class="nav-link">Watches</a></li>
-                        <li class="nav-item"><a href="./" class="nav-link active" aria-current="page">Blog</a></li>
+                        <li class="nav-item"><a href="../blog/" class="nav-link active" aria-current="page">Blog</a></li>
+                        <li class="nav-item"><a href="../about.html" class="nav-link">About</a></li>
                         <li class="nav-item">
                             <a href="../../" class="nav-link arabic-link" target="_blank" rel="noopener">
                                 <i class="fas fa-globe"></i> العربية
@@ -177,193 +224,197 @@
                 </nav>
 
                 <div class="header-tools">
-                    <a href="../cart.html" class="header-tool cart-icon" aria-label="View Cart" title="View Cart">
+                    <a href="../cart.html" class="header-tool cart-icon" aria-label="View Cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter">0</span>
                     </a>
-                    <a href="../checkout.html" class="header-tool order-now-btn" aria-label="Order Now" title="Order Now">
+                    <a href="../checkout.html" class="header-tool order-now-btn" aria-label="Order Now">
                         <i class="fas fa-credit-card"></i>
                         <span>Order Now</span>
                     </a>
-                    <button class="mobile-menu-toggle" id="openSidebar" aria-label="Open Menu" title="Open Menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="main-content">
-        <section class="blog-hero">
+    <main id="main-content" tabindex="-1">
+        <section class="page-header">
             <div class="container">
-                <h1>Emirates Gifts Blog</h1>
-                <p>Discover expert insights about luxury perfumes, premium watches, and exclusive gift selections</p>
+                <div class="breadcrumb">
+                    <a href="../">Home</a> <i class="fas fa-chevron-right"></i> <span>Blog</span>
+                </div>
+                <h1 class="page-title">Emirates Gifts Blog</h1>
+                <p class="page-subtitle">Expert insights on perfumes, luxury watches, and premium lifestyle</p>
             </div>
         </section>
 
         <section class="blog-section">
             <div class="container">
                 <div class="blog-grid">
-                    <article class="blog-card">
-                        <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=250&fit=crop" alt="Premium perfume collection guide" class="blog-image">
+                    <!-- Featured Article -->
+                    <article class="blog-card featured-article">
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&h=400&fit=crop" 
+                                 alt="Perfume collection guide" 
+                                 class="blog-image"
+                                 loading="lazy">
+                        </div>
                         <div class="blog-content">
-                            <div class="blog-category">Perfume Guide</div>
-                            <h2 class="blog-title">The Ultimate Guide to Choosing Your Signature Fragrance</h2>
                             <div class="blog-meta">
-                                <div class="blog-date">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>October 30, 2024</span>
-                                </div>
-                                <div class="blog-read-time">
-                                    <i class="fas fa-clock"></i>
-                                    <span>5 min read</span>
-                                </div>
+                                <span class="blog-category">Featured</span>
+                                <span><i class="fas fa-calendar"></i> October 31, 2024</span>
+                                <span><i class="fas fa-clock"></i> 5 min read</span>
                             </div>
+                            <h2 class="blog-title">The Ultimate Guide to Building Your Perfume Collection</h2>
                             <p class="blog-excerpt">
-                                Discover how to select the perfect fragrance that matches your personality and lifestyle. 
-                                Learn about fragrance families, longevity, and seasonal preferences from our perfume experts.
+                                Discover the art of curating a personal perfume collection that reflects your unique style and personality. From signature scents to seasonal selections, learn how to build a versatile fragrance wardrobe.
                             </p>
-                            <a href="#" class="read-more-btn">
+                            <a href="#" class="blog-read-more">
                                 Read Full Article <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </article>
 
+                    <!-- Regular Articles -->
                     <article class="blog-card">
-                        <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=400&h=250&fit=crop" alt="Luxury watch care guide" class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1594736797933-d0f06ba09a74?w=400&h=250&fit=crop" 
+                             alt="Arabian perfumes" 
+                             class="blog-image"
+                             loading="lazy">
                         <div class="blog-content">
-                            <div class="blog-category">Watch Care</div>
-                            <h2 class="blog-title">Essential Tips for Maintaining Your Luxury Watch</h2>
                             <div class="blog-meta">
-                                <div class="blog-date">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>October 28, 2024</span>
-                                </div>
-                                <div class="blog-read-time">
-                                    <i class="fas fa-clock"></i>
-                                    <span>7 min read</span>
-                                </div>
+                                <span class="blog-category">Perfumes</span>
+                                <span><i class="fas fa-calendar"></i> Oct 30, 2024</span>
+                                <span><i class="fas fa-clock"></i> 3 min read</span>
                             </div>
+                            <h3 class="blog-title">Eastern vs Western Perfumes: Understanding the Difference</h3>
                             <p class="blog-excerpt">
-                                Learn professional tips to keep your luxury timepiece in perfect condition. 
-                                From daily care to professional servicing, ensure your investment lasts a lifetime.
+                                Explore the rich heritage of Eastern perfumery and the elegant sophistication of Western fragrances. Learn what makes each style unique.
                             </p>
-                            <a href="#" class="read-more-btn">
-                                Read Full Article <i class="fas fa-arrow-right"></i>
+                            <a href="#" class="blog-read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </article>
 
                     <article class="blog-card">
-                        <img src="https://images.unsplash.com/photo-1549062572-544a64fb0c56?w=400&h=250&fit=crop" alt="Gift selection guide" class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1523170335258-f5c216cf6f84?w=400&h=250&fit=crop" 
+                             alt="Luxury watches" 
+                             class="blog-image"
+                             loading="lazy">
                         <div class="blog-content">
-                            <div class="blog-category">Gift Guide</div>
-                            <h2 class="blog-title">Perfect Luxury Gifts for Every Occasion</h2>
                             <div class="blog-meta">
-                                <div class="blog-date">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>October 26, 2024</span>
-                                </div>
-                                <div class="blog-read-time">
-                                    <i class="fas fa-clock"></i>
-                                    <span>6 min read</span>
-                                </div>
+                                <span class="blog-category">Watches</span>
+                                <span><i class="fas fa-calendar"></i> Oct 29, 2024</span>
+                                <span><i class="fas fa-clock"></i> 4 min read</span>
                             </div>
+                            <h3 class="blog-title">How to Choose the Perfect Luxury Watch</h3>
                             <p class="blog-excerpt">
-                                Whether it's a birthday, anniversary, or corporate gift, discover how to choose 
-                                the perfect luxury present that will leave a lasting impression.
+                                A comprehensive guide to selecting a luxury timepiece that combines style, functionality, and investment value.
                             </p>
-                            <a href="#" class="read-more-btn">
-                                Read Full Article <i class="fas fa-arrow-right"></i>
+                            <a href="#" class="blog-read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </article>
 
                     <article class="blog-card">
-                        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&h=250&fit=crop" alt="Eastern perfumes guide" class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1549062572-544a64fb0c56?w=400&h=250&fit=crop" 
+                             alt="Gift wrapping" 
+                             class="blog-image"
+                             loading="lazy">
                         <div class="blog-content">
-                            <div class="blog-category">Eastern Fragrances</div>
-                            <h2 class="blog-title">The Art of Eastern Perfumery: A Cultural Journey</h2>
                             <div class="blog-meta">
-                                <div class="blog-date">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>October 24, 2024</span>
-                                </div>
-                                <div class="blog-read-time">
-                                    <i class="fas fa-clock"></i>
-                                    <span>8 min read</span>
-                                </div>
+                                <span class="blog-category">Gift Ideas</span>
+                                <span><i class="fas fa-calendar"></i> Oct 28, 2024</span>
+                                <span><i class="fas fa-clock"></i> 2 min read</span>
                             </div>
+                            <h3 class="blog-title">Perfect Gift Ideas for Every Occasion</h3>
                             <p class="blog-excerpt">
-                                Explore the rich heritage of Eastern perfumery, from traditional oud to modern interpretations. 
-                                Understand the cultural significance and artistry behind these timeless fragrances.
+                                From birthdays to anniversaries, discover thoughtful gift ideas that will make your loved ones feel special.
                             </p>
-                            <a href="#" class="read-more-btn">
-                                Read Full Article <i class="fas fa-arrow-right"></i>
+                            <a href="#" class="blog-read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </article>
 
                     <article class="blog-card">
-                        <img src="https://images.unsplash.com/photo-1594736797933-d0b22ed0ef2b?w=400&h=250&fit=crop" alt="Seasonal fragrance guide" class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=400&h=250&fit=crop" 
+                             alt="Perfume care" 
+                             class="blog-image"
+                             loading="lazy">
                         <div class="blog-content">
-                            <div class="blog-category">Seasonal Guide</div>
-                            <h2 class="blog-title">Choosing Fragrances for UAE Climate</h2>
                             <div class="blog-meta">
-                                <div class="blog-date">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>October 22, 2024</span>
-                                </div>
-                                <div class="blog-read-time">
-                                    <i class="fas fa-clock"></i>
-                                    <span>4 min read</span>
-                                </div>
+                                <span class="blog-category">Care Tips</span>
+                                <span><i class="fas fa-calendar"></i> Oct 27, 2024</span>
+                                <span><i class="fas fa-clock"></i> 3 min read</span>
                             </div>
+                            <h3 class="blog-title">How to Store Your Perfumes Properly</h3>
                             <p class="blog-excerpt">
-                                Navigate the unique UAE climate with our expert fragrance recommendations. 
-                                Learn which scents work best in heat and humidity for lasting elegance.
+                                Learn the best practices for storing your precious fragrances to maintain their quality and longevity.
                             </p>
-                            <a href="#" class="read-more-btn">
-                                Read Full Article <i class="fas fa-arrow-right"></i>
+                            <a href="#" class="blog-read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </article>
 
                     <article class="blog-card">
-                        <img src="https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=400&h=250&fit=crop" alt="Watch investment guide" class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop" 
+                             alt="Seasonal perfumes" 
+                             class="blog-image"
+                             loading="lazy">
                         <div class="blog-content">
-                            <div class="blog-category">Investment Guide</div>
-                            <h2 class="blog-title">Luxury Watches as Investment Pieces</h2>
                             <div class="blog-meta">
-                                <div class="blog-date">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>October 20, 2024</span>
-                                </div>
-                                <div class="blog-read-time">
-                                    <i class="fas fa-clock"></i>
-                                    <span>9 min read</span>
-                                </div>
+                                <span class="blog-category">Seasonal</span>
+                                <span><i class="fas fa-calendar"></i> Oct 26, 2024</span>
+                                <span><i class="fas fa-clock"></i> 4 min read</span>
                             </div>
+                            <h3 class="blog-title">Best Perfumes for UAE Climate</h3>
                             <p class="blog-excerpt">
-                                Understand which luxury watches hold their value and appreciate over time. 
-                                Expert insights on brands, models, and market trends for smart collectors.
+                                Discover which fragrances work best in the UAE's unique climate and how to choose scents that last all day.
                             </p>
-                            <a href="#" class="read-more-btn">
-                                Read Full Article <i class="fas fa-arrow-right"></i>
+                            <a href="#" class="blog-read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <img src="https://images.unsplash.com/photo-1565206077212-4bdde7ad8b3b?w=400&h=250&fit=crop" 
+                             alt="Luxury lifestyle" 
+                             class="blog-image"
+                             loading="lazy">
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Lifestyle</span>
+                                <span><i class="fas fa-calendar"></i> Oct 25, 2024</span>
+                                <span><i class="fas fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h3 class="blog-title">The Art of Luxury: Elevating Your Everyday</h3>
+                            <p class="blog-excerpt">
+                                Small touches that make a big difference in your daily luxury experience, from fragrance layering to watch maintenance.
+                            </p>
+                            <a href="#" class="blog-read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </article>
                 </div>
                 
-                <!-- Newsletter Signup -->
-                <div class="newsletter-section" style="background: #f8f9fa; padding: 60px 40px; border-radius: 20px; text-align: center; margin: 60px 0;">
-                    <h3 style="margin-bottom: 20px; color: var(--primary-gold);">Stay Updated with Luxury Insights</h3>
-                    <p style="margin-bottom: 30px; color: #666;">Get expert tips, product updates, and exclusive offers delivered to your inbox</p>
-                    <div style="display: flex; max-width: 400px; margin: 0 auto; gap: 10px;">
-                        <input type="email" placeholder="Enter your email address" style="flex: 1; padding: 15px; border: 2px solid #e1e5e9; border-radius: 10px; font-family: var(--font-family-primary);">
-                        <button type="button" class="btn-primary" style="padding: 15px 25px;">
-                            <i class="fas fa-paper-plane"></i> Subscribe
-                        </button>
+                <div class="blog-cta" style="text-align: center; margin: 60px 0;">
+                    <h2>Inspired by Our Articles?</h2>
+                    <p>Explore our premium collection and find your perfect fragrance or timepiece</p>
+                    <div class="hero-cta">
+                        <a href="../products-showcase.html" class="btn-primary" target="_blank" rel="noopener">
+                            <i class="fas fa-shopping-bag"></i>
+                            Shop Premium Collection
+                        </a>
+                        <a href="https://wa.me/201110760081" class="btn-secondary" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i>
+                            Get Expert Advice
+                        </a>
                     </div>
                 </div>
             </div>
@@ -374,54 +425,58 @@
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Emirates Gifts</h3>
-                    <p>Premium perfumes, luxury watches, and expert lifestyle insights.</p>
+                    <h3>Emirates Gifts Blog</h3>
+                    <p>Expert insights, tips, and guides for perfume enthusiasts and luxury lifestyle lovers in the UAE.</p>
                     <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
 
                 <div class="footer-section">
-                    <h3>Blog Categories</h3>
+                    <h3>Categories</h3>
                     <ul>
-                        <li><a href="#">Perfume Guides</a></li>
-                        <li><a href="#">Watch Care</a></li>
-                        <li><a href="#">Gift Selection</a></li>
-                        <li><a href="#">Luxury Lifestyle</a></li>
-                        <li><a href="#">Product Reviews</a></li>
-                        <li><a href="../../" target="_blank" rel="noopener" style="color: #D4AF37;"><i class="fas fa-globe"></i> عربي</a></li>
+                        <li><a href="#">Perfume Tips</a></li>
+                        <li><a href="#">Luxury Watches</a></li>
+                        <li><a href="#">Gift Ideas</a></li>
+                        <li><a href="#">Care Guides</a></li>
+                        <li><a href="#">Lifestyle</a></li>
+                        <li><a href="../../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> العربية</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h3>Quick Links</h3>
+                    <h3>Shop</h3>
                     <ul>
                         <li><a href="../">Home</a></li>
                         <li><a href="../products-showcase.html" target="_blank" rel="noopener">All Products</a></li>
-                        <li><a href="../about.html">About Us</a></li>
-                        <li><a href="../checkout.html" style="color: #25D366; font-weight: bold;">Order Now</a></li>
+                        <li><a href="../cart.html">Shopping Cart</a></li>
+                        <li><a href="../checkout.html">Order Now</a></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank" rel="noopener">WhatsApp Order</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h3>Contact Us</h3>
+                    <h3>Customer Service</h3>
                     <ul>
                         <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
                         <li><i class="fas fa-envelope"></i><a href="mailto:blog@emirates-gifts.com">blog@emirates-gifts.com</a></li>
-                        <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/201110760081" target="_blank" rel="noopener">WhatsApp 24/7</a></li>
+                        <li><i class="fas fa-clock"></i><span>Available 24/7</span></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Article Suggestions</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
                 <div class="footer-legal">
-                    <p>&copy; 2024 Emirates Gifts. All rights reserved.</p>
+                    <p>&copy; 2024 Emirates Gifts Blog. All rights reserved.</p>
                     <div class="legal-links">
                         <a href="../privacy-policy.html">Privacy</a>
                         <a href="../terms-conditions.html">Terms</a>
+                        <a href="../shipping-policy.html">Shipping</a>
+                        <a href="../return-policy.html">Returns</a>
                         <a href="../../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> عربي</a>
                     </div>
                 </div>
@@ -433,28 +488,61 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    <div class="mobile-sidebar" id="mobileSidebar">
-        <div class="mobile-sidebar-header">
-            <div class="mobile-sidebar-logo">Emirates Gifts</div>
-            <button class="mobile-sidebar-close" id="closeSidebar" aria-label="Close Menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <nav class="mobile-sidebar-nav">
-            <a href="../"><i class="fas fa-home"></i> Home</a>
-            <a href="../products-showcase.html" target="_blank" rel="noopener"><i class="fas fa-th-large"></i> All Products</a>
-            <a href="./" class="active"><i class="fas fa-blog"></i> Blog</a>
-            <a href="../about.html"><i class="fas fa-info-circle"></i> About Us</a>
-            <a href="../cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
-            <a href="../checkout.html" class="order-now-btn"><i class="fas fa-credit-card"></i> Order Now</a>
-            <a href="../../" target="_blank" rel="noopener" class="arabic-link"><i class="fas fa-globe"></i> عربي</a>
-            <a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </nav>
-    </div>
-
-    <script src="../../js/ui.js"></script>
-    <script src="../../js/main.js"></script>
-    <script src="../js/english-version.js"></script>
+    <!-- Load English Scripts -->
+    <script src="../../js/dom-optimization.js?v=20251101" defer></script>
+    <script src="../js/ui-en.js?v=20251101" defer></script>
+    <script src="../js/main-en.js?v=20251101" defer></script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('English blog page initialized - v20251101');
+        
+        // Add smooth animations for blog cards
+        const blogCards = document.querySelectorAll('.blog-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        blogCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            observer.observe(card);
+        });
+        
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .blog-card:hover .blog-title {
+                color: var(--primary-gold, #D4AF37);
+                transition: color 0.3s ease;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Add interactive category filtering (future enhancement)
+        const categories = document.querySelectorAll('.blog-category');
+        categories.forEach(category => {
+            category.style.cursor = 'pointer';
+            category.addEventListener('click', function() {
+                console.log('Filter by category:', this.textContent);
+                // Future: implement category filtering
+            });
+        });
+    });
+    </script>
 </body>
 </html>
