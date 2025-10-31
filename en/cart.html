@@ -301,12 +301,13 @@
         </nav>
     </div>
 
-    <script src="../js/ui.js"></script>
-    <script src="../js/cart-system.js"></script>
-    <script src="../js/reviews-system.js"></script>
-    <script src="../js/popup-system.js"></script>
-    <script src="../js/products-loader.js"></script>
-    <script src="../js/main.js"></script>
+    <!-- Load correct English version scripts -->
+    <script src="./js/ui-en.js"></script>
+    <script src="./js/cart-en.js"></script>
+    <script src="./js/reviews-system-en.js"></script>
+    <script src="./js/popup-system-en.js"></script>
+    <script src="./js/products-loader-en.js"></script>
+    <script src="./js/main-en.js"></script>
     
     <script>
     // English version cart customizations
@@ -315,18 +316,18 @@
         const updateEnglishText = () => {
             // Empty cart messages
             const emptyCartTitle = document.querySelector('.empty-cart h2');
-            if (emptyCartTitle) {
+            if (emptyCartTitle && emptyCartTitle.textContent !== 'Your luxury collection awaits') {
                 emptyCartTitle.textContent = 'Your luxury collection awaits';
             }
             
             const emptyCartDesc = document.querySelector('.empty-cart p');
-            if (emptyCartDesc) {
+            if (emptyCartDesc && !emptyCartDesc.textContent.includes('shopping cart is currently empty')) {
                 emptyCartDesc.textContent = 'Your shopping cart is currently empty. Discover our premium perfumes and luxury watches collection.';
             }
             
             // Update button texts
             const startShoppingBtn = document.querySelector('.empty-cart .btn-primary');
-            if (startShoppingBtn && !startShoppingBtn.querySelector('i')) {
+            if (startShoppingBtn && !startShoppingBtn.innerHTML.includes('Start Shopping')) {
                 startShoppingBtn.innerHTML = '<i class="fas fa-shopping-bag"></i> Start Shopping';
             }
             
