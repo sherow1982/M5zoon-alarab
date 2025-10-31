@@ -6,77 +6,18 @@
     <title>404 - الصفحة غير موجودة | متجر هدايا الإمارات</title>
     <meta name="description" content="الصفحة التي تبحث عنها غير موجودة. عد إلى متجر هدايا الإمارات">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #2C3E50;
-            direction: rtl;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .error-container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 60px 40px;
-            border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 600px;
-            width: 90%;
-        }
-        
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #2C3E50; direction: rtl; margin: 0; padding: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .error-container { background: rgba(255, 255, 255, 0.95); padding: 60px 40px; border-radius: 25px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); text-align: center; max-width: 600px; width: 90%; }
         .error-icon { font-size: 6rem; margin-bottom: 20px; }
         .error-code { font-size: 4rem; font-weight: 800; color: #e74c3c; margin: 0; }
         .error-title { font-size: 2rem; font-weight: 700; color: #2c3e50; margin: 20px 0; }
         .error-description { font-size: 1.2rem; color: #666; margin-bottom: 40px; }
-        
-        .error-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .btn {
-            padding: 15px 25px;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #FFD700, #D4AF37);
-            color: #2c3e50;
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        @media (max-width: 768px) {
-            .error-actions { grid-template-columns: 1fr; }
-            .error-container { padding: 40px 25px; }
-        }
+        .error-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .btn { padding: 15px 25px; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease; }
+        .btn-primary { background: linear-gradient(135deg, #FFD700, #D4AF37); color: #2c3e50; }
+        .btn-secondary { background: transparent; color: #667eea; border: 2px solid #667eea; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
+        @media (max-width: 768px) { .error-actions { grid-template-columns: 1fr; } .error-container { padding: 40px 25px; } }
     </style>
 </head>
 <body>
@@ -84,30 +25,25 @@
         <div class="error-icon">🗺️</div>
         <h1 class="error-code">404</h1>
         <h2 class="error-title">الصفحة غير موجودة</h2>
-        <p class="error-description">
-            عذراً، الصفحة التي تبحث عنها غير موجودة.<br>
-            عد إلى متجر هدايا الإمارات واكتشف منتجاتنا الرائعة.
-        </p>
-        
+        <p class="error-description">عذراً، الصفحة التي تبحث عنها غير موجودة.<br> عد إلى متجر هدايا الإمارات واكتشف منتجاتنا الرائعة.</p>
         <div class="error-actions">
-            <a href="./" class="btn btn-primary">
-                🏠 العودة للرئيسية
-            </a>
-            <a href="./products-showcase.html" class="btn btn-secondary">
-                🛍 تصفح المنتجات
-            </a>
+            <a href="./" class="btn btn-primary">🏠 العودة للرئيسية</a>
+            <a href="./products-showcase.html" class="btn btn-secondary">🛍 تصفح المنتجات</a>
         </div>
-        
-        <div style="margin-top: 30px; color: #666; font-size: 0.9rem;">
-            🏆 <strong>متجر هدايا الإمارات</strong> - وجهتك الموثوقة للعطور والهدايا الفاخرة
-        </div>
+        <div style="margin-top: 30px; color: #666; font-size: 0.9rem;">🏆 <strong>متجر هدايا الإمارات</strong> - وجهتك الموثوقة للعطور والهدايا الفاخرة</div>
     </div>
-    
     <script>
-        // تحويل تلقائي بعد 10 ثوان
-        setTimeout(() => {
-            window.location.href = './';
-        }, 10000);
+      (function(){
+        const path = location.pathname;
+        if(path.startsWith('/product/')){
+          const slug = decodeURIComponent(path.replace('/product/',''));
+          const url = `./product-details.html?slug=${encodeURIComponent(slug)}`;
+          location.replace(url);
+        } else {
+          // تحويل تلقائي بعد 10 ثوان للرئيسية
+          setTimeout(() => { window.location.href = './'; }, 10000);
+        }
+      })();
     </script>
 </body>
 </html>
