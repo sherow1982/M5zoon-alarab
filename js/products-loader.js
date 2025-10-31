@@ -5,17 +5,7 @@
     'use strict';
     
     let allProducts = [];
-    let reviewsGenerator = null;
     let isLoading = false;
-    
-    // إعداد مولد التقييمات
-    function initReviewsGenerator() {
-        if (typeof window.uaeReviewsGenerator !== 'undefined') {
-            reviewsGenerator = window.uaeReviewsGenerator;
-        } else {
-            console.warn('مولد التقييمات غير متاح');
-        }
-    }
     
     // توليد slug عربي آمن
     function arabicSlugify(text) {
@@ -33,8 +23,7 @@
     // إنشاء رابط المسار الجميل
     function buildPrettyURL(product) {
         const slug = arabicSlugify(product.title);
-        const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '');
-        return `${baseUrl}/product/${encodeURIComponent(slug)}?id=${product.id}&category=${product.categoryEn}`;
+        return `./product-details.html?id=${product.id}&category=${product.categoryEn}&slug=${encodeURIComponent(slug)}`;
     }
     
     // إضافة للسلة
@@ -149,23 +138,7 @@
                 console.log(`✅ تم تحميل ${watches.length} ساعة`);
             }
             
-            // توليد التقييمات لجميع المنتجات
-            if (reviewsGenerator) {
-                allProducts.forEach(product => {
-                    const reviewCount = Math.floor(Math.random() * 6) + 15; // 15-20 تقييم
-                    const category = product.type === 'perfume' ? 'perfumes' : (product.type === 'watch' ? 'watches' : 'gifts');
-                    
-                    // توليد التقييمات
-                    const reviews = reviewsGenerator.generateReviewsForProduct(product.title, category, reviewCount);
-                    
-                    // حفظ بيانات التقييم في المنتج
-                    product.reviews = reviews;
-                    product.averageRating = reviewsGenerator.calculateAverageRating(reviews);
-                    product.totalReviews = reviews.length;
-                });
-            }
-            
-            console.log(`🎯 إجمالي المنتجات المحملة: ${allProducts.length}`);
+            console.log(`🎆 إجمالي المنتجات المحملة: ${allProducts.length}`);
             
         } catch (error) {
             console.error('خطأ في تحميل المنتجات:', error);
@@ -181,10 +154,19 @@
         const prettyUrl = buildPrettyURL(product);
         const whatsappMessage = encodeURIComponent(`مرحباً! أريد طلب "${product.title}" بسعر ${product.sale_price} درهم مع التوصيل المجاني`);
         
-        // التقييمات المختصرة للبطاقة
-        const averageRating = parseFloat(product.averageRating) || 4.5;
-        const totalReviews = product.totalReviews || 0;
-        const starsHTML = generateStarsHTML(averageRating);
+        // الحصول على التقييمات من النظام الثابت
+        let averageRating = 4.5;
+        let totalReviews = 0;
+        let starsHTML = '★★★★☆';
+        
+        if (window.persistentReviews) {
+            const productReviews = window.persistentReviews.getProductReviews(product.id);
+            if (productReviews) {
+                averageRating = parseFloat(productReviews.averageRating);
+                totalReviews = productReviews.totalCount;
+                starsHTML = generateStarsHTML(averageRating);
+            }
+        }
         
         return `
             <div class="product-card emirates-element" data-product-id="${product.id}" data-category="${product.categoryEn}" style="animation-delay: ${index * 0.1}s;">
@@ -205,7 +187,7 @@
                     </div>
                     
                     <div class="product-overlay">
-                        <a href="${prettyUrl}" class="overlay-btn eye-link" title="عرض التفاصيل" style="display: flex; align-items: center; justify-content: center; gap: 5px; text-decoration: none; color: white; font-size: 0.9rem; font-weight: 600;">
+                        <a href="${prettyUrl}" target="_blank" class="overlay-btn eye-link" title="عرض التفاصيل" style="display: flex; align-items: center; justify-content: center; gap: 5px; text-decoration: none; color: white; font-size: 0.9rem; font-weight: 600;">
                             <i class="fas fa-eye"></i>
                             <span>التفاصيل</span>
                         </a>
@@ -215,7 +197,7 @@
                 <div class="product-info">
                     <div class="product-category">${product.categoryIcon} ${product.category}</div>
                     <h3 class="product-title">
-                        <a href="${prettyUrl}" class="product-title-link" style="color: inherit; text-decoration: none; font-weight: 700;">
+                        <a href="${prettyUrl}" target="_blank" class="product-title-link" style="color: inherit; text-decoration: none; font-weight: 700;">
                             ${product.title}
                         </a>
                     </h3>
@@ -229,8 +211,9 @@
                     <!-- التقييمات -->
                     <div class="product-rating-display" style="display: flex; align-items: center; gap: 8px; margin: 12px 0; padding: 8px 12px; background: rgba(255, 215, 0, 0.1); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.3);">
                         <div class="stars" style="color: #FFD700; font-size: 1rem;">${starsHTML}</div>
-                        <span class="rating-number" style="font-weight: bold; color: #D4AF37; font-size: 0.9rem;">${averageRating}</span>
+                        <span class="rating-number" style="font-weight: bold; color: #D4AF37; font-size: 0.9rem;">${averageRating.toFixed(1)}</span>
                         <span class="reviews-count" style="color: #666; font-size: 0.85rem;">(مراجعة ${totalReviews})</span>
+                        <span class="verified-badge" style="background: #25D366; color: white; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 600;">✓ موثق</span>
                     </div>
                     
                     <div class="product-actions" style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-top: 15px;">
@@ -330,43 +313,71 @@
     }
     
     async function loadHomePageProducts() {
-        // التأكد مة إعداد مولد التقييمات
-        initReviewsGenerator();
-        
         await loadAllProducts();
         
-        // أحدث العطور (8 منتجات)
-        const latestPerfumes = allProducts
-            .filter(p => p.type === 'perfume')
-            .slice(0, 8);
-        displayProducts(latestPerfumes, 'latestPerfumes', 8);
+        // انتظار تحميل نظام التقييمات قبل العرض
+        const waitForReviews = setInterval(() => {
+            if (window.persistentReviews && window.persistentReviews.isInitialized) {
+                clearInterval(waitForReviews);
+                displayHomeProducts();
+            }
+        }, 100);
         
-        // أحدث الساعات (8 منتجات)
-        const latestWatches = allProducts
-            .filter(p => p.type === 'watch')
-            .slice(0, 8);
-        displayProducts(latestWatches, 'latestWatches', 8);
+        // timeout احتياطي بعد 5 ثوانِ
+        setTimeout(() => {
+            clearInterval(waitForReviews);
+            displayHomeProducts();
+        }, 5000);
         
-        // منتجات مميزة مختلطة (12 منتج)
-        const featuredProducts = allProducts
-            .sort(() => 0.5 - Math.random())
-            .slice(0, 12);
-        displayProducts(featuredProducts, 'featuredProducts', 12);
-        
-        // أفضل العروض
-        const bestDeals = allProducts
-            .filter(p => parseFloat(p.price) !== parseFloat(p.sale_price))
-            .sort((a, b) => (parseFloat(b.price) - parseFloat(b.sale_price)) - (parseFloat(a.price) - parseFloat(a.sale_price)))
-            .slice(0, 6);
-        displayProducts(bestDeals, 'bestDeals', 6);
+        function displayHomeProducts() {
+            // أحدث العطور (8 منتجات)
+            const latestPerfumes = allProducts
+                .filter(p => p.type === 'perfume')
+                .slice(0, 8);
+            displayProducts(latestPerfumes, 'perfumes-grid', 8);
+            
+            // أحدث الساعات (8 منتجات)
+            const latestWatches = allProducts
+                .filter(p => p.type === 'watch')
+                .slice(0, 8);
+            displayProducts(latestWatches, 'watches-grid', 8);
+            
+            // منتجات مميزة مختلطة (12 منتج)
+            const featuredProducts = allProducts
+                .sort(() => 0.5 - Math.random())
+                .slice(0, 12);
+            displayProducts(featuredProducts, 'featuredProducts', 12);
+            
+            // أفضل العروض
+            const bestDeals = allProducts
+                .filter(p => parseFloat(p.price) !== parseFloat(p.sale_price))
+                .sort((a, b) => (parseFloat(b.price) - parseFloat(b.sale_price)) - (parseFloat(a.price) - parseFloat(a.sale_price)))
+                .slice(0, 6);
+            displayProducts(bestDeals, 'bestDeals', 6);
+            
+            console.log('🎆 تم عرض جميع منتجات الصفحة الرئيسية');
+        }
     }
     
     async function loadProductsShowcase() {
-        initReviewsGenerator();
         await loadAllProducts();
-        displayProducts(allProducts, 'allProductsGrid');
-        setupFiltering();
-        setupSorting();
+        
+        // انتظار تحميل نظام التقييمات
+        const waitForReviews = setInterval(() => {
+            if (window.persistentReviews && window.persistentReviews.isInitialized) {
+                clearInterval(waitForReviews);
+                displayProducts(allProducts, 'allProductsGrid');
+                setupFiltering();
+                setupSorting();
+            }
+        }, 100);
+        
+        setTimeout(() => {
+            clearInterval(waitForReviews);
+            displayProducts(allProducts, 'allProductsGrid');
+            setupFiltering();
+            setupSorting();
+        }, 5000);
     }
     
     function setupFiltering() {
@@ -429,7 +440,13 @@
                         sortedProducts.sort((a, b) => parseFloat(b.sale_price) - parseFloat(a.sale_price));
                         break;
                     case 'rating':
-                        sortedProducts.sort((a, b) => parseFloat(b.averageRating || 4.5) - parseFloat(a.averageRating || 4.5));
+                        sortedProducts.sort((a, b) => {
+                            const ratingA = window.persistentReviews ? 
+                                parseFloat(window.persistentReviews.getProductReviews(a.id)?.averageRating || 4.5) : 4.5;
+                            const ratingB = window.persistentReviews ? 
+                                parseFloat(window.persistentReviews.getProductReviews(b.id)?.averageRating || 4.5) : 4.5;
+                            return ratingB - ratingA;
+                        });
                         break;
                     case 'newest':
                     default:
@@ -571,7 +588,6 @@
     
     function init() {
         addProductsCSS();
-        initReviewsGenerator();
         
         const currentPage = window.location.pathname.split('/').pop();
         
