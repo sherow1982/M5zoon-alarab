@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="../css/button-spacing-fixes.css">
     <link rel="stylesheet" href="../css/final-button-appearance-fix.css">
     <link rel="stylesheet" href="./css/products-showcase-en.css">
+    <link rel="stylesheet" href="./css/currency-fix-en.css">
     
     <script type="application/ld+json">
     {
@@ -87,49 +88,6 @@
         box-shadow: 0 4px 15px rgba(200, 16, 46, 0.5);
         color: white !important;
         border-color: #D4AF37;
-    }
-    
-    /* Currency Display Fix - AED only */
-    .current-price::after {
-        content: " AED" !important;
-        color: #666;
-        font-size: 0.8em;
-        font-weight: normal;
-    }
-    
-    .original-price::after {
-        content: " AED" !important;
-        color: #999;
-        font-size: 0.8em;
-        font-weight: normal;
-    }
-    
-    /* Remove any dollar signs */
-    .current-price,
-    .original-price {
-        font-family: 'Inter', sans-serif;
-    }
-    
-    /* Search and filter labels */
-    .search-filters {
-        text-align: left;
-    }
-    
-    .filter-group label {
-        text-align: left;
-    }
-    
-    /* Product cards alignment */
-    .product-card {
-        text-align: left;
-    }
-    
-    .product-title {
-        text-align: center;
-    }
-    
-    .product-description {
-        text-align: left;
     }
 
     @media (max-width: 768px) {
@@ -397,7 +355,7 @@
         </nav>
     </div>
 
-    <!-- Load Systems in Correct Order - Updated to load English version scripts -->
+    <!-- Load Systems in Correct Order -->
     <script src="./js/ui-en.js"></script>
     <script src="./js/cart-en.js"></script>
     <script src="./js/reviews-system-en.js"></script>
@@ -407,34 +365,71 @@
     <script src="./js/main-en.js"></script>
     
     <script>
-    // English version specific JavaScript
+    // Enhanced Currency Fix
     document.addEventListener('DOMContentLoaded', function() {
-        // Fix currency display - remove dollar signs and show AED only
-        setTimeout(function() {
-            const priceElements = document.querySelectorAll('.current-price, .original-price');
-            priceElements.forEach(element => {
+        function fixAllCurrency() {
+            // Remove dollar signs and fix currency display
+            const allPriceElements = document.querySelectorAll(
+                '.current-price, .original-price, .price, .total-price, ' +
+                '.cart-item-price, .product-price, .sale-price, [class*="price"]'
+            );
+            
+            allPriceElements.forEach(element => {
                 let text = element.textContent || '';
-                // Remove any dollar signs
-                text = text.replace(/\$/g, '');
-                // Remove existing AED if present to avoid duplication
-                text = text.replace(/\s*AED\s*/g, '');
-                // Clean and format
-                text = text.trim();
-                if (text && !isNaN(parseFloat(text))) {
-                    element.textContent = parseFloat(text).toFixed(2);
+                
+                // Skip if already processed or empty
+                if (!text || element.dataset.currencyFixed === 'true') return;
+                
+                // Remove all unwanted currency symbols and text
+                text = text.replace(/[\$£€¥درهم]/g, ''); // Remove $, £, €, ¥, درهم
+                text = text.replace(/\s*(AED|USD|EUR|GBP|SAR)\s*/gi, ''); // Remove currency codes
+                text = text.replace(/\s*each\s*/gi, ''); // Remove "each"
+                
+                // Extract just the number
+                const matches = text.match(/([\d.,]+)/g);
+                if (matches && matches.length > 0) {
+                    const numberValue = parseFloat(matches[0].replace(/,/g, ''));
+                    if (!isNaN(numberValue) && numberValue > 0) {
+                        element.textContent = numberValue.toFixed(2);
+                        element.dataset.currencyFixed = 'true';
+                    }
                 }
             });
-        }, 2000);
-        
-        // Update search placeholder
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-            searchInput.placeholder = 'Search premium perfumes, watches, gifts...';
+            
+            console.log('Currency fixed - AED will be added via CSS');
         }
         
-        // Console logs for debugging
-        console.log('Products Showcase English page initialized');
-        console.log('Currency display fixed - showing AED only');
+        // Run currency fix multiple times
+        fixAllCurrency();
+        setTimeout(fixAllCurrency, 1000);
+        setTimeout(fixAllCurrency, 2500);
+        setTimeout(fixAllCurrency, 4000);
+        
+        // Monitor for dynamically added content
+        const observer = new MutationObserver(function(mutations) {
+            let hasNewPrices = false;
+            
+            mutations.forEach(function(mutation) {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.nodeType === 1) { // Element node
+                        if (node.querySelector && node.querySelector('[class*="price"]')) {
+                            hasNewPrices = true;
+                        }
+                    }
+                });
+            });
+            
+            if (hasNewPrices) {
+                setTimeout(fixAllCurrency, 200);
+            }
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+        
+        console.log('Products showcase with currency fixes initialized');
     });
     </script>
 </body>
