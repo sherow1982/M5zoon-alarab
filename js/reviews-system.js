@@ -1,337 +1,537 @@
-// نظام التقييمات الاحترافي - متجر هدايا الإمارات
+// نظام التقييمات الإماراتي الاحترافي - متجر هدايا الإمارات
+// تم تحديثه ليعمل مع البيانات الجديدة في data/reviews.json
 
-// بيانات التقييمات الاحترافية للمنتجات
-const productReviews = {
-    'ariaf': { rating: 4.8, count: 94, professionalReview: 'عطر فاخر بتركيبة مبتكرة تدوم طويلاً' },
-    'glory': { rating: 4.7, count: 118, professionalReview: 'عطر المجد والفخامة بتقييم ممتاز' },
-    'tom-ford': { rating: 4.9, count: 127, professionalReview: 'تقييم ممتاز من خبراء العطور العالميين' },
-    'marly': { rating: 4.9, count: 145, professionalReview: 'أيقونة العطور الفاخرة بتقييم استثنائي' },
-    'kayali': { rating: 4.6, count: 134, professionalReview: 'عطر عصري محبوب عالمياً' },
-    'rolex': { rating: 4.9, count: 234, professionalReview: 'أيقونة الساعات الفاخرة بجودة سويسرية' },
-    'audemars': { rating: 4.8, count: 89, professionalReview: 'ساعة رياضية فاخرة بتقييم عالمي' },
-    'patek': { rating: 4.9, count: 67, professionalReview: 'قمة الفخامة السويسرية في عالم الساعات' },
-    'omega': { rating: 4.8, count: 112, professionalReview: 'ساعة رياضية متطورة بتقنية سويسرية' },
-    'cartier': { rating: 4.7, count: 89, professionalReview: 'أيقونة كارتييه الأنيقة والعريقة' },
-    'burberry': { rating: 4.6, count: 78, professionalReview: 'تصميم بريطاني راقي بلمسة عصرية' },
-    'breitling': { rating: 4.7, count: 67, professionalReview: 'ساعة رياضية متطورة بدقة عالية' },
-    'aigner': { rating: 4.6, count: 73, professionalReview: 'تصميم ألماني راقي بجودة استثنائية' }
-};
-
-// بيانات التقييمات للمقالات
-const articleReviews = {
-    'watches-guide': { rating: 4.8, count: 156, professionalReview: 'دليل شامل ومفيد جداً لعشاق الساعات' },
-    'perfumes-guide': { rating: 4.9, count: 189, professionalReview: 'دليل احترافي للعطور بمعلومات قيمة' },
-    'luxury-gifts': { rating: 4.7, count: 134, professionalReview: 'مقال ثري بالمعلومات القيمة عن الهدايا' },
-    'rolex-collection': { rating: 4.9, count: 298, professionalReview: 'مرجع ممتاز لعشاق رولكس' },
-    'tom-ford-fragrances': { rating: 4.8, count: 167, professionalReview: 'تحليل عميق لعطور توم فورد' },
-    'arabic-perfumes': { rating: 4.9, count: 223, professionalReview: 'دليل العطور العربية الأشمل' }
-};
-
-// دالة الحصول على تقييم المنتج
-function getProductRating(productTitle) {
-    const slug = productTitle.toLowerCase();
-    for (let key in productReviews) {
-        if (slug.includes(key)) return productReviews[key];
-    }
-    return { 
-        rating: 4.5 + Math.random() * 0.4, 
-        count: Math.floor(Math.random() * 100 + 50), 
-        professionalReview: 'منتج عالي الجودة ومضمون' 
-    };
-}
-
-// دالة إنشاء HTML للتقييمات في صفحات المنتجات
-function createProductReviewsHTML(reviewData) {
-    const fullStars = Math.floor(reviewData.rating);
-    const hasHalfStar = reviewData.rating % 1 >= 0.5;
-    const stars = '★'.repeat(fullStars) + (hasHalfStar ? '☆' : '');
+// الكائن الرئيسي للنظام
+window.persistentReviews = {
+    reviewsData: null,
+    isInitialized: false,
     
-    return `
-        <div class="professional-reviews">
-            <div class="rating-summary">
-                <div class="main-rating">
-                    <span class="rating-stars">${stars}</span>
-                    <span class="rating-number">${reviewData.rating.toFixed(1)}</span>
-                </div>
-                <div class="rating-details">
-                    <p class="reviews-count">${reviewData.count} تقييم احترافي</p>
-                    <p class="professional-note">✓ ${reviewData.professionalReview}</p>
-                </div>
-            </div>
-            <div class="customer-reviews">
-                <h4>آراء العملاء الأخيرة:</h4>
-                <div class="review-item">
-                    <div class="reviewer-info">
-                        <strong>أحمد م.</strong>
-                        <span class="review-stars">★★★★★</span>
-                    </div>
-                    <p>"منتج ممتاز وجودة عالية، أنصح به بشدة"</p>
-                    <small>منذ 3 أيام</small>
-                </div>
-                <div class="review-item">
-                    <div class="reviewer-info">
-                        <strong>فاطمة س.</strong>
-                        <span class="review-stars">★★★★★</span>
-                    </div>
-                    <p>"سرعة في التوصيل وجودة ممتازة، شكراً لكم"</p>
-                    <small>منذ أسبوع</small>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// دالة إنشاء تقييم مبسط للبطاقات
-function createCardRatingHTML(rating, count) {
-    const stars = '★'.repeat(Math.floor(rating));
-    return `
-        <div class="card-rating">
-            <span class="stars">${stars}</span>
-            <span class="rating-number">${rating.toFixed(1)}</span>
-            <span class="reviews-count">(${count})</span>
-        </div>
-    `;
-}
-
-// دالة إضافة التقييمات للبطاقات
-function addReviewsToCards() {
-    const productCards = document.querySelectorAll('.product-card');
-    productCards.forEach(card => {
-        const titleElement = card.querySelector('.product-title, h3');
-        if (titleElement && !card.querySelector('.card-rating')) {
-            const productTitle = titleElement.textContent.trim();
-            const reviewData = getProductRating(productTitle);
-            const ratingHTML = createCardRatingHTML(reviewData.rating, reviewData.count);
-            titleElement.insertAdjacentHTML('afterend', ratingHTML);
+    // تحميل بيانات التقييمات
+    async loadReviewsData() {
+        try {
+            const response = await fetch('./data/reviews.json?t=' + Date.now());
+            if (!response.ok) {
+                throw new Error('Failed to load reviews data');
+            }
+            this.reviewsData = await response.json();
+            console.log('✅ تم تحميل التقييمات الإماراتية:', this.reviewsData?.length, 'منتج');
+            return true;
+        } catch (error) {
+            console.warn('⚠️ خطأ في تحميل التقييمات:', error);
+            this.reviewsData = [];
+            return false;
         }
-    });
-}
-
-// دالة إضافة التقييمات للمقالات
-function addReviewsToArticles() {
-    const articleCards = document.querySelectorAll('.blog-card, .article-card');
-    articleCards.forEach(card => {
-        const titleElement = card.querySelector('h3, .article-title');
-        if (titleElement && !card.querySelector('.article-rating')) {
-            const articleTitle = titleElement.textContent.trim();
-            const slug = articleTitle.toLowerCase().replace(/\s+/g, '-');
-            const reviewData = articleReviews[slug] || {
-                rating: 4.5 + Math.random() * 0.4,
-                count: Math.floor(Math.random() * 80 + 40),
-                professionalReview: 'مقال مفيد ومكتوب بإتقان'
-            };
-            
-            const stars = '★'.repeat(Math.floor(reviewData.rating));
-            const ratingHTML = `
-                <div class="article-rating">
-                    <span class="stars">${stars}</span>
-                    <span class="rating-number">${reviewData.rating.toFixed(1)}</span>
-                    <span class="reviews-count">(${reviewData.count})</span>
+    },
+    
+    // البحث عن تقييمات منتج محدد
+    getProductReviews(productId) {
+        if (!this.reviewsData) return null;
+        return this.reviewsData.find(p => p.productId === productId.toString());
+    },
+    
+    // إنشاء ملخص التقييمات
+    createSummaryHTML(productId) {
+        const productReviews = this.getProductReviews(productId);
+        
+        if (!productReviews || !productReviews.reviews?.length) {
+            return `
+                <div class="rating-summary-minimal">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <span class="rating-text">منتج عالي الجودة</span>
                 </div>
             `;
-            titleElement.insertAdjacentHTML('afterend', ratingHTML);
         }
-    });
-}
-
-// إضافة CSS للتقييمات
-function addReviewsCSS() {
-    if (!document.querySelector('#reviews-system-css')) {
+        
+        const { averageRating, totalCount, reviews } = productReviews;
+        const fullStars = Math.floor(averageRating);
+        const hasHalfStar = (averageRating % 1) >= 0.5;
+        const starsHTML = '⭐'.repeat(fullStars) + (hasHalfStar ? '⭐' : '');
+        
+        // إحصائيات إضافية
+        const verifiedCount = reviews.filter(r => r.verified).length;
+        const recentReviews = reviews.slice(0, 2);
+        
+        return `
+            <div class="emirates-rating-summary">
+                <div class="main-rating">
+                    <div class="stars-display">${starsHTML}</div>
+                    <div class="rating-number">${averageRating}</div>
+                    <div class="rating-label">من 5 نجوم</div>
+                </div>
+                <div class="rating-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span>${totalCount} تقييم</span>
+                    </div>
+                    <div class="stat-item verified">
+                        <i class="fas fa-shield-check"></i>
+                        <span>${verifiedCount} موثّق</span>
+                    </div>
+                </div>
+                <div class="recent-reviews">
+                    ${recentReviews.map(review => `
+                        <div class="mini-review">
+                            <div class="review-author">
+                                ${review.author} ${review.verified ? '✅' : ''}
+                                ${review.location ? `(${review.location})` : ''}
+                            </div>
+                            <div class="review-stars">${'⭐'.repeat(review.rating)}</div>
+                            <div class="review-comment">${review.comment}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    },
+    
+    // إنشاء تقييمات مفصلة للمنتج
+    createDetailedReviewsHTML(productId, options = {}) {
+        const {
+            showFilter = false,
+            showLoadMore = false,
+            initialLimit = 10,
+            filter = 'all'
+        } = options;
+        
+        const productReviews = this.getProductReviews(productId);
+        
+        if (!productReviews || !productReviews.reviews?.length) {
+            return `
+                <div class="no-reviews">
+                    <i class="fas fa-star-o"></i>
+                    <p>لا توجد تقييمات لهذا المنتج حالياً</p>
+                    <small>كن أول من يقيم هذا المنتج!</small>
+                </div>
+            `;
+        }
+        
+        let { reviews, averageRating, totalCount } = productReviews;
+        
+        // تطبيق الفلتر
+        if (filter === 'verified') {
+            reviews = reviews.filter(r => r.verified);
+        } else if (filter === 'high-rating') {
+            reviews = reviews.filter(r => r.rating >= 4);
+        }
+        
+        // تحديد العدد المعروض
+        const displayReviews = reviews.slice(0, initialLimit);
+        const hasMore = reviews.length > initialLimit;
+        
+        let html = `
+            <div class="detailed-reviews-container">
+                <div class="reviews-header">
+                    <h3>📝 تقييمات العملاء (${totalCount})</h3>
+                    <div class="overall-rating">
+                        <span class="big-rating">${averageRating}</span>
+                        <div class="stars-big">${'⭐'.repeat(Math.floor(averageRating))}</div>
+                    </div>
+                </div>
+        `;
+        
+        // إضافة فلاتر إذا طلبت
+        if (showFilter) {
+            html += `
+                <div class="reviews-filters">
+                    <button class="filter-btn ${filter === 'all' ? 'active' : ''}" onclick="filterReviews('all')">الكل</button>
+                    <button class="filter-btn verified ${filter === 'verified' ? 'active' : ''}" onclick="filterReviews('verified')">موثّق</button>
+                    <button class="filter-btn high-rating ${filter === 'high-rating' ? 'active' : ''}" onclick="filterReviews('high-rating')">4-5 نجوم</button>
+                </div>
+            `;
+        }
+        
+        // إضافة التقييمات
+        html += '<div class="reviews-list">';
+        displayReviews.forEach(review => {
+            const reviewDate = new Date(review.date);
+            const timeAgo = this.getTimeAgo(reviewDate);
+            const starsCount = review.rating;
+            const starsHTML = '⭐'.repeat(starsCount);
+            const avatarLetter = review.author.charAt(0);
+            
+            html += `
+                <div class="review-card ${review.verified ? 'verified' : ''}">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">${avatarLetter}</div>
+                        <div class="reviewer-details">
+                            <h4>${review.author}</h4>
+                            ${review.location ? `<div class="reviewer-location">${review.location}</div>` : ''}
+                        </div>
+                        ${review.verified ? '<div class="verified-badge">موثّق</div>' : ''}
+                    </div>
+                    
+                    <div class="review-rating">
+                        <div class="review-stars">${starsHTML}</div>
+                        <div class="review-date">${timeAgo}</div>
+                    </div>
+                    
+                    <div class="review-comment">${review.comment}</div>
+                    
+                    <div class="review-actions">
+                        <button class="helpful-btn" onclick="markHelpful('${review.id}')">
+                            مفيد (${review.helpful || 0})
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+        
+        html += '</div>'; // إغلاق reviews-list
+        
+        // إضافة زر المزيد إذا طلب
+        if (showLoadMore && hasMore) {
+            html += `
+                <button class="show-more-btn" onclick="loadMoreReviews()">
+                    عرض المزيد من التقييمات (${reviews.length - initialLimit} متبقي)
+                </button>
+            `;
+        }
+        
+        html += '</div>'; // إغلاق detailed-reviews-container
+        
+        return html;
+    },
+    
+    // حساب الوقت المنقضي
+    getTimeAgo(date) {
+        const now = new Date();
+        const diffTime = Math.abs(now - date);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays === 0) return 'اليوم';
+        if (diffDays === 1) return 'أمس';
+        if (diffDays < 7) return `منذ ${diffDays} أيام`;
+        if (diffDays < 30) return `منذ ${Math.floor(diffDays / 7)} أسابيع`;
+        if (diffDays < 365) return `منذ ${Math.floor(diffDays / 30)} شهر`;
+        return `منذ ${Math.floor(diffDays / 365)} سنة`;
+    },
+    
+    // إضافة التقييمات للبطاقات
+    addReviewsToCards() {
+        if (!this.reviewsData) return;
+        
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            const titleElement = card.querySelector('.product-title, h3, .card-title');
+            if (titleElement && !card.querySelector('.card-rating')) {
+                const productId = card.getAttribute('data-id') || 
+                                 titleElement.getAttribute('data-id') ||
+                                 this.extractIdFromCard(card);
+                
+                if (productId) {
+                    const productReviews = this.getProductReviews(productId);
+                    if (productReviews) {
+                        const ratingHTML = this.createCardRatingHTML(productReviews.averageRating, productReviews.totalCount);
+                        titleElement.insertAdjacentHTML('afterend', ratingHTML);
+                    }
+                }
+            }
+        });
+    },
+    
+    // استخراج معرف المنتج من البطاقة
+    extractIdFromCard(card) {
+        // محاولة استخراج المعرف من الروابط
+        const link = card.querySelector('a[href*="id="]');
+        if (link) {
+            const href = link.getAttribute('href');
+            const match = href.match(/id=([^&]+)/);
+            if (match) return match[1];
+        }
+        
+        // محاولة من العنوان
+        const title = card.querySelector('.product-title, h3')?.textContent || '';
+        return this.guessProductId(title);
+    },
+    
+    // تخمين معرف المنتج من العنوان
+    guessProductId(title) {
+        const titleLower = title.toLowerCase();
+        
+        // قوائم المطابقة
+        if (titleLower.includes('كوكو شانيل')) return 'perfume_1';
+        if (titleLower.includes('جوتشي فلورا')) return 'perfume_2';
+        if (titleLower.includes('جوتشي بلوم')) return 'perfume_3';
+        if (titleLower.includes('سوفاج ديور')) return 'perfume_4';
+        if (titleLower.includes('فرزاتشي ايروس')) return 'perfume_5';
+        if (titleLower.includes('رولكس يخت ماستر')) return 'watch_1';
+        if (titleLower.includes('rolex كلاسيكية')) return 'watch_2';
+        if (titleLower.includes('رولكس بتصميم الكعبة')) return 'watch_88';
+        
+        return null;
+    },
+    
+    // إنشاء HTML للتقييم في البطاقة
+    createCardRatingHTML(rating, count) {
+        const stars = '⭐'.repeat(Math.floor(rating));
+        return `
+            <div class="card-rating emirates-style">
+                <div class="stars">${stars}</div>
+                <div class="rating-info">
+                    <span class="rating-number">${rating}</span>
+                    <span class="reviews-count">(${count})</span>
+                </div>
+            </div>
+        `;
+    },
+    
+    // تهيئة النظام
+    async init() {
+        console.log('🔄 بدء تحميل نظام التقييمات الإماراتي...');
+        
+        // تحميل CSS
+        this.addCSS();
+        
+        // تحميل البيانات
+        const success = await this.loadReviewsData();
+        
+        if (success) {
+            // إضافة التقييمات للبطاقات الموجودة
+            setTimeout(() => this.addReviewsToCards(), 1000);
+            
+            // مراقب للمحتوى الجديد
+            this.setupObserver();
+            
+            this.isInitialized = true;
+            console.log('✅ تم تهيئة نظام التقييمات بنجاح');
+        } else {
+            console.warn('⚠️ فشل في تهيئة نظام التقييمات');
+        }
+    },
+    
+    // إضافة مراقب للتغييرات
+    setupObserver() {
+        const observer = new MutationObserver(() => {
+            this.addReviewsToCards();
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    },
+    
+    // إضافة CSS
+    addCSS() {
+        if (document.querySelector('#emirates-reviews-system-css')) return;
+        
         const css = `
-            <style id="reviews-system-css">
-            .professional-reviews {
-                margin: 25px 0;
-                padding: 20px;
-                background: linear-gradient(135deg, #f8f9fa, #ffffff);
-                border-radius: 15px;
-                border: 1px solid #e9ecef;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            }
-            .rating-summary {
-                display: flex;
-                align-items: center;
-                gap: 20px;
-                margin-bottom: 20px;
-                padding-bottom: 15px;
-                border-bottom: 1px solid #e9ecef;
-            }
-            .main-rating {
-                text-align: center;
-                min-width: 100px;
-            }
-            .rating-stars {
-                color: #FFD700;
-                font-size: 32px;
-                text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-                display: block;
-                margin-bottom: 8px;
-                letter-spacing: 2px;
-            }
-            .rating-number {
-                font-size: 28px;
-                font-weight: bold;
-                color: #2c3e50;
-            }
-            .rating-details .reviews-count {
-                color: #666;
-                font-size: 16px;
-                margin-bottom: 10px;
-                display: block;
-            }
-            .rating-details .professional-note {
-                color: #27ae60;
-                font-weight: 600;
-                font-size: 15px;
-                margin: 0;
-                line-height: 1.4;
-            }
-            .customer-reviews {
-                margin-top: 20px;
-            }
-            .customer-reviews h4 {
-                color: #2c3e50;
-                margin-bottom: 15px;
-                font-size: 18px;
-                border-bottom: 2px solid #FFD700;
-                padding-bottom: 8px;
-            }
-            .review-item {
-                background: white;
-                padding: 15px;
-                border-radius: 10px;
-                margin-bottom: 12px;
-                border-left: 4px solid #FFD700;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            }
-            .reviewer-info {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 8px;
-            }
-            .reviewer-info strong {
-                color: #2c3e50;
-                font-size: 15px;
-            }
-            .review-stars {
-                color: #FFD700;
-                font-size: 14px;
-            }
-            .review-item p {
-                color: #555;
-                margin: 8px 0;
-                line-height: 1.6;
-                font-style: italic;
-            }
-            .review-item small {
-                color: #999;
-                font-size: 12px;
-            }
-            .card-rating {
+            <style id="emirates-reviews-system-css">
+            .card-rating.emirates-style {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 8px;
+                gap: 10px;
                 margin: 12px 0;
-                padding: 10px;
-                background: rgba(255, 215, 0, 0.1);
-                border-radius: 10px;
-                border: 1px solid rgba(255, 215, 0, 0.2);
+                padding: 12px;
+                background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+                border: 1px solid rgba(212, 175, 55, 0.2);
+                border-radius: 12px;
+                direction: rtl;
             }
+            
             .card-rating .stars {
-                color: #FFD700;
-                font-size: 16px;
-                text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+                font-size: 18px;
+                letter-spacing: 2px;
+                filter: drop-shadow(0 1px 2px rgba(212, 175, 55, 0.3));
             }
+            
+            .card-rating .rating-info {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+            
             .card-rating .rating-number {
-                font-weight: bold;
-                color: #2c3e50;
-                font-size: 15px;
+                font-weight: 700;
+                color: #D4AF37;
+                font-size: 16px;
             }
+            
             .card-rating .reviews-count {
                 color: #666;
-                font-size: 12px;
+                font-size: 13px;
             }
-            .article-rating {
+            
+            .emirates-rating-summary {
+                background: linear-gradient(135deg, #ffffff, #f9f9f9);
+                border: 2px solid #D4AF37;
+                border-radius: 15px;
+                padding: 25px;
+                margin: 20px 0;
+                direction: rtl;
+                text-align: center;
+            }
+            
+            .main-rating {
+                margin-bottom: 20px;
+            }
+            
+            .stars-display {
+                font-size: 32px;
+                margin-bottom: 10px;
+                letter-spacing: 3px;
+                filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.4));
+            }
+            
+            .rating-number {
+                font-size: 42px;
+                font-weight: 900;
+                color: #D4AF37;
+                display: block;
+                text-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+            }
+            
+            .rating-label {
+                color: #666;
+                font-size: 16px;
+                margin-top: 5px;
+            }
+            
+            .rating-stats {
+                display: flex;
+                justify-content: center;
+                gap: 25px;
+                margin: 20px 0;
+            }
+            
+            .stat-item {
                 display: flex;
                 align-items: center;
-                justify-content: center;
                 gap: 8px;
-                margin: 12px 0;
-                padding: 8px;
-                background: rgba(39, 174, 96, 0.1);
-                border-radius: 8px;
-                border-left: 3px solid #27ae60;
+                padding: 10px 15px;
+                background: rgba(255, 255, 255, 0.7);
+                border-radius: 20px;
+                border: 1px solid rgba(212, 175, 55, 0.2);
             }
-            .article-rating .stars {
-                color: #FFD700;
+            
+            .stat-item.verified {
+                background: rgba(0, 161, 107, 0.1);
+                border-color: rgba(0, 161, 107, 0.3);
+                color: #00A16B;
+            }
+            
+            .recent-reviews {
+                margin-top: 25px;
+                display: grid;
+                gap: 15px;
+                text-align: right;
+            }
+            
+            .mini-review {
+                background: #ffffff;
+                padding: 15px;
+                border-radius: 10px;
+                border: 1px solid #e8ecef;
+                border-right: 4px solid #D4AF37;
+            }
+            
+            .review-author {
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 5px;
+            }
+            
+            .review-stars {
                 font-size: 14px;
+                margin-bottom: 8px;
             }
-            .article-rating .rating-number {
-                font-weight: bold;
-                color: #2c3e50;
+            
+            .review-comment {
+                font-size: 14px;
+                color: #555;
+                line-height: 1.5;
             }
-            .article-rating .reviews-count {
-                color: #666;
-                font-size: 12px;
+            
+            .rating-summary-minimal {
+                text-align: center;
+                padding: 15px;
+                background: rgba(212, 175, 55, 0.1);
+                border-radius: 10px;
+                margin: 15px 0;
             }
+            
+            .rating-summary-minimal .stars {
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+            
+            .rating-summary-minimal .rating-text {
+                color: #D4AF37;
+                font-weight: 600;
+            }
+            
             @media (max-width: 768px) {
-                .rating-summary {
+                .rating-stats {
                     flex-direction: column;
-                    text-align: center;
-                    gap: 15px;
+                    align-items: center;
+                    gap: 10px;
                 }
-                .rating-stars {
+                
+                .stars-display {
                     font-size: 28px;
                 }
+                
                 .rating-number {
-                    font-size: 24px;
-                }
-                .reviewer-info {
-                    flex-direction: column;
-                    gap: 5px;
-                    text-align: right;
+                    font-size: 36px;
                 }
             }
             </style>
         `;
+        
         document.head.insertAdjacentHTML('beforeend', css);
+    }
+};
+
+// دوال مساعدة للتفاعل
+function markHelpful(reviewId) {
+    // حفظ في localStorage
+    const helpfulReviews = JSON.parse(localStorage.getItem('helpfulReviews') || '[]');
+    if (!helpfulReviews.includes(reviewId)) {
+        helpfulReviews.push(reviewId);
+        localStorage.setItem('helpfulReviews', JSON.stringify(helpfulReviews));
+        
+        // تحديث العرض
+        const button = event.target;
+        button.classList.add('voted');
+        button.disabled = true;
+        button.textContent = button.textContent.replace(/\((\d+)\)/, (match, num) => `(${parseInt(num) + 1})`);
     }
 }
 
-// دالة تهيئة نظام التقييمات
-function initReviewsSystem() {
-    addReviewsCSS();
-    
-    // إضافة التقييمات للبطاقات
-    setTimeout(() => {
-        addReviewsToCards();
-        addReviewsToArticles();
-    }, 1500);
-    
-    // مراقب التغييرات لإضافة التقييمات للمحتوى الجديد
-    const observer = new MutationObserver(() => {
-        addReviewsToCards();
-        addReviewsToArticles();
-    });
-    
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
+function filterReviews(filter) {
+    // إعادة تحميل التقييمات بالفلتر الجديد
+    const productId = new URLSearchParams(window.location.search).get('id');
+    if (productId) {
+        const detailedHTML = window.persistentReviews.createDetailedReviewsHTML(productId, {
+            showFilter: true,
+            showLoadMore: true,
+            initialLimit: 5,
+            filter: filter
+        });
+        
+        const container = document.getElementById('detailed-reviews-container');
+        if (container) {
+            container.innerHTML = detailedHTML;
+        }
+    }
+}
+
+function loadMoreReviews() {
+    // منطق تحميل المزيد
+    console.log('تحميل المزيد من التقييمات...');
+}
+
+// تهيئة النظام عند التحميل
+document.addEventListener('DOMContentLoaded', () => {
+    window.persistentReviews.init();
+});
+
+// إعادة تهيئة عند تغيير الصفحة
+if (typeof window.navigation !== 'undefined') {
+    window.navigation.addEventListener('navigate', () => {
+        setTimeout(() => window.persistentReviews.addReviewsToCards(), 1000);
     });
 }
 
-// تشغيل عند التحميل
-document.addEventListener('DOMContentLoaded', initReviewsSystem);
-
-// تصدير النظام
-window.ReviewsSystem = {
-    productReviews,
-    articleReviews,
-    getProductRating,
-    createProductReviewsHTML,
-    createCardRatingHTML,
-    addReviewsToCards,
-    addReviewsToArticles,
-    initReviewsSystem
-};
+console.log('📋 نظام التقييمات الإماراتي جاهز للتشغيل');
