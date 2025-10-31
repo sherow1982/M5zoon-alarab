@@ -1,122 +1,20 @@
 [
-  {
-    "id": "1",
-    "rating": 4.9,
-    "count": 156,
-    "review": "عطر فاخر بثبات ممتاز يدوم أكثر من 10 ساعات",
-    "professional_review": "✓ عطر أصلي عالي الجودة",
-    "verified_purchase": true
-  },
-  {
-    "id": "2", 
-    "rating": 4.7,
-    "count": 123,
-    "review": "رائحة مميزة وتركيبة فاخرة تناسب المناسبات الخاصة",
-    "professional_review": "✓ تركيبة عطرية متوازنة",
-    "verified_purchase": true
-  },
-  {
-    "id": "3",
-    "rating": 4.8,
-    "count": 189,
-    "review": "عطر رجالي قوي بطابع شرقي أصيل",
-    "professional_review": "✓ عطر شرقي فاخر مميز",
-    "verified_purchase": true
-  },
-  {
-    "id": "4",
-    "rating": 4.6,
-    "count": 98,
-    "review": "عطر نسائي رقيق ومناسب للاستخدام اليومي",
-    "professional_review": "✓ عطر يومي مثالي",
-    "verified_purchase": true
-  },
-  {
-    "id": "5",
-    "rating": 4.9,
-    "count": 234,
-    "review": "ساعة فاخرة بتصميم كلاسيكي ودقة عالية",
-    "professional_review": "✓ ساعة سويسرية أصلية",
-    "verified_purchase": true
-  },
-  {
-    "id": "6",
-    "rating": 4.8,
-    "count": 167,
-    "review": "ساعة أنيقة مقاومة للماء مع ضمان الجودة",
-    "professional_review": "✓ مقاومة للماء حتى 50م",
-    "verified_purchase": true
-  },
-  {
-    "id": "7",
-    "rating": 4.7,
-    "count": 145,
-    "review": "تصميم عصري يناسب الشباب مع دقة في الوقت",
-    "professional_review": "✓ ساعة رياضية متينة",
-    "verified_purchase": true
-  },
-  {
-    "id": "8",
-    "rating": 4.8,
-    "count": 201,
-    "review": "عطر فرنسي أصلي برائحة جذابة ومميزة",
-    "professional_review": "✓ عطر أوروبي فاخر",
-    "verified_purchase": true
-  },
-  {
-    "id": "9",
-    "rating": 4.6,
-    "count": 134,
-    "review": "عطر شرقي بخلطة تراثية مع لمسة عصرية",
-    "professional_review": "✓ خلطة تراثية أصيلة",
-    "verified_purchase": true
-  },
-  {
-    "id": "10",
-    "rating": 4.9,
-    "count": 267,
-    "review": "ساعة ذهبية فاخرة مناسبة للمناسبات الرسمية",
-    "professional_review": "✓ تصميم كلاسيكي راقي",
-    "verified_purchase": true
-  },
-  {
-    "id": "11",
-    "rating": 4.5,
-    "count": 89,
-    "review": "عطر زهري خفيف مناسب للصيف",
-    "professional_review": "✓ عطر صيفي منعش",
-    "verified_purchase": true
-  },
-  {
-    "id": "12",
-    "rating": 4.8,
-    "count": 178,
-    "review": "ساعة رياضية بميزات متقدمة ومقاومة للصدمات",
-    "professional_review": "✓ ساعة رياضية احترافية",
-    "verified_purchase": true
-  },
-  {
-    "id": "13",
-    "rating": 4.7,
-    "count": 156,
-    "review": "عطر خشبي دافئ مثالي للشتاء والأمسيات",
-    "professional_review": "✓ عطر شتوي فاخر",
-    "verified_purchase": true
-  },
-  {
-    "id": "14",
-    "rating": 4.9,
-    "count": 203,
-    "review": "ساعة نسائية أنيقة مع تصميم مرصع بالكريستال",
-    "professional_review": "✓ ساعة نسائية راقية",
-    "verified_purchase": true
-  },
-  {
-    "id": "15",
-    "rating": 4.6,
-    "count": 112,
-    "review": "عطر عربي أصيل بخلاصات طبيعية",
-    "professional_review": "✓ مكونات طبيعية 100%",
-    "verified_purchase": true
-  }
+  {"id": "1", "rating": 4.9, "count": 156, "review": "عطر فاخر بثبات ممتاز يدوم أكثر من 10 ساعات", "professional_review": "✓ عطر أصلي عالي الجودة", "verified_purchase": true},
+  {"id": "2", "rating": 4.7, "count": 123, "review": "رائحة مميزة وتركيبة فاخرة", "professional_review": "✓ تركيبة عطرية متوازنة", "verified_purchase": true},
+  {"id": "3", "rating": 4.8, "count": 189, "review": "عطر رجالي قوي بطابع شرقي", "professional_review": "✓ عطر شرقي فاخر", "verified_purchase": true},
+  {"id": "4", "rating": 4.8, "count": 201, "review": "عطر سوفاج ديور أصلي بثبات ممتاز", "professional_review": "✓ عطر فرنسي فاخر", "verified_purchase": true},
+  {"id": "5", "rating": 4.7, "count": 167, "review": "عطر فرزاتشي مميز للشباب", "professional_review": "✓ عطر عصري جذاب", "verified_purchase": true},
+  {"id": "26", "rating": 4.9, "count": 278, "review": "عطر Glory من أجمل العطور", "professional_review": "✓ عطر فاخر مميز", "verified_purchase": true},
+  {"id": "27", "rating": 4.8, "count": 194, "review": "عطر ARIAF عربي أصيل", "professional_review": "✓ عطر عربي تراثي", "verified_purchase": true},
+  {"id": "36", "rating": 4.9, "count": 156, "review": "Tom Ford Bitter Peach عطر رائع", "professional_review": "✓ عطر نيشي فاخر", "verified_purchase": true},
+  {"id": "45", "rating": 4.7, "count": 223, "review": "Kayali عطر نسائي مميز", "professional_review": "✓ عطر حديث جذاب", "verified_purchase": true},
+  
+  {"id": "1", "rating": 4.9, "count": 234, "review": "ساعة رولكس فاخرة بتصميم كلاسيكي", "professional_review": "✓ ساعة سويسرية أصلية", "verified_purchase": true},
+  {"id": "2", "rating": 4.8, "count": 167, "review": "ساعة Rolex كلاسيكية ممتازة", "professional_review": "✓ ساعة رولكس موثوقة", "verified_purchase": true},
+  {"id": "8", "rating": 4.7, "count": 145, "review": "ساعة أوميغا جميلة ومقاومة", "professional_review": "✓ ساعة رياضية متينة", "verified_purchase": true},
+  {"id": "31", "rating": 4.9, "count": 89, "review": "ساعة رولكس يخت ماستر فاخرة", "professional_review": "✓ ساعة فاخرة عالية الجودة", "verified_purchase": true},
+  {"id": "73", "rating": 4.8, "count": 134, "review": "ساعة رولكس فاخرة مع العلبة الأصلية", "professional_review": "✓ ساعة أسود أنيقة", "verified_purchase": true},
+  {"id": "88", "rating": 4.9, "count": 178, "review": "ساعة رولكس بتصميم الكعبة رائعة", "professional_review": "✓ تصميم إسلامي مميز", "verified_purchase": true},
+  {"id": "93", "rating": 4.8, "count": 112, "review": "ساعة Burberry فاخرة جداً", "professional_review": "✓ ساعة بريطانية أصلية", "verified_purchase": true},
+  {"id": "104", "rating": 4.9, "count": 267, "review": "Patek Philippe ساعة راقية جداً", "professional_review": "✓ ساعة سويسرية فاخرة", "verified_purchase": true}
 ]
