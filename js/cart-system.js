@@ -4,13 +4,15 @@
 (function(){
     'use strict';
     
+    const CART_STORAGE_KEY = 'emirates_shopping_cart'; // مفتاح موحد
+    
     // دالة تحديث عداد السلة المحسّنة
     function updateCartCounter() {
-        const cart = JSON.parse(localStorage.getItem('emirates-gifts-cart')) || [];
+        const cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         
         // البحث عن جميع عدادات السلة
-        const counters = document.querySelectorAll('.cart-counter, #cart-count, .cart-badge, #cartBadge');
+        const counters = document.querySelectorAll('.cart-counter, #cart-count, .cart-badge, #cartBadge, .mobile-cart-counter');
         counters.forEach(counter => {
             if (counter) {
                 counter.textContent = totalItems;
@@ -24,7 +26,7 @@
             }
         });
         
-        console.log(`🛒 تم تحديث عداد السلة: ${totalItems} منتج`);
+        console.log(`🛍️ تم تحديث عداد السلة: ${totalItems} منتج`);
     }
 
     // دالة إضافة منتج للسلة الآمنة والمحسّنة
@@ -35,7 +37,7 @@
                 return false;
             }
             
-            let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart')) || [];
+            let cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
             
             const existingIndex = cart.findIndex(item => item.id === productData.id);
             if (existingIndex !== -1) {
@@ -56,9 +58,9 @@
                 cart.push(cleanProduct);
             }
             
-            localStorage.setItem('emirates-gifts-cart', JSON.stringify(cart));
+            localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
             updateCartCounter();
-            showSuccessNotification(productData.title);
+            showSuccessNotification(productData.title || productData.name);
             
             console.log('✅ تم إضافة المنتج للسلة:', productData.title);
             return true;
@@ -104,7 +106,7 @@
                         "${productTitle.length > 40 ? productTitle.substring(0, 40) + '...' : productTitle}" أُضيف إلى السلة
                     </div>
                     <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px; display: flex; gap: 15px;">
-                        <span onclick="window.location.href='./cart.html'" style="cursor: pointer; text-decoration: underline;">🛒 عرض السلة</span>
+                        <span onclick="window.location.href='./cart.html'" style="cursor: pointer; text-decoration: underline;">🛍️ عرض السلة</span>
                         <span onclick="window.open('https://wa.me/201110760081', '_blank')" style="cursor: pointer; text-decoration: underline;">📱 طلب واتساب</span>
                     </div>
                 </div>
@@ -225,7 +227,7 @@
     function initCartButtonListeners() {
         // استخدام تفويض الأحداث للأزرار الديناميكية
         document.addEventListener('click', function(e) {
-            const addButton = e.target.closest('.btn-add-to-cart, .btn-add-cart');
+            const addButton = e.target.closest('.btn-add-to-cart, .btn-add-cart, .add-to-cart-btn');
             if (addButton) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -268,16 +270,16 @@
                     50% { transform: scale(1.1); }
                 }
                 
-                .btn-add-to-cart, .btn-add-cart {
+                .btn-add-to-cart, .btn-add-cart, .add-to-cart-btn {
                     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                     will-change: transform, background-color;
                 }
                 
-                .btn-add-to-cart:hover, .btn-add-cart:hover {
+                .btn-add-to-cart:hover, .btn-add-cart:hover, .add-to-cart-btn:hover {
                     transform: translateY(-2px) scale(1.02);
                 }
                 
-                .btn-add-to-cart:active, .btn-add-cart:active {
+                .btn-add-to-cart:active, .btn-add-cart:active, .add-to-cart-btn:active {
                     transform: translateY(0) scale(0.98);
                 }
             `;
@@ -287,7 +289,7 @@
 
     // التهيئة الرئيسية
     function initCartSystem() {
-        console.log('🛒 تهيئة نظام السلة المحسّن...');
+        console.log('🛍️ تهيئة نظام السلة المحسّن...');
         
         addCartSystemCSS();
         updateCartCounter();
@@ -304,7 +306,8 @@
         updateCartCounter,
         showSuccessNotification,
         handleAddToCartClick,
-        initCartButtonListeners
+        initCartButtonListeners,
+        CART_STORAGE_KEY
     };
 
     // تشغيل النظام
