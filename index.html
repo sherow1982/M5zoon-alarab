@@ -523,16 +523,32 @@
         </nav>
     </div>
 
-    <!-- تحميل الأنظمة بترتيب محسن -->
+    <!-- تحميل الأنظمة بترتيب محسن - استخدام النظام المصحح -->
+    <script>console.log('🎯 تحميل النظام المصحح للمنتجات - لا تداخل');</script>
     <script src="./js/dom-optimization.js" defer></script>
     <script src="./js/ui.js" defer></script>
     <script src="./js/cart-system.js" defer></script>
     <script src="./js/reviews-system.js" defer></script>
     <script src="./js/popup-system.js" defer></script>
-    <script src="./js/products-loader.js" defer></script>
+    <!-- استخدام النظام المصحح -->
+    <script src="./js/products-loader-fixed.js" defer></script>
     <script src="./js/main.js" defer></script>
     
     <!-- إضافة النظام المنبثق الجديد -->
     <script src="./js/dismissible-popup-system.js" defer></script>
+    
+    <script>
+    // تأكد من فصل المنتجات الصحيح
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🎯 تفعيل النظام المصحح: العطور في قسم العطور، الساعات في قسم الساعات');
+        
+        // تأكد من أن النظام المصحح هو الوحيد المستخدم
+        if (window.FixedProductsLoader) {
+            console.log('✅ النظام المصحح محمل ومفعل');
+        } else {
+            console.error('❌ فشل تحميل النظام المصحح');
+        }
+    });
+    </script>
 </body>
 </html>
