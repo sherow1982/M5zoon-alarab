@@ -1,116 +1,82 @@
-# Emirates Gifts Store - Comprehensive .htaccess Configuration
-# SEO Optimization, Caching, Compression, and Performance Enhancement
-# Updated: October 31, 2025 for UAE hosting optimization
+# Emirates Gifts Store - Enhanced .htaccess Configuration
+# Security, Performance, SEO Optimization for UAE Market
+# Updated: November 1, 2025 - Complete Security & Performance Overhaul
 
+# ================================
+# SECURITY HEADERS - ENHANCED
+# ================================
 RewriteEngine On
-Options +FollowSymlinks
+Options +FollowSymlinks -Indexes
 
-# ================================
-# SECURITY HEADERS
-# ================================
 <IfModule mod_headers.c>
-    # Prevent clickjacking
-    Header always set X-Frame-Options "SAMEORIGIN"
+    # Prevent clickjacking with strict policy
+    Header always set X-Frame-Options "DENY"
     
     # Prevent MIME type sniffing
     Header always set X-Content-Type-Options "nosniff"
     
-    # Enable XSS protection
+    # Enhanced XSS protection
     Header always set X-XSS-Protection "1; mode=block"
     
-    # Referrer Policy for privacy
+    # Strict referrer policy for privacy
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     
-    # Content Security Policy
-    Header always set Content-Security-Policy "default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http:; connect-src 'self' https:;"
+    # Enhanced Content Security Policy
+    Header always set Content-Security-Policy "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me;"
     
-    # Remove server signature for security
+    # Permissions Policy (formerly Feature Policy)
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self), payment=(self)"
+    
+    # Remove server signatures for security
     Header unset Server
     Header unset X-Powered-By
-Header set Connection keep-alive
+    Header unset X-AspNet-Version
+    Header unset X-AspNetMvc-Version
+    
+    # Keep connection alive for performance
+    Header set Connection keep-alive
+    
+    # Prevent information disclosure
+    Header always set X-Robots-Tag "index, follow"
+header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 </IfModule>
 
 # ================================
-# CANONICAL DOMAIN & HTTPS
+# HTTPS & DOMAIN ENFORCEMENT
 # ================================
-# Force HTTPS
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Force HTTPS with HSTS
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 # Canonical domain enforcement (remove www)
-RewriteCond %{HTTP_HOST} ^www\.emirates-gifts\.arabsad\.com [NC]
-RewriteRule ^(.*)$ https://emirates-gifts.arabsad.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
 # ================================
-# LANGUAGE & SEO URL STRUCTURE
-# ================================
-# Language Detection and Redirection
-RewriteCond %{HTTP:Accept-Language} ^en [NC]
-RewriteCond %{REQUEST_URI} ^/$
-RewriteCond %{QUERY_STRING} !lang=ar
-RewriteRule ^(.*)$ /en/ [R=302,L]
-
-# Clean URL Structure for Products
-RewriteRule ^product/([^/]+)/?$ product-details.html?id=$1 [L,QSA]
-RewriteRule ^en/product/([^/]+)/?$ en/product-details.html?id=$1 [L,QSA]
-
-# Category URLs for SEO
-RewriteRule ^perfumes/?$ products-showcase.html?category=perfumes [L,QSA]
-RewriteRule ^watches/?$ products-showcase.html?category=watches [L,QSA]
-RewriteRule ^en/perfumes/?$ en/products-showcase.html?category=perfumes [L,QSA] 
-RewriteRule ^en/watches/?$ en/products-showcase.html?category=watches [L,QSA]
-
-# Brand-specific URLs for better SEO
-RewriteRule ^brand/([^/]+)/?$ products-showcase.html?search=$1 [L,QSA]
-RewriteRule ^en/brand/([^/]+)/?$ en/products-showcase.html?search=$1 [L,QSA]
-
-# Remove .html extension from URLs for cleaner SEO
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^.]+)$ $1.html [NC,L]
-
-# Remove .html extension from displayed URLs
-RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
-RewriteRule ^ /%1 [R=301,L]
-
-# Redirect index.html to root for SEO
-RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
-RewriteRule ^ / [R=301,L]
-
-# Handle English index.html
-RewriteCond %{THE_REQUEST} \s/+en/index\.html[\s?] [NC]
-RewriteRule ^en/index\.html$ /en/ [R=301,L]
-
-# ================================
-# COMPRESSION (GZIP) FOR SPEED
+# ENHANCED COMPRESSION
 # ================================
 <IfModule mod_deflate.c>
-    # Compress HTML, CSS, JavaScript, Text, XML and fonts
-    AddOutputFilterByType DEFLATE application/javascript
-    AddOutputFilterByType DEFLATE application/rss+xml
-    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
-    AddOutputFilterByType DEFLATE application/x-font
-    AddOutputFilterByType DEFLATE application/x-font-opentype
-    AddOutputFilterByType DEFLATE application/x-font-otf
-    AddOutputFilterByType DEFLATE application/x-font-truetype
-    AddOutputFilterByType DEFLATE application/x-font-ttf
-    AddOutputFilterByType DEFLATE application/x-javascript
-    AddOutputFilterByType DEFLATE application/xhtml+xml
+    # Compress multiple file types
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
     AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/atom_xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
     AddOutputFilterByType DEFLATE font/opentype
-    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/truetype
     AddOutputFilterByType DEFLATE font/ttf
     AddOutputFilterByType DEFLATE image/svg+xml
     AddOutputFilterByType DEFLATE image/x-icon
-    AddOutputFilterByType DEFLATE text/css
-    AddOutputFilterByType DEFLATE text/html
-    AddOutputFilterByType DEFLATE text/javascript
-    AddOutputFilterByType DEFLATE text/plain
-    AddOutputFilterByType DEFLATE text/xml
-    AddOutputFilterByType DEFLATE text/json
-    AddOutputFilterByType DEFLATE application/json
     
-    # Remove browser bugs for old browsers
+    # Handle browser compatibility
     BrowserMatch ^Mozilla/4 gzip-only-text/html
     BrowserMatch ^Mozilla/4\.0[678] no-gzip
     BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
@@ -118,12 +84,12 @@ RewriteRule ^en/index\.html$ /en/ [R=301,L]
 </IfModule>
 
 # ================================
-# BROWSER CACHING FOR PERFORMANCE
+# ENHANCED BROWSER CACHING
 # ================================
 <IfModule mod_expires.c>
     ExpiresActive on
     
-    # Images - 1 year (static assets)
+    # Static Assets - 1 year
     ExpiresByType image/jpg "access plus 1 year"
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/gif "access plus 1 year"
@@ -132,11 +98,10 @@ RewriteRule ^en/index\.html$ /en/ [R=301,L]
     ExpiresByType image/svg+xml "access plus 1 year"
     ExpiresByType image/x-icon "access plus 1 year"
     
-    # CSS and JavaScript - 1 month (for updates)
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType text/javascript "access plus 1 month"
-    ExpiresByType application/x-javascript "access plus 1 month"
+    # CSS and JavaScript - 3 months with versioning
+    ExpiresByType text/css "access plus 3 months"
+    ExpiresByType application/javascript "access plus 3 months"
+    ExpiresByType text/javascript "access plus 3 months"
     
     # Fonts - 1 year
     ExpiresByType font/ttf "access plus 1 year"
@@ -145,127 +110,323 @@ RewriteRule ^en/index\.html$ /en/ [R=301,L]
     ExpiresByType application/font-woff "access plus 1 year"
     ExpiresByType application/font-woff2 "access plus 1 year"
     
-    # Data files - 1 day (for product updates)
-    ExpiresByType application/json "access plus 1 day"
-    ExpiresByType text/xml "access plus 1 day"
-    ExpiresByType application/xml "access plus 1 day"
-    ExpiresByType application/rss+xml "access plus 1 day"
+    # Data files - 6 hours for fresh product updates
+    ExpiresByType application/json "access plus 6 hours"
+    ExpiresByType text/xml "access plus 6 hours"
+    ExpiresByType application/xml "access plus 6 hours"
+    ExpiresByType application/rss+xml "access plus 6 hours"
     
-    # HTML files - 6 hours (for fresh content)
-    ExpiresByType text/html "access plus 6 hours"
+    # HTML files - 3 hours for fresh content
+    ExpiresByType text/html "access plus 3 hours"
     
-    # Default
-    ExpiresDefault "access plus 1 month"
-</IfModule>
-
-# Alternative caching with Cache-Control headers
-<IfModule mod_headers.c>
-    # 1 YEAR - Static Assets
-    <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|js|css|swf|woff|woff2|ttf|svg)$">
-        Header set Cache-Control "max-age=31536000, public"
-    </FilesMatch>
-    
-    # 6 HOURS - HTML files
-    <FilesMatch "\.(html|htm)$">
-        Header set Cache-Control "max-age=21600, public, must-revalidate"
-    </FilesMatch>
-    
-    # 1 DAY - Data files
-    <FilesMatch "\.(json|xml|rss)$">
-        Header set Cache-Control "max-age=86400, public"
-    </FilesMatch>
+    # Default cache
+    ExpiresDefault "access plus 1 week"
 </IfModule>
 
 # ================================
-# FILE ACCESS & SECURITY
+# ENHANCED SECURITY BLOCKS
 # ================================
-# Prevent access to sensitive files
-<FilesMatch "\.(env|log|ini|conf|sql|bak|backup|git|gitignore|htaccess|htpasswd|md|txt|py|phpinfo)$">
-    Order Allow,Deny
-    Deny from all
+# Block access to sensitive files and directories
+<FilesMatch "\.(env|log|ini|conf|config|sql|bak|backup|git|gitignore|htaccess|htpasswd|md|py|pyc|pyo|txt|yaml|yml|toml)$">
+    Require all denied
 </FilesMatch>
 
-# Prevent directory browsing
-Options -Indexes
+# Block access to development and system files
+<DirectoryMatch "\.(git|svn|hg|bzr|cvs)">
+    Require all denied
+</DirectoryMatch>
 
 # Block access to hidden files
-<FilesMatch "^\.(htaccess|htpasswd|git)">
-    Order Allow,Deny
-    Deny from all
+<FilesMatch "^\.(htaccess|htpasswd|git|env|DS_Store)">
+    Require all denied
+</FilesMatch>
+
+# Block direct PHP file access (if any future PHP files)
+<FilesMatch "\.php$">
+    # Allow only specific PHP files if needed
+    <RequireAny>
+        Require local
+        Require ip 127.0.0.1
+        # Add your server IP here if needed
+    </RequireAny>
 </FilesMatch>
 
 # ================================
-# ERROR PAGES
+# SEO-FRIENDLY URL STRUCTURE
 # ================================
+# Language-based routing
+RewriteCond %{HTTP:Accept-Language} ^en [NC]
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{QUERY_STRING} !lang=ar
+RewriteRule ^(.*)$ /en/ [R=302,L]
+
+# Clean product URLs
+RewriteRule ^product/([a-zA-Z0-9_-]+)/?$ product-details.html?id=$1 [L,QSA]
+RewriteRule ^en/product/([a-zA-Z0-9_-]+)/?$ en/product-details.html?id=$1 [L,QSA]
+
+# Category URLs
+RewriteRule ^perfumes/?$ products-showcase.html?category=perfumes [L,QSA]
+RewriteRule ^watches/?$ products-showcase.html?category=watches [L,QSA]
+RewriteRule ^en/perfumes/?$ en/products-showcase.html?category=perfumes [L,QSA] 
+RewriteRule ^en/watches/?$ en/products-showcase.html?category=watches [L,QSA]
+
+# Clean URLs - remove .html extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^.]+)$ $1.html [NC,L]
+
+# Redirect .html extension to clean URLs
+RewriteCond %{THE_REQUEST} \s/+([^\s?]*)\.html[\s?] [NC]
+RewriteRule ^ /%1? [R=301,L]
+
+# Root index.html redirect
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^ /? [R=301,L]
+
+# English index.html redirect
+RewriteCond %{THE_REQUEST} \s/+en/index\.html[\s?] [NC]
+RewriteRule ^en/index\.html$ /en/? [R=301,L]
+
+# ================================
+# ERROR PAGES WITH SECURITY
+# ================================
+ErrorDocument 400 /400.html
+ErrorDocument 403 /403.html
 ErrorDocument 404 /404.html
 ErrorDocument 500 /500.html
-ErrorDocument 403 /403.html
+ErrorDocument 503 /503.html
 
 # ================================
-# PERFORMANCE OPTIMIZATIONS
+# ENHANCED SECURITY BLOCKS
 # ================================
-# Enable Keep-Alive
-<IfModule mod_headers.c>
-    Header set Connection keep-alive
-</IfModule>
+# Block malicious query strings
+RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} ^.*\.(bash|git|hg|log|svn|swp|cvs) [NC,OR]
+RewriteCond %{QUERY_STRING} etc/passwd [NC,OR]
+RewriteCond %{QUERY_STRING} boot\.ini [NC,OR]
+RewriteCond %{QUERY_STRING} proc/self/environ [NC,OR]
+RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|\%3D) [OR]
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+RewriteCond %{QUERY_STRING} ^.*\(\*\).* [OR]
+RewriteCond %{QUERY_STRING} (<|%3C).*iframe.*(>|%3E) [NC]
+RewriteRule .* - [F,L]
 
-# ETags for better caching
-FileETag MTime Size
-
-# MIME Types for better handling
-<IfModule mod_mime.c>
-    AddType application/javascript .js
-    AddType text/css .css
-    AddType image/svg+xml .svg
-    AddType font/woff2 .woff2
-    AddType font/woff .woff
-    AddType font/ttf .ttf
-    AddType application/json .json
-    AddType text/xml .xml
-    AddType image/webp .webp
-    AddType application/xml .xml
-</IfModule>
+# Block suspicious user agents
+RewriteCond %{HTTP_USER_AGENT} (libwww-perl|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (;|<|>|'|"|\)|(|%0A|%0D|%22|%27|%28|%3C|%3E|%00).*(libwww-perl|wget|python|nikto|curl|scan|java|winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner) [NC]
+RewriteRule .* - [F,L]
 
 # ================================
-# SEO URL REDIRECTS
-# ================================
-# Handle old product URLs (maintain SEO)
-Redirect 301 /old-products.html /products-showcase.html
-Redirect 301 /products.html /products-showcase.html
-Redirect 301 /blog.html /blog/
-
-# Consistent trailing slash handling
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{THE_REQUEST} \s.+?//+(.*)\s HTTP/
-RewriteRule ^ /%1 [R=301,L]
-
-# Add trailing slash to directories
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteCond %{REQUEST_URI} !/$
-RewriteRule . %{REQUEST_URI}/ [R=301,L]
-
-# ================================
-# FEED & SITEMAP ACCESS
-# ================================
-# Ensure sitemap accessibility
-RewriteRule ^sitemap\.xml$ /sitemap.xml [L]
-RewriteRule ^product-feed\.xml$ /product-feed.xml [L]
-RewriteRule ^robots\.txt$ /robots.txt [L]
-
-# ================================
-# HOTLINKING PROTECTION
+# HOTLINKING PROTECTION ENHANCED
 # ================================
 <IfModule mod_rewrite.c>
     RewriteCond %{HTTP_REFERER} !^$
     RewriteCond %{HTTP_REFERER} !^https?://(www\.)?emirates-gifts\.arabsad\.com [NC]
     RewriteCond %{HTTP_REFERER} !^https?://(www\.)?google\. [NC]
     RewriteCond %{HTTP_REFERER} !^https?://(www\.)?bing\. [NC]
-    RewriteCond %{REQUEST_URI} \.(gif|jpe?g|png|webp)$ [NC]
-    RewriteRule \.(gif|jpe?g|png|webp)$ - [F,L]
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?facebook\. [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?instagram\. [NC]
+    RewriteCond %{REQUEST_URI} \.(gif|jpe?g|png|webp|css|js)$ [NC]
+    RewriteRule \.(gif|jpe?g|png|webp|css|js)$ - [F,L]
 </IfModule>
 
 # ================================
-# CHARSET & LANGUAGE
+# PERFORMANCE CACHE HEADERS
+# ================================
+<IfModule mod_headers.c>
+    # Cache static assets aggressively
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+        Header set Pragma "public"
+        Header set Expires "Thu, 31 Dec 2025 23:59:59 GMT"
+    </FilesMatch>
+    
+    # Cache HTML files for better SEO
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=10800, must-revalidate"
+        Header set Pragma "public"
+    </FilesMatch>
+    
+    # Cache data files with shorter expiry
+    <FilesMatch "\.(json|xml|txt|rss|tsv)$">
+        Header set Cache-Control "public, max-age=21600"
+        Header set Pragma "public"
+    </FilesMatch>
+    
+    # Add Vary headers for better caching
+    Header append Vary "Accept-Encoding, User-Agent"
+    Header append Vary "Accept-Language"
+</IfModule>
+
+# ================================
+# ADVANCED COMPRESSION
+# ================================
+<IfModule mod_deflate.c>
+    # Enable compression for multiple file types
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/csv
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/atom+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/ld+json
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/truetype
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE image/x-icon
+    
+    # Compress for older browsers
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+
+# Alternative compression method
+<IfModule mod_gzip.c>
+    mod_gzip_on Yes
+    mod_gzip_dechunk Yes
+    mod_gzip_item_include file \.(html?|txt|css|js|php|pl|json|xml)$
+    mod_gzip_item_include handler ^cgi-script$
+    mod_gzip_item_include mime ^text/.*
+    mod_gzip_item_include mime ^application/x-javascript.*
+    mod_gzip_item_exclude mime ^image/.*
+    mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</IfModule>
+
+# ================================
+# SEO URL STRUCTURE ENHANCED
+# ================================
+# Handle multilingual URLs with hreflang support
+RewriteRule ^ar/?$ / [R=301,L]
+RewriteRule ^arabic/?$ / [R=301,L]
+
+# Category-specific SEO URLs
+RewriteRule ^(عطور|perfumes)/?$ products-showcase.html?category=perfumes [L,QSA]
+RewriteRule ^(ساعات|watches)/?$ products-showcase.html?category=watches [L,QSA]
+RewriteRule ^en/perfumes/?$ en/products-showcase.html?category=perfumes [L,QSA]
+RewriteRule ^en/watches/?$ en/products-showcase.html?category=watches [L,QSA]
+
+# Brand and search URLs
+RewriteRule ^search/([^/]+)/?$ products-showcase.html?search=$1 [L,QSA]
+RewriteRule ^en/search/([^/]+)/?$ en/products-showcase.html?search=$1 [L,QSA]
+
+# Legacy URL redirects for SEO preservation
+Redirect 301 /products.html /products-showcase.html
+Redirect 301 /shop.html /products-showcase.html
+Redirect 301 /store.html /products-showcase.html
+Redirect 301 /blog.html /blog/
+Redirect 301 /contact.html /about.html
+Redirect 301 /support.html /about.html
+
+# ================================
+# SECURITY AGAINST ATTACKS
+# ================================
+# Block WordPress-specific attacks (even though we're not using WordPress)
+RewriteCond %{REQUEST_URI} ^.*wp-.*
+RewriteRule .* - [F,L]
+
+# Block common attack patterns
+RewriteCond %{REQUEST_URI} ^.*\.(asp|aspx|cgi|jsp|php5|phtml|py|rb)$ [NC]
+RewriteRule .* - [F,L]
+
+# Block SQL injection attempts
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=https:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(..//?)+
+RewriteRule .* - [F,L]
+
+# Block directory traversal attempts
+RewriteCond %{REQUEST_URI} \.\./
+RewriteRule .* - [F,L]
+
+# Block null bytes and control characters
+RewriteCond %{QUERY_STRING} \x00 [OR]
+RewriteCond %{QUERY_STRING} \x08 [OR]
+RewriteCond %{QUERY_STRING} \x0B [OR]
+RewriteCond %{QUERY_STRING} \x0C [OR]
+RewriteCond %{QUERY_STRING} \x0E-\x1F
+RewriteRule .* - [F,L]
+
+# ================================
+# FEED & SITEMAP OPTIMIZATION
+# ================================
+# Ensure proper MIME types for feeds
+<IfModule mod_mime.c>
+    AddType application/rss+xml .rss .xml
+    AddType application/json .json
+    AddType text/xml .xml
+    AddType text/plain .txt
+    AddType application/xml .xml
+</IfModule>
+
+# Sitemap and feed accessibility
+RewriteRule ^sitemap\.xml$ /sitemap.xml [L,E=no-gzip:1]
+RewriteRule ^product-feed\.xml$ /product-feed.xml [L,E=no-gzip:1]
+RewriteRule ^robots\.txt$ /robots.txt [L,E=no-gzip:1]
+RewriteRule ^google-merchant-feed\.xml$ /google-merchant-feed-complete.xml [L,E=no-gzip:1]
+RewriteRule ^merchant-feed\.xml$ /google-merchant-feed-complete.xml [L,E=no-gzip:1]
+
+# ================================
+# CONTENT TYPE OPTIMIZATION
+# ================================
+<IfModule mod_mime.c>
+    # Enhanced MIME types
+    AddType application/javascript .js
+    AddType text/css .css
+    AddType image/svg+xml .svg .svgz
+    AddType font/woff2 .woff2
+    AddType font/woff .woff
+    AddType font/ttf .ttf
+    AddType font/otf .otf
+    AddType application/json .json
+    AddType text/xml .xml
+    AddType image/webp .webp
+    AddType image/avif .avif
+    AddType application/xml .xml
+    AddType text/plain .txt
+    AddType application/rss+xml .rss
+    
+    # Set charset for text files
+    AddCharset UTF-8 .html .css .js .json .xml .txt
+</IfModule>
+
+# ================================
+# CORS HEADERS FOR FONTS
+# ================================
+<IfModule mod_headers.c>
+    <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|css)$">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        Header set Access-Control-Allow-Headers "Content-Type"
+    </FilesMatch>
+</IfModule>
+
+# ================================
+# HTTP/2 PUSH OPTIMIZATION
+# ================================
+<IfModule mod_http2.c>
+    H2Push on
+    H2PushPriority * after
+    H2PushPriority text/css before
+    H2PushPriority image/png after 32
+    H2PushPriority application/javascript interleaved
+    H2PushPriority font/woff2 before
+</IfModule>
+
+# ================================
+# CHARSET & LANGUAGE SETTINGS
 # ================================
 AddDefaultCharset UTF-8
 
@@ -276,165 +437,44 @@ AddDefaultCharset UTF-8
 </IfModule>
 
 # ================================
-# HTTP/2 OPTIMIZATION
-# ================================
-<IfModule mod_http2.c>
-    H2Push on
-    H2PushPriority * after
-    H2PushPriority text/css before
-    H2PushPriority image/png after 32
-    H2PushPriority application/javascript interleaved
-</IfModule>
-
-# ================================
-# ADDITIONAL PERFORMANCE
+# FINAL PERFORMANCE TWEAKS
 # ================================
 # Remove ETags for better performance
-<IfModule mod_headers.c>
-    Header unset ETag
-</IfModule>
 FileETag None
 
 # Server signature removal
 ServerTokens Prod
 
-# Enable compression for JSON and XML
-<IfModule mod_deflate.c>
-    SetOutputFilter DEFLATE
-    SetEnvIfNoCase Request_URI \\
-        \.(?:gif|jpe?g|png)$ no-gzip dont-vary
-    SetEnvIfNoCase Request_URI \\
-        \.(?:exe|t?gz|zip|bz2|sit|rar)$ no-gzip dont-vary
-</IfModule>
-
-# ================================
-# SEO FRIENDLY REDIRECTS
-# ================================
-# Handle legacy URLs
-Redirect 301 /products.html /products-showcase.html
-Redirect 301 /blog.html /blog/
-Redirect 301 /contact.html /about.html
-
-# Product category redirects
-RewriteRule ^perfumes-ar/?$ /#perfumes-section [R=301,L]
-RewriteRule ^watches-ar/?$ /#watches-section [R=301,L]
-RewriteRule ^en/perfumes-en/?$ /en/#perfumes-section [R=301,L]
-RewriteRule ^en/watches-en/?$ /en/#watches-section [R=301,L]
-
-# ================================
-# MOBILE & DEVICE OPTIMIZATION
-# ================================
-# Add Vary header for better mobile caching
+# Enable keep-alive connections
 <IfModule mod_headers.c>
-    Header append Vary User-Agent
-    Header append Vary Accept-Encoding
+    Header set Connection keep-alive
 </IfModule>
 
 # ================================
-# SPECIFIC FILE PROTECTIONS
+# MAINTENANCE MODE (DISABLED)
 # ================================
-# Block access to Python scripts but keep functionality
-<FilesMatch "\.py$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
-
-# Protect JSON data files from direct access
-<FilesMatch "\.(json)$">
-    <RequireAll>
-        Require all denied
-        # Allow specific referrers
-        Require expr "%{HTTP_REFERER} =~ /emirates-gifts\.arabsad\.com/"
-        # Allow localhost for development
-        Require local
-    </RequireAll>
-</FilesMatch>
-
-# ================================
-# PERFORMANCE CACHE HEADERS
-# ================================
-<IfModule mod_headers.c>
-    # Cache static assets aggressively
-    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
-        Header set Cache-Control "public, max-age=31536000, immutable"
-    </FilesMatch>
-    
-    # Cache HTML files for 6 hours
-    <FilesMatch "\.(html|htm)$">
-        Header set Cache-Control "public, max-age=21600, must-revalidate"
-    </FilesMatch>
-    
-    # Cache data files for 1 day
-    <FilesMatch "\.(json|xml|txt)$">
-        Header set Cache-Control "public, max-age=86400"
-    </FilesMatch>
-</IfModule>
-
-# ================================
-# SEARCH ENGINE SPECIFIC
-# ================================
-# Sitemap and robots accessibility
-RewriteRule ^sitemap\.xml$ /sitemap.xml [L]
-RewriteRule ^product-feed\.xml$ /product-feed.xml [L]
-RewriteRule ^robots\.txt$ /robots.txt [L]
-
-# Google Merchant Feed
-RewriteRule ^merchant-feed\.xml$ /google-merchant-feed-complete.xml [L]
-RewriteRule ^google-merchant-feed\.xml$ /google-merchant-feed-complete.xml [L]
-
-# ================================
-# TRAILING SLASH CONSISTENCY
-# ================================
-# Remove trailing slash from files
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} /$
-RewriteRule ^(.*)/ $1 [R=301,L]
-
-# Add trailing slash to directories
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteCond %{REQUEST_URI} !/$
-RewriteRule ^(.*)$ $1/ [R=301,L]
-
-# ================================
-# LEGACY SUPPORT
-# ================================
-# Old product page redirects for SEO preservation
-RewriteRule ^product/chanel-coco-perfume-100ml/?$ product-details.html?id=perfume_1 [R=301,L]
-RewriteRule ^product/dior-sauvage-100ml/?$ product-details.html?id=perfume_4 [R=301,L]
-RewriteRule ^product/rolex-yacht-master-silver/?$ product-details.html?id=watch_1 [R=301,L]
-RewriteRule ^product/rolex-kaaba-design/?$ product-details.html?id=watch_88 [R=301,L]
-
-# English legacy redirects
-RewriteRule ^en/product/chanel-coco-perfume-100ml/?$ en/product-details.html?id=perfume_1 [R=301,L]
-RewriteRule ^en/product/dior-sauvage-100ml/?$ en/product-details.html?id=perfume_4 [R=301,L]
-
-# ================================
-# FINAL OPTIMIZATIONS
-# ================================
-# Prevent access to backup and temporary files
-<FilesMatch "\.(bak|backup|old|tmp|temp|cache|log|conf|ini|yaml|yml|dist)$">
-    Order Allow,Deny
-    Deny from all
-</FilesMatch>
-
-# Block common exploit attempts
-RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
-RewriteCond %{QUERY_STRING} GLOBALS(=|\[|%[0-9A-Z]{0,2}) [OR]
-RewriteCond %{QUERY_STRING} _REQUEST(=|\[|%[0-9A-Z]{0,2}) [OR]
-RewriteCond %{QUERY_STRING} ^.*\.(bash|git|hg|log|svn|swp|cvs) [NC,OR]
-RewriteCond %{QUERY_STRING} etc/passwd [NC,OR]
-RewriteCond %{QUERY_STRING} boot\.ini [NC,OR]
-RewriteCond %{QUERY_STRING} ftp: [NC,OR]
-RewriteCond %{QUERY_STRING} http: [NC,OR]
-RewriteCond %{QUERY_STRING} https: [NC]
-RewriteRule .* - [F]
-
-# Enable CORS for fonts (if loading from CDN)
-<IfModule mod_headers.c>
-    <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css)$">
-        Header set Access-Control-Allow-Origin "*"
-    </FilesMatch>
-</IfModule>
-
-# Custom 503 page for maintenance (if needed)
+# Uncomment the lines below to enable maintenance mode
+# RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
+# RewriteCond %{REQUEST_URI} !^/maintenance\.html$
+# RewriteRule .* /maintenance.html [R=503,L]
 # ErrorDocument 503 /maintenance.html
+
+# ================================
+# DEVELOPMENT HELPERS (REMOVE IN PRODUCTION)
+# ================================
+# Allow source maps in development only
+# <FilesMatch "\.map$">
+#     Require local
+# </FilesMatch>
+
+# ================================
+# UAE-SPECIFIC OPTIMIZATIONS
+# ================================
+# Add UAE-specific headers
+<IfModule mod_headers.c>
+    Header set X-Country "AE"
+    Header set X-Region "GCC"
+    Header set X-Language "ar-AE"
+</IfModule>
+
+# End of .htaccess
