@@ -566,59 +566,66 @@
     <script src="./js/products-loader-en.js"></script>
     <script src="./js/main-en.js"></script>
     
+    <!-- Add Dismissible Popup System for English -->
+    <script src="./js/dismissible-popup-system-en.js"></script>
+    
     <script>
-    // Currency Fix - Remove any dollar signs and ensure AED display
+    // Enhanced Currency Fix
     document.addEventListener('DOMContentLoaded', function() {
-        function fixCurrencyDisplay() {
-            const priceElements = document.querySelectorAll('.current-price, .original-price, .price, .total-price');
-            priceElements.forEach(element => {
+        function fixAllCurrency() {
+            // Remove dollar signs and fix currency display
+            const allPriceElements = document.querySelectorAll(
+                '.current-price, .original-price, .price, .total-price, ' +
+                '.cart-item-price, .product-price, .sale-price, [class*="price"]'
+            );
+            
+            allPriceElements.forEach(element => {
                 let text = element.textContent || '';
                 
-                // Remove unwanted currency symbols
-                text = text.replace(/[\$£€¥]/g, ''); // Remove $, £, €, ¥
-                text = text.replace(/\s*AED\s*/g, ''); // Remove existing AED to avoid duplication
-                text = text.replace(/\s*USD\s*/g, ''); // Remove USD
-                text = text.replace(/\s*درهم\s*/g, ''); // Remove Arabic currency
+                // Skip if already processed or empty
+                if (!text || element.dataset.currencyFixed === 'true') return;
                 
-                // Clean and format
-                text = text.trim();
-                const numberValue = parseFloat(text);
+                // Remove unwanted currency symbols and text
+                text = text.replace(/[\$£€¥درهم]/g, ''); // Remove $, £, €, ¥, درهم
+                text = text.replace(/\s*(AED|USD|EUR|GBP|SAR)\s*/gi, ''); // Remove currency codes
+                text = text.replace(/\s*each\s*/gi, ''); // Remove "each"
                 
-                if (!isNaN(numberValue) && numberValue > 0) {
-                    element.textContent = numberValue.toFixed(2);
-                    // AED will be added via CSS ::after
-                }
-            });
-            
-            console.log('Currency display fixed - AED only');
-        }
-        
-        // Fix currency multiple times to ensure it works
-        fixCurrencyDisplay();
-        setTimeout(fixCurrencyDisplay, 1500);
-        setTimeout(fixCurrencyDisplay, 3000);
-        setTimeout(fixCurrencyDisplay, 5000);
-        
-        // Monitor for new content and fix currency
-        const observer = new MutationObserver(function(mutations) {
-            let shouldFix = false;
-            mutations.forEach(function(mutation) {
-                if (mutation.addedNodes.length > 0) {
-                    for (let node of mutation.addedNodes) {
-                        if (node.nodeType === 1) { // Element node
-                            if (node.classList && (node.classList.contains('product-card') || 
-                                                   node.classList.contains('cart-item') ||
-                                                   node.querySelector && node.querySelector('.price, .current-price, .original-price'))) {
-                                shouldFix = true;
-                                break;
-                            }
-                        }
+                // Extract just the number
+                const matches = text.match(/([\d.,]+)/g);
+                if (matches && matches.length > 0) {
+                    const numberValue = parseFloat(matches[0].replace(/,/g, ''));
+                    if (!isNaN(numberValue) && numberValue > 0) {
+                        element.textContent = numberValue.toFixed(2);
+                        element.dataset.currencyFixed = 'true';
                     }
                 }
             });
             
-            if (shouldFix) {
-                setTimeout(fixCurrencyDisplay, 100);
+            console.log('Currency fixed - AED will be added via CSS');
+        }
+        
+        // Run currency fix multiple times
+        fixAllCurrency();
+        setTimeout(fixAllCurrency, 1000);
+        setTimeout(fixAllCurrency, 2500);
+        setTimeout(fixAllCurrency, 4000);
+        
+        // Monitor for dynamically added content
+        const observer = new MutationObserver(function(mutations) {
+            let hasNewPrices = false;
+            
+            mutations.forEach(function(mutation) {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.nodeType === 1) { // Element node
+                        if (node.querySelector && node.querySelector('[class*="price"]')) {
+                            hasNewPrices = true;
+                        }
+                    }
+                });
+            });
+            
+            if (hasNewPrices) {
+                setTimeout(fixAllCurrency, 200);
             }
         });
         
