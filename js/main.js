@@ -1,5 +1,6 @@
-// وظائف المتجر الرئيسية المحسّنة - متجر هدايا الإمارات
+// وضاـف المتجر الرئيسية المحسّنة - متجر هدايا الإمارات
 // متوافق مع التصميم الجديد المستوحى من دخون الإماراتية
+// مع دعم صفحات تفاصيل المنتجات الديناميكية
 
 // متغيرات عامة
 let cart = JSON.parse(localStorage.getItem('emirates-gifts-cart') || '[]');
@@ -146,7 +147,7 @@ function showSuccessNotification(productTitle) {
             <div>
                 <div style="font-size: 1.1rem; margin-bottom: 5px;">تم الإضافة بنجاح!</div>
                 <div style="font-size: 0.9rem; opacity: 0.9; line-height: 1.4;">
-                    "${productTitle.length > 30 ? productTitle.substring(0, 30) + '...' : productTitle}" أُضيف إلى سلة التسوق
+                    "${productTitle.length > 30 ? productTitle.substring(0, 30) + '...' : productTitle}" أُضيف إلى السلة
                 </div>
                 <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">
                     🛍️ عرض السلة | 📱 طلب عبر واتساب
@@ -157,7 +158,7 @@ function showSuccessNotification(productTitle) {
     
     document.body.appendChild(notification);
     
-    // إزالة الرسالة بعد مدة
+    // إزالة بعد مدة
     setTimeout(() => {
         if (notification.parentNode) {
             notification.style.animation = 'slideOutRight 0.4s ease-in';
@@ -183,7 +184,7 @@ function showSuccessNotification(productTitle) {
     }
 }
 
-// دالة إنشاء بطاقة منتج محسّنة
+// دالة إنشاء بطاقة منتج محسّنة مع رابط تفاصيل
 function createProductCard(product, categoryType = 'general') {
     const discount = calculateDiscount(product.price, product.sale_price);
     const whatsappLink = createWhatsAppLink(product.title, product.sale_price);
@@ -215,9 +216,9 @@ function createProductCard(product, categoryType = 'general') {
                     `<div class="product-badge new-badge">جديد</div>`
                 }
                 <div class="product-overlay">
-                    <button class="overlay-btn quick-view-btn" title="عرض سريع" onclick="showQuickView('${product.id}')">
+                    <a href="./product-details.html?id=${product.id}" class="overlay-btn quick-view-btn" title="عرض التفاصيل">
                         <i class="fas fa-eye"></i>
-                    </button>
+                    </a>
                     <button class="overlay-btn wishlist-btn" title="إضافة للمفضلة" onclick="addToWishlist('${product.id}')">
                         <i class="fas fa-heart"></i>
                     </button>
@@ -252,6 +253,10 @@ function createProductCard(product, categoryType = 'general') {
                     <a href="${whatsappLink}" class="btn-whatsapp" target="_blank" rel="noopener noreferrer" title="طلب عبر واتساب">
                         <i class="fab fa-whatsapp"></i>
                     </a>
+                    <a href="./product-details.html?id=${product.id}" class="btn-view-product" title="عرض التفاصيل">
+                        <i class="fas fa-info-circle"></i>
+                        التفاصيل
+                    </a>
                 </div>
             </div>
         </div>
@@ -259,30 +264,29 @@ function createProductCard(product, categoryType = 'general') {
 }
 
 // وظائف إضافية للتفاعل
-window.showQuickView = function(productId) {
-    alert(`عرض سريع للمنتج ${productId} - قريباً سيتم تفعيل هذه الميزة`);
-};
-
 window.addToWishlist = function(productId) {
     alert(`تم إضافة المنتج ${productId} للمفضلة - قريباً سيتم تفعيل هذه الميزة`);
 };
 
 window.shareProduct = function(productId, productTitle) {
+    const productURL = `${window.location.origin}/product-details.html?id=${productId}`;
+    
     if (navigator.share) {
         navigator.share({
             title: productTitle,
             text: `شاهد هذا المنتج الرائع من متجر هدايا الإمارات`,
-            url: window.location.href
-        });
+            url: productURL
+        }).catch(err => console.log('Error sharing:', err));
     } else {
         // فولباك للمتصفحات القديمة
-        const url = window.location.href;
         if (navigator.clipboard) {
-            navigator.clipboard.writeText(url).then(() => {
+            navigator.clipboard.writeText(productURL).then(() => {
                 alert('تم نسخ رابط المنتج!');
+            }).catch(() => {
+                prompt('انسخ الرابط:', productURL);
             });
         } else {
-            prompt('انسخ الرابط:', url);
+            prompt('انسخ الرابط:', productURL);
         }
     }
 };
@@ -371,6 +375,7 @@ async function loadMainProducts() {
                         <i class="fas fa-exclamation-triangle"></i>
                         عذراً، حدث خطأ في تحميل المنتجات
                         <br><small>يرجى إعادة تحميل الصفحة</small>
+                        <br><button onclick="location.reload()" style="margin-top: 15px; background: var(--primary-gold); color: var(--deep-blue); border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">إعادة التحميل</button>
                     </div>
                 `;
             }
@@ -571,6 +576,26 @@ function addEnhancedCSS() {
             
             .professional-review i {
                 font-size: 0.9rem;
+            }
+            
+            .btn-view-product {
+                background: var(--light-blue);
+                color: var(--deep-blue);
+                padding: 8px 12px;
+                border-radius: var(--border-radius-small);
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 600;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+            
+            .btn-view-product:hover {
+                background: var(--primary-gold);
+                color: var(--white);
+                transform: translateY(-1px);
             }
             
             /* تحسينات الأداء */
