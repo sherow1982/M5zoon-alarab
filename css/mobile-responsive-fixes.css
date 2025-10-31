@@ -1,0 +1,599 @@
+/* تحسينات متجاوبة متقدمة للموبايل والتابلت */
+
+/* قواعد عامة للاستجابة */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* تحسينات اللمس للهواتف الذكية */
+button, .btn-primary, .btn-secondary, .btn-add-cart, .btn-whatsapp, .nav-link, .header-tool {
+    -webkit-tap-highlight-color: rgba(212, 175, 55, 0.3);
+    touch-action: manipulation;
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* هواتف صغيرة جداً (320px-375px) */
+@media (max-width: 375px) {
+    .header-container {
+        padding: 0 15px;
+    }
+    
+    .logo-title {
+        font-size: 1.3rem;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.7rem;
+    }
+    
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .hero {
+        padding: 40px 0;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .section {
+        padding: 40px 0;
+    }
+    
+    .section-container {
+        padding: 0 15px;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .product-info {
+        padding: 15px;
+    }
+    
+    .product-title {
+        font-size: 1.1rem;
+    }
+    
+    .current-price {
+        font-size: 1.2rem;
+    }
+    
+    .btn-add-cart, .btn-add-to-cart {
+        font-size: 0.85rem;
+        padding: 10px;
+    }
+    
+    .collection-content {
+        padding: 25px 15px;
+    }
+    
+    .collection-title {
+        font-size: 1.6rem;
+    }
+    
+    .collection-description {
+        font-size: 0.95rem;
+    }
+}
+
+/* هواتف متوسطة (376px-480px) */
+@media (min-width: 376px) and (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .product-card {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .hero-cta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .btn-primary, .btn-secondary {
+        flex: 1;
+        min-width: 140px;
+    }
+}
+
+/* هواتف كبيرة وتابلت صغير (481px-768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .hero-content {
+        gap: 30px;
+    }
+    
+    .collection-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .collection-content {
+        text-align: center;
+        padding: 50px 40px;
+    }
+}
+
+/* تابلت (769px-1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    
+    .main-nav {
+        gap: 20px;
+    }
+    
+    .nav-menu {
+        gap: 15px;
+    }
+    
+    .nav-link {
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
+}
+
+/* شاشات كبيرة (1025px-1366px) */
+@media (min-width: 1025px) and (max-width: 1366px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    .hero-content {
+        gap: 50px;
+    }
+}
+
+/* شاشات عريضة جداً (1367px+) */
+@media (min-width: 1367px) {
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+}
+
+/* تحسينات للاتجاه الأفقي (هواتف مدارة) */
+@media (orientation: landscape) and (max-height: 500px) {
+    .hero {
+        padding: 30px 0;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .section {
+        padding: 40px 0;
+    }
+}
+
+/* تحسينات للشاشات عالية الدقة (Retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .product-image, .hero-image, .blog-image {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* تحسينات لوضع الظلام */
+@media (prefers-color-scheme: dark) {
+    .loading-message {
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* تحسينات لتقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* تحسينات للخطوط والنصوص */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    h1, h2, h3 {
+        line-height: 1.3;
+    }
+    
+    .banner-text {
+        font-size: 0.8rem;
+        padding: 0 15px;
+        flex-wrap: wrap;
+    }
+    
+    .banner-icon {
+        font-size: 1rem;
+    }
+}
+
+/* تحسينات التفاعل لللمس */
+@media (pointer: coarse) {
+    button, a, .product-card {
+        min-height: 48px;
+    }
+    
+    .nav-link {
+        padding: 15px 20px;
+    }
+    
+    .header-tool {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* تحسينات للطباعة */
+@media print {
+    .header, .footer, .mobile-sidebar, .back-to-top {
+        display: none !important;
+    }
+    
+    body {
+        color: black;
+        background: white;
+    }
+    
+    .section {
+        page-break-inside: avoid;
+    }
+}
+
+/* تحسينات إضافية للمنتجات */
+@media (max-width: 768px) {
+    .product-info {
+        padding: 18px;
+    }
+    
+    .product-actions, .product-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .btn-add-cart, .btn-add-to-cart, .btn-view-product {
+        width: 100%;
+        padding: 14px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+    
+    .btn-whatsapp {
+        width: 100%;
+        padding: 14px;
+        border-radius: 10px;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .btn-whatsapp::after {
+        content: 'واتساب';
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+}
+
+/* تحسينات القوائم المنسدلة */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-section {
+        padding: 20px 0;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* تحسينات عرض المنتجات على الهاتف */
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+    }
+    
+    .product-card {
+        border-radius: 15px;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        background: white;
+        margin-bottom: 20px;
+    }
+    
+    .product-image-container {
+        height: 220px;
+    }
+    
+    .product-image {
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .product-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+    
+    .product-price {
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+    
+    .current-price {
+        font-size: 1.3rem;
+        color: #25D366;
+        font-weight: 800;
+    }
+}
+
+/* تحسينات الهيدر للموبايل */
+@media (max-width: 768px) {
+    .header-content {
+        flex-wrap: nowrap;
+        padding: 12px 0;
+    }
+    
+    .header-tools {
+        gap: 10px;
+    }
+    
+    .header-tool {
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        padding: 10px;
+        width: 42px;
+        height: 42px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* تحسينات القائمة الجانبية */
+@media (max-width: 768px) {
+    .mobile-sidebar {
+        width: 100%;
+        right: -100%;
+        background: linear-gradient(135deg, #1B2951 0%, #2C3E50 100%);
+    }
+    
+    .mobile-sidebar-nav a {
+        padding: 20px 25px;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .mobile-sidebar-nav a:last-child {
+        border-bottom: none;
+    }
+    
+    .mobile-sidebar-nav .order-now-btn {
+        background: linear-gradient(135deg, #25D366, #20B358) !important;
+        margin: 15px;
+        border-radius: 12px;
+        text-align: center;
+    }
+}
+
+/* تحسينات التقييمات على الموبايل */
+@media (max-width: 768px) {
+    .product-rating, .card-rating {
+        padding: 8px;
+        margin: 8px 0;
+        font-size: 0.85rem;
+    }
+    
+    .stars, .card-rating .stars {
+        font-size: 0.9rem;
+    }
+    
+    .rating-text, .card-rating .rating-number {
+        font-size: 0.8rem;
+    }
+}
+
+/* تحسينات الرسائل المنبثقة للموبايل */
+@media (max-width: 768px) {
+    .single-popup-notification {
+        left: 10px !important;
+        right: 10px !important;
+        bottom: 10px !important;
+        max-width: none !important;
+        width: calc(100vw - 20px) !important;
+        padding: 16px 18px !important;
+        font-size: 14px !important;
+        border-radius: 16px !important;
+        animation: mobilePopupSlide 0.6s ease-out !important;
+    }
+    
+    .single-popup-notification button {
+        top: -10px !important;
+        right: -10px !important;
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 16px !important;
+    }
+}
+
+@keyframes mobilePopupSlide {
+    0% {
+        transform: translateY(100%) scale(0.9);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(-10px) scale(1.02);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* تحسينات التحميل والأداء */
+@media (max-width: 768px) {
+    .loading-message {
+        padding: 40px 15px;
+        font-size: 1rem;
+        margin: 15px 0;
+    }
+    
+    .hero-image {
+        height: 300px;
+    }
+    
+    .collection-image {
+        height: 250px;
+    }
+}
+
+/* تحسينات خاصة لأجهزة iPhone */
+@supports (-webkit-appearance: none) {
+    @media (max-width: 768px) {
+        .hero-cta {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        
+        .footer {
+            padding-bottom: calc(30px + env(safe-area-inset-bottom));
+        }
+        
+        .mobile-sidebar {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    }
+}
+
+/* تحسينات لهواتف Samsung و Android */
+@media (max-width: 768px) {
+    .header {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    
+    .top-banner {
+        position: relative;
+        z-index: 999;
+    }
+}
+
+/* فيز إنتقالية للتابلت */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .collection-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+/* تحسينات نهائية لضمان التوافق */
+@media (max-width: 320px) {
+    .container, .section-container, .header-container, .footer-container {
+        padding: 0 10px;
+    }
+    
+    .hero {
+        padding: 30px 0;
+    }
+    
+    .section {
+        padding: 30px 0;
+    }
+    
+    .logo-title {
+        font-size: 1.2rem;
+    }
+    
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+    }
+}
