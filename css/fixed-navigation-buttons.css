@@ -1,0 +1,404 @@
+/* 
+ * إصلاح أزرار التنقل الذهبية
+ * تحسين التصميم والتفاعل والألوان
+ */
+
+/* تحسين الأزرار الرئيسية في الهيدر */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 8px; /* تقليل المسافة بين الأزرار */
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+/* تصميم أزرار التنقل المحسن */
+.nav-link {
+    text-decoration: none;
+    color: var(--deep-blue);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #FFD700 0%, #F4C430 50%, #DAA520 100%);
+    box-shadow: 
+        0 4px 15px rgba(212, 175, 55, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    min-width: 90px;
+    text-align: center;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* تأثير البريق */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+.nav-link:hover::before {
+    left: 100%;
+}
+
+/* تأثيرات الهوفر */
+.nav-link:hover {
+    background: linear-gradient(135deg, #FFED4E 0%, #F7DC6F 50%, #E6B800 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 25px rgba(212, 175, 55, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+    color: var(--deep-blue);
+    border-color: rgba(255, 215, 0, 0.6);
+}
+
+/* الزر النشط */
+.nav-link.active {
+    background: linear-gradient(135deg, #F1C40F 0%, #D4AF37 50%, #B8860B 100%);
+    color: var(--white);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 6px 20px rgba(212, 175, 55, 0.4),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.nav-link.active:hover {
+    background: linear-gradient(135deg, #F4D03F 0%, #D5A441 50%, #BB8A0B 100%);
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* تحسين أدوات الهيدر */
+.header-tools {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-tool {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #FFD700 0%, #F4C430 50%, #DAA520 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--deep-blue);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 
+        0 4px 15px rgba(212, 175, 55, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+}
+
+.header-tool:hover {
+    background: linear-gradient(135deg, #FFED4E 0%, #F7DC6F 50%, #E6B800 100%);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(212, 175, 55, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* تصميم زر "اطلب فوراً" المحسن */
+.order-now-btn {
+    background: linear-gradient(135deg, #25D366 0%, #20B358 50%, #1DA851 100%) !important;
+    color: white !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    box-shadow: 
+        0 4px 15px rgba(37, 211, 102, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(37, 211, 102, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative;
+    overflow: hidden;
+    min-width: auto;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.order-now-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+.order-now-btn:hover::before {
+    left: 100%;
+}
+
+.order-now-btn:hover {
+    background: linear-gradient(135deg, #28E56A 0%, #22C55E 50%, #1FAB4F 100%) !important;
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 
+        0 8px 25px rgba(37, 211, 102, 0.6),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1) !important;
+    color: white !important;
+}
+
+/* تحسين السلة */
+.cart-counter {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    animation: bounce 2s infinite;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.4);
+    border: 2px solid white;
+}
+
+/* زر القائمة للهواتف */
+.mobile-menu-toggle {
+    display: none;
+    background: linear-gradient(135deg, #FFD700 0%, #F4C430 50%, #DAA520 100%);
+    color: var(--deep-blue);
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 15px rgba(212, 175, 55, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+}
+
+.mobile-menu-toggle:hover {
+    background: linear-gradient(135deg, #FFED4E 0%, #F7DC6F 50%, #E6B800 100%);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 6px 20px rgba(212, 175, 55, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* تحسينات للأزرار في الهيرو */
+.btn-primary {
+    background: linear-gradient(135deg, #FFD700 0%, #F4C430 50%, #DAA520 100%);
+    color: var(--deep-blue);
+    padding: 18px 32px;
+    border: none;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 6px 25px rgba(212, 175, 55, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    cursor: pointer;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #FFED4E 0%, #F7DC6F 50%, #E6B800 100%);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 
+        0 12px 35px rgba(212, 175, 55, 0.6),
+        inset 0 3px 6px rgba(255, 255, 255, 0.4),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.1);
+    color: var(--deep-blue);
+}
+
+/* تحسين الزر الثانوي */
+.btn-secondary {
+    background: transparent;
+    color: var(--deep-blue);
+    padding: 18px 32px;
+    border: 3px solid var(--primary-gold);
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #FFD700 0%, #F4C430 50%, #DAA520 100%);
+    transition: left 0.4s ease;
+    z-index: -1;
+}
+
+.btn-secondary:hover::before {
+    left: 0;
+}
+
+.btn-secondary:hover {
+    color: var(--deep-blue);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    border-color: var(--light-gold);
+}
+
+/* انيميشن للأزرار */
+@keyframes buttonPulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+    50% {
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+    }
+}
+
+.nav-link.active {
+    animation: buttonPulse 3s infinite;
+}
+
+/* تحسينات للهواتف */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .header-tools {
+        gap: 8px;
+    }
+    
+    .header-tool {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+    
+    .order-now-btn {
+        padding: 10px 12px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .order-now-btn span {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-tools {
+        gap: 6px;
+    }
+    
+    .header-tool {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .order-now-btn {
+        padding: 8px 10px !important;
+        font-size: 0.8rem !important;
+        min-width: 40px;
+    }
+}
+
+/* تحسين التباعد في الهيدر */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    position: relative;
+}
+
+/* إضافة تأثير للمحتوى المكتمل */
+.nav-menu.loaded .nav-link {
+    animation: slideInDown 0.6s ease-out forwards;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-item:nth-child(1) .nav-link { animation-delay: 0.1s; }
+.nav-item:nth-child(2) .nav-link { animation-delay: 0.2s; }
+.nav-item:nth-child(3) .nav-link { animation-delay: 0.3s; }
+.nav-item:nth-child(4) .nav-link { animation-delay: 0.4s; }
+.nav-item:nth-child(5) .nav-link { animation-delay: 0.5s; }
+.nav-item:nth-child(6) .nav-link { animation-delay: 0.6s; }
