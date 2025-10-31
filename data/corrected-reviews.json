@@ -1,0 +1,386 @@
+{
+  "watches": [
+    {
+      "id": "watch_rev_001",
+      "productType": "watch",
+      "customerName": "أحمد المنصوري",
+      "rating": 5,
+      "comment": "ساعة راقية وتصميم أنيق جداً. الجودة عالية والحرفية ممتازة. أنصح بها للمناسبات الرسمية",
+      "date": "2024-10-28",
+      "verified": true,
+      "helpful": 12,
+      "location": "دبي"
+    },
+    {
+      "id": "watch_rev_002",
+      "productType": "watch",
+      "customerName": "فاطمة الكعبي",
+      "rating": 4,
+      "comment": "تصميم أنيق ومناسب للمناسبات الرسمية. الحجم مثالي والوزن مريح على المعصم",
+      "date": "2024-10-27",
+      "verified": true,
+      "helpful": 8,
+      "location": "أبوظبي"
+    },
+    {
+      "id": "watch_rev_003",
+      "productType": "watch",
+      "customerName": "محمد الشامسي",
+      "rating": 5,
+      "comment": "دقة في التوقيت وخامات عالية الجودة. تستحق السعر بالفعل",
+      "date": "2024-10-26",
+      "verified": true,
+      "helpful": 15,
+      "location": "الشارقة"
+    },
+    {
+      "id": "watch_rev_004",
+      "productType": "watch",
+      "customerName": "سالم البلوشي",
+      "rating": 4,
+      "comment": "ساعة جميلة وعملية. المقاومة للماء ممتازة والتصميم عصري",
+      "date": "2024-10-25",
+      "verified": true,
+      "helpful": 6,
+      "location": "عجمان"
+    },
+    {
+      "id": "watch_rev_005",
+      "productType": "watch",
+      "customerName": "منى الخوري",
+      "rating": 5,
+      "comment": "أعجبتني كثيراً. التفاصيل رائعة والألوان متناسقة. هدية مثالية",
+      "date": "2024-10-24",
+      "verified": true,
+      "helpful": 11,
+      "location": "رأس الخيمة"
+    },
+    {
+      "id": "watch_rev_006",
+      "productType": "watch",
+      "customerName": "خالد النعيمي",
+      "rating": 4,
+      "comment": "جودة البناء قوية والتشطيب احترافي. تناسب الاستخدام اليومي",
+      "date": "2024-10-23",
+      "verified": true,
+      "helpful": 9,
+      "location": "الفجيرة"
+    },
+    {
+      "id": "watch_rev_007",
+      "productType": "watch",
+      "customerName": "عائشة المهيري",
+      "rating": 5,
+      "comment": "من أجمل الساعات التي اقتنيتها. الطلة أنيقة والراحة عالية",
+      "date": "2024-10-22",
+      "verified": true,
+      "helpful": 13,
+      "location": "أم القيوين"
+    },
+    {
+      "id": "watch_rev_008",
+      "productType": "watch",
+      "customerName": "راشد الطنيجي",
+      "rating": 4,
+      "comment": "التصميم كلاسيكي وأنيق. المواد المستخدمة ذات جودة عالية",
+      "date": "2024-10-21",
+      "verified": true,
+      "helpful": 7,
+      "location": "دبي"
+    }
+  ],
+  "perfumes": [
+    {
+      "id": "perfume_rev_001",
+      "productType": "perfume",
+      "customerName": "نورا العلي",
+      "rating": 5,
+      "comment": "رائحة عطرة وتدوم طوال اليوم. التركيبة رائعة وأنصح بشرائه بقوة",
+      "date": "2024-10-28",
+      "verified": true,
+      "helpful": 18,
+      "location": "دبي"
+    },
+    {
+      "id": "perfume_rev_002",
+      "productType": "perfume",
+      "customerName": "عائشة البلوشي",
+      "rating": 4,
+      "comment": "عطر مميز ورائحة جذابة للغاية. يناسب جميع الأوقات والمناسبات",
+      "date": "2024-10-27",
+      "verified": true,
+      "helpful": 14,
+      "location": "أبوظبي"
+    },
+    {
+      "id": "perfume_rev_003",
+      "productType": "perfume",
+      "customerName": "سالم الخوري",
+      "rating": 5,
+      "comment": "من أفضل العطور التي جربتها. الثبات عالي والرائحة فاخرة",
+      "date": "2024-10-26",
+      "verified": true,
+      "helpful": 21,
+      "location": "الشارقة"
+    },
+    {
+      "id": "perfume_rev_004",
+      "productType": "perfume",
+      "customerName": "مريم الكعبي",
+      "rating": 4,
+      "comment": "رائحة مميزة وتركيبة متوازنة. يدوم لساعات طويلة دون أن يصبح مزعجاً",
+      "date": "2024-10-25",
+      "verified": true,
+      "helpful": 12,
+      "location": "عجمان"
+    },
+    {
+      "id": "perfume_rev_005",
+      "productType": "perfume",
+      "customerName": "أحمد الزعابي",
+      "rating": 5,
+      "comment": "عطر فاخر بجودة عالية. التعبئة أنيقة والعطر يستحق كل درهم",
+      "date": "2024-10-24",
+      "verified": true,
+      "helpful": 16,
+      "location": "رأس الخيمة"
+    },
+    {
+      "id": "perfume_rev_006",
+      "productType": "perfume",
+      "customerName": "فاطمة النعيمي",
+      "rating": 4,
+      "comment": "رائحة جميلة وناعمة. يناسب الاستخدام اليومي والمناسبات الخاصة",
+      "date": "2024-10-23",
+      "verified": true,
+      "helpful": 10,
+      "location": "الفجيرة"
+    },
+    {
+      "id": "perfume_rev_007",
+      "productType": "perfume",
+      "customerName": "محمد المهيري",
+      "rating": 5,
+      "comment": "عطر رجالي بامتياز. الرائحة قوية ومميزة دون أن تكون مفرطة",
+      "date": "2024-10-22",
+      "verified": true,
+      "helpful": 19,
+      "location": "أم القيوين"
+    },
+    {
+      "id": "perfume_rev_008",
+      "productType": "perfume",
+      "customerName": "هند الطنيجي",
+      "rating": 4,
+      "comment": "تركيبة عطرية متوازنة وأنيقة. يعطي انطباعاً رائعاً ومتميزاً",
+      "date": "2024-10-21",
+      "verified": true,
+      "helpful": 13,
+      "location": "دبي"
+    }
+  ],
+  "jewelry": [
+    {
+      "id": "jewelry_rev_001",
+      "productType": "jewelry",
+      "customerName": "مريم الزعابي",
+      "rating": 5,
+      "comment": "قطعة مجوهرات رائعة ولمعان مميز. التصميم أنيق والحرفية عالية",
+      "date": "2024-10-28",
+      "verified": true,
+      "helpful": 17,
+      "location": "دبي"
+    },
+    {
+      "id": "jewelry_rev_002",
+      "productType": "jewelry",
+      "customerName": "خديجة الرئيسي",
+      "rating": 4,
+      "comment": "تصميم عصري وجودة ممتازة. تناسب المناسبات الخاصة والاستخدام اليومي",
+      "date": "2024-10-27",
+      "verified": true,
+      "helpful": 11,
+      "location": "أبوظبي"
+    },
+    {
+      "id": "jewelry_rev_003",
+      "productType": "jewelry",
+      "customerName": "هند المرر",
+      "rating": 5,
+      "comment": "أعجبني التصميم كثيراً ومناسب للهدايا. الجودة فوق التوقعات",
+      "date": "2024-10-26",
+      "verified": true,
+      "helpful": 14,
+      "location": "الشارقة"
+    },
+    {
+      "id": "jewelry_rev_004",
+      "productType": "jewelry",
+      "customerName": "شما الكتبي",
+      "rating": 4,
+      "comment": "قطعة أنيقة وخامات فاخرة. تضيف لمسة جمالية رائعة للإطلالة",
+      "date": "2024-10-25",
+      "verified": true,
+      "helpful": 9,
+      "location": "عجمان"
+    },
+    {
+      "id": "jewelry_rev_005",
+      "productType": "jewelry",
+      "customerName": "عبير السويدي",
+      "rating": 5,
+      "comment": "مجوهرات فاخرة بتصميم راقي. تستحق الاقتناء والسعر مناسب",
+      "date": "2024-10-24",
+      "verified": true,
+      "helpful": 16,
+      "location": "رأس الخيمة"
+    },
+    {
+      "id": "jewelry_rev_006",
+      "productType": "jewelry",
+      "customerName": "أمل الحمادي",
+      "rating": 4,
+      "comment": "تصميم كلاسيكي أنيق وجودة عالية. تناسب جميع الأعمار والأذواق",
+      "date": "2024-10-23",
+      "verified": true,
+      "helpful": 12,
+      "location": "الفجيرة"
+    },
+    {
+      "id": "jewelry_rev_007",
+      "productType": "jewelry",
+      "customerName": "ميثا الظاهري",
+      "rating": 5,
+      "comment": "قطعة مجوهرات استثنائية. الصنعة دقيقة والتشطيب احترافي",
+      "date": "2024-10-22",
+      "verified": true,
+      "helpful": 18,
+      "location": "أم القيوين"
+    },
+    {
+      "id": "jewelry_rev_008",
+      "productType": "jewelry",
+      "customerName": "سلامة المنصوري",
+      "rating": 4,
+      "comment": "هدية رائعة لزوجتي. أعجبتها كثيراً والجودة ممتازة",
+      "date": "2024-10-21",
+      "verified": true,
+      "helpful": 10,
+      "location": "دبي"
+    }
+  ],
+  "accessories": [
+    {
+      "id": "acc_rev_001",
+      "productType": "accessory",
+      "customerName": "يوسف الطنيجي",
+      "rating": 4,
+      "comment": "إكسسوار عملي وأنيق. يستحق التجربة والسعر مناسب جداً",
+      "date": "2024-10-28",
+      "verified": true,
+      "helpful": 8,
+      "location": "دبي"
+    },
+    {
+      "id": "acc_rev_002",
+      "productType": "accessory",
+      "customerName": "لطيفة الحمادي",
+      "rating": 5,
+      "comment": "راضية عن المنتج والجودة فوق التوقعات. يضيف لمسة مميزة",
+      "date": "2024-10-27",
+      "verified": true,
+      "helpful": 12,
+      "location": "أبوظبي"
+    },
+    {
+      "id": "acc_rev_003",
+      "productType": "accessory",
+      "customerName": "عبدالله السويدي",
+      "rating": 4,
+      "comment": "منتج جيد وخدمة عملاء ممتازة. التوصيل سريع والتغليف أنيق",
+      "date": "2024-10-26",
+      "verified": true,
+      "helpful": 6,
+      "location": "الشارقة"
+    },
+    {
+      "id": "acc_rev_004",
+      "productType": "accessory",
+      "customerName": "موزة الكعبي",
+      "rating": 5,
+      "comment": "إكسسوار رائع ومتنوع الاستخدام. يناسب الإطلالات المختلفة",
+      "date": "2024-10-25",
+      "verified": true,
+      "helpful": 9,
+      "location": "عجمان"
+    },
+    {
+      "id": "acc_rev_005",
+      "productType": "accessory",
+      "customerName": "حمد البلوشي",
+      "rating": 4,
+      "comment": "جودة مقبولة بسعر معقول. يؤدي الغرض المطلوب بكفاءة",
+      "date": "2024-10-24",
+      "verified": true,
+      "helpful": 7,
+      "location": "رأس الخيمة"
+    },
+    {
+      "id": "acc_rev_006",
+      "productType": "accessory",
+      "customerName": "شيخة النعيمي",
+      "rating": 5,
+      "comment": "تصميم عصري وعملي. يمكن استخدامه في مناسبات مختلفة",
+      "date": "2024-10-23",
+      "verified": true,
+      "helpful": 11,
+      "location": "الفجيرة"
+    }
+  ],
+  "general": [
+    {
+      "id": "gen_rev_001",
+      "productType": "general",
+      "customerName": "علي المهيري",
+      "rating": 4,
+      "comment": "منتج جيد وخدمة عملاء ممتازة. يستحق الشراء بالتأكيد",
+      "date": "2024-10-28",
+      "verified": true,
+      "helpful": 5,
+      "location": "دبي"
+    },
+    {
+      "id": "gen_rev_002",
+      "productType": "general",
+      "customerName": "فاطمة الظاهري",
+      "rating": 5,
+      "comment": "راضية تماماً عن المنتج. الجودة ممتازة والسعر مناسب",
+      "date": "2024-10-27",
+      "verified": true,
+      "helpful": 8,
+      "location": "أبوظبي"
+    },
+    {
+      "id": "gen_rev_003",
+      "productType": "general",
+      "customerName": "سعيد الخوري",
+      "rating": 4,
+      "comment": "تجربة شراء ممتازة. المنتج كما هو موصوف تماماً",
+      "date": "2024-10-26",
+      "verified": true,
+      "helpful": 6,
+      "location": "الشارقة"
+    },
+    {
+      "id": "gen_rev_004",
+      "productType": "general",
+      "customerName": "منيرة الكتبي",
+      "rating": 5,
+      "comment": "هدية رائعة ومناسبة. الجودة عالية والتوصيل سريع",
+      "date": "2024-10-25",
+      "verified": true,
+      "helpful": 9,
+      "location": "عجمان"
+    }
+  ]
+}
