@@ -1,130 +1,140 @@
-// Dismissible Popup System for English Version - Appears every 20 seconds on all devices
-// Can be dismissed by user and respects user preference
+// Dismissible Popup System for English Version
+// Single popup that appears every 20 seconds on all devices
+// Identical functionality to Arabic version but in English
 
 class DismissiblePopupSystemEN {
     constructor() {
         this.popupInterval = null;
-        this.isPopupVisible = false;
-        this.dismissedUntil = null;
-        this.popupShownCount = 0;
-        this.maxShowsPerSession = 10; // Limit to avoid annoying users
+        this.popupTimeout = null;
+        this.isDismissed = false;
+        this.showInterval = 20000; // 20 seconds
         this.storageKey = 'emirates-popup-dismissed-en';
-        this.countKey = 'emirates-popup-count-en';
+        this.currentPopupIndex = 0;
         
-        // Initialize on DOM ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.initialize());
-        } else {
-            this.initialize();
-        }
+        this.popupMessages = [
+            {
+                title: '🎆 Special Offers on Premium Products!',
+                message: 'Discover exclusive deals on luxury perfumes and watches. Fast UAE delivery within 1-3 business days!',
+                cta: 'Shop Now',
+                link: './products-showcase.html',
+                icon: 'fas fa-fire'
+            },
+            {
+                title: '⭐ Premium Quality Guaranteed',
+                message: 'All our products are 100% authentic with 14-day return policy + shipping fees covered. Customer satisfaction guaranteed!',
+                cta: 'Learn More',
+                link: './about.html',
+                icon: 'fas fa-shield-alt'
+            },
+            {
+                title: '🚚 Free Express Shipping',
+                message: 'Enjoy fast delivery within 1-3 business days to all UAE emirates. Order now and receive your premium products quickly!',
+                cta: 'View Products',
+                link: './products-showcase.html',
+                icon: 'fas fa-shipping-fast'
+            },
+            {
+                title: '📱 Order via WhatsApp',
+                message: 'Get instant support and quick ordering through WhatsApp. Our customer service team is available 24/7!',
+                cta: 'Chat Now',
+                link: 'https://wa.me/201110760081',
+                icon: 'fab fa-whatsapp'
+            },
+            {
+                title: '🎁 Premium Gift Collections',
+                message: 'Perfect gifts for all occasions! Luxury perfumes, elegant watches, and exclusive items with beautiful packaging.',
+                cta: 'Explore Gifts',
+                link: './products-showcase.html',
+                icon: 'fas fa-gift'
+            }
+        ];
+        
+        this.initialize();
     }
     
     initialize() {
         console.log('Initializing English dismissible popup system...');
         
-        // Create popup HTML
-        this.createPopupHTML();
+        // Check if popup was recently dismissed
+        const dismissedTime = localStorage.getItem(this.storageKey);
+        const currentTime = Date.now();
         
-        // Load user preferences
-        this.loadUserPreferences();
+        // Reset dismissal after 1 hour
+        if (dismissedTime && (currentTime - parseInt(dismissedTime)) > 3600000) {
+            localStorage.removeItem(this.storageKey);
+            this.isDismissed = false;
+        } else if (dismissedTime) {
+            this.isDismissed = true;
+        }
         
-        // Start showing popup every 20 seconds
-        this.startPopupTimer();
+        if (!this.isDismissed) {
+            this.startPopupCycle();
+        }
         
-        console.log('✅ English dismissible popup system initialized');
+        this.addPopupStyles();
+        
+        console.log('🔔 English popup system initialized - Shows every 20 seconds');
     }
     
-    loadUserPreferences() {
-        // Check if user has dismissed the popup recently
-        const dismissedData = localStorage.getItem(this.storageKey);
-        if (dismissedData) {
-            const parsedData = JSON.parse(dismissedData);
-            this.dismissedUntil = parsedData.until;
-            
-            // If dismissed time has passed, reset
-            if (this.dismissedUntil && Date.now() > this.dismissedUntil) {
-                this.dismissedUntil = null;
-                localStorage.removeItem(this.storageKey);
+    startPopupCycle() {
+        // First popup after page load
+        this.popupTimeout = setTimeout(() => {
+            if (!this.isDismissed) {
+                this.showPopup();
             }
-        }
+        }, 3000); // First popup after 3 seconds
         
-        // Load show count for current session
-        const countData = sessionStorage.getItem(this.countKey);
-        if (countData) {
-            this.popupShownCount = parseInt(countData, 10) || 0;
-        }
+        // Recurring popup every 20 seconds
+        this.popupInterval = setInterval(() => {
+            if (!this.isDismissed && !document.hidden) {
+                this.showPopup();
+            }
+        }, this.showInterval);
     }
     
-    createPopupHTML() {
-        // Remove existing popup if any
-        const existingPopup = document.getElementById('dismissiblePopupEN');
-        if (existingPopup) {
-            existingPopup.remove();
+    showPopup() {
+        // Don't show if already dismissed or if another popup is visible
+        if (this.isDismissed || document.querySelector('.emirates-popup-en')) {
+            return;
         }
+        
+        const popup = this.popupMessages[this.currentPopupIndex];
+        this.currentPopupIndex = (this.currentPopupIndex + 1) % this.popupMessages.length;
         
         const popupHTML = `
-            <div id="dismissiblePopupEN" class="dismissible-popup-en" style="display: none;">
-                <div class="popup-overlay"></div>
-                <div class="popup-container">
-                    <div class="popup-header">
-                        <div class="popup-logo">
-                            <i class="fas fa-gift"></i>
-                            <span>Emirates Gifts</span>
+            <div class="emirates-popup-en" id="emiratesPopupEN">
+                <div class="popup-overlay-en" onclick="dismissiblePopupEN.hidePopup()"></div>
+                <div class="popup-content-en">
+                    <div class="popup-header-en">
+                        <div class="popup-icon-en">
+                            <i class="${popup.icon}"></i>
                         </div>
-                        <button class="popup-close" onclick="dismissiblePopupEN.dismissPopup('close')">
+                        <button class="popup-close-en" onclick="dismissiblePopupEN.dismissPopup()" aria-label="Close">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
                     
-                    <div class="popup-content">
-                        <h3>🎁 Exclusive Offers on Premium Collections!</h3>
-                        <p>Get special discounts on luxury perfumes and elegant watches</p>
-                        <div class="popup-features">
-                            <div class="popup-feature">
-                                <i class="fas fa-shipping-fast"></i>
-                                <span>Delivery within 1-3 business days</span>
-                            </div>
-                            <div class="popup-feature">
-                                <i class="fas fa-undo"></i>
-                                <span>14-day return guarantee + shipping fees</span>
-                            </div>
-                            <div class="popup-feature">
-                                <i class="fas fa-star"></i>
-                                <span>100% quality guaranteed</span>
-                            </div>
+                    <div class="popup-body-en">
+                        <h3 class="popup-title-en">${popup.title}</h3>
+                        <p class="popup-message-en">${popup.message}</p>
+                        
+                        <div class="popup-actions-en">
+                            <a href="${popup.link}" class="popup-cta-en" ${popup.link.startsWith('http') ? 'target="_blank" rel="noopener"' : 'target="_blank" rel="noopener"'}>
+                                <i class="${popup.icon}"></i>
+                                ${popup.cta}
+                            </a>
+                            <button class="popup-dismiss-en" onclick="dismissiblePopupEN.hidePopup()">
+                                <i class="fas fa-eye-slash"></i>
+                                Not Now
+                            </button>
                         </div>
                         
-                        <div class="popup-actions">
-                            <a href="./products-showcase.html" 
-                               class="popup-btn popup-btn-primary" 
-                               onclick="dismissiblePopupEN.dismissPopup('shop')" 
-                               target="_blank" 
-                               rel="noopener">
-                                <i class="fas fa-shopping-bag"></i>
-                                Shop Now
-                            </a>
-                            <a href="./checkout.html" 
-                               class="popup-btn popup-btn-secondary" 
-                               onclick="dismissiblePopupEN.dismissPopup('order')">
-                                <i class="fas fa-credit-card"></i>
-                                Complete Order
-                            </a>
-                            <a href="https://wa.me/201110760081?text=Hello! I would like to inquire about your special offers" 
-                               class="popup-btn popup-btn-whatsapp" 
-                               onclick="dismissiblePopupEN.dismissPopup('whatsapp')" 
-                               target="_blank" 
-                               rel="noopener">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </a>
+                        <div class="popup-footer-en">
+                            <label class="popup-checkbox-en">
+                                <input type="checkbox" id="dontShowAgainEN" onchange="dismissiblePopupEN.toggleDontShow(this.checked)">
+                                <span>Don't show again today</span>
+                            </label>
                         </div>
-                    </div>
-                    
-                    <div class="popup-footer">
-                        <label class="popup-checkbox">
-                            <input type="checkbox" id="dontShowAgainEN">
-                            <span>Don't show again today</span>
-                        </label>
                     </div>
                 </div>
             </div>
@@ -132,8 +142,58 @@ class DismissiblePopupSystemEN {
         
         document.body.insertAdjacentHTML('beforeend', popupHTML);
         
-        // Add CSS styles
-        this.addPopupStyles();
+        // Animate in
+        setTimeout(() => {
+            const popupElement = document.getElementById('emiratesPopupEN');
+            if (popupElement) {
+                popupElement.classList.add('popup-visible-en');
+            }
+        }, 100);
+        
+        // Auto-hide after 10 seconds
+        setTimeout(() => {
+            this.hidePopup();
+        }, 10000);
+        
+        console.log(`💬 English popup shown: ${popup.title}`);
+    }
+    
+    hidePopup() {
+        const popup = document.getElementById('emiratesPopupEN');
+        if (popup) {
+            popup.classList.remove('popup-visible-en');
+            popup.classList.add('popup-hiding-en');
+            
+            setTimeout(() => {
+                popup.remove();
+            }, 300);
+        }
+    }
+    
+    dismissPopup() {
+        this.isDismissed = true;
+        localStorage.setItem(this.storageKey, Date.now().toString());
+        
+        this.hidePopup();
+        
+        // Stop the intervals
+        if (this.popupInterval) {
+            clearInterval(this.popupInterval);
+            this.popupInterval = null;
+        }
+        
+        if (this.popupTimeout) {
+            clearTimeout(this.popupTimeout);
+            this.popupTimeout = null;
+        }
+        
+        console.log('🚫 English popup dismissed by user');
+    }
+    
+    toggleDontShow(checked) {
+        if (checked) {
+            this.dismissPopup();
+        }
     }
     
     addPopupStyles() {
@@ -142,213 +202,197 @@ class DismissiblePopupSystemEN {
         
         const styles = `
             <style id="${styleId}">
-            .dismissible-popup-en {
+            .emirates-popup-en {
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
                 z-index: 999999;
-                display: flex;
-                align-items: center;
-                justify-content: center;
                 opacity: 0;
                 visibility: hidden;
                 transition: all 0.3s ease;
-                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
                 direction: ltr;
+                text-align: left;
             }
             
-            .dismissible-popup-en.show {
+            .emirates-popup-en.popup-visible-en {
                 opacity: 1;
                 visibility: visible;
             }
             
-            .dismissible-popup-en .popup-overlay {
+            .emirates-popup-en.popup-hiding-en {
+                opacity: 0;
+                visibility: hidden;
+            }
+            
+            .popup-overlay-en {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0, 0, 0, 0.7);
+                background: rgba(0, 0, 0, 0.6);
                 backdrop-filter: blur(5px);
             }
             
-            .dismissible-popup-en .popup-container {
-                position: relative;
+            .popup-content-en {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
                 background: white;
                 border-radius: 20px;
-                max-width: 500px;
-                width: 90%;
-                max-height: 90vh;
-                overflow-y: auto;
                 box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-                transform: scale(0.8);
-                transition: transform 0.3s ease;
-                direction: ltr;
-                text-align: left;
+                max-width: 480px;
+                width: 90%;
+                max-height: 80vh;
+                overflow: hidden;
+                animation: popupSlideInEN 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             }
             
-            .dismissible-popup-en.show .popup-container {
-                transform: scale(1);
+            @keyframes popupSlideInEN {
+                0% {
+                    opacity: 0;
+                    transform: translate(-50%, -50%) scale(0.7) rotate(5deg);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                }
             }
             
-            .dismissible-popup-en .popup-header {
+            .popup-header-en {
                 display: flex;
-                align-items: center;
                 justify-content: space-between;
-                padding: 20px 25px 15px;
-                border-bottom: 2px solid #f0f0f0;
-                background: linear-gradient(135deg, #D4AF37, #B8941F);
-                color: white;
-                border-radius: 20px 20px 0 0;
-            }
-            
-            .dismissible-popup-en .popup-logo {
-                display: flex;
                 align-items: center;
-                gap: 10px;
-                font-size: 20px;
-                font-weight: 700;
+                padding: 20px 25px 0;
             }
             
-            .dismissible-popup-en .popup-logo i {
-                font-size: 24px;
-                color: white;
-            }
-            
-            .dismissible-popup-en .popup-close {
-                background: rgba(255, 255, 255, 0.2);
-                border: none;
-                color: white;
-                width: 35px;
-                height: 35px;
+            .popup-icon-en {
+                width: 50px;
+                height: 50px;
+                background: linear-gradient(135deg, #D4AF37, #B8941F);
                 border-radius: 50%;
-                cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transition: all 0.3s ease;
+                color: white;
+                font-size: 22px;
+                animation: pulseEN 2s infinite;
             }
             
-            .dismissible-popup-en .popup-close:hover {
-                background: rgba(255, 255, 255, 0.3);
+            @keyframes pulseEN {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+            }
+            
+            .popup-close-en {
+                background: transparent;
+                border: none;
+                font-size: 20px;
+                color: #999;
+                cursor: pointer;
+                padding: 8px;
+                transition: all 0.3s ease;
+                border-radius: 50%;
+                width: 36px;
+                height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .popup-close-en:hover {
+                color: #D4AF37;
+                background: rgba(212, 175, 55, 0.1);
                 transform: rotate(90deg);
             }
             
-            .dismissible-popup-en .popup-content {
-                padding: 30px 25px;
+            .popup-body-en {
+                padding: 25px;
                 text-align: center;
             }
             
-            .dismissible-popup-en .popup-content h3 {
+            .popup-title-en {
                 font-size: 24px;
-                font-weight: 800;
+                font-weight: 700;
                 color: #333;
-                margin-bottom: 15px;
-                line-height: 1.4;
+                margin: 0 0 15px 0;
+                line-height: 1.3;
             }
             
-            .dismissible-popup-en .popup-content p {
-                font-size: 16px;
+            .popup-message-en {
                 color: #666;
-                margin-bottom: 25px;
-                line-height: 1.6;
-            }
-            
-            .dismissible-popup-en .popup-features {
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                margin-bottom: 25px;
-            }
-            
-            .dismissible-popup-en .popup-feature {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                padding: 8px 15px;
-                background: #f8f9fa;
-                border-radius: 8px;
-                font-size: 14px;
-                font-weight: 500;
-                text-align: left;
-            }
-            
-            .dismissible-popup-en .popup-feature i {
-                color: #D4AF37;
                 font-size: 16px;
-                flex-shrink: 0;
+                line-height: 1.6;
+                margin: 0 0 25px 0;
             }
             
-            .dismissible-popup-en .popup-actions {
+            .popup-actions-en {
                 display: flex;
-                flex-direction: column;
                 gap: 12px;
+                justify-content: center;
+                flex-wrap: wrap;
                 margin-bottom: 20px;
             }
             
-            .dismissible-popup-en .popup-btn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                padding: 12px 20px;
-                border-radius: 8px;
-                text-decoration: none;
-                font-weight: 600;
-                font-size: 16px;
-                transition: all 0.3s ease;
-                cursor: pointer;
-            }
-            
-            .dismissible-popup-en .popup-btn-primary {
+            .popup-cta-en {
                 background: linear-gradient(135deg, #D4AF37, #B8941F);
                 color: white;
-                border: none;
+                padding: 12px 20px;
+                border-radius: 25px;
+                text-decoration: none;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+                flex: 1;
+                justify-content: center;
+                min-width: 120px;
             }
             
-            .dismissible-popup-en .popup-btn-primary:hover {
+            .popup-cta-en:hover {
                 background: linear-gradient(135deg, #B8941F, #D4AF37);
                 transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+                box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
                 color: white;
             }
             
-            .dismissible-popup-en .popup-btn-secondary {
+            .popup-dismiss-en {
                 background: transparent;
+                color: #666;
+                border: 2px solid #e9ecef;
+                padding: 12px 18px;
+                border-radius: 25px;
+                cursor: pointer;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                flex: 1;
+                justify-content: center;
+                min-width: 100px;
+            }
+            
+            .popup-dismiss-en:hover {
+                border-color: #D4AF37;
                 color: #D4AF37;
-                border: 2px solid #D4AF37;
+                background: rgba(212, 175, 55, 0.05);
             }
             
-            .dismissible-popup-en .popup-btn-secondary:hover {
-                background: #D4AF37;
-                color: white;
-                transform: translateY(-2px);
-            }
-            
-            .dismissible-popup-en .popup-btn-whatsapp {
-                background: #25D366;
-                color: white;
-                border: none;
-            }
-            
-            .dismissible-popup-en .popup-btn-whatsapp:hover {
-                background: #20BA5A;
-                transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-                color: white;
-            }
-            
-            .dismissible-popup-en .popup-footer {
-                padding: 15px 25px 20px;
+            .popup-footer-en {
                 border-top: 1px solid #f0f0f0;
+                padding: 15px 25px 20px;
                 background: #f8f9fa;
                 border-radius: 0 0 20px 20px;
             }
             
-            .dismissible-popup-en .popup-checkbox {
+            .popup-checkbox-en {
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -359,121 +403,164 @@ class DismissiblePopupSystemEN {
                 user-select: none;
             }
             
-            .dismissible-popup-en .popup-checkbox input {
+            .popup-checkbox-en input[type="checkbox"] {
                 width: 18px;
                 height: 18px;
+                margin: 0;
                 cursor: pointer;
+                accent-color: #D4AF37;
             }
             
-            /* Mobile Responsiveness */
+            /* Mobile Optimization */
             @media (max-width: 768px) {
-                .dismissible-popup-en .popup-container {
-                    width: 95%;
-                    margin: 10px;
+                .popup-content-en {
+                    max-width: 95%;
+                    margin: 0 auto;
                     border-radius: 15px;
                 }
                 
-                .dismissible-popup-en .popup-header {
-                    padding: 15px 20px 12px;
-                    border-radius: 15px 15px 0 0;
+                .popup-header-en {
+                    padding: 15px 20px 0;
                 }
                 
-                .dismissible-popup-en .popup-logo {
-                    font-size: 18px;
+                .popup-body-en {
+                    padding: 20px;
                 }
                 
-                .dismissible-popup-en .popup-content {
-                    padding: 25px 20px;
-                }
-                
-                .dismissible-popup-en .popup-content h3 {
+                .popup-title-en {
                     font-size: 20px;
                     margin-bottom: 12px;
                 }
                 
-                .dismissible-popup-en .popup-content p {
+                .popup-message-en {
                     font-size: 15px;
                     margin-bottom: 20px;
                 }
                 
-                .dismissible-popup-en .popup-features {
+                .popup-actions-en {
+                    flex-direction: column;
                     gap: 10px;
-                    margin-bottom: 20px;
+                    margin-bottom: 15px;
                 }
                 
-                .dismissible-popup-en .popup-feature {
-                    padding: 6px 12px;
-                    font-size: 13px;
+                .popup-cta-en,
+                .popup-dismiss-en {
+                    width: 100%;
+                    flex: none;
+                    min-width: auto;
+                    justify-content: center;
                 }
                 
-                .dismissible-popup-en .popup-actions {
-                    gap: 10px;
+                .popup-icon-en {
+                    width: 45px;
+                    height: 45px;
+                    font-size: 20px;
                 }
                 
-                .dismissible-popup-en .popup-btn {
-                    padding: 10px 16px;
-                    font-size: 15px;
-                }
-                
-                .dismissible-popup-en .popup-footer {
+                .popup-footer-en {
                     padding: 12px 20px 15px;
-                    border-radius: 0 0 15px 15px;
                 }
                 
-                .dismissible-popup-en .popup-checkbox {
+                .popup-checkbox-en {
                     font-size: 13px;
                 }
             }
             
-            @media (max-width: 480px) {
-                .dismissible-popup-en .popup-container {
-                    width: 98%;
-                    margin: 5px;
-                }
-                
-                .dismissible-popup-en .popup-content h3 {
-                    font-size: 18px;
-                }
-                
-                .dismissible-popup-en .popup-actions {
-                    gap: 8px;
-                }
-                
-                .dismissible-popup-en .popup-btn {
-                    padding: 8px 14px;
-                    font-size: 14px;
+            /* Tablet Adjustments */
+            @media (max-width: 1024px) and (min-width: 769px) {
+                .popup-content-en {
+                    max-width: 70%;
                 }
             }
             
-            /* Animation Effects */
-            @keyframes popupSlideInEN {
-                from {
-                    transform: scale(0.7) translateY(-50px);
-                    opacity: 0;
-                }
-                to {
-                    transform: scale(1) translateY(0);
-                    opacity: 1;
-                }
+            /* Enhanced Animations */
+            .popup-content-en {
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            
+            .popup-hiding-en .popup-content-en {
+                animation: popupSlideOutEN 0.3s ease-out;
             }
             
             @keyframes popupSlideOutEN {
-                from {
-                    transform: scale(1) translateY(0);
+                0% {
                     opacity: 1;
+                    transform: translate(-50%, -50%) scale(1) rotate(0deg);
                 }
-                to {
-                    transform: scale(0.7) translateY(-50px);
+                100% {
                     opacity: 0;
+                    transform: translate(-50%, -50%) scale(0.8) rotate(-3deg);
                 }
             }
             
-            .dismissible-popup-en.slide-in .popup-container {
-                animation: popupSlideInEN 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            /* Accessibility Improvements */
+            .popup-content-en:focus-within {
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(212, 175, 55, 0.5);
             }
             
-            .dismissible-popup-en.slide-out .popup-container {
-                animation: popupSlideOutEN 0.3s ease-in forwards;
+            .popup-cta-en:focus,
+            .popup-dismiss-en:focus,
+            .popup-close-en:focus {
+                outline: 2px solid #D4AF37;
+                outline-offset: 2px;
+            }
+            
+            /* High Contrast Mode Support */
+            @media (prefers-contrast: high) {
+                .popup-content-en {
+                    border: 2px solid #000;
+                }
+                
+                .popup-title-en {
+                    color: #000;
+                }
+                
+                .popup-message-en {
+                    color: #333;
+                }
+            }
+            
+            /* Reduced Motion Support */
+            @media (prefers-reduced-motion: reduce) {
+                .popup-content-en {
+                    animation: none;
+                }
+                
+                .popup-icon-en {
+                    animation: none;
+                }
+                
+                .popup-cta-en:hover,
+                .popup-dismiss-en:hover,
+                .popup-close-en:hover {
+                    transform: none;
+                }
+            }
+            
+            /* Dark Mode Support */
+            @media (prefers-color-scheme: dark) {
+                .popup-content-en {
+                    background: #2d2d2d;
+                    border: 1px solid #444;
+                }
+                
+                .popup-title-en {
+                    color: #fff;
+                }
+                
+                .popup-message-en {
+                    color: #ccc;
+                }
+                
+                .popup-footer-en {
+                    background: #1a1a1a;
+                    border-top-color: #444;
+                }
+                
+                .popup-checkbox-en {
+                    color: #ccc;
+                }
             }
             </style>
         `;
@@ -481,191 +568,50 @@ class DismissiblePopupSystemEN {
         document.head.insertAdjacentHTML('beforeend', styles);
     }
     
-    startPopupTimer() {
-        // Clear any existing timer
-        if (this.popupInterval) {
-            clearInterval(this.popupInterval);
-        }
-        
-        // Start new timer - show popup every 20 seconds
-        this.popupInterval = setInterval(() => {
-            this.attemptShowPopup();
-        }, 20000); // 20 seconds
-        
-        // Also show popup after 15 seconds initially (first time)
-        setTimeout(() => {
-            this.attemptShowPopup();
-        }, 15000);
-        
-        console.log('English popup timer started - will show every 20 seconds');
-    }
-    
-    attemptShowPopup() {
-        // Check if we should show the popup
-        if (this.shouldShowPopup()) {
-            this.showPopup();
-        } else {
-            console.log('English popup skipped based on user preferences or limits');
-        }
-    }
-    
-    shouldShowPopup() {
-        // Don't show if user dismissed it for today
-        if (this.dismissedUntil && Date.now() < this.dismissedUntil) {
-            return false;
-        }
-        
-        // Don't show if popup is already visible
-        if (this.isPopupVisible) {
-            return false;
-        }
-        
-        // Don't show if we've shown it too many times this session
-        if (this.popupShownCount >= this.maxShowsPerSession) {
-            return false;
-        }
-        
-        // Don't show on certain pages (checkout, cart)
-        const currentPath = window.location.pathname.toLowerCase();
-        if (currentPath.includes('checkout') || currentPath.includes('cart')) {
-            return false;
-        }
-        
-        return true;
-    }
-    
-    showPopup() {
-        const popup = document.getElementById('dismissiblePopupEN');
-        if (!popup) {
-            console.error('English popup element not found');
-            return;
-        }
-        
-        console.log('Showing English dismissible popup...');
-        
-        // Mark as visible
-        this.isPopupVisible = true;
-        
-        // Increment show count
-        this.popupShownCount++;
-        sessionStorage.setItem(this.countKey, this.popupShownCount.toString());
-        
-        // Show popup with animation
-        popup.style.display = 'flex';
-        setTimeout(() => {
-            popup.classList.add('show', 'slide-in');
-        }, 50);
-        
-        // Auto-hide after 8 seconds if user doesn't interact
-        setTimeout(() => {
-            if (this.isPopupVisible) {
-                this.dismissPopup('auto');
-            }
-        }, 8000);
-        
-        // Track popup display
-        this.trackPopupEvent('shown');
-    }
-    
-    dismissPopup(reason = 'close') {
-        const popup = document.getElementById('dismissiblePopupEN');
-        if (!popup || !this.isPopupVisible) return;
-        
-        console.log('Dismissing English popup. Reason:', reason);
-        
-        // Check if user selected "don't show again today"
-        const dontShowCheckbox = document.getElementById('dontShowAgainEN');
-        if (dontShowCheckbox && dontShowCheckbox.checked) {
-            // Don't show for 24 hours
-            const until = Date.now() + (24 * 60 * 60 * 1000); // 24 hours
-            this.dismissedUntil = until;
-            localStorage.setItem(this.storageKey, JSON.stringify({
-                until: until,
-                reason: reason
-            }));
-            console.log('English popup dismissed for 24 hours');
-        } else if (reason === 'close') {
-            // Don't show for 1 hour if manually closed
-            const until = Date.now() + (60 * 60 * 1000); // 1 hour
-            this.dismissedUntil = until;
-            localStorage.setItem(this.storageKey, JSON.stringify({
-                until: until,
-                reason: reason
-            }));
-            console.log('English popup dismissed for 1 hour');
-        }
-        
-        // Hide popup with animation
-        popup.classList.add('slide-out');
-        popup.classList.remove('slide-in');
-        
-        setTimeout(() => {
-            popup.classList.remove('show', 'slide-out');
-            popup.style.display = 'none';
-            this.isPopupVisible = false;
-        }, 300);
-        
-        // Track dismissal
-        this.trackPopupEvent('dismissed', reason);
-    }
-    
-    trackPopupEvent(action, reason = null) {
-        // Simple event tracking
-        console.log(`English popup ${action}${reason ? ' (' + reason + ')' : ''} - Count: ${this.popupShownCount}`);
-        
-        // Google Analytics tracking if available
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'popup_interaction_en', {
-                'event_category': 'popup_english',
-                'event_label': action,
-                'value': reason || 'none'
-            });
-        }
-    }
-    
-    // Method to manually show popup (for testing)
+    // Force show popup (for testing)
     forceShowPopup() {
-        this.dismissedUntil = null;
-        this.popupShownCount = 0;
+        this.isDismissed = false;
         localStorage.removeItem(this.storageKey);
-        sessionStorage.removeItem(this.countKey);
-        this.attemptShowPopup();
+        this.showPopup();
     }
     
-    // Method to permanently disable popup
-    disablePopup() {
-        if (this.popupInterval) {
-            clearInterval(this.popupInterval);
-            this.popupInterval = null;
-        }
+    // Reset popup system
+    resetPopupSystem() {
+        this.isDismissed = false;
+        localStorage.removeItem(this.storageKey);
         
-        const until = Date.now() + (365 * 24 * 60 * 60 * 1000); // 1 year
-        this.dismissedUntil = until;
-        localStorage.setItem(this.storageKey, JSON.stringify({
-            until: until,
-            reason: 'disabled'
-        }));
-        
-        console.log('English popup system disabled for 1 year');
-    }
-    
-    // Cleanup method
-    destroy() {
         if (this.popupInterval) {
             clearInterval(this.popupInterval);
         }
-        
-        const popup = document.getElementById('dismissiblePopupEN');
-        if (popup) {
-            popup.remove();
+        if (this.popupTimeout) {
+            clearTimeout(this.popupTimeout);
         }
         
-        const styles = document.getElementById('dismissiblePopupStylesEN');
-        if (styles) {
-            styles.remove();
-        }
+        this.hidePopup();
+        this.startPopupCycle();
         
-        console.log('English popup system destroyed');
+        console.log('🔄 English popup system reset');
+    }
+    
+    // Get popup statistics
+    getPopupStats() {
+        const dismissedTime = localStorage.getItem(this.storageKey);
+        return {
+            isDismissed: this.isDismissed,
+            dismissedTime: dismissedTime ? new Date(parseInt(dismissedTime)) : null,
+            currentPopupIndex: this.currentPopupIndex,
+            totalPopups: this.popupMessages.length,
+            showInterval: this.showInterval
+        };
+    }
+    
+    // Update popup messages
+    updatePopupMessages(newMessages) {
+        if (Array.isArray(newMessages) && newMessages.length > 0) {
+            this.popupMessages = newMessages;
+            this.currentPopupIndex = 0;
+            console.log('📝 English popup messages updated');
+        }
     }
 }
 
@@ -674,8 +620,9 @@ const dismissiblePopupEN = new DismissiblePopupSystemEN();
 
 // Export for external access
 window.dismissiblePopupEN = dismissiblePopupEN;
+window.dismissiblePopup = dismissiblePopupEN; // Compatibility
 
-// Handle page visibility change (pause when page is hidden)
+// Handle page visibility changes
 document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
         // Pause popup when page is not visible
@@ -683,25 +630,46 @@ document.addEventListener('visibilitychange', function() {
             clearInterval(dismissiblePopupEN.popupInterval);
         }
     } else {
-        // Resume popup when page becomes visible again
-        dismissiblePopupEN.startPopupTimer();
+        // Resume popup when page becomes visible
+        if (!dismissiblePopupEN.isDismissed && !dismissiblePopupEN.popupInterval) {
+            dismissiblePopupEN.startPopupCycle();
+        }
     }
 });
 
-// Handle popup overlay click to close
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('popup-overlay') && e.target.closest('.dismissible-popup-en')) {
-        dismissiblePopupEN.dismissPopup('overlay');
+// Handle before page unload
+window.addEventListener('beforeunload', function() {
+    if (dismissiblePopupEN.popupInterval) {
+        clearInterval(dismissiblePopupEN.popupInterval);
+    }
+    if (dismissiblePopupEN.popupTimeout) {
+        clearTimeout(dismissiblePopupEN.popupTimeout);
     }
 });
 
 // Handle ESC key to close popup
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && dismissiblePopupEN.isPopupVisible) {
-        dismissiblePopupEN.dismissPopup('escape');
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const popup = document.getElementById('emiratesPopupEN');
+        if (popup && popup.classList.contains('popup-visible-en')) {
+            dismissiblePopupEN.hidePopup();
+        }
     }
 });
 
-console.log('🎯 English Dismissible Popup System Loaded - Shows every 20 seconds');
-console.log('🔧 Features: User dismissal, mobile-friendly, accessibility support');
-console.log('⚙️ Controls: Click overlay or press ESC to close, checkbox to disable for 24h');
+// Developer tools for testing
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    window.testEnglishPopup = () => dismissiblePopupEN.forceShowPopup();
+    window.resetEnglishPopup = () => dismissiblePopupEN.resetPopupSystem();
+    window.englishPopupStats = () => console.table(dismissiblePopupEN.getPopupStats());
+    
+    console.log('🔧 English popup testing tools available:');
+    console.log('- testEnglishPopup() - Force show popup');
+    console.log('- resetEnglishPopup() - Reset popup system');
+    console.log('- englishPopupStats() - Show popup statistics');
+}
+
+console.log('📱 English Dismissible Popup System Loaded');
+console.log('⏰ Shows every 20 seconds on all devices');
+console.log('❌ Single dismissal stops all future popups for 1 hour');
+console.log('🎯 Identical functionality to Arabic version but in English');
