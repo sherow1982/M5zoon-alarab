@@ -17,6 +17,9 @@
         .btn-primary { background: linear-gradient(135deg, #FFD700, #D4AF37); color: #2c3e50; }
         .btn-secondary { background: transparent; color: #667eea; border: 2px solid #667eea; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
+        .redirect-message { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 15px; border-radius: 8px; margin: 20px 0; display: none; }
+        .loading { display: inline-block; width: 20px; height: 20px; border: 3px solid #f3f3f3; border-top: 3px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @media (max-width: 768px) { .error-actions { grid-template-columns: 1fr; } .error-container { padding: 40px 25px; } }
     </style>
 </head>
@@ -26,24 +29,132 @@
         <h1 class="error-code">404</h1>
         <h2 class="error-title">الصفحة غير موجودة</h2>
         <p class="error-description">عذراً، الصفحة التي تبحث عنها غير موجودة.<br> عد إلى متجر هدايا الإمارات واكتشف منتجاتنا الرائعة.</p>
+        
+        <div id="redirectMessage" class="redirect-message">
+            <div class="loading"></div>
+            جارٍ البحث عن المنتج وإعادة التوجيه...
+        </div>
+        
         <div class="error-actions">
             <a href="./" class="btn btn-primary">🏠 العودة للرئيسية</a>
             <a href="./products-showcase.html" class="btn btn-secondary">🛍 تصفح المنتجات</a>
         </div>
+        
         <div style="margin-top: 30px; color: #666; font-size: 0.9rem;">🏆 <strong>متجر هدايا الإمارات</strong> - وجهتك الموثوقة للعطور والهدايا الفاخرة</div>
     </div>
+
     <script>
-      (function(){
-        const path = location.pathname;
-        if(path.startsWith('/product/')){
-          const slug = decodeURIComponent(path.replace('/product/',''));
-          const url = `./product-details.html?slug=${encodeURIComponent(slug)}`;
-          location.replace(url);
-        } else {
-          // تحويل تلقائي بعد 10 ثوان للرئيسية
-          setTimeout(() => { window.location.href = './'; }, 10000);
+        // Enhanced product redirect logic for Google Merchant Feed URLs
+        const productMappings = {
+            'chanel-coco-perfume-100ml': 'chanel-coco-100ml.html',
+            'gucci-flora-women-perfume': 'gucci-flora.html',
+            'gucci-bloom-feminine-perfume': 'gucci-bloom.html',
+            'rolex-yacht-master-silver-watch': 'rolex-yacht-master-silver.html',
+            'rolex-classic-watch-41mm': 'ساعة-Rolex-كلاسيكية-41-ملم-2022.html',
+            'omega-swatch-baby-blue-watch': 'omega-swatch-baby-blue.html',
+            'dior-sauvage-100ml-perfume': 'dior-sauvage-100ml.html',
+            'tom-ford-bitter-peach': 'Tom-Ford-Bitter-Peach.html',
+            'versace-eros-perfume': 'versace-eros.html',
+            'rolex-datejust-blue-silver': 'Rolex-Datejust-Blue-silver.html',
+            'rolex-submariner-green': 'Rolex-Submariner-Green-COPY-1-AUTOMATIC.html',
+            'rolex-gmt-batman': 'Rolex-GMT-Batman.html',
+            'audemars-piguet-royal-orange': 'Audemars-Piguet-Royal-Orange.html',
+            'patek-philippe-geneve': 'Patek-philippe-geneve-black-copy-1.html',
+            'cartier-tank-black': 'Cartier-Tank-اسود-كحلي.html',
+            'burberry-watch-silver': 'Burberry-watches-سيلفر.html',
+            'emporio-armani-women-watch': 'Emporio-Armani-Watch-For-Women-ابيض.html',
+            'couple-rolex-watch-gold': 'Couple-Rolex-watch-gold.html',
+            'kayali-vanilla-candy': 'Kayali-Vanilla.html',
+            'marly-delina': 'Marly-Delina.html',
+            'glory-perfume': 'Glory.html',
+            'ariaf-perfume': 'ARIAF.html'
+        };
+
+        // Additional keyword-based mappings for flexible matching
+        const keywordMappings = {
+            'chanel': ['chanel-coco-100ml.html'],
+            'gucci': ['gucci-flora.html', 'gucci-bloom.html'],
+            'rolex': ['rolex-yacht-master-silver.html', 'Rolex-Datejust-Blue-silver.html', 'Rolex-GMT-Batman.html'],
+            'omega': ['omega-swatch-baby-blue.html'],
+            'dior': ['dior-sauvage-100ml.html'],
+            'versace': ['versace-eros.html'],
+            'tom-ford': ['Tom-Ford-Bitter-Peach.html'],
+            'kayali': ['Kayali-Vanilla.html'],
+            'marly': ['Marly-Delina.html'],
+            'glory': ['Glory.html'],
+            'ariaf': ['ARIAF.html']
+        };
+
+        function attemptRedirect() {
+            const currentPath = window.location.pathname;
+            const productMatch = currentPath.match(/\/product\/([^/]+)\/?$/);
+            
+            if (productMatch) {
+                const searchName = productMatch[1].toLowerCase();
+                const redirectMessage = document.getElementById('redirectMessage');
+                
+                // Show redirect message
+                redirectMessage.style.display = 'block';
+                
+                // Check direct mapping first
+                if (productMappings[searchName]) {
+                    setTimeout(() => {
+                        window.location.href = '/products/' + productMappings[searchName];
+                    }, 1500);
+                    return true;
+                }
+                
+                // Try keyword-based matching
+                for (const [keyword, files] of Object.entries(keywordMappings)) {
+                    if (searchName.includes(keyword)) {
+                        setTimeout(() => {
+                            window.location.href = '/products/' + files[0];
+                        }, 1500);
+                        return true;
+                    }
+                }
+                
+                // Try partial string matching
+                for (const [key, value] of Object.entries(productMappings)) {
+                    const keyParts = key.split('-');
+                    const searchParts = searchName.split('-');
+                    let matchCount = 0;
+                    
+                    for (const part of searchParts) {
+                        if (keyParts.some(keyPart => keyPart.includes(part) || part.includes(keyPart))) {
+                            matchCount++;
+                        }
+                    }
+                    
+                    if (matchCount >= 2) {
+                        setTimeout(() => {
+                            window.location.href = '/products/' + value;
+                        }, 1500);
+                        return true;
+                    }
+                }
+                
+                // Hide redirect message if no match found
+                setTimeout(() => {
+                    redirectMessage.style.display = 'none';
+                }, 3000);
+            }
+            return false;
         }
-      })();
+
+        // Execute redirect logic on page load
+        document.addEventListener('DOMContentLoaded', attemptRedirect);
+
+        // Analytics tracking for 404 errors
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_not_found', {
+                'page_location': window.location.href,
+                'page_title': document.title,
+                'custom_parameters': {
+                    'attempted_product': window.location.pathname
+                }
+            });
+        }
     </script>
 </body>
 </html>
