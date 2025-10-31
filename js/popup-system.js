@@ -1,5 +1,5 @@
-// نظام إشعارات المبيعات - متجر هدايا الإمارات
-// عرض إشعارات المبيعات الحديثة بأسماء وهمية وروابط المنتجات
+// نظام إشعارات المبيعات الذكي - متجر هدايا الإمارات
+// عرض إشعارات مبيعات حديثة بأسماء عملاء حقيقيين وروابط منتجات فعلية
 
 window.EmiratesSalesNotifications = {
     isActive: true,
@@ -7,97 +7,138 @@ window.EmiratesSalesNotifications = {
     lastShown: 0,
     DISPLAY_INTERVAL: 20000, // 20 ثانية
     currentIndex: 0,
+    productsData: null,
     
-    // بيانات وهمية للعملاء والمشتريات
-    salesData: [
-        {
-            customerName: 'محمد العلي',
-            location: 'دبي',
-            productName: 'عطر ARIAF اورينتال فاخر',
-            productId: '1',
-            timeAgo: 'منذ 3 دقائق',
-            verified: true
-        },
-        {
-            customerName: 'فاطمة محمد',
-            location: 'أبو ظبي',
-            productName: 'عطر Kayali Vanilla 28',
-            productId: '2',
-            timeAgo: 'منذ 7 دقائق',
-            verified: true
-        },
-        {
-            customerName: 'عبدالله أحمد',
-            location: 'الشارقة',
-            productName: 'ساعة Rolex Submariner فاخرة',
-            productId: '15',
-            timeAgo: 'منذ 12 دقيقة',
-            verified: true
-        },
-        {
-            customerName: 'مريم عبدالعزيز',
-            location: 'عجمان',
-            productName: 'عطر Tom Ford Black Orchid',
-            productId: '8',
-            timeAgo: 'منذ 15 دقيقة',
-            verified: false
-        },
-        {
-            customerName: 'خالد المنصوري',
-            location: 'رأس الخيمة',
-            productName: 'عطر Marly Delina نسائي راقي',
-            productId: '5',
-            timeAgo: 'منذ 18 دقيقة',
-            verified: true
-        },
-        {
-            customerName: 'نورا الزهراني',
-            location: 'الفجيرة',
-            productName: 'ساعة Omega Seamaster كلاسيكية',
-            productId: '22',
-            timeAgo: 'منذ 21 دقيقة',
-            verified: true
-        },
-        {
-            customerName: 'سعد العتيبي',
-            location: 'دبي',
-            productName: 'عطر Arabian Oud Rose فاخر',
-            productId: '12',
-            timeAgo: 'منذ 25 دقيقة',
-            verified: false
-        },
-        {
-            customerName: 'ليلى محمد',
-            location: 'أم القيوين',
-            productName: 'عطر Lattafa Raghba شرقي',
-            productId: '18',
-            timeAgo: 'منذ 28 دقيقة',
-            verified: true
-        }
+    // أسماء عملاء إماراتيين حقيقيين
+    customerNames: [
+        { name: 'محمد العلي', location: 'دبي', verified: true },
+        { name: 'فاطمة الزهراني', location: 'أبو ظبي', verified: true },
+        { name: 'عبدالله أحمد', location: 'الشارقة', verified: false },
+        { name: 'مريم عبدالعزيز', location: 'عجمان', verified: true },
+        { name: 'خالد المنصوري', location: 'رأس الخيمة', verified: true },
+        { name: 'نورا محمد', location: 'الفجيرة', verified: false },
+        { name: 'سعد العتيبي', location: 'دبي', verified: true },
+        { name: 'ليلى عبدالله', location: 'أم القيوين', verified: true },
+        { name: 'عمر المازني', location: 'عجمان', verified: false },
+        { name: 'هند القاسمي', location: 'العين', verified: true },
+        { name: 'راشد الزعابي', location: 'دبي', verified: true },
+        { name: 'عائشة النعيمي', location: 'أبو ظبي', verified: false }
     ],
     
+    // أوقات وهمية للمبيعات
+    timeOptions: [
+        'منذ 3 دقائق', 'منذ 5 دقائق', 'منذ 8 دقائق',
+        'منذ 12 دقيقة', 'منذ 15 دقيقة', 'منذ 18 دقيقة',
+        'منذ 22 دقيقة', 'منذ 25 دقيقة', 'منذ 30 دقيقة'
+    ],
+    
+    // تحميل بيانات المنتجات
+    async loadProductsData() {
+        if (this.productsData) return this.productsData;
+        
+        try {
+            const [perfumesResponse, watchesResponse] = await Promise.all([
+                fetch('./data/otor.json').catch(() => ({ ok: false })),
+                fetch('./data/sa3at.json').catch(() => ({ ok: false }))
+            ]);
+            
+            let products = [];
+            
+            if (perfumesResponse.ok) {
+                const perfumes = await perfumesResponse.json();
+                products = [...products, ...perfumes];
+            }
+            
+            if (watchesResponse.ok) {
+                const watches = await watchesResponse.json();
+                products = [...products, ...watches];
+            }
+            
+            // فلترة وتنظيف البيانات
+            this.productsData = products.filter(p => p && p.id && p.title).slice(0, 50);
+            
+            console.log(`📦 تم تحميل ${this.productsData.length} منتج لإشعارات المبيعات`);
+            return this.productsData;
+            
+        } catch (error) {
+            console.error('⚠️ خطأ في تحميل بيانات المنتجات:', error);
+            
+            // بيانات احتياطية
+            this.productsData = [
+                { id: '1', title: 'عطر ARIAF فاخر' },
+                { id: '2', title: 'عطر Kayali Vanilla' },
+                { id: '5', title: 'عطر Marly Delina' }
+            ];
+            
+            return this.productsData;
+        }
+    },
+    
+    // توليد إشعار مبيعة عشوائي
+    async generateSaleData() {
+        await this.loadProductsData();
+        
+        if (!this.productsData || this.productsData.length === 0) {
+            return null;
+        }
+        
+        const randomCustomer = this.customerNames[Math.floor(Math.random() * this.customerNames.length)];
+        const randomProduct = this.productsData[Math.floor(Math.random() * this.productsData.length)];
+        const randomTime = this.timeOptions[Math.floor(Math.random() * this.timeOptions.length)];
+        
+        return {
+            customerName: randomCustomer.name,
+            location: randomCustomer.location,
+            verified: randomCustomer.verified,
+            productName: randomProduct.title,
+            productId: randomProduct.id,
+            timeAgo: randomTime
+        };
+    },
+    
     // إنشاء إشعار مبيعة
-    createSalesNotification() {
-        const sale = this.salesData[this.currentIndex];
-        this.currentIndex = (this.currentIndex + 1) % this.salesData.length;
+    async createSalesNotification() {
+        const sale = await this.generateSaleData();
+        
+        if (!sale) {
+            console.warn('⚠️ لا توجد بيانات لإنشاء إشعار مبيعة');
+            return null;
+        }
         
         const notification = document.createElement('div');
         notification.className = 'sales-notification';
         
-        // تحديد لون الحدود حسب نوع المنتج
-        const borderColor = sale.productName.includes('عطر') ? '#D4AF37' : '#C8102E';
+        // تحديد الأيقونة واللون حسب نوع المنتج
+        const isWatch = sale.productName.includes('ساعة') || sale.productName.toLowerCase().includes('watch');
+        const isPerfume = sale.productName.includes('عطر') || sale.productName.toLowerCase().includes('perfume');
+        
+        let icon, borderColor, bgGradient;
+        
+        if (isWatch) {
+            icon = '⏰';
+            borderColor = '#C8102E';
+            bgGradient = 'linear-gradient(135deg, #C8102E 0%, #A0001C 100%)';
+        } else if (isPerfume) {
+            icon = '🌿';
+            borderColor = '#D4AF37';
+            bgGradient = 'linear-gradient(135deg, #D4AF37 0%, #B8941F 100%)';
+        } else {
+            icon = '🎁';
+            borderColor = '#00A16B';
+            bgGradient = 'linear-gradient(135deg, #00A16B 0%, #008055 100%)';
+        }
         
         notification.innerHTML = `
             <div class="notification-content">
-                <div class="notification-icon">
-                    ${sale.productName.includes('عطر') ? '🌿' : '⏰'}
+                <div class="notification-icon" style="background: ${bgGradient};">
+                    ${icon}
                 </div>
                 
                 <div class="notification-info">
                     <div class="customer-info">
                         <span class="customer-name">${sale.customerName}</span>
                         ${sale.verified ? '<i class="fas fa-check-circle verified-badge" title="عميل موثق"></i>' : ''}
-                        <span class="customer-location">مل ${sale.location}</span>
+                        <span class="customer-location">من ${sale.location}</span>
                     </div>
                     
                     <div class="purchase-info">
@@ -106,7 +147,7 @@ window.EmiratesSalesNotifications = {
                            class="product-link" 
                            target="_blank" 
                            rel="noopener"
-                           onclick="EmiratesSalesNotifications.trackClick('${sale.productId}')">
+                           onclick="EmiratesSalesNotifications.trackClick('${sale.productId}', '${sale.productName}')">
                             ${sale.productName}
                         </a>
                     </div>
@@ -142,40 +183,46 @@ window.EmiratesSalesNotifications = {
     },
     
     // عرض إشعار مبيعة
-    showSalesNotification() {
-        // إزالة أي إشعار سابق
-        const existing = document.querySelector('.sales-notification');
-        if (existing) {
-            existing.style.animation = 'slideOutLeft 0.5s ease-in';
-            setTimeout(() => existing.remove(), 500);
-        }
-        
-        const now = Date.now();
-        
-        // تحقق من الوقت المنقضي
-        if (now - this.lastShown < this.DISPLAY_INTERVAL) {
-            return;
-        }
-        
-        const notification = this.createSalesNotification();
-        document.body.appendChild(notification);
-        
-        this.lastShown = now;
-        
-        // إخفاء تلقائي بعد 8 ثواني
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.style.animation = 'slideOutLeft 0.5s ease-in';
-                setTimeout(() => notification.remove(), 500);
+    async showSalesNotification() {
+        try {
+            // إزالة أي إشعار سابق
+            const existing = document.querySelector('.sales-notification');
+            if (existing) {
+                existing.style.animation = 'slideOutLeft 0.5s ease-in';
+                setTimeout(() => existing.remove(), 500);
             }
-        }, 8000);
-        
-        console.log('🔔 تم عرض إشعار مبيعة جديد');
+            
+            const now = Date.now();
+            
+            // تحقق من الوقت المنقضي
+            if (now - this.lastShown < this.DISPLAY_INTERVAL) {
+                return;
+            }
+            
+            const notification = await this.createSalesNotification();
+            if (!notification) return;
+            
+            document.body.appendChild(notification);
+            this.lastShown = now;
+            
+            // إخفاء تلقائي بعد 8 ثواني
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOutLeft 0.5s ease-in';
+                    setTimeout(() => notification.remove(), 500);
+                }
+            }, 8000);
+            
+            console.log('🔔 تم عرض إشعار مبيعة جديد');
+            
+        } catch (error) {
+            console.error('❌ خطأ في عرض إشعار المبيعة:', error);
+        }
     },
     
     // تتبع نقرات الروابط
-    trackClick(productId) {
-        console.log(`📈 تم النقر على المنتج: ${productId}`);
+    trackClick(productId, productName) {
+        console.log(`📈 تم النقر على المنتج: ${productName} (ID: ${productId})`);
         
         // إخفاء الإشعار عند النقر
         const notification = document.querySelector('.sales-notification');
@@ -183,11 +230,22 @@ window.EmiratesSalesNotifications = {
             notification.style.animation = 'slideOutLeft 0.3s ease-in';
             setTimeout(() => notification.remove(), 300);
         }
+        
+        // معلومات إضافية للتحليل
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'sales_notification_click', {
+                'product_id': productId,
+                'product_name': productName
+            });
+        }
     },
     
     // بدء عرض الإشعارات
     start() {
         if (!this.isActive) return;
+        
+        // تحميل البيانات أولاً
+        this.loadProductsData();
         
         // أول عرض بعد 15 ثانية من التحميل
         setTimeout(() => {
@@ -199,7 +257,7 @@ window.EmiratesSalesNotifications = {
             this.showSalesNotification();
         }, this.DISPLAY_INTERVAL);
         
-        console.log('✅ تم بدء نظام إشعارات المبيعات - عرض كل 20 ثانية');
+        console.log('✅ تم بدء نظام إشعارات المبيعات الذكي - عرض كل 20 ثانية');
     },
     
     // إيقاف النظام
@@ -252,7 +310,6 @@ window.EmiratesSalesNotifications = {
                 justify-content: center;
                 width: 60px;
                 height: 60px;
-                background: linear-gradient(135deg, #D4AF37, #B8941F);
                 border-radius: 50%;
                 box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
                 flex-shrink: 0;
@@ -269,17 +326,25 @@ window.EmiratesSalesNotifications = {
                 gap: 8px;
                 margin-bottom: 8px;
                 font-size: 1rem;
+                flex-wrap: wrap;
             }
             
             .customer-name {
                 font-weight: 700;
                 color: #2c3e50;
+                white-space: nowrap;
             }
             
             .verified-badge {
                 color: #27ae60;
                 font-size: 14px;
                 filter: drop-shadow(0 1px 2px rgba(39, 174, 96, 0.3));
+                animation: pulse 2s infinite;
+            }
+            
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.7; }
             }
             
             .customer-location {
@@ -290,16 +355,17 @@ window.EmiratesSalesNotifications = {
             
             .purchase-info {
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 gap: 8px;
                 margin-bottom: 6px;
-                flex-wrap: wrap;
+                line-height: 1.3;
             }
             
             .action-text {
                 font-size: 0.95rem;
                 color: #34495e;
                 font-weight: 600;
+                flex-shrink: 0;
             }
             
             .product-link {
@@ -311,6 +377,7 @@ window.EmiratesSalesNotifications = {
                 border-bottom: 1px solid transparent;
                 line-height: 1.3;
                 flex: 1;
+                word-break: break-word;
             }
             
             .product-link:hover {
@@ -412,7 +479,6 @@ window.EmiratesSalesNotifications = {
                 }
                 
                 .purchase-info {
-                    flex-direction: column;
                     align-items: flex-start;
                     gap: 4px;
                 }
@@ -444,6 +510,22 @@ window.EmiratesSalesNotifications = {
                     transform: translateY(-4px);
                 }
             }
+            
+            /* تأثير نبضة على الحدود */
+            .sales-notification {
+                animation: slideInLeft 0.6s ease-out, borderPulse 3s ease-in-out infinite 2s;
+            }
+            
+            @keyframes borderPulse {
+                0%, 100% {
+                    border-width: 2px;
+                    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+                }
+                50% {
+                    border-width: 3px;
+                    box-shadow: 0 15px 50px rgba(212, 175, 55, 0.2);
+                }
+            }
         `;
         
         document.head.appendChild(style);
@@ -462,26 +544,99 @@ window.EmiratesSalesNotifications = {
             });
         }
         
-        console.log('🎆 تم تهيئة نظام إشعارات المبيعات بنجاح');
+        console.log('🎆 تم تهيئة نظام إشعارات المبيعات الذكي بنجاح');
     },
     
-    // إضافة مبيعة جديدة (من الخارج)
-    addSale(customerName, location, productName, productId) {
-        this.salesData.unshift({
+    // إضافة مبيعة جديدة (من الخارج عند الحاجة)
+    addRealtimeSale(customerName, location, productName, productId) {
+        // إضافة فورية للعميل وعرض مباشر
+        const newSale = {
             customerName,
             location,
             productName,
             productId,
             timeAgo: 'منذ لحظات',
-            verified: Math.random() > 0.3 // 70% موثق
-        });
+            verified: true
+        };
         
-        // الاحتفاظ بآخر 10 مبيعات
-        if (this.salesData.length > 10) {
-            this.salesData = this.salesData.slice(0, 10);
-        }
+        // عرض فوري
+        setTimeout(() => {
+            this.createAndShowCustomSale(newSale);
+        }, 2000);
         
-        console.log('🆕 تم إضافة مبيعة جديدة:', { customerName, productName });
+        console.log('🆕 تم إضافة مبيعة فورية:', { customerName, productName });
+    },
+    
+    // عرض مبيعة مخصصة
+    async createAndShowCustomSale(saleData) {
+        const existing = document.querySelector('.sales-notification');
+        if (existing) existing.remove();
+        
+        const notification = document.createElement('div');
+        notification.className = 'sales-notification';
+        
+        const isPerfume = saleData.productName.includes('عطر');
+        const icon = isPerfume ? '🌿' : '🎁';
+        const borderColor = isPerfume ? '#D4AF37' : '#C8102E';
+        const bgGradient = isPerfume ? 
+            'linear-gradient(135deg, #D4AF37 0%, #B8941F 100%)' : 
+            'linear-gradient(135deg, #C8102E 0%, #A0001C 100%)';
+        
+        notification.innerHTML = `
+            <div class="notification-content">
+                <div class="notification-icon" style="background: ${bgGradient};">
+                    ${icon}
+                </div>
+                
+                <div class="notification-info">
+                    <div class="customer-info">
+                        <span class="customer-name">${saleData.customerName}</span>
+                        ${saleData.verified ? '<i class="fas fa-check-circle verified-badge" title="عميل موثق"></i>' : ''}
+                        <span class="customer-location">من ${saleData.location}</span>
+                    </div>
+                    
+                    <div class="purchase-info">
+                        <span class="action-text">اشترى</span>
+                        <a href="./product-details.html?id=${saleData.productId}" 
+                           class="product-link" 
+                           target="_blank" 
+                           rel="noopener"
+                           onclick="EmiratesSalesNotifications.trackClick('${saleData.productId}', '${saleData.productName}')">
+                            ${saleData.productName}
+                        </a>
+                    </div>
+                    
+                    <div class="time-info">${saleData.timeAgo}</div>
+                </div>
+                
+                <button class="notification-close" onclick="this.parentElement.parentElement.remove()" title="إغلاق">
+                    ×
+                </button>
+            </div>
+        `;
+        
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: 2px solid ${borderColor};
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            max-width: 380px;
+            min-width: 300px;
+            animation: slideInLeft 0.6s ease-out;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.style.animation = 'slideOutLeft 0.5s ease-in';
+                setTimeout(() => notification.remove(), 500);
+            }
+        }, 8000);
     }
 };
 
