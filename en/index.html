@@ -128,6 +128,37 @@
         animation-duration: 0.5s;
     }
     
+    /* Currency Display - AED Only, No Dollar Signs */
+    .current-price::after,
+    .price::after {
+        content: " AED" !important;
+        color: #666;
+        font-size: 0.85em;
+        font-weight: normal;
+    }
+    
+    .original-price::after {
+        content: " AED" !important;
+        color: #999;
+        font-size: 0.85em;
+        font-weight: normal;
+    }
+    
+    .total-price::after {
+        content: " AED" !important;
+        color: #666;
+        font-size: 0.85em;
+        font-weight: normal;
+    }
+    
+    /* Remove any dollar sign content */
+    .current-price,
+    .original-price,
+    .total-price,
+    .price {
+        font-family: 'Inter', sans-serif;
+    }
+    
     /* LTR specific adjustments */
     .nav-menu {
         flex-direction: row;
@@ -155,19 +186,6 @@
     
     .footer-content {
         text-align: left;
-    }
-    
-    /* Currency display for English version */
-    .price::after {
-        content: " AED";
-    }
-    
-    .original-price::after {
-        content: " AED";
-    }
-    
-    .total-price::after {
-        content: " AED";
     }
     
     /* Mobile Improvements */
@@ -493,7 +511,7 @@
                         <li><a href="./blog/" target="_blank" rel="noopener">Blog</a></li>
                         <li><a href="./cart.html">Shopping Cart</a></li>
                         <li><a href="./about.html">About Us</a></li>
-                        <li><a href="../" target="_blank" rel="noopener" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe"></i> النسخة العربية</a></li>
+                        <li><a href="../" target="_blank" rel="noopener" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe"></i> [translate:النسخة العربية]</a></li>
                         <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">Complete Order</a></li>
                     </ul>
                 </div>
@@ -528,7 +546,7 @@
                         <a href="./terms-conditions.html">Terms</a>
                         <a href="./shipping-policy.html">Shipping</a>
                         <a href="./return-policy.html">Returns</a>
-                        <a href="../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> العربية</a>
+                        <a href="../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> [translate:العربية]</a>
                     </div>
                 </div>
                 <div class="shipping-return-footer-info">
@@ -564,18 +582,66 @@
             <a href="./privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
             <a href="./terms-conditions.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
             <a href="./cart.html"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-counter mobile-cart-counter">0</span></a>
-            <a href="../" target="_blank" rel="noopener" class="arabic-link"><i class="fas fa-globe"></i> النسخة العربية</a>
+            <a href="../" target="_blank" rel="noopener" class="arabic-link"><i class="fas fa-globe"></i> [translate:النسخة العربية]</a>
             <a href="./checkout.html" class="order-now-btn"><i class="fas fa-credit-card"></i> Order Now</a>
             <a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         </nav>
     </div>
 
-    <!-- Load Systems in Correct Order - Updated to load English version scripts -->
+    <!-- Load Systems in Correct Order -->
     <script src="./js/ui-en.js"></script>
     <script src="./js/cart-en.js"></script>
     <script src="./js/reviews-system-en.js"></script>
     <script src="./js/popup-system-en.js"></script>
     <script src="./js/products-loader-en.js"></script>
     <script src="./js/main-en.js"></script>
+    
+    <script>
+    // Currency Fix - Remove any dollar signs and ensure AED display
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to fix currency display
+        function fixCurrencyDisplay() {
+            const priceElements = document.querySelectorAll('.current-price, .original-price, .price, .total-price');
+            priceElements.forEach(element => {
+                let text = element.textContent || '';
+                
+                // Remove any existing currency symbols
+                text = text.replace(/[\$£€¥]/g, ''); // Remove $, £, €, ¥
+                text = text.replace(/\s*AED\s*/g, ''); // Remove existing AED to avoid duplication
+                text = text.replace(/\s*USD\s*/g, ''); // Remove USD
+                
+                // Clean and format the number
+                text = text.trim();
+                const numberValue = parseFloat(text);
+                
+                if (!isNaN(numberValue)) {
+                    element.textContent = numberValue.toFixed(2);
+                    // AED will be added via CSS ::after
+                }
+            });
+        }
+        
+        // Fix currency immediately and after product loading
+        fixCurrencyDisplay();
+        setTimeout(fixCurrencyDisplay, 2000);
+        setTimeout(fixCurrencyDisplay, 5000);
+        
+        // Monitor for new content and fix currency
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length > 0) {
+                    setTimeout(fixCurrencyDisplay, 100);
+                }
+            });
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+        
+        console.log('Currency display system initialized - AED only');
+    });
+    </script>
 </body>
 </html>
