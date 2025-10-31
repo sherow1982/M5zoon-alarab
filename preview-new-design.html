@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ar-AE" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معاينة التصميم الجديد | هدايا الإمارات</title>
+    <meta name="description" content="معاينة التصميم الجديد لمتجر هدايا الإمارات - مستوحى من دخون الإماراتية">
+    
+    <!-- خط Cairo من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- ملف CSS الجديد المستوحى من دخون الإماراتية -->
+    <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
+    
+    <style>
+        .preview-banner {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10001;
+        }
+        
+        body {
+            padding-top: 60px;
+        }
+        
+        .comparison-section {
+            background: var(--light-gray);
+            padding: 80px 0;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .comparison-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+        
+        .comparison-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .old-design {
+            border-top: 4px solid #95a5a6;
+        }
+        
+        .old-design .comparison-title {
+            color: #95a5a6;
+        }
+        
+        .new-design {
+            border-top: 4px solid var(--primary-gold);
+        }
+        
+        .new-design .comparison-title {
+            color: var(--primary-gold);
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ecf0f1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-icon {
+            width: 25px;
+            text-align: center;
+        }
+        
+        .old-design .feature-icon {
+            color: #95a5a6;
+        }
+        
+        .new-design .feature-icon {
+            color: var(--primary-gold);
+        }
+        
+        .demo-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .activation-guide {
+            background: var(--gradient-gold);
+            color: var(--deep-blue);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin: 40px 0;
+        }
+        
+        .activation-guide h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .guide-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .guide-step {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: var(--border-radius-small);
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .guide-step-number {
+            background: var(--deep-blue);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            body {
+                padding-top: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preview Banner -->
+    <div class="preview-banner">
+        🎆 هذه معاينة للتصميم الجديد المستوحى من "دخون الإماراتية" 🎆
+    </div>
+    
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="banner-text">
+            <i class="fas fa-shipping-fast banner-icon"></i>
+            <span>توصيل مجاني لجميع الطلبات فوق 250 درهم - اطلب الآن وادفع لاحقاً</span>
+            <i class="fas fa-gift banner-icon"></i>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="./" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-title">هدايا الإمارات</div>
+                        <div class="logo-subtitle">Emirates Gifts</div>
+                    </div>
+                </a>
+
+                <!-- Main Navigation -->
+                <nav class="main-nav">
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a href="./" class="nav-link active">الرئيسية</a></li>
+                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link">المنتجات</a></li>
+                        <li class="nav-item"><a href="#perfumes-section" class="nav-link">العطور</a></li>
+                        <li class="nav-item"><a href="#watches-section" class="nav-link">الساعات</a></li>
+                        <li class="nav-item"><a href="./blog/" class="nav-link">المدونة</a></li>
+                        <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link" target="_blank">تواصل</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Header Tools -->
+                <div class="header-tools">
+                    <a href="./cart.html" class="header-tool">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge">3</span>
+                    </a>
+                    <button class="mobile-menu-toggle" id="openSidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    عالم من العطور<br>
+                    <span style="color: var(--primary-gold);">والهدايا الفاخرة</span>
+                </h1>
+                <p class="hero-subtitle">
+                    اكتشف أجمل التشكيلات من العطور الشرقية والغربية الفاخرة
+                </p>
+                <div class="hero-cta">
+                    <a href="#demo-products" class="btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        تسوق الآن
+                    </a>
+                    <a href="./products-showcase.html" class="btn-secondary">
+                        <i class="fas fa-star"></i>
+                        عرض المنتجات
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop&crop=center" 
+                     alt="مجموعة متنوعة من العطور الفاخرة" 
+                     class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">✨ مقارنة التصميم الجديد مع القديم</h2>
+                <p class="section-subtitle">
+                    شاهد الفرق الواضح في التصميم الجديد المستوحى من دخون الإماراتية
+                </p>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card old-design">
+                    <h3 class="comparison-title">التصميم القديم</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-times feature-icon"></i> ألوان عادية</li>
+                        <li><i class="fas fa-times feature-icon"></i> ترتيب بسيط</li>
+                        <li><i class="fas fa-times feature-icon"></i> بطاقات منتجات عادية</li>
+                        <li><i class="fas fa-times feature-icon"></i> لا يوجد انيميشن</li>
+                        <li><i class="fas fa-times feature-icon"></i> تجربة عادية على الجوال</li>
+                        <li><i class="fas fa-times feature-icon"></i> هيدر بسيط</li>
+                        <li><i class="fas fa-times feature-icon"></i> فوتر عادي</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card new-design">
+                    <h3 class="comparison-title">التصميم الجديد 🎆</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check feature-icon"></i> ألوان ذهبية فاخرة</li>
+                        <li><i class="fas fa-check feature-icon"></i> تصميم عصري أنيق</li>
+                        <li><i class="fas fa-check feature-icon"></i> بطاقات منتجات تفاعلية</li>
+                        <li><i class="fas fa-check feature-icon"></i> انيميشنات سلسة</li>
+                        <li><i class="fas fa-check feature-icon"></i> قائمة جانبية للجوال</li>
+                        <li><i class="fas fa-check feature-icon"></i> هيدر ذهبي فاخر</li>
+                        <li><i class="fas fa-check feature-icon"></i> فوتر شامل محسّن</li>
+                        <li><i class="fas fa-check feature-icon"></i> آثار بصرية مميزة</li>
+                        <li><i class="fas fa-check feature-icon"></i> أداء محسّن</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Activation Guide -->
+            <div class="activation-guide">
+                <h3>🚀 كيفية تفعيل التصميم الجديد</h3>
+                <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem;">
+                    تم تطبيق التصميم الجديد تلقائياً على جميع صفحات المتجر!
+                </p>
+                
+                <div class="guide-steps">
+                    <div class="guide-step">
+                        <div class="guide-step-number">1</div>
+                        <strong>الصفحة الرئيسية</strong><br>
+                        تم التحديث ✓
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-step-number">2</div>
+                        <strong>عرض المنتجات</strong><br>
+                        تم التحديث ✓
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-step-number">3</div>
+                        <strong>سلة التسوق</strong><br>
+                        تم التحديث ✓
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-step-number">4</div>
+                        <strong>المدونة</strong><br>
+                        تم الإنشاء ✓
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-step-number">5</div>
+                        <strong>السياسات</strong><br>
+                        تم التحديث ✓
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Products Section -->
+    <section class="section" id="demo-products">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">عيّنة من المنتجات بالتصميم الجديد</h2>
+                <p class="section-subtitle">
+                    بطاقات منتجات تفاعلية مع تأثيرات بصرية فاخرة
+                </p>
+            </div>
+            
+            <div class="demo-products">
+                <!-- Demo Product 1 -->
+                <div class="product-card emirates-element">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=400&h=400&fit=crop&crop=center" 
+                             alt="عطر فاخر من هدايا الإمارات" 
+                             class="product-image">
+                        <div class="product-badge">خصم 25%</div>
+                        <div class="product-overlay">
+                            <button class="overlay-btn"><i class="fas fa-eye"></i></button>
+                            <button class="overlay-btn"><i class="fas fa-heart"></i></button>
+                            <button class="overlay-btn"><i class="fas fa-share"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">عطور فاخرة</div>
+                        <h3 class="product-title">عطر العود الملكي</h3>
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-text">(4.9 • 156 تقييم)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">450 د.إ</span>
+                            <span class="original-price">600 د.إ</span>
+                            <span class="discount">-25%</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                إضافة للسلة
+                            </button>
+                            <a href="https://wa.me/201110760081" class="btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Demo Product 2 -->
+                <div class="product-card emirates-element">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1523170335258-f5c54935e85b?w=400&h=400&fit=crop&crop=center" 
+                             alt="ساعة فاخرة من هدايا الإمارات" 
+                             class="product-image">
+                        <div class="product-badge">جديد</div>
+                        <div class="product-overlay">
+                            <button class="overlay-btn"><i class="fas fa-eye"></i></button>
+                            <button class="overlay-btn"><i class="fas fa-heart"></i></button>
+                            <button class="overlay-btn"><i class="fas fa-share"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">ساعات فاخرة</div>
+                        <h3 class="product-title">ساعة رولكس ماستر</h3>
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-text">(5.0 • 89 تقييم)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">2,850 د.إ</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                إضافة للسلة
+                            </button>
+                            <a href="https://wa.me/201110760081" class="btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Demo Product 3 -->
+                <div class="product-card emirates-element">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&h=400&fit=crop&crop=center" 
+                             alt="عطر شرقي فاخر من هدايا الإمارات" 
+                             class="product-image">
+                        <div class="product-badge">أكثر مبيعاً</div>
+                        <div class="product-overlay">
+                            <button class="overlay-btn"><i class="fas fa-eye"></i></button>
+                            <button class="overlay-btn"><i class="fas fa-heart"></i></button>
+                            <button class="overlay-btn"><i class="fas fa-share"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">عطور شرقية</div>
+                        <h3 class="product-title">عطر الأماراتي الملكي</h3>
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-text">(4.8 • 203 تقييم)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">320 د.إ</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                إضافة للسلة
+                            </button>
+                            <a href="https://wa.me/201110760081" class="btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Demo Product 4 -->
+                <div class="product-card emirates-element">
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop&crop=center" 
+                             alt="هدية فاخرة من هدايا الإمارات" 
+                             class="product-image">
+                        <div class="product-badge">عرض خاص</div>
+                        <div class="product-overlay">
+                            <button class="overlay-btn"><i class="fas fa-eye"></i></button>
+                            <button class="overlay-btn"><i class="fas fa-heart"></i></button>
+                            <button class="overlay-btn"><i class="fas fa-share"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">هدايا فاخرة</div>
+                        <h3 class="product-title">طقم هدايا فاخر</h3>
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-text">(4.7 • 145 تقييم)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">180 د.إ</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-add-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                إضافة للسلة
+                            </button>
+                            <a href="https://wa.me/201110760081" class="btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section class="section">
+        <div class="section-container">
+            <div class="collection-section">
+                <div class="collection-grid">
+                    <div class="collection-content">
+                        <h2 class="collection-title">مجموعة العطور الشرقية الفاخرة</h2>
+                        <p class="collection-description">
+                            استمتع برحلة عطرية لا تُنسى مع مجموعتنا الحصرية من العطور الشرقية الأصيلة
+                        </p>
+                        <a href="./products-showcase.html" class="btn-primary">
+                            <i class="fas fa-crown"></i>
+                            اكتشف المجموعة
+                        </a>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop&crop=center" 
+                             alt="مجموعة العطور الشرقية الفاخرة" 
+                             class="collection-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>هدايا الإمارات</h3>
+                    <p>متجر العطور والهدايا الفاخرة الرائد في الإمارات</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="./">الرئيسية</a></li>
+                        <li><a href="./products-showcase.html">المنتجات</a></li>
+                        <li><a href="./blog/">المدونة</a></li>
+                        <li><a href="./cart.html">السلة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>خدمة العملاء</h3>
+                    <ul>
+                        <li><a href="./shipping-policy.html">الشحن والتوصيل</a></li>
+                        <li><a href="./return-policy.html">سياسة الإرجاع</a></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+201110760081">+20 111 076 0081</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>دبي، الإمارات العربية المتحدة</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <div class="mobile-sidebar-logo">هدايا الإمارات</div>
+            <button class="mobile-sidebar-close" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-sidebar-nav">
+            <a href="./"><i class="fas fa-home"></i> الرئيسية</a>
+            <a href="./products-showcase.html"><i class="fas fa-th-large"></i> المنتجات</a>
+            <a href="#perfumes-section"><i class="fas fa-spray-can"></i> العطور</a>
+            <a href="#watches-section"><i class="fas fa-clock"></i> الساعات</a>
+            <a href="./blog/"><i class="fas fa-blog"></i> المدونة</a>
+            <a href="./cart.html"><i class="fas fa-shopping-cart"></i> السلة</a>
+            <a href="https://wa.me/201110760081" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a>
+        </nav>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // عناصر DOM
+        const openSidebarBtn = document.getElementById('openSidebar');
+        const closeSidebarBtn = document.getElementById('closeSidebar');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const progressBar = document.getElementById('progressBar');
+        const backToTopBtn = document.getElementById('backToTop');
+        const header = document.getElementById('header');
+        
+        // وظائف القائمة الجانبية
+        const openSidebar = () => {
+            mobileSidebar?.classList.add('open');
+            mobileOverlay?.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        
+        const closeSidebar = () => {
+            mobileSidebar?.classList.remove('open');
+            mobileOverlay?.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        
+        // ربط أحداث القائمة الجانبية
+        openSidebarBtn?.addEventListener('click', openSidebar);
+        closeSidebarBtn?.addEventListener('click', closeSidebar);
+        mobileOverlay?.addEventListener('click', closeSidebar);
+        
+        // تحديث شريط التقدم
+        const updateScrollProgress = () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight;
+            const winHeight = window.innerHeight;
+            const scrollPercent = scrollTop / (docHeight - winHeight);
+            if (progressBar) {
+                progressBar.style.width = `${scrollPercent * 100}%`;
+            }
+        };
+        
+        // أحداث التمرير
+        window.addEventListener('scroll', () => {
+            updateScrollProgress();
+            
+            // تأثير الهيدر عند التمرير
+            if (window.scrollY > 100) {
+                header?.classList.add('scrolled');
+            } else {
+                header?.classList.remove('scrolled');
+            }
+            
+            // زر العودة للأعلى
+            if (window.scrollY > 500) {
+                backToTopBtn?.classList.add('show');
+            } else {
+                backToTopBtn?.classList.remove('show');
+            }
+        }, { passive: true });
+        
+        // زر العودة للأعلى
+        backToTopBtn?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // التنقل السلس للروابط الداخلية
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            if (link.target !== '_blank') {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        closeSidebar();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+        });
+        
+        // محاكاة بطاقات المنتجات التفاعلية
+        document.addEventListener('DOMContentLoaded', () => {
+            // تفعيل الانيميشن على بطاقات المنتجات
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                    card.style.transition = 'all 0.6s ease';
+                }, index * 200);
+            });
+            
+            // محاكاة إضافة للسلة
+            document.querySelectorAll('.btn-add-cart').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جارِ الإضافة...';
+                    btn.style.background = 'var(--success-green)';
+                    btn.style.color = 'white';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-check"></i> تم الإضافة!';
+                        
+                        setTimeout(() => {
+                            btn.innerHTML = '<i class="fas fa-shopping-cart"></i> إضافة للسلة';
+                            btn.style.background = 'var(--gradient-gold)';
+                            btn.style.color = 'var(--deep-blue)';
+                        }, 2000);
+                    }, 1500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
