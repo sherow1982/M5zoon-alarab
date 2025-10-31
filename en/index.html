@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Emirates Gifts Store - Premium Perfumes & Watches | 1-3 Business Days Delivery</title>
     <meta name="description" content="Emirates Gifts Store - Discover the best premium perfume and watch deals in UAE. Fast delivery within 1-3 business days + 14-day return guarantee + shipping fees covered.">
+    
+    <!-- SEO and Performance Optimizations -->
     <meta name="keywords" content="emirates gifts, premium perfumes UAE, luxury watches Dubai, Arabic perfumes, Western fragrances, fast delivery UAE, premium gifts Dubai">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="author" content="Emirates Gifts Store">
     <meta name="language" content="en">
+    <link rel="canonical" href="https://emirates-gifts.arabsad.com/en/">
+    <link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/">
+    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/">
+    <link rel="alternate" hreflang="x-default" href="https://emirates-gifts.arabsad.com/">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Emirates Gifts Store - Premium Perfumes & Watches">
@@ -25,17 +31,14 @@
     <meta name="twitter:description" content="Discover premium Eastern and Western perfumes, luxury watches and gifts.">
     <meta name="twitter:image" content="https://emirates-gifts.arabsad.com/favicon.ico">
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://emirates-gifts.arabsad.com/en/">
-    <link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/">
-    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     
-    <!-- Core CSS Files -->
+    <!-- Core CSS Files in Optimized Order -->
+    <link rel="preload" href="../css/dkhoon-inspired-style.css" as="style">
     <link rel="stylesheet" href="../css/dkhoon-inspired-style.css">
     <link rel="stylesheet" href="../css/mobile-responsive-fixes.css">
     <link rel="stylesheet" href="../css/reviews-system.css">
@@ -45,6 +48,7 @@
     <link rel="stylesheet" href="../css/final-button-appearance-fix.css">
     <link rel="stylesheet" href="./css/currency-fix-en.css">
     
+    <!-- Structured Data for SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -58,7 +62,7 @@
         "addressRegion": "Dubai"
       },
       "currenciesAccepted": "AED",
-      "paymentAccepted": "Cash, WhatsApp Order",
+      "paymentAccepted": ["Cash", "WhatsApp Order"],
       "telephone": "+201110760081",
       "email": "info@emirates-gifts.com",
       "openingHours": "Mo-Su 00:00-23:59",
@@ -67,6 +71,11 @@
         "@type": "AggregateRating",
         "ratingValue": "4.8",
         "reviewCount": "287"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://emirates-gifts.arabsad.com/en/products-showcase.html?search={search_term_string}",
+        "query-input": "required name=search_term_string"
       }
     }
     </script>
@@ -230,6 +239,22 @@
         background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
         transform: translateY(-2px);
     }
+    
+    /* Performance Optimizations */
+    .products-grid {
+        contain: layout style;
+    }
+    
+    .product-card {
+        contain: layout style;
+        will-change: transform;
+    }
+    
+    /* Progressive Font Loading */
+    @font-face {
+        font-family: 'Inter';
+        font-display: swap;
+    }
     </style>
 </head>
 <body>
@@ -247,7 +272,7 @@
         <div class="header-container">
             <div class="header-content">
                 <a href="./" class="logo" aria-label="Home - Emirates Gifts">
-                    <div class="logo-icon"><img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;"></div>
+                    <div class="logo-icon"><img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;" loading="eager"></div>
                     <div class="logo-text">
                         <div class="logo-title">Emirates Gifts</div>
                         <div class="logo-subtitle">هدايا الإمارات</div>
@@ -317,7 +342,8 @@
                      alt="Diverse collection of premium perfumes" 
                      class="hero-image lazyload"
                      loading="eager"
-                     fetchpriority="high">
+                     fetchpriority="high"
+                     decoding="async">
             </div>
         </div>
     </section>
@@ -332,7 +358,7 @@
                         We've curated the most beautiful Eastern and Western premium perfumes that suit all preferences with our verified customer reviews ⭐
                     </p>
                     <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
-                        <i class="fas fa-arrow-left"></i>
+                        <i class="fas fa-arrow-right"></i>
                         View All Perfumes
                     </a>
                 </div>
@@ -362,7 +388,8 @@
                         <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop&crop=center" 
                              alt="Premium Eastern perfumes collection" 
                              class="collection-image lazyload"
-                             loading="lazy">
+                             loading="lazy"
+                             decoding="async">
                     </div>
                 </div>
             </div>
@@ -379,7 +406,7 @@
                         An exclusive collection of the finest premium watches that perfectly combine elegance and precision with outstanding customer reviews 🎆
                     </p>
                     <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
-                        <i class="fas fa-arrow-left"></i>
+                        <i class="fas fa-arrow-right"></i>
                         View All Watches
                     </a>
                 </div>
@@ -558,19 +585,20 @@
         </nav>
     </div>
 
-    <!-- Load Systems in Correct Order -->
-    <script src="./js/ui-en.js"></script>
-    <script src="./js/cart-en.js"></script>
-    <script src="./js/reviews-system-en.js"></script>
-    <script src="./js/popup-system-en.js"></script>
-    <script src="./js/products-loader-en.js"></script>
-    <script src="./js/main-en.js"></script>
+    <!-- Load Systems in Optimized Order -->
+    <script src="../js/dom-optimization.js" defer></script>
+    <script src="./js/ui-en.js" defer></script>
+    <script src="./js/cart-en.js" defer></script>
+    <script src="./js/reviews-system-en.js" defer></script>
+    <script src="./js/popup-system-en.js" defer></script>
+    <script src="./js/products-loader-en.js" defer></script>
+    <script src="./js/main-en.js" defer></script>
     
     <!-- Add Dismissible Popup System for English -->
-    <script src="./js/dismissible-popup-system-en.js"></script>
+    <script src="./js/dismissible-popup-system-en.js" defer></script>
     
     <script>
-    // Enhanced Currency Fix
+    // Enhanced Currency Fix for English Version
     document.addEventListener('DOMContentLoaded', function() {
         function fixAllCurrency() {
             // Remove dollar signs and fix currency display
@@ -601,7 +629,7 @@
                 }
             });
             
-            console.log('Currency fixed - AED will be added via CSS');
+            console.log('English currency fixed - AED will be added via CSS');
         }
         
         // Run currency fix multiple times
@@ -634,7 +662,7 @@
             subtree: true
         });
         
-        console.log('Enhanced currency monitoring system initialized');
+        console.log('Enhanced English currency monitoring system initialized');
     });
     </script>
 </body>
