@@ -1,10 +1,13 @@
 // نظام تحميل وعرض المنتجات الديناميكي المحسن - متجر هدايا الإمارات
+// إصلاح مشكلة الفئات: عطور ← عطور فقط، ساعات ← ساعات فقط
 // أزرار أيقونية + وظائف متقدمة + فتح في تبويب جديد + أوصاف تلقائية
 
 (function() {
     'use strict';
     
     let allProducts = [];
+    let perfumesOnly = [];
+    let watchesOnly = [];
     let isLoading = false;
     
     // توليد slug عربي آمن
@@ -133,53 +136,59 @@
     }
     
     async function loadAllProducts() {
-        if (isLoading) return allProducts;
+        if (isLoading) return { allProducts, perfumesOnly, watchesOnly };
         isLoading = true;
         
         try {
-            console.log('🔄 بدء تحميل جميع المنتجات...');
+            console.log('🔄 بدء تحميل المنتجات مع الفصل الصحيح بين الفئات...');
             
-            const [perfumesResponse, watchesResponse] = await Promise.all([
-                fetch('./data/otor.json').catch(() => ({ ok: false })),
-                fetch('./data/sa3at.json').catch(() => ({ ok: false }))
-            ]);
-            
-            allProducts = [];
-            
+            // تحميل العطور أولاً
+            const perfumesResponse = await fetch('./data/otor.json').catch(() => ({ ok: false }));
             if (perfumesResponse.ok) {
-                const perfumes = await perfumesResponse.json();
-                const perfumesWithCategory = perfumes.map(p => ({
+                const perfumesData = await perfumesResponse.json();
+                perfumesOnly = perfumesData.map(p => ({
                     ...p,
                     category: 'عطور',
                     categoryEn: 'perfume',
                     categoryIcon: '🌸',
-                    type: 'perfume'
+                    type: 'perfume',
+                    source: 'otor.json'
                 }));
-                allProducts.push(...perfumesWithCategory);
-                console.log(`✅ تم تحميل ${perfumes.length} عطر`);
+                console.log(`✅ تم تحميل ${perfumesOnly.length} عطر من otor.json`);
+            } else {
+                console.warn('⚠️ لم يتم العثور على ملف العطور');
             }
             
+            // تحميل الساعات ثانياً
+            const watchesResponse = await fetch('./data/sa3at.json').catch(() => ({ ok: false }));
             if (watchesResponse.ok) {
-                const watches = await watchesResponse.json();
-                const watchesWithCategory = watches.map(p => ({
+                const watchesData = await watchesResponse.json();
+                watchesOnly = watchesData.map(p => ({
                     ...p,
                     category: 'ساعات',
                     categoryEn: 'watch',
                     categoryIcon: '⏰',
-                    type: 'watch'
+                    type: 'watch',
+                    source: 'sa3at.json'
                 }));
-                allProducts.push(...watchesWithCategory);
-                console.log(`✅ تم تحميل ${watches.length} ساعة`);
+                console.log(`✅ تم تحميل ${watchesOnly.length} ساعة من sa3at.json`);
+            } else {
+                console.warn('⚠️ لم يتم العثور على ملف الساعات');
             }
             
+            // دمج جميع المنتجات
+            allProducts = [...perfumesOnly, ...watchesOnly];
+            
             console.log(`🎆 إجمالي المنتجات المحملة: ${allProducts.length}`);
+            console.log(`🌸 العطور: ${perfumesOnly.length}`);
+            console.log(`⏰ الساعات: ${watchesOnly.length}`);
             
         } catch (error) {
-            console.error('خطأ في تحميل المنتجات:', error);
+            console.error('❌ خطأ في تحميل المنتجات:', error);
         }
         
         isLoading = false;
-        return allProducts;
+        return { allProducts, perfumesOnly, watchesOnly };
     }
     
     function createProductCard(product, index = 0) {
@@ -189,7 +198,7 @@
         
         // الحصول على التقييمات من النظام الثابت
         let averageRating = 4.5;
-        let totalReviews = 0;
+        let totalReviews = 12;
         let starsHTML = '★★★★☆';
         
         if (window.persistentReviews) {
@@ -217,6 +226,7 @@
                  data-category="${product.categoryEn}" 
                  data-product-name="${product.title.replace(/'/g, "\'")}"
                  data-product-price="${product.sale_price}"
+                 data-product-type="${product.type}"
                  style="animation-delay: ${index * 0.1}s; text-align: center; cursor: pointer;"
                  onclick="openProductInNewTab('${prettyUrl}', event)">
                  
@@ -232,7 +242,7 @@
                         `<div class="product-badge new-badge">جديد</div>`
                     }
                     
-                    <div class="product-category-badge">
+                    <div class="product-category-badge" data-category="${product.type}">
                         ${product.categoryIcon} ${product.category}
                     </div>
                 </div>
@@ -338,6 +348,9 @@
         const product = allProducts.find(p => p.id.toString() === productId.toString());
         if (product) {
             addToCart(product);
+            console.log(`🛒 تم إضافة ${product.title} للسلة`);
+        } else {
+            console.error(`❌ لم يتم العثور على المنتج: ${productId}`);
         }
     };
     
@@ -350,6 +363,9 @@
         const product = allProducts.find(p => p.id.toString() === productId.toString());
         if (product) {
             orderNow(product);
+            console.log(`⚡ تم طلب ${product.title} فوراً`);
+        } else {
+            console.error(`❌ لم يتم العثور على المنتج للطلب: ${productId}`);
         }
     };
     
@@ -365,10 +381,14 @@
 
 🎁 ${product.title}
 💰 ${product.sale_price} درهم
+📱 من متجر هدايا الإمارات
 
 أريد معرفة تفاصيل الطلب والتوصيل.`;
             const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+            console.log(`💬 تم إرسال طلب واتساب لـ ${product.title}`);
+        } else {
+            console.error(`❌ لم يتم العثور على المنتج للواتساب: ${productId}`);
         }
     };
     
@@ -383,7 +403,7 @@
     function displayProducts(products, containerId, limit = null) {
         const container = document.getElementById(containerId);
         if (!container) {
-            console.warn(`لم يتم العثور على الحاوية: ${containerId}`);
+            console.warn(`❌ لم يتم العثور على الحاوية: ${containerId}`);
             return;
         }
         
@@ -419,7 +439,7 @@
     }
     
     async function loadHomePageProducts() {
-        await loadAllProducts();
+        const { allProducts: products, perfumesOnly: perfumes, watchesOnly: watches } = await loadAllProducts();
         
         // انتظار تحميل نظام التقييمات قبل العرض
         const waitForReviews = setInterval(() => {
@@ -435,56 +455,66 @@
         }, 5000);
         
         function displayHomeProducts() {
-            // أحدث العطور (8 منتجات)
-            const latestPerfumes = allProducts
-                .filter(p => p.type === 'perfume')
-                .slice(0, 8);
-            displayProducts(latestPerfumes, 'perfumes-grid', 8);
+            console.log('🎯 بدء عرض منتجات الصفحة الرئيسية بالفصل الصحيح...');
             
-            // أحدث الساعات (8 منتجات)
-            const latestWatches = allProducts
-                .filter(p => p.type === 'watch')
-                .slice(0, 8);
-            displayProducts(latestWatches, 'watches-grid', 8);
+            // قسم العطور - عطور فقط!
+            if (document.getElementById('perfumes-grid')) {
+                console.log(`🌸 عرض العطور في perfumes-grid: ${perfumes.length} عطر`);
+                displayProducts(perfumes, 'perfumes-grid', 8);
+            }
             
-            // منتجات مميزة مختلطة (12 منتج)
-            const featuredProducts = allProducts
-                .sort(() => 0.5 - Math.random())
-                .slice(0, 12);
-            displayProducts(featuredProducts, 'featuredProducts', 12);
+            // قسم الساعات - ساعات فقط!
+            if (document.getElementById('watches-grid')) {
+                console.log(`⏰ عرض الساعات في watches-grid: ${watches.length} ساعة`);
+                displayProducts(watches, 'watches-grid', 8);
+            }
+            
+            // منتجات مميزة مختلطة (50% عطور، 50% ساعات)
+            if (document.getElementById('featuredProducts')) {
+                const featuredPerfumes = perfumes.slice(0, 6);
+                const featuredWatches = watches.slice(0, 6);
+                const featuredMixed = [...featuredPerfumes, ...featuredWatches]
+                    .sort(() => 0.5 - Math.random())
+                    .slice(0, 12);
+                displayProducts(featuredMixed, 'featuredProducts', 12);
+                console.log(`🌟 عرض المنتجات المميزة: ${featuredMixed.length} منتج مختلط`);
+            }
             
             // أفضل العروض
-            const bestDeals = allProducts
-                .filter(p => parseFloat(p.price) !== parseFloat(p.sale_price))
-                .sort((a, b) => (parseFloat(b.price) - parseFloat(b.sale_price)) - (parseFloat(a.price) - parseFloat(a.sale_price)))
-                .slice(0, 6);
-            displayProducts(bestDeals, 'bestDeals', 6);
+            if (document.getElementById('bestDeals')) {
+                const bestDeals = products
+                    .filter(p => parseFloat(p.price) !== parseFloat(p.sale_price))
+                    .sort((a, b) => (parseFloat(b.price) - parseFloat(b.sale_price)) - (parseFloat(a.price) - parseFloat(a.sale_price)))
+                    .slice(0, 6);
+                displayProducts(bestDeals, 'bestDeals', 6);
+                console.log(`🔥 عرض أفضل العروض: ${bestDeals.length} منتج`);
+            }
             
-            console.log('🎆 تم عرض جميع منتجات الصفحة الرئيسية');
+            console.log('🎆 تم عرض جميع منتجات الصفحة الرئيسية بالتصنيف الصحيح!');
         }
     }
     
     async function loadProductsShowcase() {
-        await loadAllProducts();
+        const { allProducts: products, perfumesOnly: perfumes, watchesOnly: watches } = await loadAllProducts();
         
         const waitForReviews = setInterval(() => {
             if (window.persistentReviews && window.persistentReviews.isInitialized) {
                 clearInterval(waitForReviews);
-                displayProducts(allProducts, 'allProductsGrid');
-                setupFiltering();
+                displayProducts(products, 'allProductsGrid');
+                setupFiltering(products, perfumes, watches);
                 setupSorting();
             }
         }, 100);
         
         setTimeout(() => {
             clearInterval(waitForReviews);
-            displayProducts(allProducts, 'allProductsGrid');
-            setupFiltering();
+            displayProducts(products, 'allProductsGrid');
+            setupFiltering(products, perfumes, watches);
             setupSorting();
         }, 5000);
     }
     
-    function setupFiltering() {
+    function setupFiltering(allProducts, perfumesOnly, watchesOnly) {
         const filterButtons = document.querySelectorAll('.filter-btn');
         const searchInput = document.getElementById('searchInput');
         
@@ -498,9 +528,14 @@
                 let filteredProducts = allProducts;
                 
                 if (filter === 'perfumes') {
-                    filteredProducts = allProducts.filter(p => p.type === 'perfume');
+                    filteredProducts = perfumesOnly; // استخدام العطور المحددة فقط!
+                    console.log(`🌸 تطبيق فلتر العطور: ${filteredProducts.length} عطر`);
                 } else if (filter === 'watches') {
-                    filteredProducts = allProducts.filter(p => p.type === 'watch');
+                    filteredProducts = watchesOnly; // استخدام الساعات المحددة فقط!
+                    console.log(`⏰ تطبيق فلتر الساعات: ${filteredProducts.length} ساعة`);
+                } else {
+                    filteredProducts = allProducts;
+                    console.log(`🎯 عرض جميع المنتجات: ${filteredProducts.length} منتج`);
                 }
                 
                 displayProducts(filteredProducts, 'allProductsGrid');
@@ -523,6 +558,7 @@
                         product.category.toLowerCase().includes(searchTerm)
                     );
                     displayProducts(filteredProducts, 'allProductsGrid');
+                    console.log(`🔍 نتائج البحث عن "${searchTerm}": ${filteredProducts.length} منتج`);
                 }, 300);
             });
         }
@@ -539,9 +575,11 @@
                 switch (sortType) {
                     case 'price-low':
                         sortedProducts.sort((a, b) => parseFloat(a.sale_price) - parseFloat(b.sale_price));
+                        console.log('📊 ترتيب حسب السعر: من الأقل للأعلى');
                         break;
                     case 'price-high':
                         sortedProducts.sort((a, b) => parseFloat(b.sale_price) - parseFloat(a.sale_price));
+                        console.log('📊 ترتيب حسب السعر: من الأعلى للأقل');
                         break;
                     case 'rating':
                         sortedProducts.sort((a, b) => {
@@ -551,9 +589,11 @@
                                 parseFloat(window.persistentReviews.getProductReviews(b.id)?.averageRating || 4.5) : 4.5;
                             return ratingB - ratingA;
                         });
+                        console.log('📊 ترتيب حسب التقييم');
                         break;
                     case 'newest':
                     default:
+                        console.log('📊 ترتيب افتراضي (الأحدث)');
                         break;
                 }
                 
@@ -561,6 +601,20 @@
             });
         }
     }
+    
+    // وظيفة محددة للحصول على العطور فقط
+    window.loadPerfumesOnly = async function(containerId, limit = 8) {
+        const { perfumesOnly } = await loadAllProducts();
+        console.log(`🌸 تحميل العطور فقط: ${perfumesOnly.length} عطر`);
+        displayProducts(perfumesOnly, containerId, limit);
+    };
+    
+    // وظيفة محددة للحصول على الساعات فقط
+    window.loadWatchesOnly = async function(containerId, limit = 8) {
+        const { watchesOnly } = await loadAllProducts();
+        console.log(`⏰ تحميل الساعات فقط: ${watchesOnly.length} ساعة`);
+        displayProducts(watchesOnly, containerId, limit);
+    };
     
     function addProductsCSS() {
         if (!document.querySelector('#products-loader-css')) {
@@ -599,6 +653,16 @@
                     font-weight: 600;
                     z-index: 2;
                     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                }
+                
+                .product-category-badge[data-category="perfume"] {
+                    background: rgba(255, 192, 203, 0.9);
+                    color: #8B0000;
+                }
+                
+                .product-category-badge[data-category="watch"] {
+                    background: rgba(135, 206, 235, 0.9);
+                    color: #000080;
                 }
                 
                 .icon-btn {
@@ -752,13 +816,17 @@
         const currentPage = window.location.pathname.split('/').pop();
         
         if (currentPage === '' || currentPage === 'index.html') {
+            console.log('🏠 تحميل منتجات الصفحة الرئيسية');
             loadHomePageProducts();
         } else if (currentPage === 'products-showcase.html') {
+            console.log('🛍️ تحميل صفحة عرض المنتجات');
             loadProductsShowcase();
         }
         
         // تحديث شارة السلة في البداية
         updateCartBadge();
+        
+        console.log('🚀 تم تهيئة نظام المنتجات مع الفصل الصحيح بين الفئات');
     }
     
     // تصدير الوظائف عالمياً
@@ -766,11 +834,15 @@
         loadAllProducts,
         loadHomePageProducts,
         loadProductsShowcase,
+        loadPerfumesOnly: window.loadPerfumesOnly,
+        loadWatchesOnly: window.loadWatchesOnly,
         displayProducts,
         createProductCard,
         setupFiltering,
         setupSorting,
         getAllProducts: () => allProducts,
+        getPerfumesOnly: () => perfumesOnly,
+        getWatchesOnly: () => watchesOnly,
         arabicSlugify,
         buildPrettyURL,
         addToCart,
@@ -784,5 +856,7 @@
     } else {
         init();
     }
+    
+    console.log('🎯 نظام المنتجات محسن: العطور في قسم العطور، الساعات في قسم الساعات');
     
 })();
