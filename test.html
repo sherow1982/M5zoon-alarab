@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar-AE" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار الموقع - هدايا الإمارات</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #333;
+            direction: rtl;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #D4AF37;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .test-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #D4AF37;
+        }
+        
+        .test-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .test-result {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .btn-test {
+            background: linear-gradient(135deg, #D4AF37, #B8941F);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        .btn-test:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .navigation-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .nav-link {
+            background: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: #2980b9;
+            transform: translateY(-1px);
+        }
+        
+        #testResults {
+            min-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🎆 اختبار وضع الموقع</h1>
+            <p class="subtitle">هذه صفحة اختبار للتأكد من عمل جميع أنظمة متجر هدايا الإمارات</p>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">
+                <i class="fas fa-cog"></i>
+                اختبارات النظام
+            </h2>
+            
+            <button class="btn-test" onclick="testCSS()">
+                <i class="fas fa-paint-brush"></i>
+                اختبار تحميل CSS
+            </button>
+            
+            <button class="btn-test" onclick="testCartSystem()">
+                <i class="fas fa-shopping-cart"></i>
+                اختبار نظام السلة
+            </button>
+            
+            <button class="btn-test" onclick="testProductsData()">
+                <i class="fas fa-database"></i>
+                اختبار بيانات المنتجات
+            </button>
+            
+            <button class="btn-test" onclick="testSalesNotification()">
+                <i class="fas fa-bell"></i>
+                اختبار إشعارات المبيعات
+            </button>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">
+                <i class="fas fa-list-check"></i>
+                نتائج الاختبار
+            </h2>
+            <div id="testResults">
+                <p style="color: #7f8c8d; text-align: center; padding: 40px;">
+                    <i class="fas fa-play-circle" style="font-size: 2rem; margin-bottom: 10px; display: block;"></i>
+                    انقر على أزرار الاختبار لعرض النتائج
+                </p>
+            </div>
+        </div>
+        
+        <div class="navigation-links">
+            <a href="./" class="nav-link">
+                <i class="fas fa-home"></i>
+                الصفحة الرئيسية
+            </a>
+            <a href="./products-showcase.html" class="nav-link" target="_blank">
+                <i class="fas fa-th-large"></i>
+                عرض المنتجات
+            </a>
+            <a href="./cart.html" class="nav-link">
+                <i class="fas fa-shopping-cart"></i>
+                السلة
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        function addResult(title, status, message) {
+            const results = document.getElementById('testResults');
+            const result = document.createElement('div');
+            result.className = `test-result ${status}`;
+            result.innerHTML = `
+                <strong>${status === 'success' ? '✅' : '❌'} ${title}:</strong><br>
+                ${message}
+            `;
+            results.appendChild(result);
+        }
+        
+        function clearResults() {
+            document.getElementById('testResults').innerHTML = '';
+        }
+        
+        async function testCSS() {
+            clearResults();
+            
+            const cssFiles = [
+                './css/dkhoon-inspired-style.css',
+                './css/mobile-responsive-fixes.css',
+                './css/reviews-system.css'
+            ];
+            
+            let loadedCount = 0;
+            
+            for (const cssFile of cssFiles) {
+                try {
+                    const response = await fetch(cssFile);
+                    if (response.ok) {
+                        loadedCount++;
+                        addResult(`CSS: ${cssFile}`, 'success', 'تم التحميل بنجاح');
+                    } else {
+                        addResult(`CSS: ${cssFile}`, 'error', `خطأ: ${response.status}`);
+                    }
+                } catch (error) {
+                    addResult(`CSS: ${cssFile}`, 'error', `فشل في التحميل: ${error.message}`);
+                }
+            }
+            
+            addResult('نتيجة اختبار CSS', loadedCount === cssFiles.length ? 'success' : 'error', 
+                     `تم تحميل ${loadedCount} من ${cssFiles.length} ملف CSS`);
+        }
+        
+        function testCartSystem() {
+            clearResults();
+            
+            try {
+                // اختبار localStorage
+                const testData = { test: 'data' };
+                localStorage.setItem('test_storage', JSON.stringify(testData));
+                const retrieved = JSON.parse(localStorage.getItem('test_storage'));
+                
+                if (retrieved.test === 'data') {
+                    addResult('اختبار localStorage', 'success', 'يعمل بشكل طبيعي');
+                    localStorage.removeItem('test_storage');
+                } else {
+                    addResult('اختبار localStorage', 'error', 'لا يعمل بشكل صحيح');
+                }
+                
+                // اختبار وجود نظام السلة
+                if (typeof window.CartSystem !== 'undefined') {
+                    addResult('نظام السلة', 'success', 'محمّل وجاهز');
+                } else {
+                    addResult('نظام السلة', 'error', 'غير محمّل');
+                }
+                
+            } catch (error) {
+                addResult('اختبار نظام السلة', 'error', error.message);
+            }
+        }
+        
+        async function testProductsData() {
+            clearResults();
+            
+            try {
+                const perfumesResponse = await fetch('./data/otor.json');
+                if (perfumesResponse.ok) {
+                    const perfumes = await perfumesResponse.json();
+                    addResult('بيانات العطور', 'success', `تم تحميل ${perfumes.length} عطر`);
+                } else {
+                    addResult('بيانات العطور', 'error', 'فشل في التحميل');
+                }
+                
+                const watchesResponse = await fetch('./data/sa3at.json');
+                if (watchesResponse.ok) {
+                    const watches = await watchesResponse.json();
+                    addResult('بيانات الساعات', 'success', `تم تحميل ${watches.length} ساعة`);
+                } else {
+                    addResult('بيانات الساعات', 'error', 'فشل في التحميل');
+                }
+                
+            } catch (error) {
+                addResult('بيانات المنتجات', 'error', error.message);
+            }
+        }
+        
+        function testSalesNotification() {
+            clearResults();
+            
+            try {
+                // اختبار وجود نظام الإشعارات
+                if (typeof window.EmiratesSalesNotifications !== 'undefined') {
+                    addResult('نظام إشعارات المبيعات', 'success', 'محمّل وجاهز');
+                    
+                    // عرض إشعار تجريبي
+                    window.EmiratesSalesNotifications.addRealtimeSale(
+                        'محمد التجريبي',
+                        'دبي',
+                        'عطر ARIAF فاخر (اختبار)',
+                        'perfume_27'
+                    );
+                    
+                    addResult('عرض إشعار تجريبي', 'success', 'تم عرض إشعار مبيعة تجريبي');
+                    
+                } else {
+                    addResult('نظام إشعارات المبيعات', 'error', 'غير محمّل');
+                }
+                
+            } catch (error) {
+                addResult('اختبار إشعارات المبيعات', 'error', error.message);
+            }
+        }
+        
+        // تحميل أنظمة الاختبار
+        function loadTestSystems() {
+            const scripts = [
+                './js/cart-system.js',
+                './js/popup-system.js'
+            ];
+            
+            scripts.forEach(src => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => console.log(`✅ تم تحميل ${src}`);
+                script.onerror = () => console.error(`❌ فشل في تحميل ${src}`);
+                document.head.appendChild(script);
+            });
+        }
+        
+        // بدء الاختبار عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎆 صفحة الاختبار جاهزة');
+            loadTestSystems();
+            
+            // اختبار تلقائي بعد 3 ثواني
+            setTimeout(() => {
+                addResult('حالة صفحة الاختبار', 'success', 'تم تحميل الصفحة بنجاح ✅');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
