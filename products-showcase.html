@@ -173,7 +173,7 @@
             text-align: center !important;
         }
         
-        .card-actions-container {
+        .product-actions {
             display: flex;
             justify-content: center;
             gap: 8px;
@@ -181,58 +181,36 @@
             flex-wrap: wrap;
         }
         
-        .icon-btn {
+        .product-action-btn {
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            border: 2px solid #ddd;
-            background: white;
+            border: none;
+            background: var(--primary-gold);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
-        .icon-btn:hover {
-            background: #D4AF37;
-            border-color: #D4AF37;
-            color: white;
+        .product-action-btn:hover {
             transform: translateY(-3px) scale(1.1);
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
         
-        .icon-btn.cart-icon-btn:hover {
+        .action-whatsapp {
             background: #25D366;
-            border-color: #25D366;
         }
         
-        .icon-btn.wish-icon-btn:hover {
-            background: #e74c3c;
-            border-color: #e74c3c;
+        .action-cart {
+            background: #f39c12;
         }
         
-        .btn-tooltip {
-            position: absolute;
-            bottom: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.9);
-            color: white;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            opacity: 0;
-            transition: opacity 0.3s;
-            white-space: nowrap;
-            z-index: 1000;
-            font-weight: 600;
-        }
-        
-        .icon-btn:hover .btn-tooltip {
-            opacity: 1;
+        .action-view {
+            background: #3498db;
         }
         
         @media (max-width: 768px) {
@@ -259,10 +237,10 @@
                 padding: 20px 15px;
             }
             
-            .icon-btn {
+            .product-action-btn {
                 width: 40px;
                 height: 40px;
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
         }
         
@@ -445,19 +423,13 @@
         </div>
     </footer>
 
-    <!-- تحميل النظم الجديدة أولاً -->
-    <script src="./js/global-text-cleaner.js"></script>
-    <script src="./js/site-update-system.js"></script>
-    <script src="./js/corrected-reviews-system.js"></script>
-    <script src="./js/enhanced-cart-system.js"></script>
-    
-    <!-- النظم الموجودة -->
-    <script src="./js/uae-reviews-generator.js"></script>
-    <script src="./js/products-loader.js"></script>
-    <script src="./js/buttons-fix.js"></script>
-    <script src="./js/cart-system.js"></script>
-    <script src="./js/main.js"></script>
-    <script src="./js/ui.js"></script>
+    <!-- تحميل الأنظمة بالترتيب الصحيح -->
+    <script src="./js/products-loader.js" defer></script>
+    <script src="./js/cart-system.js" defer></script>
+    <script src="./js/reviews-system.js" defer></script>
+    <script src="./js/main.js" defer></script>
+    <script src="./js/ui.js" defer></script>
+    <script src="./js/performance-optimizer.js" defer></script>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -474,88 +446,9 @@
             }
             
             updateCartBadge();
-            
-            // مراقبة تحديثات السلة
             window.addEventListener('storage', updateCartBadge);
             
-            // تطبيق النظم الجديدة على البطاقات المحملة ديناميكياً
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (mutation.addedNodes.length > 0) {
-                        mutation.addedNodes.forEach((node) => {
-                            if (node.nodeType === 1 && node.classList?.contains('product-card')) {
-                                // تطبيق التحسينات على البطاقة الجديدة
-                                enhanceProductCard(node);
-                            }
-                        });
-                    }
-                });
-            });
-            
-            observer.observe(document.getElementById('allProductsGrid'), {
-                childList: true,
-                subtree: true
-            });
-            
-            function enhanceProductCard(card) {
-                // ضمان وسطية المحتوى
-                card.style.textAlign = 'center';
-                
-                // تحويل الأزرار لأيقونات
-                const buttons = card.querySelectorAll('button, .btn');
-                buttons.forEach(btn => {
-                    if (btn.textContent.includes('اطلب') || btn.textContent.includes('السلة')) {
-                        btn.innerHTML = '<i class="fas fa-shopping-cart"></i><span class="btn-tooltip">أضف للسلة</span>';
-                        btn.className = 'icon-btn cart-icon-btn';
-                    } else if (btn.textContent.includes('تفاصيل') || btn.textContent.includes('عرض')) {
-                        btn.innerHTML = '<i class="fas fa-eye"></i><span class="btn-tooltip">عرض التفاصيل</span>';
-                        btn.className = 'icon-btn view-icon-btn';
-                    } else if (btn.textContent.includes('مفضل') || btn.textContent.includes('قلب')) {
-                        btn.innerHTML = '<i class="fas fa-heart"></i><span class="btn-tooltip">إضافة للمفضلة</span>';
-                        btn.className = 'icon-btn wish-icon-btn';
-                    }
-                });
-                
-                // جعل النقر على البطاقة يفتح المنتج في تبويب جديد
-                const productLink = card.querySelector('a[href*="products/"]');
-                if (productLink) {
-                    productLink.target = '_blank';
-                    
-                    card.style.cursor = 'pointer';
-                    card.addEventListener('click', (e) => {
-                        if (!e.target.closest('.icon-btn, button, .btn')) {
-                            window.open(productLink.href, '_blank');
-                        }
-                    });
-                }
-                
-                // ضمان وجود وصف المنتج
-                let description = card.querySelector('.product-description');
-                if (!description || !description.textContent.trim()) {
-                    if (!description) {
-                        description = document.createElement('div');
-                        description.className = 'product-description';
-                        card.appendChild(description);
-                    }
-                    
-                    const productName = card.querySelector('.product-name, .product-title')?.textContent || '';
-                    if (productName.includes('ساعة') || productName.includes('watch')) {
-                        description.textContent = 'ساعة عالية الجودة بتصميم أنيق ومواصفات احترافية مناسبة لجميع المناسبات';
-                    } else if (productName.includes('عطر') || productName.includes('perfume')) {
-                        description.textContent = 'عطر فاخر برائحة مميزة وثبات عالي يدوم طوال اليوم بتركيبة عالية الجودة';
-                    } else {
-                        description.textContent = 'منتج عالي الجودة بمواصفات ممتازة وتصميم مميز بأفضل الأسعار';
-                    }
-                    
-                    description.style.cssText = `
-                        font-size: 0.85rem;
-                        color: #666;
-                        margin: 10px 0;
-                        line-height: 1.4;
-                        text-align: center;
-                    `;
-                }
-            }
+            console.log('🎉 تم تحميل صفحة عرض جميع المنتجات بنجاح');
         });
     </script>
 </body>
