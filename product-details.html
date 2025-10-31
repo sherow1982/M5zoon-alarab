@@ -5,23 +5,244 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">تفاصيل المنتج - متجر هدايا الإمارات</title>
     <meta name="description" id="pageDescription" content="اعرض تفاصيل كاملة عن المنتج مع صور عالية الجودة وتقييمات العملاء">
+    <link rel="canonical" id="canonicalUrl" href="https://sherow1982.github.io/emirates-gifts/product-details.html">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:site_name" content="متجر هدايا الإمارات">
+    <meta property="og:type" content="product">
+    <meta property="og:title" id="ogTitle" content="تفاصيل المنتج - متجر هدايا الإمارات">
+    <meta property="og:description" id="ogDescription" content="اعرض تفاصيل كاملة عن المنتج">
+    <meta property="og:image" id="ogImage" content="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600">
+    <meta property="og:url" id="ogUrl" content="https://sherow1982.github.io/emirates-gifts/product-details.html">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitterTitle" content="تفاصيل المنتج - متجر هدايا الإمارات">
+    <meta name="twitter:description" id="twitterDescription" content="اعرض تفاصيل كاملة عن المنتج">
+    <meta name="twitter:image" id="twitterImage" content="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600">
+    
+    <style>
+        .product-details-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .product-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .product-gallery {
+            position: relative;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .product-info {
+            padding: 20px 0;
+        }
+        
+        .product-category {
+            color: var(--primary-gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--deep-blue);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stars {
+            color: var(--light-gold);
+            font-size: 1.5rem;
+        }
+        
+        .rating-details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .rating-number {
+            font-weight: 700;
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+        }
+        
+        .reviews-count {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+        
+        .professional-badge {
+            background: var(--success-green);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .current-price {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--success-green);
+        }
+        
+        .original-price {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .btn-add-to-cart {
+            flex: 2;
+            background: var(--gradient-gold);
+            color: var(--deep-blue);
+            padding: 18px 25px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-whatsapp {
+            flex: 1;
+            background: var(--success-green);
+            color: white;
+            padding: 18px 25px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-add-to-cart:hover,
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .not-found-message {
+            text-align: center;
+            padding: 100px 20px;
+            font-size: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        @media (max-width: 768px) {
+            .product-main {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .product-title {
+                font-size: 2rem;
+            }
+            
+            .current-price {
+                font-size: 1.8rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
+    
     <header class="header" id="header">
         <div class="header-container">
             <div class="header-content">
                 <a href="./" class="logo">
                     <div class="logo-icon"><i class="fas fa-gem"></i></div>
-                    <div class="logo-text"><div class="logo-title">هدايا الإمارات</div><div class="logo-subtitle">Emirates Gifts</div></div>
+                    <div class="logo-text">
+                        <div class="logo-title">هدايا الإمارات</div>
+                        <div class="logo-subtitle">Emirates Gifts</div>
+                    </div>
                 </a>
                 <div class="header-tools">
-                    <a href="./cart.html" class="header-tool"><i class="fas fa-shopping-cart"></i><span class="cart-badge" id="cartBadge">0</span></a>
+                    <a href="./cart.html" class="header-tool">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                    </a>
                     <a href="./" class="header-tool"><i class="fas fa-home"></i></a>
                 </div>
             </div>
@@ -29,73 +250,231 @@
     </header>
 
     <main class="product-details-container" id="productDetailsContainer">
-        <div class="loading-message" style="text-align: center; padding: 100px 20px; font-size: 1.5rem; color: var(--text-light);">⏳ جارِ تحميل تفاصيل المنتج...</div>
+        <div class="loading-message" style="text-align: center; padding: 100px 20px; font-size: 1.5rem; color: var(--text-light);">
+            ⏳ جارِ تحميل تفاصيل المنتج...
+        </div>
     </main>
 
     <footer class="footer">
-        <div class="footer-container"><div class="footer-bottom"><p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p></div></div>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
     </footer>
 
     <script src="./js/buttons-fix.js"></script>
     <script src="./js/cart-system.js" defer></script>
-    <script src="./js/slug-router.js" defer></script>
     <script>
         let ratingsData = {};
-        function getParamsFromURL(){
+        
+        function arabicSlugify(text) {
+            if (!text) return '';
+            return text
+                .replace(/[\u0617-\u061A\u064B-\u0652]/g, '') // إزالة التشكيل
+                .replace(/[\u200B-\u200F\uFEFF]/g, '')     // مسافات صفرية
+                .replace(/["'`^~!@#$%&*()+=\[\]{}|;:,.<>?\\\/]/g, ' ') // رموز
+                .replace(/\s+/g, ' ').trim() // مسافات متكررة
+                .replace(/[^\w\s-]/g, '') // إبقاء الأحرف والأرقام فقط
+                .replace(/\s+/g, '-') // استبدال المسافات بشرطات
+                .replace(/-+/g, '-'); // معالجة شرطات متعددة
+        }
+        
+        function getParamsFromURL() {
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('id');
             const category = urlParams.get('category');
-            const slug = urlParams.get('slug') || decodeURIComponent(location.pathname.replace('/product/','')) || '';
+            const slug = urlParams.get('slug') || decodeURIComponent(location.pathname.replace('/product/', '').replace('/', '')) || '';
             return { id, category, slug };
         }
-        async function loadRatingsData(){
-            try{const r=await fetch('./data/ratings.json');if(r.ok){(await r.json()).forEach(x=>ratingsData[x.id.toString()]=x);}}catch(e){}
+        
+        function updateSEOTags(product, slug) {
+            const baseUrl = 'https://sherow1982.github.io/emirates-gifts';
+            const prettyUrl = `${baseUrl}/product/${encodeURIComponent(slug)}`;
+            const title = `${product.title} - متجر هدايا الإمارات`;
+            const description = `${product.title} - اعرض بأفضل الأسعار مع ضمان الجودة والتوصيل المجاني`;
+            
+            // تحديث عناوين الصفحة
+            document.getElementById('pageTitle').textContent = title;
+            document.getElementById('pageDescription').setAttribute('content', description);
+            document.getElementById('canonicalUrl').setAttribute('href', prettyUrl);
+            
+            // Open Graph
+            document.getElementById('ogTitle').setAttribute('content', title);
+            document.getElementById('ogDescription').setAttribute('content', description);
+            document.getElementById('ogImage').setAttribute('content', product.image_link);
+            document.getElementById('ogUrl').setAttribute('content', prettyUrl);
+            
+            // Twitter Cards
+            document.getElementById('twitterTitle').setAttribute('content', title);
+            document.getElementById('twitterDescription').setAttribute('content', description);
+            document.getElementById('twitterImage').setAttribute('content', product.image_link);
         }
-        function makeSlug(title){
-            return (title||'').replace(/[\u0617-\u061A\u064B-\u0652]/g,'').replace(/[\u200B-\u200F\uFEFF]/g,'').replace(/["'`^~!@#$%&*()+=\[\]{}|;:,.<>?\\\/]/g,' ').replace(/\s+/g,' ').trim().replace(/[^\p{L}\p{N}\s-]/gu,'').replace(/\s+/g,'-').replace(/-+/g,'-');
+        
+        async function loadRatingsData() {
+            try {
+                const response = await fetch('./data/ratings.json');
+                if (response.ok) {
+                    const ratings = await response.json();
+                    ratings.forEach(rating => {
+                        ratingsData[rating.id.toString()] = rating;
+                    });
+                }
+            } catch (error) {
+                console.warn('خطأ في تحميل التقييمات:', error);
+            }
         }
-        async function loadProductDetails(){
-            const {id, category, slug} = getParamsFromURL();
+        
+        async function loadProductDetails() {
+            const { id, category, slug } = getParamsFromURL();
             const container = document.getElementById('productDetailsContainer');
-            try{
-                let dataFiles=[];
-                if(category==='perfume') dataFiles=['./data/otor.json'];
-                else if(category==='watch') dataFiles=['./data/sa3at.json'];
-                else dataFiles=['./data/otor.json','./data/sa3at.json'];
-                let all=[];
-                for(const f of dataFiles){const r=await fetch(f); if(r.ok){const a=await r.json(); const cat=f.includes('otor')?'عطور':'ساعات'; all.push(...a.map(p=>({...p,category:cat})));}}
-                let product=null;
-                if(slug){ product = all.find(p=>makeSlug(p.title)===slug); }
-                if(!product && id){ product = all.find(p=>p.id.toString()===id.toString()); }
-                if(!product){ container.innerHTML='<div class="not-found-message">المنتج غير موجود</div>'; return; }
-                displayProductDetails(product);
-            }catch(e){ container.innerHTML='<div class="not-found-message">حدث خطأ أثناء التحميل</div>'; }
+            
+            try {
+                // تحديد ملفات البيانات
+                let dataFiles = [];
+                if (category === 'perfume') {
+                    dataFiles = ['./data/otor.json'];
+                } else if (category === 'watch') {
+                    dataFiles = ['./data/sa3at.json'];
+                } else {
+                    dataFiles = ['./data/otor.json', './data/sa3at.json'];
+                }
+                
+                // تحميل البيانات
+                let allProducts = [];
+                for (const file of dataFiles) {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const cat = file.includes('otor') ? 'عطور' : 'ساعات';
+                        allProducts.push(...data.map(p => ({ ...p, category: cat })));
+                    }
+                }
+                
+                // البحث عن المنتج
+                let product = null;
+                
+                // بحث بالـ slug أولاً
+                if (slug) {
+                    product = allProducts.find(p => arabicSlugify(p.title) === slug);
+                }
+                
+                // إن لم يتم العثور، بحث بالـ id
+                if (!product && id) {
+                    product = allProducts.find(p => p.id.toString() === id.toString());
+                }
+                
+                if (!product) {
+                    container.innerHTML = `
+                        <div class="not-found-message" style="text-align: center; padding: 100px 20px;">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: var(--danger-red); margin-bottom: 20px;"></i>
+                            <h2>المنتج غير موجود</h2>
+                            <p>عذراً، لا يمكن العثور على هذا المنتج</p>
+                            <a href="./products-showcase.html" class="btn-primary">عرض جميع المنتجات</a>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // عرض تفاصيل المنتج
+                displayProductDetails(product, slug);
+                
+            } catch (error) {
+                console.error('خطأ في تحميل المنتج:', error);
+                container.innerHTML = `
+                    <div class="not-found-message" style="text-align: center; padding: 100px 20px;">
+                        <i class="fas fa-exclamation-circle" style="font-size: 4rem; color: var(--danger-red); margin-bottom: 20px;"></i>
+                        <h2>حدث خطأ أثناء التحميل</h2>
+                        <p>يرجى إعادة المحاولة لاحقاً</p>
+                        <button onclick="location.reload()" class="btn-primary">إعادة التحميل</button>
+                    </div>
+                `;
+            }
         }
-        function displayProductDetails(product){
-            const container=document.getElementById('productDetailsContainer');
-            document.getElementById('pageTitle').textContent=`${product.title} - متجر هدايا الإمارات`;
-            document.getElementById('pageDescription').setAttribute('content',`${product.title} - اكتشف التفاصيل والتقييمات`);
-            const hasDiscount=product.price!==product.sale_price; const discountPercentage=hasDiscount?Math.round(((product.price-product.sale_price)/product.price)*100):0;
-            const rating=ratingsData[product.id?.toString()]||{rating:4.7,count:120,professional_review: (product.category==='عطور'?'✓ عطر عالي الجودة':'✓ ساعة فاخرة موثوقة')};
-            const stars='★'.repeat(Math.floor(rating.rating));
-            const whatsappMessage=encodeURIComponent(`مرحباً! أريد طلب ${product.title} بسعر ${product.sale_price} درهم`);
-            container.innerHTML=`
-                <div class="breadcrumb"><a href="./">الرئيسية</a> <i class="fas fa-angle-left"></i> <a href="./products-showcase.html">المنتجات</a> <i class="fas fa-angle-left"></i> <span>${product.category}</span> <i class="fas fa-angle-left"></i> <span>${product.title}</span></div>
+        
+        function displayProductDetails(product, slug) {
+            const container = document.getElementById('productDetailsContainer');
+            const hasDiscount = product.price !== product.sale_price;
+            const discountPercentage = hasDiscount ? Math.round(((product.price - product.sale_price) / product.price) * 100) : 0;
+            
+            const rating = ratingsData[product.id?.toString()] || {
+                rating: 4.7,
+                count: 120,
+                professional_review: product.category === 'عطور' ? '✓ عطر عالي الجودة' : '✓ ساعة فاخرة موثوقة'
+            };
+            
+            const stars = '★'.repeat(Math.floor(rating.rating));
+            const whatsappMessage = encodeURIComponent(`مرحباً! أريد طلب ${product.title} بسعر ${product.sale_price} درهم`);
+            
+            // تحديث SEO tags
+            updateSEOTags(product, slug || arabicSlugify(product.title));
+            
+            container.innerHTML = `
+                <div class="breadcrumb">
+                    <a href="./">الرئيسية</a>
+                    <i class="fas fa-angle-left"></i>
+                    <a href="./products-showcase.html">المنتجات</a>
+                    <i class="fas fa-angle-left"></i>
+                    <span>${product.category}</span>
+                    <i class="fas fa-angle-left"></i>
+                    <span>${product.title}</span>
+                </div>
+                
                 <div class="product-main">
                     <div class="product-gallery">
-                        <img src="${product.image_link}" alt="${product.title}" class="main-image" onerror="this.src='https://via.placeholder.com/500x500/D4AF37/FFFFFF?text=هدايا+الإمارات'">
-                        ${hasDiscount?`<div style="position:absolute;top:20px;right:20px;background:var(--danger-red);color:white;padding:10px 15px;border-radius:10px;font-weight:700;">خصم ${discountPercentage}%</div>`:''}
+                        <img src="${product.image_link}" 
+                             alt="${product.title}" 
+                             class="main-image" 
+                             onerror="this.src='https://via.placeholder.com/500x500/D4AF37/FFFFFF?text=هدايا+الإمارات'">
+                        
+                        ${hasDiscount ? 
+                            `<div style="position: absolute; top: 20px; right: 20px; background: var(--danger-red); color: white; padding: 10px 15px; border-radius: 10px; font-weight: 700;">
+                                خصم ${discountPercentage}%
+                            </div>` : ''
+                        }
                     </div>
+                    
                     <div class="product-info">
-                        <div class="product-category">${product.category==='عطور'?'🌸 عطور فاخرة':'⌚ ساعات راقية'}</div>
+                        <div class="product-category">
+                            ${product.category === 'عطور' ? '🌸 عطور فاخرة' : '⌚ ساعات راقية'}
+                        </div>
+                        
                         <h1 class="product-title">${product.title}</h1>
-                        <div class="product-rating"><div class="stars">${stars}</div><div class="rating-details"><span class="rating-number">${rating.rating.toFixed(1)}</span><span class="reviews-count">(${rating.count} تقييم)</span><div class="professional-badge">${rating.professional_review||'✓ منتج عالي الجودة'}</div></div></div>
-                        <div class="product-price"><span class="current-price">${product.sale_price} د.إ</span>${hasDiscount?`<span class="original-price">${product.price} د.إ</span>`:''}</div>
-                        <div class="product-actions"><button class="btn-add-to-cart btn-add-cart" data-product='${JSON.stringify(product)}'><i class="fas fa-shopping-cart"></i> إضافة للسلة</button><a href="https://wa.me/201110760081?text=${whatsappMessage}" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> طلب فوري</a></div>
+                        
+                        <div class="product-rating">
+                            <div class="stars">${stars}</div>
+                            <div class="rating-details">
+                                <span class="rating-number">${rating.rating.toFixed(1)}</span>
+                                <span class="reviews-count">(${rating.count} تقييم)</span>
+                                <div class="professional-badge">${rating.professional_review || '✓ منتج عالي الجودة'}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-price">
+                            <span class="current-price">${product.sale_price} د.إ</span>
+                            ${hasDiscount ? `<span class="original-price">${product.price} د.إ</span>` : ''}
+                        </div>
+                        
+                        <div class="product-actions">
+                            <button class="btn-add-to-cart btn-add-cart" data-product='${JSON.stringify(product)}'>
+                                <i class="fas fa-shopping-cart"></i>
+                                إضافة للسلة
+                            </button>
+                            <a href="https://wa.me/201110760081?text=${whatsappMessage}" class="btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                طلب فوري
+                            </a>
+                        </div>
                     </div>
-                </div>`;
+                </div>
+            `;
         }
-        document.addEventListener('DOMContentLoaded', async()=>{ await loadRatingsData(); await loadProductDetails(); });
+        
+        // تفعيل عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadRatingsData();
+            await loadProductDetails();
+        });
     </script>
 </body>
 </html>
