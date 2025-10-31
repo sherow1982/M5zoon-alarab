@@ -125,9 +125,26 @@
                 if (card) {
                     productId = card.getAttribute('data-product-id') || card.getAttribute('data-id');
                     
+                    // استنتاج الفئة من نص البطاقة أو العنوان
+                    const titleText = card.querySelector('.product-title')?.textContent || '';
                     const catText = card.querySelector('.product-category')?.textContent || '';
-                    if (/ساعات|watch|ساعة/i.test(catText)) category = 'watch';
-                    if (/عطور|perfume|عطر/i.test(catText)) category = 'perfume';
+                    const badgeText = card.querySelector('.category-badge, .product-category-badge')?.textContent || '';
+                    const allText = `${titleText} ${catText} ${badgeText}`.toLowerCase();
+                    
+                    if (/ساعات|ساعة|watch|rolex|omega|patek|audemars|cartier|breitling|burberry|emporio|versace/i.test(allText)) {
+                        category = 'watch';
+                    } else if (/عطور|عطر|perfume|fragrance|فرانشي|بيتر/i.test(allText)) {
+                        category = 'perfume';
+                    } else {
+                        // تخمين ذكي: إذا كان العنوان يحتوي على أسماء ماركات ساعات مشهورة
+                        if (/Rolex|ROLEX|rolex|Omega|OMEGA|omega|GMT|Datejust|Submariner|Daytona|Ultra/i.test(titleText)) {
+                            category = 'watch';
+                        } else {
+                            category = 'perfume'; // افتراضي
+                        }
+                    }
+                    
+                    console.log(`🔍 تم استنتاج الفئة: ${category} للمنتج: ${titleText}`);
                     
                     if (!productId) {
                         const productDataAttr = card.querySelector('[data-product]')?.getAttribute('data-product');
@@ -142,12 +159,15 @@
                     }
                     
                     if (productId) {
-                        const detailsURL = `./product-details.html?id=${productId}${category ? `&category=${category}` : ''}`;
+                        const detailsURL = `./product-details.html?id=${productId}&category=${category}`;
+                        console.log(`✅ فتح رابط: ${detailsURL}`);
                         window.location.href = detailsURL;
                     } else {
+                        console.warn('❌ لم يتم العثور على معرف المنتج');
                         alert('عذراً، لا يمكن عرض تفاصيل هذا المنتج حالياً');
                     }
                 } else {
+                    console.warn('❌ لم يتم العثور على بطاقة المنتج');
                     alert('عذراً، حدث خطأ في فتح صفحة التفاصيل');
                 }
             }
@@ -193,24 +213,10 @@
         `;
         
         Object.assign(notification.style, {
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            background: 'linear-gradient(135deg, #25D366, #20B358)',
-            color: 'white',
-            padding: '18px 22px',
-            borderRadius: '12px',
-            boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4)',
-            zIndex: '10000',
-            fontFamily: 'Cairo, sans-serif',
-            fontWeight: '600',
-            maxWidth: '320px',
-            animation: 'quickSlideIn 0.4s ease-out',
-            border: '2px solid rgba(255,255,255,0.3)'
+            position: 'fixed', top: '20px', right: '20px', background: 'linear-gradient(135deg, #25D366, #20B358)', color: 'white', padding: '18px 22px', borderRadius: '12px', boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4)', zIndex: '10000', fontFamily: 'Cairo, sans-serif', fontWeight: '600', maxWidth: '320px', animation: 'quickSlideIn 0.4s ease-out', border: '2px solid rgba(255,255,255,0.3)'
         });
         
         document.body.appendChild(notification);
-        
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.style.animation = 'quickSlideOut 0.3s ease-in';
@@ -221,40 +227,22 @@
     
     function addRatingsToCards() {
         const cards = document.querySelectorAll('.product-card');
-        
         cards.forEach(card => {
             const productId = card.getAttribute('data-product-id');
             const ratingContainer = card.querySelector('.product-rating');
-            
             if (productId && ratingContainer && !ratingContainer.classList.contains('enhanced')) {
                 const rating = ratingsData[productId] || getDefaultRating();
                 const stars = '★'.repeat(Math.floor(rating.rating));
-                
                 ratingContainer.classList.add('enhanced');
                 ratingContainer.innerHTML = `
                     <div class="stars">${stars}</div>
-                    <span class="rating-text">(${rating.rating} • ${rating.count} تقييم)</span>
+                    <span class="rating-text">(${rating.rating.toFixed(1)} • ${rating.count} تقييم)</span>
                 `;
-                
                 if (rating.professional_review) {
                     const reviewBadge = document.createElement('div');
                     reviewBadge.className = 'professional-review-badge';
                     reviewBadge.innerHTML = `<i class="fas fa-check-circle"></i> ${rating.professional_review}`;
-                    
-                    Object.assign(reviewBadge.style, {
-                        background: 'rgba(39, 174, 96, 0.1)',
-                        color: '#27ae60',
-                        padding: '6px 10px',
-                        borderRadius: '15px',
-                        fontSize: '0.8rem',
-                        fontWeight: '600',
-                        margin: '8px 0 0 0',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '5px',
-                        border: '1px solid rgba(39, 174, 96, 0.2)'
-                    });
-                    
+                    Object.assign(reviewBadge.style, { background: 'rgba(39, 174, 96, 0.1)', color: '#27ae60', padding: '6px 10px', borderRadius: '15px', fontSize: '0.8rem', fontWeight: '600', margin: '8px 0 0 0', display: 'flex', alignItems: 'center', gap: '5px', border: '1px solid rgba(39, 174, 96, 0.2)' });
                     ratingContainer.parentNode.insertBefore(reviewBadge, ratingContainer.nextSibling);
                 }
             }
@@ -262,11 +250,7 @@
     }
     
     function getDefaultRating() {
-        return {
-            rating: 4.5 + Math.random() * 0.4,
-            count: Math.floor(Math.random() * 100 + 50),
-            professional_review: '✓ منتج عالي الجودة'
-        };
+        return { rating: 4.5 + Math.random() * 0.4, count: Math.floor(Math.random() * 100 + 50), professional_review: '✓ منتج عالي الجودة' };
     }
     
     function addQuickFixCSS() {
@@ -274,55 +258,15 @@
             const style = document.createElement('style');
             style.id = 'buttons-fix-css';
             style.textContent = `
-                @keyframes quickSlideIn {
-                    0% { transform: translateX(100%) scale(0.8); opacity: 0; }
-                    100% { transform: translateX(0) scale(1); opacity: 1; }
-                }
-                @keyframes quickSlideOut {
-                    0% { transform: translateX(0) scale(1); opacity: 1; }
-                    100% { transform: translateX(100%) scale(0.8); opacity: 0; }
-                }
-                @keyframes cartBounce {
-                    0%, 20%, 50%, 80%, 100% { transform: scale(1); }
-                    40% { transform: scale(1.2); }
-                    60% { transform: scale(1.1); }
-                }
-                .quick-success .success-content {
-                    display: flex;
-                    align-items: flex-start;
-                    gap: 12px;
-                }
-                .btn-add-to-cart, .btn-add-cart {
-                    cursor: pointer !important;
-                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-                }
-                .overlay-btn {
-                    cursor: pointer !important;
-                    transition: all 0.2s ease;
-                }
-                .cart-badge, .cart-counter {
-                    position: absolute;
-                    top: -6px;
-                    left: -6px;
-                    background: #e74c3c;
-                    color: white;
-                    border-radius: 50%;
-                    width: 20px;
-                    height: 20px;
-                    font-size: 10px;
-                    font-weight: bold;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 5;
-                }
-                .professional-review-badge {
-                    animation: fadeInUp 0.5s ease-out;
-                }
-                @keyframes fadeInUp {
-                    0% { opacity: 0; transform: translateY(10px); }
-                    100% { opacity: 1; transform: translateY(0); }
-                }
+                @keyframes quickSlideIn { 0% { transform: translateX(100%) scale(0.8); opacity: 0; } 100% { transform: translateX(0) scale(1); opacity: 1; } }
+                @keyframes quickSlideOut { 0% { transform: translateX(0) scale(1); opacity: 1; } 100% { transform: translateX(100%) scale(0.8); opacity: 0; } }
+                @keyframes cartBounce { 0%, 20%, 50%, 80%, 100% { transform: scale(1); } 40% { transform: scale(1.2); } 60% { transform: scale(1.1); } }
+                .quick-success .success-content { display: flex; align-items: flex-start; gap: 12px; }
+                .btn-add-to-cart, .btn-add-cart { cursor: pointer !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+                .overlay-btn { cursor: pointer !important; transition: all 0.2s ease; }
+                .cart-badge, .cart-counter { position: absolute; top: -6px; left: -6px; background: #e74c3c; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 10px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 5; }
+                .professional-review-badge { animation: fadeInUp 0.5s ease-out; }
+                @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
             `;
             document.head.appendChild(style);
         }
@@ -331,16 +275,11 @@
     async function initButtonsFix() {
         if (isInitialized) return;
         isInitialized = true;
-        
         addQuickFixCSS();
         await loadRatingsData();
         fixAddToCartButtons();
         fixEyeButtons();
-        
-        setTimeout(() => {
-            addRatingsToCards();
-        }, 2000);
-        
+        setTimeout(() => { addRatingsToCards(); }, 2000);
         updateCartBadgeQuick();
     }
     
@@ -355,55 +294,20 @@
     }
     
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            initButtonsFix();
-            refixDynamicButtons();
-        });
-    } else {
-        initButtonsFix();
-        refixDynamicButtons();
-    }
+        document.addEventListener('DOMContentLoaded', () => { initButtonsFix(); refixDynamicButtons(); });
+    } else { initButtonsFix(); refixDynamicButtons(); }
     
-    window.addEventListener('pageshow', (e) => {
-        if (e.persisted) {
-            setTimeout(() => {
-                initButtonsFix();
-                refixDynamicButtons();
-            }, 500);
-        }
-    });
+    window.addEventListener('pageshow', (e) => { if (e.persisted) { setTimeout(() => { initButtonsFix(); refixDynamicButtons(); }, 500); } });
     
     const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                const hasNewCards = Array.from(mutation.addedNodes).some(node => 
-                    node.nodeType === 1 && (node.classList?.contains('product-card') || node.querySelector?.('.product-card'))
-                );
-                
-                if (hasNewCards) {
-                    setTimeout(() => {
-                        fixAddToCartButtons();
-                        fixEyeButtons();
-                        addRatingsToCards();
-                    }, 1000);
-                }
+                const hasNewCards = Array.from(mutation.addedNodes).some(node => node.nodeType === 1 && (node.classList?.contains('product-card') || node.querySelector?.('.product-card')));
+                if (hasNewCards) { setTimeout(() => { fixAddToCartButtons(); fixEyeButtons(); addRatingsToCards(); }, 1000); }
             }
         });
     });
+    observer.observe(document.body, { childList: true, subtree: true });
     
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-    
-    window.ButtonsFix = {
-        fixAddToCartButtons,
-        fixEyeButtons,
-        updateCartBadgeQuick,
-        showQuickSuccessMessage,
-        addRatingsToCards,
-        refixDynamicButtons,
-        ratingsData: () => ratingsData
-    };
-    
+    window.ButtonsFix = { fixAddToCartButtons, fixEyeButtons, updateCartBadgeQuick, showQuickSuccessMessage, addRatingsToCards, refixDynamicButtons, ratingsData: () => ratingsData };
 })();
