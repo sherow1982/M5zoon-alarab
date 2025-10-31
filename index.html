@@ -35,15 +35,13 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="متجر هدايا الإمارات - عطور وساعات عالية الجودة">
-    <meta name="twitter:description" content="اكتشف أجمل العطور الشرقية والغربية عالية الجودة والساعات الفاخرة">
+    <meta name="twitter:description" content="اكتشف أجمل العطور الشرقية والغربية عالية الجودة">
     <meta name="twitter:image" content="https://emirates-gifts.arabsad.com/assets/images/og-image.jpg">
     
     <!-- Favicon محسن -->
-    <link rel="icon" type="image/x-icon" href="https://emirates-gifts.arabsad.com/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://emirates-gifts.arabsad.com/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://emirates-gifts.arabsad.com/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://emirates-gifts.arabsad.com/favicon-16x16.png">
-    <link rel="manifest" href="https://emirates-gifts.arabsad.com/site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon.ico">
+    <link rel="manifest" href="./site.webmanifest">
     
     <!-- تحسين تحميل الخطوط -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -56,21 +54,15 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     
     <!-- CSS محسن مع resource hints -->
-    <link rel="preload" href="./css/dkhoon-inspired-style.css?v=20251101" as="style">
     <link rel="stylesheet" href="./css/dkhoon-inspired-style.css?v=20251101">
-    <link rel="stylesheet" href="./css/mobile-responsive-fixes.css?v=20251101" media="screen and (max-width: 768px)">
+    <link rel="stylesheet" href="./css/mobile-responsive-fixes.css?v=20251101">
     <link rel="stylesheet" href="./css/reviews-system.css?v=20251101">
-    <link rel="stylesheet" href="./css/emirates-reviews-style.css?v=20251101">
-    <link rel="stylesheet" href="./css/fixed-navigation-buttons.css?v=20251101">
-    <link rel="stylesheet" href="./css/button-spacing-fixes.css?v=20251101">
-    <link rel="stylesheet" href="./css/final-button-appearance-fix.css?v=20251101">
     
     <!-- DNS prefetch للموارد الخارجية -->
     <link rel="dns-prefetch" href="//images.unsplash.com">
     <link rel="dns-prefetch" href="//wa.me">
     
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' https: data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https:;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
@@ -85,210 +77,26 @@
       "alternateName": "Emirates Gifts Store",
       "description": "المتجر الإماراتي الموثوق للعطور عالية الجودة والساعات الفاخرة",
       "url": "https://emirates-gifts.arabsad.com/",
-      "logo": "https://emirates-gifts.arabsad.com/favicon.ico",
-      "image": "https://emirates-gifts.arabsad.com/assets/images/store-image.jpg",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "AE",
         "addressRegion": "Dubai",
         "addressLocality": "Dubai"
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "25.2048",
-        "longitude": "55.2708"
-      },
       "currenciesAccepted": "AED",
       "paymentAccepted": ["Cash", "WhatsApp Order", "Bank Transfer"],
       "telephone": "+971501234567",
-      "email": "info@emirates-gifts.com",
       "openingHours": "Mo-Su 00:00-23:59",
       "priceRange": "$$",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "287",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://emirates-gifts.arabsad.com/products-showcase.html?search={search_term_string}",
-        "query-input": "required name=search_term_string"
-      },
       "sameAs": [
         "https://wa.me/971501234567"
       ]
     }
     </script>
-    
-    <!-- Critical CSS inline -->
-    <style>
-    /* Critical CSS للتحميل السريع */
-    .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #1B2951;
-        color: #FFD700;
-        padding: 8px 16px;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: 600;
-        font-family: 'Cairo', sans-serif;
-        z-index: 10000;
-        transition: top 0.3s ease;
-        border: 2px solid #D4AF37;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .skip-link:focus {
-        top: 10px;
-        outline: none;
-    }
-    
-    .top-banner {
-        background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B8860B 100%);
-        color: #1B2951;
-        padding: 12px 0;
-        text-align: center;
-        font-weight: 600;
-        font-size: 0.9rem;
-        position: relative;
-        overflow: hidden;
-        z-index: 1000;
-    }
-    
-    .banner-text {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        font-family: 'Cairo', sans-serif;
-        direction: rtl;
-        text-align: center;
-    }
-    
-    .banner-text span {
-        font-family: 'Cairo', sans-serif;
-        direction: rtl;
-        color: #1B2951;
-        font-weight: 600;
-    }
-    
-    .english-link {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white !important;
-        border-radius: 25px;
-        padding: 8px 16px;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        text-decoration: none;
-        box-shadow: 0 2px 8px rgba(30, 60, 114, 0.3);
-        border: 2px solid transparent;
-    }
-    
-    .english-link:hover {
-        background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(30, 60, 114, 0.5);
-        color: white !important;
-        border-color: #D4AF37;
-    }
-    
-    .loading-message {
-        text-align: center;
-        padding: 60px 20px;
-        font-size: 1.2rem;
-        color: #666;
-        background: #f8f9fa;
-        border-radius: 15px;
-        margin: 20px 0;
-        position: relative;
-    }
-    
-    .loading-message::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid #D4AF37;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-        0% { transform: translate(-50%, -50%) rotate(0deg); }
-        100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    
-    /* تحسينات الجوال */
-    @media (max-width: 768px) {
-        .skip-link {
-            left: 20px;
-            right: 20px;
-            transform: none;
-            text-align: center;
-        }
-        
-        .english-link {
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin: 5px 0;
-            font-weight: bold;
-            border: 2px solid #D4AF37;
-        }
-        
-        .banner-text {
-            font-size: 0.8rem;
-            gap: 5px;
-        }
-    }
-    
-    /* تحسينات الأداء */
-    .products-grid {
-        contain: layout style;
-    }
-    
-    .product-card {
-        contain: layout style;
-        will-change: transform;
-    }
-    
-    /* تحسينات الوصول */
-    *:focus-visible {
-        outline: 2px solid #D4AF37;
-        outline-offset: 2px;
-        border-radius: 4px;
-    }
-    
-    .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-    }
-    </style>
 </head>
 <body>
     <!-- رابط تخطي المحتوى محسن للوصول -->
-    <a href="#main-content" class="skip-link" aria-label="انتقل إلى المحتوى الرئيسي">انتقل إلى المحتوى الرئيسي</a>
+    <a href="#main-content" class="sr-only" tabindex="1">انتقل إلى المحتوى الرئيسي</a>
     
     <!-- شريط التقدم -->
     <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="تقدم قراءة الصفحة"></div>
@@ -321,7 +129,7 @@
                             <a href="./" class="nav-link active" aria-current="page" role="menuitem">الرئيسية</a>
                         </li>
                         <li class="nav-item" role="none">
-                            <a href="./products-showcase.html" class="nav-link" target="_blank" rel="noopener noreferrer" role="menuitem">شاهد جميع المنتجات</a>
+                            <a href="./products-showcase.html" class="nav-link" role="menuitem">شاهد جميع المنتجات</a>
                         </li>
                         <li class="nav-item" role="none">
                             <a href="#perfumes-section" class="nav-link" role="menuitem">العطور</a>
@@ -330,15 +138,12 @@
                             <a href="#watches-section" class="nav-link" role="menuitem">الساعات</a>
                         </li>
                         <li class="nav-item" role="none">
-                            <a href="./blog/" class="nav-link" target="_blank" rel="noopener noreferrer" role="menuitem">المدونة</a>
+                            <a href="./about.html" class="nav-link" role="menuitem">اتصل بنا</a>
                         </li>
                         <li class="nav-item" role="none">
-                            <a href="./en/" class="nav-link english-link" target="_blank" rel="noopener noreferrer" role="menuitem" hreflang="en">
+                            <a href="./en/" class="nav-link english-link" hreflang="en" role="menuitem">
                                 <i class="fas fa-globe" aria-hidden="true"></i> English
                             </a>
-                        </li>
-                        <li class="nav-item" role="none">
-                            <a href="https://wa.me/971501234567" class="nav-link" target="_blank" rel="noopener noreferrer" role="menuitem">تواصل</a>
                         </li>
                     </ul>
                 </nav>
@@ -347,11 +152,6 @@
                     <a href="./cart.html" class="header-tool cart-icon" aria-label="عرض السلة" title="عرض السلة">
                         <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                         <span class="cart-counter" id="cart-counter" aria-label="عدد العناصر في السلة">0</span>
-                    </a>
-                    <a href="./checkout.html" class="header-tool order-now-btn" aria-label="إتمام الطلب فوراً" title="إتمام الطلب فوراً">
-                        <i class="fas fa-credit-card" aria-hidden="true"></i>
-                        <span class="sr-only">إتمام الطلب فوراً</span>
-                        <span aria-hidden="true">اطلب فوراً</span>
                     </a>
                     <button class="mobile-menu-toggle" id="openSidebar" aria-label="فتح القائمة" title="فتح القائمة" aria-expanded="false" aria-controls="mobileSidebar">
                         <i class="fas fa-bars" aria-hidden="true"></i>
@@ -374,23 +174,14 @@
                         اكتشف أجمل التشكيلات من العطور الشرقية والغربية عالية الجودة، والهدايا المميزة التي تعبر عن ذوقك الرفيع
                     </p>
                     <div class="hero-cta">
-                        <a href="#perfumes-section" class="btn-primary" aria-describedby="shop-now-desc">
+                        <a href="#perfumes-section" class="btn-primary">
                             <i class="fas fa-shopping-bag" aria-hidden="true"></i>
                             تسوق الآن
                         </a>
-                        <span id="shop-now-desc" class="sr-only">انتقل إلى قسم العطور للتسوق</span>
-                        
-                        <a href="./products-showcase.html" class="btn-secondary" target="_blank" rel="noopener noreferrer" aria-describedby="view-all-desc">
+                        <a href="./products-showcase.html" class="btn-secondary">
                             <i class="fas fa-star" aria-hidden="true"></i>
                             شاهد جميع المنتجات
                         </a>
-                        <span id="view-all-desc" class="sr-only">شاهد جميع المنتجات في صفحة منفصلة</span>
-                        
-                        <a href="./checkout.html" class="btn-secondary order-now-btn" aria-describedby="checkout-desc">
-                            <i class="fas fa-credit-card" aria-hidden="true"></i>
-                            إتمام الطلب
-                        </a>
-                        <span id="checkout-desc" class="sr-only">انتقل إلى صفحة إتمام الطلب</span>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -413,48 +204,17 @@
                     <header class="section-header">
                         <h2 id="perfumes-title" class="section-title">عطور هدايا الإمارات عالية الجودة</h2>
                         <p class="section-subtitle">
-                            اخترنا لك أجمل العطور الشرقية والغربية عالية الجودة التي تلائم جميع الأذواق مع تقييمات عملائنا ⭐
+                            اخترنا لك أجمل العطور الشرقية والغربية عالية الجودة التي تلائم جميع الأذواق
                         </p>
-                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener noreferrer" aria-describedby="view-all-perfumes-desc">
+                        <a href="./products-showcase.html?category=perfumes" class="view-all-link">
                             <i class="fas fa-arrow-left" aria-hidden="true"></i>
                             شاهد جميع العطور
                         </a>
-                        <span id="view-all-perfumes-desc" class="sr-only">شاهد جميع العطور في صفحة منفصلة</span>
                     </header>
                     <div class="products-grid" id="perfumes-grid" role="region" aria-live="polite" aria-label="شبكة العطور">
                         <div class="loading-message" role="status" aria-live="polite">
-                            <span class="sr-only">جارِ تحميل العطور عالية الجودة مع التقييمات</span>
-                            <span aria-hidden="true">⏳ جارِ تحميل العطور عالية الجودة مع التقييمات...</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- قسم مجموعة العطور الشرقية محسن -->
-        <section class="section" aria-labelledby="collection-title">
-            <div class="section-container">
-                <div class="collection-section">
-                    <div class="collection-grid">
-                        <div class="collection-content">
-                            <h2 id="collection-title" class="collection-title">مجموعة العطور الشرقية عالية الجودة</h2>
-                            <p class="collection-description">
-                                استمتع برحلة عطرية لا تُنسى مع مجموعتنا الحصرية من العطور الشرقية عالية الجودة التي تحمل في طياتها أجمل قصص الفخامة
-                            </p>
-                            <a href="#perfumes-section" class="btn-primary" aria-describedby="discover-collection-desc">
-                                <i class="fas fa-crown" aria-hidden="true"></i>
-                                اكتشف المجموعة
-                            </a>
-                            <span id="discover-collection-desc" class="sr-only">انتقل إلى قسم العطور لاكتشاف المجموعة</span>
-                        </div>
-                        <div>
-                            <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop&crop=center" 
-                                 alt="مجموعة أنيقة من العطور الشرقية عالية الجودة في زجاجات فاخرة" 
-                                 class="collection-image"
-                                 width="800"
-                                 height="600"
-                                 loading="lazy"
-                                 decoding="async">
+                            <span class="sr-only">جارِ تحميل العطور عالية الجودة</span>
+                            <span aria-hidden="true">⏳ جارِ تحميل العطور عالية الجودة...</span>
                         </div>
                     </div>
                 </div>
@@ -468,94 +228,17 @@
                     <header class="section-header">
                         <h2 id="watches-title" class="section-title">ساعات هدايا الإمارات عالية الجودة</h2>
                         <p class="section-subtitle">
-                            مجموعة حصرية من أرقى الساعات عالية الجودة التي تجمع بين الأناقة والدقة مع تقييمات ممتازة 🎆
+                            مجموعة حصرية من أرقى الساعات عالية الجودة التي تجمع بين الأناقة والدقة
                         </p>
-                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener noreferrer" aria-describedby="view-all-watches-desc">
+                        <a href="./products-showcase.html?category=watches" class="view-all-link">
                             <i class="fas fa-arrow-left" aria-hidden="true"></i>
                             شاهد جميع الساعات
                         </a>
-                        <span id="view-all-watches-desc" class="sr-only">شاهد جميع الساعات في صفحة منفصلة</span>
                     </header>
                     <div class="products-grid" id="watches-grid" role="region" aria-live="polite" aria-label="شبكة الساعات">
                         <div class="loading-message" role="status" aria-live="polite">
-                            <span class="sr-only">جارِ تحميل الساعات عالية الجودة مع التقييمات</span>
-                            <span aria-hidden="true">⏳ جارِ تحميل الساعات عالية الجودة مع التقييمات...</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- قسم المنتجات المميزة محسن -->
-        <section class="section" aria-labelledby="featured-title">
-            <div class="section-container">
-                <header class="section-header">
-                    <h2 id="featured-title" class="section-title">منتجات مميزة عالية الجودة مع تقييمات عملائنا 🌟</h2>
-                    <p class="section-subtitle">مجموعة مختارة من أفضل المنتجات عالية الجودة مع تقييمات إماراتية موثقة</p>
-                    <div class="cta-group">
-                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener noreferrer" aria-describedby="view-all-featured-desc">
-                            <i class="fas fa-th-large" aria-hidden="true"></i>
-                            شاهد الكل
-                        </a>
-                        <span id="view-all-featured-desc" class="sr-only">شاهد جميع المنتجات المميزة</span>
-                        
-                        <a href="./checkout.html" class="view-all-link order-now-btn" aria-describedby="order-now-desc">
-                            <i class="fas fa-credit-card" aria-hidden="true"></i>
-                            اطلب فوراً
-                        </a>
-                        <span id="order-now-desc" class="sr-only">انتقل إلى صفحة الطلب الفوري</span>
-                    </div>
-                </header>
-                <div class="products-grid" id="featuredProducts" role="region" aria-live="polite" aria-label="شبكة المنتجات المميزة">
-                    <div class="loading-message" role="status" aria-live="polite">
-                        <span class="sr-only">جارِ تحميل المنتجات المميزة عالية الجودة مع التقييمات</span>
-                        <span aria-hidden="true">⏳ جارِ تحميل المنتجات المميزة عالية الجودة مع التقييمات...</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- قسم أفضل العروض محسن -->
-        <section class="section" aria-labelledby="deals-title">
-            <div class="section-container">
-                <header class="section-header">
-                    <h2 id="deals-title" class="section-title">🔥 أفضل العروض عالية الجودة مع تقييمات ممتازة</h2>
-                    <p class="section-subtitle">اغتنم فرصة الحصول على عروض حصرية بخصومات مميزة على منتجات عالية الجودة</p>
-                </header>
-                <div class="products-grid" id="bestDeals" role="region" aria-live="polite" aria-label="شبكة أفضل العروض">
-                    <div class="loading-message" role="status" aria-live="polite">
-                        <span class="sr-only">جارِ تحميل العروض عالية الجودة</span>
-                        <span aria-hidden="true">⏳ جارِ تحميل العروض عالية الجودة...</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- قسم معلومات الشحن والإرجاع محسن -->
-        <section class="section" aria-labelledby="info-title">
-            <div class="section-container">
-                <h2 id="info-title" class="sr-only">معلومات الخدمات</h2>
-                <div class="info-section">
-                    <div class="info-cards" role="list">
-                        <div class="info-card" role="listitem">
-                            <i class="fas fa-shipping-fast" aria-hidden="true"></i>
-                            <h3>شحن سريع</h3>
-                            <p>توصيل خلال <strong>1-3 أيام عمل</strong> لجميع إمارات الدولة</p>
-                        </div>
-                        <div class="info-card" role="listitem">
-                            <i class="fas fa-undo" aria-hidden="true"></i>
-                            <h3>ضمان الإرجاع</h3>
-                            <p>إرجاع لمدة <strong>14 يوم + مصاريف الشحن</strong> مع ضمان الجودة</p>
-                        </div>
-                        <div class="info-card" role="listitem">
-                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                            <h3>جودة عالية</h3>
-                            <p>جميع منتجاتنا عالية الجودة 100% مع ضمان الاستبدال</p>
-                        </div>
-                        <div class="info-card" role="listitem">
-                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                            <h3>طلب فوري</h3>
-                            <p>طلب مباشر عبر واتساب مع رد فوري وخدمة 24/7</p>
+                            <span class="sr-only">جارِ تحميل الساعات عالية الجودة</span>
+                            <span aria-hidden="true">⏳ جارِ تحميل الساعات عالية الجودة...</span>
                         </div>
                     </div>
                 </div>
@@ -576,15 +259,6 @@
                         <a href="https://wa.me/971501234567" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="تواصل معنا عبر واتساب" role="listitem">
                             <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         </a>
-                        <a href="#" class="social-link" aria-label="تابعنا على إنستغرام" role="listitem">
-                            <i class="fab fa-instagram" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="تابعنا على تويتر" role="listitem">
-                            <i class="fab fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="تابعنا على فيسبوك" role="listitem">
-                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                        </a>
                     </div>
                 </div>
 
@@ -592,17 +266,13 @@
                     <h3>روابط سريعة</h3>
                     <ul role="list">
                         <li role="listitem"><a href="./">الرئيسية</a></li>
-                        <li role="listitem"><a href="./products-showcase.html" target="_blank" rel="noopener noreferrer">شاهد جميع المنتجات</a></li>
-                        <li role="listitem"><a href="./blog/" target="_blank" rel="noopener noreferrer">المدونة</a></li>
+                        <li role="listitem"><a href="./products-showcase.html">شاهد جميع المنتجات</a></li>
                         <li role="listitem"><a href="./cart.html">السلة</a></li>
                         <li role="listitem"><a href="./about.html">من نحن</a></li>
                         <li role="listitem">
-                            <a href="./en/" target="_blank" rel="noopener noreferrer" hreflang="en" style="color: #D4AF37; font-weight: bold;">
+                            <a href="./en/" hreflang="en" style="color: #D4AF37; font-weight: bold;">
                                 <i class="fas fa-globe" aria-hidden="true"></i> English Version
                             </a>
-                        </li>
-                        <li role="listitem">
-                            <a href="./checkout.html" style="color: #25D366; font-weight: bold;">إتمام الطلب</a>
                         </li>
                     </ul>
                 </div>
@@ -628,11 +298,6 @@
                         <li role="listitem">
                             <a href="./terms-conditions.html">
                                 <i class="fas fa-file-contract" aria-hidden="true"></i> الشروط والأحكام
-                            </a>
-                        </li>
-                        <li role="listitem">
-                            <a href="https://wa.me/971501234567" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-headset" aria-hidden="true"></i> الدعم الفني
                             </a>
                         </li>
                     </ul>
@@ -663,13 +328,13 @@
 
             <div class="footer-bottom">
                 <div class="footer-legal">
-                    <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
+                    <p>&copy; 2025 هدايا الإمارات. جميع الحقوق محفوظة.</p>
                     <div class="legal-links" role="list" aria-label="روابط قانونية">
                         <a href="./privacy-policy.html" role="listitem">الخصوصية</a>
                         <a href="./terms-conditions.html" role="listitem">الشروط</a>
                         <a href="./shipping-policy.html" role="listitem">الشحن</a>
                         <a href="./return-policy.html" role="listitem">الإرجاع</a>
-                        <a href="./en/" target="_blank" rel="noopener noreferrer" hreflang="en" role="listitem">
+                        <a href="./en/" hreflang="en" role="listitem">
                             <i class="fas fa-globe" aria-hidden="true"></i> English
                         </a>
                     </div>
@@ -706,7 +371,7 @@
             <a href="./" role="menuitem">
                 <i class="fas fa-home" aria-hidden="true"></i> الرئيسية
             </a>
-            <a href="./products-showcase.html" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <a href="./products-showcase.html" role="menuitem">
                 <i class="fas fa-th-large" aria-hidden="true"></i> شاهد جميع المنتجات
             </a>
             <a href="#perfumes-section" role="menuitem">
@@ -715,33 +380,15 @@
             <a href="#watches-section" role="menuitem">
                 <i class="fas fa-clock" aria-hidden="true"></i> الساعات
             </a>
-            <a href="./blog/" target="_blank" rel="noopener noreferrer" role="menuitem">
-                <i class="fas fa-blog" aria-hidden="true"></i> المدونة
-            </a>
             <a href="./about.html" role="menuitem">
                 <i class="fas fa-info-circle" aria-hidden="true"></i> من نحن
-            </a>
-            <a href="./shipping-policy.html" role="menuitem">
-                <i class="fas fa-shipping-fast" aria-hidden="true"></i> سياسة الشحن
-            </a>
-            <a href="./return-policy.html" role="menuitem">
-                <i class="fas fa-undo" aria-hidden="true"></i> سياسة الإرجاع
-            </a>
-            <a href="./privacy-policy.html" role="menuitem">
-                <i class="fas fa-shield-alt" aria-hidden="true"></i> سياسة الخصوصية
-            </a>
-            <a href="./terms-conditions.html" role="menuitem">
-                <i class="fas fa-file-contract" aria-hidden="true"></i> الشروط والأحكام
             </a>
             <a href="./cart.html" role="menuitem">
                 <i class="fas fa-shopping-cart" aria-hidden="true"></i> السلة 
                 <span class="cart-counter mobile-cart-counter" aria-label="عدد العناصر في السلة">0</span>
             </a>
-            <a href="./en/" target="_blank" rel="noopener noreferrer" class="english-link" hreflang="en" role="menuitem">
+            <a href="./en/" class="english-link" hreflang="en" role="menuitem">
                 <i class="fas fa-globe" aria-hidden="true"></i> English Version
-            </a>
-            <a href="./checkout.html" class="order-now-btn" role="menuitem">
-                <i class="fas fa-credit-card" aria-hidden="true"></i> اطلب فوراً
             </a>
             <a href="https://wa.me/971501234567" target="_blank" rel="noopener noreferrer" role="menuitem">
                 <i class="fab fa-whatsapp" aria-hidden="true"></i> واتساب
@@ -749,148 +396,211 @@
         </div>
     </nav>
 
-    <!-- JavaScript محسن مع defer -->
-    <script defer>
-        console.log('🎯 تحميل النظام المصحح للمنتجات - إصدار محسن v20251101');
-        
-        // Critical JavaScript inline للأداء
-        
-        // تحديث شريط التقدم
-        function updateProgressBar() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercentage = (scrollTop / scrollHeight) * 100;
-            
-            const progressBar = document.getElementById('progressBar');
-            if (progressBar) {
-                progressBar.style.width = scrollPercentage + '%';
-                progressBar.setAttribute('aria-valuenow', Math.round(scrollPercentage));
-            }
-        }
-        
-        // زر العودة للأعلى
-        function updateBackToTopButton() {
-            const backToTop = document.getElementById('backToTop');
-            if (backToTop) {
-                if (window.pageYOffset > 300) {
-                    backToTop.classList.add('show');
-                    backToTop.setAttribute('aria-hidden', 'false');
-                } else {
-                    backToTop.classList.remove('show');
-                    backToTop.setAttribute('aria-hidden', 'true');
-                }
-            }
-        }
-        
-        // Mobile menu
-        function toggleMobileMenu(show = null) {
-            const sidebar = document.getElementById('mobileSidebar');
-            const overlay = document.getElementById('mobileOverlay');
-            const toggle = document.getElementById('openSidebar');
-            
-            if (!sidebar || !overlay || !toggle) return;
-            
-            const isOpen = show !== null ? show : !sidebar.classList.contains('open');
-            
-            if (isOpen) {
-                sidebar.classList.add('open');
-                overlay.classList.add('active');
-                sidebar.setAttribute('aria-hidden', 'false');
-                overlay.setAttribute('aria-hidden', 'false');
-                toggle.setAttribute('aria-expanded', 'true');
-                document.body.style.overflow = 'hidden';
-            } else {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-                sidebar.setAttribute('aria-hidden', 'true');
-                overlay.setAttribute('aria-hidden', 'true');
-                toggle.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            }
-        }
-        
-        // Event listeners
-        window.addEventListener('scroll', () => {
-            updateProgressBar();
-            updateBackToTopButton();
-        }, { passive: true });
-        
-        // تهيئة Event listeners عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu
-            const openSidebar = document.getElementById('openSidebar');
-            const closeSidebar = document.getElementById('closeSidebar');
-            const mobileOverlay = document.getElementById('mobileOverlay');
-            
-            if (openSidebar) {
-                openSidebar.addEventListener('click', () => toggleMobileMenu(true));
-            }
-            
-            if (closeSidebar) {
-                closeSidebar.addEventListener('click', () => toggleMobileMenu(false));
-            }
-            
-            if (mobileOverlay) {
-                mobileOverlay.addEventListener('click', () => toggleMobileMenu(false));
-            }
-            
-            // Back to top
-            const backToTop = document.getElementById('backToTop');
-            if (backToTop) {
-                backToTop.addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    toggleMobileMenu(false);
-                }
-            });
-            
-            // تأكد من أن النص في الشريط العلوي صحيح
-            const bannerText = document.querySelector('.banner-text span');
-            if (bannerText) {
-                bannerText.textContent = 'توصيل خلال 1-3 أيام عمل • ضمان إرجاع 14 يوم + مصاريف الشحن';
-                bannerText.style.fontFamily = 'Cairo, sans-serif';
-                bannerText.style.direction = 'rtl';
-                bannerText.style.color = '#1B2951';
-                bannerText.style.fontWeight = '600';
-            }
-        });
-    </script>
-    
-    <!-- تحميل ملفات JavaScript بترتيب محسن -->
-    <script src="./js/dom-optimization.js?v=20251101" defer></script>
+    <!-- Scripts محسنة -->
     <script src="./js/ui.js?v=20251101" defer></script>
     <script src="./js/cart-system.js?v=20251101" defer></script>
-    <script src="./js/reviews-system.js?v=20251101" defer></script>
-    <script src="./js/popup-system.js?v=20251101" defer></script>
     <script src="./js/products-loader.js?v=20251101" defer></script>
-    <script src="./js/main.js?v=20251101" defer></script>
-    <script src="./js/dismissible-popup-system.js?v=20251101" defer></script>
     
-    <!-- Service Worker للتخزين المؤقت -->
+    <!-- Service Worker محسن -->
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(registration => console.log('SW registered'))
-                    .catch(registrationError => console.log('SW registration failed'));
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('./sw.js', {
+                scope: './'
+            }).then(function(registration) {
+                console.log('✅ Service Worker تم تسجيله بنجاح:', registration.scope);
+                
+                // تحديث تلقائي عند توفر إصدار جديد
+                registration.addEventListener('updatefound', function() {
+                    var newWorker = registration.installing;
+                    newWorker.addEventListener('statechange', function() {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            console.log('🔄 توفر إصدار جديد');
+                            if (confirm('توفر إصدار جديد من الموقع. هل تريد تحديث الآن؟')) {
+                                newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                window.location.reload();
+                            }
+                        }
+                    });
+                });
+            }).catch(function(error) {
+                console.log('❌ Service Worker فشل التسجيل:', error);
             });
-        }
+        });
+    }
     </script>
     
-    <!-- Performance monitoring -->
-    <script>
-        // مراقبة الأداء
-        window.addEventListener('load', () => {
-            if ('performance' in window) {
-                const perfData = performance.getEntriesByType('navigation')[0];
-                console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
-            }
-        });
-    </script>
+    <!-- Critical CSS للعناصر الحرجة -->
+    <style>
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+    
+    .top-banner {
+        background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B8860B 100%);
+        color: #1B2951;
+        padding: 12px 0;
+        text-align: center;
+        font-weight: 600;
+        font-size: 0.9rem;
+        position: relative;
+        overflow: hidden;
+        z-index: 1000;
+        font-family: 'Cairo', sans-serif;
+        direction: rtl;
+    }
+    
+    .banner-text {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        direction: rtl;
+        text-align: center;
+    }
+    
+    .english-link {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: white !important;
+        border-radius: 25px;
+        padding: 10px 18px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        box-shadow: 0 2px 8px rgba(30, 60, 114, 0.3);
+        border: 2px solid transparent;
+    }
+    
+    .english-link:hover {
+        background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(30, 60, 114, 0.5);
+        color: white !important;
+        border-color: #D4AF37;
+    }
+    
+    .loading-message {
+        text-align: center;
+        padding: 60px 20px;
+        font-size: 1.2rem;
+        color: #666;
+        background: #f8f9fa;
+        border-radius: 15px;
+        margin: 20px 0;
+        font-family: 'Cairo', sans-serif;
+        direction: rtl;
+    }
+    
+    .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(90deg, #D4AF37, #00A16B, #C8102E);
+        z-index: 9999;
+        transition: width 0.2s ease;
+    }
+    
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #D4AF37, #B8941F);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+    
+    .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .back-to-top:hover {
+        background: linear-gradient(135deg, #B8941F, #D4AF37);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+    }
+    
+    .mobile-sidebar {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 300px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: -2px 0 20px rgba(0,0,0,0.1);
+        z-index: 10000;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+    }
+    
+    .mobile-sidebar.open {
+        right: 0;
+    }
+    
+    .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* تحسينات الجوال */
+    @media (max-width: 768px) {
+        .english-link {
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 5px 0;
+            font-weight: bold;
+            border: 2px solid #D4AF37;
+        }
+        
+        .banner-text {
+            font-size: 0.8rem;
+            gap: 5px;
+        }
+    }
+    </style>
 </body>
 </html>
