@@ -1,0 +1,758 @@
+/* Emirates Gifts - English Version Specific Styles */
+/* Optimized for LTR reading and English typography */
+
+:root {
+    --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    --font-family-arabic: 'Cairo', 'Amiri', 'Noto Sans Arabic', sans-serif;
+}
+
+/* Base English Overrides */
+body {
+    font-family: var(--font-family-primary) !important;
+    direction: ltr !important;
+    text-align: left !important;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Typography Improvements */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-primary) !important;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+p, li, span, label, input, textarea, select {
+    font-family: var(--font-family-primary) !important;
+    line-height: 1.6;
+}
+
+/* Keep Arabic text in Arabic font */
+.logo-subtitle,
+.arabic-link,
+[lang="ar"],
+[dir="rtl"] {
+    font-family: var(--font-family-arabic) !important;
+    direction: rtl;
+}
+
+/* Navigation Adjustments for LTR */
+.nav-menu {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.nav-item:first-child {
+    margin-left: 0;
+}
+
+.nav-item:last-child {
+    margin-right: 0;
+}
+
+/* Content Alignment */
+.section-header {
+    text-align: left;
+}
+
+.hero-content {
+    text-align: left;
+}
+
+.hero-cta {
+    justify-content: flex-start;
+}
+
+.collection-content {
+    text-align: left;
+}
+
+.product-card {
+    text-align: left;
+}
+
+.product-title {
+    text-align: center; /* Keep product titles centered for better card design */
+}
+
+.product-description {
+    text-align: left;
+    min-height: 60px; /* Ensure consistent card heights */
+}
+
+/* Button Adjustments */
+.view-all-link i {
+    transform: rotate(180deg); /* Flip arrow for LTR */
+}
+
+.btn-primary,
+.btn-secondary {
+    font-family: var(--font-family-primary) !important;
+    font-weight: 600;
+}
+
+/* Arabic Link Styling */
+.arabic-link {
+    background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+    color: white !important;
+    border-radius: 25px;
+    padding: 8px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
+    border: 2px solid transparent;
+    font-family: var(--font-family-arabic) !important;
+    direction: rtl;
+}
+
+.arabic-link:hover {
+    background: linear-gradient(135deg, #8B0000 0%, #C8102E 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(200, 16, 46, 0.5);
+    color: white !important;
+    border-color: #D4AF37;
+}
+
+.arabic-link i {
+    font-size: 16px;
+    animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.arabic-link:hover i {
+    animation-duration: 0.5s;
+}
+
+/* Currency Display for English Version */
+.price::after,
+.original-price::after,
+.total-price::after,
+.cart-total::after,
+.subtotal-amount::after,
+.vat-amount::after,
+.final-amount::after {
+    content: " AED";
+    font-weight: 500;
+}
+
+/* Form Styling for English */
+.form-group label {
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control,
+input,
+textarea,
+select {
+    font-family: var(--font-family-primary) !important;
+    text-align: left;
+    direction: ltr;
+}
+
+/* Search and Filter Styling */
+.search-filters {
+    text-align: left;
+}
+
+.filter-group {
+    text-align: left;
+}
+
+.filter-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Reviews Section */
+.reviews-section {
+    text-align: left;
+}
+
+.review-item {
+    text-align: left;
+}
+
+.review-text {
+    text-align: left;
+    line-height: 1.6;
+}
+
+.review-author {
+    text-align: right;
+    font-style: italic;
+}
+
+/* Collection Grid Adjustments */
+.collection-grid {
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 768px) {
+    .collection-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .collection-content {
+        order: 2;
+    }
+    
+    .collection-image {
+        order: 1;
+    }
+}
+
+/* Footer Adjustments */
+.footer-content {
+    text-align: left;
+}
+
+.footer-section ul {
+    text-align: left;
+}
+
+.footer-section ul li {
+    text-align: left;
+}
+
+/* Mobile Sidebar for English */
+.mobile-sidebar-nav {
+    text-align: left;
+}
+
+.mobile-sidebar-nav a {
+    text-align: left;
+    justify-content: flex-start;
+}
+
+/* Table Styling */
+table {
+    text-align: left;
+}
+
+th {
+    text-align: left;
+    font-weight: 600;
+}
+
+td {
+    text-align: left;
+}
+
+/* Cart Page Specific */
+.cart-item {
+    text-align: left;
+}
+
+.cart-item-details {
+    text-align: left;
+}
+
+.cart-summary {
+    text-align: left;
+}
+
+.empty-cart {
+    text-align: center;
+}
+
+/* Checkout Page Specific */
+.checkout-form {
+    text-align: left;
+}
+
+.order-summary {
+    text-align: left;
+}
+
+.summary-totals {
+    text-align: left;
+}
+
+/* Breadcrumb Styling */
+.breadcrumb {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.breadcrumb a {
+    color: var(--primary-gold);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb i {
+    margin: 0 8px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Loading Messages */
+.loading-message {
+    text-align: center;
+    font-family: var(--font-family-primary) !important;
+}
+
+/* CTA Sections */
+.cta-content {
+    text-align: center;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Product Grid Improvements */
+.products-grid {
+    text-align: left;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Enhanced Typography for Readability */
+.section-title {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+    font-weight: 400;
+    opacity: 0.8;
+    line-height: 1.7;
+}
+
+.hero-title {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-weight: 400;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+/* Performance Optimizations */
+.lazyload {
+    transition: opacity 0.3s ease;
+}
+
+.lazyload:not(.lazyloaded) {
+    opacity: 0;
+}
+
+.lazyloaded {
+    opacity: 1;
+}
+
+/* Accessibility Improvements */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus States */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .arabic-link {
+        border: 2px solid white;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .arabic-link i {
+        animation: none !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header,
+    .footer,
+    .mobile-sidebar,
+    .back-to-top,
+    .top-banner {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+    
+    .main-content {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    /* Will be implemented if needed in future updates */
+}
+
+/* Mobile Specific Improvements */
+@media (max-width: 768px) {
+    .arabic-link {
+        background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+        color: white !important;
+        padding: 12px 20px;
+        border-radius: 8px;
+        margin: 5px 0;
+        font-weight: bold;
+        border: 2px solid #D4AF37;
+    }
+    
+    .arabic-link:hover {
+        background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+        color: white !important;
+    }
+    
+    .mobile-sidebar-nav .arabic-link {
+        background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+        color: white !important;
+        border: 2px solid #D4AF37;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    
+    /* Mobile Typography */
+    .hero-title {
+        font-size: 28px;
+        line-height: 1.3;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        line-height: 1.4;
+    }
+    
+    /* Mobile Button Spacing */
+    .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .hero-cta .btn-primary,
+    .hero-cta .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Footer Specific Styles for English */
+.footer-section a[href*="../"] {
+    background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+    color: white !important;
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #D4AF37;
+    font-family: var(--font-family-arabic) !important;
+    direction: rtl;
+}
+
+.footer-section a[href*="../"]:hover {
+    background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.legal-links a[href*="../"] {
+    background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
+    color: white !important;
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+    border: 1px solid #D4AF37;
+    transition: all 0.3s ease;
+    font-family: var(--font-family-arabic) !important;
+    direction: rtl;
+}
+
+.legal-links a[href*="../"]:hover {
+    background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+    transform: translateY(-2px);
+}
+
+/* Enhanced Performance */
+.hero-image {
+    will-change: transform;
+}
+
+.product-card {
+    will-change: transform;
+}
+
+/* Improved Loading States */
+.loading-message {
+    color: var(--primary-gold);
+    font-weight: 600;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Better Focus Management */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--primary-gold);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* Enhanced Search Experience */
+#searchInput {
+    font-family: var(--font-family-primary) !important;
+    text-align: left;
+    direction: ltr;
+}
+
+#searchInput::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Filter Styling */
+.filter-group label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.filter-group select {
+    font-family: var(--font-family-primary) !important;
+    background-color: white;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    padding: 10px 15px;
+    transition: border-color 0.3s ease;
+}
+
+.filter-group select:focus {
+    border-color: var(--primary-gold);
+    outline: none;
+}
+
+/* Card Hover Effects */
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* Consistent Spacing */
+.section {
+    margin-bottom: 80px;
+}
+
+.section-container {
+    padding: 0 20px;
+}
+
+/* Enhanced Button States */
+.btn-primary:active,
+.btn-secondary:active {
+    transform: translateY(1px);
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Better Text Selection */
+::selection {
+    background: var(--primary-gold);
+    color: white;
+}
+
+::-moz-selection {
+    background: var(--primary-gold);
+    color: white;
+}
+
+/* Improved Link Styling */
+a {
+    color: var(--primary-gold);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #B8941F;
+}
+
+/* Enhanced Form Validation */
+.form-control:invalid {
+    border-color: #dc3545;
+}
+
+.form-control:valid {
+    border-color: #28a745;
+}
+
+/* Better Table Styling */
+table {
+    font-family: var(--font-family-primary) !important;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #e9ecef;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+    text-align: left;
+}
+
+/* Responsive Images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Enhanced Animation Performance */
+.product-card,
+.info-card,
+.feature-card {
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Better Error States */
+.error-message {
+    color: #dc3545;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+/* Success States */
+.success-message {
+    color: #155724;
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+/* Performance: GPU Acceleration for animations */
+.arabic-link,
+.btn-primary,
+.btn-secondary,
+.product-card {
+    transform: translateZ(0);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-gold);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #B8941F;
+}
+
+/* Final Performance Optimizations */
+* {
+    box-sizing: border-box;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ensure proper text rendering */
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
