@@ -1,4 +1,4 @@
-// Products Loader for English Version - Simplified and Fixed
+// Products Loader for English Version - Fixed for Homepage IDs
 
 class ProductsLoader {
     constructor() {
@@ -6,12 +6,16 @@ class ProductsLoader {
             perfumes: [],
             watches: []
         };
+        this.isInitialized = false;
     }
     
     async initialize() {
+        if (this.isInitialized) return;
+        
         console.log('Initializing Products Loader...');
         await this.preloadProductData();
         this.initializeProductLoading();
+        this.isInitialized = true;
         console.log('✅ Products loader initialized');
     }
     
@@ -19,11 +23,14 @@ class ProductsLoader {
         try {
             console.log('Loading product data...');
             
-            // Load and cache product data
             const [perfumesResponse, watchesResponse] = await Promise.all([
                 fetch('../data/otor.json'),
                 fetch('../data/sa3at.json')
             ]);
+            
+            if (!perfumesResponse.ok || !watchesResponse.ok) {
+                throw new Error('Failed to fetch product data');
+            }
             
             const perfumesData = await perfumesResponse.json();
             const watchesData = await watchesResponse.json();
@@ -32,29 +39,30 @@ class ProductsLoader {
             console.log('Watches data loaded:', watchesData.length);
             
             // Process and translate products
-            this.loadedProducts.perfumes = perfumesData.map(this.processProduct.bind(this));
-            this.loadedProducts.watches = watchesData.map(this.processProduct.bind(this));
+            this.loadedProducts.perfumes = perfumesData.map((product, index) => this.processProduct(product, index, 'perfumes'));
+            this.loadedProducts.watches = watchesData.map((product, index) => this.processProduct(product, index, 'watches'));
             
         } catch (error) {
             console.error('Error preloading product data:', error);
-            // Generate sample data as fallback
             this.generateSampleData();
         }
     }
     
-    processProduct(product, index) {
+    processProduct(product, index, category) {
         return {
-            id: product.id || `product-${Date.now()}-${index}`,
+            id: product.id || `${category}-${index}`,
             title: product.title || product.name || 'Premium Product',
             translatedTitle: this.translateProductTitle(product.title || product.name),
-            price: parseFloat(product.price) || this.generatePrice(),
+            price: parseFloat(product.price) || this.generatePrice(category),
             originalPrice: product.originalPrice || null,
-            image: product.image || product.img || this.getDefaultImage(product),
-            category: product.category || (product.title && product.title.includes('عطر') ? 'perfumes' : 'watches'),
-            rating: product.rating || (Math.random() * 2 + 3).toFixed(1),
-            reviews: product.reviews || Math.floor(Math.random() * 100) + 10,
-            description: product.description || this.generateDescription(product),
-            inStock: product.inStock !== false
+            image: product.image || product.img || this.getDefaultImage(category),
+            category: category,
+            rating: product.rating || (Math.random() * 1.5 + 3.5).toFixed(1),
+            reviews: product.reviews || Math.floor(Math.random() * 80) + 20,
+            description: product.description || this.generateDescription(product.title || product.name),
+            inStock: product.inStock !== false,
+            isNew: Math.random() > 0.8,
+            isBestseller: Math.random() > 0.7
         };
     }
     
@@ -69,6 +77,7 @@ class ProductsLoader {
             'عنبر': 'Amber',
             'ورد': 'Rose',
             'ياسمين': 'Jasmine',
+            'زعفران': 'Saffron',
             
             // Watch translations
             'ساعة': 'Watch',
@@ -82,8 +91,6 @@ class ProductsLoader {
             // Gender terms
             'رجالي': "Men's",
             'نسائي': "Women's",
-            'رجال': 'Men',
-            'نساء': 'Women',
             
             // Colors
             'ذهبي': 'Gold',
@@ -92,6 +99,7 @@ class ProductsLoader {
             'أبيض': 'White',
             'أزرق': 'Blue',
             'أحمر': 'Red',
+            'أخضر': 'Green',
             
             // Styles
             'شرقي': 'Oriental',
@@ -100,7 +108,14 @@ class ProductsLoader {
             'عصري': 'Modern'
         };
         
-        if (!arabicTitle) return 'Premium Product';
+        if (!arabicTitle) {
+            const productTypes = [
+                'Luxury Perfume', 'Premium Watch', 'Designer Fragrance',
+                'Elegant Timepiece', 'Oriental Scent', 'Classic Watch',
+                'Modern Perfume', 'Vintage Watch', 'Exclusive Fragrance'
+            ];
+            return productTypes[Math.floor(Math.random() * productTypes.length)];
+        }
         
         let translated = arabicTitle;
         Object.keys(translations).forEach(arabic => {
@@ -108,13 +123,11 @@ class ProductsLoader {
             translated = translated.replace(regex, translations[arabic]);
         });
         
-        // If no translation happened, generate based on category
+        // If no translation happened, generate based on type
         if (translated === arabicTitle) {
             const productTypes = [
-                'Luxury Perfume', 'Premium Watch', 'Designer Fragrance',
-                'Elegant Timepiece', 'Oriental Scent', 'Classic Watch',
-                'Modern Perfume', 'Vintage Watch', 'Exclusive Fragrance',
-                'Sophisticated Timepiece'
+                'Premium Perfume', 'Luxury Watch', 'Designer Fragrance',
+                'Elegant Timepiece', 'Oriental Scent', 'Classic Watch'
             ];
             return productTypes[Math.floor(Math.random() * productTypes.length)];
         }
@@ -127,13 +140,13 @@ class ProductsLoader {
             .trim();
     }
     
-    generatePrice() {
-        return Math.floor(Math.random() * 300) + 50;
+    generatePrice(category) {
+        return category === 'perfumes' 
+            ? Math.floor(Math.random() * 200) + 50
+            : Math.floor(Math.random() * 400) + 100;
     }
     
-    getDefaultImage(product) {
-        const category = product.category || (product.title && product.title.includes('عطر') ? 'perfumes' : 'watches');
-        
+    getDefaultImage(category) {
         const defaultImages = {
             perfumes: [
                 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop',
@@ -151,18 +164,16 @@ class ProductsLoader {
         return images[Math.floor(Math.random() * images.length)];
     }
     
-    generateDescription(product) {
-        const title = this.translateProductTitle(product.title || product.name);
-        return `Experience the luxury of ${title}, a premium product crafted with attention to detail.`;
+    generateDescription(title) {
+        return `Experience the luxury of ${this.translateProductTitle(title)}, a premium product with excellent quality.`;
     }
     
     generateSampleData() {
         console.log('Generating sample data as fallback...');
         
-        // Generate sample perfumes
         const perfumeNames = [
-            'Royal Oud Perfume', 'Golden Rose Fragrance', 'Mystic Amber Scent', 'Oriental Nights Perfume',
-            'Desert Rose Fragrance', 'Palace Musk Perfume', 'Diamond Jasmine Scent', 'Luxury Blend Perfume'
+            'Royal Oud Perfume', 'Golden Rose Fragrance', 'Mystic Amber Scent', 'Oriental Nights',
+            'Desert Rose Fragrance', 'Palace Musk', 'Diamond Jasmine', 'Luxury Eastern Blend'
         ];
         
         this.loadedProducts.perfumes = perfumeNames.map((name, index) => ({
@@ -170,18 +181,16 @@ class ProductsLoader {
             title: name,
             translatedTitle: name,
             price: Math.floor(Math.random() * 200) + 50,
-            image: this.getDefaultImage({ category: 'perfumes' }),
+            image: this.getDefaultImage('perfumes'),
             category: 'perfumes',
-            rating: (Math.random() * 2 + 3).toFixed(1),
-            reviews: Math.floor(Math.random() * 100) + 10,
-            description: `Experience the luxury of ${name}, a premium fragrance.`,
+            rating: (Math.random() * 1.5 + 3.5).toFixed(1),
+            reviews: Math.floor(Math.random() * 80) + 20,
             inStock: true
         }));
         
-        // Generate sample watches
         const watchNames = [
-            'Elite Timepiece Watch', 'Luxury Gold Watch', 'Sports Watch Pro',
-            'Classic Elegance Watch', 'Modern Style Timepiece', 'Premium Silver Watch'
+            'Elite Timepiece', 'Luxury Gold Watch', 'Sports Watch Pro',
+            'Classic Elegance', 'Modern Timepiece', 'Premium Silver Watch'
         ];
         
         this.loadedProducts.watches = watchNames.map((name, index) => ({
@@ -189,42 +198,32 @@ class ProductsLoader {
             title: name,
             translatedTitle: name,
             price: Math.floor(Math.random() * 400) + 100,
-            image: this.getDefaultImage({ category: 'watches' }),
+            image: this.getDefaultImage('watches'),
             category: 'watches',
-            rating: (Math.random() * 2 + 3).toFixed(1),
-            reviews: Math.floor(Math.random() * 100) + 10,
-            description: `Discover the precision of ${name}, a luxury timepiece.`,
+            rating: (Math.random() * 1.5 + 3.5).toFixed(1),
+            reviews: Math.floor(Math.random() * 80) + 20,
             inStock: true
         }));
     }
     
     initializeProductLoading() {
-        // Load products for homepage
-        this.loadHomePageProducts();
-    }
-    
-    async loadHomePageProducts() {
-        console.log('Loading homepage products...');
+        console.log('Starting product loading for homepage...');
         
-        // Load perfumes section
-        await this.loadSectionProducts('perfumes', 'perfumes-grid', 6);
-        
-        // Load watches section
-        await this.loadSectionProducts('watches', 'watches-grid', 6);
-        
-        // Load featured products
-        await this.loadFeaturedProducts();
-        
-        // Load best deals
-        await this.loadBestDeals();
+        // Load each section with delay for smooth loading
+        setTimeout(() => this.loadSectionProducts('perfumes', 'perfumes-grid', 6), 500);
+        setTimeout(() => this.loadSectionProducts('watches', 'watches-grid', 6), 1000);
+        setTimeout(() => this.loadFeaturedProducts(), 1500);
+        setTimeout(() => this.loadBestDeals(), 2000);
     }
     
     async loadSectionProducts(category, gridId, limit = 6) {
         const grid = document.getElementById(gridId);
         if (!grid) {
-            console.log(`Grid element ${gridId} not found`);
+            console.warn(`Grid element '${gridId}' not found`);
             return;
         }
+        
+        console.log(`Loading ${category} for ${gridId}...`);
         
         try {
             const products = this.loadedProducts[category].slice(0, limit);
@@ -234,14 +233,16 @@ class ProductsLoader {
                 return;
             }
             
-            grid.innerHTML = products.map((product, index) => {
+            const productsHTML = products.map((product, index) => {
                 return this.createProductCard(product, index * 0.1);
             }).join('');
             
-            // Initialize interactions
+            grid.innerHTML = productsHTML;
+            
+            // Initialize product interactions
             this.initializeProductCards(grid);
             
-            console.log(`Loaded ${products.length} ${category}`);
+            console.log(`✅ Loaded ${products.length} ${category} to ${gridId}`);
             
         } catch (error) {
             console.error(`Error loading ${category}:`, error);
@@ -251,17 +252,31 @@ class ProductsLoader {
     
     async loadFeaturedProducts() {
         const grid = document.getElementById('featuredProducts');
-        if (!grid) return;
+        if (!grid) {
+            console.warn('Featured products grid not found');
+            return;
+        }
         
         try {
+            // Mix of perfumes and watches for featured
             const allProducts = [...this.loadedProducts.perfumes, ...this.loadedProducts.watches];
-            const featured = allProducts.slice(0, 6);
+            const featured = allProducts
+                .filter(product => product.isBestseller || product.isNew)
+                .slice(0, 6);
             
-            grid.innerHTML = featured.map((product, index) => {
+            if (featured.length === 0) {
+                // Fallback to first 6 products
+                featured.push(...allProducts.slice(0, 6));
+            }
+            
+            const productsHTML = featured.map((product, index) => {
                 return this.createProductCard(product, index * 0.1);
             }).join('');
             
+            grid.innerHTML = productsHTML;
             this.initializeProductCards(grid);
+            
+            console.log('✅ Loaded featured products');
             
         } catch (error) {
             console.error('Error loading featured products:', error);
@@ -271,21 +286,28 @@ class ProductsLoader {
     
     async loadBestDeals() {
         const grid = document.getElementById('bestDeals');
-        if (!grid) return;
+        if (!grid) {
+            console.warn('Best deals grid not found');
+            return;
+        }
         
         try {
             const allProducts = [...this.loadedProducts.perfumes, ...this.loadedProducts.watches];
             const deals = allProducts.slice(6, 12).map(product => ({
                 ...product,
-                originalPrice: product.price * 1.3,
-                discount: '25%'
+                originalPrice: (product.price * 1.3).toFixed(2),
+                discount: '25%',
+                hasDiscount: true
             }));
             
-            grid.innerHTML = deals.map((product, index) => {
-                return this.createProductCard(product, index * 0.1, true);
+            const productsHTML = deals.map((product, index) => {
+                return this.createProductCard(product, index * 0.1);
             }).join('');
             
+            grid.innerHTML = productsHTML;
             this.initializeProductCards(grid);
+            
+            console.log('✅ Loaded best deals');
             
         } catch (error) {
             console.error('Error loading deals:', error);
@@ -293,30 +315,35 @@ class ProductsLoader {
         }
     }
     
-    createProductCard(product, delay = 0, showDiscount = false) {
-        const hasDiscount = showDiscount && product.originalPrice;
+    createProductCard(product, delay = 0) {
+        let badges = '';
+        if (product.isNew) badges += '<div class="product-badge new-badge">New</div>';
+        if (product.isBestseller) badges += '<div class="product-badge bestseller-badge">Bestseller</div>';
+        if (product.hasDiscount) badges += '<div class="discount-badge">25% OFF</div>';
         
         return `
             <div class="product-card" data-product-id="${product.id}" style="animation-delay: ${delay}s">
                 <div class="product-image-container">
-                    <img src="${product.image}" alt="${product.translatedTitle}" class="product-image" loading="lazy">
-                    ${hasDiscount ? '<div class="discount-badge">25% OFF</div>' : ''}
+                    <img src="${product.image}" alt="${product.translatedTitle}" class="product-image" loading="lazy" onerror="handleImageError(this)">
+                    ${badges}
                     <div class="product-overlay">
-                        <button class="btn-add-to-cart" onclick="addToCartSimple('${product.id}', '${product.translatedTitle}', ${product.price})" title="Add to Cart">
+                        <button class="btn-add-to-cart" onclick="addToCartSimple('${product.id}', '${product.translatedTitle}', ${product.price}, '${product.image}')" title="Add to Cart">
                             <i class="fas fa-shopping-cart"></i>
                         </button>
                     </div>
                 </div>
                 <div class="product-info">
+                    <div class="product-category">${product.category === 'perfumes' ? 'Perfume' : 'Watch'}</div>
                     <h3 class="product-title">${product.translatedTitle}</h3>
                     <div class="product-rating">
                         <div class="stars">
                             ${this.generateStarRating(product.rating)}
                         </div>
+                        <span class="rating-text">${product.rating}</span>
                         <span class="review-count">(${product.reviews} reviews)</span>
                     </div>
                     <div class="product-price">
-                        ${hasDiscount ? `<span class="original-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
+                        ${product.hasDiscount ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
                         <span class="current-price">$${product.price.toFixed(2)}</span>
                     </div>
                     <div class="product-actions">
@@ -344,16 +371,78 @@ class ProductsLoader {
     }
     
     initializeProductCards(container) {
-        // Basic initialization without complex event handlers
-        console.log('Initializing product cards in', container.id || 'container');
+        console.log(`Initialized product cards in ${container.id || 'container'}`);
+        
+        // Add click handlers for product cards to open in new tab
+        const productCards = container.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            // Make entire card clickable (excluding buttons)
+            card.addEventListener('click', function(e) {
+                // Don't trigger if clicking on a button
+                if (e.target.closest('button') || e.target.closest('a')) {
+                    return;
+                }
+                
+                const productId = this.getAttribute('data-product-id');
+                const productUrl = `./product-details.html?id=${productId}`;
+                window.open(productUrl, '_blank');
+            });
+            
+            card.style.cursor = 'pointer';
+        });
     }
 }
 
-// Simple cart functions
-function addToCartSimple(id, title, price) {
+// Simple global functions
+function addToCartSimple(id, title, price, image) {
     console.log('Adding to cart:', { id, title, price });
     
+    // Get existing cart
+    let cart = JSON.parse(localStorage.getItem('emirates-cart-en') || '[]');
+    
+    // Check if item exists
+    const existingItem = cart.find(item => item.id === id);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            id: id,
+            title: title,
+            price: parseFloat(price),
+            image: image,
+            quantity: 1
+        });
+    }
+    
+    // Save cart
+    localStorage.setItem('emirates-cart-en', JSON.stringify(cart));
+    
+    // Update counter
+    updateCartCounter();
+    
     // Show notification
+    showSimpleNotification(`${title} added to cart!`);
+}
+
+function updateCartCounter() {
+    const cart = JSON.parse(localStorage.getItem('emirates-cart-en') || '[]');
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    const counters = document.querySelectorAll('.cart-counter');
+    counters.forEach(counter => {
+        counter.textContent = totalItems;
+        counter.style.display = totalItems > 0 ? 'flex' : 'none';
+    });
+}
+
+function orderNowSimple(productName, price) {
+    const message = `Hello! I would like to order:\n\n🛍️ Product: ${productName}\n💰 Price: $${price.toFixed(2)} AED\n\nPlease confirm availability and delivery details.`;
+    const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+function showSimpleNotification(message) {
     const notification = document.createElement('div');
     notification.style.cssText = `
         position: fixed;
@@ -371,7 +460,7 @@ function addToCartSimple(id, title, price) {
     
     notification.innerHTML = `
         <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
-        ${title} added to cart!
+        ${message}
     `;
     
     document.body.appendChild(notification);
@@ -386,10 +475,11 @@ function addToCartSimple(id, title, price) {
     }, 3000);
 }
 
-function orderNowSimple(productName, price) {
-    const message = `Hello! I would like to order:\n\n🛍️ Product: ${productName}\n💰 Price: $${price.toFixed(2)} AED\n\nPlease confirm availability and delivery details to UAE.`;
-    const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+// Handle image errors
+function handleImageError(img) {
+    console.log('Image error, using fallback');
+    img.src = 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop';
+    img.style.opacity = '0.8';
 }
 
 // Create global instance
@@ -404,3 +494,5 @@ document.addEventListener('DOMContentLoaded', function() {
 window.productsLoader = productsLoader;
 window.addToCartSimple = addToCartSimple;
 window.orderNowSimple = orderNowSimple;
+window.updateCartCounter = updateCartCounter;
+window.handleImageError = handleImageError;
