@@ -103,11 +103,7 @@
     .checkout-link {
         background: linear-gradient(135deg, #25D366, #20B358) !important;
         color: white !important;
-    }
-    
-    .english-link {
-        background: #1e3c72 !important;
-        color: white !important;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
     }
     
     .main-content {
@@ -276,7 +272,7 @@
         display: flex;
         align-items: center;
         gap: 15px;
-        margin-top: 10px;
+        margin-top: 15px;
     }
     
     .quantity-btn {
@@ -308,6 +304,7 @@
         padding: 5px 10px;
         background: #f8f9fa;
         border-radius: 8px;
+        border: 1px solid #ddd;
     }
     
     .remove-btn {
@@ -320,6 +317,7 @@
         font-size: 14px;
         transition: all 0.3s ease;
         font-weight: 600;
+        margin-right: 15px;
     }
     
     .remove-btn:hover {
@@ -359,11 +357,12 @@
         transition: all 0.3s ease;
         margin-bottom: 15px;
         text-decoration: none;
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
     }
     
     .checkout-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
     }
     
     .continue-btn,
@@ -445,6 +444,15 @@
             padding: 8px 12px;
             font-size: 12px;
         }
+        
+        .cart-title {
+            font-size: 2rem;
+        }
+    }
+    
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
     </style>
 </head>
@@ -471,7 +479,7 @@
                 <a href="./checkout.html" class="nav-link checkout-link">
                     <i class="fas fa-credit-card"></i> إتمام الطلب
                 </a>
-                <a href="./en/" class="nav-link english-link" target="_blank">
+                <a href="./en/" class="nav-link" target="_blank" style="background: #1e3c72; color: white;">
                     <i class="fas fa-globe"></i> English
                 </a>
             </nav>
@@ -485,7 +493,6 @@
         </div>
         
         <div id="cartContent">
-            <!-- سيتم ملء المحتوى بواسطة JavaScript -->
             <div style="text-align: center; padding: 60px; color: #D4AF37;">
                 <i class="fas fa-spinner" style="font-size: 2rem; animation: spin 1s linear infinite; margin-bottom: 20px;"></i>
                 <div style="font-size: 1.2rem;">جارِ تحميل سلة التسوق...</div>
@@ -497,7 +504,7 @@
     // 🚫 GLOBAL POPUP BLOCKER
     console.log('🚫 ZERO POPUP CART ENVIRONMENT');
     window.alert = function() { console.log('🚫 Alert blocked'); };
-    window.confirm = function() { return true; }; // Always confirm for cart operations
+    window.confirm = function() { return true; };
     window.prompt = function() { return null; };
     
     let cartData = [];
@@ -684,11 +691,6 @@
         
         console.log('✅ صفحة السلة جاهزة!');
     });
-    
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
     </script>
 </body>
 </html>
