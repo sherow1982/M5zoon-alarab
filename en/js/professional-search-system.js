@@ -1,235 +1,251 @@
 /**
  * Professional Search System for Emirates Gifts English Store
- * Advanced search with English translations and proper indexing
- * Version: v20251101-PROFESSIONAL
+ * CSP-Safe, Popup-Free, High-Performance Search
+ * Version: v20251101-FINAL-CSP-SAFE
  */
 
-(function(window) {
+(function() {
     'use strict';
     
-    console.log('🔍 Professional Search System Loading...');
+    console.log('🔍 Professional Search System - Final CSP-Safe Version');
     
     const ProfessionalSearch = {
-        searchData: [],
+        products: [],
         searchIndex: {},
-        isReady: false,
+        isOpen: false,
+        initialized: false,
+        
+        // English display name mappings (specific products)
+        specificNames: {
+            'watch_88': 'Rolex Kaaba Design Premium Watch',
+            'watch_3': 'Rolex Black Dial Professional R21',
+            'watch_4': 'Rolex Oyster Professional 40mm R54',
+            'watch_1': 'Rolex Yacht Master Silver',
+            'watch_21': 'Rolex Yacht Master Gold',
+            'watch_81': 'Rolex Yacht Master Black',
+            'watch_8': 'Omega Swatch Baby Blue Edition',
+            'watch_45': 'Rolex GMT Black',
+            'watch_46': 'Rolex GMT Batman',
+            'watch_47': 'Rolex GMT Batman II',
+            'watch_48': 'Rolex GMT Pepsi',
+            'watch_104': 'Patek Philippe Geneva Royal Blue & Gold',
+            'watch_105': 'Audemars Piguet Blue & Silver',
+            'watch_76': 'Audemars Piguet Royal Orange'
+        },
         
         /**
          * Initialize search system
          */
         async init() {
+            if (this.initialized) return;
+            
             try {
-                console.log('🚀 Initializing professional search system...');
+                console.log('🚀 Starting search initialization...');
                 
-                // Load all product data
-                await this.loadSearchData();
-                
-                // Build search index
+                await this.loadAllProducts();
                 this.buildSearchIndex();
-                
-                // Create search UI
                 this.createSearchUI();
+                this.addSearchButtons();
+                this.setupEventHandlers();
+                this.setupKeyboardShortcuts();
                 
-                // Setup search functionality
-                this.setupSearchHandlers();
-                
-                this.isReady = true;
+                this.initialized = true;
                 console.log('✅ Professional search system ready');
                 
             } catch (error) {
-                console.error('❌ Error initializing search:', error);
+                console.error('❌ Search initialization failed:', error);
+                // Create minimal search fallback
+                this.createMinimalSearch();
             }
         },
         
         /**
-         * Load all product data for search
+         * Load all products from data files
          */
-        async loadSearchData() {
+        async loadAllProducts() {
+            console.log('📦 Loading product data...');
+            
+            const loadPromises = [
+                this.loadDataFile('../data/sa3at.json', 'watch'),
+                this.loadDataFile('../data/otor.json', 'perfume')
+            ];
+            
+            const results = await Promise.allSettled(loadPromises);
+            
+            results.forEach((result, index) => {
+                if (result.status === 'fulfilled') {
+                    const type = index === 0 ? 'watch' : 'perfume';
+                    console.log(`✅ Loaded ${result.value.length} ${type}s`);
+                } else {
+                    console.warn(`⚠️ Failed to load data file ${index}:`, result.reason);
+                }
+            });
+            
+            console.log(`🎯 Total products loaded: ${this.products.length}`);
+        },
+        
+        /**
+         * Load single data file
+         */
+        async loadDataFile(url, type) {
             try {
-                const [perfumesRes, watchesRes] = await Promise.all([
-                    fetch('../data/otor.json'),
-                    fetch('../data/sa3at.json')
-                ]);
+                const response = await fetch(url + '?v=' + Date.now());
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 
-                const perfumes = await perfumesRes.json();
-                const watches = await watchesRes.json();
+                const data = await response.json();
+                if (!Array.isArray(data)) throw new Error('Invalid data format');
                 
-                // Convert to searchable format with English names
-                this.searchData = [
-                    ...perfumes.map(p => ({
-                        id: p.id,
-                        originalTitle: p.title,
-                        englishTitle: this.translateToEnglish(p.title, 'perfume'),
-                        price: parseFloat(p.sale_price || p.price || 0),
-                        originalPrice: parseFloat(p.price || 0),
-                        image: p.image_link,
-                        category: 'perfume',
-                        type: 'Perfume',
-                        icon: '🌸',
-                        url: `./product-details.html?type=perfume&id=${p.id}&source=otor`,
-                        keywords: this.generateSearchKeywords(p.title, 'perfume')
-                    })),
-                    ...watches.map(w => ({
-                        id: w.id,
-                        originalTitle: w.title,
-                        englishTitle: this.translateToEnglish(w.title, 'watch'),
-                        price: parseFloat(w.sale_price || w.price || 0),
-                        originalPrice: parseFloat(w.price || 0),
-                        image: w.image_link,
-                        category: 'watch',
-                        type: 'Watch',
-                        icon: '⏰',
-                        url: `./product-details.html?type=watch&id=${w.id}&source=sa3at`,
-                        keywords: this.generateSearchKeywords(w.title, 'watch')
-                    }))
-                ];
+                // Process each product
+                data.forEach(item => {
+                    const product = {
+                        id: item.id,
+                        originalTitle: item.title,
+                        displayName: this.generateDisplayName(item.title, item.id),
+                        price: parseFloat(item.sale_price || item.price || 0),
+                        originalPrice: parseFloat(item.price || 0),
+                        image: item.image_link,
+                        category: type,
+                        categoryDisplay: type === 'watch' ? 'Watches' : 'Perfumes',
+                        icon: type === 'watch' ? '⏰' : '🌸',
+                        url: `./product-details.html?id=${item.id}&type=${type}&source=${type === 'watch' ? 'sa3at' : 'otor'}`,
+                        keywords: this.generateKeywords(item.title, type)
+                    };
+                    
+                    this.products.push(product);
+                });
                 
-                console.log(`✅ Loaded ${this.searchData.length} products for search`);
+                return data;
                 
             } catch (error) {
-                console.error('❌ Error loading search data:', error);
-                this.searchData = [];
+                console.error(`❌ Failed to load ${url}:`, error);
+                return [];
             }
         },
         
         /**
-         * Translate product name to clean English
+         * Generate clean English display name
          */
-        translateToEnglish(arabicTitle, productType) {
-            if (!arabicTitle) return 'Premium Product';
-            
-            let englishName = '';
-            const title = arabicTitle.toLowerCase();
-            
-            if (productType === 'perfume') {
-                if (title.includes('chanel') || title.includes('شانيل')) {
-                    englishName = 'Chanel Premium Perfume';
-                    if (title.includes('coco') || title.includes('كوكو')) englishName = 'Chanel Coco Perfume';
-                } else if (title.includes('gucci') || title.includes('جوتشي')) {
-                    if (title.includes('flora') || title.includes('فلورا')) englishName = 'Gucci Flora Perfume';
-                    else if (title.includes('bloom') || title.includes('بلوم')) englishName = 'Gucci Bloom Perfume';
-                    else englishName = 'Gucci Premium Perfume';
-                } else if (title.includes('dior') || title.includes('ديور')) {
-                    englishName = 'Dior Sauvage Perfume';
-                } else if (title.includes('versace') || title.includes('فرزاتشي')) {
-                    englishName = 'Versace Eros Perfume';
-                } else if (title.includes('tom ford')) {
-                    if (title.includes('vanilla')) englishName = 'Tom Ford Vanilla Perfume';
-                    else if (title.includes('ombre')) englishName = 'Tom Ford Ombre Leather';
-                    else englishName = 'Tom Ford Premium Perfume';
-                } else if (title.includes('ysl') || title.includes('سان لوران')) {
-                    if (title.includes('libre') || title.includes('ليبر')) englishName = 'YSL Libre Perfume';
-                    else if (title.includes('opium') || title.includes('اوبيوم')) englishName = 'YSL Black Opium';
-                    else englishName = 'YSL Premium Perfume';
-                } else if (title.includes('kayali')) {
-                    englishName = 'Kayali Premium Perfume';
-                } else if (title.includes('فواحة')) {
-                    englishName = 'Premium Car Fragrance';
-                } else if (title.includes('دخون')) {
-                    englishName = 'Premium Arabian Incense';
-                } else {
-                    englishName = 'Premium Luxury Perfume';
-                }
-                
-                if (title.includes('100')) englishName += ' 100ml';
-                else if (title.includes('50')) englishName += ' 50ml';
-                
-            } else {
-                // Watch translations
-                let brand = 'Premium';
-                let model = 'Watch';
-                let color = '';
-                let size = '';
-                let special = '';
-                
-                if (title.includes('rolex') || title.includes('رولكس')) {
-                    brand = 'Rolex';
-                    if (title.includes('yacht') || title.includes('يخت')) model = 'Yacht Master';
-                    else if (title.includes('datejust') || title.includes('جاست')) model = 'Datejust';
-                    else if (title.includes('daytona') || title.includes('دايتونا')) model = 'Daytona';
-                    else if (title.includes('gmt')) model = 'GMT Master';
-                    else if (title.includes('submariner')) model = 'Submariner';
-                    else if (title.includes('oyster') || title.includes('اويستر')) model = 'Oyster';
-                    else if (title.includes('r21')) model = 'Professional R21';
-                    else if (title.includes('r54')) model = 'Professional R54';
-                    else model = 'Classic';
-                } else if (title.includes('omega') || title.includes('اوميغا')) {
-                    brand = 'Omega';
-                    if (title.includes('swatch') || title.includes('سواتش')) model = 'Swatch';
-                    else model = 'Seamaster';
-                } else if (title.includes('audemars') || title.includes('اوديمار')) {
-                    brand = 'Audemars Piguet';
-                    model = 'Royal Oak';
-                } else if (title.includes('patek') || title.includes('باتيك')) {
-                    brand = 'Patek Philippe';
-                    model = 'Calatrava';
-                } else if (title.includes('cartier') || title.includes('كارتييه')) {
-                    brand = 'Cartier';
-                    model = 'Tank';
-                } else if (title.includes('bulgari') || title.includes('سربنتي')) {
-                    brand = 'Bulgari';
-                    model = 'Serpenti';
-                } else if (title.includes('smart') || title.includes('ذكية')) {
-                    brand = 'Smart';
-                    model = 'Watch';
-                }
-                
-                // Color detection
-                if (title.includes('black') || title.includes('اسود') || title.includes('أسود')) color = 'Black';
-                else if (title.includes('white') || title.includes('ابيض') || title.includes('أبيض')) color = 'White';
-                else if (title.includes('blue') || title.includes('ازرق') || title.includes('أزرق')) color = 'Blue';
-                else if (title.includes('green') || title.includes('اخضر') || title.includes('أخضر')) color = 'Green';
-                else if (title.includes('gold') || title.includes('جولد') || title.includes('ذهبي')) color = 'Gold';
-                else if (title.includes('silver') || title.includes('فضي') || title.includes('سيلفر')) color = 'Silver';
-                
-                // Size detection
-                if (title.includes('41')) size = '41mm';
-                else if (title.includes('40')) size = '40mm';
-                else if (title.includes('36')) size = '36mm';
-                
-                // Special features
-                if (title.includes('بوكس') && title.includes('ايربودز')) special = '& AirPods Set';
-                else if (title.includes('بوكس')) special = 'with Box';
-                else if (title.includes('couple') || title.includes('كوبل')) special = 'Couple Set';
-                else if (title.includes('نسائي')) special = "Women's";
-                else if (title.includes('رجالي')) special = "Men's";
-                
-                const parts = [brand, model, color, size, special].filter(p => p);
-                englishName = parts.join(' ');
-                
-                if (!englishName) englishName = 'Premium Luxury Watch';
+        generateDisplayName(title, id) {
+            // Check specific mappings first
+            if (this.specificNames[id]) {
+                return this.specificNames[id];
             }
             
-            return englishName;
+            if (!title) return 'Premium Product';
+            
+            const text = title.toLowerCase();
+            let brand = 'Premium';
+            let model = '';
+            let color = '';
+            let size = '';
+            let special = '';
+            
+            // Brand detection
+            if (text.includes('rolex') || text.includes('رولكس')) {
+                brand = 'Rolex';
+                if (text.includes('yacht') || text.includes('يخت')) model = 'Yacht Master';
+                else if (text.includes('datejust') || text.includes('جاست')) model = 'Datejust';
+                else if (text.includes('daytona') || text.includes('دايتونا')) model = 'Daytona';
+                else if (text.includes('gmt')) model = 'GMT Master';
+                else if (text.includes('submariner')) model = 'Submariner';
+                else if (text.includes('oyster') || text.includes('اويستر')) model = 'Oyster';
+                else if (text.includes('كعبة') || text.includes('kaaba')) model = 'Kaaba Design';
+                else if (text.includes('r21')) model = 'Professional R21';
+                else if (text.includes('r54')) model = 'Professional R54';
+                else model = 'Classic';
+            } else if (text.includes('omega') || text.includes('اوميغا')) {
+                brand = 'Omega';
+                if (text.includes('swatch') || text.includes('سواتش')) model = 'Swatch';
+            } else if (text.includes('chanel') || text.includes('شانيل')) {
+                brand = 'Chanel';
+                if (text.includes('coco') || text.includes('كوكو')) model = 'Coco';
+                else model = 'Premium Perfume';
+            } else if (text.includes('dior') || text.includes('ديور')) {
+                brand = 'Dior';
+                if (text.includes('sauvage')) model = 'Sauvage';
+                else model = 'Premium Perfume';
+            } else if (text.includes('gucci') || text.includes('جوتشي')) {
+                brand = 'Gucci';
+                if (text.includes('flora') || text.includes('فلورا')) model = 'Flora';
+                else if (text.includes('bloom') || text.includes('بلوم')) model = 'Bloom';
+                else model = 'Premium Perfume';
+            }
+            
+            // Color detection
+            if (text.includes('black') || text.includes('اسود') || text.includes('أسود')) color = 'Black';
+            else if (text.includes('gold') || text.includes('ذهبي') || text.includes('جولد')) color = 'Gold';
+            else if (text.includes('silver') || text.includes('فضي') || text.includes('سيلفر')) color = 'Silver';
+            else if (text.includes('blue') || text.includes('ازرق') || text.includes('أزرق')) color = 'Blue';
+            else if (text.includes('green') || text.includes('اخضر') || text.includes('أخضر')) color = 'Green';
+            else if (text.includes('white') || text.includes('ابيض') || text.includes('أبيض')) color = 'White';
+            
+            // Size detection
+            if (text.includes('41mm') || text.includes('41 ملم')) size = '41mm';
+            else if (text.includes('40mm') || text.includes('40ملم') || text.includes('40 ملم')) size = '40mm';
+            else if (text.includes('100ml') || text.includes('100 مل')) size = '100ml';
+            else if (text.includes('50ml') || text.includes('50 مل')) size = '50ml';
+            
+            // Special features
+            if (text.includes('بوكس') && text.includes('ايربودز')) special = '& AirPods Set';
+            else if (text.includes('بوكس') || text.includes('box')) special = 'with Box';
+            else if (text.includes('couple') || text.includes('كوبل')) special = 'Couple Set';
+            else if (text.includes('copy 1') || text.includes('premium')) special = 'Premium Edition';
+            else if (text.includes('نسائي')) special = "Women's";
+            else if (text.includes('رجالي')) special = "Men's";
+            
+            const parts = [brand, model, color, size, special].filter(p => p && p.trim());
+            return parts.join(' ') || 'Premium Product';
         },
         
         /**
          * Generate search keywords
          */
-        generateSearchKeywords(title, type) {
-            const keywords = [];
+        generateKeywords(title, type) {
+            const keywords = new Set();
             const lowerTitle = title.toLowerCase();
             
-            // Add English translated name
-            const englishName = this.translateToEnglish(title, type);
-            keywords.push(...englishName.toLowerCase().split(' '));
+            // Add type keywords
+            keywords.add(type);
+            keywords.add(type === 'watch' ? 'timepiece' : 'fragrance');
             
-            // Add brand keywords
-            const brands = ['chanel', 'gucci', 'dior', 'versace', 'tom ford', 'ysl', 'rolex', 'omega', 'cartier', 'bulgari'];
-            brands.forEach(brand => {
-                if (lowerTitle.includes(brand)) keywords.push(brand);
+            // Extract English words from title
+            const englishWords = lowerTitle.match(/[a-zA-Z]+/g) || [];
+            englishWords.forEach(word => {
+                if (word.length > 2) keywords.add(word.toLowerCase());
             });
             
-            // Add color keywords
+            // Common brand keywords
+            const brands = ['rolex', 'omega', 'chanel', 'dior', 'gucci', 'versace', 'cartier', 'bulgari'];
+            brands.forEach(brand => {
+                if (lowerTitle.includes(brand)) keywords.add(brand);
+            });
+            
+            // Color keywords
             const colors = ['black', 'white', 'blue', 'green', 'gold', 'silver', 'brown', 'red'];
             colors.forEach(color => {
-                if (lowerTitle.includes(color)) keywords.push(color);
+                if (lowerTitle.includes(color) || lowerTitle.includes(this.getArabicColor(color))) {
+                    keywords.add(color);
+                }
             });
             
-            // Add category keywords
-            keywords.push(type, type === 'perfume' ? 'fragrance' : 'timepiece');
-            
-            return [...new Set(keywords)].filter(k => k && k.length > 1);
+            return Array.from(keywords).filter(k => k && k.length > 1);
+        },
+        
+        /**
+         * Get Arabic color equivalent
+         */
+        getArabicColor(englishColor) {
+            const colorMap = {
+                'black': 'اسود',
+                'white': 'ابيض',
+                'blue': 'ازرق',
+                'green': 'اخضر',
+                'gold': 'ذهبي',
+                'silver': 'فضي',
+                'brown': 'بني',
+                'red': 'احمر'
+            };
+            return colorMap[englishColor] || '';
         },
         
         /**
@@ -238,82 +254,105 @@
         buildSearchIndex() {
             this.searchIndex = {};
             
-            this.searchData.forEach(product => {
-                product.keywords.forEach(keyword => {
-                    if (!this.searchIndex[keyword]) {
-                        this.searchIndex[keyword] = [];
+            this.products.forEach(product => {
+                // Index by display name words
+                const displayWords = product.displayName.toLowerCase().split(' ');
+                displayWords.forEach(word => {
+                    if (word.length > 2) {
+                        if (!this.searchIndex[word]) this.searchIndex[word] = [];
+                        this.searchIndex[word].push(product);
                     }
+                });
+                
+                // Index by keywords
+                product.keywords.forEach(keyword => {
+                    if (!this.searchIndex[keyword]) this.searchIndex[keyword] = [];
                     this.searchIndex[keyword].push(product);
                 });
             });
             
-            console.log(`✅ Built search index with ${Object.keys(this.searchIndex).length} keywords`);
+            console.log(`✅ Search index built with ${Object.keys(this.searchIndex).length} keywords`);
         },
         
         /**
-         * Create professional search UI
+         * Create search UI
          */
         createSearchUI() {
-            const searchHTML = `
-                <div class="professional-search-container" id="professionalSearch">
-                    <div class="search-overlay" id="searchOverlay"></div>
-                    <div class="search-modal" id="searchModal">
-                        <div class="search-modal-header">
-                            <div class="search-input-container">
-                                <i class="fas fa-search search-icon"></i>
-                                <input type="text" 
-                                       id="professionalSearchInput" 
-                                       placeholder="Search premium products..." 
-                                       autocomplete="off"
-                                       aria-label="Search products">
-                                <button class="search-clear" id="searchClear" aria-label="Clear search">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                            <button class="search-close" id="searchClose" aria-label="Close search">
+            // Create search container
+            const searchContainer = document.createElement('div');
+            searchContainer.className = 'professional-search-container';
+            searchContainer.id = 'professionalSearch';
+            
+            searchContainer.innerHTML = `
+                <div class="search-overlay"></div>
+                <div class="search-modal">
+                    <div class="search-modal-header">
+                        <div class="search-input-container">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" 
+                                   id="professionalSearchInput" 
+                                   placeholder="Search premium products..." 
+                                   autocomplete="off"
+                                   aria-label="Search products">
+                            <button class="search-clear" id="searchClear" aria-label="Clear search">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
-                        
-                        <div class="search-filters">
-                            <button class="search-filter active" data-filter="all">
-                                <i class="fas fa-th-large"></i> All
-                            </button>
-                            <button class="search-filter" data-filter="perfume">
-                                <i class="fas fa-spray-can"></i> Perfumes
-                            </button>
-                            <button class="search-filter" data-filter="watch">
-                                <i class="fas fa-clock"></i> Watches
-                            </button>
-                        </div>
-                        
-                        <div class="search-results" id="searchResults">
-                            <div class="search-suggestions">
-                                <div class="suggestions-title">Popular searches:</div>
-                                <div class="suggestions-list">
-                                    <span class="suggestion-item" data-search="rolex">Rolex</span>
-                                    <span class="suggestion-item" data-search="chanel">Chanel</span>
-                                    <span class="suggestion-item" data-search="omega">Omega</span>
-                                    <span class="suggestion-item" data-search="dior">Dior</span>
-                                    <span class="suggestion-item" data-search="gucci">Gucci</span>
-                                    <span class="suggestion-item" data-search="tom ford">Tom Ford</span>
-                                    <span class="suggestion-item" data-search="gold">Gold</span>
-                                    <span class="suggestion-item" data-search="black">Black</span>
-                                </div>
+                        <button class="search-close" id="searchClose" aria-label="Close search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="search-filters">
+                        <button class="search-filter active" data-filter="all">
+                            <i class="fas fa-th-large"></i> All
+                        </button>
+                        <button class="search-filter" data-filter="perfume">
+                            <i class="fas fa-spray-can"></i> Perfumes
+                        </button>
+                        <button class="search-filter" data-filter="watch">
+                            <i class="fas fa-clock"></i> Watches
+                        </button>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults">
+                        <div class="search-suggestions">
+                            <div class="suggestions-title">Popular searches:</div>
+                            <div class="suggestions-list" id="suggestionsList">
+                                <span class="suggestion-item">Rolex</span>
+                                <span class="suggestion-item">Chanel</span>
+                                <span class="suggestion-item">Omega</span>
+                                <span class="suggestion-item">Dior</span>
+                                <span class="suggestion-item">Gold</span>
+                                <span class="suggestion-item">Black</span>
+                                <span class="suggestion-item">40mm</span>
+                                <span class="suggestion-item">Premium</span>
                             </div>
                         </div>
-                        
-                        <div class="search-footer">
-                            <div class="search-stats" id="searchStats"></div>
-                        </div>
+                    </div>
+                    
+                    <div class="search-footer">
+                        <div class="search-stats" id="searchStats">${this.products.length} products available</div>
                     </div>
                 </div>
             `;
             
-            // Add search CSS
-            const searchCSS = `
-                <style id="professionalSearchCSS">
-                /* Professional Search Styles */
+            // Add CSS styles
+            this.addSearchCSS();
+            
+            // Add to DOM
+            document.body.appendChild(searchContainer);
+            
+            console.log('✅ Search UI created');
+        },
+        
+        /**
+         * Add search CSS styles
+         */
+        addSearchCSS() {
+            const css = document.createElement('style');
+            css.id = 'professionalSearchStyles';
+            css.textContent = `
                 .professional-search-container {
                     position: fixed;
                     top: 0;
@@ -398,10 +437,6 @@
                     background: transparent;
                 }
                 
-                #professionalSearchInput::placeholder {
-                    color: #6c757d;
-                }
-                
                 .search-clear {
                     padding: 15px;
                     border: none;
@@ -409,6 +444,7 @@
                     color: #6c757d;
                     cursor: pointer;
                     transition: color 0.3s ease;
+                    display: none;
                 }
                 
                 .search-clear:hover {
@@ -525,6 +561,7 @@
                 .search-result-item:hover {
                     transform: translateY(-4px);
                     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                    text-decoration: none;
                 }
                 
                 .search-result-image {
@@ -586,7 +623,6 @@
                     color: #e9ecef;
                 }
                 
-                /* Header search button */
                 .header-search-btn {
                     background: transparent;
                     border: 2px solid #D4AF37;
@@ -617,6 +653,8 @@
                     
                     .search-modal-header {
                         padding: 20px;
+                        flex-wrap: wrap;
+                        gap: 10px;
                     }
                     
                     .search-filters {
@@ -633,99 +671,94 @@
                         gap: 15px;
                     }
                 }
-                </style>
             `;
             
-            // Add CSS to head
-            document.head.insertAdjacentHTML('beforeend', searchCSS);
-            
-            // Add search HTML to body
-            document.body.insertAdjacentHTML('beforeend', searchHTML);
-            
-            // Add search button to header
-            this.addSearchButtonToHeader();
+            document.head.appendChild(css);
         },
         
         /**
-         * Add search button to header
+         * Add search buttons to pages
          */
-        addSearchButtonToHeader() {
+        addSearchButtons() {
+            // Add to header
             const headerTools = document.querySelector('.header-tools');
-            if (headerTools) {
-                const searchButton = document.createElement('button');
-                searchButton.className = 'header-tool header-search-btn';
-                searchButton.innerHTML = '<i class="fas fa-search"></i> <span>Search</span>';
-                searchButton.onclick = () => this.openSearch();
+            if (headerTools && !document.querySelector('.header-search-btn')) {
+                const searchBtn = document.createElement('button');
+                searchBtn.className = 'header-tool header-search-btn';
+                searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+                searchBtn.title = 'Search Products (Ctrl+K)';
+                searchBtn.addEventListener('click', () => this.openSearch());
                 
-                // Insert before first element
-                headerTools.insertBefore(searchButton, headerTools.firstChild);
-                
+                headerTools.insertBefore(searchBtn, headerTools.firstChild);
                 console.log('✅ Search button added to header');
             }
             
-            // Add to mobile menu
-            const mobileNav = document.querySelector('.mobile-sidebar-nav');
-            if (mobileNav) {
-                const mobileSearchLink = document.createElement('a');
-                mobileSearchLink.href = '#';
-                mobileSearchLink.innerHTML = '<i class="fas fa-search"></i> Search Products';
-                mobileSearchLink.onclick = (e) => {
+            // Update existing search buttons
+            const existingButtons = document.querySelectorAll('[onclick*="openProfessionalSearch"], [onclick*="openSearchSafely"], [onclick*="openShowcaseSearch"]');
+            existingButtons.forEach(btn => {
+                btn.onclick = (e) => {
                     e.preventDefault();
                     this.openSearch();
-                    // Close mobile menu
-                    document.getElementById('mobileOverlay')?.click();
                 };
-                
-                // Insert after home link
-                const homeLink = mobileNav.querySelector('a[href="./"]');
-                if (homeLink && homeLink.nextSibling) {
-                    mobileNav.insertBefore(mobileSearchLink, homeLink.nextSibling);
-                }
-            }
+            });
         },
         
         /**
-         * Setup search handlers
+         * Setup event handlers
          */
-        setupSearchHandlers() {
+        setupEventHandlers() {
+            const container = document.getElementById('professionalSearch');
+            if (!container) return;
+            
             const searchInput = document.getElementById('professionalSearchInput');
             const searchClear = document.getElementById('searchClear');
             const searchClose = document.getElementById('searchClose');
-            const searchOverlay = document.getElementById('searchOverlay');
-            const searchFilters = document.querySelectorAll('.search-filter');
-            const suggestionItems = document.querySelectorAll('.suggestion-item');
+            const searchOverlay = container.querySelector('.search-overlay');
+            const searchFilters = container.querySelectorAll('.search-filter');
+            const suggestionItems = container.querySelectorAll('.suggestion-item');
             
-            // Search input handler
-            searchInput?.addEventListener('input', (e) => {
-                const query = e.target.value;
-                if (query.length > 0) {
-                    this.performSearch(query);
-                    searchClear.style.display = 'block';
-                } else {
+            // Search input
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value.trim();
+                    if (query.length > 0) {
+                        this.performSearch(query);
+                        if (searchClear) searchClear.style.display = 'block';
+                    } else {
+                        this.showSuggestions();
+                        if (searchClear) searchClear.style.display = 'none';
+                    }
+                });
+                
+                searchInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.performSearch(e.target.value.trim());
+                    }
+                });
+            }
+            
+            // Clear button
+            if (searchClear) {
+                searchClear.addEventListener('click', () => {
+                    if (searchInput) {
+                        searchInput.value = '';
+                        searchInput.focus();
+                    }
                     this.showSuggestions();
                     searchClear.style.display = 'none';
-                }
-            });
+                });
+            }
             
-            // Enter key search
-            searchInput?.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    this.performSearch(e.target.value);
-                }
-            });
+            // Close button
+            if (searchClose) {
+                searchClose.addEventListener('click', () => this.closeSearch());
+            }
             
-            // Clear search
-            searchClear?.addEventListener('click', () => {
-                searchInput.value = '';
-                this.showSuggestions();
-                searchClear.style.display = 'none';
-                searchInput.focus();
-            });
-            
-            // Close search
-            searchClose?.addEventListener('click', () => this.closeSearch());
-            searchOverlay?.addEventListener('click', () => this.closeSearch());
+            // Overlay click
+            if (searchOverlay) {
+                searchOverlay.addEventListener('click', () => this.closeSearch());
+            }
             
             // Filter buttons
             searchFilters.forEach(filter => {
@@ -734,30 +767,80 @@
                     filter.classList.add('active');
                     
                     const filterType = filter.dataset.filter;
-                    if (searchInput.value) {
-                        this.performSearch(searchInput.value, filterType);
+                    if (searchInput && searchInput.value.trim()) {
+                        this.performSearch(searchInput.value.trim(), filterType);
                     }
                 });
             });
             
-            // Suggestion items
+            // Suggestion clicks
             suggestionItems.forEach(item => {
                 item.addEventListener('click', () => {
-                    const searchTerm = item.dataset.search;
-                    searchInput.value = searchTerm;
+                    const searchTerm = item.textContent.trim();
+                    if (searchInput) {
+                        searchInput.value = searchTerm;
+                    }
                     this.performSearch(searchTerm);
                 });
             });
             
-            // Keyboard shortcuts
+            console.log('✅ Event handlers setup complete');
+        },
+        
+        /**
+         * Setup keyboard shortcuts
+         */
+        setupKeyboardShortcuts() {
             document.addEventListener('keydown', (e) => {
                 if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                     e.preventDefault();
                     this.openSearch();
-                } else if (e.key === 'Escape' && this.isSearchOpen()) {
+                } else if (e.key === 'Escape' && this.isOpen) {
                     this.closeSearch();
                 }
             });
+            
+            console.log('✅ Keyboard shortcuts active (Ctrl+K, Escape)');
+        },
+        
+        /**
+         * Open search
+         */
+        openSearch() {
+            const container = document.getElementById('professionalSearch');
+            if (container) {
+                container.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                this.isOpen = true;
+                
+                setTimeout(() => {
+                    const input = document.getElementById('professionalSearchInput');
+                    if (input) input.focus();
+                }, 100);
+                
+                console.log('🔍 Professional search opened');
+            }
+        },
+        
+        /**
+         * Close search
+         */
+        closeSearch() {
+            const container = document.getElementById('professionalSearch');
+            if (container) {
+                container.classList.remove('active');
+                document.body.style.overflow = '';
+                this.isOpen = false;
+                
+                // Clear search
+                const input = document.getElementById('professionalSearchInput');
+                if (input) {
+                    input.value = '';
+                }
+                this.showSuggestions();
+                
+                console.log('❌ Professional search closed');
+            }
         },
         
         /**
@@ -780,37 +863,37 @@
             const searchTerms = query.toLowerCase().split(' ').filter(term => term.length > 0);
             const results = [];
             
-            this.searchData.forEach(product => {
-                // Apply filter
+            this.products.forEach(product => {
+                // Apply category filter
                 if (filterType !== 'all' && product.category !== filterType) {
                     return;
                 }
                 
                 let score = 0;
-                const englishTitle = product.englishTitle.toLowerCase();
-                const keywords = product.keywords;
+                const displayName = product.displayName.toLowerCase();
                 
-                // Exact title match (highest priority)
-                if (englishTitle.includes(query.toLowerCase())) {
+                // Exact display name match (highest priority)
+                if (displayName.includes(query.toLowerCase())) {
                     score += 100;
                 }
                 
-                // Keyword matches
+                // Term matches
                 searchTerms.forEach(term => {
-                    if (englishTitle.includes(term)) score += 50;
-                    if (keywords.includes(term)) score += 30;
+                    if (displayName.includes(term)) score += 50;
                     
-                    keywords.forEach(keyword => {
-                        if (keyword.includes(term)) score += 20;
+                    // Keyword matches
+                    product.keywords.forEach(keyword => {
+                        if (keyword === term) score += 40;
+                        else if (keyword.includes(term)) score += 20;
                     });
                 });
                 
                 if (score > 0) {
-                    results.push({ ...product, score });
+                    results.push({ ...product, searchScore: score });
                 }
             });
             
-            return results.sort((a, b) => b.score - a.score);
+            return results.sort((a, b) => b.searchScore - a.searchScore);
         },
         
         /**
@@ -820,27 +903,35 @@
             const searchResults = document.getElementById('searchResults');
             const searchStats = document.getElementById('searchStats');
             
+            if (!searchResults || !searchStats) return;
+            
             if (results.length === 0) {
                 searchResults.innerHTML = `
                     <div class="no-results">
                         <i class="fas fa-search"></i>
                         <h3>No products found</h3>
-                        <p>Try searching for brands like "Rolex", "Chanel", or colors like "Gold", "Black"</p>
+                        <p>Try searching for: "Rolex", "Chanel", "Gold", "Black", "40mm"</p>
                     </div>
                 `;
                 searchStats.textContent = `No results for "${query}"`;
                 return;
             }
             
+            const maxResults = 12;
+            const displayResults = results.slice(0, maxResults);
+            
             const resultsHTML = `
                 <div class="search-results-grid">
-                    ${results.slice(0, 12).map(product => `
+                    ${displayResults.map(product => `
                         <a href="${product.url}" class="search-result-item" target="_blank" rel="noopener">
-                            <img src="${product.image}" alt="${product.englishTitle}" class="search-result-image" 
-                                 onerror="this.src='https://via.placeholder.com/200x150/D4AF37/FFFFFF?text=${product.type}'">
+                            <img src="${product.image}" 
+                                 alt="${product.displayName}" 
+                                 class="search-result-image"
+                                 loading="lazy"
+                                 onerror="this.src='https://via.placeholder.com/200x150/D4AF37/FFFFFF?text=${encodeURIComponent(product.categoryDisplay)}'">
                             <div class="search-result-info">
-                                <div class="search-result-category">${product.icon} ${product.type}</div>
-                                <div class="search-result-title">${product.englishTitle}</div>
+                                <div class="search-result-category">${product.icon} ${product.categoryDisplay}</div>
+                                <div class="search-result-title">${product.displayName}</div>
                                 <div class="search-result-price">${product.price.toFixed(2)} AED</div>
                             </div>
                         </a>
@@ -859,90 +950,95 @@
             const searchResults = document.getElementById('searchResults');
             const searchStats = document.getElementById('searchStats');
             
+            if (!searchResults || !searchStats) return;
+            
             searchResults.innerHTML = `
                 <div class="search-suggestions">
                     <div class="suggestions-title">Popular searches:</div>
-                    <div class="suggestions-list">
-                        <span class="suggestion-item" data-search="rolex">Rolex</span>
-                        <span class="suggestion-item" data-search="chanel">Chanel</span>
-                        <span class="suggestion-item" data-search="omega">Omega</span>
-                        <span class="suggestion-item" data-search="dior">Dior</span>
-                        <span class="suggestion-item" data-search="gucci">Gucci</span>
-                        <span class="suggestion-item" data-search="tom ford">Tom Ford</span>
-                        <span class="suggestion-item" data-search="gold">Gold</span>
-                        <span class="suggestion-item" data-search="black">Black</span>
+                    <div class="suggestions-list" id="suggestionsList">
+                        <span class="suggestion-item">Rolex</span>
+                        <span class="suggestion-item">Chanel</span>
+                        <span class="suggestion-item">Omega</span>
+                        <span class="suggestion-item">Dior</span>
+                        <span class="suggestion-item">Gold</span>
+                        <span class="suggestion-item">Black</span>
+                        <span class="suggestion-item">40mm</span>
+                        <span class="suggestion-item">Premium</span>
                     </div>
                 </div>
             `;
             
             // Re-attach suggestion handlers
-            document.querySelectorAll('.suggestion-item').forEach(item => {
+            const suggestionItems = searchResults.querySelectorAll('.suggestion-item');
+            suggestionItems.forEach(item => {
                 item.addEventListener('click', () => {
-                    const searchTerm = item.dataset.search;
-                    document.getElementById('professionalSearchInput').value = searchTerm;
+                    const searchTerm = item.textContent.trim();
+                    const input = document.getElementById('professionalSearchInput');
+                    if (input) {
+                        input.value = searchTerm;
+                    }
                     this.performSearch(searchTerm);
                 });
             });
             
-            searchStats.textContent = `${this.searchData.length} products available`;
+            searchStats.textContent = `${this.products.length} products available`;
         },
         
         /**
-         * Open search
+         * Create minimal search fallback
          */
-        openSearch() {
-            const searchContainer = document.getElementById('professionalSearch');
-            if (searchContainer) {
-                searchContainer.classList.add('active');
-                document.body.style.overflow = 'hidden';
+        createMinimalSearch() {
+            console.log('⚠️ Creating minimal search fallback');
+            
+            // Simple search button
+            const headerTools = document.querySelector('.header-tools');
+            if (headerTools && !document.querySelector('.header-search-btn')) {
+                const searchBtn = document.createElement('a');
+                searchBtn.className = 'header-tool';
+                searchBtn.href = './products-showcase.html';
+                searchBtn.target = '_blank';
+                searchBtn.rel = 'noopener';
+                searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+                searchBtn.title = 'Search Products';
                 
-                setTimeout(() => {
-                    document.getElementById('professionalSearchInput')?.focus();
-                }, 100);
-                
-                console.log('🔍 Professional search opened');
+                headerTools.insertBefore(searchBtn, headerTools.firstChild);
             }
-        },
-        
-        /**
-         * Close search
-         */
-        closeSearch() {
-            const searchContainer = document.getElementById('professionalSearch');
-            if (searchContainer) {
-                searchContainer.classList.remove('active');
-                document.body.style.overflow = '';
-                
-                // Clear search
-                const searchInput = document.getElementById('professionalSearchInput');
-                if (searchInput) {
-                    searchInput.value = '';
-                    this.showSuggestions();
-                }
-                
-                console.log('❌ Professional search closed');
-            }
-        },
-        
-        /**
-         * Check if search is open
-         */
-        isSearchOpen() {
-            const searchContainer = document.getElementById('professionalSearch');
-            return searchContainer && searchContainer.classList.contains('active');
+            
+            // Global functions
+            window.openProfessionalSearch = () => {
+                window.open('./products-showcase.html', '_blank', 'noopener,noreferrer');
+            };
+            
+            window.openSearchSafely = window.openProfessionalSearch;
+            window.openShowcaseSearch = window.openProfessionalSearch;
         }
     };
     
     // Export globally
     window.ProfessionalSearch = ProfessionalSearch;
     
-    // Auto-initialize
+    // Global search functions (safe)
+    window.openProfessionalSearch = function() {
+        if (ProfessionalSearch.initialized) {
+            ProfessionalSearch.openSearch();
+        } else {
+            console.log('🔍 Search not ready, opening products page');
+            window.open('./products-showcase.html', '_blank', 'noopener,noreferrer');
+        }
+    };
+    
+    window.openSearchSafely = window.openProfessionalSearch;
+    window.openShowcaseSearch = window.openProfessionalSearch;
+    
+    // Auto-initialize when DOM ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => ProfessionalSearch.init());
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => ProfessionalSearch.init(), 1000);
+        });
     } else {
-        ProfessionalSearch.init();
+        setTimeout(() => ProfessionalSearch.init(), 1000);
     }
     
-    console.log('✅ Professional Search System loaded');
+    console.log('✅ Professional Search System loaded and ready');
     
-})(window);
+})();
