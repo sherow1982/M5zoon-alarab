@@ -401,6 +401,28 @@
         color: #25D366;
         margin-top: 15px;
     }
+
+    .view-more-button {
+        background: linear-gradient(135deg, #D4AF37, #B8860B);
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 15px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 30px auto 0;
+        font-family: 'Cairo', sans-serif;
+    }
+    
+    .view-more-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
     
     .loading-message {
         text-align: center;
@@ -684,6 +706,12 @@
                             <span>⏳ جارِ تحميل العطور عالية الجودة...</span>
                         </div>
                     </div>
+                    <div style="text-align: center;">
+                        <button class="view-more-button" id="perfumes-view-more" style="display: none;">
+                            <i class="fas fa-plus-circle"></i>
+                            شاهد المزيد من العطور
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -705,6 +733,12 @@
                         <div class="loading-message">
                             <span>⏳ جارِ تحميل الساعات عالية الجودة...</span>
                         </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button class="view-more-button" id="watches-view-more" style="display: none;">
+                            <i class="fas fa-plus-circle"></i>
+                            شاهد المزيد من الساعات
+                        </button>
                     </div>
                 </div>
             </div>
@@ -785,6 +819,8 @@
     
     let currentPerfumes = [];
     let currentWatches = [];
+    let displayedPerfumes = 8;
+    let displayedWatches = 8;
     
     // تحميل المنتجات بدون نوافذ
     async function loadProducts() {
@@ -798,13 +834,19 @@
             
             if (perfumesResponse.status === 'fulfilled' && perfumesResponse.value.ok) {
                 currentPerfumes = await perfumesResponse.value.json();
-                displayProducts(currentPerfumes.slice(0, 8), 'perfumes-grid');
+                displayProducts(currentPerfumes.slice(0, displayedPerfumes), 'perfumes-grid');
+                if (currentPerfumes.length > displayedPerfumes) {
+                    document.getElementById('perfumes-view-more').style.display = 'inline-flex';
+                }
                 console.log(`✅ Loaded ${currentPerfumes.length} perfumes`);
             }
             
             if (watchesResponse.status === 'fulfilled' && watchesResponse.value.ok) {
                 currentWatches = await watchesResponse.value.json();
-                displayProducts(currentWatches.slice(0, 8), 'watches-grid');
+                displayProducts(currentWatches.slice(0, displayedWatches), 'watches-grid');
+                if (currentWatches.length > displayedWatches) {
+                    document.getElementById('watches-view-more').style.display = 'inline-flex';
+                }
                 console.log(`✅ Loaded ${currentWatches.length} watches`);
             }
             
@@ -813,7 +855,7 @@
         }
     }
     
-    // عرض المنتجات بدون نوافذ
+    // عرض المنتجات مع إمكانية النقر
     function displayProducts(products, gridId) {
         const grid = document.getElementById(gridId);
         if (!grid || !products.length) return;
@@ -861,6 +903,26 @@
         }
     }
     
+    // إضافة المزيد من العطور
+    function showMorePerfumes() {
+        displayedPerfumes += 8;
+        displayProducts(currentPerfumes.slice(0, displayedPerfumes), 'perfumes-grid');
+        
+        if (displayedPerfumes >= currentPerfumes.length) {
+            document.getElementById('perfumes-view-more').style.display = 'none';
+        }
+    }
+    
+    // إضافة المزيد من الساعات
+    function showMoreWatches() {
+        displayedWatches += 8;
+        displayProducts(currentWatches.slice(0, displayedWatches), 'watches-grid');
+        
+        if (displayedWatches >= currentWatches.length) {
+            document.getElementById('watches-view-more').style.display = 'none';
+        }
+    }
+    
     // تحديث عداد السلة
     function updateCartCounter() {
         const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
@@ -903,6 +965,10 @@
         updateCartCounter();
         loadProducts();
         
+        // أزرار "شاهد المزيد"
+        document.getElementById('perfumes-view-more').addEventListener('click', showMorePerfumes);
+        document.getElementById('watches-view-more').addEventListener('click', showMoreWatches);
+        
         window.addEventListener('scroll', () => {
             updateProgress();
             updateBackToTop();
@@ -927,7 +993,7 @@
         // تصدير الدالة
         window.navigateToProduct = navigateToProduct;
         
-        console.log('✅ Zero Popup Homepage Ready');
+        console.log('✅ Zero Popup Homepage Ready with View More Buttons');
     });
     </script>
 </body>
