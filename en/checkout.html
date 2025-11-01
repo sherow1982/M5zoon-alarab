@@ -2,538 +2,718 @@
 <html lang="en-US" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Checkout - Emirates Gifts Store | Secure Payment & Fast Delivery</title>
-    <meta name="description" content="Complete your order securely. Fast UAE delivery in 1-3 business days with 14-day return guarantee. Premium perfumes and luxury watches.">
-    <meta name="robots" content="noindex, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Emirates Gifts Store</title>
+    <meta name="description" content="Complete your order easily and securely. Fast delivery within 1-3 business days + 14-day return guarantee.">
     
-    <link rel="canonical" href="https://emirates-gifts.arabsad.com/en/checkout.html">
-    <link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/checkout.html">
-    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/checkout.html">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <link rel="stylesheet" href="../css/dkhoon-inspired-style.css?v=20251101">
-    <link rel="stylesheet" href="../css/mobile-responsive-fixes.css?v=20251101">
-    <link rel="stylesheet" href="../css/reviews-system.css?v=20251101">
-    <link rel="stylesheet" href="../css/emirates-reviews-style.css?v=20251101">
-    <link rel="stylesheet" href="../css/fixed-navigation-buttons.css?v=20251101">
-    <link rel="stylesheet" href="../css/button-spacing-fixes.css?v=20251101">
-    <link rel="stylesheet" href="../css/final-button-appearance-fix.css?v=20251101">
-    <link rel="stylesheet" href="./css/currency-fix-en.css?v=20251101">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "CheckoutPage",
-      "name": "Emirates Gifts Checkout",
-      "description": "Secure checkout for premium perfumes and luxury watches",
-      "url": "https://emirates-gifts.arabsad.com/en/checkout.html"
-    }
-    </script>
-    
     <style>
-    /* English Accessibility Improvements */
-    .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--deep-blue, #1B2951);
-        color: var(--light-gold, #FFD700);
-        padding: 8px 16px;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: 600;
-        font-family: 'Inter', sans-serif;
-        z-index: 10000;
-        transition: top 0.3s ease;
-        border: 2px solid var(--primary-gold, #D4AF37);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .skip-link:focus {
-        top: 10px;
-    }
-    
-    @media (max-width: 768px) {
-        .skip-link {
-            left: 20px;
-            right: 20px;
-            transform: none;
-            text-align: center;
-        }
-    }
-    
-    /* English Version Optimizations */
-    :root {
-        --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* 🚫 ZERO POPUP ENVIRONMENT */
+    .popup, .modal, .overlay, .notification, .alert-box, .toast,
+    [class*="popup"], [class*="modal"], [class*="overlay"], [class*="notification"] {
+        display: none !important;
     }
     
     body {
-        font-family: var(--font-family-primary) !important;
-        direction: ltr !important;
-        text-align: left !important;
+        font-family: 'Inter', sans-serif;
+        direction: ltr;
+        margin: 0;
+        padding: 0;
+        background: #f8f9fa;
+        color: #2c3e50;
+        line-height: 1.6;
+    }
+    
+    .header {
+        background: white;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: #2c3e50;
+    }
+    
+    .logo-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #FFD700, #D4AF37);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .logo-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #1B2951;
     }
     
     .logo-subtitle {
-        font-family: 'Cairo', sans-serif !important;
-        direction: rtl !important;
-    }
-    
-    /* Arabic Link Style */
-    .arabic-link {
-        background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
-        color: white !important;
-        border-radius: 25px;
-        padding: 8px 16px;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        text-decoration: none;
-        box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
-        border: 2px solid transparent;
-        font-family: 'Cairo', sans-serif !important;
+        font-size: 0.8rem;
+        color: #D4AF37;
+        font-family: 'Cairo', sans-serif;
         direction: rtl;
     }
     
-    .arabic-link:hover {
-        background: linear-gradient(135deg, #8B0000 0%, #C8102E 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(200, 16, 46, 0.5);
-        color: white !important;
-        border-color: #D4AF37;
+    .header-nav {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        flex-wrap: wrap;
     }
     
-    /* Currency display */
-    .price::after, .total-price::after, .order-total::after {
-        content: " AED";
+    .nav-link {
+        color: #2c3e50;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 10px 15px;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
     }
     
-    /* Form styles */
-    .checkout-form {
-        text-align: left;
+    .nav-link:hover {
+        background: rgba(212, 175, 55, 0.1);
+        color: #D4AF37;
     }
     
-    .form-group label {
-        text-align: left;
+    .nav-link[style*="background"] {
+        border: 2px solid transparent;
     }
     
+    .main-content {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+    
+    .checkout-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .checkout-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #1B2951;
+        margin-bottom: 15px;
+    }
+    
+    .checkout-subtitle {
+        color: #666;
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+    
+    .checkout-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 40px;
+    }
+    
+    .customer-info,
     .order-summary {
-        text-align: left;
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
     
-    /* WhatsApp order format for English */
-    .whatsapp-order-text {
-        direction: ltr;
-        text-align: left;
+    .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #1B2951;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .form-group {
+        margin-bottom: 25px;
+    }
+    
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 8px;
+        font-size: 1rem;
+    }
+    
+    .required {
+        color: #e74c3c;
+    }
+    
+    .form-input {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+    }
+    
+    .form-input:focus {
+        outline: none;
+        border-color: #D4AF37;
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        background: white;
+    }
+    
+    .form-input.error {
+        border-color: #e74c3c;
+    }
+    
+    .error-message {
+        color: #e74c3c;
+        font-size: 0.85rem;
+        margin-top: 5px;
+        font-weight: 500;
+    }
+    
+    .form-help {
+        color: #666;
+        font-size: 0.85rem;
+        margin-top: 5px;
+    }
+    
+    .order-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .order-item:last-child {
+        border-bottom: none;
+    }
+    
+    .item-image-small {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    
+    .item-details-small {
+        flex: 1;
+    }
+    
+    .item-name {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 5px;
+        font-size: 0.95rem;
+    }
+    
+    .item-qty-price {
+        color: #666;
+        font-size: 0.85rem;
+    }
+    
+    .item-total {
+        font-weight: 700;
+        color: #25D366;
+    }
+    
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-size: 1rem;
+    }
+    
+    .summary-total {
+        font-size: 1.4rem;
+        font-weight: bold;
+        padding-top: 15px;
+        border-top: 2px solid #D4AF37;
+        margin-top: 20px;
+        color: #25D366;
+    }
+    
+    .whatsapp-order-btn {
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(135deg, #25D366, #20B358);
+        color: white;
+        border: none;
+        border-radius: 15px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        transition: all 0.3s ease;
+        margin-top: 30px;
+        text-decoration: none;
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+    }
+    
+    .whatsapp-order-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+    }
+    
+    .security-info {
+        background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+        padding: 20px;
+        border-radius: 12px;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #1B2951;
+        border: 2px solid #D4AF37;
+    }
+    
+    .security-info i {
+        color: #25D366;
+        margin-right: 8px;
+    }
+    
+    .empty-cart-message {
+        text-align: center;
+        padding: 80px 20px;
+        grid-column: 1 / -1;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 16px 32px;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        border: none;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #D4AF37, #B8860B);
+        color: white;
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+    }
+    
+    .btn-secondary {
+        background: transparent;
+        color: #1B2951;
+        border: 2px solid #D4AF37;
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    }
+    
+    @media (max-width: 768px) {
+        .checkout-layout {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .checkout-title {
+            font-size: 2rem;
+        }
+        
+        .header-nav {
+            gap: 10px;
+        }
+        
+        .nav-link {
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        
+        .form-input {
+            padding: 12px;
+        }
+    }
+    
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
     </style>
 </head>
 <body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
-    <div class="progress-bar" id="progressBar"></div>
-    
-    <div class="top-banner">
-        <div class="banner-text">
-            <i class="fas fa-shipping-fast banner-icon"></i>
-            <span>Secure checkout • Express delivery 1-3 business days • 14-day return guarantee</span>
-            <i class="fas fa-shield-alt banner-icon"></i>
-        </div>
-    </div>
-
-    <header class="header" id="header">
+    <header class="header">
         <div class="header-container">
-            <div class="header-content">
-                <a href="./" class="logo" aria-label="Home - Emirates Gifts">
-                    <div class="logo-icon"><img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;" loading="eager"></div>
-                    <div class="logo-text">
-                        <div class="logo-title">Emirates Gifts</div>
-                        <div class="logo-subtitle">هدايا الإمارات</div>
-                    </div>
-                </a>
-
-                <nav class="main-nav" aria-label="Main Navigation">
-                    <ul class="nav-menu">
-                        <li class="nav-item"><a href="./" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link" target="_blank" rel="noopener">All Products</a></li>
-                        <li class="nav-item"><a href="./#perfumes-section" class="nav-link">Perfumes</a></li>
-                        <li class="nav-item"><a href="./#watches-section" class="nav-link">Watches</a></li>
-                        <li class="nav-item"><a href="./blog/" class="nav-link" target="_blank" rel="noopener">Blog</a></li>
-                        <li class="nav-item">
-                            <a href="../" class="nav-link arabic-link" target="_blank" rel="noopener">
-                                <i class="fas fa-globe"></i> العربية
-                            </a>
-                        </li>
-                        <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link" target="_blank" rel="noopener">Contact</a></li>
-                    </ul>
-                </nav>
-
-                <div class="header-tools">
-                    <a href="./cart.html" class="header-tool cart-icon" aria-label="View Cart" title="View Cart">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-counter">0</span>
-                    </a>
-                    <a href="./checkout.html" class="header-tool order-now-btn active" aria-label="Order Now" title="Order Now">
-                        <i class="fas fa-credit-card"></i>
-                        <span>Order Now</span>
-                    </a>
-                    <button class="mobile-menu-toggle" id="openSidebar" aria-label="Open Menu" title="Open Menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
+            <a href="./" class="logo">
+                <div class="logo-icon">
+                    <img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;">
                 </div>
-            </div>
+                <div>
+                    <div class="logo-title">Emirates Gifts</div>
+                    <div class="logo-subtitle">هدايا الإمارات</div>
+                </div>
+            </a>
+            
+            <nav class="header-nav">
+                <a href="./" class="nav-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="./cart.html" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                </a>
+                <a href="./products-showcase.html" class="nav-link">
+                    <i class="fas fa-th-large"></i> All Products
+                </a>
+                <a href="../" class="nav-link" target="_blank" style="background: #C8102E; color: white; font-family: 'Cairo', sans-serif; direction: rtl;">
+                    <i class="fas fa-globe"></i> العربية
+                </a>
+            </nav>
         </div>
     </header>
-
-    <main id="main-content" class="main-content" tabindex="-1">
-        <section class="page-header">
-            <div class="container">
-                <div class="breadcrumb">
-                    <a href="./">Home</a> <i class="fas fa-chevron-right"></i> <span>Checkout</span>
-                </div>
-                <h1 class="page-title">Complete Your Order</h1>
-                <p class="page-subtitle">Secure checkout with express UAE delivery in 1-3 business days</p>
+    
+    <main class="main-content">
+        <div class="checkout-header">
+            <h1 class="checkout-title">💳 Checkout</h1>
+            <p class="checkout-subtitle">Simple details for quick completion via WhatsApp</p>
+            
+            <div style="background: linear-gradient(135deg, #25D366, #20B358); color: white; padding: 15px; border-radius: 12px; margin: 20px auto; display: inline-block; max-width: 600px;">
+                <i class="fas fa-truck"></i> Delivery within 1-3 business days • 
+                <i class="fas fa-undo"></i> 14-day return guarantee + shipping fees
             </div>
-        </section>
-
-        <section class="checkout-section">
-            <div class="container">
-                <div class="checkout-content">
-                    <div class="checkout-form-section">
-                        <h2>Customer Information</h2>
-                        <form id="checkoutForm" class="checkout-form">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="customerName">Full Name *</label>
-                                    <input type="text" id="customerName" name="customerName" required aria-describedby="nameHelp">
-                                    <small id="nameHelp" class="form-help">Enter your full name as it appears on your ID</small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="customerPhone">Phone Number *</label>
-                                    <input type="tel" id="customerPhone" name="customerPhone" required placeholder="+971 XX XXX XXXX" aria-describedby="phoneHelp">
-                                    <small id="phoneHelp" class="form-help">We'll contact you via WhatsApp for order confirmation</small>
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="customerEmail">Email Address</label>
-                                    <input type="email" id="customerEmail" name="customerEmail" aria-describedby="emailHelp">
-                                    <small id="emailHelp" class="form-help">Optional - for order updates and special offers</small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="customerEmirate">Emirate *</label>
-                                    <select id="customerEmirate" name="customerEmirate" required aria-describedby="emirateHelp">
-                                        <option value="">Select your emirate</option>
-                                        <option value="dubai">Dubai</option>
-                                        <option value="abu-dhabi">Abu Dhabi</option>
-                                        <option value="sharjah">Sharjah</option>
-                                        <option value="ajman">Ajman</option>
-                                        <option value="umm-al-quwain">Umm Al Quwain</option>
-                                        <option value="ras-al-khaimah">Ras Al Khaimah</option>
-                                        <option value="fujairah">Fujairah</option>
-                                    </select>
-                                    <small id="emirateHelp" class="form-help">Select your emirate for accurate delivery time</small>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="deliveryAddress">Delivery Address *</label>
-                                <textarea id="deliveryAddress" name="deliveryAddress" required rows="3" placeholder="Enter your complete delivery address including building name, floor, and apartment number" aria-describedby="addressHelp"></textarea>
-                                <small id="addressHelp" class="form-help">Please provide detailed address for accurate delivery</small>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="orderNotes">Special Instructions</label>
-                                <textarea id="orderNotes" name="orderNotes" rows="3" placeholder="Any special requests or delivery instructions (optional)" aria-describedby="notesHelp"></textarea>
-                                <small id="notesHelp" class="form-help">Gift wrapping, specific delivery time, etc.</small>
-                            </div>
-                            
-                            <div class="delivery-options">
-                                <h3>Delivery Options</h3>
-                                <div class="delivery-option">
-                                    <input type="radio" id="standardDelivery" name="deliveryType" value="standard" checked>
-                                    <label for="standardDelivery">
-                                        <div class="option-details">
-                                            <div class="option-title">
-                                                <i class="fas fa-shipping-fast"></i>
-                                                Standard Delivery (FREE)
-                                            </div>
-                                            <div class="option-description">1-3 business days delivery to all UAE emirates</div>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div class="payment-options">
-                                <h3>Payment Method</h3>
-                                <div class="payment-option">
-                                    <input type="radio" id="whatsappPayment" name="paymentMethod" value="whatsapp" checked>
-                                    <label for="whatsappPayment">
-                                        <div class="option-details">
-                                            <div class="option-title">
-                                                <i class="fab fa-whatsapp"></i>
-                                                WhatsApp Order
-                                            </div>
-                                            <div class="option-description">Complete your order via WhatsApp with instant confirmation</div>
-                                        </div>
-                                    </label>
-                                </div>
-                                <div class="payment-option">
-                                    <input type="radio" id="cashPayment" name="paymentMethod" value="cash">
-                                    <label for="cashPayment">
-                                        <div class="option-details">
-                                            <div class="option-title">
-                                                <i class="fas fa-money-bill-wave"></i>
-                                                Cash on Delivery
-                                            </div>
-                                            <div class="option-description">Pay cash when you receive your order</div>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div class="terms-agreement">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" id="agreeTerms" required>
-                                    <span class="checkmark"></span>
-                                    I agree to the <a href="./terms-conditions.html" target="_blank" rel="noopener">Terms & Conditions</a> and <a href="./privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
-                                </label>
-                            </div>
-                            
-                            <div class="form-actions">
-                                <button type="submit" class="btn-primary submit-order-btn">
-                                    <i class="fab fa-whatsapp"></i>
-                                    Complete Order via WhatsApp
-                                </button>
-                                <a href="./cart.html" class="btn-secondary">
-                                    <i class="fas fa-arrow-left"></i>
-                                    Back to Cart
-                                </a>
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <div class="order-summary-section">
-                        <div class="order-summary" id="orderSummary">
-                            <h3>Order Summary</h3>
-                            <div class="summary-content" id="summaryContent">
-                                <div class="empty-order">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <p>Your cart is empty</p>
-                                    <a href="./products-showcase.html" class="btn-primary" target="_blank" rel="noopener">
-                                        <i class="fas fa-shopping-bag"></i>
-                                        Start Shopping
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="summary-totals" id="summaryTotals" style="display: none;">
-                                <div class="total-row">
-                                    <span>Subtotal:</span>
-                                    <span class="subtotal-amount" id="subtotalAmount">0 AED</span>
-                                </div>
-                                <div class="total-row">
-                                    <span>UAE VAT (5%):</span>
-                                    <span class="vat-amount" id="vatAmount">0 AED</span>
-                                </div>
-                                <div class="total-row">
-                                    <span>Delivery:</span>
-                                    <span class="delivery-amount" id="deliveryAmount">Free</span>
-                                </div>
-                                <div class="total-row final-total">
-                                    <span>Total Amount:</span>
-                                    <span class="final-amount" id="finalAmount">0 AED</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="security-badges">
-                            <div class="security-item">
-                                <i class="fas fa-shield-alt"></i>
-                                <span>Secure Checkout</span>
-                            </div>
-                            <div class="security-item">
-                                <i class="fas fa-truck"></i>
-                                <span>Fast UAE Delivery</span>
-                            </div>
-                            <div class="security-item">
-                                <i class="fas fa-undo"></i>
-                                <span>14-Day Returns</span>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-support">
-                            <h4>Need Help?</h4>
-                            <p>Our customer service team is available 24/7</p>
-                            <a href="https://wa.me/201110760081" class="support-link" target="_blank" rel="noopener">
-                                <i class="fab fa-whatsapp"></i>
-                                Chat with us on WhatsApp
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        
+        <div id="checkoutContent">
+            <div style="text-align: center; padding: 40px; color: #D4AF37;">
+                <i class="fas fa-spinner" style="font-size: 2rem; animation: spin 1s linear infinite; margin-bottom: 20px;"></i>
+                <div>Preparing your checkout form...</div>
             </div>
-        </section>
+        </div>
     </main>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Emirates Gifts</h3>
-                    <p>The leading premium perfumes and luxury gifts store in the United Arab Emirates.</p>
-                    <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Customer Service</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
-                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
-                        <li><i class="fas fa-clock"></i><span>Available 24/7</span></li>
-                        <li><a href="../" target="_blank" rel="noopener" style="color: #D4AF37;"><i class="fas fa-globe"></i> عربي</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="footer-legal">
-                    <p>&copy; 2024 Emirates Gifts. All rights reserved.</p>
-                    <div class="legal-links">
-                        <a href="./privacy-policy.html">Privacy</a>
-                        <a href="./terms-conditions.html">Terms</a>
-                        <a href="./return-policy.html">Returns</a>
-                        <a href="../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> عربي</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <button class="back-to-top" id="backToTop" aria-label="Back to Top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    <div class="mobile-sidebar" id="mobileSidebar">
-        <div class="mobile-sidebar-header">
-            <div class="mobile-sidebar-logo">Emirates Gifts</div>
-            <button class="mobile-sidebar-close" id="closeSidebar" aria-label="Close Menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <nav class="mobile-sidebar-nav">
-            <a href="./"><i class="fas fa-home"></i> Home</a>
-            <a href="./products-showcase.html" target="_blank" rel="noopener"><i class="fas fa-th-large"></i> All Products</a>
-            <a href="./cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
-            <a href="./checkout.html" class="active order-now-btn"><i class="fas fa-credit-card"></i> Order Now</a>
-            <a href="../" target="_blank" rel="noopener" class="arabic-link"><i class="fas fa-globe"></i> عربي</a>
-            <a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </nav>
-    </div>
-
-    <!-- Load correct English version scripts with version numbers -->
-    <script src="../js/dom-optimization.js?v=20251101" defer></script>
-    <script src="./js/ui-en.js?v=20251101" defer></script>
-    <script src="./js/cart-en.js?v=20251101" defer></script>
-    <script src="./js/reviews-system-en.js?v=20251101" defer></script>
-    <script src="./js/popup-system-en.js?v=20251101" defer></script>
-    <script src="./js/products-loader-en-fixed.js?v=20251101" defer></script>
-    <script src="./js/checkout-en.js?v=20251101" defer></script>
-    <script src="./js/main-en.js?v=20251101" defer></script>
-    
     <script>
-    // English version checkout customizations
-    document.addEventListener('DOMContentLoaded', function() {
-        // Update WhatsApp message template for English
-        const createWhatsAppMessage = (orderData) => {
-            const message = `
-🛍️ *New Order from Emirates Gifts Store*
-
-📋 *Customer Information:*
-Name: ${orderData.name}
-Phone: ${orderData.phone}
-Email: ${orderData.email || 'Not provided'}
-Emirate: ${orderData.emirate}
-Address: ${orderData.address}
-
-📦 *Order Details:*
-${orderData.items}
-
-💰 *Order Total: ${orderData.total} AED*
-
-🚚 *Delivery: Express delivery within 1-3 business days*
-
-📝 *Special Instructions:*
-${orderData.notes || 'None'}
-
-✨ Thank you for choosing Emirates Gifts!
-`;
-            return encodeURIComponent(message.trim());
+    // 🚫 GLOBAL POPUP BLOCKER
+    console.log('🚫 ZERO POPUP ENGLISH CHECKOUT ENVIRONMENT');
+    window.alert = function() { console.log('🚫 Alert blocked'); };
+    window.confirm = function() { return true; };
+    window.prompt = function() { return null; };
+    
+    let cartData = [];
+    
+    // English product name converter
+    function getEnglishProductName(arabicTitle, productId) {
+        const translations = {
+            'watch_88': 'Rolex Kaaba Design Premium Watch',
+            'watch_3': 'Rolex Black Dial Professional R21',
+            'watch_1': 'Rolex Yacht Master Silver Edition',
+            'watch_8': 'Omega Swatch Baby Blue Limited Edition',
+            'perfume_1': 'Chanel Coco Premium Perfume 100ml',
+            'perfume_10': 'Dior Sauvage Premium Fragrance',
+            'perfume_15': 'Tom Ford Black Orchid Luxury'
         };
         
-        // Update form labels and placeholders
-        const updateFormText = () => {
-            // Update placeholder texts
-            const phoneInput = document.getElementById('customerPhone');
-            if (phoneInput) {
-                phoneInput.placeholder = '+971 XX XXX XXXX';
-            }
-            
-            const addressTextarea = document.getElementById('deliveryAddress');
-            if (addressTextarea) {
-                addressTextarea.placeholder = 'Enter your complete delivery address including building name, floor, and apartment number';
-            }
-            
-            const notesTextarea = document.getElementById('orderNotes');
-            if (notesTextarea) {
-                notesTextarea.placeholder = 'Any special requests or delivery instructions (optional)';
-            }
-        };
-        
-        updateFormText();
-        
-        // Handle form submission with English message
-        const form = document.getElementById('checkoutForm');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const formData = new FormData(form);
-                const orderData = {
-                    name: formData.get('customerName'),
-                    phone: formData.get('customerPhone'),
-                    email: formData.get('customerEmail'),
-                    emirate: formData.get('customerEmirate'),
-                    address: formData.get('deliveryAddress'),
-                    notes: formData.get('orderNotes'),
-                    items: 'Will be loaded from cart',
-                    total: document.getElementById('finalAmount')?.textContent || '0 AED'
-                };
-                
-                const whatsappMessage = createWhatsAppMessage(orderData);
-                const whatsappUrl = `https://wa.me/201110760081?text=${whatsappMessage}`;
-                
-                window.open(whatsappUrl, '_blank', 'rel=noopener');
-            });
+        if (translations[productId]) {
+            return translations[productId];
         }
         
-        console.log('English checkout page initialized - v20251101');
+        // Fallback conversion logic
+        if (!arabicTitle) return 'Premium Product';
+        
+        const title = arabicTitle.toLowerCase();
+        let parts = [];
+        
+        if (title.includes('rolex')) parts.push('Rolex');
+        else if (title.includes('omega')) parts.push('Omega');
+        else if (title.includes('chanel')) parts.push('Chanel');
+        else if (title.includes('dior')) parts.push('Dior');
+        
+        if (title.includes('black')) parts.push('Black');
+        else if (title.includes('gold')) parts.push('Gold');
+        else if (title.includes('silver')) parts.push('Silver');
+        
+        if (productId && productId.includes('watch')) {
+            parts.push('Premium Watch');
+        } else if (productId && productId.includes('perfume')) {
+            parts.push('Premium Perfume');
+        }
+        
+        return parts.length > 0 ? parts.join(' ') : 'Premium Luxury Product';
+    }
+    
+    function loadCheckout() {
+        try {
+            cartData = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
+            console.log(`📦 Loading ${cartData.length} items for checkout`);
+            displayCheckout();
+        } catch (error) {
+            console.error('❌ Checkout loading error:', error);
+            displayEmptyCheckout();
+        }
+    }
+    
+    function displayEmptyCheckout() {
+        document.getElementById('checkoutContent').innerHTML = `
+            <div class="empty-cart-message">
+                <i class="fas fa-shopping-cart" style="font-size: 4rem; color: #D4AF37; margin-bottom: 20px; opacity: 0.6;"></i>
+                <h2 style="color: #1B2951; margin-bottom: 15px;">No Items in Cart</h2>
+                <p style="color: #666; margin-bottom: 30px;">Please add products to your cart before checkout</p>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="./" class="btn-primary">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="./products-showcase.html" class="btn-secondary">
+                        <i class="fas fa-shopping-bag"></i> Start Shopping
+                    </a>
+                </div>
+            </div>
+        `;
+    }
+    
+    function displayCheckout() {
+        if (cartData.length === 0) {
+            displayEmptyCheckout();
+            return;
+        }
+        
+        let total = 0;
+        let totalItems = 0;
+        
+        const orderItemsHTML = cartData.map(item => {
+            const itemPrice = parseFloat(item.price || 0);
+            const quantity = item.quantity || 1;
+            const itemTotal = itemPrice * quantity;
+            total += itemTotal;
+            totalItems += quantity;
+            
+            const englishTitle = getEnglishProductName(item.title, item.id);
+            
+            return `
+                <div class="order-item">
+                    <img src="${item.image || 'https://via.placeholder.com/60x60/D4AF37/FFFFFF?text=Product'}" 
+                         alt="${englishTitle}" 
+                         class="item-image-small"
+                         onerror="this.src='https://via.placeholder.com/60x60/D4AF37/FFFFFF?text=Product'">
+                    
+                    <div class="item-details-small">
+                        <div class="item-name">${englishTitle}</div>
+                        <div class="item-qty-price">Quantity: ${quantity} × AED ${itemPrice.toFixed(2)}</div>
+                    </div>
+                    
+                    <div class="item-total">AED ${itemTotal.toFixed(2)}</div>
+                </div>
+            `;
+        }).join('');
+        
+        document.getElementById('checkoutContent').innerHTML = `
+            <div class="checkout-layout">
+                <div class="customer-info">
+                    <h2 class="section-title">
+                        <i class="fas fa-user"></i> Customer Information
+                    </h2>
+                    
+                    <form id="checkoutForm" onsubmit="submitOrder(event)">
+                        <div class="form-group">
+                            <label class="form-label">Customer Name <span class="required">*</span></label>
+                            <input type="text" id="customerName" class="form-input" placeholder="Enter your full name" required>
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">UAE Mobile Number <span class="required">*</span></label>
+                            <input type="tel" id="customerPhone" class="form-input" placeholder="05XXXXXXXX" required>
+                            <div class="form-help">Example: 0501234567</div>
+                            <div class="error-message" id="phoneError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Delivery Address <span class="required">*</span></label>
+                            <textarea id="customerAddress" class="form-input" rows="3" placeholder="Enter your detailed address (Emirate, area, street...)" required></textarea>
+                            <div class="error-message" id="addressError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Order Notes</label>
+                            <textarea id="orderNotes" class="form-input" rows="2" placeholder="Any special notes or requests..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="whatsapp-order-btn">
+                            <i class="fab fa-whatsapp"></i> Send Order via WhatsApp
+                        </button>
+                    </form>
+                    
+                    <div class="security-info">
+                        <div style="margin-bottom: 10px; font-weight: 600;">
+                            <i class="fas fa-shield-alt"></i> Secure & Guaranteed Order
+                        </div>
+                        <div style="font-size: 0.85rem; line-height: 1.5;">
+                            <i class="fas fa-truck"></i> Free shipping within 1-3 business days<br>
+                            <i class="fas fa-undo"></i> Free return within 14 days + shipping fees<br>
+                            <i class="fas fa-headset"></i> 24/7 technical support via WhatsApp
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-summary">
+                    <h2 class="section-title">
+                        <i class="fas fa-receipt"></i> Order Summary
+                    </h2>
+                    
+                    <div class="order-items">
+                        ${orderItemsHTML}
+                    </div>
+                    
+                    <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee;">
+                        <div class="summary-row">
+                            <span>Number of Products:</span>
+                            <span>${totalItems} items</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span>AED ${total.toFixed(2)}</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping:</span>
+                            <span style="color: #25D366; font-weight: bold;">FREE ✓</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Final Total:</span>
+                            <span>AED ${total.toFixed(2)}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    function validateUAEPhone(phone) {
+        const cleanPhone = phone.replace(/[\s-]/g, '');
+        return /^05[0-9]{8}$/.test(cleanPhone);
+    }
+    
+    function validateForm() {
+        let isValid = true;
+        
+        // Clear previous errors
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+        document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+        
+        const name = document.getElementById('customerName');
+        const phone = document.getElementById('customerPhone');
+        const address = document.getElementById('customerAddress');
+        
+        if (!name?.value.trim()) {
+            document.getElementById('nameError').textContent = 'Please enter your name';
+            name.classList.add('error');
+            isValid = false;
+        }
+        
+        if (!phone?.value.trim()) {
+            document.getElementById('phoneError').textContent = 'Please enter your mobile number';
+            phone.classList.add('error');
+            isValid = false;
+        } else if (!validateUAEPhone(phone.value)) {
+            document.getElementById('phoneError').textContent = 'Please enter a valid UAE mobile number';
+            phone.classList.add('error');
+            isValid = false;
+        }
+        
+        if (!address?.value.trim()) {
+            document.getElementById('addressError').textContent = 'Please enter your delivery address';
+            address.classList.add('error');
+            isValid = false;
+        }
+        
+        return isValid;
+    }
+    
+    function submitOrder(event) {
+        event.preventDefault();
+        
+        if (!validateForm() || cartData.length === 0) {
+            return;
+        }
+        
+        const customerName = document.getElementById('customerName').value.trim();
+        const customerPhone = document.getElementById('customerPhone').value.trim();
+        const customerAddress = document.getElementById('customerAddress').value.trim();
+        const orderNotes = document.getElementById('orderNotes').value.trim();
+        
+        let total = cartData.reduce((sum, item) => {
+            return sum + (parseFloat(item.price || 0) * (item.quantity || 1));
+        }, 0);
+        
+        const whatsappMessage = `🎆 **New Order from Emirates Gifts Store** 🎆
+
+🙋‍♂️ **Customer Details:**
+• Name: ${customerName}
+• Mobile: ${customerPhone}
+• Address: ${customerAddress}
+${orderNotes ? `\n📝 **Notes:** ${orderNotes}\n` : ''}
+🛒 **Order Details:**
+${cartData.map((item, i) => {
+    const englishTitle = getEnglishProductName(item.title, item.id);
+    const itemPrice = parseFloat(item.price || 0);
+    const quantity = item.quantity || 1;
+    const itemTotal = itemPrice * quantity;
+    return `${i+1}. ${englishTitle}\n   Quantity: ${quantity} | Price: AED ${itemPrice.toFixed(2)}\n   Total: AED ${itemTotal.toFixed(2)}`;
+}).join('\n\n')}
+
+💰 **Final Total: AED ${total.toFixed(2)}**
+
+🚚 **Shipping:** Free (1-3 business days)
+🔄 **Guarantee:** 14 days + shipping fees
+
+✅ **Please confirm receipt of order!**`;
+        
+        const whatsappURL = `https://wa.me/201110760081?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappURL, '_blank');
+        
+        console.log('✅ Order submitted via WhatsApp');
+    }
+    
+    window.submitOrder = submitOrder;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('💳 Initializing English checkout page - no popups...');
+        
+        loadCheckout();
+        
+        console.log('✅ English checkout page ready!');
     });
     </script>
 </body>
