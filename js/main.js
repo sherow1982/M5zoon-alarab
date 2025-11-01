@@ -18,8 +18,8 @@ if (typeof window !== 'undefined') {
 // Global state
 let currentPerfumes = [];
 let currentWatches = [];
-let displayedPerfumes = 8;
-let displayedWatches = 8;
+let displayedPerfumes = 6; // بداية بعدد أقل لضمان ظهور الزر
+let displayedWatches = 6;  // بداية بعدد أقل لضمان ظهور الزر
 let isLoading = false;
 
 // Safe product loading system
@@ -64,30 +64,82 @@ async function loadProducts() {
         currentPerfumes = perfumes;
         currentWatches = watches;
         
+        console.log(`📊 Perfumes loaded: ${currentPerfumes.length}, displaying: ${displayedPerfumes}`);
+        console.log(`📊 Watches loaded: ${currentWatches.length}, displaying: ${displayedWatches}`);
+        
         // Display initial products
         if (currentPerfumes.length > 0) {
             displayProducts(currentPerfumes.slice(0, displayedPerfumes), 'perfumes-grid');
-            const viewMoreBtn = document.getElementById('perfumes-view-more');
-            if (viewMoreBtn && currentPerfumes.length > displayedPerfumes) {
-                viewMoreBtn.style.display = 'inline-flex';
+            
+            // ضمان ظهور زر شاهد المزيد حتى لو في عدد قليل
+            const perfumesViewMoreBtn = document.getElementById('perfumes-view-more');
+            if (perfumesViewMoreBtn && currentPerfumes.length > displayedPerfumes) {
+                perfumesViewMoreBtn.style.display = 'inline-flex';
+                console.log(`✅ Perfumes "View More" button shown (${currentPerfumes.length} total, showing ${displayedPerfumes})`);
+            } else if (perfumesViewMoreBtn) {
+                // إظهار الزر حتى لو عدد قليل (للاختبار)
+                if (currentPerfumes.length >= 4) {
+                    perfumesViewMoreBtn.style.display = 'inline-flex';
+                    console.log(`✅ Perfumes "View More" button shown for testing (${currentPerfumes.length} total)`);
+                }
             }
+            
             console.log(`✅ Loaded ${currentPerfumes.length} perfumes`);
+        } else {
+            console.warn('⚠️ No perfumes loaded');
         }
         
         if (currentWatches.length > 0) {
             displayProducts(currentWatches.slice(0, displayedWatches), 'watches-grid');
-            const viewMoreBtn = document.getElementById('watches-view-more');
-            if (viewMoreBtn && currentWatches.length > displayedWatches) {
-                viewMoreBtn.style.display = 'inline-flex';
+            
+            // ضمان ظهور زر شاهد المزيد حتى لو في عدد قليل
+            const watchesViewMoreBtn = document.getElementById('watches-view-more');
+            if (watchesViewMoreBtn && currentWatches.length > displayedWatches) {
+                watchesViewMoreBtn.style.display = 'inline-flex';
+                console.log(`✅ Watches "View More" button shown (${currentWatches.length} total, showing ${displayedWatches})`);
+            } else if (watchesViewMoreBtn) {
+                // إظهار الزر حتى لو عدد قليل (للاختبار)
+                if (currentWatches.length >= 4) {
+                    watchesViewMoreBtn.style.display = 'inline-flex';
+                    console.log(`✅ Watches "View More" button shown for testing (${currentWatches.length} total)`);
+                }
             }
+            
             console.log(`✅ Loaded ${currentWatches.length} watches`);
+        } else {
+            console.warn('⚠️ No watches loaded');
         }
+        
+        // إظهار أزرار شاهد المزيد بعد ثواني (fallback)
+        setTimeout(() => {
+            showViewMoreButtonsIfNeeded();
+        }, 2000);
         
     } catch (error) {
         console.error('❌ Product loading error:', error);
         showLoadingError();
     } finally {
         isLoading = false;
+    }
+}
+
+// ضمان ظهور أزرار شاهد المزيد
+function showViewMoreButtonsIfNeeded() {
+    const perfumesBtn = document.getElementById('perfumes-view-more');
+    const watchesBtn = document.getElementById('watches-view-more');
+    
+    if (perfumesBtn && currentPerfumes.length > displayedPerfumes) {
+        perfumesBtn.style.display = 'inline-flex';
+        perfumesBtn.style.visibility = 'visible';
+        perfumesBtn.style.opacity = '1';
+        console.log('🔄 Force showing perfumes view more button');
+    }
+    
+    if (watchesBtn && currentWatches.length > displayedWatches) {
+        watchesBtn.style.display = 'inline-flex';
+        watchesBtn.style.visibility = 'visible';
+        watchesBtn.style.opacity = '1';
+        console.log('🔄 Force showing watches view more button');
     }
 }
 
@@ -144,6 +196,8 @@ function displayProducts(products, gridId) {
             });
         });
         
+        console.log(`📦 Displayed ${products.length} products in ${gridId}`);
+        
     } catch (error) {
         console.error('❌ Error displaying products:', error);
         if (grid) {
@@ -184,35 +238,65 @@ function navigateToProductSafely(productId, type) {
     }
 }
 
-// Show more perfumes safely
+// Show more perfumes safely with enhanced display
 function showMorePerfumesSafely() {
     try {
-        displayedPerfumes += 8;
+        const oldCount = displayedPerfumes;
+        displayedPerfumes += 6; // زيادة 6 في كل مرة
+        
+        console.log(`🔄 Showing more perfumes: ${oldCount} -> ${displayedPerfumes} of ${currentPerfumes.length}`);
+        
         displayProducts(currentPerfumes.slice(0, displayedPerfumes), 'perfumes-grid');
         
+        // إخفاء الزر إذا عرضنا جميع المنتجات
         if (displayedPerfumes >= currentPerfumes.length) {
             const viewMoreBtn = document.getElementById('perfumes-view-more');
-            if (viewMoreBtn) viewMoreBtn.style.display = 'none';
+            if (viewMoreBtn) {
+                viewMoreBtn.style.display = 'none';
+                console.log('✅ Hidden perfumes view more button - all products shown');
+            }
         }
         
-        console.log(`✅ Showing ${displayedPerfumes} of ${currentPerfumes.length} perfumes`);
+        console.log(`✅ Successfully showing ${displayedPerfumes} of ${currentPerfumes.length} perfumes`);
+        
+        // Scroll to new products
+        const perfumesSection = document.getElementById('perfumes-section');
+        if (perfumesSection) {
+            perfumesSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
     } catch (error) {
         console.error('❌ Error showing more perfumes:', error);
     }
 }
 
-// Show more watches safely
+// Show more watches safely with enhanced display
 function showMoreWatchesSafely() {
     try {
-        displayedWatches += 8;
+        const oldCount = displayedWatches;
+        displayedWatches += 6; // زيادة 6 في كل مرة
+        
+        console.log(`🔄 Showing more watches: ${oldCount} -> ${displayedWatches} of ${currentWatches.length}`);
+        
         displayProducts(currentWatches.slice(0, displayedWatches), 'watches-grid');
         
+        // إخفاء الزر إذا عرضنا جميع المنتجات
         if (displayedWatches >= currentWatches.length) {
             const viewMoreBtn = document.getElementById('watches-view-more');
-            if (viewMoreBtn) viewMoreBtn.style.display = 'none';
+            if (viewMoreBtn) {
+                viewMoreBtn.style.display = 'none';
+                console.log('✅ Hidden watches view more button - all products shown');
+            }
         }
         
-        console.log(`✅ Showing ${displayedWatches} of ${currentWatches.length} watches`);
+        console.log(`✅ Successfully showing ${displayedWatches} of ${currentWatches.length} watches`);
+        
+        // Scroll to new products
+        const watchesSection = document.getElementById('watches-section');
+        if (watchesSection) {
+            watchesSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
     } catch (error) {
         console.error('❌ Error showing more watches:', error);
     }
@@ -337,16 +421,21 @@ function initializeHomepage() {
         // Initialize smooth scroll
         initSmoothScrollSafely();
         
-        // View more buttons
+        // View more buttons with debug info
         const perfumesViewMore = document.getElementById('perfumes-view-more');
         const watchesViewMore = document.getElementById('watches-view-more');
         
+        console.log(`🔍 Perfumes View More button found: ${!!perfumesViewMore}`);
+        console.log(`🔍 Watches View More button found: ${!!watchesViewMore}`);
+        
         if (perfumesViewMore) {
             perfumesViewMore.addEventListener('click', showMorePerfumesSafely);
+            console.log('✅ Perfumes View More button event listener added');
         }
         
         if (watchesViewMore) {
             watchesViewMore.addEventListener('click', showMoreWatchesSafely);
+            console.log('✅ Watches View More button event listener added');
         }
         
         // Scroll events with passive listeners
@@ -371,7 +460,7 @@ function initializeHomepage() {
             });
         }
         
-        console.log('✅ Homepage initialization complete');
+        console.log('✅ Homepage initialization complete with View More buttons');
         
     } catch (error) {
         console.error('❌ Homepage initialization error:', error);
@@ -387,7 +476,10 @@ function handleWindowLoad() {
         // Final progress bar update
         updateProgressSafely();
         
-        console.log('✅ Window fully loaded and ready');
+        // Final check for View More buttons
+        showViewMoreButtonsIfNeeded();
+        
+        console.log('✅ Window fully loaded and ready with View More buttons check');
     } catch (error) {
         console.error('❌ Window load error:', error);
     }
@@ -415,13 +507,15 @@ if (typeof window !== 'undefined') {
         showMorePerfumes: showMorePerfumesSafely,
         showMoreWatches: showMoreWatchesSafely,
         updateCartCounter: updateCartCounterSafely,
-        loadProducts: loadProducts
+        loadProducts: loadProducts,
+        showViewMoreButtons: showViewMoreButtonsIfNeeded
     };
 }
 
-console.log('✅ Emirates Gifts Main Script Loaded Successfully');
+console.log('✅ Emirates Gifts Main Script Loaded Successfully with Enhanced View More System');
 
 // Safe function references for backwards compatibility
 window.navigateToProduct = navigateToProductSafely;
 window.showMorePerfumes = showMorePerfumesSafely;
 window.showMoreWatches = showMoreWatchesSafely;
+window.showViewMoreButtons = showViewMoreButtonsIfNeeded;
