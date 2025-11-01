@@ -22,41 +22,10 @@
     <link rel="stylesheet" href="./css/clean-english-display.css?v=20251101">
     
     <style>
-    /* FORCE English text display */
+    /* Product details page styling with English display */
     body { font-family: 'Inter', sans-serif !important; direction: ltr !important; text-align: left !important; }
     .logo-subtitle { font-family: 'Cairo', sans-serif !important; direction: rtl !important; }
     
-    /* Product details specific styling */
-    .product-details-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-    .product-header { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-    .product-image { width: 100%; max-width: 500px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-    .product-info { padding: 20px; }
-    .product-title-main { 
-        font-size: 2rem !important; 
-        font-weight: 800 !important; 
-        color: #2c3e50 !important; 
-        margin-bottom: 20px !important;
-        font-family: 'Inter', sans-serif !important;
-        direction: ltr !important;
-        text-align: left !important;
-        line-height: 1.3;
-    }
-    .product-price-main { font-size: 2rem; font-weight: 900; color: #27ae60; margin: 20px 0; }
-    .breadcrumb { margin-bottom: 30px; color: #666; }
-    .breadcrumb a { color: #D4AF37; text-decoration: none; }
-    .product-actions-main { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
-    .btn-main { padding: 15px 30px; border-radius: 10px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-    .btn-primary-main { background: linear-gradient(135deg, #D4AF37, #B8860B); color: white; border: none; }
-    .btn-whatsapp-main { background: #25D366; color: white; border: none; }
-    .btn-primary-main:hover, .btn-whatsapp-main:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
-    .category-badge-main { background: rgba(212, 175, 55, 0.2); color: #B8860B; padding: 8px 15px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-weight: 600; }
-    .error-message { text-align: center; padding: 60px; color: #e74c3c; }
-    .loading-message { text-align: center; padding: 60px; color: #666; }
-    
-    /* Hide Arabic text completely */
-    *[lang="ar"], .arabic-text { display: none !important; }
-    
-    /* Arabic language link styling */
     .arabic-link {
         background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
         color: white !important;
@@ -77,6 +46,36 @@
         transform: translateY(-2px);
         border-color: #D4AF37;
     }
+    
+    /* Product details specific styling */
+    .product-details-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .product-header { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .product-image { width: 100%; max-width: 500px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .product-info { padding: 20px; }
+    
+    /* FORCE English display for product title */
+    .product-title-main { 
+        font-size: 2rem !important; 
+        font-weight: 800 !important; 
+        color: #2c3e50 !important; 
+        margin-bottom: 20px !important;
+        font-family: 'Inter', sans-serif !important;
+        direction: ltr !important;
+        text-align: left !important;
+        line-height: 1.3;
+    }
+    
+    .product-price-main { font-size: 2rem; font-weight: 900; color: #27ae60; margin: 20px 0; }
+    .breadcrumb { margin-bottom: 30px; color: #666; }
+    .breadcrumb a { color: #D4AF37; text-decoration: none; }
+    .product-actions-main { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+    .btn-main { padding: 15px 30px; border-radius: 10px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary-main { background: linear-gradient(135deg, #D4AF37, #B8860B); color: white; border: none; }
+    .btn-whatsapp-main { background: #25D366; color: white; border: none; }
+    .btn-primary-main:hover, .btn-whatsapp-main:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+    .category-badge-main { background: rgba(212, 175, 55, 0.2); color: #B8860B; padding: 8px 15px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-weight: 600; }
+    .error-message { text-align: center; padding: 60px; color: #e74c3c; }
+    .loading-message { text-align: center; padding: 60px; color: #666; }
     
     @media (max-width: 768px) {
         .product-header { grid-template-columns: 1fr; gap: 30px; }
@@ -121,6 +120,7 @@
                 </nav>
                 
                 <div class="header-tools">
+                    <!-- Professional search button will be added here -->
                     <a href="./cart.html" class="header-tool cart-icon" aria-label="View Cart" title="View Cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter">0</span>
@@ -145,7 +145,7 @@
             <div id="productContent">
                 <div class="loading-message">
                     <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 20px;"></i>
-                    <h3>Loading clean English product details...</h3>
+                    <h3>Loading product details with English display...</h3>
                 </div>
             </div>
         </div>
@@ -157,6 +157,9 @@
                 <div class="footer-section">
                     <h3>Emirates Gifts</h3>
                     <p>Leading premium perfumes and luxury gifts store in UAE.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -170,147 +173,89 @@
         </div>
     </footer>
     
-    <!-- Scripts -->
+    <!-- Scripts: Display Translation + Professional Search -->
     <script src="../js/dom-optimization.js?v=20251101" defer></script>
     <script src="./js/ui-en.js?v=20251101" defer></script>
     <script src="./js/cart-en.js?v=20251101" defer></script>
+    
+    <!-- DISPLAY-ONLY Translation System -->
+    <script src="./js/display-only-translator.js?v=20251101-DISPLAY" defer></script>
+    
+    <!-- Professional Search System -->
+    <script src="./js/professional-search-system.js?v=20251101-PRO" defer></script>
+    
     <script src="./js/main-en.js?v=20251101" defer></script>
     
     <script>
-    // CLEAN English Product Details System - NO MORE ARABIC!
+    // ENHANCED Product Details with Display Translation - URLs PRESERVED
     (function() {
         'use strict';
         
-        console.log('🧹 Loading CLEAN English Product Details System');
+        console.log('📱 Enhanced Product Details: Display Translation + Professional Search');
         
-        // COMPREHENSIVE clean English name generator
-        function getCleanEnglishName(arabicTitle, productType) {
-            if (!arabicTitle) return 'Premium Product';
+        // DISPLAY translations - URLs stay the same
+        const specificDisplayTranslations = {
+            'rolex بللون الأسود.  r21': 'Rolex Black Dial Professional R21',
+            'rolex باللون الأسود r21': 'Rolex Black Dial Professional R21',
+            'ساعة rolex باللون الأسود.  r21': 'Rolex Black Dial Professional R21',
+            'rolex 40ملم r54': 'Rolex Oyster Professional 40mm R54',
+            'rolex 40ملم  r54': 'Rolex Oyster Professional 40mm R54',
+            'ساعة رولكس يخت ماستر - فضي': 'Rolex Yacht Master Silver',
+            'ساعة اوميغا سواتش بيبي بلو': 'Omega Swatch Baby Blue Edition'
+        };
+        
+        function getDisplayTranslation(originalText) {
+            if (!originalText) return 'Premium Product';
             
-            let cleanName = '';
-            const title = arabicTitle.toLowerCase();
+            const lowerText = originalText.toLowerCase().trim();
             
-            if (productType === 'perfume') {
-                // PERFUME NAMES - CLEAN ENGLISH ONLY
-                if (title.includes('chanel') || title.includes('شانيل')) {
-                    cleanName = 'Chanel Premium Perfume';
-                    if (title.includes('coco') || title.includes('كوكو')) cleanName = 'Chanel Coco Perfume';
-                } else if (title.includes('gucci') || title.includes('جوتشي')) {
-                    if (title.includes('flora') || title.includes('فلورا')) cleanName = 'Gucci Flora Perfume';
-                    else if (title.includes('bloom') || title.includes('بلوم')) cleanName = 'Gucci Bloom Perfume';
-                    else cleanName = 'Gucci Premium Perfume';
-                } else if (title.includes('dior') || title.includes('ديور')) {
-                    cleanName = 'Dior Sauvage Perfume';
-                } else if (title.includes('versace') || title.includes('فرزاتشي')) {
-                    cleanName = 'Versace Eros Perfume';
-                } else if (title.includes('tom ford')) {
-                    if (title.includes('vanilla')) cleanName = 'Tom Ford Vanilla Perfume';
-                    else if (title.includes('ombre')) cleanName = 'Tom Ford Ombre Leather';
-                    else cleanName = 'Tom Ford Premium Perfume';
-                } else if (title.includes('ysl') || title.includes('سان لوران')) {
-                    if (title.includes('libre') || title.includes('ليبر')) cleanName = 'YSL Libre Perfume';
-                    else if (title.includes('opium') || title.includes('اوبيوم')) cleanName = 'YSL Black Opium';
-                    else cleanName = 'YSL Premium Perfume';
-                } else if (title.includes('kayali')) {
-                    cleanName = 'Kayali Premium Perfume';
-                } else if (title.includes('marly')) {
-                    cleanName = 'Parfums de Marly Premium';
-                } else if (title.includes('فواحة')) {
-                    cleanName = 'Premium Car Fragrance';
-                } else if (title.includes('دخون')) {
-                    cleanName = 'Premium Arabian Incense';
-                } else {
-                    cleanName = 'Premium Luxury Perfume';
+            // Check exact matches first
+            for (const [arabic, english] of Object.entries(specificDisplayTranslations)) {
+                if (lowerText === arabic.toLowerCase() || lowerText.includes(arabic.toLowerCase())) {
+                    return english;
                 }
-                
-                // Add size if present
-                if (title.includes('100')) cleanName += ' 100ml';
-                else if (title.includes('50')) cleanName += ' 50ml';
-                else if (title.includes('30')) cleanName += ' 30ml';
-                
-            } else {
-                // WATCH NAMES - CLEAN ENGLISH ONLY  
-                let brand = 'Premium';
-                let model = 'Watch';
-                let color = '';
-                let size = '';
-                let special = '';
-                
-                // Brand detection
-                if (title.includes('rolex') || title.includes('رولكس')) {
-                    brand = 'Rolex';
-                    if (title.includes('yacht') || title.includes('يخت')) model = 'Yacht Master';
-                    else if (title.includes('datejust') || title.includes('جاست')) model = 'Datejust';
-                    else if (title.includes('daytona') || title.includes('دايتونا')) model = 'Daytona';
-                    else if (title.includes('gmt')) model = 'GMT Master';
-                    else if (title.includes('submariner')) model = 'Submariner';
-                    else if (title.includes('oyster') || title.includes('اويستر')) model = 'Oyster';
-                    else model = 'Classic';
-                } else if (title.includes('omega') || title.includes('اوميغا')) {
-                    brand = 'Omega';
-                    if (title.includes('swatch') || title.includes('سواتش')) model = 'Swatch';
-                    else model = 'Seamaster';
-                } else if (title.includes('audemars') || title.includes('اوديمار')) {
-                    brand = 'Audemars Piguet';
-                    model = 'Royal Oak';
-                } else if (title.includes('patek') || title.includes('باتيك')) {
-                    brand = 'Patek Philippe';
-                    model = 'Calatrava';
-                } else if (title.includes('cartier') || title.includes('كارتييه')) {
-                    brand = 'Cartier';
-                    model = 'Tank';
-                } else if (title.includes('bulgari') || title.includes('سربنتي')) {
-                    brand = 'Bulgari';
-                    model = 'Serpenti';
-                } else if (title.includes('burberry')) {
-                    brand = 'Burberry';
-                    model = 'Heritage';
-                } else if (title.includes('smart') || title.includes('ذكية')) {
-                    brand = 'Smart';
-                    model = 'Watch';
-                }
-                
-                // Color detection
-                if (title.includes('black') || title.includes('اسود') || title.includes('أسود')) color = 'Black';
-                else if (title.includes('white') || title.includes('ابيض') || title.includes('أبيض')) color = 'White';
-                else if (title.includes('blue') || title.includes('ازرق') || title.includes('أزرق')) color = 'Blue';
-                else if (title.includes('green') || title.includes('اخضر') || title.includes('أخضر')) color = 'Green';
-                else if (title.includes('gold') || title.includes('جولد') || title.includes('ذهبي')) color = 'Gold';
-                else if (title.includes('silver') || title.includes('فضي') || title.includes('سيلفر')) color = 'Silver';
-                else if (title.includes('brown') || title.includes('بني')) color = 'Brown';
-                else if (title.includes('navy') || title.includes('كحلي')) color = 'Navy';
-                else if (title.includes('red') || title.includes('احمر')) color = 'Red';
-                
-                // Size detection
-                if (title.includes('41')) size = '41mm';
-                else if (title.includes('40')) size = '40mm';
-                else if (title.includes('36')) size = '36mm';
-                else if (title.includes('31')) size = '31mm';
-                
-                // Special features
-                if (title.includes('بوكس') && title.includes('ايربودز')) special = '& AirPods Set';
-                else if (title.includes('بوكس') || title.includes('box')) special = 'with Box';
-                else if (title.includes('couple') || title.includes('كوبل')) special = 'Couple Set';
-                else if (title.includes('نسائي')) special = "Women's";
-                else if (title.includes('رجالي')) special = "Men's";
-                
-                // Build name
-                const parts = [brand, model, color, size, special].filter(p => p);
-                cleanName = parts.join(' ');
-                
-                if (!cleanName || cleanName === 'Premium') cleanName = 'Premium Luxury Watch';
             }
             
-            return cleanName;
+            // Build from components
+            let brand = '';
+            let model = '';
+            let color = '';
+            let size = '';
+            
+            if (lowerText.includes('rolex') || lowerText.includes('رولكس')) {
+                brand = 'Rolex';
+                if (lowerText.includes('r21')) model = 'Professional R21';
+                else if (lowerText.includes('r54')) model = 'Professional R54';
+                else if (lowerText.includes('yacht') || lowerText.includes('يخت')) model = 'Yacht Master';
+                else if (lowerText.includes('datejust') || lowerText.includes('جاست')) model = 'Datejust';
+                else model = 'Classic';
+            } else if (lowerText.includes('omega') || lowerText.includes('اوميغا')) {
+                brand = 'Omega';
+                if (lowerText.includes('swatch')) model = 'Swatch';
+            } else if (lowerText.includes('chanel') || lowerText.includes('شانيل')) {
+                brand = 'Chanel';
+                model = 'Premium Perfume';
+            }
+            
+            if (lowerText.includes('black') || lowerText.includes('اسود')) color = 'Black';
+            else if (lowerText.includes('silver') || lowerText.includes('فضي')) color = 'Silver';
+            else if (lowerText.includes('gold') || lowerText.includes('ذهبي')) color = 'Gold';
+            else if (lowerText.includes('blue') || lowerText.includes('ازرق')) color = 'Blue';
+            
+            if (lowerText.includes('40mm') || lowerText.includes('40ملم')) size = '40mm';
+            else if (lowerText.includes('41mm') || lowerText.includes('41ملم')) size = '41mm';
+            
+            const parts = [brand, model, color, size].filter(p => p);
+            return parts.length > 0 ? parts.join(' ') : 'Premium Product';
         }
         
-        async function loadCleanProductDetails() {
+        async function loadProductDetailsWithDisplay() {
             const urlParams = new URLSearchParams(window.location.search);
             const productType = urlParams.get('type');
             const productId = urlParams.get('id');
             const source = urlParams.get('source');
             
-            console.log('🔍 Loading CLEAN English product details:', { productType, productId, source });
+            console.log('🔍 Loading product details (URLs preserved):', { productType, productId, source });
             
             if (!productType || !productId) {
                 showError('Product information missing');
@@ -329,7 +274,7 @@
                             productData.type = 'Perfume';
                             productData.category = 'Perfumes';
                             productData.icon = '🌸';
-                            productData.cleanEnglishName = getCleanEnglishName(productData.title, 'perfume');
+                            productData.displayName = getDisplayTranslation(productData.title);
                         }
                     }
                 } else if (productType === 'watch' || source === 'sa3at') {
@@ -341,13 +286,13 @@
                             productData.type = 'Watch';
                             productData.category = 'Watches';
                             productData.icon = '⏰';
-                            productData.cleanEnglishName = getCleanEnglishName(productData.title, 'watch');
+                            productData.displayName = getDisplayTranslation(productData.title);
                         }
                     }
                 }
                 
                 if (productData) {
-                    displayCleanProductDetails(productData);
+                    displayProductDetails(productData);
                 } else {
                     showError('Product not found');
                 }
@@ -358,26 +303,27 @@
             }
         }
         
-        function displayCleanProductDetails(product) {
+        function displayProductDetails(product) {
             const hasDiscount = parseFloat(product.price) > parseFloat(product.sale_price);
             const discountPercent = hasDiscount ? Math.round(((parseFloat(product.price) - parseFloat(product.sale_price)) / parseFloat(product.price)) * 100) : 0;
             
-            // Update page elements with CLEAN English name
+            // Update page with DISPLAY name (URLs unchanged)
             document.getElementById('categoryBreadcrumb').textContent = product.category;
-            document.getElementById('productBreadcrumb').textContent = product.cleanEnglishName;
-            document.title = `${product.cleanEnglishName} - Emirates Gifts Store`;
+            document.getElementById('productBreadcrumb').textContent = product.displayName;
+            document.title = `${product.displayName} - Emirates Gifts Store`;
             
             const productHTML = `
                 <div class="product-header">
                     <div class="product-image-section">
-                        <img src="${product.image_link}" alt="${product.cleanEnglishName}" class="product-image" 
+                        <img src="${product.image_link}" alt="${product.displayName}" class="product-image" 
                              onerror="this.src='https://via.placeholder.com/500x500/D4AF37/FFFFFF?text=${encodeURIComponent(product.type)}'">
                     </div>
                     
                     <div class="product-info">
                         <div class="category-badge-main">${product.icon} ${product.category}</div>
                         
-                        <h1 class="product-title-main">${product.cleanEnglishName}</h1>
+                        <!-- DISPLAY English name - URL preserved -->
+                        <h1 class="product-title-main">${product.displayName}</h1>
                         
                         <div class="product-description" style="color: #666; line-height: 1.6; margin: 20px 0; font-size: 1.1rem;">
                             ${product.type === 'Perfume' ? 
@@ -409,12 +355,16 @@
                         </div>
                         
                         <div class="product-actions-main">
-                            <button class="btn-main btn-primary-main" onclick="addToCartFromDetailsClean('${product.id}', '${product.cleanEnglishName}', '${product.sale_price}')" aria-label="Add ${product.cleanEnglishName} to cart">
+                            <button class="btn-main btn-primary-main" onclick="addToCartDisplay('${product.id}', '${product.displayName}', '${product.sale_price}')" aria-label="Add ${product.displayName} to cart">
                                 <i class="fas fa-shopping-cart"></i> Add to Cart
                             </button>
                             
-                            <button class="btn-main btn-whatsapp-main" onclick="orderViaWhatsAppClean('${product.id}', '${product.cleanEnglishName}', '${product.sale_price}')" aria-label="Order ${product.cleanEnglishName} via WhatsApp">
+                            <button class="btn-main btn-whatsapp-main" onclick="orderWhatsAppDisplay('${product.id}', '${product.displayName}', '${product.sale_price}')" aria-label="Order ${product.displayName} via WhatsApp">
                                 <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                            </button>
+                            
+                            <button class="btn-main btn-primary-main" onclick="ProfessionalSearch.openSearch()" aria-label="Search more products">
+                                <i class="fas fa-search"></i> Search More
                             </button>
                             
                             <a href="./checkout.html" class="btn-main btn-primary-main" aria-label="Proceed to checkout">
@@ -437,7 +387,8 @@
             
             document.getElementById('productContent').innerHTML = productHTML;
             
-            console.log('✅ CLEAN English product details loaded:', product.cleanEnglishName);
+            console.log(`✅ Product details loaded with English display: ${product.displayName}`);
+            console.log(`🔗 Original URL parameters preserved: type=${productType}&id=${productId}&source=${source}`);
         }
         
         function showError(message) {
@@ -446,36 +397,41 @@
                     <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px; color: #e74c3c;"></i>
                     <h2 style="color: #2c3e50; margin-bottom: 15px;">${message}</h2>
                     <p style="color: #666; margin-bottom: 25px;">Please try again or return to homepage</p>
-                    <a href="./" class="btn-main btn-primary-main" style="margin-top: 20px; display: inline-block; text-decoration: none;">
-                        <i class="fas fa-home"></i> Back to Home
-                    </a>
-                    <a href="./products-showcase.html" class="btn-main btn-whatsapp-main" style="margin-top: 20px; display: inline-block; text-decoration: none;" target="_blank" rel="noopener">
-                        <i class="fas fa-th-large"></i> View All Products
-                    </a>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="./" class="btn-main btn-primary-main" style="text-decoration: none;">
+                            <i class="fas fa-home"></i> Back to Home
+                        </a>
+                        <a href="./products-showcase.html" class="btn-main btn-whatsapp-main" style="text-decoration: none;" target="_blank" rel="noopener">
+                            <i class="fas fa-th-large"></i> View All Products
+                        </a>
+                        <button class="btn-main btn-primary-main" onclick="ProfessionalSearch.openSearch()">
+                            <i class="fas fa-search"></i> Search Products
+                        </button>
+                    </div>
                 </div>
             `;
         }
         
-        // CLEAN interaction functions
-        window.addToCartFromDetailsClean = function(productId, englishName, price) {
-            console.log(`🛒 Adding CLEAN English product: ${englishName}`);
+        // Interaction functions with DISPLAY names
+        window.addToCartDisplay = function(productId, displayName, price) {
+            console.log(`🛒 Adding to cart (display name): ${displayName}`);
             
             if (window.Emirates && window.Emirates.cart) {
                 window.Emirates.cart.addItem({
                     id: productId,
-                    title: englishName,
+                    title: displayName, // Use English display name
                     price: parseFloat(price),
                     quantity: 1
                 });
             }
             
-            alert(`${englishName} added to cart successfully!`);
+            alert(`${displayName} added to cart successfully!`);
         };
         
-        window.orderViaWhatsAppClean = function(productId, englishName, price) {
-            console.log(`📱 WhatsApp order with CLEAN English name: ${englishName}`);
+        window.orderWhatsAppDisplay = function(productId, displayName, price) {
+            console.log(`📱 WhatsApp order with display name: ${displayName}`);
             
-            const message = `Hello! I want to order this product:\n\n🎁 Product: ${englishName}\n💰 Price: ${price} AED\n📱 Store: Emirates Gifts\n🌍 Language: English\n\nPlease provide:\n• Ordering process\n• Delivery details to UAE\n• Payment options\n• Product availability\n\nThank you!`;
+            const message = `Hello! I want to order this product:\n\n🎁 Product: ${displayName}\n💰 Price: ${price} AED\n📱 Store: Emirates Gifts (English)\n🌍 Language: English\n\nPlease provide:\n• Ordering process\n• Delivery details to UAE\n• Payment options\n• Product availability\n\nThank you!`;
             
             const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank', 'rel=noopener');
@@ -483,12 +439,12 @@
         
         // Auto-initialize
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadCleanProductDetails);
+            document.addEventListener('DOMContentLoaded', loadProductDetailsWithDisplay);
         } else {
-            loadCleanProductDetails();
+            loadProductDetailsWithDisplay();
         }
         
-        console.log('✅ CLEAN English Product Details System loaded');
+        console.log('✅ Enhanced Product Details System loaded - URLs preserved, display translated');
         
     })();
     </script>
