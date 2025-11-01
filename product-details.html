@@ -343,15 +343,6 @@
         font-weight: 800;
     }
     
-    .url-debug {
-        background: linear-gradient(135deg, rgba(40, 167, 69, 0.05), rgba(32, 201, 151, 0.02));
-        border: 2px solid #28a745;
-        border-radius: 15px;
-        padding: 25px;
-        margin: 30px 0;
-        text-align: center;
-    }
-    
     /* Mobile Responsive */
     @media (max-width: 768px) {
         .product-header {
@@ -439,7 +430,7 @@
     </main>
     
     <script>
-    console.log('🔧 CRITICAL FIX: Universal URL Parameter Support');
+    console.log('🔧 Universal URL Parameter Support - Clean Version');
     
     // Extract and normalize all URL parameters
     const urlParams = new URLSearchParams(window.location.search);
@@ -454,8 +445,7 @@
         category: productCategory,
         slug: productSlug,
         type: productType,
-        source: productSource,
-        fullURL: window.location.href
+        source: productSource
     });
     
     let currentProduct = null;
@@ -598,7 +588,7 @@
     }
     
     /**
-     * Display product with all details
+     * Display product with all details (NO URL DEBUG)
      */
     function displayProduct(product) {
         const hasDiscount = parseFloat(product.price || 0) > parseFloat(product.sale_price || 0);
@@ -611,20 +601,6 @@
         document.title = `${product.title} - متجر هدايا الإمارات`;
         
         const productHTML = `
-            <div class="url-debug">
-                <h4 style="color: #28a745; margin-bottom: 15px;"><i class="fas fa-link"></i> حالة الرابط</h4>
-                <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; font-family: monospace; text-align: left; direction: ltr; color: #495057; font-size: 0.9rem; border: 1px solid #e9ecef;">
-                    <div><strong>ID:</strong> ${productId || 'غير محدد'}</div>
-                    <div><strong>Category:</strong> ${productCategory || 'تم الكشف تلقائياً'}</div>
-                    <div><strong>Type:</strong> ${productType || 'تم الكشف تلقائياً'}</div>
-                    <div><strong>Source:</strong> ${productSource || 'بحث متعدد'}</div>
-                    <div><strong>Slug:</strong> ${productSlug || 'تم توليده'}</div>
-                </div>
-                <div style="color: #28a745; font-weight: 700; font-size: 1.1rem;">
-                    <i class="fas fa-check-circle"></i> تم دعم شكل الرابط بالكامل ✅
-                </div>
-            </div>
-            
             <div class="product-header">
                 <div class="product-image-section">
                     <img src="${product.image_link}" 
@@ -691,7 +667,7 @@
     }
     
     /**
-     * Show error with complete URL debug info
+     * Show error message (clean version)
      */
     function showErrorMessage(message) {
         document.getElementById('productContent').innerHTML = `
@@ -700,36 +676,15 @@
                 <h2>مشكلة في تحميل المنتج</h2>
                 <p style="font-size: 1.2rem; margin: 25px 0;">${message}</p>
                 
-                <div style="background: rgba(255,255,255,0.8); padding: 25px; border-radius: 15px; margin: 30px 0; text-align: right;">
-                    <h4 style="color: #2c3e50; margin-bottom: 18px;"><i class="fas fa-info-circle"></i> معاملات الرابط المستلمة:</h4>
-                    <div style="font-family: monospace; font-size: 0.95rem; color: #495057; line-height: 1.8; text-align: left; direction: ltr; background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
-                        <div><strong>ID:</strong> ${productId || 'مفقود ❌'}</div>
-                        <div><strong>Category:</strong> ${productCategory || 'غير موجود'}</div>
-                        <div><strong>Type:</strong> ${productType || 'غير موجود'}</div>
-                        <div><strong>Source:</strong> ${productSource || 'غير موجود'}</div>
-                        <div><strong>Slug:</strong> ${productSlug || 'غير موجود'}</div>
-                        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
-                            <strong>Full URL:</strong> ${window.location.href}
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="background: rgba(40, 167, 69, 0.1); padding: 25px; border-radius: 15px; margin: 30px 0; border: 2px solid #28a745;">
-                    <h4 style="color: #28a745; margin-bottom: 15px;"><i class="fas fa-lightbulb"></i> أمثلة روابط تعمل:</h4>
-                    <div style="font-family: monospace; background: white; padding: 18px; border-radius: 10px; color: #495057; font-size: 0.9rem; direction: ltr; text-align: left; line-height: 1.6;">
-                        product-details.html?id=watch_2&type=watch&source=sa3at<br>
-                        product-details.html?id=watch_88&category=watch<br>
-                        product-details.html?id=perfume_1&category=perfume<br>
-                        product-details.html?type=watch&id=watch_3
-                    </div>
-                </div>
-                
                 <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
                     <a href="./" class="btn-main btn-primary-main" style="text-decoration: none;">
                         <i class="fas fa-home"></i> العودة للرئيسية
                     </a>
                     <a href="./products-showcase.html" class="btn-main btn-whatsapp-main" style="text-decoration: none;">
                         <i class="fas fa-th-large"></i> تصفح المنتجات
+                    </a>
+                    <a href="https://wa.me/201110760081" class="btn-main btn-primary-main" style="text-decoration: none;" target="_blank">
+                        <i class="fab fa-whatsapp"></i> تواصل معنا
                     </a>
                 </div>
             </div>
@@ -785,14 +740,10 @@
             `💰 السعر: ${parseFloat(currentProduct.sale_price || currentProduct.price).toFixed(2)} د.إ\n` +
             `🏪 المتجر: هدايا الإمارات\n` +
             `🌐 الرابط: ${window.location.href}\n\n` +
-            `📋 تفاصيل الرابط:\n` +
-            `• المعرف: ${productId}\n` +
-            `• النوع: ${productType || productCategory}\n` +
-            `• المصدر: ${productSource}\n\n` +
             `✅ خدمات مضمونة:\n` +
             `🚚 توصيل الإمارات 1-3 أيام\n` +
             `🔄 إرجاع 14 يوم\n` +
-            `🛡️ ضمان الأصالة\n\n` +
+            `🛡️ ضمان الأصالة 100%\n\n` +
             `يرجى تأكيد تفاصيل الطلب!`;
         
         window.open(`https://wa.me/201110760081?text=${encodeURIComponent(message)}`, '_blank');
@@ -877,7 +828,7 @@
         initializeSystem();
     }
     
-    console.log('🎯 CRITICAL FIX APPLIED - All URL formats now supported!');
+    console.log('🎯 Universal URL Support Applied - Clean Version!');
     </script>
 </body>
 </html>
