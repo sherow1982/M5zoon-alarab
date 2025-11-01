@@ -25,10 +25,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- Main Styles -->
     <link rel="stylesheet" href="../css/dkhoon-inspired-style.css?v=20251101">
     <link rel="stylesheet" href="../css/mobile-responsive-fixes.css?v=20251101">
     <link rel="stylesheet" href="../css/reviews-system.css?v=20251101">
+    
+    <!-- English Version Styles -->
     <link rel="stylesheet" href="./css/currency-fix-en.css?v=20251101">
+    <link rel="stylesheet" href="./css/clean-english-display.css?v=20251101">
     
     <script type="application/ld+json">
     {
@@ -48,38 +52,20 @@
     </script>
     
     <style>
-    /* English Accessibility Improvements */
-    .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--deep-blue, #1B2951);
-        color: var(--light-gold, #FFD700);
-        padding: 8px 16px;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: 600;
-        font-family: 'Inter', sans-serif;
-        z-index: 10000;
-        transition: top 0.3s ease;
-        border: 2px solid var(--primary-gold, #D4AF37);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .skip-link:focus {
-        top: 10px;
-    }
-    
+    /* CLEAN English Display Overrides */
     body { 
         font-family: 'Inter', sans-serif !important; 
         direction: ltr !important; 
         text-align: left !important; 
     }
+    
+    /* Logo subtitle remains Arabic */
     .logo-subtitle { 
         font-family: 'Cairo', sans-serif !important; 
         direction: rtl !important; 
     }
+    
+    /* Arabic language switcher */
     .arabic-link { 
         background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%); 
         color: white !important;
@@ -94,20 +80,63 @@
         font-family: 'Cairo', sans-serif !important; 
         direction: rtl; 
     }
+    
     .arabic-link:hover { 
         background: linear-gradient(135deg, #8B0000 0%, #C8102E 100%);
         transform: translateY(-2px); 
-        border-color: #D4AF37; 
     }
-    .view-all-link i { 
-        transform: rotate(180deg); 
+    
+    /* Product titles MUST be English only */
+    .product-title,
+    .product-title a {
+        font-family: 'Inter', sans-serif !important;
+        direction: ltr !important;
+        text-align: center !important;
+        font-weight: 600 !important;
+        color: #2c3e50 !important;
+        text-decoration: none;
+        transition: color 0.3s ease;
     }
+    
+    .product-title a:hover {
+        color: #D4AF37 !important;
+    }
+    
+    /* Hide any Arabic that might appear */
+    .product-card [lang="ar"],
+    .arabic-text {
+        display: none !important;
+    }
+    
+    /* Performance optimizations */
     .products-grid { 
         contain: layout style; 
     }
+    
     .product-card { 
         contain: layout style; 
         will-change: transform; 
+    }
+    
+    /* Skip link for accessibility */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--deep-blue, #1B2951);
+        color: var(--light-gold, #FFD700);
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        z-index: 10000;
+        transition: top 0.3s ease;
+        border: 2px solid var(--primary-gold, #D4AF37);
+    }
+    
+    .skip-link:focus {
+        top: 10px;
     }
     
     @media (max-width: 768px) {
@@ -229,7 +258,7 @@
                         </a>
                     </div>
                     <div class="products-grid" id="perfumes-grid">
-                        <div class="loading-message">⏳ Loading premium perfumes with correct categorization...</div>
+                        <div class="loading-message">⏳ Loading premium perfumes with clean English names...</div>
                     </div>
                 </div>
             </div>
@@ -276,7 +305,7 @@
                         </a>
                     </div>
                     <div class="products-grid" id="watches-grid">
-                        <div class="loading-message">⏳ Loading premium watches with correct categorization...</div>
+                        <div class="loading-message">⏳ Loading premium watches with clean English names...</div>
                     </div>
                 </div>
             </div>
@@ -300,7 +329,7 @@
                     </div>
                 </div>
                 <div class="products-grid" id="featuredProducts">
-                    <div class="loading-message">⏳ Loading featured premium products...</div>
+                    <div class="loading-message">⏳ Loading featured premium products with clean English names...</div>
                 </div>
             </div>
         </section>
@@ -313,7 +342,7 @@
                     <p class="section-subtitle">Don't miss exclusive offers with amazing discounts on premium products</p>
                 </div>
                 <div class="products-grid" id="bestDeals">
-                    <div class="loading-message">⏳ Loading premium deals...</div>
+                    <div class="loading-message">⏳ Loading premium deals with clean English names...</div>
                 </div>
             </div>
         </section>
@@ -448,27 +477,43 @@
         </nav>
     </div>
 
-    <!-- Loading Fixed System - No More Product Mixing -->
-    <script>console.log('🎯 Loading fixed English products system - NO MORE MIXING - v20251101');</script>
+    <!-- Scripts - CLEAN English System -->
+    <script>console.log('🎯 CLEAN English Products System - NO MORE MIXED NAMES - v20251101');</script>
     <script src="../js/dom-optimization.js?v=20251101" defer></script>
     <script src="./js/ui-en.js?v=20251101" defer></script>
     <script src="./js/cart-en.js?v=20251101" defer></script>
     <script src="./js/reviews-system-en.js?v=20251101" defer></script>
-    <script src="./js/products-loader-en-fixed.js?v=20251101" defer></script>
+    
+    <!-- CLEAN Products Loader - Final Version -->
+    <script src="./js/products-loader-en-fixed.js?v=20251101-CLEAN" defer></script>
+    
     <script src="./js/main-en.js?v=20251101" defer></script>
     <script src="./js/dismissible-popup-system-en.js?v=20251101" defer></script>
     
     <script>
-    // Confirm correct product separation
+    // Force CLEAN English names display
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('🎯 English fixed system activated: Perfumes in perfumes section, watches in watches section - v20251101');
+        console.log('🎯 CLEAN English system activated - NO MORE ARABIC MIXING');
+        console.log('✅ All product names will be CLEAN ENGLISH ONLY');
         
-        // Ensure fixed system is loaded
-        if (window.FixedEnglishProductsLoader) {
-            console.log('✅ Fixed English system loaded and active - v20251101');
-        } else {
-            console.error('❌ Failed to load fixed English system');
-        }
+        // Ensure clean system is working
+        setTimeout(() => {
+            if (window.SimpleEnglishLoader) {
+                console.log('✅ CLEAN English loader active - v20251101');
+            } else {
+                console.error('❌ Clean English loader failed');
+            }
+        }, 1000);
+        
+        // Additional cleanup - remove any Arabic that might appear
+        setInterval(() => {
+            document.querySelectorAll('.product-title').forEach(title => {
+                if (title.textContent && /[\u0600-\u06ff]/.test(title.textContent)) {
+                    console.warn('🧹 Cleaning Arabic text from:', title.textContent);
+                    title.textContent = 'Premium Product';
+                }
+            });
+        }, 2000);
     });
     </script>
 </body>
