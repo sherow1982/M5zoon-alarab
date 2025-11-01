@@ -3,22 +3,42 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Enhanced Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;">
+    
     <title>Product Details - Emirates Gifts Store</title>
     <meta name="description" content="Premium perfumes and luxury watches from Emirates Gifts Store - High quality products with fast UAE delivery">
+    <meta name="keywords" content="product details, premium perfumes, luxury watches, gifts, Emirates, UAE, online shopping">
     <meta name="robots" content="index, follow">
     
-    <link rel="canonical" href="https://emirates-gifts.arabsad.com/en/product-details.html">
-    <link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/product-details.html">
-    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/product-details.html">
+    <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/en/product-details.html">
+    <link rel="alternate" hreflang="ar" href="https://sherow1982.github.io/emirates-gifts/product-details.html">
+    <link rel="alternate" hreflang="en" href="https://sherow1982.github.io/emirates-gifts/en/product-details.html">
     
+    <!-- Performance Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Font Awesome with SRI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+          crossorigin="anonymous">
     
     <style>
+    /* 🚫 ZERO POPUP ENVIRONMENT */
+    .popup, .modal, .overlay, .notification-banner, .alert, .toast,
+    [class*="popup"], [class*="modal"], [class*="overlay"], [class*="notification"] {
+        display: none !important;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
     body {
-        font-family: 'Inter', sans-serif !important;
+        font-family: 'Inter', 'Segoe UI', sans-serif !important;
         direction: ltr !important;
         text-align: left !important;
         margin: 0;
@@ -26,6 +46,7 @@
         background: #ffffff;
         color: #2c3e50;
         line-height: 1.6;
+        scroll-behavior: smooth;
     }
     
     .progress-bar {
@@ -107,6 +128,7 @@
         display: flex;
         align-items: center;
         gap: 20px;
+        flex-wrap: wrap;
     }
     
     .nav-link {
@@ -117,18 +139,41 @@
         border-radius: 25px;
         transition: all 0.3s ease;
         font-size: 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
     }
     
     .nav-link:hover {
         background: rgba(212, 175, 55, 0.1);
         color: #D4AF37;
+        transform: translateY(-2px);
+    }
+    
+    .nav-link:focus {
+        outline: 2px solid #D4AF37;
+        outline-offset: 2px;
     }
     
     .arabic-link {
-        background: #C8102E !important;
+        background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%) !important;
         color: white !important;
         font-family: 'Cairo', sans-serif;
         direction: rtl;
+        box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
+    }
+    
+    .arabic-link:hover {
+        background: linear-gradient(135deg, #8B0000 0%, #C8102E 100%) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(200, 16, 46, 0.5);
+        color: white !important;
+    }
+    
+    .header-tools {
+        display: flex;
+        align-items: center;
+        gap: 15px;
     }
     
     .header-tool {
@@ -145,12 +190,57 @@
         position: relative;
         border: none;
         cursor: pointer;
+        font-size: 18px;
     }
     
     .header-tool:hover {
         background: linear-gradient(135deg, #FFD700, #D4AF37);
         color: #1B2951;
         transform: translateY(-2px);
+    }
+    
+    .header-tool:focus {
+        outline: 2px solid #D4AF37;
+        outline-offset: 2px;
+    }
+    
+    /* 🛒 ENHANCED CHECKOUT BUTTON */
+    .checkout-btn {
+        background: linear-gradient(135deg, #25D366, #20B358) !important;
+        color: white !important;
+        width: auto !important;
+        padding: 12px 24px !important;
+        border-radius: 25px !important;
+        font-weight: 700 !important;
+        font-size: 15px !important;
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3) !important;
+        display: inline-flex !important;
+        align-items: center;
+        gap: 8px !important;
+    }
+    
+    .checkout-btn:hover {
+        background: linear-gradient(135deg, #20B358, #1fa34d) !important;
+        color: white !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5) !important;
+    }
+    
+    .cart-counter {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #e74c3c;
+        color: white;
+        border-radius: 50%;
+        min-width: 20px;
+        height: 20px;
+        font-size: 11px;
+        font-weight: bold;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
     }
     
     .main-content {
@@ -175,6 +265,16 @@
         font-weight: 600;
     }
     
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+    
+    .breadcrumb a:focus {
+        outline: 2px solid #D4AF37;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+    
     .product-header {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -191,6 +291,11 @@
         border-radius: 15px;
         box-shadow: 0 20px 60px rgba(0,0,0,0.1);
         transition: all 0.3s ease;
+    }
+    
+    .product-image:hover {
+        box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+        transform: scale(1.02);
     }
     
     .product-info {
@@ -282,10 +387,10 @@
     }
     
     .product-actions-main {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 15px;
         margin-top: 40px;
-        flex-wrap: wrap;
     }
     
     .btn-main {
@@ -305,10 +410,30 @@
         min-height: 56px;
     }
     
+    .btn-main:focus {
+        outline: 3px solid rgba(212, 175, 55, 0.5);
+        outline-offset: 2px;
+    }
+    
     .btn-primary-main {
         background: linear-gradient(135deg, #D4AF37, #B8860B);
         color: white;
         box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    }
+    
+    /* 🛒 DIRECT CHECKOUT MAIN BUTTON */
+    .btn-checkout-main {
+        background: linear-gradient(135deg, #25D366, #20B358);
+        color: white;
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        font-size: 1.2rem;
+        font-weight: 800;
+    }
+    
+    .btn-checkout-main:hover {
+        background: linear-gradient(135deg, #20B358, #1fa34d);
+        transform: translateY(-4px);
+        box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
     }
     
     .btn-whatsapp-main {
@@ -350,10 +475,26 @@
     .loading-message h3, .error-message h2 {
         margin: 20px 0 15px;
         font-weight: 800;
+        color: #1B2951;
     }
     
-    /* Mobile Responsive */
+    /* Enhanced Mobile Responsive */
     @media (max-width: 768px) {
+        .header-content {
+            gap: 15px;
+        }
+        
+        .header-nav {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .nav-link {
+            font-size: 13px;
+            padding: 8px 12px;
+        }
+        
         .product-header {
             grid-template-columns: 1fr;
             gap: 30px;
@@ -368,16 +509,26 @@
         }
         
         .product-actions-main {
-            flex-direction: column;
+            grid-template-columns: 1fr;
+            gap: 12px;
         }
         
-        .btn-main {
-            width: 100%;
+        .checkout-btn {
+            padding: 10px 18px !important;
+            font-size: 14px !important;
+        }
+    }
+    
+    /* Accessibility Improvements */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
         }
         
-        .header-nav {
-            flex-wrap: wrap;
-            justify-content: center;
+        body {
+            scroll-behavior: auto;
         }
     }
     
@@ -391,20 +542,25 @@
     }
     
     @keyframes slideInUp {
-        from { transform: translateY(100%); opacity: 0; }
+        from { transform: translateY(30px); opacity: 0; }
         to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes slideOutDown {
+        from { transform: translateY(0); opacity: 1; }
+        to { transform: translateY(30px); opacity: 0; }
     }
     </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
     
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-container">
             <div class="header-content">
-                <a href="./" class="logo">
+                <a href="./" class="logo" aria-label="Go to homepage">
                     <div class="logo-icon">
-                        <img src="../favicon.ico" alt="Emirates Gifts" style="width: 35px; height: 35px; object-fit: contain;">
+                        <img src="../favicon.ico" alt="Emirates Gifts Logo" width="35" height="35" loading="eager">
                     </div>
                     <div class="logo-text">
                         <div class="logo-title">Emirates Gifts</div>
@@ -412,42 +568,44 @@
                     </div>
                 </a>
                 
-                <nav class="header-nav">
+                <nav class="header-nav" role="navigation" aria-label="Main navigation">
                     <a href="./" class="nav-link">
-                        <i class="fas fa-home"></i> Home
+                        <i class="fas fa-home" aria-hidden="true"></i> Home
                     </a>
                     <a href="./products-showcase.html" class="nav-link">
-                        <i class="fas fa-th-large"></i> All Products
+                        <i class="fas fa-th-large" aria-hidden="true"></i> All Products
                     </a>
-                    <a href="./checkout.html" class="nav-link" style="background: linear-gradient(135deg, #25D366, #20B358); color: white;">
-                        <i class="fas fa-credit-card"></i> Complete Order
+                    <a href="./checkout.html" class="nav-link checkout-btn">
+                        <i class="fas fa-credit-card" aria-hidden="true"></i> Complete Order
                     </a>
-                    <a href="../" class="nav-link arabic-link" target="_blank">
-                        <i class="fas fa-globe"></i> العربية
+                    <a href="../" class="nav-link arabic-link" target="_blank" rel="noopener">
+                        <i class="fas fa-globe" aria-hidden="true"></i> عربي
                     </a>
                 </nav>
                 
                 <div class="header-tools">
-                    <a href="./cart.html" class="header-tool" title="View Cart">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span style="position: absolute; top: -5px; right: -5px; background: #e74c3c; color: white; border-radius: 50%; min-width: 20px; height: 20px; font-size: 11px; font-weight: bold; display: none; align-items: center; justify-content: center;" id="cartCounter">0</span>
+                    <a href="./checkout.html" class="header-tool checkout-btn" 
+                       title="Order Now" 
+                       aria-label="Go directly to checkout page">
+                        <i class="fas fa-credit-card" aria-hidden="true"></i>
+                        <span class="cart-counter" id="cartCounter" aria-label="Number of items in cart">0</span>
                     </a>
                 </div>
             </div>
         </div>
     </header>
     
-    <main class="main-content">
+    <main class="main-content" role="main">
         <div class="product-details-container">
-            <nav class="breadcrumb">
-                <a href="./">Home</a> > 
-                <span id="categoryBreadcrumb">Products</span> >
+            <nav class="breadcrumb" aria-label="Breadcrumb navigation">
+                <a href="./">Home</a> &gt; 
+                <span id="categoryBreadcrumb">Products</span> &gt;
                 <span id="productBreadcrumb">Product Details</span>
             </nav>
             
             <div id="productContent">
-                <div class="loading-message">
-                    <i class="fas fa-spinner fa-spin"></i>
+                <div class="loading-message" role="status" aria-live="polite">
+                    <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
                     <h3>Loading Product Details...</h3>
                     <p>Universal URL support - Please wait</p>
                 </div>
@@ -455,404 +613,7 @@
         </div>
     </main>
     
-    <script>
-    console.log('🔧 Universal URL Parameter Support - Clean English Version');
-    
-    // Extract all URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('id');
-    const productCategory = urlParams.get('category');
-    const productSlug = urlParams.get('slug');
-    const productType = urlParams.get('type');
-    const productSource = urlParams.get('source');
-    
-    console.log('📋 URL Parameters Detected:', {
-        id: productId,
-        category: productCategory,
-        slug: productSlug,
-        type: productType,
-        source: productSource
-    });
-    
-    let currentProduct = null;
-    
-    // English product names mapping
-    function getEnglishProductName(arabicTitle, productId) {
-        const translations = {
-            'watch_1': 'Rolex Yacht Master - Silver Edition',
-            'watch_2': 'Rolex Classic 41mm 2022 Model',
-            'watch_3': 'Rolex Black Dial Professional R21',
-            'watch_88': 'Rolex Kaaba Design Premium Watch',
-            'perfume_1': 'Chanel Coco Premium Perfume 100ml',
-            'perfume_4': 'Dior Sauvage Premium Fragrance 100ml'
-        };
-        
-        if (translations[productId]) {
-            return translations[productId];
-        }
-        
-        // Smart translation logic
-        if (!arabicTitle) return 'Premium Luxury Product';
-        
-        let englishName = arabicTitle;
-        
-        // Brand conversions
-        englishName = englishName.replace(/رولكس|rolex/gi, 'Rolex');
-        englishName = englishName.replace(/اوميغا|omega/gi, 'Omega');
-        englishName = englishName.replace(/شانيل/gi, 'Chanel');
-        englishName = englishName.replace(/ديور/gi, 'Dior');
-        
-        // Color conversions
-        englishName = englishName.replace(/أسود|اسود/gi, 'Black');
-        englishName = englishName.replace(/أبيض|ابيض/gi, 'White');
-        englishName = englishName.replace(/ذهبي/gi, 'Gold');
-        englishName = englishName.replace(/فضي/gi, 'Silver');
-        englishName = englishName.replace(/أزرق|ازرق/gi, 'Blue');
-        englishName = englishName.replace(/أخضر|اخضر/gi, 'Green');
-        
-        // Product type
-        if (productId && productId.includes('watch')) {
-            if (!englishName.toLowerCase().includes('watch')) {
-                englishName += ' Premium Watch';
-            }
-        } else if (productId && productId.includes('perfume')) {
-            if (!englishName.toLowerCase().includes('perfume')) {
-                englishName += ' Premium Perfume';
-            }
-        }
-        
-        return englishName || 'Premium Luxury Product';
-    }
-    
-    /**
-     * Universal product loader for English version
-     */
-    async function loadProductUniversal() {
-        try {
-            console.log('🔍 Starting universal product search (English)...');
-            
-            if (!productId) {
-                throw new Error('Product ID is required in the URL');
-            }
-            
-            let product = null;
-            
-            // Search targets based on URL parameters
-            const searchTargets = [];
-            
-            // Determine search targets based on all URL parameters
-            if (productCategory === 'watch' || productType === 'watch' || 
-                productSource === 'sa3at' || productId.includes('watch')) {
-                searchTargets.push({ file: '../data/sa3at.json', type: 'watch' });
-            }
-            
-            if (productCategory === 'perfume' || productType === 'perfume' || 
-                productSource === 'otor' || productId.includes('perfume')) {
-                searchTargets.push({ file: '../data/otor.json', type: 'perfume' });
-            }
-            
-            // If no specific type detected, search both
-            if (searchTargets.length === 0) {
-                searchTargets.push(
-                    { file: '../data/sa3at.json', type: 'watch' },
-                    { file: '../data/otor.json', type: 'perfume' }
-                );
-            }
-            
-            // Search in all target files
-            for (const target of searchTargets) {
-                try {
-                    console.log(`🔍 Searching in ${target.file} for ${productId}...`);
-                    
-                    const response = await fetch(target.file + '?v=' + Date.now());
-                    if (response.ok) {
-                        const products = await response.json();
-                        const arabicProduct = products.find(p => p.id === productId || String(p.id) === productId);
-                        
-                        if (arabicProduct) {
-                            // Translate to English
-                            product = {
-                                id: arabicProduct.id,
-                                title: arabicProduct.title,
-                                displayName: getEnglishProductName(arabicProduct.title, arabicProduct.id),
-                                price: arabicProduct.price,
-                                sale_price: arabicProduct.sale_price,
-                                image_link: arabicProduct.image_link,
-                                category: target.type === 'watch' ? 'Watches' : 'Perfumes',
-                                icon: target.type === 'watch' ? '⏰' : '🌸',
-                                description: target.type === 'watch' ? 
-                                    'Premium luxury watch with high-quality materials, precise movement, and elegant design suitable for all occasions.' :
-                                    'Premium luxury perfume with high-quality ingredients, long-lasting fragrance, and elegant packaging perfect for special moments.',
-                                sourceType: target.type
-                            };
-                            
-                            console.log(`✅ Product found and translated from ${target.file}: ${product.displayName}`);
-                            break;
-                        }
-                    }
-                } catch (error) {
-                    console.warn(`⚠️ Error loading ${target.file}:`, error.message);
-                    continue;
-                }
-            }
-            
-            if (product) {
-                currentProduct = product;
-                displayProduct(product);
-                console.log('✅ Product successfully loaded and displayed (English)');
-            } else {
-                console.error(`❌ Product ${productId} not found in any source`);
-                showErrorMessage(`Product ${productId} not found`);
-            }
-            
-        } catch (error) {
-            console.error('❌ Universal product loading failed:', error);
-            showErrorMessage('Error loading product details: ' + error.message);
-        }
-    }
-    
-    /**
-     * Display product with English content (NO URL DEBUG)
-     */
-    function displayProduct(product) {
-        const hasDiscount = parseFloat(product.price || 0) > parseFloat(product.sale_price || 0);
-        const discountPercent = hasDiscount ?
-            Math.round(((parseFloat(product.price) - parseFloat(product.sale_price)) / parseFloat(product.price)) * 100) : 0;
-        
-        // Update page metadata
-        document.getElementById('categoryBreadcrumb').textContent = product.category;
-        document.getElementById('productBreadcrumb').textContent = product.displayName;
-        document.title = `${product.displayName} - Emirates Gifts Store`;
-        
-        const productHTML = `
-            <div class="product-header">
-                <div class="product-image-section">
-                    <img src="${product.image_link}" 
-                         alt="${product.displayName}" 
-                         class="product-image"
-                         loading="eager"
-                         onerror="this.src='https://via.placeholder.com/500x500/D4AF37/FFFFFF?text=Premium+Product'">
-                </div>
-                
-                <div class="product-info">
-                    <div class="category-badge-main">${product.icon} ${product.category}</div>
-                    
-                    <h1 class="product-title-main">${product.displayName}</h1>
-                    
-                    <div style="color: #666; line-height: 1.7; margin: 25px 0; font-size: 1.1rem;">
-                        ${product.description}
-                    </div>
-                    
-                    <div style="display: flex; align-items: center; gap: 10px; margin: 25px 0; justify-content: center;">
-                        <div style="color: #ffc107; font-size: 18px;">⭐⭐⭐⭐⭐</div>
-                        <span style="color: #666;">(${Math.floor(Math.random() * 50) + 30} verified reviews)</span>
-                    </div>
-                    
-                    <div style="background: #f8f9fa; padding: 35px; border-radius: 20px; text-align: center; margin: 35px 0; border: 2px solid rgba(212, 175, 55, 0.2);">
-                        <div class="product-price-main">${parseFloat(product.sale_price || product.price || 0).toFixed(2)} <span style="font-size: 1.4rem; font-weight: 700;">AED</span></div>
-                        ${hasDiscount ? `
-                            <div style="margin-top: 15px;">
-                                <span class="original-price">${parseFloat(product.price).toFixed(2)} AED</span>
-                                <span class="discount-badge">Save ${discountPercent}%</span>
-                            </div>
-                        ` : ''}
-                    </div>
-                    
-                    <div class="product-features">
-                        <h3>🌟 Guaranteed Product Features</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> 100% guaranteed high quality with manufacturer warranty</li>
-                            <li><i class="fas fa-truck"></i> Fast delivery in UAE within 1-3 business days</li>
-                            <li><i class="fas fa-undo"></i> Easy 14-day return policy with shipping fee coverage</li>
-                            <li><i class="fas fa-headset"></i> Professional 24/7 multilingual customer service</li>
-                            <li><i class="fas fa-shield-alt"></i> Premium packaging with quality guarantee certificate</li>
-                            <li><i class="fas fa-star"></i> Trusted by thousands of satisfied customers in UAE</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="product-actions-main">
-                        <button class="btn-main btn-primary-main" onclick="addToCartNow()" type="button">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        
-                        <button class="btn-main btn-whatsapp-main" onclick="orderWhatsAppNow()" type="button">
-                            <i class="fab fa-whatsapp"></i> Order via WhatsApp
-                        </button>
-                        
-                        <a href="./checkout.html" class="btn-main btn-primary-main" style="text-decoration: none;">
-                            <i class="fas fa-credit-card"></i> Complete Order
-                        </a>
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        document.getElementById('productContent').innerHTML = productHTML;
-    }
-    
-    /**
-     * Show error message (clean version)
-     */
-    function showErrorMessage(message) {
-        document.getElementById('productContent').innerHTML = `
-            <div class="error-message">
-                <i class="fas fa-exclamation-triangle"></i>
-                <h2>Product Loading Issue</h2>
-                <p style="font-size: 1.2rem; margin: 25px 0;">${message}</p>
-                
-                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
-                    <a href="./" class="btn-main btn-primary-main" style="text-decoration: none;">
-                        <i class="fas fa-home"></i> Back to Home
-                    </a>
-                    <a href="./products-showcase.html" class="btn-main btn-whatsapp-main" style="text-decoration: none;">
-                        <i class="fas fa-th-large"></i> Browse Products
-                    </a>
-                    <a href="https://wa.me/201110760081" class="btn-main btn-primary-main" style="text-decoration: none;" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Contact Us
-                    </a>
-                </div>
-            </div>
-        `;
-    }
-    
-    /**
-     * Add to cart functionality
-     */
-    window.addToCartNow = function() {
-        if (!currentProduct) {
-            showNotification('Product data not available', 'error');
-            return;
-        }
-        
-        try {
-            const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
-            const existing = cart.find(item => item.id === currentProduct.id);
-            
-            if (existing) {
-                existing.quantity = (existing.quantity || 1) + 1;
-            } else {
-                cart.push({
-                    id: currentProduct.id,
-                    title: currentProduct.displayName,
-                    price: parseFloat(currentProduct.sale_price || currentProduct.price),
-                    image: currentProduct.image_link,
-                    quantity: 1
-                });
-            }
-            
-            localStorage.setItem('emirates_cart', JSON.stringify(cart));
-            updateCartCounter();
-            showNotification(`"${currentProduct.displayName}" added to cart successfully!`, 'success');
-            
-        } catch (error) {
-            console.error('❌ Cart error:', error);
-            showNotification('Error adding product to cart', 'error');
-        }
-    };
-    
-    /**
-     * WhatsApp order functionality
-     */
-    window.orderWhatsAppNow = function() {
-        if (!currentProduct) {
-            showNotification('Product data not available', 'error');
-            return;
-        }
-        
-        const message = `🛍️ Order from Emirates Gifts Store\n\n` +
-            `🎁 Product: ${currentProduct.displayName}\n` +
-            `💰 Price: ${parseFloat(currentProduct.sale_price || currentProduct.price).toFixed(2)} AED\n` +
-            `🏪 Store: Emirates Gifts (English)\n` +
-            `🌐 Link: ${window.location.href}\n\n` +
-            `✅ Guaranteed Services:\n` +
-            `🚚 UAE delivery 1-3 days\n` +
-            `🔄 14-day return policy\n` +
-            `🛡️ 100% authenticity guarantee\n\n` +
-            `Please confirm order details!`;
-        
-        window.open(`https://wa.me/201110760081?text=${encodeURIComponent(message)}`, '_blank');
-        showNotification('WhatsApp opened with your order details!', 'success');
-    };
-    
-    // Update cart counter
-    function updateCartCounter() {
-        try {
-            const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
-            const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-            const counter = document.getElementById('cartCounter');
-            if (counter) {
-                counter.textContent = total;
-                counter.style.display = total > 0 ? 'flex' : 'none';
-            }
-        } catch (e) {
-            console.warn('Cart update failed:', e);
-        }
-    }
-    
-    // Show notification
-    function showNotification(message, type = 'success') {
-        const colors = { success: '#28a745', error: '#e74c3c' };
-        
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: ${colors[type]};
-            color: white;
-            padding: 18px 25px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 15px;
-            z-index: 10000;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            animation: slideInUp 0.4s ease;
-            max-width: 400px;
-            font-family: 'Inter', sans-serif;
-        `;
-        
-        notification.innerHTML = `<i class="fas fa-${type === 'success' ? 'check' : 'exclamation-triangle'}"></i> ${message}`;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => notification.remove(), 4000);
-    }
-    
-    // Progress bar
-    function updateProgress() {
-        try {
-            const scrolled = window.pageYOffset;
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            if (maxScroll > 0) {
-                const progress = (scrolled / maxScroll) * 100;
-                const bar = document.getElementById('progressBar');
-                if (bar) {
-                    bar.style.width = Math.max(0, Math.min(100, progress)) + '%';
-                }
-            }
-        } catch (error) {
-            // Silent fail
-        }
-    }
-    
-    // Initialize system
-    function initializeSystem() {
-        console.log('🎯 Initializing clean URL support system (English)');
-        
-        window.addEventListener('scroll', updateProgress, { passive: true });
-        updateCartCounter();
-        loadProductUniversal();
-        
-        console.log('✅ Clean English system ready!');
-    }
-    
-    // Auto-start when page loads
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeSystem);
-    } else {
-        initializeSystem();
-    }
-    
-    console.log('🎯 Clean Universal URL Support Applied!');
-    </script>
+    <!-- Load main script safely -->
+    <script src="./js/en-product-details.js"></script>
 </body>
 </html>
