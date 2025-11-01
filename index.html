@@ -3,16 +3,49 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http:; connect-src 'self' https:; frame-ancestors 'none';">
     
-    <title>متجر هدايا الإمارات - عطور وساعات عالية الجودة</title>
-    <meta name="description" content="متجر هدايا الإمارات - اكتشف أفضل عروض العطور عالية الجودة والساعات والهدايا. توصيل خلال 1-3 أيام عمل + ضمان ارجاع 14 يوم.">
+    <!-- Enhanced Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;">
     
-    <!-- Fonts and Icons -->
+    <!-- SEO Meta Tags -->
+    <title>متجر هدايا الإمارات - عطور وساعات عالية الجودة | شحن مجاني وضمان إرجاع</title>
+    <meta name="description" content="متجر هدايا الإمارات - اكتشف أفضل عروض العطور عالية الجودة، الساعات الفاخرة، والهدايا المميزة. توصيل مجاني خلال 1-3 أيام عمل + ضمان إرجاع 14 يوم.">
+    <meta name="keywords" content="عطور, عطور عالية الجودة, ساعات, هدايا, Emirates Gifts, عطور شرقية, عطور غربية, الإمارات, دبي, متجر العطور, توصيل مجاني">
+    <meta name="author" content="Emirates Gifts Store">
+    <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="متجر هدايا الإمارات - عطور وساعات عالية الجودة">
+    <meta property="og:description" content="اكتشف أجمل التشكيلات من العطور عالية الجودة والهدايا المميزة. توصيل مجاني وضمان إرجاع 14 يوم.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sherow1982.github.io/emirates-gifts/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1541643600914-78b084683601?w=1200&h=630&fit=crop&crop=center">
+    <meta property="og:site_name" content="Emirates Gifts">
+    <meta property="og:locale" content="ar_AE">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="متجر هدايا الإمارات - عطور وساعات عالية الجودة">
+    <meta name="twitter:description" content="اكتشف أجمل التشكيلات من العطور عالية الجودة والهدايا المميزة.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1541643600914-78b084683601?w=1200&h=630&fit=crop&crop=center">
+    
+    <!-- Preconnect and Preload for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap"></noscript>
+    
+    <!-- Font Awesome with SRI for Security -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+          crossorigin="anonymous">
+    
+    <!-- Preload Hero Image -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop&crop=center">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon.ico">
     
     <style>
     /* 🚫 ZERO POPUP ENVIRONMENT */
@@ -21,14 +54,19 @@
         display: none !important;
     }
     
+    * {
+        box-sizing: border-box;
+    }
+    
     body {
-        font-family: 'Cairo', sans-serif;
+        font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         direction: rtl;
         margin: 0;
         padding: 0;
         background: #ffffff;
         color: #2c3e50;
         line-height: 1.6;
+        scroll-behavior: smooth;
     }
     
     .progress-bar {
@@ -56,6 +94,7 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
+        flex-wrap: wrap;
     }
     
     .header {
@@ -140,6 +179,11 @@
         transform: translateY(-2px);
     }
     
+    .nav-link:focus {
+        outline: 2px solid #D4AF37;
+        outline-offset: 2px;
+    }
+    
     .english-link {
         background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
         color: white !important;
@@ -190,6 +234,11 @@
         background: linear-gradient(135deg, #FFD700, #D4AF37);
         color: #1B2951;
         transform: translateY(-2px);
+    }
+    
+    .header-tool:focus {
+        outline: 2px solid #D4AF37;
+        outline-offset: 2px;
     }
     
     .cart-counter {
@@ -289,6 +338,12 @@
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     }
     
+    .btn-primary:focus,
+    .btn-secondary:focus {
+        outline: 3px solid rgba(212, 175, 55, 0.5);
+        outline-offset: 2px;
+    }
+    
     .hero-visual {
         position: relative;
     }
@@ -350,6 +405,11 @@
         transform: translateY(-2px);
     }
     
+    .view-all-link:focus {
+        outline: 2px solid #1B2951;
+        outline-offset: 2px;
+    }
+    
     .products-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -365,11 +425,17 @@
         transition: all 0.3s ease;
         cursor: pointer;
         border: 2px solid rgba(212, 175, 55, 0.1);
+        position: relative;
     }
     
     .product-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    }
+    
+    .product-card:focus-within {
+        outline: 3px solid rgba(212, 175, 55, 0.6);
+        outline-offset: 2px;
     }
     
     .product-image-container {
@@ -469,6 +535,11 @@
         transform: translateY(-2px) scale(0.98) !important;
     }
     
+    .view-more-button:focus {
+        outline: 3px solid rgba(212, 175, 55, 0.7);
+        outline-offset: 3px;
+    }
+    
     .view-more-button i {
         font-size: 1.4rem !important;
         animation: pulse 2s infinite !important;
@@ -544,6 +615,13 @@
         color: #D4AF37;
     }
     
+    .footer-section a:focus {
+        color: #D4AF37;
+        outline: 2px solid #D4AF37;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+    
     .social-links {
         display: flex;
         gap: 15px;
@@ -568,6 +646,11 @@
         background: #D4AF37;
         color: #1B2951;
         transform: translateY(-3px);
+    }
+    
+    .social-link:focus {
+        outline: 2px solid #D4AF37;
+        outline-offset: 3px;
     }
     
     .footer-bottom {
@@ -615,6 +698,25 @@
         box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
     }
     
+    .back-to-top:focus {
+        outline: 2px solid white;
+        outline-offset: 2px;
+    }
+    
+    /* Accessibility Improvements */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+        
+        body {
+            scroll-behavior: auto;
+        }
+    }
+    
+    /* Enhanced Responsive Design */
     @media (max-width: 768px) {
         .main-nav {
             display: none;
@@ -674,6 +776,21 @@
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
     }
+    
+    /* Print Styles */
+    @media print {
+        .header-tools,
+        .back-to-top,
+        .view-more-button,
+        .hero-cta {
+            display: none;
+        }
+        
+        body {
+            background: white;
+            color: black;
+        }
+    }
     </style>
 </head>
 <body>
@@ -681,16 +798,16 @@
     
     <div class="top-banner">
         <div class="banner-text">
-            <i class="fas fa-shipping-fast"></i>
-            توصيل خلال 1-3 أيام عمل • ضمان إرجاع 14 يوم + مصاريف شحن
-            <i class="fas fa-gift"></i>
+            <i class="fas fa-shipping-fast" aria-hidden="true"></i>
+            توصيل مجاني خلال 1-3 أيام عمل • ضمان إرجاع 14 يوم + مصاريف شحن
+            <i class="fas fa-gift" aria-hidden="true"></i>
         </div>
     </div>
 
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-container">
             <div class="header-content">
-                <a href="./" class="logo">
+                <a href="./" class="logo" aria-label="العودة إلى الصفحة الرئيسية">
                     <div class="logo-icon">
                         <img src="./favicon.ico" alt="شعار هدايا الإمارات" width="32" height="32" loading="eager">
                     </div>
@@ -700,31 +817,31 @@
                     </div>
                 </a>
 
-                <nav class="main-nav">
+                <nav class="main-nav" role="navigation" aria-label="التنقل الرئيسي">
                     <ul class="nav-menu">
-                        <li><a href="./" class="nav-link active">الرئيسية</a></li>
+                        <li><a href="./" class="nav-link active" aria-current="page">الرئيسية</a></li>
                         <li><a href="./products-showcase.html" class="nav-link">شاهد جميع المنتجات</a></li>
                         <li><a href="#perfumes-section" class="nav-link">العطور</a></li>
                         <li><a href="#watches-section" class="nav-link">الساعات</a></li>
-                        <li><a href="https://wa.me/201110760081" class="nav-link" target="_blank">اتصل بنا</a></li>
-                        <li><a href="./en/" class="nav-link english-link" target="_blank"><i class="fas fa-globe"></i> English</a></li>
+                        <li><a href="https://wa.me/201110760081" class="nav-link" target="_blank" rel="noopener">اتصل بنا</a></li>
+                        <li><a href="./en/" class="nav-link english-link" target="_blank" rel="noopener"><i class="fas fa-globe" aria-hidden="true"></i> English</a></li>
                     </ul>
                 </nav>
 
                 <div class="header-tools">
-                    <a href="./cart.html" class="header-tool" title="عرض السلة">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-counter" id="cart-counter">0</span>
+                    <a href="./cart.html" class="header-tool" title="عرض السلة" aria-label="عرض سلة التسوق">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                        <span class="cart-counter" id="cart-counter" aria-label="عدد العناصر في السلة">0</span>
                     </a>
-                    <button class="mobile-menu-toggle header-tool" id="openSidebar" title="فتح القائمة">
-                        <i class="fas fa-bars"></i>
+                    <button class="mobile-menu-toggle header-tool" id="openSidebar" title="فتح القائمة" aria-label="فتح قائمة التنقل">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <main>
+    <main role="main">
         <section class="hero">
             <div class="hero-content">
                 <div class="hero-text">
@@ -736,19 +853,19 @@
                         اكتشف أجمل التشكيلات من العطور الشرقية والغربية عالية الجودة، والهدايا المميزة التي تعبر عن ذوقك الرفيع
                     </p>
                     <div class="hero-cta">
-                        <a href="#perfumes-section" class="btn-primary">
-                            <i class="fas fa-shopping-bag"></i>
+                        <a href="#perfumes-section" class="btn-primary" aria-label="بدء التسوق في قسم العطور">
+                            <i class="fas fa-shopping-bag" aria-hidden="true"></i>
                             تسوق الآن
                         </a>
-                        <a href="./products-showcase.html" class="btn-secondary">
-                            <i class="fas fa-star"></i>
+                        <a href="./products-showcase.html" class="btn-secondary" aria-label="عرض جميع المنتجات">
+                            <i class="fas fa-star" aria-hidden="true"></i>
                             شاهد جميع المنتجات
                         </a>
                     </div>
                 </div>
                 <div class="hero-visual">
                     <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop&crop=center" 
-                         alt="مجموعة متنوعة من العطور عالية الجودة" 
+                         alt="مجموعة متنوعة من العطور عالية الجودة في عبوات أنيقة" 
                          class="hero-image"
                          width="800"
                          height="600"
@@ -765,24 +882,26 @@
                         <p class="section-subtitle">
                             اخترنا لك أجمل العطور الشرقية والغربية عالية الجودة التي تلائم جميع الأذواق
                         </p>
-                        <a href="./products-showcase.html?category=perfumes" class="view-all-link">
-                            <i class="fas fa-arrow-left"></i>
+                        <a href="./products-showcase.html?category=perfumes" class="view-all-link" aria-label="عرض جميع العطور">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i>
                             شاهد جميع العطور
                         </a>
                     </div>
-                    <div class="products-grid" id="perfumes-grid">
-                        <div class="loading-message">
-                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;"></i>
+                    <div class="products-grid" id="perfumes-grid" role="grid" aria-label="شبكة عرض العطور">
+                        <div class="loading-message" role="status" aria-live="polite">
+                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;" aria-hidden="true"></i>
                             جارِ تحميل العطور عالية الجودة...
                         </div>
                     </div>
                     
                     <!-- 🔥 ENHANCED VIEW MORE BUTTON FOR PERFUMES -->
                     <div class="view-more-container">
-                        <button class="view-more-button" id="perfumes-view-more" style="display: inline-flex;">
-                            <i class="fas fa-plus-circle"></i>
+                        <button class="view-more-button" id="perfumes-view-more" 
+                                style="display: inline-flex;" 
+                                aria-label="عرض المزيد من العطور">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             <span>شاهد المزيد من العطور</span>
-                            <i class="fas fa-arrow-down"></i>
+                            <i class="fas fa-arrow-down" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -797,24 +916,26 @@
                         <p class="section-subtitle">
                             مجموعة حصرية من أرقى الساعات عالية الجودة التي تجمع بين الأناقة والدقة
                         </p>
-                        <a href="./products-showcase.html?category=watches" class="view-all-link">
-                            <i class="fas fa-arrow-left"></i>
+                        <a href="./products-showcase.html?category=watches" class="view-all-link" aria-label="عرض جميع الساعات">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i>
                             شاهد جميع الساعات
                         </a>
                     </div>
-                    <div class="products-grid" id="watches-grid">
-                        <div class="loading-message">
-                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;"></i>
+                    <div class="products-grid" id="watches-grid" role="grid" aria-label="شبكة عرض الساعات">
+                        <div class="loading-message" role="status" aria-live="polite">
+                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;" aria-hidden="true"></i>
                             جارِ تحميل الساعات عالية الجودة...
                         </div>
                     </div>
                     
                     <!-- 🔥 ENHANCED VIEW MORE BUTTON FOR WATCHES -->
                     <div class="view-more-container">
-                        <button class="view-more-button" id="watches-view-more" style="display: inline-flex;">
-                            <i class="fas fa-plus-circle"></i>
+                        <button class="view-more-button" id="watches-view-more" 
+                                style="display: inline-flex;" 
+                                aria-label="عرض المزيد من الساعات">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             <span>شاهد المزيد من الساعات</span>
-                            <i class="fas fa-arrow-down"></i>
+                            <i class="fas fa-arrow-down" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -822,7 +943,7 @@
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -832,8 +953,8 @@
                         نقدم لكم أجمل التشكيلات عالية الجودة
                     </p>
                     <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -845,27 +966,37 @@
                         <li><a href="./products-showcase.html">شاهد جميع المنتجات</a></li>
                         <li><a href="./cart.html" style="color: #D4AF37; font-weight: bold;">السلة</a></li>
                         <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">إتمام الطلب</a></li>
-                        <li><a href="./en/" target="_blank" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe"></i> English Version</a></li>
+                        <li><a href="./en/" target="_blank" rel="noopener" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe" aria-hidden="true"></i> English Version</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h3>خدمة العملاء</h3>
                     <ul>
-                        <li><i class="fas fa-shipping-fast"></i> شحن خلال 1-3 أيام عمل</li>
-                        <li><i class="fas fa-undo"></i> إرجاع 14 يوم + مصاريف شحن</li>
-                        <li><i class="fas fa-headset"></i> خدمة عملاء 24/7</li>
-                        <li><a href="https://wa.me/201110760081" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a></li>
+                        <li><i class="fas fa-shipping-fast" aria-hidden="true"></i> شحن مجاني خلال 1-3 أيام عمل</li>
+                        <li><i class="fas fa-undo" aria-hidden="true"></i> إرجاع 14 يوم + مصاريف شحن</li>
+                        <li><i class="fas fa-headset" aria-hidden="true"></i> خدمة عملاء 24/7</li>
+                        <li><a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp" aria-hidden="true"></i> واتساب</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h3>تواصل معنا</h3>
                     <ul>
-                        <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
-                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i><span>دبي، الإمارات العربية المتحدة</span></li>
-                        <li><i class="fas fa-clock"></i><span>خدمة العملاء: 24/7</span></li>
+                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
+                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>دبي، الإمارات العربية المتحدة</span></li>
+                        <li><i class="fas fa-clock" aria-hidden="true"></i><span>خدمة العملاء: 24/7</span></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>سياسات قانونية</h3>
+                    <ul>
+                        <li><a href="./privacy-policy.html">سياسة الخصوصية</a></li>
+                        <li><a href="./terms-conditions.html">شروط وأحكام</a></li>
+                        <li><a href="./shipping-policy.html">سياسة الشحن</a></li>
+                        <li><a href="./return-policy.html">سياسة الإرجاع</a></li>
                     </ul>
                 </div>
             </div>
@@ -875,19 +1006,34 @@
                     <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
                 </div>
                 <div style="display: flex; gap: 30px; flex-wrap: wrap; color: #ccc; font-size: 0.9rem;">
-                    <span><i class="fas fa-truck"></i> شحن خلال 1-3 أيام عمل</span>
-                    <span><i class="fas fa-undo"></i> إرجاع خلال 14 يوم + مصاريف الشحن</span>
-                    <span><i class="fas fa-star"></i> جودة عالية مضمونة</span>
+                    <span><i class="fas fa-truck" aria-hidden="true"></i> شحن مجاني خلال 1-3 أيام عمل</span>
+                    <span><i class="fas fa-undo" aria-hidden="true"></i> إرجاع خلال 14 يوم + مصاريف الشحن</span>
+                    <span><i class="fas fa-star" aria-hidden="true"></i> جودة عالية مضمونة</span>
                 </div>
             </div>
         </div>
     </footer>
 
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
+    <button class="back-to-top" id="backToTop" aria-label="العودة إلى أعلى الصفحة">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
     <!-- Load main script safely -->
     <script src="./js/main.js"></script>
+    
+    <!-- Service Worker Registration (commented out until needed) -->
+    <!-- <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(function(registration) {
+                        console.log('✅ SW registered: ', registration.scope);
+                    })
+                    .catch(function(registrationError) {
+                        console.log('❌ SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script> -->
 </body>
 </html>
