@@ -52,7 +52,7 @@
     </script>
     
     <style>
-    /* CLEAN English Display Overrides */
+    /* EMERGENCY English Display Overrides */
     body { 
         font-family: 'Inter', sans-serif !important; 
         direction: ltr !important; 
@@ -86,9 +86,12 @@
         transform: translateY(-2px); 
     }
     
-    /* Product titles MUST be English only */
+    /* FORCE English for product titles */
     .product-title,
-    .product-title a {
+    .product-title a,
+    .product-name,
+    .product-card h3,
+    h3.product-title {
         font-family: 'Inter', sans-serif !important;
         direction: ltr !important;
         text-align: center !important;
@@ -96,15 +99,21 @@
         color: #2c3e50 !important;
         text-decoration: none;
         transition: color 0.3s ease;
+        line-height: 1.4;
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .product-title a:hover {
         color: #D4AF37 !important;
     }
     
-    /* Hide any Arabic that might appear */
+    /* HIDE Arabic text completely */
     .product-card [lang="ar"],
-    .arabic-text {
+    .arabic-text,
+    *[dir="rtl"]:not(.logo-subtitle):not(.arabic-link) {
         display: none !important;
     }
     
@@ -117,42 +126,9 @@
         contain: layout style; 
         will-change: transform; 
     }
-    
-    /* Skip link for accessibility */
-    .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--deep-blue, #1B2951);
-        color: var(--light-gold, #FFD700);
-        padding: 8px 16px;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: 600;
-        z-index: 10000;
-        transition: top 0.3s ease;
-        border: 2px solid var(--primary-gold, #D4AF37);
-    }
-    
-    .skip-link:focus {
-        top: 10px;
-    }
-    
-    @media (max-width: 768px) {
-        .skip-link {
-            left: 20px;
-            right: 20px;
-            transform: none;
-            text-align: center;
-        }
-    }
     </style>
 </head>
 <body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
     <div class="progress-bar" id="progressBar"></div>
     
     <div class="top-banner">
@@ -329,7 +305,7 @@
                     </div>
                 </div>
                 <div class="products-grid" id="featuredProducts">
-                    <div class="loading-message">⏳ Loading featured premium products with clean English names...</div>
+                    <div class="loading-message">⏳ Loading featured premium products...</div>
                 </div>
             </div>
         </section>
@@ -342,7 +318,7 @@
                     <p class="section-subtitle">Don't miss exclusive offers with amazing discounts on premium products</p>
                 </div>
                 <div class="products-grid" id="bestDeals">
-                    <div class="loading-message">⏳ Loading premium deals with clean English names...</div>
+                    <div class="loading-message">⏳ Loading premium deals...</div>
                 </div>
             </div>
         </section>
@@ -477,43 +453,86 @@
         </nav>
     </div>
 
-    <!-- Scripts - CLEAN English System -->
-    <script>console.log('🎯 CLEAN English Products System - NO MORE MIXED NAMES - v20251101');</script>
+    <!-- Scripts - CLEAN English System with Arabic Cleaner -->
+    <script>console.log('🧹 CLEAN English System + Arabic Text Cleaner - v20251101');</script>
     <script src="../js/dom-optimization.js?v=20251101" defer></script>
     <script src="./js/ui-en.js?v=20251101" defer></script>
     <script src="./js/cart-en.js?v=20251101" defer></script>
     <script src="./js/reviews-system-en.js?v=20251101" defer></script>
     
-    <!-- CLEAN Products Loader - Final Version -->
+    <!-- EMERGENCY Arabic Text Cleaner - Load FIRST -->
+    <script src="./js/arabic-text-cleaner.js?v=20251101-EMERGENCY"></script>
+    
+    <!-- CLEAN Products Loader -->
     <script src="./js/products-loader-en-fixed.js?v=20251101-CLEAN" defer></script>
     
     <script src="./js/main-en.js?v=20251101" defer></script>
     <script src="./js/dismissible-popup-system-en.js?v=20251101" defer></script>
     
     <script>
-    // Force CLEAN English names display
+    // EMERGENCY Arabic cleanup system
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('🎯 CLEAN English system activated - NO MORE ARABIC MIXING');
-        console.log('✅ All product names will be CLEAN ENGLISH ONLY');
+        console.log('🧹 EMERGENCY Arabic Cleanup System Active');
         
-        // Ensure clean system is working
-        setTimeout(() => {
-            if (window.SimpleEnglishLoader) {
-                console.log('✅ CLEAN English loader active - v20251101');
-            } else {
-                console.error('❌ Clean English loader failed');
-            }
-        }, 1000);
-        
-        // Additional cleanup - remove any Arabic that might appear
-        setInterval(() => {
-            document.querySelectorAll('.product-title').forEach(title => {
-                if (title.textContent && /[\u0600-\u06ff]/.test(title.textContent)) {
-                    console.warn('🧹 Cleaning Arabic text from:', title.textContent);
-                    title.textContent = 'Premium Product';
+        // Force clean all titles immediately
+        function emergencyCleanup() {
+            let cleanedCount = 0;
+            
+            document.querySelectorAll('.product-title, .product-title a, .product-name, h3, h1, h2').forEach(element => {
+                const text = element.textContent;
+                if (text && /[\u0600-\u06ff]/.test(text)) {
+                    let cleanName = 'Premium Product';
+                    const lowerText = text.toLowerCase();
+                    
+                    // Specific product name fixes
+                    if (lowerText.includes('rolex') && lowerText.includes('r21')) {
+                        cleanName = 'Rolex Black Dial Professional R21';
+                    } else if (lowerText.includes('rolex') && lowerText.includes('40')) {
+                        cleanName = 'Rolex Oyster Professional 40mm';
+                    } else if (lowerText.includes('rolex') && (lowerText.includes('يخت') || lowerText.includes('yacht'))) {
+                        cleanName = 'Rolex Yacht Master';
+                    } else if (lowerText.includes('rolex')) {
+                        cleanName = 'Rolex Premium Watch';
+                        if (lowerText.includes('اسود')) cleanName += ' Black';
+                        else if (lowerText.includes('ذهبي')) cleanName += ' Gold';
+                        else if (lowerText.includes('فضي')) cleanName += ' Silver';
+                    } else if (lowerText.includes('omega') || lowerText.includes('اوميغا')) {
+                        cleanName = 'Omega Swatch Premium';
+                        if (lowerText.includes('blue') || lowerText.includes('ازرق')) cleanName += ' Blue';
+                    } else if (lowerText.includes('chanel') || lowerText.includes('شانيل')) {
+                        cleanName = 'Chanel Premium Perfume';
+                    } else if (lowerText.includes('gucci') || lowerText.includes('جوتشي')) {
+                        cleanName = 'Gucci Premium Perfume';
+                    } else if (lowerText.includes('dior') || lowerText.includes('ديور')) {
+                        cleanName = 'Dior Sauvage Perfume';
+                    }
+                    
+                    element.textContent = cleanName;
+                    cleanedCount++;
+                    console.log(`🧹 EMERGENCY CLEAN: "${text}" → "${cleanName}"`);
                 }
             });
+            
+            return cleanedCount;
+        }
+        
+        // Run emergency cleanup multiple times
+        emergencyCleanup();
+        setTimeout(emergencyCleanup, 500);
+        setTimeout(emergencyCleanup, 1000);
+        setTimeout(emergencyCleanup, 2000);
+        setTimeout(emergencyCleanup, 3000);
+        setTimeout(emergencyCleanup, 5000);
+        
+        // Continuous monitoring
+        setInterval(() => {
+            const cleaned = emergencyCleanup();
+            if (cleaned > 0) {
+                console.log(`🚨 EMERGENCY: Cleaned ${cleaned} Arabic texts`);
+            }
         }, 2000);
+        
+        console.log('✅ Emergency Arabic cleanup system running continuously');
     });
     </script>
 </body>
