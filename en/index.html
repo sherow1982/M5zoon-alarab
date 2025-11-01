@@ -52,11 +52,32 @@
     </script>
     
     <style>
-    /* English Display System - URLs Preserved */
+    /* NO POPUP ENVIRONMENT + English Display */
+    .popup, .modal, .overlay, .notification, .alert-box, .toast,
+    [class*="popup"], [class*="modal"], [class*="overlay"], [class*="notification"] {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+    
+    /* Exception: Professional search */
+    .professional-search-container {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+    
+    .professional-search-container:not(.active) {
+        display: none !important;
+    }
+    
     body { 
         font-family: 'Inter', sans-serif !important; 
         direction: ltr !important; 
-        text-align: left !important; 
+        text-align: left !important;
+        overflow-x: hidden !important;
     }
     
     .logo-subtitle { 
@@ -64,7 +85,6 @@
         direction: rtl !important; 
     }
     
-    /* Arabic language switcher */
     .arabic-link { 
         background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%); 
         color: white !important;
@@ -109,15 +129,8 @@
         color: #D4AF37 !important;
     }
     
-    /* Performance optimizations */
-    .products-grid { 
-        contain: layout style; 
-    }
-    
-    .product-card { 
-        contain: layout style; 
-        will-change: transform; 
-    }
+    .products-grid { contain: layout style; }
+    .product-card { contain: layout style; will-change: transform; }
     </style>
 </head>
 <body>
@@ -159,7 +172,7 @@
                 </nav>
 
                 <div class="header-tools">
-                    <!-- Professional Search Button will be added here by search system -->
+                    <!-- Professional Search Button added by search system -->
                     <a href="./cart.html" class="header-tool cart-icon" aria-label="View Cart" title="View Cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter">0</span>
@@ -192,7 +205,7 @@
                             <i class="fas fa-shopping-bag"></i>
                             Shop Now
                         </a>
-                        <button onclick="ProfessionalSearch.openSearch()" class="btn-secondary">
+                        <button onclick="openProfessionalSearch()" class="btn-secondary">
                             <i class="fas fa-search"></i>
                             Search Products
                         </button>
@@ -212,7 +225,6 @@
             </div>
         </section>
 
-        <!-- Perfumes Section -->
         <section class="section">
             <div class="section-container">
                 <div id="perfumes-section" tabindex="-1">
@@ -233,7 +245,6 @@
             </div>
         </section>
 
-        <!-- Oriental Perfumes Collection -->
         <section class="section">
             <div class="section-container">
                 <div class="collection-section">
@@ -259,7 +270,6 @@
             </div>
         </section>
 
-        <!-- Watches Section -->
         <section class="section">
             <div class="section-container">
                 <div id="watches-section" tabindex="-1">
@@ -280,14 +290,13 @@
             </div>
         </section>
 
-        <!-- Featured Products -->
         <section class="section">
             <div class="section-container">
                 <div class="section-header">
                     <h2 class="section-title">Featured Premium Products 🌟</h2>
                     <p class="section-subtitle">Handpicked selection of our finest premium products with verified reviews</p>
                     <div class="cta-group">
-                        <button onclick="ProfessionalSearch.openSearch()" class="view-all-link">
+                        <button onclick="openProfessionalSearch()" class="view-all-link">
                             <i class="fas fa-search"></i>
                             Search Products
                         </button>
@@ -307,7 +316,6 @@
             </div>
         </section>
 
-        <!-- Best Deals -->
         <section class="section">
             <div class="section-container">
                 <div class="section-header">
@@ -320,7 +328,6 @@
             </div>
         </section>
 
-        <!-- Shipping & Return Info -->
         <section class="section">
             <div class="section-container">
                 <div class="info-section">
@@ -434,7 +441,6 @@
         </div>
         <nav class="mobile-sidebar-nav">
             <a href="./" class="active"><i class="fas fa-home"></i> Home</a>
-            <!-- Search will be added here automatically -->
             <a href="./products-showcase.html" target="_blank" rel="noopener"><i class="fas fa-th-large"></i> All Products</a>
             <a href="#perfumes-section"><i class="fas fa-spray-can"></i> Perfumes</a>
             <a href="#watches-section"><i class="fas fa-clock"></i> Watches</a>
@@ -451,115 +457,121 @@
         </nav>
     </div>
 
-    <!-- Scripts - DISPLAY TRANSLATION + PROFESSIONAL SEARCH -->
-    <script>console.log('🎯 Display Translation + Professional Search - URLS PRESERVED');</script>
+    <!-- NO POPUP SCRIPTS - Load popup blocker FIRST -->
+    <script>console.log('🚫 NO POPUP ENVIRONMENT - Popup blocker active');</script>
     
-    <!-- Core Systems -->
+    <!-- POPUP BLOCKER - Must load first -->
+    <script src="./js/global-popup-blocker.js?v=20251101-NO-POPUPS"></script>
+    
+    <!-- Core Systems (popup-safe) -->
     <script src="../js/dom-optimization.js?v=20251101" defer></script>
     <script src="./js/ui-en.js?v=20251101" defer></script>
     <script src="./js/cart-en.js?v=20251101" defer></script>
     <script src="./js/reviews-system-en.js?v=20251101" defer></script>
     
-    <!-- DISPLAY-ONLY Translation System (URLs preserved) -->
+    <!-- Display-Only Translation (URL preserved) -->
     <script src="./js/display-only-translator.js?v=20251101-DISPLAY" defer></script>
     
-    <!-- Professional Search System -->
-    <script src="./js/professional-search-system.js?v=20251101-PROFESSIONAL" defer></script>
+    <!-- Professional Search System (no popup conflicts) -->
+    <script src="./js/professional-search-system.js?v=20251101-PRO" defer></script>
     
-    <!-- Products Loader - Modified to preserve URLs -->
+    <!-- Products Loader - URL Safe -->
     <script src="./js/products-loader-en-fixed.js?v=20251101-URL-SAFE" defer></script>
     
     <script src="./js/main-en.js?v=20251101" defer></script>
-    <script src="./js/dismissible-popup-system-en.js?v=20251101" defer></script>
     
     <script>
-    // Combined System: Display Translation + Search + URL Preservation
+    // NO POPUP INTEGRATION SYSTEM
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('🎯 Combined System Loading: Display Translation + Professional Search');
+        console.log('🚫 NO POPUP INTEGRATION: Professional Search + Display Translation + Popup Prevention');
         
-        // Ensure all systems work together
-        function checkSystemsReady() {
-            const systems = {
-                displayTranslator: window.DisplayTranslator,
-                professionalSearch: window.ProfessionalSearch,
-                productsLoader: window.SimpleEnglishLoader || window.FixedEnglishProductsLoader
-            };
-            
-            const readySystems = Object.keys(systems).filter(key => systems[key]);
-            const totalSystems = Object.keys(systems).length;
-            
-            console.log(`📊 Systems status: ${readySystems.length}/${totalSystems} ready`);
-            console.log(`✅ Ready: ${readySystems.join(', ')}`);
-            
-            if (readySystems.length === totalSystems) {
-                console.log('✅ ALL SYSTEMS READY - English store fully functional!');
-                
-                // Show success message
-                setTimeout(() => {
-                    const banner = document.createElement('div');
-                    banner.style.cssText = `
-                        position: fixed;
-                        top: 20px;
-                        right: 20px;
-                        background: linear-gradient(135deg, #28a745, #20c997);
-                        color: white;
-                        padding: 15px 25px;
-                        border-radius: 12px;
-                        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
-                        z-index: 9999;
-                        font-family: 'Inter', sans-serif;
-                        font-weight: 600;
-                        font-size: 14px;
-                        animation: slideInRight 0.5s ease;
-                    `;
-                    banner.innerHTML = `
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <div>English Store Ready!</div>
-                                <div style="font-size: 12px; opacity: 0.9;">Search & translations active</div>
-                            </div>
-                        </div>
-                    `;
-                    
-                    document.body.appendChild(banner);
-                    
-                    // Remove banner after 4 seconds
-                    setTimeout(() => {
-                        banner.remove();
-                    }, 4000);
-                }, 2000);
+        // Global functions (popup-safe)
+        window.openProfessionalSearch = function() {
+            if (window.ProfessionalSearch) {
+                window.ProfessionalSearch.openSearch();
+            } else {
+                console.log('🔍 Search not ready, opening products page');
+                window.open('./products-showcase.html', '_blank', 'rel=noopener');
             }
+        };
+        
+        // Ensure no popup scripts load
+        function preventPopupScripts() {
+            const scripts = document.querySelectorAll('script[src*="popup"], script[src*="modal"], script[src*="alert"]');
+            scripts.forEach(script => {
+                console.log('🚫 Removing popup script:', script.src);
+                script.remove();
+            });
         }
         
-        // Check systems every second for first 10 seconds
-        let checkCount = 0;
-        const systemCheck = setInterval(() => {
-            checkSystemsReady();
-            checkCount++;
-            if (checkCount >= 10) {
-                clearInterval(systemCheck);
+        // Run popup prevention
+        preventPopupScripts();
+        setInterval(preventPopupScripts, 5000); // Check every 5 seconds
+        
+        // System status check
+        setTimeout(() => {
+            const systems = {
+                'Popup Blocker': window.PopupBlocker,
+                'Display Translator': window.DisplayTranslator,
+                'Professional Search': window.ProfessionalSearch
+            };
+            
+            console.log('📊 NO POPUP SYSTEM STATUS:');
+            Object.keys(systems).forEach(name => {
+                console.log(`  ${systems[name] ? '✅' : '❌'} ${name}: ${systems[name] ? 'ACTIVE' : 'NOT LOADED'}`);
+            });
+            
+            if (window.PopupBlocker) {
+                console.log(`🚫 Popups blocked so far: ${window.PopupBlocker.blockedCount}`);
             }
-        }, 1000);
+            
+            const readyCount = Object.values(systems).filter(Boolean).length;
+            if (readyCount === Object.keys(systems).length) {
+                console.log('🎆 NO POPUP ENVIRONMENT FULLY OPERATIONAL!');
+            }
+        }, 3000);
         
-        // Add keyboard shortcut info
-        console.log('🔑 Keyboard shortcuts:');
-        console.log('  Ctrl/Cmd + K = Open Professional Search');
-        console.log('  Escape = Close Search');
+        // Show success indicator
+        setTimeout(() => {
+            const indicator = document.createElement('div');
+            indicator.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                background: linear-gradient(135deg, #28a745, #20c997);
+                color: white;
+                padding: 12px 20px;
+                border-radius: 25px;
+                font-family: 'Inter', sans-serif;
+                font-size: 13px;
+                font-weight: 600;
+                z-index: 9998;
+                box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+                animation: slideInLeft 0.5s ease;
+            `;
+            indicator.innerHTML = `🚫 Popup-Free Store • 🔍 Search Active • 🎭 English Display`;
+            
+            document.body.appendChild(indicator);
+            
+            setTimeout(() => {
+                indicator.style.animation = 'slideOutLeft 0.5s ease';
+                setTimeout(() => indicator.remove(), 500);
+            }, 5000);
+        }, 2000);
         
+        console.log('✅ No popup environment fully initialized');
     });
     </script>
     
     <style>
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
+    @keyframes slideInLeft {
+        from { transform: translateX(-100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOutLeft {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(-100%); opacity: 0; }
     }
     </style>
 </body>
