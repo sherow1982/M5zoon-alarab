@@ -6,8 +6,6 @@
     <title>جميع المنتجات - متجر هدايا الإمارات عالي الجودة</title>
     <meta name="description" content="استعرض جميع العطور والساعات والهدايا عالية الجودة في الإمارات. شحن خلال 1-3 أيام عمل وضمان إرجاع 14 يوم.">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -655,39 +653,71 @@
     window.prompt = function() { console.log('🚫 Prompt blocked'); return null; };
     
     let currentProducts = [];
+    let loadingAttempts = 0;
+    const maxAttempts = 3;
     
-    // تحميل جميع المنتجات بدون نوافذ
+    // تحميل جميع المنتجات مع إعادة المحاولة
     async function loadAllProducts() {
         try {
-            console.log('📦 Loading all products...');
+            loadingAttempts++;
+            console.log(`📦 Loading all products... (Attempt ${loadingAttempts}/${maxAttempts})`);
             
-            const [perfumesResponse, watchesResponse] = await Promise.allSettled([
-                fetch('./data/otor.json?t=' + Date.now()),
-                fetch('./data/sa3at.json?t=' + Date.now())
-            ]);
-            
+            // تحميل العطور أولاً
             let allProducts = [];
             
-            if (perfumesResponse.status === 'fulfilled' && perfumesResponse.value.ok) {
-                const perfumes = await perfumesResponse.value.json();
-                allProducts = allProducts.concat(perfumes.map(p => ({...p, type: 'perfume', category: 'عطور', icon: '🌸'})));
-                console.log(`✅ Loaded ${perfumes.length} perfumes`);
+            try {
+                const perfumesResponse = await fetch('./data/otor.json?v=' + Date.now());
+                if (perfumesResponse.ok) {
+                    const perfumes = await perfumesResponse.json();
+                    if (perfumes && Array.isArray(perfumes)) {
+                        allProducts = allProducts.concat(perfumes.map(p => ({...p, type: 'perfume', category: 'عطور'})));
+                        console.log(`✅ Loaded ${perfumes.length} perfumes`);
+                    }
+                } else {
+                    console.warn('⚠️ Perfumes file not found or error');
+                }
+            } catch (perfumeError) {
+                console.warn('⚠️ Error loading perfumes:', perfumeError);
             }
             
-            if (watchesResponse.status === 'fulfilled' && watchesResponse.value.ok) {
-                const watches = await watchesResponse.value.json();
-                allProducts = allProducts.concat(watches.map(p => ({...p, type: 'watch', category: 'ساعات', icon: '⏰'})));
-                console.log(`✅ Loaded ${watches.length} watches`);
+            // تحميل الساعات ثانياً
+            try {
+                const watchesResponse = await fetch('./data/sa3at.json?v=' + Date.now());
+                if (watchesResponse.ok) {
+                    const watches = await watchesResponse.json();
+                    if (watches && Array.isArray(watches)) {
+                        allProducts = allProducts.concat(watches.map(p => ({...p, type: 'watch', category: 'ساعات'})));
+                        console.log(`✅ Loaded ${watches.length} watches`);
+                    }
+                } else {
+                    console.warn('⚠️ Watches file not found or error');
+                }
+            } catch (watchError) {
+                console.warn('⚠️ Error loading watches:', watchError);
             }
             
-            currentProducts = allProducts;
-            displayProducts(allProducts);
-            
-            console.log(`✅ Successfully loaded ${allProducts.length} products total`);
+            // عرض المنتجات المتاحة
+            if (allProducts.length > 0) {
+                currentProducts = allProducts;
+                displayProducts(allProducts);
+                console.log(`✅ Successfully displaying ${allProducts.length} products total`);
+            } else {
+                if (loadingAttempts < maxAttempts) {
+                    console.log('⚠️ No products loaded, retrying...');
+                    setTimeout(() => loadAllProducts(), 2000);
+                } else {
+                    console.error('❌ Failed to load products after multiple attempts');
+                    showLoadingError();
+                }
+            }
             
         } catch (error) {
             console.error('❌ Product loading error:', error);
-            showLoadingError();
+            if (loadingAttempts < maxAttempts) {
+                setTimeout(() => loadAllProducts(), 2000);
+            } else {
+                showLoadingError();
+            }
         }
     }
     
@@ -696,12 +726,24 @@
         const grid = document.getElementById('allProductsGrid');
         
         if (!products || products.length === 0) {
-            grid.innerHTML = '<div class="loading-message">❌ لم يتم العثور على منتجات</div>';
+            grid.innerHTML = `
+                <div class="loading-message" style="background: #fff5f5; border: 2px solid #fed7d7; color: #e74c3c;">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 15px; color: #e74c3c;"></i><br>
+                    ❌ لم يتم العثور على منتجات<br>
+                    <div style="margin-top: 20px;">
+                        <a href="./" style="color: #D4AF37; text-decoration: none; font-weight: bold; padding: 15px 30px; border: 2px solid #D4AF37; border-radius: 15px; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                            <i class="fas fa-home"></i> العودة للرئيسية
+                        </a>
+                    </div>
+                </div>
+            `;
             return;
         }
         
         const productsHTML = products.map(product => {
             const finalPrice = parseFloat(product.sale_price || product.price || 0);
+            const originalPrice = parseFloat(product.price || 0);
+            const hasDiscount = originalPrice > finalPrice && finalPrice > 0;
             
             return `
                 <div class="product-card" data-product-type="${product.type}" data-product-id="${product.id}" onclick="navigateToProductDetails('${product.id}', '${product.type}')">
@@ -710,11 +752,15 @@
                              alt="${product.title}" 
                              class="product-image"
                              loading="lazy"
-                             onerror="this.src='https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=معذرة+لا+يمكن+تحميل+الصورة'">
+                             onerror="this.src='https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=منتج+مميز'">
+                        ${hasDiscount ? '<div style="position: absolute; top: 10px; right: 10px; background: #e74c3c; color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">خصم</div>' : ''}
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">${product.title}</h3>
-                        <div class="product-price">${finalPrice.toFixed(2)} د.إ</div>
+                        <div class="product-price">
+                            ${finalPrice.toFixed(2)} د.إ
+                            ${hasDiscount ? `<span style="text-decoration: line-through; color: #999; font-size: 1rem; margin-right: 10px;">${originalPrice.toFixed(2)} د.إ</span>` : ''}
+                        </div>
                         <div class="product-actions">
                             <button class="btn-primary" onclick="event.stopPropagation(); addToCartClean('${product.id}')">
                                 <i class="fas fa-cart-plus"></i> أضف للسلة
@@ -730,6 +776,19 @@
         }).join('');
         
         grid.innerHTML = productsHTML;
+        
+        // تحديث عدادات الفلاتر
+        updateFilterCounts();
+    }
+    
+    // تحديث عدادات الفلاتر
+    function updateFilterCounts() {
+        const perfumeCount = currentProducts.filter(p => p.type === 'perfume').length;
+        const watchCount = currentProducts.filter(p => p.type === 'watch').length;
+        
+        document.querySelector('[data-filter="all"]').innerHTML = `<i class="fas fa-th-large"></i> جميع المنتجات (${currentProducts.length})`;
+        document.querySelector('[data-filter="perfumes"]').innerHTML = `<i class="fas fa-spray-can"></i> العطور (${perfumeCount})`;
+        document.querySelector('[data-filter="watches"]').innerHTML = `<i class="fas fa-clock"></i> الساعات (${watchCount})`;
     }
     
     // الانتقال لصفحة تفاصيل المنتج
@@ -750,7 +809,7 @@
         }
     }
     
-    // نظام إضانة للسلة بدون نوافذ
+    // نظام إضافة للسلة بدون نوافذ
     function addToCartClean(productId) {
         const product = currentProducts.find(p => p.id === productId);
         if (!product) {
@@ -825,7 +884,7 @@
         }
     }
     
-    // نظام الفلترة
+    // نظام الفلترة المحسن
     function initializeFilters() {
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -860,15 +919,22 @@
         }
     }
     
-    // عرض رسالة خطأ
+    // عرض رسالة خطأ محسنة
     function showLoadingError() {
         document.getElementById('allProductsGrid').innerHTML = `
-            <div class="loading-message" style="background: #fff5f5; border: 2px solid #fed7d7; color: #e74c3c;">
-                <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 15px;"></i><br>
-                ❌ خطأ في تحميل المنتجات<br>
-                <div style="margin-top: 20px;">
-                    <a href="./" style="color: #D4AF37; text-decoration: none; font-weight: bold; padding: 10px 20px; border: 2px solid #D4AF37; border-radius: 10px; display: inline-block; transition: all 0.3s ease;">
+            <div class="loading-message" style="background: linear-gradient(135deg, #fff5f5, #fef5e7); border: 2px solid #fed7d7; color: #e74c3c;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px; color: #e74c3c;"></i><br>
+                <h3 style="color: #1B2951; margin: 15px 0;">❌ خطأ في تحميل المنتجات</h3>
+                <p style="color: #666; margin: 15px 0;">عذراً، لم نتمكن من تحميل المنتجات في الوقت الحالي</p>
+                <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="./" style="color: white; background: linear-gradient(135deg, #D4AF37, #B8860B); text-decoration: none; font-weight: bold; padding: 15px 30px; border-radius: 15px; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
                         <i class="fas fa-home"></i> العودة للرئيسية
+                    </a>
+                    <button onclick="location.reload()" style="color: white; background: linear-gradient(135deg, #25D366, #20B358); border: none; font-weight: bold; padding: 15px 30px; border-radius: 15px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: all 0.3s ease;">
+                        <i class="fas fa-redo"></i> إعادة المحاولة
+                    </button>
+                    <a href="https://wa.me/201110760081" target="_blank" style="color: white; background: linear-gradient(135deg, #25D366, #20B358); text-decoration: none; font-weight: bold; padding: 15px 30px; border-radius: 15px; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fab fa-whatsapp"></i> اتصل بنا
                     </a>
                 </div>
             </div>
@@ -889,7 +955,7 @@
         window.navigateToProductDetails = navigateToProductDetails;
         window.addToCartClean = addToCartClean;
         
-        console.log('✅ Products Showcase Ready with Filters and Navigation');
+        console.log('✅ Products Showcase Ready with Enhanced Error Handling');
     });
     </script>
 </body>
