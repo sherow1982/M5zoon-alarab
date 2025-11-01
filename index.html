@@ -3,10 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http:; connect-src 'self' https:; frame-ancestors 'none';">
+    
     <title>متجر هدايا الإمارات - عطور وساعات عالية الجودة</title>
     <meta name="description" content="متجر هدايا الإمارات - اكتشف أفضل عروض العطور عالية الجودة والساعات والهدايا. توصيل خلال 1-3 أيام عمل + ضمان ارجاع 14 يوم.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -247,6 +252,7 @@
         display: flex;
         gap: 20px;
         margin-top: 40px;
+        flex-wrap: wrap;
     }
     
     .btn-primary,
@@ -332,11 +338,16 @@
         align-items: center;
         gap: 8px;
         transition: all 0.3s ease;
+        padding: 12px 24px;
+        border: 2px solid #D4AF37;
+        border-radius: 25px;
+        background: transparent;
     }
     
     .view-all-link:hover {
-        color: #B8860B;
-        transform: translateX(5px);
+        background: #D4AF37;
+        color: white;
+        transform: translateY(-2px);
     }
     
     .products-grid {
@@ -703,7 +714,8 @@
                     </div>
                     <div class="products-grid" id="perfumes-grid">
                         <div class="loading-message">
-                            <span>⏳ جارِ تحميل العطور عالية الجودة...</span>
+                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;"></i>
+                            جارِ تحميل العطور عالية الجودة...
                         </div>
                     </div>
                     <div style="text-align: center;">
@@ -731,7 +743,8 @@
                     </div>
                     <div class="products-grid" id="watches-grid">
                         <div class="loading-message">
-                            <span>⏳ جارِ تحميل الساعات عالية الجودة...</span>
+                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;"></i>
+                            جارِ تحميل الساعات عالية الجودة...
                         </div>
                     </div>
                     <div style="text-align: center;">
@@ -810,191 +823,7 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script>
-    // 🚫 GLOBAL POPUP BLOCKER - منع جميع النوافذ
-    console.log('🚫 ZERO POPUP MAIN PAGE ENVIRONMENT');
-    window.alert = function() { console.log('🚫 Alert blocked'); };
-    window.confirm = function() { console.log('🚫 Confirm blocked'); return true; };
-    window.prompt = function() { console.log('🚫 Prompt blocked'); return null; };
-    
-    let currentPerfumes = [];
-    let currentWatches = [];
-    let displayedPerfumes = 8;
-    let displayedWatches = 8;
-    
-    // تحميل المنتجات بدون نوافذ
-    async function loadProducts() {
-        try {
-            console.log('📦 Loading products...');
-            
-            const [perfumesResponse, watchesResponse] = await Promise.allSettled([
-                fetch('./data/otor.json?t=' + Date.now()),
-                fetch('./data/sa3at.json?t=' + Date.now())
-            ]);
-            
-            if (perfumesResponse.status === 'fulfilled' && perfumesResponse.value.ok) {
-                currentPerfumes = await perfumesResponse.value.json();
-                displayProducts(currentPerfumes.slice(0, displayedPerfumes), 'perfumes-grid');
-                if (currentPerfumes.length > displayedPerfumes) {
-                    document.getElementById('perfumes-view-more').style.display = 'inline-flex';
-                }
-                console.log(`✅ Loaded ${currentPerfumes.length} perfumes`);
-            }
-            
-            if (watchesResponse.status === 'fulfilled' && watchesResponse.value.ok) {
-                currentWatches = await watchesResponse.value.json();
-                displayProducts(currentWatches.slice(0, displayedWatches), 'watches-grid');
-                if (currentWatches.length > displayedWatches) {
-                    document.getElementById('watches-view-more').style.display = 'inline-flex';
-                }
-                console.log(`✅ Loaded ${currentWatches.length} watches`);
-            }
-            
-        } catch (error) {
-            console.error('❌ Product loading error:', error);
-        }
-    }
-    
-    // عرض المنتجات مع إمكانية النقر
-    function displayProducts(products, gridId) {
-        const grid = document.getElementById(gridId);
-        if (!grid || !products.length) return;
-        
-        const productsHTML = products.map(product => {
-            const finalPrice = parseFloat(product.sale_price || product.price || 0);
-            
-            return `
-                <div class="product-card" onclick="navigateToProduct('${product.id}', '${gridId.includes('perfume') ? 'perfume' : 'watch'}')">
-                    <div class="product-image-container">
-                        <img src="${product.image_link}" 
-                             alt="${product.title}" 
-                             loading="lazy"
-                             onerror="this.src='https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=منتج+مميز'">
-                    </div>
-                    <div class="product-info">
-                        <h4>${product.title}</h4>
-                        <div class="price">${finalPrice.toFixed(2)} د.إ</div>
-                    </div>
-                </div>
-            `;
-        }).join('');
-        
-        grid.innerHTML = productsHTML;
-    }
-    
-    // الانتقال للمنتج بدون نوافذ
-    function navigateToProduct(productId, type) {
-        console.log(`🔗 Navigating to product: ${productId}`);
-        
-        const product = type === 'perfume' ? 
-            currentPerfumes.find(p => p.id === productId) :
-            currentWatches.find(p => p.id === productId);
-        
-        if (product) {
-            const slug = product.title
-                .toLowerCase()
-                .replace(/[^a-z0-9\s\u0600-\u06ff]/g, '')
-                .replace(/\s+/g, '-')
-                .substring(0, 50);
-            
-            window.location.href = `./product-details.html?id=${productId}&category=${type}&slug=${slug}`;
-        } else {
-            console.error('❌ Product not found:', productId);
-        }
-    }
-    
-    // إضافة المزيد من العطور
-    function showMorePerfumes() {
-        displayedPerfumes += 8;
-        displayProducts(currentPerfumes.slice(0, displayedPerfumes), 'perfumes-grid');
-        
-        if (displayedPerfumes >= currentPerfumes.length) {
-            document.getElementById('perfumes-view-more').style.display = 'none';
-        }
-    }
-    
-    // إضافة المزيد من الساعات
-    function showMoreWatches() {
-        displayedWatches += 8;
-        displayProducts(currentWatches.slice(0, displayedWatches), 'watches-grid');
-        
-        if (displayedWatches >= currentWatches.length) {
-            document.getElementById('watches-view-more').style.display = 'none';
-        }
-    }
-    
-    // تحديث عداد السلة
-    function updateCartCounter() {
-        const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
-        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-        const counter = document.getElementById('cart-counter');
-        
-        if (counter) {
-            counter.textContent = totalItems;
-            counter.style.display = totalItems > 0 ? 'flex' : 'none';
-        }
-    }
-    
-    // شريط التقدم
-    function updateProgress() {
-        const scrolled = window.pageYOffset;
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (scrolled / maxScroll) * 100;
-        const bar = document.getElementById('progressBar');
-        if (bar && maxScroll > 0) {
-            bar.style.width = Math.max(0, Math.min(100, progress)) + '%';
-        }
-    }
-    
-    // زر العودة للأعلى
-    function updateBackToTop() {
-        const backToTop = document.getElementById('backToTop');
-        if (backToTop) {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        }
-    }
-    
-    // تهيئة النظام
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('🚫 Zero Popup Homepage Loading...');
-        
-        updateCartCounter();
-        loadProducts();
-        
-        // أزرار "شاهد المزيد"
-        document.getElementById('perfumes-view-more').addEventListener('click', showMorePerfumes);
-        document.getElementById('watches-view-more').addEventListener('click', showMoreWatches);
-        
-        window.addEventListener('scroll', () => {
-            updateProgress();
-            updateBackToTop();
-        }, { passive: true });
-        
-        // العودة للأعلى
-        document.getElementById('backToTop')?.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        
-        // الانتقال السلس للروابط
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-        
-        // تصدير الدالة
-        window.navigateToProduct = navigateToProduct;
-        
-        console.log('✅ Zero Popup Homepage Ready with View More Buttons');
-    });
-    </script>
+    <!-- Load main script safely -->
+    <script src="./js/main.js"></script>
 </body>
 </html>
