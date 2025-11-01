@@ -8,13 +8,11 @@
     <meta name="keywords" content="premium perfumes UAE, luxury watches Dubai, Arabic perfumes collection, Western fragrances, fast delivery UAE, Emirates gifts">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="All Products - Emirates Gifts Store">
     <meta property="og:description" content="Browse our complete collection of premium perfumes and luxury watches with fast UAE delivery.">
     <meta property="og:url" content="https://emirates-gifts.arabsad.com/en/products-showcase.html">
     <meta property="og:type" content="website">
     
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://emirates-gifts.arabsad.com/en/products-showcase.html">
     <link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/products-showcase.html">
     <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/products-showcase.html">
@@ -24,16 +22,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Core CSS Files with Version Numbers -->
     <link rel="stylesheet" href="../css/dkhoon-inspired-style.css?v=20251101">
     <link rel="stylesheet" href="../css/mobile-responsive-fixes.css?v=20251101">
     <link rel="stylesheet" href="../css/reviews-system.css?v=20251101">
-    <link rel="stylesheet" href="../css/emirates-reviews-style.css?v=20251101">
-    <link rel="stylesheet" href="../css/fixed-navigation-buttons.css?v=20251101">
-    <link rel="stylesheet" href="../css/button-spacing-fixes.css?v=20251101">
-    <link rel="stylesheet" href="../css/final-button-appearance-fix.css?v=20251101">
     <link rel="stylesheet" href="./css/products-showcase-en.css?v=20251101">
     <link rel="stylesheet" href="./css/currency-fix-en.css?v=20251101">
+    <link rel="stylesheet" href="./css/clean-english-display.css?v=20251101">
     
     <script type="application/ld+json">
     {
@@ -47,55 +41,38 @@
     </script>
     
     <style>
-    /* English Accessibility Improvements */
-    .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--deep-blue, #1B2951);
-        color: var(--light-gold, #FFD700);
-        padding: 8px 16px;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: 600;
-        font-family: 'Inter', sans-serif;
-        z-index: 10000;
-        transition: top 0.3s ease;
-        border: 2px solid var(--primary-gold, #D4AF37);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .skip-link:focus {
-        top: 10px;
-    }
-    
-    @media (max-width: 768px) {
-        .skip-link {
-            left: 20px;
-            right: 20px;
-            transform: none;
-            text-align: center;
-        }
-    }
-    
-    /* English Version Optimizations */
-    :root {
-        --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-    
+    /* FORCE English text display everywhere */
     body {
-        font-family: var(--font-family-primary) !important;
+        font-family: 'Inter', sans-serif !important;
         direction: ltr !important;
         text-align: left !important;
     }
     
+    /* Product titles MUST be English */
+    .product-title,
+    .product-title a,
+    h3.product-title {
+        font-family: 'Inter', sans-serif !important;
+        direction: ltr !important;
+        text-align: center !important;
+        font-weight: 600 !important;
+        color: #2c3e50 !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Hide Arabic completely */
+    *[lang="ar"],
+    .arabic-text {
+        display: none !important;
+    }
+    
+    /* Logo subtitle remains Arabic */
     .logo-subtitle {
         font-family: 'Cairo', sans-serif !important;
         direction: rtl !important;
     }
     
-    /* Arabic Link Style */
+    /* Arabic language switcher styling */
     .arabic-link {
         background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
         color: white !important;
@@ -121,7 +98,7 @@
         color: white !important;
         border-color: #D4AF37;
     }
-
+    
     @media (max-width: 768px) {
         .arabic-link {
             background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
@@ -136,9 +113,6 @@
     </style>
 </head>
 <body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
     <div class="progress-bar" id="progressBar"></div>
     
     <div class="top-banner">
@@ -251,11 +225,11 @@
                 </div>
 
                 <div class="products-count" id="productsCount">
-                    <span id="productsCountText">Showing all products</span>
+                    <span id="productsCountText">Loading premium products with clean English names...</span>
                 </div>
 
                 <div class="products-grid" id="allProductsGrid">
-                    <div class="loading-message">⏳ Loading premium products collection...</div>
+                    <div class="loading-message">⏳ Loading all premium products with clean English names...</div>
                 </div>
 
                 <div class="load-more-container">
@@ -267,7 +241,6 @@
             </div>
         </section>
 
-        <!-- Call to Action Section -->
         <section class="cta-section">
             <div class="container">
                 <div class="cta-content">
@@ -390,82 +363,78 @@
         </nav>
     </div>
 
-    <!-- Load Systems in Correct Order with Version Numbers -->
+    <!-- Load CLEAN English System -->
     <script src="../js/dom-optimization.js?v=20251101" defer></script>
     <script src="./js/ui-en.js?v=20251101" defer></script>
     <script src="./js/cart-en.js?v=20251101" defer></script>
     <script src="./js/reviews-system-en.js?v=20251101" defer></script>
     <script src="./js/popup-system-en.js?v=20251101" defer></script>
-    <script src="./js/products-loader-en-fixed.js?v=20251101" defer></script>
+    
+    <!-- CLEAN English Products Loader -->
+    <script src="./js/products-loader-en-fixed.js?v=20251101-CLEAN" defer></script>
+    
     <script src="./js/products-showcase-en.js?v=20251101" defer></script>
     <script src="./js/main-en.js?v=20251101" defer></script>
     
     <script>
-    // Enhanced Currency Fix for Products Showcase
+    // Enhanced CLEAN English system for showcase
     document.addEventListener('DOMContentLoaded', function() {
-        function fixAllCurrency() {
-            // Remove dollar signs and fix currency display
-            const allPriceElements = document.querySelectorAll(
-                '.current-price, .original-price, .price, .total-price, ' +
-                '.cart-item-price, .product-price, .sale-price, [class*="price"]'
-            );
-            
-            allPriceElements.forEach(element => {
-                let text = element.textContent || '';
-                
-                // Skip if already processed or empty
-                if (!text || element.dataset.currencyFixed === 'true') return;
-                
-                // Remove all unwanted currency symbols and text
-                text = text.replace(/[\$£€¥درهم]/g, ''); // Remove $, £, €, ¥, درهم
-                text = text.replace(/\s*(AED|USD|EUR|GBP|SAR)\s*/gi, ''); // Remove currency codes
-                text = text.replace(/\s*each\s*/gi, ''); // Remove "each"
-                
-                // Extract just the number
-                const matches = text.match(/([\d.,]+)/g);
-                if (matches && matches.length > 0) {
-                    const numberValue = parseFloat(matches[0].replace(/,/g, ''));
-                    if (!isNaN(numberValue) && numberValue > 0) {
-                        element.textContent = numberValue.toFixed(2);
-                        element.dataset.currencyFixed = 'true';
+        console.log('🧹 CLEAN English Products Showcase System Active');
+        
+        // Monitor and clean any Arabic text that appears
+        function cleanArabicText() {
+            document.querySelectorAll('.product-title, .product-name, h3').forEach(element => {
+                if (element.textContent && /[\u0600-\u06ff]/.test(element.textContent)) {
+                    console.warn('🧹 Cleaning Arabic text:', element.textContent);
+                    
+                    // Apply clean English name based on content
+                    let cleanName = 'Premium Product';
+                    const text = element.textContent.toLowerCase();
+                    
+                    if (text.includes('rolex') || text.includes('رولكس')) {
+                        if (text.includes('يخت')) cleanName = 'Rolex Yacht Master';
+                        else if (text.includes('جاست')) cleanName = 'Rolex Datejust';
+                        else if (text.includes('دايتونا')) cleanName = 'Rolex Daytona';
+                        else cleanName = 'Rolex Premium Watch';
+                        
+                        if (text.includes('اسود')) cleanName += ' Black';
+                        else if (text.includes('ذهبي')) cleanName += ' Gold';
+                        else if (text.includes('فضي')) cleanName += ' Silver';
+                        
+                    } else if (text.includes('chanel') || text.includes('شانيل')) {
+                        cleanName = 'Chanel Premium Perfume';
+                    } else if (text.includes('gucci') || text.includes('جوتشي')) {
+                        cleanName = 'Gucci Premium Perfume';
+                    } else if (text.includes('dior') || text.includes('ديور')) {
+                        cleanName = 'Dior Sauvage Perfume';
+                    } else if (text.includes('omega') || text.includes('اوميغا')) {
+                        cleanName = 'Omega Swatch Premium';
                     }
+                    
+                    element.textContent = cleanName;
+                    console.log('✅ Cleaned to:', cleanName);
                 }
             });
-            
-            console.log('Currency fixed - AED will be added via CSS');
         }
         
-        // Run currency fix multiple times
-        fixAllCurrency();
-        setTimeout(fixAllCurrency, 1000);
-        setTimeout(fixAllCurrency, 2500);
-        setTimeout(fixAllCurrency, 4000);
+        // Run cleaning immediately and repeatedly
+        cleanArabicText();
+        setTimeout(cleanArabicText, 1000);
+        setTimeout(cleanArabicText, 2500);
+        setTimeout(cleanArabicText, 4000);
         
-        // Monitor for dynamically added content
-        const observer = new MutationObserver(function(mutations) {
-            let hasNewPrices = false;
-            
-            mutations.forEach(function(mutation) {
-                mutation.addedNodes.forEach(function(node) {
-                    if (node.nodeType === 1) { // Element node
-                        if (node.querySelector && node.querySelector('[class*="price"]')) {
-                            hasNewPrices = true;
-                        }
-                    }
-                });
-            });
-            
-            if (hasNewPrices) {
-                setTimeout(fixAllCurrency, 200);
-            }
+        // Monitor for new content
+        const observer = new MutationObserver(() => {
+            setTimeout(cleanArabicText, 100);
         });
         
         observer.observe(document.body, {
             childList: true,
-            subtree: true
+            subtree: true,
+            characterData: true
         });
         
-        console.log('Products showcase with currency fixes initialized - v20251101');
+        console.log('✅ CLEAN English showcase system active - monitoring for Arabic text');
     });
     </script>
 </body>
