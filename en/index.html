@@ -52,14 +52,13 @@
     </script>
     
     <style>
-    /* EMERGENCY English Display Overrides */
+    /* English Display System - URLs Preserved */
     body { 
         font-family: 'Inter', sans-serif !important; 
         direction: ltr !important; 
         text-align: left !important; 
     }
     
-    /* Logo subtitle remains Arabic */
     .logo-subtitle { 
         font-family: 'Cairo', sans-serif !important; 
         direction: rtl !important; 
@@ -86,7 +85,7 @@
         transform: translateY(-2px); 
     }
     
-    /* FORCE English for product titles */
+    /* FORCE English display for product names */
     .product-title,
     .product-title a,
     .product-name,
@@ -108,13 +107,6 @@
     
     .product-title a:hover {
         color: #D4AF37 !important;
-    }
-    
-    /* HIDE Arabic text completely */
-    .product-card [lang="ar"],
-    .arabic-text,
-    *[dir="rtl"]:not(.logo-subtitle):not(.arabic-link) {
-        display: none !important;
     }
     
     /* Performance optimizations */
@@ -167,6 +159,7 @@
                 </nav>
 
                 <div class="header-tools">
+                    <!-- Professional Search Button will be added here by search system -->
                     <a href="./cart.html" class="header-tool cart-icon" aria-label="View Cart" title="View Cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter">0</span>
@@ -199,10 +192,10 @@
                             <i class="fas fa-shopping-bag"></i>
                             Shop Now
                         </a>
-                        <a href="./products-showcase.html" class="btn-secondary" target="_blank" rel="noopener">
-                            <i class="fas fa-star"></i>
-                            View All Products
-                        </a>
+                        <button onclick="ProfessionalSearch.openSearch()" class="btn-secondary">
+                            <i class="fas fa-search"></i>
+                            Search Products
+                        </button>
                         <a href="./checkout.html" class="btn-secondary order-now-btn">
                             <i class="fas fa-credit-card"></i>
                             Complete Order
@@ -234,7 +227,7 @@
                         </a>
                     </div>
                     <div class="products-grid" id="perfumes-grid">
-                        <div class="loading-message">⏳ Loading premium perfumes with clean English names...</div>
+                        <div class="loading-message">⏳ Loading premium perfumes with English display names...</div>
                     </div>
                 </div>
             </div>
@@ -281,7 +274,7 @@
                         </a>
                     </div>
                     <div class="products-grid" id="watches-grid">
-                        <div class="loading-message">⏳ Loading premium watches with clean English names...</div>
+                        <div class="loading-message">⏳ Loading premium watches with English display names...</div>
                     </div>
                 </div>
             </div>
@@ -294,6 +287,10 @@
                     <h2 class="section-title">Featured Premium Products 🌟</h2>
                     <p class="section-subtitle">Handpicked selection of our finest premium products with verified reviews</p>
                     <div class="cta-group">
+                        <button onclick="ProfessionalSearch.openSearch()" class="view-all-link">
+                            <i class="fas fa-search"></i>
+                            Search Products
+                        </button>
                         <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
                             <i class="fas fa-th-large"></i>
                             View All
@@ -437,6 +434,7 @@
         </div>
         <nav class="mobile-sidebar-nav">
             <a href="./" class="active"><i class="fas fa-home"></i> Home</a>
+            <!-- Search will be added here automatically -->
             <a href="./products-showcase.html" target="_blank" rel="noopener"><i class="fas fa-th-large"></i> All Products</a>
             <a href="#perfumes-section"><i class="fas fa-spray-can"></i> Perfumes</a>
             <a href="#watches-section"><i class="fas fa-clock"></i> Watches</a>
@@ -453,87 +451,116 @@
         </nav>
     </div>
 
-    <!-- Scripts - CLEAN English System with Arabic Cleaner -->
-    <script>console.log('🧹 CLEAN English System + Arabic Text Cleaner - v20251101');</script>
+    <!-- Scripts - DISPLAY TRANSLATION + PROFESSIONAL SEARCH -->
+    <script>console.log('🎯 Display Translation + Professional Search - URLS PRESERVED');</script>
+    
+    <!-- Core Systems -->
     <script src="../js/dom-optimization.js?v=20251101" defer></script>
     <script src="./js/ui-en.js?v=20251101" defer></script>
     <script src="./js/cart-en.js?v=20251101" defer></script>
     <script src="./js/reviews-system-en.js?v=20251101" defer></script>
     
-    <!-- EMERGENCY Arabic Text Cleaner - Load FIRST -->
-    <script src="./js/arabic-text-cleaner.js?v=20251101-EMERGENCY"></script>
+    <!-- DISPLAY-ONLY Translation System (URLs preserved) -->
+    <script src="./js/display-only-translator.js?v=20251101-DISPLAY" defer></script>
     
-    <!-- CLEAN Products Loader -->
-    <script src="./js/products-loader-en-fixed.js?v=20251101-CLEAN" defer></script>
+    <!-- Professional Search System -->
+    <script src="./js/professional-search-system.js?v=20251101-PROFESSIONAL" defer></script>
+    
+    <!-- Products Loader - Modified to preserve URLs -->
+    <script src="./js/products-loader-en-fixed.js?v=20251101-URL-SAFE" defer></script>
     
     <script src="./js/main-en.js?v=20251101" defer></script>
     <script src="./js/dismissible-popup-system-en.js?v=20251101" defer></script>
     
     <script>
-    // EMERGENCY Arabic cleanup system
+    // Combined System: Display Translation + Search + URL Preservation
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('🧹 EMERGENCY Arabic Cleanup System Active');
+        console.log('🎯 Combined System Loading: Display Translation + Professional Search');
         
-        // Force clean all titles immediately
-        function emergencyCleanup() {
-            let cleanedCount = 0;
+        // Ensure all systems work together
+        function checkSystemsReady() {
+            const systems = {
+                displayTranslator: window.DisplayTranslator,
+                professionalSearch: window.ProfessionalSearch,
+                productsLoader: window.SimpleEnglishLoader || window.FixedEnglishProductsLoader
+            };
             
-            document.querySelectorAll('.product-title, .product-title a, .product-name, h3, h1, h2').forEach(element => {
-                const text = element.textContent;
-                if (text && /[\u0600-\u06ff]/.test(text)) {
-                    let cleanName = 'Premium Product';
-                    const lowerText = text.toLowerCase();
-                    
-                    // Specific product name fixes
-                    if (lowerText.includes('rolex') && lowerText.includes('r21')) {
-                        cleanName = 'Rolex Black Dial Professional R21';
-                    } else if (lowerText.includes('rolex') && lowerText.includes('40')) {
-                        cleanName = 'Rolex Oyster Professional 40mm';
-                    } else if (lowerText.includes('rolex') && (lowerText.includes('يخت') || lowerText.includes('yacht'))) {
-                        cleanName = 'Rolex Yacht Master';
-                    } else if (lowerText.includes('rolex')) {
-                        cleanName = 'Rolex Premium Watch';
-                        if (lowerText.includes('اسود')) cleanName += ' Black';
-                        else if (lowerText.includes('ذهبي')) cleanName += ' Gold';
-                        else if (lowerText.includes('فضي')) cleanName += ' Silver';
-                    } else if (lowerText.includes('omega') || lowerText.includes('اوميغا')) {
-                        cleanName = 'Omega Swatch Premium';
-                        if (lowerText.includes('blue') || lowerText.includes('ازرق')) cleanName += ' Blue';
-                    } else if (lowerText.includes('chanel') || lowerText.includes('شانيل')) {
-                        cleanName = 'Chanel Premium Perfume';
-                    } else if (lowerText.includes('gucci') || lowerText.includes('جوتشي')) {
-                        cleanName = 'Gucci Premium Perfume';
-                    } else if (lowerText.includes('dior') || lowerText.includes('ديور')) {
-                        cleanName = 'Dior Sauvage Perfume';
-                    }
-                    
-                    element.textContent = cleanName;
-                    cleanedCount++;
-                    console.log(`🧹 EMERGENCY CLEAN: "${text}" → "${cleanName}"`);
-                }
-            });
+            const readySystems = Object.keys(systems).filter(key => systems[key]);
+            const totalSystems = Object.keys(systems).length;
             
-            return cleanedCount;
+            console.log(`📊 Systems status: ${readySystems.length}/${totalSystems} ready`);
+            console.log(`✅ Ready: ${readySystems.join(', ')}`);
+            
+            if (readySystems.length === totalSystems) {
+                console.log('✅ ALL SYSTEMS READY - English store fully functional!');
+                
+                // Show success message
+                setTimeout(() => {
+                    const banner = document.createElement('div');
+                    banner.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: linear-gradient(135deg, #28a745, #20c997);
+                        color: white;
+                        padding: 15px 25px;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+                        z-index: 9999;
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 600;
+                        font-size: 14px;
+                        animation: slideInRight 0.5s ease;
+                    `;
+                    banner.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <div>English Store Ready!</div>
+                                <div style="font-size: 12px; opacity: 0.9;">Search & translations active</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(banner);
+                    
+                    // Remove banner after 4 seconds
+                    setTimeout(() => {
+                        banner.remove();
+                    }, 4000);
+                }, 2000);
+            }
         }
         
-        // Run emergency cleanup multiple times
-        emergencyCleanup();
-        setTimeout(emergencyCleanup, 500);
-        setTimeout(emergencyCleanup, 1000);
-        setTimeout(emergencyCleanup, 2000);
-        setTimeout(emergencyCleanup, 3000);
-        setTimeout(emergencyCleanup, 5000);
-        
-        // Continuous monitoring
-        setInterval(() => {
-            const cleaned = emergencyCleanup();
-            if (cleaned > 0) {
-                console.log(`🚨 EMERGENCY: Cleaned ${cleaned} Arabic texts`);
+        // Check systems every second for first 10 seconds
+        let checkCount = 0;
+        const systemCheck = setInterval(() => {
+            checkSystemsReady();
+            checkCount++;
+            if (checkCount >= 10) {
+                clearInterval(systemCheck);
             }
-        }, 2000);
+        }, 1000);
         
-        console.log('✅ Emergency Arabic cleanup system running continuously');
+        // Add keyboard shortcut info
+        console.log('🔑 Keyboard shortcuts:');
+        console.log('  Ctrl/Cmd + K = Open Professional Search');
+        console.log('  Escape = Close Search');
+        
     });
     </script>
+    
+    <style>
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    </style>
 </body>
 </html>
