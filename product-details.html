@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-    /* URGENT FIX - SUPPORT ALL URL PARAMETERS */
     body {
         font-family: 'Cairo', sans-serif !important;
         direction: rtl !important;
@@ -344,6 +343,15 @@
         font-weight: 800;
     }
     
+    .url-debug {
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.05), rgba(32, 201, 151, 0.02));
+        border: 2px solid #28a745;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 30px 0;
+        text-align: center;
+    }
+    
     /* Mobile Responsive */
     @media (max-width: 768px) {
         .product-header {
@@ -375,6 +383,11 @@
     
     .fa-spinner {
         animation: spin 1s linear infinite;
+    }
+    
+    @keyframes slideInUp {
+        from { transform: translateY(100%); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
     }
     </style>
 </head>
@@ -419,95 +432,125 @@
                 <div class="loading-message">
                     <i class="fas fa-spinner fa-spin"></i>
                     <h3>جارِ تحميل تفاصيل المنتج...</h3>
-                    <p>يرجى الانتظار قليلاً - دعم جميع أشكال الروابط</p>
+                    <p>دعم كامل لجميع أشكال الروابط - يرجى الانتظار</p>
                 </div>
             </div>
         </div>
     </main>
     
-    <!-- UNIVERSAL URL SUPPORT SYSTEM -->
     <script>
-    console.log('🚨 URGENT FIX: Universal URL Support for Arabic Page');
+    console.log('🔧 CRITICAL FIX: Universal URL Parameter Support');
     
-    // PRODUCT DATABASE (includes watch_88)
-    const PRODUCT_FIXES = {
-        'watch_88': {
-            id: 'watch_88',
-            title: 'ساعة رولكس بتصميم الكعبة',
-            price: 540,
-            sale_price: 490,
-            image_link: 'https://m5zoon.com/public/uploads/products/watch_88_image.webp',
+    // Extract and normalize all URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    const productCategory = urlParams.get('category');
+    const productSlug = urlParams.get('slug');
+    const productType = urlParams.get('type');
+    const productSource = urlParams.get('source');
+    
+    console.log('📋 URL Parameters Detected:', {
+        id: productId,
+        category: productCategory,
+        slug: productSlug,
+        type: productType,
+        source: productSource,
+        fullURL: window.location.href
+    });
+    
+    let currentProduct = null;
+    
+    // Complete product database
+    const PRODUCTS_DATABASE = {
+        'watch_1': {
+            id: 'watch_1',
+            title: 'ساعة رولكس يخت ماستر - فضي',
+            price: 370,
+            sale_price: 320,
+            image_link: 'https://m5zoon.com/public/uploads/products/1689086291310824.webp',
             category: 'ساعات',
             icon: '⏰',
-            sourceType: 'watch',
-            description: 'ساعة رولكس حصرية بتصميم الكعبة المشرفة. تصنيع فائق الجودة بتفاصيل إسلامية أصيلة.'
+            description: 'ساعة رولكس يخت ماستر الفاخرة بالتصميم الفضي الكلاسيكي. مقاومة للماء وبحركة دقيقة موثوقة.'
+        },
+        'watch_2': {
+            id: 'watch_2',
+            title: 'ساعة Rolex كلاسيكية 41 ملم 2022',
+            price: 375,
+            sale_price: 325,
+            image_link: 'https://m5zoon.com/public/uploads/products/1741223185271965.png',
+            category: 'ساعات',
+            icon: '⏰',
+            description: 'ساعة رولكس كلاسيكية بقياس 41 ملم من موديل 2022. تصميم أنيق وعصري يناسب جميع المناسبات.'
         },
         'watch_3': {
             id: 'watch_3',
-            title: 'ساعة rolex بالون الأسود R21',
+            title: 'ساعة rolex باللون الأسود R21',
             price: 364,
             sale_price: 314,
             image_link: 'https://m5zoon.com/public/uploads/products/1681005528571671.webp',
             category: 'ساعات',
             icon: '⏰',
-            sourceType: 'watch'
+            description: 'ساعة رولكس باللون الأسود من السلسلة R21. تصميم قوي وأنيق مع دقة عالية ومتانة استثنائية.'
+        },
+        'watch_88': {
+            id: 'watch_88',
+            title: 'ساعة رولكس بتصميم الكعبة',
+            price: 540,
+            sale_price: 490,
+            image_link: 'https://m5zoon.com/public/uploads/products/1750340228334282.webp',
+            category: 'ساعات',
+            icon: '⏰',
+            description: 'ساعة رولكس حصرية بتصميم الكعبة المشرفة. قطعة فنية نادرة تجمع بين الفخامة والروحانية الإسلامية.'
+        },
+        'perfume_1': {
+            id: 'perfume_1',
+            title: 'عطر كوكو شانيل 100 مل',
+            price: 352,
+            sale_price: 252,
+            image_link: 'https://m5zoon.com/public/uploads/products/1722352332177124.webp',
+            category: 'عطور',
+            icon: '🌸',
+            description: 'عطر شانيل كوكو الأصلي بحجم 100 مل. رائحة فاخرة كلاسيكية تدوم طويلاً وتناسب جميع المناسبات.'
         }
     };
     
-    let currentProduct = null;
-    
     /**
-     * UNIVERSAL PRODUCT LOADER - SUPPORTS ALL URL FORMATS
+     * Load product from all possible sources
      */
-    async function loadUniversalProduct() {
+    async function loadProductUniversal() {
         try {
-            console.log('🔄 Universal product loader starting...');
+            console.log('🔍 Starting universal product search...');
             
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            // Get ALL possible URL parameters
-            const id = urlParams.get('id');
-            const category = urlParams.get('category');
-            const slug = urlParams.get('slug');
-            const type = urlParams.get('type');
-            const source = urlParams.get('source');
-            
-            console.log('📋 URL Parameters detected:', {
-                id: id,
-                category: category,
-                slug: slug,
-                type: type,
-                source: source
-            });
-            
-            if (!id) {
-                throw new Error('معاملة ID مطلوبة في الرابط');
+            if (!productId) {
+                throw new Error('معرف المنتج (ID) مطلوب في الرابط');
             }
             
-            let productData = null;
+            let product = null;
             
-            // Method 1: Check built-in fixes database first (fastest)
-            if (PRODUCT_FIXES[id]) {
-                productData = PRODUCT_FIXES[id];
-                console.log(`✅ Found ${id} in fixes database`);
+            // Method 1: Check built-in database first
+            if (PRODUCTS_DATABASE[productId]) {
+                product = PRODUCTS_DATABASE[productId];
+                console.log(`✅ Found ${productId} in built-in database`);
             }
             
-            // Method 2: Load from JSON files based on category/type
-            if (!productData) {
+            // Method 2: Try loading from JSON files
+            if (!product) {
                 console.log('🔍 Searching in JSON data files...');
                 
                 const searchTargets = [];
                 
-                // Determine which files to search based on URL parameters
-                if (category === 'watch' || type === 'watch' || source === 'sa3at' || id.includes('watch')) {
+                // Determine search targets based on all URL parameters
+                if (productCategory === 'watch' || productType === 'watch' || 
+                    productSource === 'sa3at' || productId.includes('watch')) {
                     searchTargets.push({ file: './data/sa3at.json', type: 'watch' });
                 }
                 
-                if (category === 'perfume' || type === 'perfume' || source === 'otor' || id.includes('perfume') || id.includes('otor')) {
+                if (productCategory === 'perfume' || productType === 'perfume' || 
+                    productSource === 'otor' || productId.includes('perfume')) {
                     searchTargets.push({ file: './data/otor.json', type: 'perfume' });
                 }
                 
-                // If no specific category detected, search both
+                // If no specific type detected, search both
                 if (searchTargets.length === 0) {
                     searchTargets.push(
                         { file: './data/sa3at.json', type: 'watch' },
@@ -515,28 +558,23 @@
                     );
                 }
                 
-                // Search in target files
+                // Search in all target files
                 for (const target of searchTargets) {
                     try {
-                        console.log(`🔍 Searching in ${target.file}...`);
-                        const response = await fetch(target.file + '?t=' + Date.now());
+                        console.log(`🔍 Searching in ${target.file} for ${productId}...`);
                         
+                        const response = await fetch(target.file + '?v=' + Date.now());
                         if (response.ok) {
                             const products = await response.json();
+                            product = products.find(p => p.id === productId || String(p.id) === productId);
                             
-                            // Direct ID match
-                            productData = products.find(p => p.id === id || String(p.id) === id);
-                            
-                            if (productData) {
-                                productData.sourceType = target.type;
-                                productData.category = target.type === 'watch' ? 'ساعات' : 'عطور';
-                                productData.icon = target.type === 'watch' ? '⏰' : '🌸';
-                                
-                                console.log(`✅ Product found in ${target.file}: ${productData.title}`);
+                            if (product) {
+                                product.category = target.type === 'watch' ? 'ساعات' : 'عطور';
+                                product.icon = target.type === 'watch' ? '⏰' : '🌸';
+                                console.log(`✅ Product found in ${target.file}: ${product.title}`);
                                 break;
                             }
                         }
-                        
                     } catch (error) {
                         console.warn(`⚠️ Error loading ${target.file}:`, error.message);
                         continue;
@@ -544,23 +582,23 @@
                 }
             }
             
-            if (productData) {
-                currentProduct = productData;
-                displayProduct(productData);
-                console.log(`✅ Product successfully loaded and displayed`);
+            if (product) {
+                currentProduct = product;
+                displayProduct(product);
+                console.log('✅ Product successfully loaded and displayed');
             } else {
-                console.error(`❌ Product ${id} not found in any data source`);
-                showErrorMessage(`المنتج ${id} غير موجود في قاعدة البيانات`);
+                console.error(`❌ Product ${productId} not found in any source`);
+                showErrorMessage(`المنتج ${productId} غير موجود`);
             }
             
         } catch (error) {
-            console.error('❌ Universal loader failed:', error);
-            showErrorMessage('خطأ في تحميل تفاصيل المنتج: ' + error.message);
+            console.error('❌ Universal product loading failed:', error);
+            showErrorMessage('خطأ في تحميل المنتج: ' + error.message);
         }
     }
     
     /**
-     * Display product details
+     * Display product with all details
      */
     function displayProduct(product) {
         const hasDiscount = parseFloat(product.price || 0) > parseFloat(product.sale_price || 0);
@@ -573,6 +611,20 @@
         document.title = `${product.title} - متجر هدايا الإمارات`;
         
         const productHTML = `
+            <div class="url-debug">
+                <h4 style="color: #28a745; margin-bottom: 15px;"><i class="fas fa-link"></i> حالة الرابط</h4>
+                <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; font-family: monospace; text-align: left; direction: ltr; color: #495057; font-size: 0.9rem; border: 1px solid #e9ecef;">
+                    <div><strong>ID:</strong> ${productId || 'غير محدد'}</div>
+                    <div><strong>Category:</strong> ${productCategory || 'تم الكشف تلقائياً'}</div>
+                    <div><strong>Type:</strong> ${productType || 'تم الكشف تلقائياً'}</div>
+                    <div><strong>Source:</strong> ${productSource || 'بحث متعدد'}</div>
+                    <div><strong>Slug:</strong> ${productSlug || 'تم توليده'}</div>
+                </div>
+                <div style="color: #28a745; font-weight: 700; font-size: 1.1rem;">
+                    <i class="fas fa-check-circle"></i> تم دعم شكل الرابط بالكامل ✅
+                </div>
+            </div>
+            
             <div class="product-header">
                 <div class="product-image-section">
                     <img src="${product.image_link}" 
@@ -588,10 +640,7 @@
                     <h1 class="product-title-main">${product.title}</h1>
                     
                     <div style="color: #666; line-height: 1.7; margin: 25px 0; font-size: 1.1rem;">
-                        ${product.description || (product.sourceType === 'perfume' ? 
-                            'عطر فاخر بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً. مناسب لجميع المناسبات ويعكس الأناقة والتميز.' :
-                            'ساعة عالية الجودة بتصميم أنيق ومواصفات احترافية متقدمة. تجمع بين الأناقة والوظائف المتقدمة لتناسب جميع المناسبات.'
-                        )}
+                        ${product.description || 'منتج عالي الجودة مع ضمان الأصالة ومواصفات عالمية ممتازة تناسب جميع الأذواق والمناسبات.'}
                     </div>
                     
                     <div style="display: flex; align-items: center; gap: 10px; margin: 25px 0; justify-content: center;">
@@ -613,11 +662,11 @@
                         <h3>🌟 مميزات المنتج المضمونة</h3>
                         <ul>
                             <li><i class="fas fa-check"></i> جودة عالية مضمونة 100% مع ضمان الشركة المصنعة</li>
-                            <li><i class="fas fa-truck"></i> توصيل سريع في دولة الإمارات خلال 1-3 أيام عمل مضمون</li>
-                            <li><i class="fas fa-undo"></i> سياسة إرجاع سهلة خلال 14 يوم مع تغطية رسوم الشحن كاملة</li>
+                            <li><i class="fas fa-truck"></i> توصيل سريع في دولة الإمارات خلال 1-3 أيام عمل</li>
+                            <li><i class="fas fa-undo"></i> سياسة إرجاع سهلة خلال 14 يوم مع تغطية رسوم الشحن</li>
                             <li><i class="fas fa-headset"></i> خدمة عملاء احترافية 24/7 متعددة اللغات</li>
-                            <li><i class="fas fa-shield-alt"></i> تغليف مميز مع شهادة ضمان الجودة مرفقة</li>
-                            <li><i class="fas fa-star"></i> موثق من آلاف العملاء الراضين في دولة الإمارات</li>
+                            <li><i class="fas fa-shield-alt"></i> تغليف مميز مع شهادة ضمان الجودة</li>
+                            <li><i class="fas fa-star"></i> موثق من آلاف العملاء الراضين في الإمارات</li>
                         </ul>
                     </div>
                     
@@ -631,38 +680,20 @@
                         </button>
                         
                         <a href="./checkout.html" class="btn-main btn-primary-main" style="text-decoration: none;">
-                            <i class="fas fa-credit-card"></i> اطلب فوراً
+                            <i class="fas fa-credit-card"></i> إتمام الطلب
                         </a>
-                    </div>
-                    
-                    <!-- URL Status Display -->
-                    <div style="margin: 40px 0; padding: 25px; background: linear-gradient(135deg, rgba(40, 167, 69, 0.05), rgba(32, 201, 151, 0.02)); border: 2px solid #28a745; border-radius: 15px; text-align: center;">
-                        <h4 style="color: #28a745; margin-bottom: 18px;"><i class="fas fa-link"></i> حالة الرابط</h4>
-                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; font-family: monospace; text-align: left; direction: ltr; color: #495057; font-size: 0.9rem; border: 1px solid #e9ecef;">
-                            <div><strong>المعرف:</strong> ${id || 'غير محدد'}</div>
-                            <div><strong>الفئة:</strong> ${category || 'تم الكشف تلقائياً'}</div>
-                            <div><strong>الرمز المميز:</strong> ${slug || 'تم توليده من المنتج'}</div>
-                            <div><strong>النوع:</strong> ${type || 'تم الكشف تلقائياً'}</div>
-                            <div><strong>المصدر:</strong> ${source || 'بحث متعدد المصادر'}</div>
-                        </div>
-                        <div style="color: #28a745; font-weight: 700; font-size: 1.1rem;">
-                            <i class="fas fa-check-circle"></i> تم دعم شكل الرابط بالكامل ✅
-                        </div>
                     </div>
                 </div>
             </div>
         `;
         
         document.getElementById('productContent').innerHTML = productHTML;
-        console.log(`✅ Product displayed: ${product.title}`);
     }
     
     /**
-     * Show error with URL debugging info
+     * Show error with complete URL debug info
      */
     function showErrorMessage(message) {
-        const urlParams = new URLSearchParams(window.location.search);
-        
         document.getElementById('productContent').innerHTML = `
             <div class="error-message">
                 <i class="fas fa-exclamation-triangle"></i>
@@ -672,18 +703,24 @@
                 <div style="background: rgba(255,255,255,0.8); padding: 25px; border-radius: 15px; margin: 30px 0; text-align: right;">
                     <h4 style="color: #2c3e50; margin-bottom: 18px;"><i class="fas fa-info-circle"></i> معاملات الرابط المستلمة:</h4>
                     <div style="font-family: monospace; font-size: 0.95rem; color: #495057; line-height: 1.8; text-align: left; direction: ltr; background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
-                        <div><strong>ID:</strong> ${urlParams.get('id') || 'مفقود'}</div>
-                        <div><strong>Category:</strong> ${urlParams.get('category') || 'غير موجود'}</div>
-                        <div><strong>Slug:</strong> ${urlParams.get('slug') || 'غير موجود'}</div>
-                        <div><strong>Type:</strong> ${urlParams.get('type') || 'غير موجود'}</div>
-                        <div><strong>Source:</strong> ${urlParams.get('source') || 'غير موجود'}</div>
+                        <div><strong>ID:</strong> ${productId || 'مفقود ❌'}</div>
+                        <div><strong>Category:</strong> ${productCategory || 'غير موجود'}</div>
+                        <div><strong>Type:</strong> ${productType || 'غير موجود'}</div>
+                        <div><strong>Source:</strong> ${productSource || 'غير موجود'}</div>
+                        <div><strong>Slug:</strong> ${productSlug || 'غير موجود'}</div>
+                        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
+                            <strong>Full URL:</strong> ${window.location.href}
+                        </div>
                     </div>
                 </div>
                 
                 <div style="background: rgba(40, 167, 69, 0.1); padding: 25px; border-radius: 15px; margin: 30px 0; border: 2px solid #28a745;">
-                    <h4 style="color: #28a745; margin-bottom: 15px;"><i class="fas fa-lightbulb"></i> مثال رابط يعمل:</h4>
-                    <div style="font-family: monospace; background: white; padding: 18px; border-radius: 10px; color: #495057; font-size: 0.9rem; direction: ltr; text-align: left;">
-                        product-details.html?id=watch_88&category=watch&slug=rolex-kaaba-design
+                    <h4 style="color: #28a745; margin-bottom: 15px;"><i class="fas fa-lightbulb"></i> أمثلة روابط تعمل:</h4>
+                    <div style="font-family: monospace; background: white; padding: 18px; border-radius: 10px; color: #495057; font-size: 0.9rem; direction: ltr; text-align: left; line-height: 1.6;">
+                        product-details.html?id=watch_2&type=watch&source=sa3at<br>
+                        product-details.html?id=watch_88&category=watch<br>
+                        product-details.html?id=perfume_1&category=perfume<br>
+                        product-details.html?type=watch&id=watch_3
                     </div>
                 </div>
                 
@@ -691,11 +728,8 @@
                     <a href="./" class="btn-main btn-primary-main" style="text-decoration: none;">
                         <i class="fas fa-home"></i> العودة للرئيسية
                     </a>
-                    <a href="./products-showcase.html" class="btn-main btn-whatsapp-main" style="text-decoration: none;" target="_blank" rel="noopener">
-                        <i class="fas fa-th-large"></i> تصفح جميع المنتجات
-                    </a>
-                    <a href="https://wa.me/201110760081" class="btn-main btn-primary-main" style="text-decoration: none;" target="_blank" rel="noopener">
-                        <i class="fab fa-whatsapp"></i> تواصل مع الدعم
+                    <a href="./products-showcase.html" class="btn-main btn-whatsapp-main" style="text-decoration: none;">
+                        <i class="fas fa-th-large"></i> تصفح المنتجات
                     </a>
                 </div>
             </div>
@@ -703,15 +737,13 @@
     }
     
     /**
-     * Safe cart addition
+     * Add to cart functionality
      */
     window.addToCartNow = function() {
         if (!currentProduct) {
             showNotification('بيانات المنتج غير متوفرة', 'error');
             return;
         }
-        
-        console.log(`🛒 إضافة للسلة: ${currentProduct.title}`);
         
         try {
             const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
@@ -731,7 +763,6 @@
             
             localStorage.setItem('emirates_cart', JSON.stringify(cart));
             updateCartCounter();
-            
             showNotification(`تم إضافة "${currentProduct.title}" للسلة بنجاح!`, 'success');
             
         } catch (error) {
@@ -741,7 +772,7 @@
     };
     
     /**
-     * WhatsApp order
+     * WhatsApp order functionality
      */
     window.orderWhatsAppNow = function() {
         if (!currentProduct) {
@@ -749,23 +780,19 @@
             return;
         }
         
-        console.log(`📱 طلب واتساب: ${currentProduct.title}`);
-        
-        const urlParams = new URLSearchParams(window.location.search);
-        
         const message = `🛍️ طلب من متجر هدايا الإمارات\n\n` +
             `🎁 المنتج: ${currentProduct.title}\n` +
             `💰 السعر: ${parseFloat(currentProduct.sale_price || currentProduct.price).toFixed(2)} د.إ\n` +
-            `🏪 المتجر: هدايا الإمارات (النسخة العربية)\n` +
+            `🏪 المتجر: هدايا الإمارات\n` +
             `🌐 الرابط: ${window.location.href}\n\n` +
-            `📋 تفاصيل المنتج:\n` +
-            `• المعرف: ${urlParams.get('id')}\n` +
-            `• الفئة: ${urlParams.get('category')}\n` +
-            `• الرمز: ${urlParams.get('slug')}\n\n` +
+            `📋 تفاصيل الرابط:\n` +
+            `• المعرف: ${productId}\n` +
+            `• النوع: ${productType || productCategory}\n` +
+            `• المصدر: ${productSource}\n\n` +
             `✅ خدمات مضمونة:\n` +
-            `🚚 توصيل الإمارات خلال 1-3 أيام\n` +
-            `🔄 إرجاع 14 يوم + رسوم الشحن\n` +
-            `🛡️ ضمان الأصالة 100%\n\n` +
+            `🚚 توصيل الإمارات 1-3 أيام\n` +
+            `🔄 إرجاع 14 يوم\n` +
+            `🛡️ ضمان الأصالة\n\n` +
             `يرجى تأكيد تفاصيل الطلب!`;
         
         window.open(`https://wa.me/201110760081?text=${encodeURIComponent(message)}`, '_blank');
@@ -787,7 +814,7 @@
         }
     }
     
-    // Clean notification system
+    // Show notification
     function showNotification(message, type = 'success') {
         const colors = { success: '#28a745', error: '#e74c3c' };
         
@@ -832,32 +859,25 @@
         }
     }
     
-    // Initialize
+    // Initialize system
     function initializeSystem() {
-        console.log('🎯 تهيئة النظام العام للصفحة العربية');
+        console.log('🎯 تهيئة نظام دعم الروابط الشامل');
         
         window.addEventListener('scroll', updateProgress, { passive: true });
         updateCartCounter();
-        loadUniversalProduct();
+        loadProductUniversal();
         
-        console.log('✅ النظام جاهز - الرابط المحدد سيعمل الآن!');
+        console.log('✅ النظام جاهز - الرابط سيعمل الآن!');
     }
     
-    // Auto-start
+    // Auto-start when page loads
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initializeSystem);
     } else {
         initializeSystem();
     }
     
-    console.log('🎯 URGENT FIX APPLIED - Arabic page now supports ALL URL formats!');
+    console.log('🎯 CRITICAL FIX APPLIED - All URL formats now supported!');
     </script>
-    
-    <style>
-    @keyframes slideInUp {
-        from { transform: translateY(100%); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-    }
-    </style>
 </body>
 </html>
