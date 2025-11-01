@@ -2,11 +2,11 @@
 <html lang="en-US" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emirates Gifts Store - Premium Perfumes & Watches | 1-3 Business Days Delivery</title>
     <meta name="description" content="Emirates Gifts Store - Discover the best premium perfume and watch deals in UAE. Fast delivery within 1-3 business days + 14-day return guarantee + shipping fees covered.">
     <meta name="keywords" content="emirates gifts, premium perfumes UAE, luxury watches Dubai, Arabic perfumes, Western fragrances, fast delivery UAE">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="robots" content="index, follow">
     <meta name="author" content="Emirates Gifts Store">
     
     <link rel="canonical" href="https://emirates-gifts.arabsad.com/en/">
@@ -25,14 +25,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Main Styles -->
     <link rel="stylesheet" href="../css/dkhoon-inspired-style.css?v=20251101">
     <link rel="stylesheet" href="../css/mobile-responsive-fixes.css?v=20251101">
-    <link rel="stylesheet" href="../css/reviews-system.css?v=20251101">
-    
-    <!-- English Version Styles -->
-    <link rel="stylesheet" href="./css/currency-fix-en.css?v=20251101">
-    <link rel="stylesheet" href="./css/clean-english-display.css?v=20251101">
     
     <script type="application/ld+json">
     {
@@ -52,7 +46,7 @@
     </script>
     
     <style>
-    /* NO POPUP ENVIRONMENT + English Display */
+    /* 🚫 ZERO POPUP ENVIRONMENT */
     .popup, .modal, .overlay, .notification, .alert-box, .toast,
     [class*="popup"], [class*="modal"], [class*="overlay"], [class*="notification"] {
         display: none !important;
@@ -61,23 +55,16 @@
         pointer-events: none !important;
     }
     
-    /* Exception: Professional search */
-    .professional-search-container {
-        display: block !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-    }
-    
-    .professional-search-container:not(.active) {
-        display: none !important;
-    }
-    
     body { 
         font-family: 'Inter', sans-serif !important; 
         direction: ltr !important; 
         text-align: left !important;
         overflow-x: hidden !important;
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        color: #2c3e50;
+        line-height: 1.6;
     }
     
     .logo-subtitle { 
@@ -85,8 +72,126 @@
         direction: rtl !important; 
     }
     
+    .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(90deg, #D4AF37, #00A16B, #C8102E);
+        z-index: 9999;
+        transition: width 0.2s ease;
+    }
+    
+    .top-banner {
+        background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B8860B 100%);
+        color: #1B2951;
+        padding: 12px 0;
+        text-align: center;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    
+    .banner-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .header {
+        background: white;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 15px 0;
+    }
+    
+    .header-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: #2c3e50;
+    }
+    
+    .logo-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #FFD700, #D4AF37);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+    }
+    
+    .logo-text {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .logo-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #1B2951;
+        line-height: 1;
+        margin-bottom: 3px;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.8rem;
+        color: #D4AF37;
+        font-weight: 600;
+    }
+    
+    .main-nav {
+        display: flex;
+    }
+    
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 25px;
+        align-items: center;
+    }
+    
+    .nav-link {
+        color: #2c3e50;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 10px 15px;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        font-size: 15px;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+        background: rgba(212, 175, 55, 0.1);
+        color: #D4AF37;
+        transform: translateY(-2px);
+    }
+    
     .arabic-link { 
-        background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%); 
+        background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%) !important; 
         color: white !important;
         border-radius: 25px; 
         padding: 8px 16px; 
@@ -98,19 +203,263 @@
         text-decoration: none;
         font-family: 'Cairo', sans-serif !important; 
         direction: rtl; 
+        box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
     }
     
     .arabic-link:hover { 
-        background: linear-gradient(135deg, #8B0000 0%, #C8102E 100%);
+        background: linear-gradient(135deg, #8B0000 0%, #C8102E 100%) !important;
         transform: translateY(-2px); 
+        box-shadow: 0 4px 15px rgba(200, 16, 46, 0.5);
+        color: white !important;
     }
     
-    /* FORCE English display for product names */
+    .header-tools {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .header-tool {
+        width: 50px;
+        height: 50px;
+        background: #f8f9fa;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2c3e50;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .header-tool:hover {
+        background: linear-gradient(135deg, #FFD700, #D4AF37);
+        color: #1B2951;
+        transform: translateY(-2px);
+    }
+    
+    .order-now-btn {
+        background: linear-gradient(135deg, #25D366, #20B358) !important;
+        color: white !important;
+        padding: 12px 20px !important;
+        border-radius: 25px !important;
+        width: auto !important;
+        height: auto !important;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    
+    .cart-counter {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #e74c3c;
+        color: white;
+        border-radius: 50%;
+        min-width: 20px;
+        height: 20px;
+        font-size: 11px;
+        font-weight: bold;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .mobile-menu-toggle {
+        display: none;
+    }
+    
+    .hero {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #1B2951;
+        margin-bottom: 30px;
+        line-height: 1.2;
+    }
+    
+    .hero-title span {
+        color: #D4AF37;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+        color: #666;
+        margin-bottom: 40px;
+        line-height: 1.8;
+    }
+    
+    .hero-cta {
+        display: flex;
+        gap: 20px;
+        margin-top: 40px;
+        flex-wrap: wrap;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 18px 36px;
+        border-radius: 15px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Inter', sans-serif;
+        cursor: pointer;
+        border: none;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #D4AF37, #B8860B);
+        color: white;
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    }
+    
+    .btn-secondary {
+        background: transparent;
+        color: #1B2951;
+        border: 2px solid #D4AF37;
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hero-visual {
+        position: relative;
+    }
+    
+    .hero-image {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+    }
+    
+    .section {
+        padding: 80px 0;
+    }
+    
+    .section-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    
+    .section-title {
+        font-size: 3rem;
+        font-weight: 900;
+        color: #1B2951;
+        margin-bottom: 20px;
+    }
+    
+    .section-subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 30px;
+    }
+    
+    .view-all-link {
+        color: #D4AF37;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        padding: 10px 20px;
+        border: 2px solid #D4AF37;
+        border-radius: 25px;
+        background: transparent;
+    }
+    
+    .view-all-link:hover {
+        background: #D4AF37;
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+    }
+    
+    .product-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 2px solid rgba(212, 175, 55, 0.1);
+    }
+    
+    .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    }
+    
+    .product-image-container {
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .product-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .product-card:hover .product-image-container img {
+        transform: scale(1.05);
+    }
+    
+    .product-info {
+        padding: 25px;
+        text-align: center;
+    }
+    
     .product-title,
     .product-title a,
     .product-name,
     .product-card h3,
-    h3.product-title {
+    .product-card h4 {
         font-family: 'Inter', sans-serif !important;
         direction: ltr !important;
         text-align: center !important;
@@ -123,14 +472,389 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 1.1rem;
+        margin: 15px 0;
     }
     
     .product-title a:hover {
         color: #D4AF37 !important;
     }
     
-    .products-grid { contain: layout style; }
-    .product-card { contain: layout style; will-change: transform; }
+    .price {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #25D366;
+        margin-top: 15px;
+    }
+    
+    .loading-message {
+        text-align: center;
+        padding: 80px 20px;
+        font-size: 1.2rem;
+        color: #D4AF37;
+        background: #f8f9fa;
+        border-radius: 15px;
+        margin: 20px 0;
+        font-family: 'Inter', sans-serif;
+        grid-column: 1 / -1;
+    }
+    
+    .info-section {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 20px;
+        padding: 60px 40px;
+        margin: 80px 0;
+    }
+    
+    .info-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+    }
+    
+    .info-card {
+        text-align: center;
+        padding: 30px 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .info-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .info-card i {
+        font-size: 3rem;
+        color: #D4AF37;
+        margin-bottom: 20px;
+    }
+    
+    .info-card h3 {
+        color: #1B2951;
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+        font-weight: 700;
+    }
+    
+    .footer {
+        background: #1B2951;
+        color: white;
+        padding: 60px 0 30px;
+    }
+    
+    .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    
+    .footer-section h3 {
+        color: #D4AF37;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        font-weight: 800;
+    }
+    
+    .footer-section ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .footer-section li {
+        margin: 12px 0;
+    }
+    
+    .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-weight: 500;
+    }
+    
+    .footer-section a:hover {
+        color: #D4AF37;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .social-link {
+        width: 45px;
+        height: 45px;
+        background: rgba(212, 175, 55, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #D4AF37;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+        background: #D4AF37;
+        color: #1B2951;
+        transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .legal-links {
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+    
+    .legal-links a {
+        color: #ccc;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    
+    .shipping-return-footer-info {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        color: #ccc;
+        font-size: 0.9rem;
+    }
+    
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #D4AF37, #B8941F);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+    
+    .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .back-to-top:hover {
+        background: linear-gradient(135deg, #B8941F, #D4AF37);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+    }
+    
+    /* Mobile Sidebar */
+    .mobile-sidebar {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 300px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: -2px 0 20px rgba(0,0,0,0.1);
+        z-index: 10000;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+        padding: 20px;
+    }
+    
+    .mobile-sidebar.open {
+        right: 0;
+    }
+    
+    .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .mobile-sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .mobile-sidebar-logo {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #1B2951;
+    }
+    
+    .mobile-sidebar-close {
+        width: 35px;
+        height: 35px;
+        border: none;
+        background: #f8f9fa;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-sidebar-close:hover {
+        background: #D4AF37;
+        color: white;
+    }
+    
+    .mobile-sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .mobile-sidebar-nav a {
+        color: #2c3e50;
+        text-decoration: none;
+        padding: 15px 0;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    
+    .mobile-sidebar-nav a:hover {
+        color: #D4AF37;
+    }
+    
+    .mobile-cart-counter {
+        background: #e74c3c;
+        color: white;
+        border-radius: 50%;
+        min-width: 20px;
+        height: 20px;
+        font-size: 11px;
+        font-weight: bold;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .main-nav {
+            display: none;
+        }
+        
+        .mobile-menu-toggle {
+            display: flex !important;
+        }
+        
+        .hero-content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+        }
+        
+        .hero-cta {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+        }
+        
+        .products-grid {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .shipping-return-footer-info {
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .banner-text {
+            font-size: 0.8rem;
+            gap: 5px;
+        }
+        
+        .arabic-link {
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        
+        .info-cards {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+    }
+    
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .fa-spinner {
+        animation: spin 1s linear infinite;
+    }
     </style>
 </head>
 <body>
@@ -138,50 +862,60 @@
     
     <div class="top-banner">
         <div class="banner-text">
-            <i class="fas fa-shipping-fast banner-icon"></i>
-            <span>Delivery within 1-3 business days • 14-day return guarantee + shipping fees</span>
-            <i class="fas fa-gift banner-icon"></i>
+            <i class="fas fa-shipping-fast"></i>
+            Delivery within 1-3 business days • 14-day return guarantee + shipping fees
+            <i class="fas fa-gift"></i>
         </div>
     </div>
 
-    <header class="header" id="header">
+    <header class="header">
         <div class="header-container">
             <div class="header-content">
-                <a href="./" class="logo" aria-label="Home - Emirates Gifts">
-                    <div class="logo-icon"><img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;" loading="eager"></div>
+                <a href="./" class="logo">
+                    <div class="logo-icon">
+                        <img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;" loading="eager">
+                    </div>
                     <div class="logo-text">
                         <div class="logo-title">Emirates Gifts</div>
                         <div class="logo-subtitle">هدايا الإمارات</div>
                     </div>
                 </a>
 
-                <nav class="main-nav" aria-label="Main Navigation">
+                <nav class="main-nav">
                     <ul class="nav-menu">
-                        <li class="nav-item"><a href="./" class="nav-link active" aria-current="page">Home</a></li>
-                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link" target="_blank" rel="noopener">View All Products</a></li>
-                        <li class="nav-item"><a href="#perfumes-section" class="nav-link">Perfumes</a></li>
-                        <li class="nav-item"><a href="#watches-section" class="nav-link">Watches</a></li>
-                        <li class="nav-item"><a href="./blog/" class="nav-link" target="_blank" rel="noopener">Blog</a></li>
                         <li class="nav-item">
-                            <a href="../" class="nav-link arabic-link" target="_blank" rel="noopener">
+                            <a href="./" class="nav-link active">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./products-showcase.html" class="nav-link" target="_blank">View All Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#perfumes-section" class="nav-link">Perfumes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#watches-section" class="nav-link">Watches</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://wa.me/201110760081" class="nav-link" target="_blank">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../" class="nav-link arabic-link" target="_blank">
                                 <i class="fas fa-globe"></i> العربية
                             </a>
                         </li>
-                        <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link" target="_blank" rel="noopener">Contact</a></li>
                     </ul>
                 </nav>
 
                 <div class="header-tools">
-                    <!-- Professional Search Button added by search system -->
-                    <a href="./cart.html" class="header-tool cart-icon" aria-label="View Cart" title="View Cart">
+                    <a href="./cart.html" class="header-tool">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter">0</span>
                     </a>
-                    <a href="./checkout.html" class="header-tool order-now-btn" aria-label="Order Now" title="Order Now">
+                    <a href="./checkout.html" class="header-tool order-now-btn">
                         <i class="fas fa-credit-card"></i>
                         <span>Order Now</span>
                     </a>
-                    <button class="mobile-menu-toggle" id="openSidebar" aria-label="Open Menu" title="Open Menu">
+                    <button class="mobile-menu-toggle header-tool" id="openSidebar">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
@@ -189,13 +923,13 @@
         </div>
     </header>
 
-    <main id="main-content" tabindex="-1">
+    <main>
         <section class="hero">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">
                         A World of Premium<br>
-                        <span style="color: var(--primary-gold);">Perfumes & Luxury Gifts</span>
+                        <span>Perfumes & Luxury Gifts</span>
                     </h1>
                     <p class="hero-subtitle">
                         Discover the most exquisite collections of premium Eastern and Western perfumes, and distinctive luxury gifts that express your refined taste
@@ -205,10 +939,10 @@
                             <i class="fas fa-shopping-bag"></i>
                             Shop Now
                         </a>
-                        <button onclick="openProfessionalSearch()" class="btn-secondary">
-                            <i class="fas fa-search"></i>
-                            Search Products
-                        </button>
+                        <a href="./products-showcase.html" class="btn-secondary" target="_blank">
+                            <i class="fas fa-star"></i>
+                            View All Products
+                        </a>
                         <a href="./checkout.html" class="btn-secondary order-now-btn">
                             <i class="fas fa-credit-card"></i>
                             Complete Order
@@ -219,21 +953,20 @@
                     <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop" 
                          alt="Premium perfumes collection" 
                          class="hero-image"
-                         loading="eager"
-                         fetchpriority="high">
+                         loading="eager">
                 </div>
             </div>
         </section>
 
         <section class="section">
             <div class="section-container">
-                <div id="perfumes-section" tabindex="-1">
+                <div id="perfumes-section">
                     <div class="section-header">
                         <h2 class="section-title">Emirates Gifts Premium Perfumes</h2>
                         <p class="section-subtitle">
-                            Curated collection of premium Eastern and Western perfumes with verified customer reviews ⭐
+                            Curated collection of premium Eastern and Western perfumes with verified quality
                         </p>
-                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                        <a href="./products-showcase.html" class="view-all-link" target="_blank">
                             <i class="fas fa-arrow-right"></i>
                             View All Perfumes
                         </a>
@@ -247,38 +980,13 @@
 
         <section class="section">
             <div class="section-container">
-                <div class="collection-section">
-                    <div class="collection-grid">
-                        <div class="collection-content">
-                            <h2 class="collection-title">Premium Eastern Perfume Collection</h2>
-                            <p class="collection-description">
-                                Embark on an unforgettable fragrance journey with our exclusive collection of premium Eastern perfumes that carry the most beautiful stories of luxury
-                            </p>
-                            <a href="#perfumes-section" class="btn-primary">
-                                <i class="fas fa-crown"></i>
-                                Discover Collection
-                            </a>
-                        </div>
-                        <div>
-                            <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&h=600&fit=crop" 
-                                 alt="Premium Eastern perfume collection" 
-                                 class="collection-image"
-                                 loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-container">
-                <div id="watches-section" tabindex="-1">
+                <div id="watches-section">
                     <div class="section-header">
                         <h2 class="section-title">Emirates Gifts Premium Watches</h2>
                         <p class="section-subtitle">
-                            Exclusive collection of finest premium watches combining elegance with precision 🎆
+                            Exclusive collection of finest premium watches combining elegance with precision
                         </p>
-                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
+                        <a href="./products-showcase.html" class="view-all-link" target="_blank">
                             <i class="fas fa-arrow-right"></i>
                             View All Watches
                         </a>
@@ -286,44 +994,6 @@
                     <div class="products-grid" id="watches-grid">
                         <div class="loading-message">⏳ Loading premium watches with English display names...</div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-container">
-                <div class="section-header">
-                    <h2 class="section-title">Featured Premium Products 🌟</h2>
-                    <p class="section-subtitle">Handpicked selection of our finest premium products with verified reviews</p>
-                    <div class="cta-group">
-                        <button onclick="openProfessionalSearch()" class="view-all-link">
-                            <i class="fas fa-search"></i>
-                            Search Products
-                        </button>
-                        <a href="./products-showcase.html" class="view-all-link" target="_blank" rel="noopener">
-                            <i class="fas fa-th-large"></i>
-                            View All
-                        </a>
-                        <a href="./checkout.html" class="view-all-link order-now-btn">
-                            <i class="fas fa-credit-card"></i>
-                            Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="products-grid" id="featuredProducts">
-                    <div class="loading-message">⏳ Loading featured premium products...</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-container">
-                <div class="section-header">
-                    <h2 class="section-title">🔥 Best Premium Deals</h2>
-                    <p class="section-subtitle">Don't miss exclusive offers with amazing discounts on premium products</p>
-                </div>
-                <div class="products-grid" id="bestDeals">
-                    <div class="loading-message">⏳ Loading premium deals...</div>
                 </div>
             </div>
         </section>
@@ -365,10 +1035,9 @@
                     <h3>Emirates Gifts</h3>
                     <p>Leading premium perfumes and luxury gifts store in the United Arab Emirates. We bring you the finest premium collections.</p>
                     <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
 
@@ -376,33 +1045,56 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="./">Home</a></li>
-                        <li><a href="./products-showcase.html" target="_blank" rel="noopener">All Products</a></li>
-                        <li><a href="./blog/" target="_blank" rel="noopener">Blog</a></li>
+                        <li><a href="./products-showcase.html" target="_blank">All Products</a></li>
                         <li><a href="./cart.html">Cart</a></li>
-                        <li><a href="./about.html">About Us</a></li>
-                        <li><a href="../" target="_blank" rel="noopener" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe"></i> العربية</a></li>
                         <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">Complete Order</a></li>
+                        <li>
+                            <a href="../" target="_blank" style="color: #D4AF37; font-weight: bold;">
+                                <i class="fas fa-globe"></i> العربية
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h3>Policies & Terms</h3>
+                    <h3>Customer Service</h3>
                     <ul>
-                        <li><a href="./shipping-policy.html"><i class="fas fa-shipping-fast"></i> Shipping Policy (1-3 days)</a></li>
-                        <li><a href="./return-policy.html"><i class="fas fa-undo"></i> Return Policy (14 days + fees)</a></li>
-                        <li><a href="./privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
-                        <li><a href="./terms-conditions.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
-                        <li><a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fas fa-headset"></i> Support</a></li>
+                        <li>
+                            <i class="fas fa-shipping-fast"></i> Shipping within 1-3 business days
+                        </li>
+                        <li>
+                            <i class="fas fa-undo"></i> Returns within 14 days + shipping fees
+                        </li>
+                        <li>
+                            <i class="fas fa-headset"></i> Customer service 24/7
+                        </li>
+                        <li>
+                            <a href="https://wa.me/201110760081" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <ul>
-                        <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
-                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i><span>Dubai, United Arab Emirates</span></li>
-                        <li><i class="fas fa-clock"></i><span>Customer Service: 24/7</span></li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+201110760081">+20 111 076 0081</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Dubai, United Arab Emirates</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Customer Service: 24/7</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -411,23 +1103,27 @@
                 <div class="footer-legal">
                     <p>&copy; 2024 Emirates Gifts. All rights reserved.</p>
                     <div class="legal-links">
-                        <a href="./privacy-policy.html">Privacy</a>
-                        <a href="./terms-conditions.html">Terms</a>
-                        <a href="./shipping-policy.html">Shipping</a>
-                        <a href="./return-policy.html">Returns</a>
-                        <a href="../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> العربية</a>
+                        <a href="../" target="_blank">
+                            <i class="fas fa-globe"></i> العربية
+                        </a>
                     </div>
                 </div>
                 <div class="shipping-return-footer-info">
-                    <span><i class="fas fa-truck"></i> Shipping within 1-3 business days</span>
-                    <span><i class="fas fa-undo"></i> Returns within 14 days + shipping fees</span>
-                    <span><i class="fas fa-star"></i> Premium quality guaranteed</span>
+                    <span>
+                        <i class="fas fa-truck"></i> Shipping within 1-3 business days
+                    </span>
+                    <span>
+                        <i class="fas fa-undo"></i> Returns within 14 days + shipping fees
+                    </span>
+                    <span>
+                        <i class="fas fa-star"></i> Premium quality guaranteed
+                    </span>
                 </div>
             </div>
         </div>
     </footer>
 
-    <button class="back-to-top" id="backToTop" aria-label="Back to Top">
+    <button class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -435,144 +1131,292 @@
     <div class="mobile-sidebar" id="mobileSidebar">
         <div class="mobile-sidebar-header">
             <div class="mobile-sidebar-logo">Emirates Gifts</div>
-            <button class="mobile-sidebar-close" id="closeSidebar" aria-label="Close Menu">
+            <button class="mobile-sidebar-close" id="closeSidebar">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         <nav class="mobile-sidebar-nav">
-            <a href="./" class="active"><i class="fas fa-home"></i> Home</a>
-            <a href="./products-showcase.html" target="_blank" rel="noopener"><i class="fas fa-th-large"></i> All Products</a>
-            <a href="#perfumes-section"><i class="fas fa-spray-can"></i> Perfumes</a>
-            <a href="#watches-section"><i class="fas fa-clock"></i> Watches</a>
-            <a href="./blog/" target="_blank" rel="noopener"><i class="fas fa-blog"></i> Blog</a>
-            <a href="./about.html"><i class="fas fa-info-circle"></i> About Us</a>
-            <a href="./shipping-policy.html"><i class="fas fa-shipping-fast"></i> Shipping Policy</a>
-            <a href="./return-policy.html"><i class="fas fa-undo"></i> Return Policy</a>
-            <a href="./privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
-            <a href="./terms-conditions.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
-            <a href="./cart.html"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-counter mobile-cart-counter">0</span></a>
-            <a href="../" target="_blank" rel="noopener" class="arabic-link"><i class="fas fa-globe"></i> العربية</a>
-            <a href="./checkout.html" class="order-now-btn"><i class="fas fa-credit-card"></i> Order Now</a>
-            <a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="./" class="active">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="./products-showcase.html" target="_blank">
+                <i class="fas fa-th-large"></i> All Products
+            </a>
+            <a href="#perfumes-section">
+                <i class="fas fa-spray-can"></i> Perfumes
+            </a>
+            <a href="#watches-section">
+                <i class="fas fa-clock"></i> Watches
+            </a>
+            <a href="./cart.html">
+                <i class="fas fa-shopping-cart"></i> Cart 
+                <span class="mobile-cart-counter">0</span>
+            </a>
+            <a href="../" target="_blank" class="arabic-link">
+                <i class="fas fa-globe"></i> العربية
+            </a>
+            <a href="./checkout.html" class="order-now-btn">
+                <i class="fas fa-credit-card"></i> Order Now
+            </a>
+            <a href="https://wa.me/201110760081" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
         </nav>
     </div>
 
-    <!-- NO POPUP SCRIPTS - Load popup blocker FIRST -->
-    <script>console.log('🚫 NO POPUP ENVIRONMENT - Popup blocker active');</script>
-    
-    <!-- POPUP BLOCKER - Must load first -->
-    <script src="./js/global-popup-blocker.js?v=20251101-NO-POPUPS"></script>
-    
-    <!-- Core Systems (popup-safe) -->
-    <script src="../js/dom-optimization.js?v=20251101" defer></script>
-    <script src="./js/ui-en.js?v=20251101" defer></script>
-    <script src="./js/cart-en.js?v=20251101" defer></script>
-    <script src="./js/reviews-system-en.js?v=20251101" defer></script>
-    
-    <!-- Display-Only Translation (URL preserved) -->
-    <script src="./js/display-only-translator.js?v=20251101-DISPLAY" defer></script>
-    
-    <!-- Professional Search System (no popup conflicts) -->
-    <script src="./js/professional-search-system.js?v=20251101-PRO" defer></script>
-    
-    <!-- Products Loader - URL Safe -->
-    <script src="./js/products-loader-en-fixed.js?v=20251101-URL-SAFE" defer></script>
-    
-    <script src="./js/main-en.js?v=20251101" defer></script>
-    
+    <!-- ZERO POPUP SCRIPTS -->
     <script>
-    // NO POPUP INTEGRATION SYSTEM
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('🚫 NO POPUP INTEGRATION: Professional Search + Display Translation + Popup Prevention');
-        
-        // Global functions (popup-safe)
-        window.openProfessionalSearch = function() {
-            if (window.ProfessionalSearch) {
-                window.ProfessionalSearch.openSearch();
-            } else {
-                console.log('🔍 Search not ready, opening products page');
-                window.open('./products-showcase.html', '_blank', 'rel=noopener');
+    // 🚫 GLOBAL POPUP BLOCKER - Prevents ALL popups
+    console.log('🚫 ZERO POPUP ENVIRONMENT ACTIVE');
+    
+    // Block all popup functions
+    window.alert = function() { console.log('🚫 Alert blocked'); };
+    window.confirm = function() { console.log('🚫 Confirm blocked'); return true; };
+    window.prompt = function() { console.log('🚫 Prompt blocked'); return null; };
+    
+    // Global products data
+    let currentPerfumes = [];
+    let currentWatches = [];
+    
+    // CLEAN PRODUCT LOADING SYSTEM (NO POPUPS)
+    async function loadProducts() {
+        try {
+            console.log('📦 Loading products...');
+            
+            const [perfumesResponse, watchesResponse] = await Promise.allSettled([
+                fetch('../data/otor.json?t=' + Date.now()),
+                fetch('../data/sa3at.json?t=' + Date.now())
+            ]);
+            
+            if (perfumesResponse.status === 'fulfilled' && perfumesResponse.value.ok) {
+                currentPerfumes = await perfumesResponse.value.json();
+                displayProducts(currentPerfumes.slice(0, 8), 'perfumes-grid', 'perfume');
+                console.log(`✅ Loaded ${currentPerfumes.length} perfumes`);
             }
+            
+            if (watchesResponse.status === 'fulfilled' && watchesResponse.value.ok) {
+                currentWatches = await watchesResponse.value.json();
+                displayProducts(currentWatches.slice(0, 8), 'watches-grid', 'watch');
+                console.log(`✅ Loaded ${currentWatches.length} watches`);
+            }
+            
+        } catch (error) {
+            console.error('❌ Product loading error:', error);
+        }
+    }
+    
+    // ENGLISH PRODUCT NAME CONVERTER
+    function getEnglishProductName(arabicTitle, productId) {
+        const specificTranslations = {
+            'watch_88': 'Rolex Kaaba Design Premium Watch',
+            'watch_3': 'Rolex Black Dial Professional R21',
+            'watch_1': 'Rolex Yacht Master Silver Edition',
+            'watch_8': 'Omega Swatch Baby Blue Limited Edition',
+            'perfume_1': 'Chanel Coco Premium Perfume 100ml',
+            'perfume_10': 'Dior Sauvage Premium Fragrance',
+            'perfume_15': 'Tom Ford Black Orchid Luxury'
         };
         
-        // Ensure no popup scripts load
-        function preventPopupScripts() {
-            const scripts = document.querySelectorAll('script[src*="popup"], script[src*="modal"], script[src*="alert"]');
-            scripts.forEach(script => {
-                console.log('🚫 Removing popup script:', script.src);
-                script.remove();
-            });
+        if (specificTranslations[productId]) {
+            return specificTranslations[productId];
         }
         
-        // Run popup prevention
-        preventPopupScripts();
-        setInterval(preventPopupScripts, 5000); // Check every 5 seconds
+        if (!arabicTitle) return 'Premium Product';
         
-        // System status check
-        setTimeout(() => {
-            const systems = {
-                'Popup Blocker': window.PopupBlocker,
-                'Display Translator': window.DisplayTranslator,
-                'Professional Search': window.ProfessionalSearch
-            };
+        const title = arabicTitle.toLowerCase();
+        let parts = [];
+        
+        // Brand detection and translation
+        if (title.includes('rolex') || title.includes('رولكس')) {
+            parts.push('Rolex');
+            if (title.includes('yacht') || title.includes('يخت')) parts.push('Yacht Master');
+            else if (title.includes('كعبة')) parts.push('Kaaba Design');
+            else if (title.includes('gmt')) parts.push('GMT Master');
+            else if (title.includes('submariner')) parts.push('Submariner');
+        } else if (title.includes('omega') || title.includes('اوميغا')) {
+            parts.push('Omega');
+            if (title.includes('swatch')) parts.push('Swatch');
+            if (title.includes('seamaster')) parts.push('Seamaster');
+        } else if (title.includes('chanel') || title.includes('شانيل')) {
+            parts.push('Chanel');
+            if (title.includes('coco')) parts.push('Coco');
+            if (title.includes('no 5') || title.includes('no5')) parts.push('No. 5');
+        } else if (title.includes('dior') || title.includes('ديور')) {
+            parts.push('Dior');
+            if (title.includes('sauvage')) parts.push('Sauvage');
+        }
+        
+        // Color detection
+        if (title.includes('black') || title.includes('اسود')) parts.push('Black');
+        else if (title.includes('gold') || title.includes('ذهبي')) parts.push('Gold');
+        else if (title.includes('silver') || title.includes('فضي')) parts.push('Silver');
+        else if (title.includes('blue') || title.includes('ازرق')) parts.push('Blue');
+        
+        // Add premium suffix
+        if (parts.length > 0) {
+            if (productId && productId.includes('watch')) {
+                parts.push('Premium Watch');
+            } else if (productId && productId.includes('perfume')) {
+                parts.push('Premium Perfume');
+            } else {
+                parts.push('Premium Edition');
+            }
+        }
+        
+        return parts.length > 0 ? parts.join(' ') : 'Premium Luxury Product';
+    }
+    
+    // DISPLAY PRODUCTS (NO POPUPS)
+    function displayProducts(products, gridId, type) {
+        const grid = document.getElementById(gridId);
+        if (!grid || !products.length) return;
+        
+        const productsHTML = products.map(product => {
+            const hasDiscount = parseFloat(product.price || 0) > parseFloat(product.sale_price || 0);
+            const finalPrice = parseFloat(product.sale_price || product.price || 0);
+            const englishName = getEnglishProductName(product.title, product.id);
             
-            console.log('📊 NO POPUP SYSTEM STATUS:');
-            Object.keys(systems).forEach(name => {
-                console.log(`  ${systems[name] ? '✅' : '❌'} ${name}: ${systems[name] ? 'ACTIVE' : 'NOT LOADED'}`);
+            return `
+                <div class="product-card" onclick="navigateToProduct('${product.id}', '${type}', '${englishName}')">
+                    <div class="product-image-container">
+                        <img src="${product.image_link}" 
+                             alt="${englishName}" 
+                             loading="lazy"
+                             onerror="this.src='https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=Premium+Product'">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-title">${englishName}</h4>
+                        <div class="price">AED ${finalPrice.toFixed(2)}</div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        grid.innerHTML = productsHTML;
+    }
+    
+    // CLEAN PRODUCT NAVIGATION (NO POPUPS)
+    function navigateToProduct(productId, type, englishName) {
+        console.log(`🔗 Navigating to product: ${productId}`);
+        
+        // Generate slug from English name
+        const slug = englishName
+            .toLowerCase()
+            .replace(/[^a-z0-9\s]/g, '')
+            .replace(/\s+/g, '-')
+            .substring(0, 50);
+        
+        const url = `./product-details.html?id=${productId}&category=${type}&slug=${slug}`;
+        window.location.href = url;
+    }
+    
+    // CLEAN CART SYSTEM (NO POPUPS)
+    function updateCartCounter() {
+        const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const counters = document.querySelectorAll('.cart-counter, .mobile-cart-counter');
+        
+        counters.forEach(counter => {
+            counter.textContent = totalItems;
+            counter.style.display = totalItems > 0 ? 'flex' : 'none';
+        });
+    }
+    
+    // PROGRESS BAR
+    function updateProgress() {
+        const scrolled = window.pageYOffset;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrolled / maxScroll) * 100;
+        const bar = document.getElementById('progressBar');
+        if (bar && maxScroll > 0) {
+            bar.style.width = Math.max(0, Math.min(100, progress)) + '%';
+        }
+    }
+    
+    // BACK TO TOP BUTTON
+    function updateBackToTop() {
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        }
+    }
+    
+    // MOBILE SIDEBAR
+    function initializeMobileSidebar() {
+        const openBtn = document.getElementById('openSidebar');
+        const closeBtn = document.getElementById('closeSidebar');
+        const sidebar = document.getElementById('mobileSidebar');
+        const overlay = document.getElementById('mobileOverlay');
+        
+        if (openBtn && sidebar && overlay) {
+            openBtn.addEventListener('click', () => {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
             });
             
-            if (window.PopupBlocker) {
-                console.log(`🚫 Popups blocked so far: ${window.PopupBlocker.blockedCount}`);
-            }
+            const closeSidebar = () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            };
             
-            const readyCount = Object.values(systems).filter(Boolean).length;
-            if (readyCount === Object.keys(systems).length) {
-                console.log('🎆 NO POPUP ENVIRONMENT FULLY OPERATIONAL!');
-            }
-        }, 3000);
+            if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+            overlay.addEventListener('click', closeSidebar);
+        }
+    }
+    
+    // SMOOTH SCROLLING FOR ANCHOR LINKS
+    function initializeSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    }
+    
+    // BACK TO TOP FUNCTIONALITY
+    function initializeBackToTop() {
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    }
+    
+    // INITIALIZE EVERYTHING
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🚫 Zero Popup English Homepage Loading...');
         
-        // Show success indicator
-        setTimeout(() => {
-            const indicator = document.createElement('div');
-            indicator.style.cssText = `
-                position: fixed;
-                top: 20px;
-                left: 20px;
-                background: linear-gradient(135deg, #28a745, #20c997);
-                color: white;
-                padding: 12px 20px;
-                border-radius: 25px;
-                font-family: 'Inter', sans-serif;
-                font-size: 13px;
-                font-weight: 600;
-                z-index: 9998;
-                box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
-                animation: slideInLeft 0.5s ease;
-            `;
-            indicator.innerHTML = `🚫 Popup-Free Store • 🔍 Search Active • 🎭 English Display`;
-            
-            document.body.appendChild(indicator);
-            
-            setTimeout(() => {
-                indicator.style.animation = 'slideOutLeft 0.5s ease';
-                setTimeout(() => indicator.remove(), 500);
-            }, 5000);
-        }, 2000);
+        updateCartCounter();
+        loadProducts();
+        initializeMobileSidebar();
+        initializeSmoothScrolling();
+        initializeBackToTop();
         
-        console.log('✅ No popup environment fully initialized');
+        window.addEventListener('scroll', () => {
+            updateProgress();
+            updateBackToTop();
+        }, { passive: true });
+        
+        // Global navigate function
+        window.navigateToProduct = navigateToProduct;
+        
+        console.log('✅ Zero Popup English Homepage Ready');
     });
     </script>
-    
-    <style>
-    @keyframes slideInLeft {
-        from { transform: translateX(-100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    
-    @keyframes slideOutLeft {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(-100%); opacity: 0; }
-    }
-    </style>
 </body>
 </html>
