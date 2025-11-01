@@ -6,7 +6,8 @@
     <title>Emirates Gifts Store - Premium Perfumes & Luxury Watches</title>
     <meta name="description" content="Discover premium Eastern and Western perfumes, luxury watches in UAE. Fast delivery within 1-3 business days + 14-day return guarantee + shipping fees.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -156,6 +157,7 @@
         font-family: 'Cairo', sans-serif;
         direction: rtl;
         box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
+        border: 2px solid transparent;
     }
     
     .arabic-link:hover {
@@ -163,6 +165,7 @@
         transform: translateY(-2px);
         box-shadow: 0 4px 15px rgba(200, 16, 46, 0.5);
         color: white !important;
+        border-color: #D4AF37;
     }
     
     .header-tools {
@@ -192,17 +195,6 @@
         background: linear-gradient(135deg, #FFD700, #D4AF37);
         color: #1B2951;
         transform: translateY(-2px);
-    }
-    
-    .order-now-btn {
-        background: linear-gradient(135deg, #25D366, #20B358) !important;
-        color: white !important;
-        padding: 12px 20px !important;
-        border-radius: 25px !important;
-        width: auto !important;
-        height: auto !important;
-        font-weight: 600;
-        font-size: 0.9rem;
     }
     
     .cart-counter {
@@ -350,8 +342,7 @@
         align-items: center;
         gap: 8px;
         transition: all 0.3s ease;
-        cursor: pointer;
-        padding: 10px 20px;
+        padding: 12px 24px;
         border: 2px solid #D4AF37;
         border-radius: 25px;
         background: transparent;
@@ -424,6 +415,28 @@
         font-weight: 800;
         color: #25D366;
         margin-top: 15px;
+    }
+
+    .view-more-button {
+        background: linear-gradient(135deg, #D4AF37, #B8860B);
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 15px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 30px auto 0;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .view-more-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     }
     
     .loading-message {
@@ -636,11 +649,11 @@
                 <nav class="main-nav">
                     <ul class="nav-menu">
                         <li><a href="./" class="nav-link active">Home</a></li>
-                        <li><a href="./products-showcase.html" class="nav-link" target="_blank">View All Products</a></li>
+                        <li><a href="./products-showcase.html" class="nav-link">All Products</a></li>
                         <li><a href="#perfumes-section" class="nav-link">Perfumes</a></li>
                         <li><a href="#watches-section" class="nav-link">Watches</a></li>
                         <li><a href="https://wa.me/201110760081" class="nav-link" target="_blank">Contact</a></li>
-                        <li><a href="../" class="nav-link arabic-link" target="_blank"><i class="fas fa-globe"></i> العربية</a></li>
+                        <li><a href="../" class="nav-link arabic-link"><i class="fas fa-globe"></i> عربي</a></li>
                     </ul>
                 </nav>
 
@@ -648,10 +661,6 @@
                     <a href="./cart.html" class="header-tool" title="View Cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter" id="cart-counter">0</span>
-                    </a>
-                    <a href="./checkout.html" class="header-tool order-now-btn" title="Complete Order">
-                        <i class="fas fa-credit-card"></i>
-                        <span>Order Now</span>
                     </a>
                     <button class="mobile-menu-toggle header-tool" id="openSidebar" title="Open Menu">
                         <i class="fas fa-bars"></i>
@@ -677,7 +686,7 @@
                             <i class="fas fa-shopping-bag"></i>
                             Shop Now
                         </a>
-                        <a href="./products-showcase.html" class="btn-secondary" target="_blank">
+                        <a href="./products-showcase.html" class="btn-secondary">
                             <i class="fas fa-star"></i>
                             View All Products
                         </a>
@@ -700,15 +709,23 @@
                     <div class="section-header">
                         <h2 class="section-title">Emirates Gifts Premium Perfumes</h2>
                         <p class="section-subtitle">
-                            Curated collection of premium Eastern and Western perfumes with verified quality
+                            We've selected the finest Eastern and Western premium perfumes that cater to all tastes
                         </p>
-                        <a href="./products-showcase.html" class="view-all-link" target="_blank">
+                        <a href="./products-showcase.html?category=perfumes" class="view-all-link">
                             <i class="fas fa-arrow-right"></i>
                             View All Perfumes
                         </a>
                     </div>
                     <div class="products-grid" id="perfumes-grid">
-                        <div class="loading-message">⏳ Loading premium perfumes with English display names...</div>
+                        <div class="loading-message">
+                            <span>⏳ Loading premium perfumes...</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button class="view-more-button" id="perfumes-view-more" style="display: none;">
+                            <i class="fas fa-plus-circle"></i>
+                            View More Perfumes
+                        </button>
                     </div>
                 </div>
             </div>
@@ -720,15 +737,23 @@
                     <div class="section-header">
                         <h2 class="section-title">Emirates Gifts Premium Watches</h2>
                         <p class="section-subtitle">
-                            Exclusive collection of finest premium watches combining elegance with precision
+                            Exclusive collection of the finest premium watches combining elegance with precision
                         </p>
-                        <a href="./products-showcase.html" class="view-all-link" target="_blank">
+                        <a href="./products-showcase.html?category=watches" class="view-all-link">
                             <i class="fas fa-arrow-right"></i>
                             View All Watches
                         </a>
                     </div>
                     <div class="products-grid" id="watches-grid">
-                        <div class="loading-message">⏳ Loading premium watches with English display names...</div>
+                        <div class="loading-message">
+                            <span>⏳ Loading premium watches...</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button class="view-more-button" id="watches-view-more" style="display: none;">
+                            <i class="fas fa-plus-circle"></i>
+                            View More Watches
+                        </button>
                     </div>
                 </div>
             </div>
@@ -740,7 +765,10 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Emirates Gifts</h3>
-                    <p>Leading premium perfumes and luxury gifts store in the United Arab Emirates. We bring you the finest premium collections.</p>
+                    <p>
+                        Leading premium perfumes and luxury gifts store in the United Arab Emirates. 
+                        We bring you the finest premium collections with guaranteed quality.
+                    </p>
                     <div class="social-links">
                         <a href="https://wa.me/201110760081" class="social-link" target="_blank">
                             <i class="fab fa-whatsapp"></i>
@@ -752,10 +780,10 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="./">Home</a></li>
-                        <li><a href="./products-showcase.html" target="_blank">All Products</a></li>
+                        <li><a href="./products-showcase.html">All Products</a></li>
                         <li><a href="./cart.html" style="color: #D4AF37; font-weight: bold;">Cart</a></li>
                         <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">Complete Order</a></li>
-                        <li><a href="../" target="_blank" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe"></i> العربية</a></li>
+                        <li><a href="../" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe"></i> Arabic Version</a></li>
                     </ul>
                 </div>
 
@@ -779,7 +807,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-legal">
                     <p>&copy; 2024 Emirates Gifts. All rights reserved.</p>
@@ -806,6 +834,8 @@
     
     let currentPerfumes = [];
     let currentWatches = [];
+    let displayedPerfumes = 8;
+    let displayedWatches = 8;
     
     // English product name converter
     function getEnglishProductName(arabicTitle, productId) {
@@ -814,9 +844,24 @@
             'watch_3': 'Rolex Black Dial Professional R21',
             'watch_1': 'Rolex Yacht Master Silver Edition',
             'watch_8': 'Omega Swatch Baby Blue Limited Edition',
+            'watch_2': 'Rolex Submariner Black Premium',
+            'watch_4': 'Rolex Daytona Gold Collection',
+            'watch_5': 'Omega Speedmaster Professional',
+            'watch_6': 'Patek Philippe Calatrava Classic',
+            'watch_7': 'TAG Heuer Formula 1 Racing',
+            'watch_9': 'Breitling Navitimer Pilot',
+            'watch_10': 'IWC Portuguese Chronograph',
             'perfume_1': 'Chanel Coco Premium Perfume 100ml',
             'perfume_10': 'Dior Sauvage Premium Fragrance',
-            'perfume_15': 'Tom Ford Black Orchid Luxury'
+            'perfume_15': 'Tom Ford Black Orchid Luxury',
+            'perfume_2': 'Chanel No.5 Classic Edition',
+            'perfume_3': 'Creed Aventus Premium Collection',
+            'perfume_4': 'Tom Ford Oud Wood Oriental',
+            'perfume_5': 'Dior Miss Dior Blooming Bouquet',
+            'perfume_6': 'Guerlain Shalimar Oriental Classic',
+            'perfume_7': 'Yves Saint Laurent Black Opium',
+            'perfume_8': 'Giorgio Armani Si Passione',
+            'perfume_9': 'Versace Eros Flame Intense'
         };
         
         if (specificTranslations[productId]) {
@@ -829,15 +874,17 @@
         let parts = [];
         
         // Brand detection
-        if (title.includes('rolex')) parts.push('Rolex');
-        else if (title.includes('omega')) parts.push('Omega');
-        else if (title.includes('chanel')) parts.push('Chanel');
-        else if (title.includes('dior')) parts.push('Dior');
+        if (title.includes('rolex') || title.includes('روليكس')) parts.push('Rolex');
+        else if (title.includes('omega') || title.includes('أوميغا')) parts.push('Omega');
+        else if (title.includes('chanel') || title.includes('شانيل')) parts.push('Chanel');
+        else if (title.includes('dior') || title.includes('ديور')) parts.push('Dior');
+        else if (title.includes('tom ford')) parts.push('Tom Ford');
+        else if (title.includes('creed')) parts.push('Creed');
         
         // Color/style detection
-        if (title.includes('black')) parts.push('Black');
-        else if (title.includes('gold')) parts.push('Gold');
-        else if (title.includes('silver')) parts.push('Silver');
+        if (title.includes('black') || title.includes('أسود')) parts.push('Black');
+        else if (title.includes('gold') || title.includes('ذهبي')) parts.push('Gold');
+        else if (title.includes('silver') || title.includes('فضي')) parts.push('Silver');
         
         // Product type
         if (productId && productId.includes('watch')) {
@@ -861,13 +908,27 @@
             
             if (perfumesResponse.status === 'fulfilled' && perfumesResponse.value.ok) {
                 currentPerfumes = await perfumesResponse.value.json();
-                displayProducts(currentPerfumes.slice(0, 8), 'perfumes-grid', 'perfume');
+                const perfumesWithEnglish = currentPerfumes.map(p => ({
+                    ...p,
+                    englishName: getEnglishProductName(p.title, p.id)
+                }));
+                displayProducts(perfumesWithEnglish.slice(0, displayedPerfumes), 'perfumes-grid');
+                if (currentPerfumes.length > displayedPerfumes) {
+                    document.getElementById('perfumes-view-more').style.display = 'inline-flex';
+                }
                 console.log(`✅ Loaded ${currentPerfumes.length} perfumes`);
             }
             
             if (watchesResponse.status === 'fulfilled' && watchesResponse.value.ok) {
                 currentWatches = await watchesResponse.value.json();
-                displayProducts(currentWatches.slice(0, 8), 'watches-grid', 'watch');
+                const watchesWithEnglish = currentWatches.map(p => ({
+                    ...p,
+                    englishName: getEnglishProductName(p.title, p.id)
+                }));
+                displayProducts(watchesWithEnglish.slice(0, displayedWatches), 'watches-grid');
+                if (currentWatches.length > displayedWatches) {
+                    document.getElementById('watches-view-more').style.display = 'inline-flex';
+                }
                 console.log(`✅ Loaded ${currentWatches.length} watches`);
             }
             
@@ -876,25 +937,25 @@
         }
     }
     
-    // عرض المنتجات بالاسماء الإنجليزية
-    function displayProducts(products, gridId, type) {
+    // عرض المنتجات بالأسماء الإنجليزية
+    function displayProducts(products, gridId) {
         const grid = document.getElementById(gridId);
         if (!grid || !products.length) return;
         
         const productsHTML = products.map(product => {
             const finalPrice = parseFloat(product.sale_price || product.price || 0);
-            const englishName = getEnglishProductName(product.title, product.id);
+            const displayName = product.englishName || getEnglishProductName(product.title, product.id);
             
             return `
-                <div class="product-card" onclick="navigateToProduct('${product.id}', '${type}', '${englishName}')">
+                <div class="product-card" onclick="navigateToProduct('${product.id}', '${gridId.includes('perfume') ? 'perfume' : 'watch'}', '${displayName}')">
                     <div class="product-image-container">
                         <img src="${product.image_link}" 
-                             alt="${englishName}" 
+                             alt="${displayName}" 
                              loading="lazy"
                              onerror="this.src='https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=Premium+Product'">
                     </div>
                     <div class="product-info">
-                        <h4 class="product-title">${englishName}</h4>
+                        <h4 class="product-title">${displayName}</h4>
                         <div class="price">AED ${finalPrice.toFixed(2)}</div>
                     </div>
                 </div>
@@ -915,6 +976,34 @@
             .substring(0, 50);
         
         window.location.href = `./product-details.html?id=${productId}&category=${type}&slug=${slug}`;
+    }
+    
+    // إضافة المزيد من العطور
+    function showMorePerfumes() {
+        displayedPerfumes += 8;
+        const perfumesWithEnglish = currentPerfumes.map(p => ({
+            ...p,
+            englishName: getEnglishProductName(p.title, p.id)
+        }));
+        displayProducts(perfumesWithEnglish.slice(0, displayedPerfumes), 'perfumes-grid');
+        
+        if (displayedPerfumes >= currentPerfumes.length) {
+            document.getElementById('perfumes-view-more').style.display = 'none';
+        }
+    }
+    
+    // إضافة المزيد من الساعات
+    function showMoreWatches() {
+        displayedWatches += 8;
+        const watchesWithEnglish = currentWatches.map(p => ({
+            ...p,
+            englishName: getEnglishProductName(p.title, p.id)
+        }));
+        displayProducts(watchesWithEnglish.slice(0, displayedWatches), 'watches-grid');
+        
+        if (displayedWatches >= currentWatches.length) {
+            document.getElementById('watches-view-more').style.display = 'none';
+        }
     }
     
     // تحديث عداد السلة
@@ -959,6 +1048,10 @@
         updateCartCounter();
         loadProducts();
         
+        // أزرار "View More"
+        document.getElementById('perfumes-view-more')?.addEventListener('click', showMorePerfumes);
+        document.getElementById('watches-view-more')?.addEventListener('click', showMoreWatches);
+        
         window.addEventListener('scroll', () => {
             updateProgress();
             updateBackToTop();
@@ -983,7 +1076,7 @@
         // تصدير الدالة
         window.navigateToProduct = navigateToProduct;
         
-        console.log('✅ Zero Popup English Homepage Ready');
+        console.log('✅ Zero Popup English Homepage Ready with View More Buttons');
     });
     </script>
 </body>
