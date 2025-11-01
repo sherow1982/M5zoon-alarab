@@ -6,34 +6,14 @@
     <title>متجر هدايا الإمارات - عطور وساعات عالية الجودة</title>
     <meta name="description" content="متجر هدايا الإمارات - اكتشف أفضل عروض العطور عالية الجودة والساعات والهدايا. توصيل خلال 1-3 أيام عمل + ضمان ارجاع 14 يوم.">
     
-    <link rel="canonical" href="https://emirates-gifts.arabsad.com/">
-    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/">
-    <link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/">
-    
-    <meta property="og:title" content="متجر هدايا الإمارات - عطور وساعات عالية الجودة">
-    <meta property="og:description" content="اكتشف أجمل العطور الشرقية والغربية عالية الجودة والساعات الفاخرة. توصيل في الإمارات خلال 1-3 أيام.">
-    <meta property="og:url" content="https://emirates-gifts.arabsad.com/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ar_AE">
-    
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link rel="stylesheet" href="./css/dkhoon-inspired-style.css?v=20251101">
-    <link rel="stylesheet" href="./css/mobile-responsive-fixes.css?v=20251101">
     
     <style>
     /* 🚫 ZERO POPUP ENVIRONMENT */
     .popup, .modal, .overlay, .notification, .alert-box, .toast,
     [class*="popup"], [class*="modal"], [class*="overlay"], [class*="notification"] {
         display: none !important;
-        opacity: 0 !important;
-        visibility: hidden !important;
-        pointer-events: none !important;
     }
     
     body {
@@ -52,7 +32,7 @@
         left: 0;
         width: 0%;
         height: 3px;
-        background: linear-gradient(90deg, #D4AF37, #00A16B, #C8102E);
+        background: linear-gradient(90deg, #D4AF37, #25D366, #C8102E);
         z-index: 9999;
         transition: width 0.2s ease;
     }
@@ -64,11 +44,6 @@
         text-align: center;
         font-weight: 600;
         font-size: 0.9rem;
-        position: relative;
-        overflow: hidden;
-        z-index: 1000;
-        font-family: 'Cairo', sans-serif;
-        direction: rtl;
     }
     
     .banner-text {
@@ -76,8 +51,6 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
-        direction: rtl;
-        text-align: center;
     }
     
     .header {
@@ -122,11 +95,6 @@
         box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
     }
     
-    .logo-text {
-        display: flex;
-        flex-direction: column;
-    }
-    
     .logo-title {
         font-size: 1.6rem;
         font-weight: 800;
@@ -141,11 +109,7 @@
         font-weight: 600;
     }
     
-    .main-nav {
-        display: flex;
-    }
-    
-    .nav-menu {
+    .main-nav ul {
         display: flex;
         list-style: none;
         margin: 0;
@@ -174,7 +138,6 @@
     .english-link {
         background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
         color: white !important;
-        border-radius: 25px;
         padding: 10px 18px;
         font-weight: 600;
         font-size: 14px;
@@ -215,6 +178,7 @@
         cursor: pointer;
         transition: all 0.3s ease;
         position: relative;
+        font-size: 18px;
     }
     
     .header-tool:hover {
@@ -240,10 +204,6 @@
         z-index: 1;
     }
     
-    .cart-counter.has-items {
-        display: flex;
-    }
-    
     .mobile-menu-toggle {
         display: none;
     }
@@ -252,7 +212,6 @@
         background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
         padding: 80px 0;
         position: relative;
-        overflow: hidden;
     }
     
     .hero-content {
@@ -451,8 +410,6 @@
         background: #f8f9fa;
         border-radius: 15px;
         margin: 20px 0;
-        font-family: 'Cairo', sans-serif;
-        direction: rtl;
         grid-column: 1 / -1;
     }
     
@@ -518,6 +475,7 @@
         justify-content: center;
         color: #D4AF37;
         font-size: 1.2rem;
+        text-decoration: none;
         transition: all 0.3s ease;
     }
     
@@ -537,33 +495,13 @@
         gap: 20px;
     }
     
-    .legal-links {
-        display: flex;
-        gap: 25px;
-        flex-wrap: wrap;
-    }
-    
-    .legal-links a {
-        color: #ccc;
-        text-decoration: none;
-        font-weight: 500;
-    }
-    
-    .shipping-return-footer-info {
-        display: flex;
-        gap: 30px;
-        flex-wrap: wrap;
-        color: #ccc;
-        font-size: 0.9rem;
-    }
-    
     .back-to-top {
         position: fixed;
         bottom: 30px;
         left: 30px;
         width: 50px;
         height: 50px;
-        background: linear-gradient(135deg, #D4AF37, #B8941F);
+        background: linear-gradient(135deg, #D4AF37, #B8860B);
         color: white;
         border: none;
         border-radius: 50%;
@@ -587,118 +525,11 @@
     }
     
     .back-to-top:hover {
-        background: linear-gradient(135deg, #B8941F, #D4AF37);
+        background: linear-gradient(135deg, #B8860B, #D4AF37);
         transform: translateY(-3px);
         box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
     }
     
-    /* Mobile Sidebar */
-    .mobile-sidebar {
-        position: fixed;
-        top: 0;
-        right: -300px;
-        width: 300px;
-        height: 100vh;
-        background: #fff;
-        box-shadow: -2px 0 20px rgba(0,0,0,0.1);
-        z-index: 10000;
-        transition: right 0.3s ease;
-        overflow-y: auto;
-        padding: 20px;
-    }
-    
-    .mobile-sidebar.open {
-        right: 0;
-    }
-    
-    .mobile-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        z-index: 9999;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-    }
-    
-    .mobile-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .mobile-sidebar-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #eee;
-    }
-    
-    .mobile-sidebar-logo {
-        font-size: 1.3rem;
-        font-weight: 800;
-        color: #1B2951;
-    }
-    
-    .mobile-sidebar-close {
-        width: 35px;
-        height: 35px;
-        border: none;
-        background: #f8f9fa;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-    }
-    
-    .mobile-sidebar-close:hover {
-        background: #D4AF37;
-        color: white;
-    }
-    
-    .mobile-sidebar-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .mobile-sidebar-nav a {
-        color: #2c3e50;
-        text-decoration: none;
-        padding: 15px 0;
-        border-bottom: 1px solid #f0f0f0;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-weight: 600;
-        transition: color 0.3s ease;
-    }
-    
-    .mobile-sidebar-nav a:hover {
-        color: #D4AF37;
-    }
-    
-    .mobile-cart-counter {
-        background: #e74c3c;
-        color: white;
-        border-radius: 50%;
-        min-width: 20px;
-        height: 20px;
-        font-size: 11px;
-        font-weight: bold;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        margin-right: auto;
-    }
-    
-    /* Responsive */
     @media (max-width: 768px) {
         .main-nav {
             display: none;
@@ -742,22 +573,9 @@
             text-align: center;
         }
         
-        .shipping-return-footer-info {
-            justify-content: center;
-            gap: 15px;
-        }
-        
         .banner-text {
             font-size: 0.8rem;
             gap: 5px;
-        }
-        
-        .english-link {
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin: 5px 0;
-            font-weight: bold;
-            border: 2px solid #D4AF37;
         }
     }
     
@@ -765,31 +583,7 @@
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
     }
-    
-    .fa-spinner {
-        animation: spin 1s linear infinite;
-    }
     </style>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Store",
-      "name": "متجر هدايا الإمارات",
-      "alternateName": "Emirates Gifts Store",
-      "description": "المتجر الإماراتي الموثوق للعطور عالية الجودة والساعات الفاخرة",
-      "url": "https://emirates-gifts.arabsad.com/",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "AE",
-        "addressRegion": "Dubai"
-      },
-      "currenciesAccepted": "AED",
-      "paymentAccepted": ["Cash", "WhatsApp Order"],
-      "telephone": "+201110760081",
-      "openingHours": "Mo-Su 00:00-23:59"
-    }
-    </script>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
@@ -797,7 +591,7 @@
     <div class="top-banner">
         <div class="banner-text">
             <i class="fas fa-shipping-fast"></i>
-            توصيل خلال 1-3 أيام عمل • ضمان إرجاع 14 يوم + مصاريف الشحن
+            توصيل خلال 1-3 أيام عمل • ضمان إرجاع 14 يوم + مصاريف شحن
             <i class="fas fa-gift"></i>
         </div>
     </div>
@@ -817,35 +611,21 @@
 
                 <nav class="main-nav">
                     <ul class="nav-menu">
-                        <li class="nav-item">
-                            <a href="./" class="nav-link active">الرئيسية</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./products-showcase.html" class="nav-link">شاهد جميع المنتجات</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#perfumes-section" class="nav-link">العطور</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#watches-section" class="nav-link">الساعات</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://wa.me/201110760081" class="nav-link" target="_blank">اتصل بنا</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./en/" class="nav-link english-link" target="_blank">
-                                <i class="fas fa-globe"></i> English
-                            </a>
-                        </li>
+                        <li><a href="./" class="nav-link active">الرئيسية</a></li>
+                        <li><a href="./products-showcase.html" class="nav-link">شاهد جميع المنتجات</a></li>
+                        <li><a href="#perfumes-section" class="nav-link">العطور</a></li>
+                        <li><a href="#watches-section" class="nav-link">الساعات</a></li>
+                        <li><a href="https://wa.me/201110760081" class="nav-link" target="_blank">اتصل بنا</a></li>
+                        <li><a href="./en/" class="nav-link english-link" target="_blank"><i class="fas fa-globe"></i> English</a></li>
                     </ul>
                 </nav>
 
                 <div class="header-tools">
-                    <a href="./cart.html" class="header-tool">
+                    <a href="./cart.html" class="header-tool" title="عرض السلة">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter" id="cart-counter">0</span>
                     </a>
-                    <button class="mobile-menu-toggle header-tool" id="openSidebar">
+                    <button class="mobile-menu-toggle header-tool" id="openSidebar" title="فتح القائمة">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
@@ -952,54 +732,29 @@
                     <ul>
                         <li><a href="./">الرئيسية</a></li>
                         <li><a href="./products-showcase.html">شاهد جميع المنتجات</a></li>
-                        <li><a href="./cart.html">السلة</a></li>
-                        <li>
-                            <a href="./en/" target="_blank" style="color: #D4AF37; font-weight: bold;">
-                                <i class="fas fa-globe"></i> English Version
-                            </a>
-                        </li>
+                        <li><a href="./cart.html" style="color: #D4AF37; font-weight: bold;">السلة</a></li>
+                        <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">إتمام الطلب</a></li>
+                        <li><a href="./en/" target="_blank" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe"></i> English Version</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h3>خدمة العملاء</h3>
                     <ul>
-                        <li>
-                            <i class="fas fa-shipping-fast"></i> شحن خلال 1-3 أيام عمل
-                        </li>
-                        <li>
-                            <i class="fas fa-undo"></i> إرجاع 14 يوم + مصاريف شحن
-                        </li>
-                        <li>
-                            <i class="fas fa-headset"></i> خدمة عملاء 24/7
-                        </li>
-                        <li>
-                            <a href="https://wa.me/201110760081" target="_blank">
-                                <i class="fab fa-whatsapp"></i> واتساب
-                            </a>
-                        </li>
+                        <li><i class="fas fa-shipping-fast"></i> شحن خلال 1-3 أيام عمل</li>
+                        <li><i class="fas fa-undo"></i> إرجاع 14 يوم + مصاريف شحن</li>
+                        <li><i class="fas fa-headset"></i> خدمة عملاء 24/7</li>
+                        <li><a href="https://wa.me/201110760081" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h3>تواصل معنا</h3>
                     <ul>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+201110760081">+20 111 076 0081</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>دبي، الإمارات العربية المتحدة</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-clock"></i>
-                            <span>خدمة العملاء: 24/7</span>
-                        </li>
+                        <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>دبي، الإمارات العربية المتحدة</span></li>
+                        <li><i class="fas fa-clock"></i><span>خدمة العملاء: 24/7</span></li>
                     </ul>
                 </div>
             </div>
@@ -1007,22 +762,11 @@
             <div class="footer-bottom">
                 <div class="footer-legal">
                     <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
-                    <div class="legal-links">
-                        <a href="./en/" target="_blank">
-                            <i class="fas fa-globe"></i> English
-                        </a>
-                    </div>
                 </div>
-                <div class="shipping-return-footer-info">
-                    <span>
-                        <i class="fas fa-truck"></i> شحن خلال 1-3 أيام عمل
-                    </span>
-                    <span>
-                        <i class="fas fa-undo"></i> إرجاع خلال 14 يوم + مصاريف الشحن
-                    </span>
-                    <span>
-                        <i class="fas fa-star"></i> جودة عالية مضمونة
-                    </span>
+                <div style="display: flex; gap: 30px; flex-wrap: wrap; color: #ccc; font-size: 0.9rem;">
+                    <span><i class="fas fa-truck"></i> شحن خلال 1-3 أيام عمل</span>
+                    <span><i class="fas fa-undo"></i> إرجاع خلال 14 يوم + مصاريف الشحن</span>
+                    <span><i class="fas fa-star"></i> جودة عالية مضمونة</span>
                 </div>
             </div>
         </div>
@@ -1032,56 +776,17 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Mobile Sidebar -->
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    <div class="mobile-sidebar" id="mobileSidebar">
-        <div class="mobile-sidebar-header">
-            <div class="mobile-sidebar-logo">هدايا الإمارات</div>
-            <button class="mobile-sidebar-close" id="closeSidebar">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="mobile-sidebar-nav">
-            <a href="./">
-                <i class="fas fa-home"></i> الرئيسية
-            </a>
-            <a href="./products-showcase.html">
-                <i class="fas fa-th-large"></i> شاهد جميع المنتجات
-            </a>
-            <a href="#perfumes-section">
-                <i class="fas fa-spray-can"></i> العطور
-            </a>
-            <a href="#watches-section">
-                <i class="fas fa-clock"></i> الساعات
-            </a>
-            <a href="./cart.html">
-                <i class="fas fa-shopping-cart"></i> السلة 
-                <span class="mobile-cart-counter">0</span>
-            </a>
-            <a href="./en/" class="english-link" target="_blank">
-                <i class="fas fa-globe"></i> English Version
-            </a>
-            <a href="https://wa.me/201110760081" target="_blank">
-                <i class="fab fa-whatsapp"></i> واتساب
-            </a>
-        </div>
-    </div>
-
-    <!-- ZERO POPUP SCRIPTS -->
     <script>
-    // 🚫 GLOBAL POPUP BLOCKER - Prevents ALL popups
-    console.log('🚫 ZERO POPUP ENVIRONMENT ACTIVE');
-    
-    // Block all popup functions
+    // 🚫 GLOBAL POPUP BLOCKER - منع جميع النوافذ
+    console.log('🚫 ZERO POPUP MAIN PAGE ENVIRONMENT');
     window.alert = function() { console.log('🚫 Alert blocked'); };
     window.confirm = function() { console.log('🚫 Confirm blocked'); return true; };
     window.prompt = function() { console.log('🚫 Prompt blocked'); return null; };
     
-    // Global products data
     let currentPerfumes = [];
     let currentWatches = [];
     
-    // CLEAN PRODUCT LOADING SYSTEM (NO POPUPS)
+    // تحميل المنتجات بدون نوافذ
     async function loadProducts() {
         try {
             console.log('📦 Loading products...');
@@ -1108,13 +813,12 @@
         }
     }
     
-    // DISPLAY PRODUCTS (NO POPUPS)
+    // عرض المنتجات بدون نوافذ
     function displayProducts(products, gridId) {
         const grid = document.getElementById(gridId);
         if (!grid || !products.length) return;
         
         const productsHTML = products.map(product => {
-            const hasDiscount = parseFloat(product.price || 0) > parseFloat(product.sale_price || 0);
             const finalPrice = parseFloat(product.sale_price || product.price || 0);
             
             return `
@@ -1136,7 +840,7 @@
         grid.innerHTML = productsHTML;
     }
     
-    // CLEAN PRODUCT NAVIGATION (NO POPUPS)
+    // الانتقال للمنتج بدون نوافذ
     function navigateToProduct(productId, type) {
         console.log(`🔗 Navigating to product: ${productId}`);
         
@@ -1145,39 +849,31 @@
             currentWatches.find(p => p.id === productId);
         
         if (product) {
-            // Generate slug from product title
             const slug = product.title
                 .toLowerCase()
-                .replace(/[^a-z0-9\s\u0600-\u06ff]/g, '') // Keep Arabic and English chars
+                .replace(/[^a-z0-9\s\u0600-\u06ff]/g, '')
                 .replace(/\s+/g, '-')
                 .substring(0, 50);
             
-            const url = `./product-details.html?id=${productId}&category=${type}&slug=${slug}`;
-            window.location.href = url;
+            window.location.href = `./product-details.html?id=${productId}&category=${type}&slug=${slug}`;
         } else {
             console.error('❌ Product not found:', productId);
         }
     }
     
-    // CLEAN CART SYSTEM (NO POPUPS)
+    // تحديث عداد السلة
     function updateCartCounter() {
         const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
         const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
         const counter = document.getElementById('cart-counter');
-        const mobileCounter = document.querySelector('.mobile-cart-counter');
         
         if (counter) {
             counter.textContent = totalItems;
             counter.style.display = totalItems > 0 ? 'flex' : 'none';
         }
-        
-        if (mobileCounter) {
-            mobileCounter.textContent = totalItems;
-            mobileCounter.style.display = totalItems > 0 ? 'flex' : 'none';
-        }
     }
     
-    // PROGRESS BAR
+    // شريط التقدم
     function updateProgress() {
         const scrolled = window.pageYOffset;
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -1188,7 +884,7 @@
         }
     }
     
-    // BACK TO TOP BUTTON
+    // زر العودة للأعلى
     function updateBackToTop() {
         const backToTop = document.getElementById('backToTop');
         if (backToTop) {
@@ -1200,87 +896,39 @@
         }
     }
     
-    // MOBILE SIDEBAR
-    function initializeMobileSidebar() {
-        const openBtn = document.getElementById('openSidebar');
-        const closeBtn = document.getElementById('closeSidebar');
-        const sidebar = document.getElementById('mobileSidebar');
-        const overlay = document.getElementById('mobileOverlay');
-        
-        if (openBtn && sidebar && overlay) {
-            openBtn.addEventListener('click', () => {
-                sidebar.classList.add('open');
-                overlay.classList.add('active');
-            });
-            
-            const closeSidebar = () => {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-            };
-            
-            if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
-            overlay.addEventListener('click', closeSidebar);
-        }
-    }
-    
-    // SMOOTH SCROLLING FOR ANCHOR LINKS
-    function initializeSmoothScrolling() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    }
-    
-    // BACK TO TOP FUNCTIONALITY
-    function initializeBackToTop() {
-        const backToTop = document.getElementById('backToTop');
-        if (backToTop) {
-            backToTop.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
-    }
-    
-    // INITIALIZE EVERYTHING
+    // تهيئة النظام
     document.addEventListener('DOMContentLoaded', function() {
         console.log('🚫 Zero Popup Homepage Loading...');
         
         updateCartCounter();
         loadProducts();
-        initializeMobileSidebar();
-        initializeSmoothScrolling();
-        initializeBackToTop();
         
         window.addEventListener('scroll', () => {
             updateProgress();
             updateBackToTop();
         }, { passive: true });
         
-        // Global navigate function
+        // العودة للأعلى
+        document.getElementById('backToTop')?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // الانتقال السلس للروابط
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // تصدير الدالة
         window.navigateToProduct = navigateToProduct;
         
         console.log('✅ Zero Popup Homepage Ready');
     });
-    
-    // Service Worker
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('./sw.js')
-                .then(registration => console.log('✅ Service Worker registered'))
-                .catch(error => console.log('❌ Service Worker registration failed'));
-        });
-    }
     </script>
 </body>
 </html>
