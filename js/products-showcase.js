@@ -54,6 +54,31 @@
         }
     }
     
+    // Enhanced WhatsApp message formatter with correct product titles
+    function formatWhatsAppMessage(product) {
+        if (!product) return '';
+        
+        const finalPrice = parseFloat(product.sale_price || product.price || 0);
+        const originalPrice = parseFloat(product.price || 0);
+        const productTitle = (product.title || 'منتج مميز').trim();
+        
+        let message = `🎁 أريد طلب هذا المنتج:\n`;
+        message += `📝 *اسم المنتج:* ${productTitle}\n`;
+        message += `💰 *السعر:* ${finalPrice.toFixed(2)} د.إ\n`;
+        
+        if (originalPrice > finalPrice && finalPrice > 0) {
+            const savings = originalPrice - finalPrice;
+            message += `💲 *التوفير:* ${savings.toFixed(2)} د.إ\n`;
+        }
+        
+        message += `🏦 *المتجر:* هدايا الإمارات\n`;
+        message += `⏰ *التوصيل:* 1-3 أيام عمل\n`;
+        message += `🔄 *ضمان الإرجاع:* 14 يوم\n\n`;
+        message += `رجاءً تأكيد الطلب وإرسال بيانات التوصيل`;
+        
+        return message;
+    }
+    
     /**
      * Enhanced product loading with retry and fallback
      */
@@ -166,7 +191,8 @@
                 const imageUrl = product.image_link || 
                     'https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=منتج+مميز';
                 
-                const whatsappMessage = `🎁 أريد طلب: ${productTitle}\n💰 السعر: ${finalPrice.toFixed(2)} د.إ\n🏦 المتجر: هدايا الإمارات`;
+                // 📱 ENHANCED WHATSAPP MESSAGE WITH CORRECT PRODUCT NAME
+                const whatsappMessage = formatWhatsAppMessage(product);
                 
                 // ❌ NO INLINE EVENT HANDLERS - COMPLETELY SECURE
                 return `
@@ -203,6 +229,8 @@
                                    class="btn-whatsapp whatsapp-order-btn" 
                                    target="_blank" 
                                    rel="noopener"
+                                   data-product-id="${productId}"
+                                   data-product-title="${productTitle}"
                                    aria-label="طلب ${productTitle} عبر واتساب">
                                     <i class="fab fa-whatsapp" aria-hidden="true"></i> اطلب
                                 </a>
@@ -283,10 +311,22 @@
             });
         });
         
-        // WhatsApp buttons - click tracking only (links handle navigation)
+        // 📱 Enhanced WhatsApp buttons with dynamic messages
         document.querySelectorAll('.whatsapp-order-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation(); // Don't trigger card click
+                
+                const productId = this.dataset.productId;
+                if (productId) {
+                    const product = currentProducts.find(p => p && String(p.id) === String(productId));
+                    if (product) {
+                        // Update WhatsApp link with fresh product data
+                        const freshMessage = formatWhatsAppMessage(product);
+                        this.href = `https://wa.me/201110760081?text=${encodeURIComponent(freshMessage)}`;
+                        log('📱 WhatsApp message updated with fresh product data');
+                    }
+                }
+                
                 log('📱 WhatsApp order initiated');
             });
         });
@@ -372,7 +412,7 @@
             } else {
                 cart.push({
                     id: productId,
-                    title: product.title,
+                    title: product.title, // Use original Arabic title
                     price: parseFloat(product.sale_price || product.price || 0),
                     image: product.image_link,
                     quantity: 1,
