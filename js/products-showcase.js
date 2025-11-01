@@ -1,4 +1,4 @@
-// 🚫 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.0
+// 🚫 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.1
 
 (function() {
     'use strict';
@@ -54,27 +54,43 @@
         }
     }
     
-    // Enhanced WhatsApp message formatter with correct product titles
+    // 🔗 Enhanced WhatsApp message formatter with product link
     function formatWhatsAppMessage(product) {
         if (!product) return '';
         
         const finalPrice = parseFloat(product.sale_price || product.price || 0);
         const originalPrice = parseFloat(product.price || 0);
         const productTitle = (product.title || 'منتج مميز').trim();
+        const productId = product.id || 'unknown';
         
-        let message = `🎁 أريد طلب هذا المنتج:\n`;
-        message += `📝 *اسم المنتج:* ${productTitle}\n`;
+        // Build product URL
+        const baseUrl = window.location.origin + window.location.pathname.replace('/products-showcase.html', '');
+        const productUrl = `${baseUrl}/product-details.html?id=${productId}&category=${product.type}`;
+        
+        let message = `🛒 *طلب من متجر هدايا الإمارات*\n`;
+        message += `━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+        message += `📝 *اسم المنتج:*\n${productTitle}\n\n`;
+        message += `🆔 *كود المنتج:* ${productId}\n\n`;
         message += `💰 *السعر:* ${finalPrice.toFixed(2)} د.إ\n`;
         
         if (originalPrice > finalPrice && finalPrice > 0) {
             const savings = originalPrice - finalPrice;
-            message += `💲 *التوفير:* ${savings.toFixed(2)} د.إ\n`;
+            const discountPercent = Math.round(((originalPrice - finalPrice) / originalPrice) * 100);
+            message += `💲 *السعر الأصلي:* ${originalPrice.toFixed(2)} د.إ\n`;
+            message += `🔥 *التوفير:* ${savings.toFixed(2)} د.إ (${discountPercent}%)\n`;
         }
         
-        message += `🏦 *المتجر:* هدايا الإمارات\n`;
-        message += `⏰ *التوصيل:* 1-3 أيام عمل\n`;
-        message += `🔄 *ضمان الإرجاع:* 14 يوم\n\n`;
-        message += `رجاءً تأكيد الطلب وإرسال بيانات التوصيل`;
+        message += `\n🔗 *رابط المنتج:*\n${productUrl}\n\n`;
+        message += `🏪 *المتجر:* هدايا الإمارات Emirates Gifts\n`;
+        message += `🚚 *التوصيل:* خلال 1-3 أيام عمل\n`;
+        message += `🔄 *ضمان الإرجاع:* 14 يوم + مصاريف الشحن\n`;
+        message += `✅ *ضمان الجودة:* 100% أصلي ومعتمد\n\n`;
+        message += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+        message += `رجاءً تأكيد الطلب وإرسال بيانات التوصيل:\n`;
+        message += `• الاسم الكامل\n`;
+        message += `• رقم الهاتف (الإمارات)\n`;
+        message += `• العنوان التفصيلي\n`;
+        message += `• ملاحظات إضافية (اختياري)`;
         
         return message;
     }
@@ -191,7 +207,7 @@
                 const imageUrl = product.image_link || 
                     'https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=منتج+مميز';
                 
-                // 📱 ENHANCED WHATSAPP MESSAGE WITH CORRECT PRODUCT NAME
+                // 📱 ENHANCED WHATSAPP MESSAGE WITH PRODUCT LINK
                 const whatsappMessage = formatWhatsAppMessage(product);
                 
                 // ❌ NO INLINE EVENT HANDLERS - COMPLETELY SECURE
@@ -311,7 +327,7 @@
             });
         });
         
-        // 📱 Enhanced WhatsApp buttons with dynamic messages
+        // 📱 Enhanced WhatsApp buttons with dynamic messages and links
         document.querySelectorAll('.whatsapp-order-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation(); // Don't trigger card click
@@ -320,14 +336,14 @@
                 if (productId) {
                     const product = currentProducts.find(p => p && String(p.id) === String(productId));
                     if (product) {
-                        // Update WhatsApp link with fresh product data
+                        // Update WhatsApp link with fresh product data including link
                         const freshMessage = formatWhatsAppMessage(product);
                         this.href = `https://wa.me/201110760081?text=${encodeURIComponent(freshMessage)}`;
-                        log('📱 WhatsApp message updated with fresh product data');
+                        log('📱 WhatsApp message updated with product link and data');
                     }
                 }
                 
-                log('📱 WhatsApp order initiated');
+                log('📱 WhatsApp order initiated with product link');
             });
         });
     }
@@ -779,7 +795,7 @@
     // Secure global exports
     if (typeof window !== 'undefined') {
         window.EmiratesShowcaseSecure = Object.freeze({
-            version: '2.0.0-secure',
+            version: '2.1.0-secure-with-links',
             navigateToProduct: navigateToProductDetailsSecurely,
             addToCart: addToCartSecurely,
             updateCartBadge: updateCartBadgeSecurely,
@@ -792,6 +808,6 @@
         window.addToCartClean = addToCartSecurely;
     }
     
-    log('✅ Emirates Gifts Products Showcase v2.0 - ZERO INLINE CODE');
+    log('✅ Emirates Gifts Products Showcase v2.1 - WITH PRODUCT LINKS');
     
 })();
