@@ -1,4 +1,4 @@
-// 🚫 EMIRATES GIFTS PRODUCTS SHOWCASE ENGLISH - ZERO INLINE CODE v2.0
+// 🚫 EMIRATES GIFTS PRODUCTS SHOWCASE ENGLISH - ZERO INLINE CODE v2.1
 
 (function() {
     'use strict';
@@ -123,6 +123,47 @@
         return parts.length > 0 ? parts.join(' ') : 'Premium Luxury Product';
     }
     
+    // 🔗 Enhanced English WhatsApp message formatter with product link
+    function formatEnglishWhatsAppMessage(product) {
+        if (!product) return '';
+        
+        const finalPrice = parseFloat(product.sale_price || product.price || 0);
+        const originalPrice = parseFloat(product.price || 0);
+        const productTitle = (product.englishName || getEnglishProductName(product.title, product.id)).trim();
+        const productId = product.id || 'unknown';
+        
+        // Build product URL for English version
+        const baseUrl = window.location.origin + window.location.pathname.replace('/products-showcase.html', '');
+        const productUrl = `${baseUrl}/product-details.html?id=${productId}&category=${product.type}`;
+        
+        let message = `🛒 *Order from Emirates Gifts Store*\n`;
+        message += `━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+        message += `📝 *Product Name:*\n${productTitle}\n\n`;
+        message += `🆔 *Product ID:* ${productId}\n\n`;
+        message += `💰 *Price:* AED ${finalPrice.toFixed(2)}\n`;
+        
+        if (originalPrice > finalPrice && finalPrice > 0) {
+            const savings = originalPrice - finalPrice;
+            const discountPercent = Math.round(((originalPrice - finalPrice) / originalPrice) * 100);
+            message += `💲 *Original Price:* AED ${originalPrice.toFixed(2)}\n`;
+            message += `🔥 *You Save:* AED ${savings.toFixed(2)} (${discountPercent}% OFF)\n`;
+        }
+        
+        message += `\n🔗 *Product Link:*\n${productUrl}\n\n`;
+        message += `🏪 *Store:* Emirates Gifts هدايا الإمارات\n`;
+        message += `🚚 *Shipping:* Within 1-3 business days\n`;
+        message += `🔄 *Return Policy:* 14 days + shipping fees\n`;
+        message += `✅ *Quality Guarantee:* 100% authentic & certified\n\n`;
+        message += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+        message += `Please confirm your order and send delivery details:\n`;
+        message += `• Full Name\n`;
+        message += `• Phone Number (UAE)\n`;
+        message += `• Detailed Address\n`;
+        message += `• Additional Notes (Optional)`;
+        
+        return message;
+    }
+    
     /**
      * Enhanced product loading with retry and English translation
      */
@@ -237,7 +278,8 @@
                 const imageUrl = product.image_link || 
                     'https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=Premium+Product';
                 
-                const whatsappMessage = `🛍️ Order from Emirates Gifts Store\n\n🎁 Product: ${productTitle}\n💰 Price: AED ${finalPrice.toFixed(2)}\n🏦 Store: Emirates Gifts (English)`;
+                // 📱 ENHANCED ENGLISH WHATSAPP MESSAGE WITH PRODUCT LINK
+                const whatsappMessage = formatEnglishWhatsAppMessage(product);
                 
                 // ❌ NO INLINE EVENT HANDLERS - COMPLETELY SECURE
                 return `
@@ -274,6 +316,8 @@
                                    class="btn-whatsapp whatsapp-order-btn" 
                                    target="_blank" 
                                    rel="noopener"
+                                   data-product-id="${productId}"
+                                   data-product-title="${productTitle}"
                                    aria-label="Order ${productTitle} via WhatsApp">
                                     <i class="fab fa-whatsapp" aria-hidden="true"></i> Order
                                 </a>
@@ -354,11 +398,23 @@
             });
         });
         
-        // WhatsApp buttons - click tracking only (links handle navigation)
+        // 📱 Enhanced WhatsApp buttons with dynamic messages and links
         document.querySelectorAll('.whatsapp-order-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation(); // Don't trigger card click
-                log('📱 WhatsApp order initiated (English)');
+                
+                const productId = this.dataset.productId;
+                if (productId) {
+                    const product = currentProducts.find(p => p && String(p.id) === String(productId));
+                    if (product) {
+                        // Update WhatsApp link with fresh product data including link
+                        const freshMessage = formatEnglishWhatsAppMessage(product);
+                        this.href = `https://wa.me/201110760081?text=${encodeURIComponent(freshMessage)}`;
+                        log('📱 WhatsApp message updated with English product link and data');
+                    }
+                }
+                
+                log('📱 English WhatsApp order initiated with product link');
             });
         });
     }
@@ -813,7 +869,7 @@
     // Secure global exports
     if (typeof window !== 'undefined') {
         window.EmiratesShowcaseEN = Object.freeze({
-            version: '2.0.0-english-secure',
+            version: '2.1.0-english-secure-with-links',
             navigateToProduct: navigateToProductDetailsSecurely,
             addToCart: addToCartSecurely,
             updateCartBadge: updateCartBadgeSecurely,
@@ -826,6 +882,6 @@
         window.addToCartClean = addToCartSecurely;
     }
     
-    log('✅ Emirates Gifts Products Showcase EN v2.0 - ZERO INLINE CODE');
+    log('✅ Emirates Gifts Products Showcase EN v2.1 - WITH PRODUCT LINKS');
     
 })();
