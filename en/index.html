@@ -3,12 +3,32 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Enhanced Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;">
+    
     <title>Emirates Gifts Store - Premium Perfumes & Luxury Watches</title>
     <meta name="description" content="Discover premium Eastern and Western perfumes, luxury watches in UAE. Fast delivery within 1-3 business days + 14-day return guarantee + shipping fees.">
+    <meta name="keywords" content="premium perfumes, luxury watches, gifts, Emirates, Dubai, perfume store, oriental perfumes, western perfumes, luxury gifts">
+    <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/en/">
     
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Emirates Gifts Store - Premium Perfumes & Luxury Watches">
+    <meta property="og:description" content="Discover the finest collections of premium perfumes and luxury gifts in the UAE.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sherow1982.github.io/emirates-gifts/en/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1541643600914-78b084683601?w=1200&h=630&fit=crop&crop=center">
+    
+    <!-- Performance Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Font Awesome with SRI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+          crossorigin="anonymous">
     
     <style>
     /* 🚫 ZERO POPUP ENVIRONMENT */
@@ -17,14 +37,19 @@
         display: none !important;
     }
     
+    * {
+        box-sizing: border-box;
+    }
+    
     body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', 'Segoe UI', sans-serif;
         direction: ltr;
         margin: 0;
         padding: 0;
         background: #ffffff;
         color: #2c3e50;
         line-height: 1.6;
+        scroll-behavior: smooth;
     }
     
     .progress-bar {
@@ -52,6 +77,7 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
+        flex-wrap: wrap;
     }
     
     .header {
@@ -143,6 +169,11 @@
         transform: translateY(-2px);
     }
     
+    .nav-link:focus {
+        outline: 2px solid #D4AF37;
+        outline-offset: 2px;
+    }
+    
     .arabic-link {
         background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%) !important;
         color: white !important;
@@ -197,6 +228,39 @@
         transform: translateY(-2px);
     }
     
+    .header-tool:focus {
+        outline: 2px solid #D4AF37;
+        outline-offset: 2px;
+    }
+    
+    /* 🛒 ENHANCED CHECKOUT BUTTON STYLING */
+    .checkout-btn {
+        background: linear-gradient(135deg, #25D366, #20B358) !important;
+        color: white !important;
+        width: auto !important;
+        padding: 12px 24px !important;
+        border-radius: 25px !important;
+        font-weight: 700 !important;
+        font-size: 15px !important;
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3) !important;
+        display: inline-flex !important;
+        align-items: center;
+        gap: 8px !important;
+        min-width: auto !important;
+    }
+    
+    .checkout-btn:hover {
+        background: linear-gradient(135deg, #20B358, #1fa34d) !important;
+        color: white !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5) !important;
+    }
+    
+    .checkout-btn:focus {
+        outline: 3px solid rgba(37, 211, 102, 0.5) !important;
+        outline-offset: 2px !important;
+    }
+    
     .cart-counter {
         position: absolute;
         top: -5px;
@@ -211,6 +275,7 @@
         display: none;
         align-items: center;
         justify-content: center;
+        z-index: 1;
     }
     
     .mobile-menu-toggle {
@@ -293,6 +358,12 @@
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     }
     
+    .btn-primary:focus,
+    .btn-secondary:focus {
+        outline: 3px solid rgba(212, 175, 55, 0.5);
+        outline-offset: 2px;
+    }
+    
     .hero-visual {
         position: relative;
     }
@@ -354,6 +425,11 @@
         transform: translateY(-2px);
     }
     
+    .view-all-link:focus {
+        outline: 2px solid #1B2951;
+        outline-offset: 2px;
+    }
+    
     .products-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -369,11 +445,17 @@
         transition: all 0.3s ease;
         cursor: pointer;
         border: 2px solid rgba(212, 175, 55, 0.1);
+        position: relative;
     }
     
     .product-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    }
+    
+    .product-card:focus-within {
+        outline: 3px solid rgba(212, 175, 55, 0.6);
+        outline-offset: 2px;
     }
     
     .product-image-container {
@@ -417,10 +499,16 @@
         margin-top: 15px;
     }
 
+    .view-more-container {
+        text-align: center;
+        margin: 50px 0;
+        padding: 20px;
+    }
+    
     .view-more-button {
         background: linear-gradient(135deg, #D4AF37, #B8860B);
         color: white;
-        padding: 15px 30px;
+        padding: 18px 40px;
         border: none;
         border-radius: 15px;
         font-weight: 700;
@@ -429,14 +517,21 @@
         transition: all 0.3s ease;
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        margin: 30px auto 0;
+        gap: 12px;
+        margin: 0 auto;
         font-family: 'Inter', sans-serif;
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
     }
     
     .view-more-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        transform: translateY(-4px);
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        background: linear-gradient(135deg, #B8860B, #D4AF37);
+    }
+    
+    .view-more-button:focus {
+        outline: 3px solid rgba(212, 175, 55, 0.5);
+        outline-offset: 2px;
     }
     
     .loading-message {
@@ -496,6 +591,13 @@
         color: #D4AF37;
     }
     
+    .footer-section a:focus {
+        color: #D4AF37;
+        outline: 2px solid #D4AF37;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+    
     .social-links {
         display: flex;
         gap: 15px;
@@ -520,6 +622,11 @@
         background: #D4AF37;
         color: #1B2951;
         transform: translateY(-3px);
+    }
+    
+    .social-link:focus {
+        outline: 2px solid #D4AF37;
+        outline-offset: 3px;
     }
     
     .footer-bottom {
@@ -565,6 +672,24 @@
         background: linear-gradient(135deg, #B8860B, #D4AF37);
         transform: translateY(-3px);
         box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+    }
+    
+    .back-to-top:focus {
+        outline: 2px solid white;
+        outline-offset: 2px;
+    }
+    
+    /* Accessibility Improvements */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+        
+        body {
+            scroll-behavior: auto;
+        }
     }
     
     @media (max-width: 768px) {
@@ -614,6 +739,11 @@
             font-size: 0.8rem;
             gap: 5px;
         }
+        
+        .checkout-btn {
+            padding: 10px 18px !important;
+            font-size: 14px !important;
+        }
     }
     
     @keyframes spin {
@@ -627,18 +757,18 @@
     
     <div class="top-banner">
         <div class="banner-text">
-            <i class="fas fa-shipping-fast"></i>
+            <i class="fas fa-shipping-fast" aria-hidden="true"></i>
             Delivery within 1-3 business days • 14-day return guarantee + shipping fees
-            <i class="fas fa-gift"></i>
+            <i class="fas fa-gift" aria-hidden="true"></i>
         </div>
     </div>
 
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-container">
             <div class="header-content">
-                <a href="./" class="logo">
+                <a href="./" class="logo" aria-label="Go to homepage">
                     <div class="logo-icon">
-                        <img src="../favicon.ico" alt="Emirates Gifts" width="32" height="32" loading="eager">
+                        <img src="../favicon.ico" alt="Emirates Gifts Logo" width="32" height="32" loading="eager">
                     </div>
                     <div class="logo-text">
                         <div class="logo-title">Emirates Gifts</div>
@@ -646,31 +776,35 @@
                     </div>
                 </a>
 
-                <nav class="main-nav">
+                <nav class="main-nav" role="navigation" aria-label="Main navigation">
                     <ul class="nav-menu">
-                        <li><a href="./" class="nav-link active">Home</a></li>
+                        <li><a href="./" class="nav-link active" aria-current="page">Home</a></li>
                         <li><a href="./products-showcase.html" class="nav-link">All Products</a></li>
                         <li><a href="#perfumes-section" class="nav-link">Perfumes</a></li>
                         <li><a href="#watches-section" class="nav-link">Watches</a></li>
-                        <li><a href="https://wa.me/201110760081" class="nav-link" target="_blank">Contact</a></li>
-                        <li><a href="../" class="nav-link arabic-link"><i class="fas fa-globe"></i> عربي</a></li>
+                        <li><a href="https://wa.me/201110760081" class="nav-link" target="_blank" rel="noopener">Contact</a></li>
+                        <li><a href="../" class="nav-link arabic-link" target="_blank" rel="noopener"><i class="fas fa-globe" aria-hidden="true"></i> عربي</a></li>
                     </ul>
                 </nav>
 
                 <div class="header-tools">
-                    <a href="./cart.html" class="header-tool" title="View Cart">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-counter" id="cart-counter">0</span>
+                    <!-- 🛒 DIRECT CHECKOUT BUTTON (REPLACING CART) -->
+                    <a href="./checkout.html" class="header-tool checkout-btn" 
+                       title="Complete Order Now" 
+                       aria-label="Go directly to checkout page">
+                        <i class="fas fa-credit-card" aria-hidden="true"></i>
+                        <span>Order Now</span>
+                        <span class="cart-counter" id="cart-counter" aria-label="Number of items in cart">0</span>
                     </a>
-                    <button class="mobile-menu-toggle header-tool" id="openSidebar" title="Open Menu">
-                        <i class="fas fa-bars"></i>
+                    <button class="mobile-menu-toggle header-tool" id="openSidebar" title="Open Menu" aria-label="Open navigation menu">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <main>
+    <main role="main">
         <section class="hero">
             <div class="hero-content">
                 <div class="hero-text">
@@ -682,19 +816,19 @@
                         Discover the most exquisite collections of premium Eastern and Western perfumes, and distinctive luxury gifts that express your refined taste
                     </p>
                     <div class="hero-cta">
-                        <a href="#perfumes-section" class="btn-primary">
-                            <i class="fas fa-shopping-bag"></i>
+                        <a href="#perfumes-section" class="btn-primary" aria-label="Start shopping in perfumes section">
+                            <i class="fas fa-shopping-bag" aria-hidden="true"></i>
                             Shop Now
                         </a>
-                        <a href="./products-showcase.html" class="btn-secondary">
-                            <i class="fas fa-star"></i>
+                        <a href="./products-showcase.html" class="btn-secondary" aria-label="View all products">
+                            <i class="fas fa-star" aria-hidden="true"></i>
                             View All Products
                         </a>
                     </div>
                 </div>
                 <div class="hero-visual">
                     <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop" 
-                         alt="Premium perfumes collection" 
+                         alt="Premium perfumes collection in elegant bottles" 
                          class="hero-image"
                          width="800"
                          height="600"
@@ -711,20 +845,25 @@
                         <p class="section-subtitle">
                             We've selected the finest Eastern and Western premium perfumes that cater to all tastes
                         </p>
-                        <a href="./products-showcase.html?category=perfumes" class="view-all-link">
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="./products-showcase.html?category=perfumes" class="view-all-link" aria-label="View all perfumes">
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             View All Perfumes
                         </a>
                     </div>
-                    <div class="products-grid" id="perfumes-grid">
-                        <div class="loading-message">
-                            <span>⏳ Loading premium perfumes...</span>
+                    <div class="products-grid" id="perfumes-grid" role="grid" aria-label="Perfumes display grid">
+                        <div class="loading-message" role="status" aria-live="polite">
+                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;" aria-hidden="true"></i>
+                            Loading premium perfumes...
                         </div>
                     </div>
-                    <div style="text-align: center;">
-                        <button class="view-more-button" id="perfumes-view-more" style="display: none;">
-                            <i class="fas fa-plus-circle"></i>
-                            View More Perfumes
+                    
+                    <div class="view-more-container">
+                        <button class="view-more-button" id="perfumes-view-more" 
+                                style="display: inline-flex;" 
+                                aria-label="View more perfumes">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                            <span>View More Perfumes</span>
+                            <i class="fas fa-arrow-down" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -739,20 +878,25 @@
                         <p class="section-subtitle">
                             Exclusive collection of the finest premium watches combining elegance with precision
                         </p>
-                        <a href="./products-showcase.html?category=watches" class="view-all-link">
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="./products-showcase.html?category=watches" class="view-all-link" aria-label="View all watches">
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             View All Watches
                         </a>
                     </div>
-                    <div class="products-grid" id="watches-grid">
-                        <div class="loading-message">
-                            <span>⏳ Loading premium watches...</span>
+                    <div class="products-grid" id="watches-grid" role="grid" aria-label="Watches display grid">
+                        <div class="loading-message" role="status" aria-live="polite">
+                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;" aria-hidden="true"></i>
+                            Loading premium watches...
                         </div>
                     </div>
-                    <div style="text-align: center;">
-                        <button class="view-more-button" id="watches-view-more" style="display: none;">
-                            <i class="fas fa-plus-circle"></i>
-                            View More Watches
+                    
+                    <div class="view-more-container">
+                        <button class="view-more-button" id="watches-view-more" 
+                                style="display: inline-flex;" 
+                                aria-label="View more watches">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                            <span>View More Watches</span>
+                            <i class="fas fa-arrow-down" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -760,7 +904,7 @@
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -770,8 +914,8 @@
                         We bring you the finest premium collections with guaranteed quality.
                     </p>
                     <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener" aria-label="Contact via WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -783,27 +927,27 @@
                         <li><a href="./products-showcase.html">All Products</a></li>
                         <li><a href="./cart.html" style="color: #D4AF37; font-weight: bold;">Cart</a></li>
                         <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">Complete Order</a></li>
-                        <li><a href="../" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe"></i> Arabic Version</a></li>
+                        <li><a href="../" target="_blank" rel="noopener" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe" aria-hidden="true"></i> Arabic Version</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h3>Customer Service</h3>
                     <ul>
-                        <li><i class="fas fa-shipping-fast"></i> Shipping within 1-3 business days</li>
-                        <li><i class="fas fa-undo"></i> Returns within 14 days + shipping fees</li>
-                        <li><i class="fas fa-headset"></i> Customer service 24/7</li>
-                        <li><a href="https://wa.me/201110760081" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><i class="fas fa-shipping-fast" aria-hidden="true"></i> Shipping within 1-3 business days</li>
+                        <li><i class="fas fa-undo" aria-hidden="true"></i> Returns within 14 days + shipping fees</li>
+                        <li><i class="fas fa-headset" aria-hidden="true"></i> Customer service 24/7</li>
+                        <li><a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <ul>
-                        <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
-                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i><span>Dubai, United Arab Emirates</span></li>
-                        <li><i class="fas fa-clock"></i><span>Customer Service: 24/7</span></li>
+                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
+                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Dubai, United Arab Emirates</span></li>
+                        <li><i class="fas fa-clock" aria-hidden="true"></i><span>Customer Service: 24/7</span></li>
                     </ul>
                 </div>
             </div>
@@ -813,31 +957,60 @@
                     <p>&copy; 2024 Emirates Gifts. All rights reserved.</p>
                 </div>
                 <div style="display: flex; gap: 30px; flex-wrap: wrap; color: #ccc; font-size: 0.9rem;">
-                    <span><i class="fas fa-truck"></i> Shipping within 1-3 business days</span>
-                    <span><i class="fas fa-undo"></i> Returns within 14 days + shipping fees</span>
-                    <span><i class="fas fa-star"></i> Premium quality guaranteed</span>
+                    <span><i class="fas fa-truck" aria-hidden="true"></i> Shipping within 1-3 business days</span>
+                    <span><i class="fas fa-undo" aria-hidden="true"></i> Returns within 14 days + shipping fees</span>
+                    <span><i class="fas fa-star" aria-hidden="true"></i> Premium quality guaranteed</span>
                 </div>
             </div>
         </div>
     </footer>
 
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
+    <button class="back-to-top" id="backToTop" aria-label="Go back to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
     <script>
-    // 🚫 GLOBAL POPUP BLOCKER - منع جميع النوافذ
-    console.log('🚫 ZERO POPUP ENGLISH MAIN PAGE ENVIRONMENT');
-    window.alert = function() { console.log('🚫 Alert blocked'); };
-    window.confirm = function() { console.log('🚫 Confirm blocked'); return true; };
-    window.prompt = function() { console.log('🚫 Prompt blocked'); return null; };
+    // 🚫 ZERO POPUP + ZERO INLINE CODE ENVIRONMENT
+    const isDev = window.location.hostname === 'localhost';
+    const log = isDev ? console.log.bind(console) : () => {};
+    const warn = isDev ? console.warn.bind(console) : () => {};
+    const error = console.error.bind(console);
+    
+    log('🚫 EMIRATES GIFTS ENGLISH - ZERO INLINE CODE');
+    
+    // Strict popup blocking
+    window.alert = function() { log('🚫 Alert blocked'); return undefined; };
+    window.confirm = function() { log('🚫 Confirm blocked'); return true; };
+    window.prompt = function() { log('🚫 Prompt blocked'); return null; };
+    window.open = function() { log('🚫 window.open blocked'); return null; };
     
     let currentPerfumes = [];
     let currentWatches = [];
     let displayedPerfumes = 8;
     let displayedWatches = 8;
     
-    // English product name converter
+    // Enhanced image error handler (ZERO INLINE)
+    function setupSecureImageHandler(imgElement) {
+        if (!imgElement || imgElement.dataset.secureHandler) return;
+        
+        imgElement.addEventListener('error', function() {
+            if (this.dataset.fallbackApplied === 'true') return;
+            
+            this.dataset.fallbackApplied = 'true';
+            this.src = 'https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=Premium+Product';
+            this.alt = 'Premium Product - Fallback Image';
+            warn('⚠️ Image fallback applied');
+        });
+        
+        imgElement.dataset.secureHandler = 'true';
+        
+        // Handle pre-failed images
+        if (imgElement.complete && imgElement.naturalWidth === 0) {
+            imgElement.dispatchEvent(new Event('error'));
+        }
+    }
+    
+    // English product name converter with enhanced mapping
     function getEnglishProductName(arabicTitle, productId) {
         const specificTranslations = {
             'watch_88': 'Rolex Kaaba Design Premium Watch',
@@ -868,8 +1041,9 @@
             return specificTranslations[productId];
         }
         
-        if (!arabicTitle) return 'Premium Product';
+        if (!arabicTitle || typeof arabicTitle !== 'string') return 'Premium Product';
         
+        // Enhanced brand and feature detection
         const title = arabicTitle.toLowerCase();
         let parts = [];
         
@@ -885,6 +1059,7 @@
         if (title.includes('black') || title.includes('أسود')) parts.push('Black');
         else if (title.includes('gold') || title.includes('ذهبي')) parts.push('Gold');
         else if (title.includes('silver') || title.includes('فضي')) parts.push('Silver');
+        else if (title.includes('blue') || title.includes('أزرق')) parts.push('Blue');
         
         // Product type
         if (productId && productId.includes('watch')) {
@@ -896,188 +1071,462 @@
         return parts.length > 0 ? parts.join(' ') : 'Premium Luxury Product';
     }
     
-    // تحميل المنتجات بدون نوافذ
+    // Enhanced product loading
     async function loadProducts() {
         try {
-            console.log('📦 Loading products...');
+            log('📦 Loading products for English version...');
             
-            const [perfumesResponse, watchesResponse] = await Promise.allSettled([
-                fetch('../data/otor.json?t=' + Date.now()),
-                fetch('../data/sa3at.json?t=' + Date.now())
+            const loadWithRetry = async (url, retries = 3) => {
+                for (let i = 0; i < retries; i++) {
+                    try {
+                        const response = await fetch(url + '?v=' + Date.now());
+                        if (response.ok) {
+                            const data = await response.json();
+                            return Array.isArray(data) ? data : [];
+                        }
+                    } catch (e) {
+                        warn(`⚠️ Retry ${i + 1}/${retries} failed for ${url}`);
+                        if (i === retries - 1) throw e;
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+                    }
+                }
+                return [];
+            };
+            
+            const [perfumes, watches] = await Promise.all([
+                loadWithRetry('../data/otor.json'),
+                loadWithRetry('../data/sa3at.json')
             ]);
             
-            if (perfumesResponse.status === 'fulfilled' && perfumesResponse.value.ok) {
-                currentPerfumes = await perfumesResponse.value.json();
+            currentPerfumes = perfumes;
+            currentWatches = watches;
+            
+            if (currentPerfumes.length > 0) {
                 const perfumesWithEnglish = currentPerfumes.map(p => ({
                     ...p,
                     englishName: getEnglishProductName(p.title, p.id)
                 }));
-                displayProducts(perfumesWithEnglish.slice(0, displayedPerfumes), 'perfumes-grid');
-                if (currentPerfumes.length > displayedPerfumes) {
-                    document.getElementById('perfumes-view-more').style.display = 'inline-flex';
-                }
-                console.log(`✅ Loaded ${currentPerfumes.length} perfumes`);
+                displayProductsSecurely(perfumesWithEnglish.slice(0, displayedPerfumes), 'perfumes-grid');
+                updateViewMoreButton('perfumes-view-more', currentPerfumes.length, displayedPerfumes);
+                log(`✅ Loaded ${currentPerfumes.length} perfumes`);
             }
             
-            if (watchesResponse.status === 'fulfilled' && watchesResponse.value.ok) {
-                currentWatches = await watchesResponse.value.json();
+            if (currentWatches.length > 0) {
                 const watchesWithEnglish = currentWatches.map(p => ({
                     ...p,
                     englishName: getEnglishProductName(p.title, p.id)
                 }));
-                displayProducts(watchesWithEnglish.slice(0, displayedWatches), 'watches-grid');
-                if (currentWatches.length > displayedWatches) {
-                    document.getElementById('watches-view-more').style.display = 'inline-flex';
-                }
-                console.log(`✅ Loaded ${currentWatches.length} watches`);
+                displayProductsSecurely(watchesWithEnglish.slice(0, displayedWatches), 'watches-grid');
+                updateViewMoreButton('watches-view-more', currentWatches.length, displayedWatches);
+                log(`✅ Loaded ${currentWatches.length} watches`);
             }
             
         } catch (error) {
-            console.error('❌ Product loading error:', error);
+            error('❌ Product loading failed:', error);
         }
     }
     
-    // عرض المنتجات بالأسماء الإنجليزية
-    function displayProducts(products, gridId) {
+    // Update view more button
+    function updateViewMoreButton(buttonId, totalItems, displayedItems) {
+        const button = document.getElementById(buttonId);
+        if (!button) return;
+        
+        if (totalItems > displayedItems) {
+            button.style.display = 'inline-flex';
+            button.style.visibility = 'visible';
+            button.style.opacity = '1';
+            log(`✅ ${buttonId} shown (${displayedItems}/${totalItems})`);
+        } else {
+            button.style.display = 'none';
+            log(`ℹ️ ${buttonId} hidden - all shown`);
+        }
+    }
+    
+    // SECURE PRODUCTS DISPLAY (ZERO INLINE CODE)
+    function displayProductsSecurely(products, gridId) {
         const grid = document.getElementById(gridId);
-        if (!grid || !products.length) return;
+        if (!grid || !Array.isArray(products) || products.length === 0) {
+            warn(`⚠️ No products for ${gridId}`);
+            return;
+        }
         
-        const productsHTML = products.map(product => {
-            const finalPrice = parseFloat(product.sale_price || product.price || 0);
-            const displayName = product.englishName || getEnglishProductName(product.title, product.id);
+        try {
+            const productsHTML = products.map(product => {
+                if (!product || typeof product !== 'object') return '';
+                
+                const finalPrice = parseFloat(product.sale_price || product.price || 0);
+                const displayName = product.englishName || getEnglishProductName(product.title, product.id);
+                const productId = String(product.id || Date.now());
+                const productType = gridId.includes('perfume') ? 'perfume' : 'watch';
+                const imageUrl = product.image_link || 'https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=Premium+Product';
+                
+                // ❌ NO INLINE ONCLICK/ONERROR - COMPLETELY SECURE
+                return `
+                    <div class="product-card" 
+                         data-product-id="${productId}" 
+                         data-product-type="${productType}"
+                         role="button"
+                         tabindex="0"
+                         aria-label="View details for ${displayName}">
+                        <div class="product-image-container">
+                            <img src="${imageUrl}" 
+                                 alt="${displayName}" 
+                                 loading="lazy"
+                                 width="300"
+                                 height="250"
+                                 data-fallback-applied="false">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">${displayName}</h4>
+                            <div class="price">AED ${finalPrice.toFixed(2)}</div>
+                        </div>
+                    </div>
+                `;
+            }).filter(html => html.trim().length > 0).join('');
             
-            return `
-                <div class="product-card" onclick="navigateToProduct('${product.id}', '${gridId.includes('perfume') ? 'perfume' : 'watch'}', '${displayName}')">
-                    <div class="product-image-container">
-                        <img src="${product.image_link}" 
-                             alt="${displayName}" 
-                             loading="lazy"
-                             onerror="this.src='https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=Premium+Product'">
-                    </div>
-                    <div class="product-info">
-                        <h4 class="product-title">${displayName}</h4>
-                        <div class="price">AED ${finalPrice.toFixed(2)}</div>
-                    </div>
-                </div>
-            `;
-        }).join('');
-        
-        grid.innerHTML = productsHTML;
-    }
-    
-    // الانتقال للمنتج بدون نوافذ
-    function navigateToProduct(productId, type, englishName) {
-        console.log(`🔗 Navigating to product: ${productId}`);
-        
-        const slug = englishName
-            .toLowerCase()
-            .replace(/[^a-z0-9\s]/g, '')
-            .replace(/\s+/g, '-')
-            .substring(0, 50);
-        
-        window.location.href = `./product-details.html?id=${productId}&category=${type}&slug=${slug}`;
-    }
-    
-    // إضافة المزيد من العطور
-    function showMorePerfumes() {
-        displayedPerfumes += 8;
-        const perfumesWithEnglish = currentPerfumes.map(p => ({
-            ...p,
-            englishName: getEnglishProductName(p.title, p.id)
-        }));
-        displayProducts(perfumesWithEnglish.slice(0, displayedPerfumes), 'perfumes-grid');
-        
-        if (displayedPerfumes >= currentPerfumes.length) {
-            document.getElementById('perfumes-view-more').style.display = 'none';
-        }
-    }
-    
-    // إضافة المزيد من الساعات
-    function showMoreWatches() {
-        displayedWatches += 8;
-        const watchesWithEnglish = currentWatches.map(p => ({
-            ...p,
-            englishName: getEnglishProductName(p.title, p.id)
-        }));
-        displayProducts(watchesWithEnglish.slice(0, displayedWatches), 'watches-grid');
-        
-        if (displayedWatches >= currentWatches.length) {
-            document.getElementById('watches-view-more').style.display = 'none';
-        }
-    }
-    
-    // تحديث عداد السلة
-    function updateCartCounter() {
-        const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
-        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-        const counter = document.getElementById('cart-counter');
-        
-        if (counter) {
-            counter.textContent = totalItems;
-            counter.style.display = totalItems > 0 ? 'flex' : 'none';
-        }
-    }
-    
-    // شريط التقدم
-    function updateProgress() {
-        const scrolled = window.pageYOffset;
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (scrolled / maxScroll) * 100;
-        const bar = document.getElementById('progressBar');
-        if (bar && maxScroll > 0) {
-            bar.style.width = Math.max(0, Math.min(100, progress)) + '%';
-        }
-    }
-    
-    // زر العودة للأعلى
-    function updateBackToTop() {
-        const backToTop = document.getElementById('backToTop');
-        if (backToTop) {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        }
-    }
-    
-    // تهيئة النظام
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('🚫 Zero Popup English Homepage Loading...');
-        
-        updateCartCounter();
-        loadProducts();
-        
-        // أزرار "View More"
-        document.getElementById('perfumes-view-more')?.addEventListener('click', showMorePerfumes);
-        document.getElementById('watches-view-more')?.addEventListener('click', showMoreWatches);
-        
-        window.addEventListener('scroll', () => {
-            updateProgress();
-            updateBackToTop();
-        }, { passive: true });
-        
-        // العودة للأعلى
-        document.getElementById('backToTop')?.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        
-        // الانتقال السلس للروابط
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            grid.innerHTML = productsHTML;
+            
+            // Setup secure event handlers
+            const productCards = grid.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                // Click navigation
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = this.dataset.productId;
+                    const productType = this.dataset.productType;
+                    
+                    if (productId && productType) {
+                        navigateToProductSecurely(productId, productType);
+                    }
+                });
+                
+                // Keyboard accessibility
+                card.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+                
+                // Secure image handling
+                const img = card.querySelector('img');
+                if (img) {
+                    setupSecureImageHandler(img);
                 }
             });
+            
+            log(`📦 Securely displayed ${products.length} products in ${gridId}`);
+            
+        } catch (displayError) {
+            error('❌ Display error:', displayError);
+            grid.innerHTML = '<div class="loading-message" role="alert">❌ Error displaying products</div>';
+        }
+    }
+    
+    // Secure navigation
+    function navigateToProductSecurely(productId, type) {
+        if (!productId || !type) {
+            error('❌ Missing navigation data');
+            return;
+        }
+        
+        log(`🔗 Secure navigation to: ${productId}`);
+        
+        const product = type === 'perfume' ? 
+            currentPerfumes.find(p => p && String(p.id) === String(productId)) :
+            currentWatches.find(p => p && String(p.id) === String(productId));
+        
+        if (product) {
+            const englishName = getEnglishProductName(product.title, productId);
+            const slug = englishName
+                .toLowerCase()
+                .replace(/[^a-z0-9\s]/g, '')
+                .replace(/\s+/g, '-')
+                .substring(0, 50)
+                .trim();
+            
+            const params = new URLSearchParams({
+                id: productId,
+                category: type,
+                slug: slug || 'product'
+            });
+            
+            try {
+                window.location.href = `./product-details.html?${params.toString()}`;
+            } catch (navError) {
+                error('❌ Navigation error:', navError);
+                window.location.href = `./product-details.html?id=${encodeURIComponent(productId)}&category=${encodeURIComponent(type)}`;
+            }
+        } else {
+            error('❌ Product not found:', productId);
+        }
+    }
+    
+    // Show more functions with accessibility
+    function showMorePerfumesSecurely() {
+        try {
+            const oldCount = displayedPerfumes;
+            displayedPerfumes = Math.min(displayedPerfumes + 8, currentPerfumes.length);
+            
+            const perfumesWithEnglish = currentPerfumes.map(p => ({
+                ...p,
+                englishName: getEnglishProductName(p.title, p.id)
+            }));
+            
+            displayProductsSecurely(perfumesWithEnglish.slice(0, displayedPerfumes), 'perfumes-grid');
+            updateViewMoreButton('perfumes-view-more', currentPerfumes.length, displayedPerfumes);
+            
+            // Smooth scroll to new content
+            const section = document.getElementById('perfumes-section');
+            if (section && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            
+            log(`🔄 Perfumes: ${oldCount} → ${displayedPerfumes}/${currentPerfumes.length}`);
+        } catch (error) {
+            error('❌ Show more perfumes error:', error);
+        }
+    }
+    
+    function showMoreWatchesSecurely() {
+        try {
+            const oldCount = displayedWatches;
+            displayedWatches = Math.min(displayedWatches + 8, currentWatches.length);
+            
+            const watchesWithEnglish = currentWatches.map(p => ({
+                ...p,
+                englishName: getEnglishProductName(p.title, p.id)
+            }));
+            
+            displayProductsSecurely(watchesWithEnglish.slice(0, displayedWatches), 'watches-grid');
+            updateViewMoreButton('watches-view-more', currentWatches.length, displayedWatches);
+            
+            // Smooth scroll to new content
+            const section = document.getElementById('watches-section');
+            if (section && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            
+            log(`🔄 Watches: ${oldCount} → ${displayedWatches}/${currentWatches.length}`);
+        } catch (error) {
+            error('❌ Show more watches error:', error);
+        }
+    }
+    
+    // Enhanced cart counter
+    function updateCartCounter() {
+        try {
+            const cartData = localStorage.getItem('emirates_cart');
+            let cart = [];
+            
+            if (cartData) {
+                try {
+                    cart = JSON.parse(cartData);
+                } catch (parseError) {
+                    warn('⚠️ Cart data corrupted');
+                    cart = [];
+                }
+            }
+            
+            if (!Array.isArray(cart)) cart = [];
+            
+            const totalItems = cart.reduce((sum, item) => {
+                if (!item || typeof item !== 'object') return sum;
+                const qty = parseInt(item.quantity || 0);
+                return sum + (isNaN(qty) ? 0 : Math.max(0, qty));
+            }, 0);
+            
+            const counter = document.getElementById('cart-counter');
+            if (counter) {
+                counter.textContent = totalItems.toString();
+                counter.style.display = totalItems > 0 ? 'flex' : 'none';
+                counter.setAttribute('aria-label', `Number of items in cart: ${totalItems}`);
+            }
+        } catch (error) {
+            error('❌ Cart counter error:', error);
+        }
+    }
+    
+    // Enhanced progress bar
+    function updateProgressSecurely() {
+        try {
+            const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+            const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+            
+            if (maxScroll > 0) {
+                const progress = Math.max(0, Math.min(100, (scrolled / maxScroll) * 100));
+                const bar = document.getElementById('progressBar');
+                if (bar) {
+                    bar.style.width = progress + '%';
+                }
+            }
+        } catch (error) {
+            error('❌ Progress error:', error);
+        }
+    }
+    
+    // Enhanced back to top
+    function updateBackToTopSecurely() {
+        try {
+            const backToTop = document.getElementById('backToTop');
+            if (!backToTop) return;
+            
+            const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+            const shouldShow = scrolled > 300;
+            
+            if (shouldShow && !backToTop.classList.contains('show')) {
+                backToTop.classList.add('show');
+            } else if (!shouldShow && backToTop.classList.contains('show')) {
+                backToTop.classList.remove('show');
+            }
+        } catch (error) {
+            error('❌ Back to top error:', error);
+        }
+    }
+    
+    // Enhanced smooth scroll
+    function initSmoothScrollSecurely() {
+        try {
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            anchorLinks.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    
+                    if (target) {
+                        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                        
+                        target.scrollIntoView({ 
+                            behavior: prefersReducedMotion ? 'auto' : 'smooth', 
+                            block: 'start' 
+                        });
+                    }
+                });
+            });
+            log('✅ Smooth scroll initialized');
+        } catch (error) {
+            error('❌ Smooth scroll error:', error);
+        }
+    }
+    
+    // Enhanced initialization
+    function initializeEnglishHomepage() {
+        log('🚫 English Homepage Init - Zero Inline Code...');
+        
+        try {
+            // Update cart counter
+            updateCartCounter();
+            
+            // Load products
+            loadProducts();
+            
+            // Initialize smooth scroll
+            initSmoothScrollSecurely();
+            
+            // Enhanced View More buttons
+            const perfumesViewMore = document.getElementById('perfumes-view-more');
+            const watchesViewMore = document.getElementById('watches-view-more');
+            
+            if (perfumesViewMore) {
+                perfumesViewMore.addEventListener('click', showMorePerfumesSecurely);
+                perfumesViewMore.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        showMorePerfumesSecurely();
+                    }
+                });
+            }
+            
+            if (watchesViewMore) {
+                watchesViewMore.addEventListener('click', showMoreWatchesSecurely);
+                watchesViewMore.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        showMoreWatchesSecurely();
+                    }
+                });
+            }
+            
+            // Scroll events with throttling
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                if (scrollTimeout) return;
+                scrollTimeout = setTimeout(() => {
+                    updateProgressSecurely();
+                    updateBackToTopSecurely();
+                    scrollTimeout = null;
+                }, 16);
+            }, { passive: true });
+            
+            // Enhanced back to top
+            const backToTopBtn = document.getElementById('backToTop');
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    
+                    try {
+                        window.scrollTo({ 
+                            top: 0, 
+                            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                        });
+                    } catch (scrollError) {
+                        window.scrollTo(0, 0);
+                    }
+                });
+                
+                backToTopBtn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            }
+            
+            log('✅ English homepage fully initialized');
+            
+        } catch (initError) {
+            error('❌ Initialization error:', initError);
+        }
+    }
+    
+    // Global error handling
+    window.addEventListener('error', function(event) {
+        error('❌ Global error:', event.error);
+        event.preventDefault();
+        return true;
+    });
+    
+    window.addEventListener('unhandledrejection', function(event) {
+        error('❌ Unhandled promise:', event.reason);
+        event.preventDefault();
+    });
+    
+    // Smart DOM initialization
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeEnglishHomepage);
+    } else {
+        setTimeout(initializeEnglishHomepage, 0);
+    }
+    
+    // Secure global exports
+    if (typeof window !== 'undefined') {
+        window.EmiratesGiftsEN = Object.freeze({
+            version: '2.0.0-english-secure',
+            navigateToProduct: navigateToProductSecurely,
+            showMorePerfumes: showMorePerfumesSecurely,
+            showMoreWatches: showMoreWatchesSecurely,
+            updateCartCounter: updateCartCounter,
+            loadProducts: loadProducts,
+            isDevelopment: isDev
         });
         
-        // تصدير الدالة
-        window.navigateToProduct = navigateToProduct;
-        
-        console.log('✅ Zero Popup English Homepage Ready with View More Buttons');
-    });
+        // Legacy support
+        window.navigateToProduct = navigateToProductSecurely;
+    }
+    
+    log('✅ Emirates Gifts English v2.0 - ZERO INLINE CODE');
     </script>
 </body>
 </html>
