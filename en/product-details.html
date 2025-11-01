@@ -17,12 +17,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-    /* 🚫 ZERO POPUP ENVIRONMENT */
-    .popup, .modal, .overlay, .notification, .alert-box, .toast,
-    [class*="popup"], [class*="modal"], [class*="overlay"], [class*="notification"] {
-        display: none !important;
-    }
-    
     body {
         font-family: 'Inter', sans-serif !important;
         direction: ltr !important;
@@ -358,15 +352,6 @@
         font-weight: 800;
     }
     
-    .url-debug {
-        background: linear-gradient(135deg, rgba(40, 167, 69, 0.05), rgba(32, 201, 151, 0.02));
-        border: 2px solid #28a745;
-        border-radius: 15px;
-        padding: 25px;
-        margin: 30px 0;
-        text-align: center;
-    }
-    
     /* Mobile Responsive */
     @media (max-width: 768px) {
         .product-header {
@@ -388,6 +373,11 @@
         
         .btn-main {
             width: 100%;
+        }
+        
+        .header-nav {
+            flex-wrap: wrap;
+            justify-content: center;
         }
     }
     
@@ -466,13 +456,7 @@
     </main>
     
     <script>
-    // 🚫 GLOBAL POPUP BLOCKER
-    console.log('🚫 ZERO POPUP ENGLISH PRODUCT DETAILS');
-    window.alert = function() { console.log('🚫 Alert blocked'); };
-    window.confirm = function() { return true; };
-    window.prompt = function() { return null; };
-    
-    console.log('🔧 CRITICAL FIX: Universal URL Parameter Support - English');
+    console.log('🔧 Universal URL Parameter Support - Clean English Version');
     
     // Extract all URL parameters
     const urlParams = new URLSearchParams(window.location.search);
@@ -487,8 +471,7 @@
         category: productCategory,
         slug: productSlug,
         type: productType,
-        source: productSource,
-        fullURL: window.location.href
+        source: productSource
     });
     
     let currentProduct = null;
@@ -629,7 +612,7 @@
     }
     
     /**
-     * Display product with English content
+     * Display product with English content (NO URL DEBUG)
      */
     function displayProduct(product) {
         const hasDiscount = parseFloat(product.price || 0) > parseFloat(product.sale_price || 0);
@@ -642,20 +625,6 @@
         document.title = `${product.displayName} - Emirates Gifts Store`;
         
         const productHTML = `
-            <div class="url-debug">
-                <h4 style="color: #28a745; margin-bottom: 15px;"><i class="fas fa-link"></i> URL Status</h4>
-                <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; font-family: monospace; text-align: left; direction: ltr; color: #495057; font-size: 0.9rem; border: 1px solid #e9ecef;">
-                    <div><strong>ID:</strong> ${productId || 'Not specified'}</div>
-                    <div><strong>Category:</strong> ${productCategory || 'Auto-detected'}</div>
-                    <div><strong>Type:</strong> ${productType || 'Auto-detected'}</div>
-                    <div><strong>Source:</strong> ${productSource || 'Multi-source search'}</div>
-                    <div><strong>Slug:</strong> ${productSlug || 'Generated'}</div>
-                </div>
-                <div style="color: #28a745; font-weight: 700; font-size: 1.1rem;">
-                    <i class="fas fa-check-circle"></i> URL Format Fully Supported ✅
-                </div>
-            </div>
-            
             <div class="product-header">
                 <div class="product-image-section">
                     <img src="${product.image_link}" 
@@ -722,7 +691,7 @@
     }
     
     /**
-     * Show error with complete URL debug info
+     * Show error message (clean version)
      */
     function showErrorMessage(message) {
         document.getElementById('productContent').innerHTML = `
@@ -731,36 +700,15 @@
                 <h2>Product Loading Issue</h2>
                 <p style="font-size: 1.2rem; margin: 25px 0;">${message}</p>
                 
-                <div style="background: rgba(255,255,255,0.8); padding: 25px; border-radius: 15px; margin: 30px 0; text-align: left;">
-                    <h4 style="color: #2c3e50; margin-bottom: 18px;"><i class="fas fa-info-circle"></i> Received URL Parameters:</h4>
-                    <div style="font-family: monospace; font-size: 0.95rem; color: #495057; line-height: 1.8; text-align: left; direction: ltr; background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
-                        <div><strong>ID:</strong> ${productId || 'Missing ❌'}</div>
-                        <div><strong>Category:</strong> ${productCategory || 'Not provided'}</div>
-                        <div><strong>Type:</strong> ${productType || 'Not provided'}</div>
-                        <div><strong>Source:</strong> ${productSource || 'Not provided'}</div>
-                        <div><strong>Slug:</strong> ${productSlug || 'Not provided'}</div>
-                        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
-                            <strong>Full URL:</strong> ${window.location.href}
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="background: rgba(40, 167, 69, 0.1); padding: 25px; border-radius: 15px; margin: 30px 0; border: 2px solid #28a745;">
-                    <h4 style="color: #28a745; margin-bottom: 15px;"><i class="fas fa-lightbulb"></i> Working URL Examples:</h4>
-                    <div style="font-family: monospace; background: white; padding: 18px; border-radius: 10px; color: #495057; font-size: 0.9rem; direction: ltr; text-align: left; line-height: 1.6;">
-                        product-details.html?id=watch_2&type=watch&source=sa3at<br>
-                        product-details.html?id=watch_88&category=watch<br>
-                        product-details.html?id=perfume_1&category=perfume<br>
-                        product-details.html?type=watch&id=watch_3
-                    </div>
-                </div>
-                
                 <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
                     <a href="./" class="btn-main btn-primary-main" style="text-decoration: none;">
                         <i class="fas fa-home"></i> Back to Home
                     </a>
                     <a href="./products-showcase.html" class="btn-main btn-whatsapp-main" style="text-decoration: none;">
                         <i class="fas fa-th-large"></i> Browse Products
+                    </a>
+                    <a href="https://wa.me/201110760081" class="btn-main btn-primary-main" style="text-decoration: none;" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Contact Us
                     </a>
                 </div>
             </div>
@@ -814,12 +762,8 @@
         const message = `🛍️ Order from Emirates Gifts Store\n\n` +
             `🎁 Product: ${currentProduct.displayName}\n` +
             `💰 Price: ${parseFloat(currentProduct.sale_price || currentProduct.price).toFixed(2)} AED\n` +
-            `🏪 Store: Emirates Gifts (English Version)\n` +
+            `🏪 Store: Emirates Gifts (English)\n` +
             `🌐 Link: ${window.location.href}\n\n` +
-            `📋 URL Details:\n` +
-            `• ID: ${productId}\n` +
-            `• Type: ${productType || productCategory}\n` +
-            `• Source: ${productSource}\n\n` +
             `✅ Guaranteed Services:\n` +
             `🚚 UAE delivery 1-3 days\n` +
             `🔄 14-day return policy\n` +
@@ -892,13 +836,13 @@
     
     // Initialize system
     function initializeSystem() {
-        console.log('🎯 Initializing universal URL support system (English)');
+        console.log('🎯 Initializing clean URL support system (English)');
         
         window.addEventListener('scroll', updateProgress, { passive: true });
         updateCartCounter();
         loadProductUniversal();
         
-        console.log('✅ English system ready - URL will work now!');
+        console.log('✅ Clean English system ready!');
     }
     
     // Auto-start when page loads
@@ -908,7 +852,7 @@
         initializeSystem();
     }
     
-    console.log('🎯 CRITICAL FIX APPLIED - All URL formats now supported in English!');
+    console.log('🎯 Clean Universal URL Support Applied!');
     </script>
 </body>
 </html>
