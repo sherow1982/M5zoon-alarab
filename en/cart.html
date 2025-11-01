@@ -2,390 +2,738 @@
 <html lang="en-US" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Shopping Cart - Emirates Gifts Store | Premium Products</title>
-    <meta name="description" content="Review your selected premium perfumes and luxury watches. Secure checkout with fast UAE delivery in 1-3 business days.">
-    <meta name="robots" content="noindex, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Emirates Gifts Store</title>
+    <meta name="description" content="Review your selected premium products in your Emirates Gifts shopping cart. Complete your order easily with fast UAE delivery.">
     
-    <link rel="canonical" href="https://emirates-gifts.arabsad.com/en/cart.html">
-    <link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/cart.html">
-    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/cart.html">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <link rel="stylesheet" href="../css/dkhoon-inspired-style.css?v=20251101">
-    <link rel="stylesheet" href="../css/mobile-responsive-fixes.css?v=20251101">
-    <link rel="stylesheet" href="../css/reviews-system.css?v=20251101">
-    <link rel="stylesheet" href="../css/emirates-reviews-style.css?v=20251101">
-    <link rel="stylesheet" href="../css/fixed-navigation-buttons.css?v=20251101">
-    <link rel="stylesheet" href="../css/button-spacing-fixes.css?v=20251101">
-    <link rel="stylesheet" href="../css/final-button-appearance-fix.css?v=20251101">
-    <link rel="stylesheet" href="./css/currency-fix-en.css?v=20251101">
-    
     <style>
-    /* English Accessibility Improvements */
-    .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--deep-blue, #1B2951);
-        color: var(--light-gold, #FFD700);
-        padding: 8px 16px;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: 600;
-        font-family: 'Inter', sans-serif;
-        z-index: 10000;
-        transition: top 0.3s ease;
-        border: 2px solid var(--primary-gold, #D4AF37);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .skip-link:focus {
-        top: 10px;
-    }
-    
-    @media (max-width: 768px) {
-        .skip-link {
-            left: 20px;
-            right: 20px;
-            transform: none;
-            text-align: center;
-        }
-    }
-    
-    /* English Version Optimizations */
-    :root {
-        --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* 🚫 ZERO POPUP ENVIRONMENT */
+    .popup, .modal, .overlay, .notification, .alert-box, .toast,
+    [class*="popup"], [class*="modal"], [class*="overlay"], [class*="notification"] {
+        display: none !important;
     }
     
     body {
-        font-family: var(--font-family-primary) !important;
-        direction: ltr !important;
-        text-align: left !important;
+        font-family: 'Inter', sans-serif;
+        direction: ltr;
+        margin: 0;
+        padding: 0;
+        background: #f8f9fa;
+        color: #2c3e50;
+        line-height: 1.6;
+    }
+    
+    .header {
+        background: white;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: #2c3e50;
+    }
+    
+    .logo-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #FFD700, #D4AF37);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .logo-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #1B2951;
     }
     
     .logo-subtitle {
-        font-family: 'Cairo', sans-serif !important;
-        direction: rtl !important;
-    }
-    
-    /* Arabic Link Style */
-    .arabic-link {
-        background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
-        color: white !important;
-        border-radius: 25px;
-        padding: 8px 16px;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        text-decoration: none;
-        box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
-        border: 2px solid transparent;
-        font-family: 'Cairo', sans-serif !important;
+        font-size: 0.8rem;
+        color: #D4AF37;
+        font-family: 'Cairo', sans-serif;
         direction: rtl;
     }
     
-    .arabic-link:hover {
-        background: linear-gradient(135deg, #8B0000 0%, #C8102E 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(200, 16, 46, 0.5);
+    .header-nav {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .nav-link {
+        color: #2c3e50;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+    }
+    
+    .nav-link:hover {
+        background: rgba(212, 175, 55, 0.1);
+        color: #D4AF37;
+    }
+    
+    .checkout-link {
+        background: linear-gradient(135deg, #25D366, #20B358) !important;
         color: white !important;
-        border-color: #D4AF37;
     }
     
-    /* Currency display */
-    .price::after, .total-price::after, .cart-total::after {
-        content: " AED";
+    .arabic-link {
+        background: #C8102E !important;
+        color: white !important;
+        font-family: 'Cairo', sans-serif;
+        direction: rtl;
     }
     
-    /* Cart specific styles */
-    .cart-content {
-        text-align: left;
+    .main-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        min-height: calc(100vh - 200px);
     }
     
-    .cart-item {
-        text-align: left;
+    .cart-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .cart-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #1B2951;
+        margin-bottom: 15px;
+    }
+    
+    .cart-subtitle {
+        color: #666;
+        font-size: 1.1rem;
+    }
+    
+    .cart-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 40px;
+        margin-top: 40px;
+    }
+    
+    .cart-items-section {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
     
     .cart-summary {
-        text-align: left;
+        background: linear-gradient(135deg, #1B2951, #2c3e50);
+        color: white;
+        border-radius: 15px;
+        padding: 30px;
+        height: fit-content;
+        position: sticky;
+        top: 120px;
     }
     
     .empty-cart {
         text-align: center;
+        padding: 80px 20px;
+        grid-column: 1 / -1;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .empty-cart i {
+        font-size: 5rem;
+        color: #D4AF37;
+        margin-bottom: 30px;
+        opacity: 0.7;
+    }
+    
+    .empty-cart h2 {
+        color: #1B2951;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+    
+    .empty-cart p {
+        color: #666;
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+    }
+    
+    .cart-actions {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 16px 32px;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        border: none;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #D4AF37, #B8860B);
+        color: white;
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+    }
+    
+    .btn-secondary {
+        background: transparent;
+        color: #1B2951;
+        border: 2px solid #D4AF37;
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cart-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        border-bottom: 1px solid #eee;
+        transition: all 0.3s ease;
+    }
+    
+    .cart-item:hover {
+        background: rgba(212, 175, 55, 0.05);
+        border-radius: 10px;
+        padding: 20px;
+    }
+    
+    .cart-item:last-child {
+        border-bottom: none;
+    }
+    
+    .item-image {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px solid #f0f0f0;
+    }
+    
+    .item-details {
+        flex: 1;
+    }
+    
+    .item-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 8px;
+    }
+    
+    .item-price {
+        color: #25D366;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    
+    .quantity-controls {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+    
+    .quantity-btn {
+        width: 35px;
+        height: 35px;
+        border: 2px solid #D4AF37;
+        background: white;
+        color: #D4AF37;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    
+    .quantity-btn:hover {
+        background: #D4AF37;
+        color: white;
+        transform: scale(1.1);
+    }
+    
+    .quantity {
+        min-width: 40px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 5px 10px;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+    
+    .remove-btn {
+        background: #e74c3c;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        font-weight: 600;
+    }
+    
+    .remove-btn:hover {
+        background: #c0392b;
+        transform: translateY(-1px);
+    }
+    
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-size: 1rem;
+    }
+    
+    .summary-total {
+        font-size: 1.4rem;
+        font-weight: bold;
+        padding-top: 15px;
+        border-top: 2px solid rgba(255, 255, 255, 0.3);
+        margin-top: 20px;
+    }
+    
+    .checkout-btn {
+        width: 100%;
+        padding: 18px;
+        background: linear-gradient(135deg, #25D366, #20B358) !important;
+        color: white !important;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        margin-bottom: 15px;
+        text-decoration: none;
+    }
+    
+    .checkout-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    }
+    
+    .continue-btn,
+    .clear-btn {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        margin-bottom: 15px;
+        text-decoration: none;
+        background: transparent;
+        color: white;
+    }
+    
+    .continue-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.6);
+        color: white;
+    }
+    
+    .clear-btn {
+        border-color: #ff6b6b;
+        color: #ff6b6b;
+    }
+    
+    .clear-btn:hover {
+        background: #ff6b6b;
+        color: white;
+    }
+    
+    .shipping-info {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+        text-align: center;
+        line-height: 1.6;
+    }
+    
+    .shipping-info i {
+        color: #25D366;
+        margin-right: 5px;
+    }
+    
+    @media (max-width: 768px) {
+        .cart-layout {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .cart-summary {
+            position: static;
+            order: -1;
+        }
+        
+        .cart-item {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+        
+        .quantity-controls {
+            justify-content: center;
+        }
+        
+        .header-nav {
+            gap: 10px;
+        }
+        
+        .nav-link {
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+    }
+    
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
     </style>
 </head>
 <body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
-    <div class="progress-bar" id="progressBar"></div>
-    
-    <div class="top-banner">
-        <div class="banner-text">
-            <i class="fas fa-shipping-fast banner-icon"></i>
-            <span>Express delivery within 1-3 business days • 14-day return guarantee + shipping fees</span>
-            <i class="fas fa-gift banner-icon"></i>
-        </div>
-    </div>
-
-    <header class="header" id="header">
+    <header class="header">
         <div class="header-container">
-            <div class="header-content">
-                <a href="./" class="logo" aria-label="Home - Emirates Gifts">
-                    <div class="logo-icon"><img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;" loading="eager"></div>
-                    <div class="logo-text">
-                        <div class="logo-title">Emirates Gifts</div>
-                        <div class="logo-subtitle">هدايا الإمارات</div>
-                    </div>
-                </a>
-
-                <nav class="main-nav" aria-label="Main Navigation">
-                    <ul class="nav-menu">
-                        <li class="nav-item"><a href="./" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="./products-showcase.html" class="nav-link" target="_blank" rel="noopener">All Products</a></li>
-                        <li class="nav-item"><a href="./#perfumes-section" class="nav-link">Perfumes</a></li>
-                        <li class="nav-item"><a href="./#watches-section" class="nav-link">Watches</a></li>
-                        <li class="nav-item"><a href="./blog/" class="nav-link" target="_blank" rel="noopener">Blog</a></li>
-                        <li class="nav-item">
-                            <a href="../" class="nav-link arabic-link" target="_blank" rel="noopener">
-                                <i class="fas fa-globe"></i> العربية
-                            </a>
-                        </li>
-                        <li class="nav-item"><a href="https://wa.me/201110760081" class="nav-link" target="_blank" rel="noopener">Contact</a></li>
-                    </ul>
-                </nav>
-
-                <div class="header-tools">
-                    <a href="./cart.html" class="header-tool cart-icon active" aria-label="View Cart" title="View Cart">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-counter">0</span>
-                    </a>
-                    <a href="./checkout.html" class="header-tool order-now-btn" aria-label="Order Now" title="Order Now">
-                        <i class="fas fa-credit-card"></i>
-                        <span>Order Now</span>
-                    </a>
-                    <button class="mobile-menu-toggle" id="openSidebar" aria-label="Open Menu" title="Open Menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
+            <a href="./" class="logo">
+                <div class="logo-icon">
+                    <img src="../favicon.ico" alt="Emirates Gifts" style="width: 32px; height: 32px; object-fit: contain;">
                 </div>
-            </div>
+                <div>
+                    <div class="logo-title">Emirates Gifts</div>
+                    <div class="logo-subtitle">هدايا الإمارات</div>
+                </div>
+            </a>
+            
+            <nav class="header-nav">
+                <a href="./" class="nav-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="./products-showcase.html" class="nav-link">
+                    <i class="fas fa-th-large"></i> All Products
+                </a>
+                <a href="./checkout.html" class="nav-link checkout-link">
+                    <i class="fas fa-credit-card"></i> Complete Order
+                </a>
+                <a href="../" class="nav-link arabic-link" target="_blank">
+                    <i class="fas fa-globe"></i> العربية
+                </a>
+            </nav>
         </div>
     </header>
-
-    <main id="main-content" class="main-content" tabindex="-1">
-        <section class="page-header">
-            <div class="container">
-                <div class="breadcrumb">
-                    <a href="./">Home</a> <i class="fas fa-chevron-right"></i> <span>Shopping Cart</span>
-                </div>
-                <h1 class="page-title">Your Shopping Cart</h1>
-                <p class="page-subtitle">Review your selected premium products before checkout</p>
+    
+    <main class="main-content">
+        <div class="cart-header">
+            <h1 class="cart-title">🛒 Shopping Cart</h1>
+            <p class="cart-subtitle">Review your selected premium products and complete your order easily</p>
+        </div>
+        
+        <div id="cartContent">
+            <div style="text-align: center; padding: 60px; color: #D4AF37;">
+                <i class="fas fa-spinner" style="font-size: 2rem; animation: spin 1s linear infinite; margin-bottom: 20px;"></i>
+                <div style="font-size: 1.2rem;">Loading your shopping cart...</div>
             </div>
-        </section>
+        </div>
+    </main>
 
-        <section class="cart-section">
-            <div class="container">
-                <div class="cart-content" id="cartContent">
-                    <!-- Cart items will be loaded here -->
-                    <div class="empty-cart" id="emptyCart">
-                        <div class="empty-cart-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <h2>Your luxury collection awaits</h2>
-                        <p>Your shopping cart is currently empty. Discover our premium perfumes and luxury watches collection.</p>
-                        <div class="empty-cart-actions">
-                            <a href="./products-showcase.html" class="btn-primary" target="_blank" rel="noopener">
-                                <i class="fas fa-shopping-bag"></i>
-                                Start Shopping
-                            </a>
-                            <a href="./" class="btn-secondary">
-                                <i class="fas fa-home"></i>
-                                Back to Home
-                            </a>
+    <script>
+    // 🚫 GLOBAL POPUP BLOCKER
+    console.log('🚫 ZERO POPUP ENGLISH CART ENVIRONMENT');
+    window.alert = function() { console.log('🚫 Alert blocked'); };
+    window.confirm = function() { return true; };
+    window.prompt = function() { return null; };
+    
+    let cartData = [];
+    
+    // English product name converter
+    function getEnglishProductName(arabicTitle, productId) {
+        const translations = {
+            'watch_88': 'Rolex Kaaba Design Premium Watch',
+            'watch_3': 'Rolex Black Dial Professional R21',
+            'watch_1': 'Rolex Yacht Master Silver Edition',
+            'watch_8': 'Omega Swatch Baby Blue Limited Edition',
+            'perfume_1': 'Chanel Coco Premium Perfume 100ml',
+            'perfume_10': 'Dior Sauvage Premium Fragrance',
+            'perfume_15': 'Tom Ford Black Orchid Luxury'
+        };
+        
+        if (translations[productId]) {
+            return translations[productId];
+        }
+        
+        // Fallback conversion logic
+        if (!arabicTitle) return 'Premium Product';
+        
+        const title = arabicTitle.toLowerCase();
+        let parts = [];
+        
+        if (title.includes('rolex')) parts.push('Rolex');
+        else if (title.includes('omega')) parts.push('Omega');
+        else if (title.includes('chanel')) parts.push('Chanel');
+        else if (title.includes('dior')) parts.push('Dior');
+        
+        if (title.includes('black')) parts.push('Black');
+        else if (title.includes('gold')) parts.push('Gold');
+        else if (title.includes('silver')) parts.push('Silver');
+        
+        if (productId && productId.includes('watch')) {
+            parts.push('Premium Watch');
+        } else if (productId && productId.includes('perfume')) {
+            parts.push('Premium Perfume');
+        }
+        
+        return parts.length > 0 ? parts.join(' ') : 'Premium Luxury Product';
+    }
+    
+    // Load cart data
+    function loadCart() {
+        try {
+            cartData = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
+            console.log(`📦 Loaded ${cartData.length} items in cart`);
+            displayCart();
+        } catch (error) {
+            console.error('❌ Cart loading error:', error);
+            cartData = [];
+            displayCart();
+        }
+    }
+    
+    // Display cart contents
+    function displayCart() {
+        const cartContent = document.getElementById('cartContent');
+        
+        if (cartData.length === 0) {
+            cartContent.innerHTML = `
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h2>Your Cart is Empty</h2>
+                    <p>You haven't added any products yet. Explore our premium collections!</p>
+                    
+                    <div class="cart-actions">
+                        <a href="./" class="btn-primary">
+                            <i class="fas fa-shopping-bag"></i> Start Shopping
+                        </a>
+                        <a href="./products-showcase.html" class="btn-secondary">
+                            <i class="fas fa-star"></i> View All Products
+                        </a>
+                    </div>
+                </div>
+            `;
+            return;
+        }
+        
+        // Display cart items with English names
+        let total = 0;
+        let totalItems = 0;
+        
+        const itemsHTML = cartData.map(item => {
+            const itemPrice = parseFloat(item.price || 0);
+            const quantity = item.quantity || 1;
+            const itemTotal = itemPrice * quantity;
+            total += itemTotal;
+            totalItems += quantity;
+            
+            const englishTitle = getEnglishProductName(item.title, item.id);
+            
+            return `
+                <div class="cart-item">
+                    <img src="${item.image || 'https://via.placeholder.com/80x80/D4AF37/FFFFFF?text=Product'}" 
+                         alt="${englishTitle}" 
+                         class="item-image"
+                         onerror="this.src='https://via.placeholder.com/80x80/D4AF37/FFFFFF?text=Product'">
+                    
+                    <div class="item-details">
+                        <div class="item-title">${englishTitle}</div>
+                        <div class="item-price">AED ${itemPrice.toFixed(2)} per piece</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', ${quantity - 1})">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="quantity">${quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', ${quantity + 1})">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="remove-btn" onclick="removeItem('${item.id}')">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
                         </div>
                     </div>
                     
-                    <div class="cart-with-items" id="cartWithItems" style="display: none;">
-                        <div class="cart-items" id="cartItems">
-                            <!-- Cart items will be populated by JavaScript -->
-                        </div>
-                        
-                        <div class="cart-summary">
-                            <div class="cart-summary-content">
-                                <h3>Order Summary</h3>
-                                <div class="summary-row">
-                                    <span>Subtotal:</span>
-                                    <span class="cart-subtotal" id="cartSubtotal">0 AED</span>
-                                </div>
-                                <div class="summary-row">
-                                    <span>UAE VAT (5%):</span>
-                                    <span class="cart-vat" id="cartVat">0 AED</span>
-                                </div>
-                                <div class="summary-row">
-                                    <span>Shipping:</span>
-                                    <span class="cart-shipping" id="cartShipping">Free</span>
-                                </div>
-                                <div class="summary-row total">
-                                    <span>Total:</span>
-                                    <span class="cart-total" id="cartTotal">0 AED</span>
-                                </div>
-                                <div class="cart-actions">
-                                    <a href="./checkout.html" class="btn-primary checkout-btn">
-                                        <i class="fas fa-credit-card"></i>
-                                        Proceed to Checkout
-                                    </a>
-                                    <a href="./products-showcase.html" class="btn-secondary" target="_blank" rel="noopener">
-                                        <i class="fas fa-shopping-bag"></i>
-                                        Continue Shopping
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    <div style="font-size: 1.3rem; font-weight: 700; color: #D4AF37; min-width: 100px; text-align: center;">
+                        AED ${itemTotal.toFixed(2)}
                     </div>
+                </div>
+            `;
+        }).join('');
+        
+        cartContent.innerHTML = `
+            <div class="cart-layout">
+                <div class="cart-items-section">
+                    <h2 style="margin-bottom: 25px; color: #1B2951; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-shopping-bag"></i> Your Selected Products (${totalItems} items)
+                    </h2>
+                    ${itemsHTML}
                 </div>
                 
-                <!-- Recommended Products -->
-                <div class="recommended-section">
-                    <h3>You Might Also Like</h3>
-                    <div class="recommended-products" id="recommendedProducts">
-                        <div class="loading-message">⏳ Loading recommended products...</div>
+                <div class="cart-summary">
+                    <h3 style="margin-bottom: 25px; font-size: 1.4rem;">
+                        <i class="fas fa-calculator"></i> Order Summary
+                    </h3>
+                    
+                    <div class="summary-row">
+                        <span>Number of Products:</span>
+                        <span>${totalItems} items</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span>AED ${total.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span style="color: #25D366; font-weight: bold;">FREE ✓</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Final Total:</span>
+                        <span>AED ${total.toFixed(2)}</span>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="./checkout.html" class="checkout-btn">
+                            <i class="fas fa-credit-card"></i> Complete Order Now
+                        </a>
+                        
+                        <a href="./products-showcase.html" class="continue-btn">
+                            <i class="fas fa-plus"></i> Add More Products
+                        </a>
+                        
+                        <button onclick="clearCart()" class="clear-btn">
+                            <i class="fas fa-trash-alt"></i> Clear Cart
+                        </button>
+                    </div>
+                    
+                    <div class="shipping-info">
+                        <div style="margin-bottom: 8px;">
+                            <i class="fas fa-truck"></i> Delivery within 1-3 business days
+                        </div>
+                        <div>
+                            <i class="fas fa-undo"></i> 14-day return guarantee + shipping fees
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Emirates Gifts</h3>
-                    <p>The leading premium perfumes and luxury gifts store in the United Arab Emirates.</p>
-                    <div class="social-links">
-                        <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="./">Home</a></li>
-                        <li><a href="./products-showcase.html" target="_blank" rel="noopener">All Products</a></li>
-                        <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">Complete Order</a></li>
-                        <li><a href="../" target="_blank" rel="noopener" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe"></i> العربية</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Customer Service</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i><a href="tel:+201110760081">+20 111 076 0081</a></li>
-                        <li><i class="fas fa-envelope"></i><a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></li>
-                        <li><i class="fas fa-clock"></i><span>Available 24/7</span></li>
-                        <li><a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp Support</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="footer-legal">
-                    <p>&copy; 2024 Emirates Gifts. All rights reserved.</p>
-                    <div class="legal-links">
-                        <a href="./privacy-policy.html">Privacy</a>
-                        <a href="./terms-conditions.html">Terms</a>
-                        <a href="./shipping-policy.html">Shipping</a>
-                        <a href="./return-policy.html">Returns</a>
-                        <a href="../" target="_blank" rel="noopener"><i class="fas fa-globe"></i> عربي</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <button class="back-to-top" id="backToTop" aria-label="Back to Top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    <div class="mobile-sidebar" id="mobileSidebar">
-        <div class="mobile-sidebar-header">
-            <div class="mobile-sidebar-logo">Emirates Gifts</div>
-            <button class="mobile-sidebar-close" id="closeSidebar" aria-label="Close Menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <nav class="mobile-sidebar-nav">
-            <a href="./"><i class="fas fa-home"></i> Home</a>
-            <a href="./products-showcase.html" target="_blank" rel="noopener"><i class="fas fa-th-large"></i> All Products</a>
-            <a href="./cart.html" class="active"><i class="fas fa-shopping-cart"></i> Cart</a>
-            <a href="./checkout.html" class="order-now-btn"><i class="fas fa-credit-card"></i> Order Now</a>
-            <a href="../" target="_blank" rel="noopener" class="arabic-link"><i class="fas fa-globe"></i> عربي</a>
-            <a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </nav>
-    </div>
-
-    <!-- Load correct English version scripts with version numbers -->
-    <script src="../js/dom-optimization.js?v=20251101" defer></script>
-    <script src="./js/ui-en.js?v=20251101" defer></script>
-    <script src="./js/cart-en.js?v=20251101" defer></script>
-    <script src="./js/reviews-system-en.js?v=20251101" defer></script>
-    <script src="./js/popup-system-en.js?v=20251101" defer></script>
-    <script src="./js/products-loader-en-fixed.js?v=20251101" defer></script>
-    <script src="./js/main-en.js?v=20251101" defer></script>
+        `;
+    }
     
-    <script>
-    // English version cart customizations
+    // Update quantity
+    window.updateQuantity = function(itemId, newQuantity) {
+        if (newQuantity <= 0) {
+            removeItem(itemId);
+            return;
+        }
+        
+        const item = cartData.find(item => item.id === itemId);
+        if (item) {
+            item.quantity = newQuantity;
+            saveCart();
+            displayCart();
+            console.log(`📝 Updated quantity: ${item.title} = ${newQuantity}`);
+        }
+    };
+    
+    // Remove item
+    window.removeItem = function(itemId) {
+        cartData = cartData.filter(item => item.id !== itemId);
+        saveCart();
+        displayCart();
+        console.log(`🗑️ Removed product: ${itemId}`);
+    };
+    
+    // Clear cart
+    window.clearCart = function() {
+        cartData = [];
+        saveCart();
+        displayCart();
+        console.log('🧽 Cart cleared');
+    };
+    
+    // Save cart
+    function saveCart() {
+        localStorage.setItem('emirates_cart', JSON.stringify(cartData));
+    }
+    
+    // Initialize system
     document.addEventListener('DOMContentLoaded', function() {
-        // Update text content for English
-        const updateEnglishText = () => {
-            // Empty cart messages
-            const emptyCartTitle = document.querySelector('.empty-cart h2');
-            if (emptyCartTitle && emptyCartTitle.textContent !== 'Your luxury collection awaits') {
-                emptyCartTitle.textContent = 'Your luxury collection awaits';
-            }
-            
-            const emptyCartDesc = document.querySelector('.empty-cart p');
-            if (emptyCartDesc && !emptyCartDesc.textContent.includes('shopping cart is currently empty')) {
-                emptyCartDesc.textContent = 'Your shopping cart is currently empty. Discover our premium perfumes and luxury watches collection.';
-            }
-            
-            // Update button texts
-            const startShoppingBtn = document.querySelector('.empty-cart .btn-primary');
-            if (startShoppingBtn && !startShoppingBtn.innerHTML.includes('Start Shopping')) {
-                startShoppingBtn.innerHTML = '<i class="fas fa-shopping-bag"></i> Start Shopping';
-            }
-            
-            // Currency display
-            const priceElements = document.querySelectorAll('.price, .total-price, .cart-total, .cart-subtotal, .cart-vat');
-            priceElements.forEach(element => {
-                if (element.textContent && !element.textContent.includes('AED') && element.textContent !== '0 AED' && element.textContent !== 'Free') {
-                    if (element.textContent.match(/\d/)) {
-                        element.textContent = element.textContent + ' AED';
-                    }
-                }
-            });
-        };
+        console.log('🛒 Initializing English cart page - no popups...');
         
-        // Run text updates
-        setTimeout(updateEnglishText, 1000);
+        loadCart();
         
-        // Update on cart changes
-        document.addEventListener('cartUpdated', updateEnglishText);
-        
-        console.log('English cart page initialized - v20251101');
+        console.log('✅ English cart page ready!');
     });
     </script>
 </body>
