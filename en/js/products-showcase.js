@@ -123,7 +123,7 @@
         return parts.length > 0 ? parts.join(' ') : 'Premium Luxury Product';
     }
     
-    // 🔗 Enhanced English WhatsApp message formatter with product link
+    // 🔗 Enhanced English WhatsApp message formatter with correct domain for Merchant Center
     function formatEnglishWhatsAppMessage(product) {
         if (!product) return '';
         
@@ -132,9 +132,15 @@
         const productTitle = (product.englishName || getEnglishProductName(product.title, product.id)).trim();
         const productId = product.id || 'unknown';
         
-        // Build product URL for English version
-        const baseUrl = window.location.origin + window.location.pathname.replace('/products-showcase.html', '');
-        const productUrl = `${baseUrl}/product-details.html?id=${productId}&category=${product.type}`;
+        // 🎯 Build correct product URL for Merchant Center integration (English version)
+        const productSlug = productTitle
+            .toLowerCase()
+            .replace(/[^a-z0-9\s]/g, '')
+            .replace(/\s+/g, '-')
+            .substring(0, 50)
+            .trim();
+            
+        const productUrl = `https://emirates-gifts.arabsad.com/en/product-details.html?id=${productId}&category=${product.type}&slug=${productSlug || 'product'}`;
         
         let message = `🛒 *Order from Emirates Gifts Store*\n`;
         message += `━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
@@ -278,7 +284,7 @@
                 const imageUrl = product.image_link || 
                     'https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=Premium+Product';
                 
-                // 📱 ENHANCED ENGLISH WHATSAPP MESSAGE WITH PRODUCT LINK
+                // 📱 ENHANCED ENGLISH WHATSAPP MESSAGE WITH CORRECT DOMAIN
                 const whatsappMessage = formatEnglishWhatsAppMessage(product);
                 
                 // ❌ NO INLINE EVENT HANDLERS - COMPLETELY SECURE
@@ -398,7 +404,7 @@
             });
         });
         
-        // 📱 Enhanced WhatsApp buttons with dynamic messages and links
+        // 📱 Enhanced WhatsApp buttons with dynamic messages and corrected links
         document.querySelectorAll('.whatsapp-order-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation(); // Don't trigger card click
@@ -407,14 +413,14 @@
                 if (productId) {
                     const product = currentProducts.find(p => p && String(p.id) === String(productId));
                     if (product) {
-                        // Update WhatsApp link with fresh product data including link
+                        // Update WhatsApp link with fresh product data including correct domain link
                         const freshMessage = formatEnglishWhatsAppMessage(product);
                         this.href = `https://wa.me/201110760081?text=${encodeURIComponent(freshMessage)}`;
-                        log('📱 WhatsApp message updated with English product link and data');
+                        log('📱 English WhatsApp message updated with arabsad.com/en product link');
                     }
                 }
                 
-                log('📱 English WhatsApp order initiated with product link');
+                log('📱 English WhatsApp order initiated with correct domain link');
             });
         });
     }
@@ -869,7 +875,7 @@
     // Secure global exports
     if (typeof window !== 'undefined') {
         window.EmiratesShowcaseEN = Object.freeze({
-            version: '2.1.0-english-secure-with-links',
+            version: '2.1.0-english-secure-with-merchant-links',
             navigateToProduct: navigateToProductDetailsSecurely,
             addToCart: addToCartSecurely,
             updateCartBadge: updateCartBadgeSecurely,
@@ -882,6 +888,6 @@
         window.addToCartClean = addToCartSecurely;
     }
     
-    log('✅ Emirates Gifts Products Showcase EN v2.1 - WITH PRODUCT LINKS');
+    log('✅ Emirates Gifts Products Showcase EN v2.1 - WITH MERCHANT CENTER LINKS');
     
 })();
