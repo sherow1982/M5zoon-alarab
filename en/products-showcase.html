@@ -41,11 +41,32 @@
     </script>
     
     <style>
-    /* FORCE English display - URLs preserved */
+    /* NO POPUP ENVIRONMENT - Block all popups */
+    .popup, .modal, .overlay, .notification, .alert-box, .toast,
+    [class*="popup"], [class*="modal"], [class*="overlay"], [class*="notification"] {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+    
+    /* Exception: Professional search */
+    .professional-search-container {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+    
+    .professional-search-container:not(.active) {
+        display: none !important;
+    }
+    
     body {
         font-family: 'Inter', sans-serif !important;
         direction: ltr !important;
         text-align: left !important;
+        overflow-x: hidden !important;
     }
     
     .logo-subtitle {
@@ -53,7 +74,6 @@
         direction: rtl !important;
     }
     
-    /* Arabic language switcher styling */
     .arabic-link {
         background: linear-gradient(135deg, #C8102E 0%, #8B0000 100%);
         color: white !important;
@@ -77,11 +97,7 @@
         border-color: #D4AF37;
     }
     
-    /* Product titles display in English */
-    .product-title,
-    .product-title a,
-    .product-name,
-    h3.product-title {
+    .product-title, .product-title a, .product-name, h3.product-title {
         font-family: 'Inter', sans-serif !important;
         direction: ltr !important;
         text-align: center !important;
@@ -90,7 +106,6 @@
         line-height: 1.4 !important;
     }
     
-    /* Enhanced search bar styling */
     .search-bar {
         position: relative;
         max-width: 600px;
@@ -179,7 +194,7 @@
                 </nav>
 
                 <div class="header-tools">
-                    <!-- Professional search button will be added here -->
+                    <!-- Professional search button added automatically -->
                     <a href="./cart.html" class="header-tool cart-icon" aria-label="View Cart" title="View Cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-counter">0</span>
@@ -205,7 +220,6 @@
                 <h1 class="page-title">Premium Products Collection</h1>
                 <p class="page-subtitle">Discover our complete range of premium perfumes, luxury watches, and exclusive gifts with verified customer reviews</p>
                 
-                <!-- Enhanced Professional Search Bar -->
                 <div class="search-bar" style="margin-top: 30px;">
                     <input type="text" 
                            id="showcaseSearchInput" 
@@ -213,7 +227,7 @@
                            aria-label="Search premium products">
                     <button type="button" 
                             id="showcaseSearchBtn" 
-                            onclick="ProfessionalSearch.openSearch()" 
+                            onclick="openShowcaseSearch()" 
                             aria-label="Open professional search">
                         <i class="fas fa-search"></i>
                     </button>
@@ -260,7 +274,7 @@
                         
                         <button type="button" id="clearFilters" class="btn-secondary">Clear Filters</button>
                         
-                        <button type="button" onclick="ProfessionalSearch.openSearch()" class="btn-primary" style="margin-left: 15px;">
+                        <button type="button" onclick="openShowcaseSearch()" class="btn-primary" style="margin-left: 15px;">
                             <i class="fas fa-search"></i> Advanced Search
                         </button>
                     </div>
@@ -289,7 +303,7 @@
                     <h2>Ready to Place Your Order?</h2>
                     <p>Join thousands of satisfied customers who trust Emirates Gifts for premium quality products</p>
                     <div class="cta-buttons">
-                        <button onclick="ProfessionalSearch.openSearch()" class="btn-secondary">
+                        <button onclick="openShowcaseSearch()" class="btn-secondary">
                             <i class="fas fa-search"></i>
                             Search More Products
                         </button>
@@ -312,10 +326,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Emirates Gifts</h3>
-                    <p>
-                        The leading premium perfumes and luxury gifts store in the United Arab Emirates. 
-                        We offer you the most beautiful premium collections with authentic quality
-                    </p>
+                    <p>The leading premium perfumes and luxury gifts store in the United Arab Emirates. We offer you the most beautiful premium collections with authentic quality</p>
                     <div class="social-links">
                         <a href="https://wa.me/201110760081" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -394,7 +405,6 @@
         <nav class="mobile-sidebar-nav">
             <a href="./"><i class="fas fa-home"></i> Home</a>
             <a href="./products-showcase.html" class="active"><i class="fas fa-th-large"></i> All Products</a>
-            <!-- Search will be added here by professional search system -->
             <a href="./#perfumes-section"><i class="fas fa-spray-can"></i> Perfumes</a>
             <a href="./#watches-section"><i class="fas fa-clock"></i> Watches</a>
             <a href="./blog/" target="_blank" rel="noopener"><i class="fas fa-blog"></i> Blog</a>
@@ -410,19 +420,22 @@
         </nav>
     </div>
 
-    <!-- Load Systems: Display Translation + Professional Search + URL Preservation -->
-    <script>console.log('🔍 COMPREHENSIVE SYSTEM: Display Translation + Professional Search + URL Safe');</script>
+    <!-- NO POPUP SCRIPTS - Load popup blocker FIRST -->
+    <script>console.log('🚫 NO POPUP SHOWCASE - Popup prevention active');</script>
     
-    <!-- Core Systems -->
+    <!-- POPUP BLOCKER - Must load first -->
+    <script src="./js/global-popup-blocker.js?v=20251101-NO-POPUPS"></script>
+    
+    <!-- Core Systems (popup-safe) -->
     <script src="../js/dom-optimization.js?v=20251101" defer></script>
     <script src="./js/ui-en.js?v=20251101" defer></script>
     <script src="./js/cart-en.js?v=20251101" defer></script>
     <script src="./js/reviews-system-en.js?v=20251101" defer></script>
     
-    <!-- DISPLAY-ONLY Translation (URLs preserved) -->
+    <!-- Display-Only Translation (URLs preserved) -->
     <script src="./js/display-only-translator.js?v=20251101-DISPLAY" defer></script>
     
-    <!-- Professional Search System -->
+    <!-- Professional Search System (no popup conflicts) -->
     <script src="./js/professional-search-system.js?v=20251101-PRO" defer></script>
     
     <!-- Products Loader - URL Safe -->
@@ -432,19 +445,31 @@
     <script src="./js/main-en.js?v=20251101" defer></script>
     
     <script>
-    // Enhanced System Integration
+    // NO POPUP SHOWCASE INTEGRATION
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('🎆 INTEGRATED SYSTEM: Professional Search + Display Translation + URL Preservation');
+        console.log('🚫 NO POPUP SHOWCASE: Professional Search + Display Translation + Popup Prevention');
         
-        // Connect search bar to professional search
+        // Global functions (popup-safe)
+        window.openShowcaseSearch = function() {
+            if (window.ProfessionalSearch) {
+                window.ProfessionalSearch.openSearch();
+            } else {
+                console.log('🔍 Search not ready, fallback to basic search');
+                // No popup fallback
+                const input = document.getElementById('showcaseSearchInput');
+                if (input && input.value) {
+                    window.location.href = `./products-showcase.html?search=${encodeURIComponent(input.value)}`;
+                }
+            }
+        };
+        
+        // Connect search bar to professional search (no popups)
         const showcaseSearchInput = document.getElementById('showcaseSearchInput');
         if (showcaseSearchInput) {
             showcaseSearchInput.addEventListener('focus', () => {
-                // Open professional search modal when clicking on search bar
                 if (window.ProfessionalSearch) {
                     window.ProfessionalSearch.openSearch();
                     
-                    // Transfer any existing text
                     setTimeout(() => {
                         const professionalInput = document.getElementById('professionalSearchInput');
                         if (professionalInput && showcaseSearchInput.value) {
@@ -458,38 +483,44 @@
             showcaseSearchInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     e.preventDefault();
-                    if (window.ProfessionalSearch) {
-                        window.ProfessionalSearch.openSearch();
-                        setTimeout(() => {
-                            const professionalInput = document.getElementById('professionalSearchInput');
-                            if (professionalInput) {
-                                professionalInput.value = showcaseSearchInput.value;
-                                window.ProfessionalSearch.performSearch(showcaseSearchInput.value);
-                            }
-                        }, 200);
-                    }
+                    openShowcaseSearch();
                 }
             });
         }
         
-        // Show system status after everything loads
+        // Monitor for popup attempts and block them
+        function preventShowcasePopups() {
+            const popupElements = document.querySelectorAll('.popup, .modal, .overlay, .notification');
+            popupElements.forEach(el => {
+                if (!el.classList.contains('professional-search-container')) {
+                    el.remove();
+                    console.log('🚫 Removed popup element from showcase');
+                }
+            });
+        }
+        
+        // Run prevention every 3 seconds
+        setInterval(preventShowcasePopups, 3000);
+        
+        // System status
         setTimeout(() => {
             const systems = {
+                'Popup Blocker': window.PopupBlocker,
                 'Display Translator': window.DisplayTranslator,
-                'Professional Search': window.ProfessionalSearch,
-                'Products Loader': window.SimpleEnglishLoader || window.FixedEnglishProductsLoader
+                'Professional Search': window.ProfessionalSearch
             };
             
-            console.log('📊 SYSTEM STATUS:');
+            console.log('📊 SHOWCASE NO POPUP STATUS:');
             Object.keys(systems).forEach(name => {
-                console.log(`  ${systems[name] ? '✅' : '❌'} ${name}: ${systems[name] ? 'READY' : 'NOT LOADED'}`);
+                console.log(`  ${systems[name] ? '✅' : '❌'} ${name}: ${systems[name] ? 'ACTIVE' : 'NOT LOADED'}`);
             });
             
-            const readyCount = Object.values(systems).filter(Boolean).length;
-            if (readyCount === Object.keys(systems).length) {
-                console.log('🎆 ALL SYSTEMS OPERATIONAL - English store fully functional!');
+            if (window.PopupBlocker) {
+                console.log(`🚫 Total popups blocked: ${window.PopupBlocker.blockedCount}`);
             }
         }, 3000);
+        
+        console.log('✅ No popup showcase environment ready');
     });
     </script>
 </body>
