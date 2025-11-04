@@ -1,1220 +1,597 @@
-<!doctype html>
-<html lang="ar-AE" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">تفاصيل المنتج | متجر هدايا الإمارات</title>
+    <meta name="description" id="page-description" content="عطور وساعات عالية الجودة من متجر هدايا الإمارات">
+    <meta name="keywords" content="عطور, ساعات, هدايا, الإمارات, متجر">
     
-    <!-- Enhanced Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; frame-ancestors 'none'; object-src 'none'; base-uri 'self';">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" id="og-title" content="تفاصيل المنتج | متجر هدايا الإمارات">
+    <meta property="og:description" id="og-description" content="عطور وساعات عالية الجودة">
+    <meta property="og:image" id="og-image" content="https://via.placeholder.com/600x400">
+    <meta property="og:url" id="og-url" content="">
+    <meta property="og:type" content="product">
     
-    <title>تفاصيل المنتج - متجر هدايا الإمارات</title>
-    <meta name="description" content="تفاصيل المنتج من متجر هدايا الإمارات - عطور وساعات عالية الجودة">
-    <meta name="keywords" content="تفاصيل منتج, عطور, ساعات, هدايا, Emirates Gifts, الإمارات, دبي">
-    <meta name="robots" content="index, follow">
-    
-    <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/product-details.html">
-    <link rel="alternate" hreflang="en" href="https://sherow1982.github.io/emirates-gifts/en/product-details.html">
-    <link rel="alternate" hreflang="ar" href="https://sherow1982.github.io/emirates-gifts/product-details.html">
-    
-    <!-- Performance Optimization -->
+    <link rel="canonical" id="canonical-url" href="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome with SRI -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
-          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-    /* 🚫 ZERO POPUP ENVIRONMENT */
-    .popup, .modal, .overlay, .notification-banner, .alert, .toast,
-    [class*="popup"], [class*="modal"], [class*="overlay"], [class*="notification"] {
-        display: none !important;
-    }
-    
-    * {
-        box-sizing: border-box;
-    }
-    
-    body {
-        font-family: 'Cairo', sans-serif !important;
-        direction: rtl !important;
-        text-align: right !important;
-        margin: 0;
-        padding: 0;
-        background: #ffffff;
-        color: #2c3e50;
-        line-height: 1.6;
-        scroll-behavior: smooth;
-    }
-    
-    .progress-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(90deg, #D4AF37, #00A16B, #C8102E);
-        z-index: 9999;
-        transition: width 0.2s ease;
-    }
-    
-    .header {
-        background: white;
-        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        padding: 15px 0;
-    }
-    
-    .header-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-    
-    .header-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-    
-    .logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        color: #2c3e50;
-    }
-    
-    .logo-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #FFD700, #D4AF37);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
-    }
-    
-    .logo-text {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .logo-title {
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: #1B2951;
-        line-height: 1;
-        margin-bottom: 3px;
-    }
-    
-    .logo-subtitle {
-        font-size: 0.8rem;
-        color: #D4AF37;
-        opacity: 0.8;
-        font-weight: 600;
-    }
-    
-    .header-tools {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    .header-tool {
-        width: 50px;
-        height: 50px;
-        background: #f8f9fa;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #2c3e50;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        position: relative;
-        border: none;
-        cursor: pointer;
-        font-size: 18px;
-    }
-    
-    .header-tool:hover {
-        background: linear-gradient(135deg, #FFD700, #D4AF37);
-        color: #1B2951;
-        transform: translateY(-2px);
-    }
-    
-    .header-tool:focus {
-        outline: 2px solid #D4AF37;
-        outline-offset: 2px;
-    }
-    
-    /* 🛒 ENHANCED CHECKOUT BUTTON */
-    .checkout-btn {
-        background: linear-gradient(135deg, #25D366, #20B358) !important;
-        color: white !important;
-        width: auto !important;
-        padding: 12px 24px !important;
-        border-radius: 25px !important;
-        font-weight: 700 !important;
-        font-size: 15px !important;
-        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3) !important;
-        display: inline-flex !important;
-        align-items: center;
-        gap: 8px !important;
-    }
-    
-    .checkout-btn:hover {
-        background: linear-gradient(135deg, #20B358, #1fa34d) !important;
-        color: white !important;
-        transform: translateY(-3px) !important;
-        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5) !important;
-    }
-    
-    .cart-counter {
-        position: absolute;
-        top: -5px;
-        left: -5px;
-        background: #e74c3c;
-        color: white;
-        border-radius: 50%;
-        min-width: 20px;
-        height: 20px;
-        font-size: 11px;
-        font-weight: bold;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 1;
-    }
-    
-    .btn-secondary {
-        background: transparent;
-        color: #1B2951;
-        padding: 12px 20px;
-        border: 2px solid #D4AF37;
-        border-radius: 25px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .btn-secondary:hover {
-        background: #D4AF37;
-        color: white;
-        transform: translateY(-2px);
-    }
-    
-    .btn-secondary:focus {
-        outline: 2px solid #D4AF37;
-        outline-offset: 2px;
-    }
-    
-    .main-content {
-        min-height: calc(100vh - 200px);
-    }
-    
-    .product-details-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px 20px;
-    }
-    
-    .breadcrumb {
-        margin-bottom: 30px;
-        color: #666;
-        font-size: 0.95rem;
-    }
-    
-    .breadcrumb a {
-        color: #D4AF37;
-        text-decoration: none;
-        font-weight: 600;
-    }
-    
-    .breadcrumb a:hover {
-        text-decoration: underline;
-    }
-    
-    .breadcrumb a:focus {
-        outline: 2px solid #D4AF37;
-        outline-offset: 2px;
-        border-radius: 4px;
-    }
-    
-    .product-header {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-        align-items: start;
-        margin-bottom: 60px;
-    }
-    
-    .product-image {
-        width: 100%;
-        max-width: 500px;
-        height: 500px;
-        object-fit: cover;
-        border-radius: 15px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-    }
-    
-    .product-image:hover {
-        box-shadow: 0 30px 80px rgba(0,0,0,0.2);
-        transform: scale(1.02);
-    }
-    
-    .product-info {
-        padding: 20px 0;
-    }
-    
-    .category-badge-main {
-        background: linear-gradient(135deg, #FFD700, #D4AF37);
-        color: #1B2951;
-        padding: 10px 18px;
-        border-radius: 25px;
-        display: inline-block;
-        margin-bottom: 20px;
-        font-weight: 800;
-        font-size: 0.95rem;
-    }
-    
-    .product-title-main {
-        font-size: 2.5rem !important;
-        font-weight: 900 !important;
-        color: #1B2951 !important;
-        margin-bottom: 25px !important;
-        line-height: 1.3 !important;
-    }
-    
-    .product-price-main {
-        font-size: 2.5rem;
-        font-weight: 900;
-        color: #25D366;
-        margin-bottom: 15px;
-    }
-    
-    .original-price {
-        font-size: 1.3rem;
-        color: #e74c3c;
-        text-decoration: line-through;
-        margin-right: 15px;
-    }
-    
-    .discount-badge {
-        background: #e74c3c;
-        color: white;
-        padding: 8px 15px;
-        border-radius: 25px;
-        display: inline-block;
-        margin-top: 10px;
-        font-weight: 700;
-        font-size: 0.9rem;
-    }
-    
-    .product-features {
-        margin: 40px 0;
-        background: #f8f9fa;
-        padding: 30px;
-        border-radius: 15px;
-        border: 2px solid rgba(212, 175, 55, 0.2);
-    }
-    
-    .product-features h3 {
-        color: #1B2951;
-        margin-bottom: 20px;
-        font-size: 1.4rem;
-        font-weight: 800;
-    }
-    
-    .product-features ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .product-features li {
-        padding: 12px 0;
-        color: #495057;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
-    }
-    
-    .product-features li:last-child {
-        border-bottom: none;
-    }
-    
-    .product-features .fas {
-        color: #25D366;
-        margin-left: 15px;
-        font-size: 16px;
-    }
-    
-    .product-actions-main {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-        margin-top: 40px;
-    }
-    
-    .btn-main {
-        padding: 18px 32px;
-        border-radius: 15px;
-        font-weight: 700;
-        font-size: 1.1rem;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        font-family: 'Cairo', sans-serif;
-        justify-content: center;
-        min-height: 56px;
-    }
-    
-    .btn-main:focus {
-        outline: 3px solid rgba(212, 175, 55, 0.5);
-        outline-offset: 2px;
-    }
-    
-    .btn-primary-main {
-        background: linear-gradient(135deg, #D4AF37, #B8860B);
-        color: white;
-        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-    }
-    
-    /* 🛒 DIRECT CHECKOUT MAIN BUTTON */
-    .btn-checkout-main {
-        background: linear-gradient(135deg, #25D366, #20B358);
-        color: white;
-        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-        font-size: 1.2rem;
-        font-weight: 800;
-    }
-    
-    .btn-checkout-main:hover {
-        background: linear-gradient(135deg, #20B358, #1fa34d);
-        transform: translateY(-4px);
-        box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
-    }
-    
-    .btn-whatsapp-main {
-        background: linear-gradient(135deg, #25D366, #20B358);
-        color: white;
-        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-    }
-    
-    .btn-main:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-    }
-    
-    .loading-message, .error-message {
-        text-align: center;
-        padding: 80px 30px;
-        border-radius: 20px;
-        margin: 60px 0;
-    }
-    
-    .loading-message {
-        background: #f8f9fa;
-        color: #666;
-        border: 2px solid #e9ecef;
-    }
-    
-    .error-message {
-        background: #fff5f5;
-        color: #e74c3c;
-        border: 2px solid #fed7d7;
-    }
-    
-    .loading-message i, .error-message i {
-        font-size: 4rem;
-        margin-bottom: 25px;
-        opacity: 0.7;
-    }
-    
-    .loading-message h3, .error-message h2 {
-        margin: 20px 0 15px;
-        font-weight: 800;
-        color: #1B2951;
-    }
-    
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-        .header-content {
-            gap: 15px;
-        }
-        
-        .product-header {
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-        
-        .product-title-main {
-            font-size: 2rem !important;
-        }
-        
-        .product-price-main {
-            font-size: 2rem;
-        }
-        
-        .product-actions-main {
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-        
-        .checkout-btn {
-            padding: 10px 18px !important;
-            font-size: 14px !important;
-        }
-    }
-    
-    /* Accessibility Improvements */
-    @media (prefers-reduced-motion: reduce) {
         * {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         
         body {
-            scroll-behavior: auto;
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            background: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
         }
-    }
-    
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    
-    .fa-spinner {
-        animation: spin 1s linear infinite;
-    }
-    
-    @keyframes slideInUp {
-        from { transform: translateY(100%); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-    }
-    
-    @keyframes slideOutDown {
-        from { transform: translateY(0); opacity: 1; }
-        to { transform: translateY(100%); opacity: 0; }
-    }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #2c3e50;
+        }
+        
+        .logo-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #1B2951;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+        
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: #D4AF37;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .breadcrumb a {
+            color: #D4AF37;
+            text-decoration: none;
+        }
+        
+        .product-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .product-image-section {
+            position: relative;
+        }
+        
+        .product-main-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: white;
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+        
+        .product-info-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1B2951;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #D4AF37, #B8860B);
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            width: fit-content;
+        }
+        
+        .price-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            border: 2px solid #dee2e6;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .current-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #25D366;
+        }
+        
+        .savings {
+            background: #25D366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .product-description {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 1px solid #e3e6f0;
+        }
+        
+        .product-description h3 {
+            color: #1B2951;
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .product-description p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: 12px;
+            font-size: 15px;
+            border: 1px solid #e3e6f0;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-icon {
+            font-size: 20px;
+            color: #D4AF37;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .whatsapp-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 30px;
+            background: linear-gradient(135deg, #25D366, #20b358);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-btn:hover {
+            background: linear-gradient(135deg, #20b358, #1fa34d);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+        }
+        
+        .back-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 30px;
+            background: linear-gradient(135deg, #D4AF37, #B8860B);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+        
+        .loading-container {
+            text-align: center;
+            padding: 80px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .loading-spinner {
+            font-size: 3rem;
+            color: #D4AF37;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        .error-container {
+            text-align: center;
+            padding: 60px 20px;
+            background: #fff5f5;
+            border: 2px solid #fed7d7;
+            border-radius: 20px;
+            color: #e74c3c;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .product-container {
+                padding: 25px;
+            }
+            
+            .product-title {
+                font-size: 1.8rem;
+            }
+            
+            .current-price {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        .hide {
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <div class="progress-bar" id="progressBar"></div>
-    
-    <header class="header" role="banner">
-        <div class="header-container">
-            <div class="header-content">
-                <a href="./" class="logo" aria-label="العودة إلى الصفحة الرئيسية">
-                    <div class="logo-icon">
-                        <img src="./favicon.ico" alt="شعار هدايا الإمارات" width="35" height="35" loading="eager">
-                    </div>
-                    <div class="logo-text">
-                        <div class="logo-title">هدايا الإمارات</div>
-                        <div class="logo-subtitle">Emirates Gifts</div>
-                    </div>
-                </a>
-                
-                <div class="header-tools">
-                    <!-- 🛒 DIRECT CHECKOUT BUTTON -->
-                    <a href="./checkout.html" class="header-tool checkout-btn" 
-                       title="إتمام الطلب فوراً" 
-                       aria-label="انتقل مباشرة إلى صفحة إتمام الطلب">
-                        <i class="fas fa-credit-card" aria-hidden="true"></i>
-                        <span>اطلب فوراً</span>
-                        <span class="cart-counter" id="cartCounter" aria-label="عدد العناصر في السلة">0</span>
-                    </a>
-                    <a href="./" class="btn-secondary" aria-label="العودة إلى الصفحة الرئيسية">
-                        <i class="fas fa-home" aria-hidden="true"></i> العودة للرئيسية
-                    </a>
-                </div>
-            </div>
+    <header class="header">
+        <div class="header-content">
+            <a href="./" class="logo">
+                <div class="logo-title">🛍️ متجر هدايا الإمارات</div>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="./" class="nav-link">الرئيسية</a></li>
+                    <li><a href="./products-showcase.html" class="nav-link">جميع المنتجات</a></li>
+                    <li><a href="https://wa.me/201110760081" class="nav-link" target="_blank">اتصل بنا</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
-    
-    <main class="main-content" role="main">
-        <div class="product-details-container">
-            <nav class="breadcrumb" aria-label="مسار التنقل">
-                <a href="./">الرئيسية</a> &gt; 
-                <span id="categoryBreadcrumb">المنتجات</span> &gt;
-                <span id="productBreadcrumb">تفاصيل المنتج</span>
-            </nav>
-            
-            <div id="productContent">
-                <div class="loading-message" role="status" aria-live="polite">
-                    <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
-                    <h3>جارِ تحميل تفاصيل المنتج...</h3>
-                    <p>دعم كامل لجميع أشكال الروابط - يرجى الانتظار</p>
+
+    <div class="container">
+        <div class="breadcrumb" id="breadcrumb">
+            <a href="./">الرئيسية</a> / 
+            <a href="./products-showcase.html">المنتجات</a> / 
+            <span id="breadcrumb-product">تفاصيل المنتج</span>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-container" id="loading-container">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner"></i>
+            </div>
+            <h3>جارِ تحميل تفاصيل المنتج...</h3>
+            <p>يرجى الانتظار قليلاً</p>
+        </div>
+
+        <!-- Error State -->
+        <div class="error-container hide" id="error-container">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+            <h3>عذراً، لم يتم العثور على المنتج</h3>
+            <p>المنتج المطلوب غير موجود أو تم حذفه</p>
+            <div style="margin-top: 30px;">
+                <a href="./" class="back-btn">العودة للرئيسية</a>
+            </div>
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-container hide" id="product-container">
+            <div class="product-layout">
+                <div class="product-image-section">
+                    <img id="product-image" src="" alt="" class="product-main-image">
+                    <div class="discount-badge" id="discount-badge">-0%</div>
+                </div>
+
+                <div class="product-info-section">
+                    <h1 class="product-title" id="product-title">اسم المنتج</h1>
+                    <span class="category-badge" id="category-badge">عطور</span>
+
+                    <div class="price-section">
+                        <span class="old-price" id="old-price">0 د.إ</span>
+                        <span class="current-price" id="current-price">0 د.إ</span>
+                        <span class="savings" id="savings">وفر 0 د.إ</span>
+                    </div>
+
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>منتج أصلي 100%</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🚚</span>
+                            <span>شحن سريع</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔄</span>
+                            <span>استبدال مجاني</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💳</span>
+                            <span>دفع عند الاستلام</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🛡️</span>
+                            <span>ضمان الجودة</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📞</span>
+                            <span>دعم 24/7</span>
+                        </div>
+                    </div>
+
+                    <div class="product-description">
+                        <h3>📋 وصف المنتج</h3>
+                        <p id="product-description-text">وصف المنتج سيظهر هنا...</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="#" id="whatsapp-btn" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            اطلب عبر الواتساب
+                        </a>
+                        <a href="./" class="back-btn">
+                            <i class="fas fa-home"></i>
+                            العودة للمتجر
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
-    
+    </div>
+
     <script>
-    // 🚫 ZERO POPUP + ZERO INLINE CODE ENVIRONMENT
-    const isDev = window.location.hostname === 'localhost';
-    const log = isDev ? console.log.bind(console) : () => {};
-    const warn = isDev ? console.warn.bind(console) : () => {};
-    const error = console.error.bind(console);
-    
-    log('🚫 EMIRATES PRODUCT DETAILS - ZERO INLINE CODE');
-    
-    // Strict popup blocking
-    window.alert = function() { log('🚫 Alert blocked'); return undefined; };
-    window.confirm = function() { log('🚫 Confirm blocked'); return true; };
-    window.prompt = function() { log('🚫 Prompt blocked'); return null; };
-    window.open = function(url) { 
-        log('🚫 window.open intercepted:', url); 
-        if (url && url.includes('wa.me')) {
-            // Allow WhatsApp only
-            const link = document.createElement('a');
-            link.href = url;
-            link.target = '_blank';
-            link.rel = 'noopener';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        // Get URL parameters
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                id: params.get('id'),
+                category: params.get('category'),
+                slug: params.get('slug')
+            };
         }
-        return null; 
-    };
-    
-    // Extract and normalize all URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('id');
-    const productCategory = urlParams.get('category');
-    const productSlug = urlParams.get('slug');
-    const productType = urlParams.get('type');
-    const productSource = urlParams.get('source');
-    
-    log('📋 URL Parameters:', {
-        id: productId,
-        category: productCategory,
-        slug: productSlug,
-        type: productType,
-        source: productSource
-    });
-    
-    let currentProduct = null;
-    
-    // Enhanced image error handler (ZERO INLINE)
-    function setupSecureImageHandler(imgElement) {
-        if (!imgElement || imgElement.dataset.secureHandler) return;
-        
-        imgElement.addEventListener('error', function() {
-            if (this.dataset.fallbackApplied === 'true') return;
+
+        // Format price
+        function formatPrice(price) {
+            return `${parseFloat(price).toFixed(0)} د.إ`;
+        }
+
+        // Calculate discount percentage
+        function calculateDiscount(oldPrice, newPrice) {
+            return Math.round(((oldPrice - newPrice) / oldPrice) * 100);
+        }
+
+        // Load product data
+        async function loadProductData() {
+            const params = getUrlParams();
             
-            this.dataset.fallbackApplied = 'true';
-            this.src = 'https://via.placeholder.com/500x500/D4AF37/FFFFFF?text=منتج+مميز';
-            this.alt = 'منتج مميز - صورة بديلة';
-            warn('⚠️ Product image fallback applied');
+            if (!params.id || !params.category) {
+                showError();
+                return;
+            }
+
+            try {
+                // Determine data file based on category
+                const dataFile = params.category === 'perfume' ? './data/otor.json' : './data/sa3at.json';
+                
+                const response = await fetch(dataFile);
+                if (!response.ok) {
+                    throw new Error('Failed to load data');
+                }
+                
+                const products = await response.json();
+                const product = products.find(p => p.id === params.id);
+                
+                if (!product) {
+                    showError();
+                    return;
+                }
+                
+                displayProduct(product, params.category);
+                
+            } catch (error) {
+                console.error('Error loading product:', error);
+                showError();
+            }
+        }
+
+        // Display product
+        function displayProduct(product, category) {
+            // Update page title and meta tags
+            document.title = `${product.title} | متجر هدايا الإمارات`;
+            document.getElementById('page-title').textContent = `${product.title} | متجر هدايا الإمارات`;
+            document.getElementById('page-description').setAttribute('content', `${product.title} - عطور وساعات عالية الجودة من متجر هدايا الإمارات`);
+            
+            // Update Open Graph tags
+            document.getElementById('og-title').setAttribute('content', product.title);
+            document.getElementById('og-description').setAttribute('content', `${product.title} - متوفر الآن في متجر هدايا الإمارات`);
+            document.getElementById('og-image').setAttribute('content', product.image_link);
+            document.getElementById('og-url').setAttribute('content', window.location.href);
+            
+            // Update canonical URL
+            document.getElementById('canonical-url').setAttribute('href', window.location.href);
+            
+            // Calculate discount
+            const discountPercent = calculateDiscount(product.price, product.sale_price);
+            const savings = product.price - product.sale_price;
+            
+            // Update product details
+            document.getElementById('product-image').src = product.image_link;
+            document.getElementById('product-image').alt = product.title;
+            document.getElementById('product-title').textContent = product.title;
+            document.getElementById('breadcrumb-product').textContent = product.title;
+            
+            // Update category badge
+            const categoryText = category === 'perfume' ? 'عطور' : 'ساعات';
+            document.getElementById('category-badge').textContent = categoryText;
+            
+            // Update prices
+            document.getElementById('old-price').textContent = formatPrice(product.price);
+            document.getElementById('current-price').textContent = formatPrice(product.sale_price);
+            document.getElementById('discount-badge').textContent = `-${discountPercent}%`;
+            document.getElementById('savings').textContent = `وفر ${savings} د.إ`;
+            
+            // Update description
+            const description = `${product.title} - منتج فاخر عالي الجودة من متجر هدايا الإمارات. ✨ جودة مضمونة وأسعار تنافسية. 🚚 توصيل مجاني خلال 1-3 أيام عمل. 🔄 ضمان الاستبدال خلال 14 يوم. 💳 دفع عند الاستلام متاح.`;
+            document.getElementById('product-description-text').textContent = description;
+            
+            // Update WhatsApp link
+            const whatsappMessage = encodeURIComponent(`مرحباً، أرغب في طلب:\n${product.title}\nالسعر: ${formatPrice(product.sale_price)}`);
+            document.getElementById('whatsapp-btn').href = `https://wa.me/201110760081?text=${whatsappMessage}`;
+            
+            // Show product container and hide loading
+            document.getElementById('loading-container').classList.add('hide');
+            document.getElementById('product-container').classList.remove('hide');
+            
+            console.log('✅ Product loaded successfully:', product.title);
+        }
+
+        // Show error
+        function showError() {
+            document.getElementById('loading-container').classList.add('hide');
+            document.getElementById('error-container').classList.remove('hide');
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Initializing product details page...');
+            loadProductData();
         });
-        
-        imgElement.dataset.secureHandler = 'true';
-        
-        // Handle pre-failed images
-        if (imgElement.complete && imgElement.naturalWidth === 0) {
-            imgElement.dispatchEvent(new Event('error'));
-        }
-    }
-    
-    // Complete product database for fallback
-    const PRODUCTS_DATABASE = {
-        'watch_1': {
-            id: 'watch_1',
-            title: 'ساعة رولكس يخت ماستر - فضي',
-            price: 370,
-            sale_price: 320,
-            image_link: 'https://m5zoon.com/public/uploads/products/1689086291310824.webp',
-            category: 'ساعات',
-            icon: '⏰',
-            description: 'ساعة رولكس يخت ماستر الفاخرة بالتصميم الفضي الكلاسيكي. مقاومة للماء وبحركة دقيقة موثوقة.'
-        },
-        'perfume_1': {
-            id: 'perfume_1',
-            title: 'عطر كوكو شانيل 100 مل',
-            price: 352,
-            sale_price: 252,
-            image_link: 'https://m5zoon.com/public/uploads/products/1722352332177124.webp',
-            category: 'عطور',
-            icon: '🌸',
-            description: 'عطر شانيل كوكو الأصلي بحجم 100 مل. رائحة فاخرة كلاسيكية تدوم طويلاً وتناسب جميع المناسبات.'
-        }
-    };
-    
-    /**
-     * Universal product loading system
-     */
-    async function loadProductUniversal() {
-        try {
-            log('🔍 Starting universal product search...');
-            
-            if (!productId) {
-                throw new Error('معرف المنتج (ID) مطلوب في الرابط');
-            }
-            
-            let product = null;
-            
-            // Method 1: Check built-in database first
-            if (PRODUCTS_DATABASE[productId]) {
-                product = PRODUCTS_DATABASE[productId];
-                log(`✅ Found ${productId} in built-in database`);
-            }
-            
-            // Method 2: Try loading from JSON files
-            if (!product) {
-                log('🔍 Searching in JSON data files...');
-                
-                const searchTargets = [];
-                
-                // Determine search targets based on all URL parameters
-                if (productCategory === 'watch' || productType === 'watch' || 
-                    productSource === 'sa3at' || productId.includes('watch')) {
-                    searchTargets.push({ file: './data/sa3at.json', type: 'watch' });
-                }
-                
-                if (productCategory === 'perfume' || productType === 'perfume' || 
-                    productSource === 'otor' || productId.includes('perfume')) {
-                    searchTargets.push({ file: './data/otor.json', type: 'perfume' });
-                }
-                
-                // If no specific type detected, search both
-                if (searchTargets.length === 0) {
-                    searchTargets.push(
-                        { file: './data/sa3at.json', type: 'watch' },
-                        { file: './data/otor.json', type: 'perfume' }
-                    );
-                }
-                
-                // Search in all target files with retry logic
-                for (const target of searchTargets) {
-                    try {
-                        log(`🔍 Searching in ${target.file} for ${productId}...`);
-                        
-                        const response = await fetch(target.file + '?v=' + Date.now());
-                        if (response.ok) {
-                            const products = await response.json();
-                            if (Array.isArray(products)) {
-                                product = products.find(p => 
-                                    p && (String(p.id) === String(productId) || p.id === productId)
-                                );
-                                
-                                if (product) {
-                                    product.category = target.type === 'watch' ? 'ساعات' : 'عطور';
-                                    product.icon = target.type === 'watch' ? '⏰' : '🌸';
-                                    log(`✅ Product found in ${target.file}: ${product.title}`);
-                                    break;
-                                }
-                            }
-                        }
-                    } catch (fileError) {
-                        warn(`⚠️ Error loading ${target.file}:`, fileError);
-                        continue;
-                    }
-                }
-            }
-            
-            if (product) {
-                currentProduct = product;
-                displayProductSecurely(product);
-                log('✅ Product successfully loaded and displayed');
-            } else {
-                error(`❌ Product ${productId} not found in any source`);
-                showErrorMessageSecurely(`المنتج ${productId} غير موجود`);
-            }
-            
-        } catch (loadError) {
-            error('❌ Universal product loading failed:', loadError);
-            showErrorMessageSecurely('خطأ في تحميل المنتج: ' + loadError.message);
-        }
-    }
-    
-    /**
-     * SECURE PRODUCT DISPLAY (NO INLINE CODE)
-     */
-    function displayProductSecurely(product) {
-        if (!product || typeof product !== 'object') {
-            error('❌ Invalid product data');
-            return;
-        }
-        
-        try {
-            const hasDiscount = parseFloat(product.price || 0) > parseFloat(product.sale_price || 0);
-            const discountPercent = hasDiscount ?
-                Math.round(((parseFloat(product.price) - parseFloat(product.sale_price)) / parseFloat(product.price)) * 100) : 0;
-            
-            // Update page metadata securely
-            const categoryBreadcrumb = document.getElementById('categoryBreadcrumb');
-            const productBreadcrumb = document.getElementById('productBreadcrumb');
-            
-            if (categoryBreadcrumb) categoryBreadcrumb.textContent = product.category || 'المنتجات';
-            if (productBreadcrumb) productBreadcrumb.textContent = product.title || 'تفاصيل المنتج';
-            
-            // Update document title safely
-            if (product.title) {
-                document.title = `${product.title} - متجر هدايا الإمارات`;
-            }
-            
-            const productTitle = (product.title || 'منتج مميز')
-                .replace(/[<>&"']/g, '')
-                .substring(0, 200);
-            
-            const productDescription = (product.description || 
-                'منتج عالي الجودة مع ضمان الأصالة ومواصفات عالمية ممتازة تناسب جميع الأذواق والمناسبات.')
-                .replace(/[<>&"']/g, '')
-                .substring(0, 500);
-            
-            const imageUrl = product.image_link || 'https://via.placeholder.com/500x500/D4AF37/FFFFFF?text=منتج+مميز';
-            const finalPrice = parseFloat(product.sale_price || product.price || 0);
-            const originalPrice = parseFloat(product.price || 0);
-            
-            const productHTML = `
-                <div class="product-header">
-                    <div class="product-image-section">
-                        <img src="${imageUrl}" 
-                             alt="${productTitle}" 
-                             class="product-image"
-                             loading="eager"
-                             width="500"
-                             height="500"
-                             data-fallback-applied="false">
-                    </div>
-                    
-                    <div class="product-info">
-                        <div class="category-badge-main">${product.icon || '🎁'} ${product.category || 'المنتجات'}</div>
-                        
-                        <h1 class="product-title-main">${productTitle}</h1>
-                        
-                        <div style="color: #666; line-height: 1.7; margin: 25px 0; font-size: 1.1rem;">
-                            ${productDescription}
-                        </div>
-                        
-                        <div style="display: flex; align-items: center; gap: 10px; margin: 25px 0; justify-content: center;">
-                            <div style="color: #ffc107; font-size: 18px;">⭐⭐⭐⭐⭐</div>
-                            <span style="color: #666;">(${Math.floor(Math.random() * 50) + 30} تقييم موثق)</span>
-                        </div>
-                        
-                        <div style="background: #f8f9fa; padding: 35px; border-radius: 20px; text-align: center; margin: 35px 0; border: 2px solid rgba(212, 175, 55, 0.2);">
-                            <div class="product-price-main">${finalPrice.toFixed(2)} <span style="font-size: 1.4rem; font-weight: 700;">د.إ</span></div>
-                            ${hasDiscount ? `
-                                <div style="margin-top: 15px;">
-                                    <span class="original-price">${originalPrice.toFixed(2)} د.إ</span>
-                                    <span class="discount-badge">وفر ${discountPercent}%</span>
-                                </div>
-                            ` : ''}
-                        </div>
-                        
-                        <div class="product-features">
-                            <h3>🌟 مميزات المنتج المضمونة</h3>
-                            <ul>
-                                <li><i class="fas fa-check" aria-hidden="true"></i> جودة عالية مضمونة 100% مع ضمان الشركة المصنعة</li>
-                                <li><i class="fas fa-truck" aria-hidden="true"></i> توصيل سريع في دولة الإمارات خلال 1-3 أيام عمل</li>
-                                <li><i class="fas fa-undo" aria-hidden="true"></i> سياسة إرجاع سهلة خلال 14 يوم مع تغطية رسوم الشحن</li>
-                                <li><i class="fas fa-headset" aria-hidden="true"></i> خدمة عملاء احترافية 24/7 متعددة اللغات</li>
-                                <li><i class="fas fa-shield-alt" aria-hidden="true"></i> تغليف مميز مع شهادة ضمان الجودة</li>
-                                <li><i class="fas fa-star" aria-hidden="true"></i> موثق من آلاف العملاء الراضين في الإمارات</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="product-actions-main">
-                            <button class="btn-main btn-primary-main add-cart-btn" 
-                                    data-product-id="${product.id}"
-                                    type="button"
-                                    aria-label="إضافة ${productTitle} إلى السلة">
-                                <i class="fas fa-shopping-cart" aria-hidden="true"></i> أضف للسلة
-                            </button>
-                            
-                            <button class="btn-main btn-whatsapp-main whatsapp-order-btn" 
-                                    data-product-id="${product.id}"
-                                    type="button"
-                                    aria-label="طلب ${productTitle} عبر واتساب">
-                                <i class="fab fa-whatsapp" aria-hidden="true"></i> اطلب عبر واتساب
-                            </button>
-                            
-                            <a href="./checkout.html" class="btn-main btn-checkout-main" 
-                               style="text-decoration: none;"
-                               aria-label="انتقل إلى صفحة إتمام الطلب">
-                                <i class="fas fa-credit-card" aria-hidden="true"></i> إتمام الطلب فوراً
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('productContent').innerHTML = productHTML;
-            
-            // Setup secure event handlers
-            setupProductEventHandlersSecurely();
-            
-        } catch (displayError) {
-            error('❌ Product display error:', displayError);
-            showErrorMessageSecurely('خطأ في عرض المنتج');
-        }
-    }
-    
-    /**
-     * Setup secure event handlers (ZERO INLINE)
-     */
-    function setupProductEventHandlersSecurely() {
-        // Add to cart button
-        const addCartBtn = document.querySelector('.add-cart-btn');
-        if (addCartBtn) {
-            addCartBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const productId = this.dataset.productId;
-                if (productId) {
-                    addToCartSecurely(productId);
-                }
-            });
-            
-            // Keyboard support
-            addCartBtn.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
-                }
-            });
-        }
-        
-        // WhatsApp order button
-        const whatsappBtn = document.querySelector('.whatsapp-order-btn');
-        if (whatsappBtn) {
-            whatsappBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const productId = this.dataset.productId;
-                if (productId) {
-                    orderViaWhatsAppSecurely(productId);
-                }
-            });
-            
-            // Keyboard support
-            whatsappBtn.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
-                }
-            });
-        }
-        
-        // Setup secure image handler
-        const productImg = document.querySelector('.product-image');
-        if (productImg) {
-            setupSecureImageHandler(productImg);
-        }
-    }
-    
-    /**
-     * Secure add to cart system
-     */
-    function addToCartSecurely(productId) {
-        if (!currentProduct || !productId) {
-            showSecureNotification('بيانات المنتج غير متوفرة', true);
-            return;
-        }
-        
-        try {
-            const cartData = localStorage.getItem('emirates_cart');
-            let cart = [];
-            
-            if (cartData) {
-                try {
-                    cart = JSON.parse(cartData);
-                } catch (parseError) {
-                    warn('⚠️ Cart data corrupted, resetting');
-                    cart = [];
-                }
-            }
-            
-            if (!Array.isArray(cart)) cart = [];
-            
-            const existingIndex = cart.findIndex(item => 
-                item && String(item.id) === String(productId)
-            );
-            
-            if (existingIndex !== -1) {
-                cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
-            } else {
-                cart.push({
-                    id: productId,
-                    title: currentProduct.title,
-                    price: parseFloat(currentProduct.sale_price || currentProduct.price || 0),
-                    image: currentProduct.image_link,
-                    quantity: 1,
-                    category: currentProduct.category
-                });
-            }
-            
-            localStorage.setItem('emirates_cart', JSON.stringify(cart));
-            updateCartCounterSecurely();
-            
-            log(`✅ Added ${currentProduct.title} to cart`);
-            showSecureNotification(`تم إضافة "${currentProduct.title}" للسلة بنجاح!`);
-            
-        } catch (cartError) {
-            error('❌ Add to cart error:', cartError);
-            showSecureNotification('خطأ في إضافة المنتج للسلة', true);
-        }
-    }
-    
-    /**
-     * Secure WhatsApp order system
-     */
-    function orderViaWhatsAppSecurely(productId) {
-        if (!currentProduct || !productId) {
-            showSecureNotification('بيانات المنتج غير متوفرة', true);
-            return;
-        }
-        
-        try {
-            const finalPrice = parseFloat(currentProduct.sale_price || currentProduct.price || 0);
-            
-            const message = `🛍️ طلب من متجر هدايا الإمارات\n\n` +
-                `🎁 المنتج: ${currentProduct.title}\n` +
-                `💰 السعر: ${finalPrice.toFixed(2)} د.إ\n` +
-                `🏦 المتجر: هدايا الإمارات\n` +
-                `🌐 الرابط: ${window.location.href}\n\n` +
-                `✅ خدمات مضمونة:\n` +
-                `🚚 توصيل الإمارات 1-3 أيام\n` +
-                `🔄 إرجاع 14 يوم\n` +
-                `🛡️ ضمان الأصالة 100%\n\n` +
-                `يرجى تأكيد تفاصيل الطلب!`;
-            
-            const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
-            
-            // Safe WhatsApp redirect
-            const link = document.createElement('a');
-            link.href = whatsappUrl;
-            link.target = '_blank';
-            link.rel = 'noopener';
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            log('📱 WhatsApp order initiated securely');
-            showSecureNotification('تم فتح واتساب مع تفاصيل طلبك!');
-            
-        } catch (whatsappError) {
-            error('❌ WhatsApp order error:', whatsappError);
-            showSecureNotification('خطأ في فتح واتساب', true);
-        }
-    }
-    
-    /**
-     * Secure notification system (NO POPUPS)
-     */
-    function showSecureNotification(message, isError = false) {
-        // Remove existing notifications
-        document.querySelectorAll('.secure-notification').forEach(n => n.remove());
-        
-        const notification = document.createElement('div');
-        notification.className = 'secure-notification';
-        notification.setAttribute('role', 'status');
-        notification.setAttribute('aria-live', 'polite');
-        
-        const bgColor = isError ? 
-            'linear-gradient(135deg, #e74c3c, #c0392b)' : 
-            'linear-gradient(135deg, #25D366, #20B358)';
-        
-        notification.style.cssText = `
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: ${bgColor};
-            color: white;
-            padding: 18px 25px;
-            border-radius: 15px;
-            font-weight: 700;
-            font-size: 1rem;
-            z-index: 10000;
-            animation: slideInUp 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            max-width: 400px;
-            font-family: 'Cairo', sans-serif;
-        `;
-        
-        const icon = isError ? 'fas fa-exclamation-triangle' : 'fas fa-check-circle';
-        notification.innerHTML = `<i class="${icon}" style="margin-left: 8px;" aria-hidden="true"></i>${message}`;
-        
-        document.body.appendChild(notification);
-        
-        // Auto remove with animation
-        setTimeout(() => {
-            notification.style.animation = 'slideOutDown 0.4s ease';
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.remove();
-                }
-            }, 400);
-        }, 4000);
-    }
-    
-    /**
-     * Show error message (clean version)
-     */
-    function showErrorMessageSecurely(message) {
-        const errorHTML = `
-            <div class="error-message" role="alert">
-                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-                <h2>مشكلة في تحميل المنتج</h2>
-                <p style="font-size: 1.2rem; margin: 25px 0;">${message}</p>
-                
-                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
-                    <a href="./" class="btn-main btn-primary-main" 
-                       style="text-decoration: none;"
-                       aria-label="العودة إلى الصفحة الرئيسية">
-                        <i class="fas fa-home" aria-hidden="true"></i> العودة للرئيسية
-                    </a>
-                    <a href="./products-showcase.html" class="btn-main btn-whatsapp-main" 
-                       style="text-decoration: none;"
-                       aria-label="تصفح جميع المنتجات">
-                        <i class="fas fa-th-large" aria-hidden="true"></i> تصفح المنتجات
-                    </a>
-                    <a href="https://wa.me/201110760081" class="btn-main btn-primary-main" 
-                       style="text-decoration: none;" 
-                       target="_blank" 
-                       rel="noopener"
-                       aria-label="تواصل مع خدمة العملاء">
-                        <i class="fab fa-whatsapp" aria-hidden="true"></i> تواصل معنا
-                    </a>
-                </div>
-            </div>
-        `;
-        
-        const productContent = document.getElementById('productContent');
-        if (productContent) {
-            productContent.innerHTML = errorHTML;
-        }
-    }
-    
-    // Update cart counter securely
-    function updateCartCounterSecurely() {
-        try {
-            const cartData = localStorage.getItem('emirates_cart');
-            let cart = [];
-            
-            if (cartData) {
-                try {
-                    cart = JSON.parse(cartData);
-                } catch (e) {
-                    cart = [];
-                }
-            }
-            
-            if (!Array.isArray(cart)) cart = [];
-            
-            const totalItems = cart.reduce((sum, item) => {
-                if (!item || typeof item !== 'object') return sum;
-                const qty = parseInt(item.quantity || 0);
-                return sum + (isNaN(qty) ? 0 : Math.max(0, qty));
-            }, 0);
-            
-            const counter = document.getElementById('cartCounter');
-            if (counter) {
-                counter.textContent = totalItems.toString();
-                counter.style.display = totalItems > 0 ? 'flex' : 'none';
-                counter.setAttribute('aria-label', `عدد العناصر في السلة: ${totalItems}`);
-            }
-        } catch (error) {
-            error('❌ Cart counter error:', error);
-        }
-    }
-    
-    // Enhanced progress bar
-    function updateProgressSecurely() {
-        try {
-            const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
-            const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-            
-            if (maxScroll > 0) {
-                const progress = Math.max(0, Math.min(100, (scrolled / maxScroll) * 100));
-                const bar = document.getElementById('progressBar');
-                if (bar) {
-                    bar.style.width = progress + '%';
-                }
-            }
-        } catch (error) {
-            error('❌ Progress bar error:', error);
-        }
-    }
-    
-    // Enhanced initialization
-    function initializeProductDetails() {
-        log('🚫 Product Details Init - Zero Inline Code...');
-        
-        try {
-            // Update cart counter
-            updateCartCounterSecurely();
-            
-            // Load product
-            loadProductUniversal();
-            
-            // Setup progress bar with throttling
-            let scrollTimeout;
-            window.addEventListener('scroll', () => {
-                if (scrollTimeout) return;
-                scrollTimeout = setTimeout(() => {
-                    updateProgressSecurely();
-                    scrollTimeout = null;
-                }, 16);
-            }, { passive: true });
-            
-            log('✅ Product Details initialized');
-            
-        } catch (initError) {
-            error('❌ Initialization error:', initError);
-        }
-    }
-    
-    // Global error handling
-    window.addEventListener('error', function(event) {
-        error('❌ Global error:', event.error);
-        event.preventDefault();
-        return true;
-    });
-    
-    window.addEventListener('unhandledrejection', function(event) {
-        error('❌ Unhandled promise:', event.reason);
-        event.preventDefault();
-    });
-    
-    // Smart DOM initialization
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeProductDetails);
-    } else {
-        setTimeout(initializeProductDetails, 0);
-    }
-    
-    // Secure global exports
-    if (typeof window !== 'undefined') {
-        window.EmiratesProductDetails = Object.freeze({
-            version: '2.0.0-secure',
-            addToCart: addToCartSecurely,
-            updateCartCounter: updateCartCounterSecurely,
-            loadProduct: loadProductUniversal,
-            isDevelopment: isDev
-        });
-    }
-    
-    log('✅ Emirates Product Details v2.0 - ZERO INLINE CODE');
     </script>
 </body>
 </html>
