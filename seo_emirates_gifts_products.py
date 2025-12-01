@@ -1,63 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-تهيئة السيو وسكيما لجميع ملفات المنتجات في products ريبو emirates-gifts
-نسخة محسنة مع معالجة أقوى للـ HTML والأخطاء
+سكربت SEO وسكيما احترافي لريبو emirates-gifts
+يعدل جميع ملفات HTML في مجلد products
 """
 
 import sys
 import re
 from pathlib import Path
 from datetime import datetime, timedelta
-from html.parser import HTMLParser
-
-class MetaExtractor(HTMLParser):
-    def __init__(self):
-        super().__init__()
-        self.title = None
-        self.h1 = None
-        self.images = []
-        self.in_title = False
-        self.in_h1 = False
-        
-    def handle_starttag(self, tag, attrs):
-        if tag == 'title':
-            self.in_title = True
-        elif tag == 'h1':
-            self.in_h1 = True
-        elif tag == 'img':
-            attrs_dict = dict(attrs)
-            if 'src' in attrs_dict:
-                self.images.append(attrs_dict['src'])
-    
-    def handle_endtag(self, tag):
-        if tag == 'title':
-            self.in_title = False
-        elif tag == 'h1':
-            self.in_h1 = False
-    
-    def handle_data(self, data):
-        if self.in_title and not self.title:
-            self.title = data.strip()
-        elif self.in_h1 and not self.h1:
-            self.h1 = data.strip()
 
 def extract_title(html):
     """استخراج العنوان من HTML"""
-    try:
-        parser = MetaExtractor()
-        parser.feed(html)
-        if parser.title:
-            return parser.title
-        if parser.h1:
-            return parser.h1
-    except:
-        pass
-    
-    # fallback: البحث البسيط
     m = re.search(r'<title[^>]*>([^<]+)</title>', html, re.IGNORECASE)
     if m:
-        return m.group(1).strip()
+        title = m.group(1).strip()
+        # إزالة أي نص إضافي بعد |
+        title = title.split('|')[0].strip()
+        return title if title else "هدية من Emirates Gifts"
     
     m = re.search(r'<h1[^>]*>([^<]+)</h1>', html, re.IGNORECASE)
     if m:
@@ -67,18 +27,6 @@ def extract_title(html):
 
 def extract_image(html):
     """استخراج صورة من HTML"""
-    try:
-        parser = MetaExtractor()
-        parser.feed(html)
-        if parser.images:
-            src = parser.images[0]
-            if src.startswith('http'):
-                return src
-            return f"https://sherow1982.github.io/emirates-gifts/{src.lstrip('/')}"
-    except:
-        pass
-    
-    # fallback: البحث البسيط
     m = re.search(r'<img[^>]+src=["\']([^"\']+)["\'][^>]*>', html, re.IGNORECASE)
     if m:
         src = m.group(1).strip()
@@ -86,18 +34,15 @@ def extract_image(html):
             return src
         return f"https://sherow1982.github.io/emirates-gifts/{src.lstrip('/')}"
     
-    # fallback: صورة افتراضية
     return "https://sherow1982.github.io/emirates-gifts/logo.png"
 
 def extract_price(html):
     """استخراج السعر من HTML"""
-    # البحث عن أنماط مختلفة للسعر
     patterns = [
         r'(\d+[\.,]?\d*)\s*AED',
+        r'(\d+[\.,]?\d*)\s*د\.إ',
         r'(\d+[\.,]?\d*)\s*درهم',
-        r'Price["\']?\s*:\s*(\d+[\.,]?\d*)',
-        r'price["\']?\s*:\s*(\d+[\.,]?\d*)',
-        r'(\d+[\.,]?\d*)\s*دولار',
+        r'price["\']?\s*:\s*["\']?(\d+[\.,]?\d*)',
     ]
     
     for pattern in patterns:
@@ -111,17 +56,18 @@ def extract_price(html):
     
     return 0
 
-def build_product_url(file_path: Path):
+def build_product_url(file_path):
     """بناء URL للمنتج"""
     name = file_path.name
     return f"https://sherow1982.github.io/emirates-gifts/products/{name}"
 
 def create_product_schema(title, image, url, price):
     """بناء Product Schema JSON-LD"""
+    import json
+    
     if not price:
         price = 0
     
-    # تنظيف العنوان من أحرف خاصة قد تسبب مشاكل في JSON
     title = title.replace('"', '\\"').replace('\n', ' ').replace('\r', '')
     
     price_valid_until = (datetime.now() + timedelta(days=365)).strftime('%Y-%m-%d')
@@ -132,7 +78,6 @@ def create_product_schema(title, image, url, price):
         "name": title,
         "image": [image] if image else [],
         "description": f"{title} - هدايا فريدة من Emirates Gifts مع توصيل سريع",
-        "sku": "",
         "brand": {
             "@type": "Brand",
             "name": "Emirates Gifts"
@@ -152,12 +97,12 @@ def create_product_schema(title, image, url, price):
         }
     }
     
-    import json
     return json.dumps(schema, ensure_ascii=False, indent=2)
 
 def create_local_business_schema():
     """بناء LocalBusiness Schema JSON-LD"""
     import json
+    
     schema = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
@@ -186,8 +131,7 @@ def create_local_business_schema():
 
 def create_meta_tags(title, image, url, price):
     """بناء Meta Tags"""
-    # تنظيف البيانات
-    title = title.replace('"', '').replace("'", '')
+    title = title.replace('"', '').replace("'", '').strip()
     desc = f"{title} - هدايا فريدة من Emirates Gifts"
     if len(desc) > 155:
         desc = desc[:152] + "..."
@@ -195,20 +139,18 @@ def create_meta_tags(title, image, url, price):
     emirates_cities = "دبي، أبوظبي، الشارقة، عجمان، رأس الخيمة، الفجيرة، أم القيوين"
     
     meta = f"""
-    <!-- SEO Meta Tags (Auto Generated) -->
+    <!-- SEO Meta Tags (Auto) -->
     <meta charset="UTF-8">
     <title>{title} - Emirates Gifts | هدايا فريدة وعروض حصرية</title>
-    <meta name="description" content="{desc} اختر هديتك من Emirates Gifts - توصيل سريع لكل الإمارات.">
-    <meta name="keywords" content="{title}, Emirates Gifts, هدايا, تسوق اونلاين, هدايا الإمارات, عروض, {emirates_cities}">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="description" content="{desc} توصيل سريع لكل الإمارات">
+    <meta name="keywords" content="{title}, Emirates Gifts, هدايا, تسوق اونلاين, الإمارات, {emirates_cities}">
+    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="language" content="ar">
     <meta name="geo.region" content="AE">
     <meta name="geo.placename" content="الإمارات">
     <meta name="geo.position" content="25.2048;55.2708">
     <link rel="canonical" href="{url}">
-    
-    <!-- Open Graph Meta Tags -->
+    <!-- Open Graph -->
     <meta property="og:title" content="{title} - Emirates Gifts">
     <meta property="og:description" content="{desc}">
     <meta property="og:image" content="{image}">
@@ -218,8 +160,7 @@ def create_meta_tags(title, image, url, price):
     <meta property="og:locale" content="ar_AE">
     <meta property="product:price:amount" content="{price}">
     <meta property="product:price:currency" content="AED">
-    
-    <!-- Twitter Card Meta Tags -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{title} - Emirates Gifts">
     <meta name="twitter:description" content="{desc}">
@@ -228,17 +169,15 @@ def create_meta_tags(title, image, url, price):
     return meta
 
 def inject_seo(html, title, image, url, price):
-    """حقن السيو والسكيما في HTML"""
+    """حقن SEO والسكيما في HTML"""
     
-    # البحث عن </head>
-    if '</head>' not in html and '< /head>' not in html:
-        # لو ما فيش head، نضيفه قبل body
-        if '<body' not in html.lower():
-            html = html + '</head>'
-        else:
+    if '</head>' not in html:
+        if '<body' in html.lower():
             html = html.replace('<body', '</head><body', 1)
+        else:
+            html = html + '</head>'
     
-    # إزالة JSON-LD القديم
+    # إزالة Schema القديم
     html = re.sub(
         r'<script\s+type=["\']?application/ld\+json["\']?\s*>.*?</script>',
         '',
@@ -246,55 +185,42 @@ def inject_seo(html, title, image, url, price):
         flags=re.DOTALL | re.IGNORECASE
     )
     
-    # إزالة Meta Tags القديمة (Auto Generated)
-    html = re.sub(
-        r'<!-- SEO Meta Tags \(Auto Generated\) -->.*?<!-- /SEO Meta Tags -->',
-        '',
-        html,
-        flags=re.DOTALL | re.IGNORECASE
-    )
-    
-    # بناء السكيما والميتا
+    # بناء الحقن
     meta = create_meta_tags(title, image, url, price)
     product_schema = create_product_schema(title, image, url, price)
     local_schema = create_local_business_schema()
     
-    injection = f"""<!-- SEO Meta Tags (Auto Generated) -->
+    injection = f"""
 {meta}
 
-<!-- Product Schema JSON-LD (Auto Generated) -->
+<!-- Product Schema (Auto) -->
 <script type="application/ld+json">
 {product_schema}
 </script>
 
-<!-- LocalBusiness Schema JSON-LD (Auto Generated) -->
+<!-- LocalBusiness Schema (Auto) -->
 <script type="application/ld+json">
 {local_schema}
 </script>
-<!-- /SEO Meta Tags -->
 
 </head>"""
     
-    # البحث والاستبدال
-    if '</head>' in html:
-        html = html.replace('</head>', injection, 1)
-    else:
-        html = injection + html
+    html = html.replace('</head>', injection, 1)
     
     return html
 
-def process_file(file_path: Path):
+def process_file(file_path):
     """معالجة ملف منتج واحد"""
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             html = f.read()
         
-        print(f"     📖 جاري قراءة الملف...")
+        print(f"     📖 قراءة الملف...")
         title = extract_title(html)
         print(f"     📝 العنوان: {title[:50]}...")
         
         image = extract_image(html)
-        print(f"     🖼️ الصورة: {image[:50]}...")
+        print(f"     🖼️ الصورة: موجودة")
         
         price = extract_price(html)
         print(f"     💰 السعر: {price} AED")
@@ -315,7 +241,7 @@ def process_file(file_path: Path):
 
 def main():
     print("\n" + "="*70)
-    print("🎁 سكربت سيو/سكيما لكل ملفات المنتجات في products - Emirates Gifts 🎁")
+    print("🎁 سكربت SEO/سكيما لملفات المنتجات - Emirates Gifts 🎁")
     print("="*70 + "\n")
 
     root = Path(".")
@@ -323,7 +249,6 @@ def main():
 
     if not products_dir.exists():
         print(f"❌ مجلد products غير موجود في: {root.resolve()}")
-        print(f"تحقق من المسار والمجلد\n")
         sys.exit(1)
 
     html_files = sorted(list(products_dir.glob("*.html")))
@@ -331,7 +256,7 @@ def main():
         print("❌ لا يوجد أي ملفات HTML داخل products/\n")
         sys.exit(1)
 
-    print(f"📦 تم العثور على {len(html_files)} صفحة هدية في products/")
+    print(f"📦 تم العثور على {len(html_files)} صفحة")
     print(f"🚀 جاري بدء المعالجة...\n")
     print("-"*70 + "\n")
 
@@ -353,8 +278,7 @@ def main():
     if html_files:
         print(f"📈 نسبة النجاح: {(ok/len(html_files)*100):.1f}%")
     print("="*70)
-    print("\n✨ انتهى التنفيذ!")
-    print("الصفحات التي نجحت الآن تحتوي على سكيما ومنظومة ميتا كاملة جاهزة للـ SEO\n")
+    print("\n✨ انتهى التنفيذ بنجاح!\n")
 
 if __name__ == "__main__":
     main()
