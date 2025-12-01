@@ -593,5 +593,124 @@
             loadProductData();
         });
     </script>
+
+    <script>
+        // ✅ حقن Schema ديناميكي للمنتجات - Auto Generated
+        function injectProductSchema() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const productId = params.get('id');
+                const category = params.get('category');
+                const slug = params.get('slug');
+                
+                if (!productId || !category) return;
+                
+                // تحديد ملف JSON حسب الفئة
+                const dataFile = category === 'perfume' ? './data/otor.json' : './data/sa3at.json';
+                
+                fetch(dataFile)
+                    .then(response => response.json())
+                    .then(products => {
+                        const product = products.find(p => p.id === productId);
+                        if (!product) return;
+                        
+                        // بناء Schema
+                        const url = window.location.href;
+                        const price = product.sale_price || product.price || 0;
+                        const image = product.image_link || '';
+                        const title = product.title || 'منتج';
+                        const description = product.meta_description || `${title} - هدية من Emirates Gifts`;
+                        
+                        const priceValidUntil = new Date();
+                        priceValidUntil.setFullYear(priceValidUntil.getFullYear() + 1);
+                        
+                        // Product Schema
+                        const productSchema = {
+                            "@context": "https://schema.org/",
+                            "@type": "Product",
+                            "name": title,
+                            "image": [image],
+                            "description": description,
+                            "brand": {
+                                "@type": "Brand",
+                                "name": "Emirates Gifts"
+                            },
+                            "offers": {
+                                "@type": "Offer",
+                                "url": url,
+                                "priceCurrency": "AED",
+                                "price": String(price),
+                                "priceValidUntil": priceValidUntil.toISOString().split('T')[0],
+                                "itemCondition": "https://schema.org/NewCondition",
+                                "availability": "https://schema.org/InStock",
+                                "seller": {
+                                    "@type": "Organization",
+                                    "name": "Emirates Gifts"
+                                }
+                            }
+                        };
+                        
+                        // LocalBusiness Schema
+                        const localSchema = {
+                            "@context": "https://schema.org",
+                            "@type": "LocalBusiness",
+                            "name": "Emirates Gifts",
+                            "image": "https://sherow1982.github.io/emirates-gifts/logo.png",
+                            "url": "https://sherow1982.github.io/emirates-gifts/",
+                            "telephone": "+201110760081",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "streetAddress": "الإمارات العربية المتحدة",
+                                "addressLocality": "دبي",
+                                "addressRegion": "دبي",
+                                "postalCode": "00000",
+                                "addressCountry": "AE"
+                            },
+                            "geo": {
+                                "@type": "GeoCoordinates",
+                                "latitude": "25.2048",
+                                "longitude": "55.2708"
+                            },
+                            "openingHours": "Su-Sa 08:00-23:00",
+                            "priceRange": "$$"
+                        };
+                        
+                        // إزالة أي Schema قديم
+                        const oldSchemas = document.querySelectorAll('script[type="application/ld+json"]');
+                        oldSchemas.forEach(script => {
+                            if (script.textContent.includes('"@type":"Product"') || script.textContent.includes('"@type":"LocalBusiness"')) {
+                                script.remove();
+                            }
+                        });
+                        
+                        // حقن Product Schema
+                        const productScriptTag = document.createElement('script');
+                        productScriptTag.type = 'application/ld+json';
+                        productScriptTag.textContent = JSON.stringify(productSchema, null, 2);
+                        document.head.appendChild(productScriptTag);
+                        
+                        // حقن LocalBusiness Schema
+                        const localScriptTag = document.createElement('script');
+                        localScriptTag.type = 'application/ld+json';
+                        localScriptTag.textContent = JSON.stringify(localSchema, null, 2);
+                        document.head.appendChild(localScriptTag);
+                        
+                        console.log('✅ Schema markup injected:', productSchema.name);
+                    })
+                    .catch(error => console.error('Error injecting schema:', error));
+            } catch (error) {
+                console.error('Error in injectProductSchema:', error);
+            }
+        }
+        
+        // تشغيل حقن Schema عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', injectProductSchema);
+        
+        // أو فوراً إذا كانت الصفحة مُحملة بالفعل
+        if (document.readyState === 'interactive' || document.readyState === 'complete') {
+            injectProductSchema();
+        }
+    </script>
+
 </body>
 </html>
