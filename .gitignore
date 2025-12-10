@@ -1,0 +1,74 @@
+# Environment & Dependencies
+.env
+.env.local
+venv/
+env/
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+.project
+.pydevproject
+.settings/
+*.iml
+
+# Build & Distribution
+dist/
+build/
+*.egg-info/
+.eggs/
+*.whl
+*.tar.gz
+
+# Testing
+.coverage
+.pytest_cache/
+.tox/
+htmlcov/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System Files
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Temporary Files
+*.tmp
+*.bak
+*.swp
+.cache/
+
+# OS Specific
+.vscode/
+.idea/
+.project
+.pydevproject
+
+# Local Development
+local.json
+config.local.json
+
+# NEVER COMMIT THESE
+.htaccess (if on GitHub Pages - use .htaccess-github instead)
+secrets/
+private/
