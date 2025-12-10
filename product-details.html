@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar-AE" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">تفاصيل المنتج | متجر هدايا الإمارات</title>
+    <meta name="description" id="page-description" content="عطور وساعات عالية الجودة من متجر هدايا الإمارات">
+    <meta name="keywords" content="عطور, ساعات, هدايا, الإمارات, متجر">
+
+    <link rel="canonical" id="canonical-url" href="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/product-details.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="./" class="logo">
+                <div class="logo-title">🛍️ متجر هدايا الإمارات</div>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="./" class="nav-link">الرئيسية</a></li>
+                    <li><a href="./products-showcase.html" class="nav-link">جميع المنتجات</a></li>
+                    <li><a href="https://wa.me/201110760081" class="nav-link" target="_blank">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumb" id="breadcrumb">
+            <a href="./">الرئيسية</a> / 
+            <a href="./products-showcase.html">المنتجات</a> / 
+            <span id="breadcrumb-product">تفاصيل المنتج</span>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-container" id="loading-container">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner"></i>
+            </div>
+            <h3>جارِ تحميل تفاصيل المنتج...</h3>
+            <p>يرجى الانتظار قليلاً</p>
+        </div>
+
+        <!-- Error State -->
+        <div class="error-container hide" id="error-container">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+            <h3>عذراً، لم يتم العثور على المنتج</h3>
+            <p>المنتج المطلوب غير موجود أو تم حذفه</p>
+            <div style="margin-top: 30px;">
+                <a href="./" class="back-btn">العودة للرئيسية</a>
+            </div>
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-container hide" id="product-container">
+            <div class="product-layout">
+                <div class="product-image-section">
+                    <img id="product-image" src="" alt="" class="product-main-image">
+                    <div class="discount-badge" id="discount-badge">-0%</div>
+                </div>
+
+                <div class="product-info-section">
+                    <h1 class="product-title" id="product-title">اسم المنتج</h1>
+                    <span class="category-badge" id="category-badge">عطور</span>
+
+                    <div class="price-section">
+                        <span class="old-price" id="old-price">0 د.إ</span>
+                        <span class="current-price" id="current-price">0 د.إ</span>
+                        <span class="savings" id="savings">وفر 0 د.إ</span>
+                    </div>
+
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>منتج أصلي 100%</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🚚</span>
+                            <span>شحن سريع</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔄</span>
+                            <span>استبدال مجاني</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💳</span>
+                            <span>دفع عند الاستلام</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🛡️</span>
+                            <span>ضمان الجودة</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📞</span>
+                            <span>دعم 24/7</span>
+                        </div>
+                    </div>
+
+                    <div class="product-description">
+                        <h3>📋 وصف المنتج</h3>
+                        <p id="product-description-text">وصف المنتج سيظهر هنا...</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="#" id="whatsapp-btn" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            اطلب عبر الواتساب
+                        </a>
+                        <a href="./" class="back-btn">
+                            <i class="fas fa-home"></i>
+                            العودة للمتجر
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JS for product details logic -->
+    <script src="./js/product-details.js" defer></script>
+
+</body>
+</html>

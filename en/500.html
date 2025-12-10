@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Server Error - Emirates Gifts Store</title>
+    <meta name="description" content="Temporary server issue. Emirates Gifts will be back shortly. Contact us via WhatsApp for immediate assistance.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+    :root {
+        --primary-gold: #D4AF37;
+        --deep-blue: #1B2951;
+        --light-gold: #FFD700;
+        --success-green: #27ae60;
+        --error-red: #e74c3c;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, var(--error-red) 0%, #c0392b 100%);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        direction: ltr;
+        text-align: center;
+    }
+    
+    .error-container {
+        max-width: 700px;
+        padding: 40px 20px;
+        text-align: center;
+    }
+    
+    .error-code {
+        font-size: 8rem;
+        font-weight: 900;
+        color: white;
+        margin-bottom: 20px;
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        animation: shake 2s ease-in-out infinite;
+    }
+    
+    .error-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: white;
+    }
+    
+    .error-message {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+    
+    .error-details {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 40px;
+        backdrop-filter: blur(10px);
+    }
+    
+    .error-actions {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+    }
+    
+    .btn {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    
+    .btn-primary {
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--error-red);
+    }
+    
+    .btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+    }
+    
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .btn-primary:hover {
+        background: white;
+        color: var(--error-red);
+    }
+    
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .whatsapp-help {
+        background: #25D366;
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-top: 30px;
+    }
+    
+    .whatsapp-help h3 {
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+    }
+    
+    .whatsapp-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        margin-top: 15px;
+    }
+    
+    .whatsapp-btn:hover {
+        background: white;
+        color: #25D366;
+    }
+    
+    .retry-info {
+        margin-top: 40px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        font-size: 0.95rem;
+        opacity: 0.8;
+    }
+    
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+    
+    @media (max-width: 768px) {
+        .error-code {
+            font-size: 5rem;
+        }
+        
+        .error-title {
+            font-size: 2rem;
+        }
+        
+        .error-message {
+            font-size: 1.1rem;
+        }
+        
+        .error-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .btn {
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-code">500</div>
+        <h1 class="error-title">Server Error</h1>
+        <p class="error-message">
+            We're experiencing some technical difficulties right now. Our team is working hard to fix this issue and get you back to shopping for your favorite perfumes and watches.
+        </p>
+        
+        <div class="error-details">
+            <h3 style="margin-bottom: 15px;"><i class="fas fa-tools"></i> What's Happening?</h3>
+            <p>Our server is temporarily unavailable due to maintenance or high traffic. This is usually resolved within a few minutes.</p>
+        </div>
+        
+        <div class="error-actions">
+            <button onclick="window.location.reload()" class="btn btn-primary">
+                <i class="fas fa-refresh"></i>
+                Retry Now
+            </button>
+            <a href="./" class="btn btn-secondary">
+                <i class="fas fa-home"></i>
+                Go to Homepage
+            </a>
+        </div>
+        
+        <div class="whatsapp-help">
+            <h3><i class="fab fa-whatsapp"></i> Need Immediate Help?</h3>
+            <p>Our customer service team is available 24/7 via WhatsApp to assist you with any urgent orders or questions.</p>
+            <a href="https://wa.me/201110760081?text=Hello! I'm experiencing technical issues on the Emirates Gifts website and need assistance." 
+               class="btn whatsapp-btn" 
+               target="_blank" 
+               rel="noopener">
+                <i class="fab fa-whatsapp"></i>
+                Contact WhatsApp Support
+            </a>
+        </div>
+        
+        <div class="retry-info">
+            <p><strong>What you can do:</strong></p>
+            <ul style="list-style: none; margin-top: 10px; line-height: 1.8;">
+                <li><i class="fas fa-refresh" style="margin-right: 8px; color: var(--light-gold);"></i> Refresh the page in a few minutes</li>
+                <li><i class="fas fa-history" style="margin-right: 8px; color: var(--light-gold);"></i> Try again later - most issues resolve quickly</li>
+                <li><i class="fab fa-whatsapp" style="margin-right: 8px; color: var(--light-gold);"></i> Contact us on WhatsApp for immediate assistance</li>
+                <li><i class="fas fa-envelope" style="margin-right: 8px; color: var(--light-gold);"></i> Email us at support@emirates-gifts.com</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+    // Auto-retry functionality
+    let retryCount = 0;
+    const maxRetries = 3;
+    
+    function autoRetry() {
+        if (retryCount < maxRetries) {
+            retryCount++;
+            console.log(`Auto-retry attempt ${retryCount}/${maxRetries}`);
+            
+            setTimeout(() => {
+                window.location.reload();
+            }, 30000 * retryCount); // Increasing delay: 30s, 60s, 90s
+            
+            // Show retry countdown
+            const countdown = document.createElement('div');
+            countdown.style.cssText = `
+                position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+                background: rgba(255, 255, 255, 0.1); color: white;
+                padding: 10px 20px; border-radius: 20px;
+                font-weight: 600; backdrop-filter: blur(10px);
+            `;
+            countdown.innerHTML = `
+                <i class="fas fa-clock"></i> 
+                Auto-retry in ${30 * retryCount} seconds... (${retryCount}/${maxRetries})
+            `;
+            document.body.appendChild(countdown);
+        }
+    }
+    
+    // Start auto-retry after initial delay
+    setTimeout(autoRetry, 5000);
+    
+    // Log error for analytics
+    console.error('500 Server Error:', {
+        url: window.location.href,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent
+    });
+    
+    // Service worker check (if implemented)
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+            if (registrations.length > 0) {
+                console.log('Service worker available - trying offline fallback');
+            }
+        });
+    }
+    </script>
+</body>
+</html>

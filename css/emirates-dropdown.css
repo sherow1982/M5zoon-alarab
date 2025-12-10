@@ -1,0 +1,145 @@
+/* ==========================================================================
+   ستايل القائمة المنسدلة الإماراتية - متجر هدايا الإمارات
+   Emirates Dropdown Menu Style - Emirates Gifts Store
+   ========================================================================== */
+
+/* القائمة المنسدلة الأساسية */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dropdown-toggle:hover {
+    color: #D4AF37;
+}
+
+.dropdown-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+/* القائمة المنسدلة */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+    border: 1px solid #e8ecef;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+    min-width: 250px;
+    padding: 15px 0;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* روابط القائمة المنسدلة */
+.dropdown-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.dropdown-link:hover {
+    background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+    color: #ffffff;
+    transform: translateX(-5px);
+}
+
+.dropdown-link i {
+    width: 16px;
+    color: #D4AF37;
+    transition: all 0.3s ease;
+}
+
+.dropdown-link:hover i {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* فاصل في القائمة */
+.dropdown-menu hr {
+    border: none;
+    height: 1px;
+    background: #e8ecef;
+    margin: 10px 0;
+}
+
+/* تحسينات للجوال */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        display: block;
+        opacity: 1;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        padding: 0;
+        margin: 10px 0;
+    }
+    
+    .dropdown-link {
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .dropdown-link:last-child {
+        border-bottom: none;
+    }
+}
+
+/* تأثيرات خاصة للروابط القانونية */
+.dropdown-link[href*="policy"],
+.dropdown-link[href*="terms"] {
+    position: relative;
+}
+
+.dropdown-link[href*="policy"]::after,
+.dropdown-link[href*="terms"]::after {
+    content: '🔒';
+    position: absolute;
+    left: 15px;
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+/* ألوان الروابط حسب النوع */
+.dropdown-link[href*="shipping"] i {
+    color: #00A16B;
+}
+
+.dropdown-link[href*="return"] i {
+    color: #C8102E;
+}
+
+.dropdown-link[href*="about"] i {
+    color: #1a1a1a;
+}

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- صفحات رئيسية -->
+  <url>
+    <loc>https://emirates-gifts.pages.dev/</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/products-showcase</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/about</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/blog/</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/privacy-policy</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/shipping-policy</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/return-policy</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/terms-conditions</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/cart</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/checkout</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- منتجات المتجر -->
+  <url>
+    <loc>https://emirates-gifts.pages.dev/product-details?id=ARIAF&amp;category=perfume&amp;slug=ariaf</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/product-details?id=Aigner-watch-1-gold&amp;category=watch&amp;slug=aigner-watch-1-gold</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/product-details?id=Aigner-watch-1-silver-strab--&amp;category=watch&amp;slug=aigner-watch-1-silver-strab--</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/product-details?id=Aromatic&amp;category=perfume&amp;slug=aromatic</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://emirates-gifts.pages.dev/product-details?id=Audemars-Piguet-Royal-Orange&amp;category=watch&amp;slug=audemars-piguet-royal-orange</loc>
+    <lastmod>2025-11-01T00:00:00+04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- جميع المنتجات الأخرى بنفس النمط -->
+  
+</urlset>

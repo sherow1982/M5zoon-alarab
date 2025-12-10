@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ar-AE" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">الصفحة غير موجودة - متجر هدايا الإمارات</title>
+    <meta name="description" id="page-description" content="الصفحة التي تبحث عنها غير موجودة. ارجع إلى متجر هدايا الإمارات للعطور والهدايا عالية الجودة.">
+    
+    <!-- Dynamic Canonical URL from seo_config.json -->
+    <script type="text/javascript">
+        (async function() {
+            try {
+                const response = await fetch('./seo_config.json');
+                const config = await response.json();
+                const baseUrl = config.base_url || "https://sherow1982.github.io/emirates-gifts";
+                const canonicalLink = document.createElement('link');
+                canonicalLink.rel = 'canonical';
+                canonicalLink.href = `${baseUrl}/404.html`;
+                document.head.appendChild(canonicalLink);
+            } catch (error) {
+                console.error('Error loading seo_config.json for canonical URL:', error);
+            }
+        })();
+    </script>
+    <link rel="alternate" hreflang="en" href="https://sherow1982.github.io/emirates-gifts/en/404.html">
+    <style>
+    body{font-family:'Cairo',sans-serif;margin:0;background:linear-gradient(135deg,#f8f9ff,#fff);color:#2c3e50;text-align:center;padding:50px 20px}
+    .error-container{max-width:600px;margin:0 auto}
+    .error-code{font-size:8rem;font-weight:900;color:#D4AF37;margin:0;text-shadow:2px 2px 4px rgba(0,0,0,0.1)}
+    .error-title{font-size:2rem;margin:20px 0;color:#2c3e50}
+    .error-text{font-size:1.1rem;color:#666;margin-bottom:30px;line-height:1.6}
+    .back-home{background:linear-gradient(135deg,#D4AF37,#B8941F);color:#fff;padding:15px 30px;border:none;border-radius:25px;font-size:1.1rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all 0.3s ease}
+    .back-home:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(212,175,55,0.3)}
+    .search-suggestions{margin-top:40px;text-align:right}
+    .search-suggestions h3{color:#D4AF37;margin-bottom:15px}
+    .suggestion-links{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+    .suggestion-links a{background:#fff;color:#2c3e50;padding:10px 20px;border-radius:20px;text-decoration:none;border:2px solid #D4AF37;transition:all 0.3s ease}
+    .suggestion-links a:hover{background:#D4AF37;color:#fff}
+    @media (max-width:768px){.error-code{font-size:4rem}.error-title{font-size:1.5rem}.suggestion-links{flex-direction:column;align-items:center}}
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">الصفحة غير موجودة</h1>
+        <p class="error-text">
+            عذراً، الصفحة التي تبحث عنها غير موجودة أو تم نقلها.<br>
+            يمكنك العودة إلى الصفحة الرئيسية أو تصفح مجموعتنا من العطور والهدايا عالية الجودة.
+        </p>
+        
+        <a href="/" class="back-home">
+            <i class="fas fa-home"></i>
+            العودة للرئيسية
+        </a>
+        
+        <div class="search-suggestions">
+            <h3>روابط مفيدة</h3>
+            <div class="suggestion-links">
+                <a href="/products-showcase.html">جميع المنتجات</a>
+                <a href="/#perfumes-section">العطور</a>
+                <a href="/#watches-section">الساعات</a>
+                <a href="/about.html">من نحن</a>
+                <a href="/en/">🌍 English</a>
+                <a href="https://wa.me/201110760081">💬 تواصل معنا</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,690 @@
+/*
+ * إصلاحات نهائية لمظهر الأزرار
+ * حل جميع مشاكل التصميم والتنسيق
+ */
+
+/* إعادة تعريف المتغيرات لضمان الثبات */
+:root {
+    --header-height: 80px;
+    --button-height: 46px;
+    --button-padding: 12px 16px;
+    --button-font-size: 0.9rem;
+    --button-border-radius: 10px;
+    --button-shadow: 0 3px 12px rgba(212, 175, 55, 0.25);
+    --button-shadow-hover: 0 6px 20px rgba(212, 175, 55, 0.4);
+    --gold-gradient: linear-gradient(135deg, #FFD700 0%, #F4C430 50%, #DAA520 100%);
+    --gold-gradient-hover: linear-gradient(135deg, #FFED4E 0%, #F7DC6F 50%, #E6B800 100%);
+    --green-gradient: linear-gradient(135deg, #25D366 0%, #20B358 50%, #1DA851 100%);
+    --green-gradient-hover: linear-gradient(135deg, #28E56A 0%, #22C55E 50%, #1FAB4F 100%);
+}
+
+/* إصلاح شامل للهيدر */
+.header {
+    background: var(--white);
+    box-shadow: 0 2px 20px var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition);
+    width: 100%;
+    height: auto;
+    min-height: var(--header-height);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    gap: 20px;
+    height: auto;
+    min-height: calc(var(--header-height) - 32px);
+}
+
+/* إصلاح شامل لأزرار التنقل */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    flex-wrap: nowrap;
+}
+
+.nav-item {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.nav-link {
+    /* الشكل العام */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: var(--button-font-size);
+    color: #1B2951;
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+    
+    /* الحجم والتباعد */
+    height: var(--button-height);
+    padding: var(--button-padding);
+    min-width: 80px;
+    
+    /* الشكل واللون */
+    background: var(--gold-gradient);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--button-border-radius);
+    box-shadow: 
+        var(--button-shadow),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+    
+    /* الحركة والتأثيرات */
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+    will-change: transform, background;
+}
+
+/* تأثير البريق */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.4s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.nav-link:hover::before {
+    left: 100%;
+}
+
+/* حالة الهوفر */
+.nav-link:hover {
+    background: var(--gold-gradient-hover);
+    transform: translateY(-2px) scale(1.02) translateZ(0);
+    box-shadow: 
+        var(--button-shadow-hover),
+        inset 0 2px 3px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.1);
+    color: #1B2951;
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+/* الزر النشط */
+.nav-link.active {
+    background: linear-gradient(135deg, #F1C40F 0%, #D4AF37 50%, #B8860B 100%);
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 4px 15px rgba(212, 175, 55, 0.4),
+        inset 0 1px 2px rgba(0, 0, 0, 0.2),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px) translateZ(0);
+}
+
+.nav-link.active:hover {
+    background: linear-gradient(135deg, #F4D03F 0%, #D5A441 50%, #BB8A0B 100%);
+    transform: translateY(-2px) scale(1.01) translateZ(0);
+}
+
+/* إصلاح شامل لأدوات الهيدر */
+.header-tools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.header-tool {
+    /* الشكل العام */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    
+    /* الحجم */
+    width: var(--button-height);
+    height: var(--button-height);
+    
+    /* الشكل واللون */
+    background: var(--gold-gradient);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--button-border-radius);
+    box-shadow: 
+        var(--button-shadow),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+    
+    /* النص */
+    font-size: 1.1rem;
+    color: #1B2951;
+    
+    /* الحركة */
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    transform: translateZ(0);
+    will-change: transform, background;
+}
+
+.header-tool:hover {
+    background: var(--gold-gradient-hover);
+    transform: translateY(-2px) scale(1.05) translateZ(0);
+    box-shadow: 
+        var(--button-shadow-hover),
+        inset 0 2px 3px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.1);
+    color: #1B2951;
+}
+
+/* زر الطلب المحسن */
+.order-now-btn {
+    background: var(--green-gradient) !important;
+    color: white !important;
+    border: 1px solid rgba(37, 211, 102, 0.3) !important;
+    box-shadow: 
+        0 3px 12px rgba(37, 211, 102, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.1) !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    padding: 10px 14px !important;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.order-now-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.4s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.order-now-btn:hover::before {
+    left: 100%;
+}
+
+.order-now-btn:hover {
+    background: var(--green-gradient-hover) !important;
+    transform: translateY(-2px) scale(1.03) translateZ(0) !important;
+    box-shadow: 
+        0 6px 20px rgba(37, 211, 102, 0.5),
+        inset 0 2px 3px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.1) !important;
+    color: white !important;
+}
+
+/* تحسين عداد السلة */
+.cart-counter {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: 0.7rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 
+        0 2px 6px rgba(231, 76, 60, 0.3),
+        0 0 0 2px white;
+    z-index: 10;
+    animation: cartPulse 2s infinite;
+}
+
+@keyframes cartPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.cart-counter.has-items {
+    display: flex !important;
+}
+
+/* زر القائمة للهواتف */
+.mobile-menu-toggle {
+    display: none;
+    width: var(--button-height);
+    height: var(--button-height);
+    background: var(--gold-gradient);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--button-border-radius);
+    color: #1B2951;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--button-shadow);
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transform: translateZ(0);
+}
+
+.mobile-menu-toggle:hover {
+    background: var(--gold-gradient-hover);
+    transform: translateY(-2px) scale(1.05) translateZ(0);
+    box-shadow: var(--button-shadow-hover);
+}
+
+/* إصلاح وضعية الهواتف */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 70px;
+        --button-height: 42px;
+        --button-padding: 10px 12px;
+        --button-font-size: 0.85rem;
+    }
+    
+    .main-nav {
+        display: none !important;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex !important;
+    }
+    
+    .header-content {
+        gap: 12px;
+        padding: 12px 0;
+        min-height: calc(var(--header-height) - 24px);
+    }
+    
+    .header-tools {
+        gap: 8px;
+    }
+    
+    .order-now-btn {
+        padding: 8px 10px !important;
+        font-size: 0.75rem !important;
+        min-width: 42px !important;
+    }
+    
+    .order-now-btn span {
+        display: none;
+    }
+    
+    .cart-counter {
+        width: 20px;
+        height: 20px;
+        font-size: 0.65rem;
+        top: -5px;
+        left: -5px;
+    }
+}
+
+/* إصلاح وضعية الهواتف الصغيرة */
+@media (max-width: 480px) {
+    :root {
+        --header-height: 60px;
+        --button-height: 38px;
+        --button-padding: 8px 10px;
+        --button-font-size: 0.8rem;
+    }
+    
+    .header-content {
+        gap: 8px;
+        padding: 10px 0;
+        min-height: calc(var(--header-height) - 20px);
+    }
+    
+    .header-tools {
+        gap: 6px;
+    }
+    
+    .logo-title {
+        font-size: 1.4rem;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .order-now-btn {
+        padding: 6px 8px !important;
+        font-size: 0.7rem !important;
+        min-width: 38px !important;
+    }
+    
+    .cart-counter {
+        width: 18px;
+        height: 18px;
+        font-size: 0.6rem;
+        top: -4px;
+        left: -4px;
+    }
+}
+
+/* إصلاح وضعية الهواتف الصغيرة جداً */
+@media (max-width: 360px) {
+    :root {
+        --header-height: 55px;
+        --button-height: 36px;
+        --button-padding: 6px 8px;
+        --button-font-size: 0.75rem;
+    }
+    
+    .header-content {
+        gap: 6px;
+        padding: 8px 0;
+        min-height: calc(var(--header-height) - 16px);
+    }
+    
+    .header-tools {
+        gap: 4px;
+    }
+    
+    .logo-title {
+        font-size: 1.2rem;
+    }
+    
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .order-now-btn {
+        padding: 5px 6px !important;
+        font-size: 0.65rem !important;
+        min-width: 36px !important;
+    }
+    
+    .cart-counter {
+        width: 16px;
+        height: 16px;
+        font-size: 0.55rem;
+        top: -3px;
+        left: -3px;
+    }
+}
+
+/* إصلاح وضعية الشاشات الكبيرة */
+@media (min-width: 1200px) {
+    :root {
+        --button-height: 48px;
+        --button-padding: 14px 20px;
+        --button-font-size: 0.95rem;
+    }
+    
+    .nav-menu {
+        gap: 8px;
+    }
+    
+    .header-tools {
+        gap: 12px;
+    }
+    
+    .nav-link {
+        min-width: 90px;
+    }
+}
+
+/* ضمان عمل الأزرار على جميع الأجهزة */
+.nav-link,
+.header-tool,
+.mobile-menu-toggle {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    /* تحسين عرض النصوص */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    
+    /* تحسين GPU */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* تأثير اللمس للهواتف */
+@media (hover: none) and (pointer: coarse) {
+    .nav-link:active,
+    .header-tool:active,
+    .mobile-menu-toggle:active {
+        transform: scale(0.95) translateZ(0) !important;
+        transition: transform 0.1s ease !important;
+    }
+}
+
+/* إصلاح مشاكل التداخل */
+.nav-link,
+.header-tool {
+    z-index: 1;
+}
+
+.nav-link:hover,
+.header-tool:hover,
+.nav-link.active {
+    z-index: 2;
+}
+
+/* ضمان عدم قطع التصميم */
+.header-content > * {
+    flex-shrink: 0;
+}
+
+.main-nav {
+    flex: 1;
+    min-width: 0;
+    overflow: visible;
+}
+
+.nav-menu,
+.header-tools {
+    flex-wrap: nowrap;
+    overflow: visible;
+}
+
+/* تحسين الوصول */
+.nav-link:focus,
+.header-tool:focus,
+.mobile-menu-toggle:focus {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+    z-index: 10;
+}
+
+/* إصلاح مشاكل العرض في Safari */
+@supports (-webkit-appearance: none) {
+    .nav-link,
+    .header-tool,
+    .mobile-menu-toggle {
+        -webkit-appearance: none;
+        -webkit-transform: translateZ(0);
+    }
+}
+
+/* تحسينات لFirefox */
+@-moz-document url-prefix() {
+    .nav-link,
+    .header-tool,
+    .mobile-menu-toggle {
+        -moz-appearance: none;
+    }
+}
+
+/* ضمان العمل على Internet Explorer (Edge) */
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    .nav-link,
+    .header-tool,
+    .mobile-menu-toggle {
+        background-image: none;
+        background: #FFD700;
+    }
+}
+
+/* إصلاحات للطباعة */
+@media print {
+    .header-tools,
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+    
+    .nav-link {
+        background: none !important;
+        color: black !important;
+        box-shadow: none !important;
+        border: 1px solid black;
+    }
+}
+
+/* انيميشن تحميل الأزرار */
+@keyframes buttonLoadIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.nav-menu.loaded .nav-item {
+    animation: buttonLoadIn 0.4s ease-out forwards;
+}
+
+.nav-item:nth-child(1) { animation-delay: 0.05s; }
+.nav-item:nth-child(2) { animation-delay: 0.1s; }
+.nav-item:nth-child(3) { animation-delay: 0.15s; }
+.nav-item:nth-child(4) { animation-delay: 0.2s; }
+.nav-item:nth-child(5) { animation-delay: 0.25s; }
+.nav-item:nth-child(6) { animation-delay: 0.3s; }
+
+.header-tools.loaded .header-tool {
+    animation: buttonLoadIn 0.4s ease-out forwards;
+}
+
+.header-tools .header-tool:nth-child(1) { animation-delay: 0.35s; }
+.header-tools .header-tool:nth-child(2) { animation-delay: 0.4s; }
+.header-tools .header-tool:nth-child(3) { animation-delay: 0.45s; }
+
+/* تحسين الأداء */
+.header {
+    contain: layout style paint;
+}
+
+.nav-menu,
+.header-tools {
+    contain: layout style;
+}
+
+.nav-link,
+.header-tool,
+.mobile-menu-toggle {
+    contain: layout;
+}
+
+/* إزالة الفيض غير الضروري */
+.header * {
+    box-sizing: border-box;
+}
+
+/* ضمان عمل التصميم في جميع البيئات */
+.nav-link:not(:hover):not(.active),
+.header-tool:not(:hover) {
+    transition-property: transform, background, box-shadow, color, border-color;
+}
+
+/* تأكيد العمل في بيئات التحرير */
+@media screen {
+    .nav-link,
+    .header-tool,
+    .mobile-menu-toggle {
+        transform: translateZ(0);
+    }
+}
+
+/* ضمان عدم تداخل الأنيميشن */
+.header.scrolled .nav-link,
+.header.scrolled .header-tool {
+    transition-duration: 0.2s;
+}
+
+/* تحسينات الأداء للأجهزة البطيئة */
+@media (max-width: 768px) and (max-device-width: 768px) {
+    .nav-link,
+    .header-tool,
+    .mobile-menu-toggle {
+        transition-duration: 0.15s;
+        will-change: auto;
+    }
+}
+
+/* تحسين العرض على الشاشات عالية الدقة */
+@media (min-resolution: 2dppx) {
+    .nav-link,
+    .header-tool,
+    .mobile-menu-toggle {
+        border-width: 0.5px;
+    }
+}
+
+/* تحسين العرض على الشاشات العريضة */
+@media (min-width: 1400px) {
+    .header-container {
+        max-width: 1600px;
+        padding: 0 40px;
+    }
+    
+    .nav-menu {
+        gap: 10px;
+    }
+    
+    .nav-link {
+        min-width: 95px;
+        padding: 15px 22px;
+        font-size: 1rem;
+    }
+}
+
+/* رسالة تأكيد التحميل */
+.buttons-loaded {
+    opacity: 1;
+    visibility: visible;
+}
+
+.buttons-loading {
+    opacity: 0.7;
+    pointer-events: none;
+}

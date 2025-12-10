@@ -1,0 +1,448 @@
+/* ==========================================================================
+   ستايل التقييمات الإماراتي الاحترافي - متجر هدايا الإمارات
+   Emirates Professional Reviews Style - Emirates Gifts Store
+   ========================================================================== */
+
+/* أساسيات التقييمات */
+.reviews-section {
+    background: linear-gradient(135deg, #fafafa 0%, #f8f9fa 100%);
+    padding: 30px 20px;
+    border-radius: 12px;
+    margin: 30px 0;
+    border: 1px solid #e8ecef;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    direction: rtl;
+    text-align: right;
+}
+
+/* عنوان قسم التقييمات */
+.reviews-section h3,
+.reviews-section h2 {
+    color: #1a1a1a;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #D4AF37;
+    position: relative;
+}
+
+.reviews-section h3::after,
+.reviews-section h2::after {
+    content: '🇦🇪';
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    font-size: 20px;
+}
+
+/* إحصائيات التقييم */
+.rating-summary {
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #e1e5e9;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+}
+
+.average-rating {
+    font-size: 48px;
+    font-weight: 800;
+    color: #D4AF37;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+}
+
+.rating-stars {
+    font-size: 24px;
+    margin: 15px 0;
+    letter-spacing: 3px;
+}
+
+.rating-stars .star {
+    color: #D4AF37;
+    text-shadow: 0 1px 3px rgba(212, 175, 55, 0.4);
+    transition: all 0.3s ease;
+}
+
+.rating-stars .star:hover {
+    transform: scale(1.1);
+}
+
+.total-reviews {
+    color: #666;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* فلاتر التقييمات */
+.reviews-filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-btn {
+    background: #ffffff;
+    border: 2px solid #D4AF37;
+    color: #D4AF37;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.filter-btn::before {
+    content: '🔍';
+    font-size: 12px;
+}
+
+.filter-btn.verified::before {
+    content: '✅';
+}
+
+.filter-btn.high-rating::before {
+    content: '⭐';
+}
+
+/* بطاقات التقييمات */
+.review-card {
+    background: #ffffff;
+    border: 1px solid #e8ecef;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.review-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #D4AF37 0%, #00A16B 50%, #C8102E 100%);
+    opacity: 0.8;
+}
+
+.review-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    border-color: #D4AF37;
+}
+
+.review-card.verified {
+    border-color: #00A16B;
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+/* معلومات المراجع */
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.reviewer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.reviewer-details h4 {
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+}
+
+.reviewer-location {
+    color: #666;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.reviewer-location::before {
+    content: '📍';
+    font-size: 12px;
+}
+
+/* شارة التحقق */
+.verified-badge {
+    background: linear-gradient(135deg, #00A16B 0%, #00845A 100%);
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 2px 8px rgba(0, 161, 107, 0.3);
+}
+
+.verified-badge::before {
+    content: '✓';
+    font-weight: 800;
+}
+
+/* تقييم النجوم */
+.review-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.review-stars {
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #D4AF37;
+    text-shadow: 0 1px 3px rgba(212, 175, 55, 0.4);
+}
+
+.review-date {
+    color: #888;
+    font-size: 13px;
+    margin-right: auto;
+}
+
+/* نص التقييم */
+.review-comment {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 20px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 8px;
+    border-right: 4px solid #D4AF37;
+    position: relative;
+}
+
+.review-comment::before {
+    content: '"';
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    font-size: 40px;
+    color: #D4AF37;
+    opacity: 0.3;
+    font-family: serif;
+}
+
+/* أزرار التفاعل */
+.review-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.helpful-btn {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    color: #666;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.helpful-btn:hover {
+    background: #D4AF37;
+    color: #ffffff;
+    border-color: #D4AF37;
+    transform: translateY(-1px);
+}
+
+.helpful-btn.active {
+    background: #00A16B;
+    color: #ffffff;
+    border-color: #00A16B;
+}
+
+.helpful-btn::before {
+    content: '👍';
+    font-size: 12px;
+}
+
+.helpful-count {
+    background: #f0f0f0;
+    color: #666;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* زر عرض المزيد */
+.show-more-btn {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 2px solid #D4AF37;
+    color: #D4AF37;
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    margin: 30px auto;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    min-width: 200px;
+}
+
+.show-more-btn:hover {
+    background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.show-more-btn::after {
+    content: ' ⬇️';
+    margin-right: 8px;
+}
+
+/* تحسينات للجوال */
+@media (max-width: 768px) {
+    .reviews-section {
+        padding: 20px 15px;
+        margin: 20px 0;
+    }
+    
+    .reviews-section h3,
+    .reviews-section h2 {
+        font-size: 24px;
+    }
+    
+    .review-card {
+        padding: 20px;
+    }
+    
+    .reviewer-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .review-actions {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .reviews-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-btn {
+        justify-content: center;
+    }
+}
+
+/* تأثيرات لوادر التحميل */
+.reviews-loading {
+    text-align: center;
+    padding: 50px;
+    color: #D4AF37;
+    font-size: 18px;
+}
+
+.reviews-loading::before {
+    content: '⏳';
+    display: block;
+    font-size: 30px;
+    margin-bottom: 15px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* تحسينات إضافية للألوان الإماراتية */
+.emirates-accent {
+    color: #D4AF37 !important;
+}
+
+.emirates-success {
+    color: #00A16B !important;
+}
+
+.emirates-pride {
+    color: #C8102E !important;
+}
+
+/* تحسين الخطوط العربية */
+.reviews-section,
+.review-card,
+.reviewer-details {
+    font-family: 'Segoe UI', 'Dubai', 'Tahoma', Arial, sans-serif;
+}
+
+/* تأثيرات خاصة للتقييمات عالية الجودة */
+.review-card.premium {
+    background: linear-gradient(135deg, #fff8dc 0%, #ffffff 100%);
+    border: 2px solid #D4AF37;
+    position: relative;
+}
+
+.review-card.premium::after {
+    content: '⭐';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 20px;
+    animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+}

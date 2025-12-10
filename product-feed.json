@@ -1,0 +1,47 @@
+{
+  "feed_info": {
+    "title": "متجر هدايا الإمارات - كتالوج المنتجات",
+    "link": "https://emirates-gifts.arabsad.com/",
+    "description": "جميع منتجات متجر هدايا الإمارات عالية الجودة",
+    "language": "ar-AE",
+    "last_updated": "2025-10-31T11:00:00+02:00"
+  },
+  "products": [
+    {
+      "id": "perfume_1",
+      "title": "عطر كوكو شانيل 100 مل",
+      "description": "عطر فاخر بتركيبة عالية الجودة ورائحة مميزة تدوم طويلاً",
+      "price": "450.00 AED",
+      "sale_price": "299.99 AED",
+      "brand": "Chanel",
+      "category": "عطور",
+      "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400",
+      "link": "https://emirates-gifts.arabsad.com/product-details.html?id=perfume_1&category=perfume&slug=-",
+      "availability": "in stock"
+    },
+    {
+      "id": "perfume_2",
+      "title": "عطر جوتشي فلورا",
+      "description": "عطر زهري أنيق بتركيبة ناعمة ومميزة للنساء العصريات",
+      "price": "380.00 AED",
+      "sale_price": "249.99 AED",
+      "brand": "Gucci",
+      "category": "عطور",
+      "image": "https://images.unsplash.com/photo-1588405748880-12d1d2a59a21?w=400",
+      "link": "https://emirates-gifts.arabsad.com/product-details.html?id=perfume_2&category=perfume&slug=-",
+      "availability": "in stock"
+    },
+    {
+      "id": "watch_1",
+      "title": "ساعة رولكس يخت ماستر - فضي",
+      "description": "ساعة رولكس فاخرة بتصميم كلاسيكي ودقة عالية مقاومة للماء",
+      "price": "8500.00 AED",
+      "sale_price": "5999.99 AED",
+      "brand": "Rolex",
+      "category": "ساعات",
+      "image": "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400",
+      "link": "https://emirates-gifts.arabsad.com/product-details.html?id=watch_1&category=watch&slug=-",
+      "availability": "in stock"
+    }
+  ]
+}

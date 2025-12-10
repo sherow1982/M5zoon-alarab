@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات</title>
+    <meta name="description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - السعر: 350 د.إ. توصيل سريع لجميع أنحاء الإمارات">
+    <meta name="keywords" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي, ساعات, متجر هدايا الإمارات">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .product-page {
+            background: #f5f5f5;
+            padding: 40px 20px;
+            min-height: calc(100vh - 200px);
+        }
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .breadcrumb {
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+        .product-image-section {
+            position: relative;
+        }
+        .product-main-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: white;
+        }
+        .discount-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+        }
+        .product-info-section {
+            display: flex;
+            flex-direction: column;
+        }
+        .product-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .category-badge {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            width: fit-content;
+        }
+        .price-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 22px;
+        }
+        .current-price {
+            font-size: 38px;
+            font-weight: 700;
+            color: #667eea;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+        .feature-icon {
+            font-size: 24px;
+        }
+        .product-description {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            line-height: 1.8;
+            margin: 30px 0;
+        }
+        .product-description h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 20px;
+        }
+        .product-description p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .whatsapp-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 40px;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        .back-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        @media (max-width: 768px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .product-container {
+                padding: 20px;
+            }
+            .product-title {
+                font-size: 22px;
+            }
+            .current-price {
+                font-size: 30px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+            .product-main-image {
+                max-height: 350px;
+            }
+        }
+    </style>
+
+
+    <!-- SEO Meta Tags -->
+    <title>ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات - Emirates Gifts | هدايا فريدة وعروض حصرية</title>
+    <meta name="description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات اختر هديتك من Emirates Gifts - توصيل سريع لكل الإمارات.">
+    <meta name="keywords" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات, Emirates Gifts, هدايا, تسوق اونلاين, هدايا الإمارات, عروض, دبي، أبوظبي، الشارقة، عجمان، رأس الخيمة، الفجيرة، أم القيوين">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="geo.region" content="AE">
+    <meta name="geo.placename" content="الإمارات">
+    <meta name="geo.position" content="25.2048;55.2708">
+    <meta name="ICBM" content="25.2048, 55.2708">
+    <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/products/ساعة-اوميغا-سواتش-بيبي-بلوالبوكس-الأصلي.html">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات - Emirates Gifts">
+    <meta property="og:description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات">
+    <meta property="og:image" content="https://m5zoon.com/public/uploads/products/1745836780725584.webp">
+    <meta property="og:url" content="https://sherow1982.github.io/emirates-gifts/products/ساعة-اوميغا-سواتش-بيبي-بلوالبوكس-الأصلي.html">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="Emirates Gifts">
+    <meta property="og:locale" content="ar_AE">
+    <meta property="product:price:amount" content="0">
+    <meta property="product:price:currency" content="AED">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات - Emirates Gifts">
+    <meta name="twitter:description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات">
+    <meta name="twitter:image" content="https://m5zoon.com/public/uploads/products/1745836780725584.webp">
+    
+
+<!-- Product Schema JSON-LD (Auto) -->
+
+
+<!-- LocalBusiness Schema JSON-LD (Auto) -->
+
+
+<!-- SEO Meta Tags (Auto Generated) -->
+
+    <!-- SEO Meta Tags (Auto Generated) -->
+    <meta charset="UTF-8">
+    <title>ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات - Emirates Gifts | هدايا فريدة وعروض حصرية</title>
+    <meta name="description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات - هدايا فريدة من Emirates Gifts اختر هديتك من Emirates Gifts - توصيل سريع لكل الإمارات.">
+    <meta name="keywords" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات, Emirates Gifts, هدايا, تسوق اونلاين, هدايا الإمارات, عروض, دبي، أبوظبي، الشارقة، عجمان، رأس الخيمة، الفجيرة، أم القيوين">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="language" content="ar">
+    <meta name="geo.region" content="AE">
+    <meta name="geo.placename" content="الإمارات">
+    <meta name="geo.position" content="25.2048;55.2708">
+    <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/products/ساعة-اوميغا-سواتش-بيبي-بلوالبوكس-الأصلي.html">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات - Emirates Gifts">
+    <meta property="og:description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات - هدايا فريدة من Emirates Gifts">
+    <meta property="og:image" content="https://m5zoon.com/public/uploads/products/1745836780725584.webp">
+    <meta property="og:url" content="https://sherow1982.github.io/emirates-gifts/products/ساعة-اوميغا-سواتش-بيبي-بلوالبوكس-الأصلي.html">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="Emirates Gifts">
+    <meta property="og:locale" content="ar_AE">
+    <meta property="product:price:amount" content="0">
+    <meta property="product:price:currency" content="AED">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات - Emirates Gifts">
+    <meta name="twitter:description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي | متجر هدايا الإمارات - هدايا فريدة من Emirates Gifts">
+    <meta name="twitter:image" content="https://m5zoon.com/public/uploads/products/1745836780725584.webp">
+    
+
+<!-- Product Schema JSON-LD (Auto Generated) -->
+
+
+<!-- LocalBusiness Schema JSON-LD (Auto Generated) -->
+
+<!-- /SEO Meta Tags -->
+
+
+
+    <!-- SEO Meta Tags (Auto) -->
+    <meta charset="UTF-8">
+    <title>ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - Emirates Gifts | هدايا فريدة وعروض حصرية</title>
+    <meta name="description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - هدايا فريدة من Emirates Gifts توصيل سريع لكل الإمارات">
+    <meta name="keywords" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي, Emirates Gifts, هدايا, تسوق اونلاين, الإمارات, دبي، أبوظبي، الشارقة، عجمان، رأس الخيمة، الفجيرة، أم القيوين">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="geo.region" content="AE">
+    <meta name="geo.placename" content="الإمارات">
+    <meta name="geo.position" content="25.2048;55.2708">
+    <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/products/ساعة-اوميغا-سواتش-بيبي-بلوالبوكس-الأصلي.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - Emirates Gifts">
+    <meta property="og:description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - هدايا فريدة من Emirates Gifts">
+    <meta property="og:image" content="https://m5zoon.com/public/uploads/products/1745836780725584.webp">
+    <meta property="og:url" content="https://sherow1982.github.io/emirates-gifts/products/ساعة-اوميغا-سواتش-بيبي-بلوالبوكس-الأصلي.html">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="Emirates Gifts">
+    <meta property="og:locale" content="ar_AE">
+    <meta property="product:price:amount" content="350.0">
+    <meta property="product:price:currency" content="AED">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - Emirates Gifts">
+    <meta name="twitter:description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - هدايا فريدة من Emirates Gifts">
+    <meta name="twitter:image" content="https://m5zoon.com/public/uploads/products/1745836780725584.webp">
+    
+
+<!-- Product Schema (Auto) -->
+
+
+<!-- LocalBusiness Schema (Auto) -->
+
+
+
+
+    <!-- SEO Meta Tags (Auto) -->
+    <meta charset="UTF-8">
+    <title>ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - Emirates Gifts | هدايا فريدة وعروض حصرية</title>
+    <meta name="description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - هدايا فريدة من Emirates Gifts توصيل سريع لكل الإمارات">
+    <meta name="keywords" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي, Emirates Gifts, هدايا, تسوق اونلاين, الإمارات">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="geo.region" content="AE">
+    <meta name="geo.placename" content="الإمارات">
+    <meta name="geo.position" content="25.2048;55.2708">
+    <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/products/ساعة-اوميغا-سواتش-بيبي-بلوالبوكس-الأصلي.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - Emirates Gifts">
+    <meta property="og:description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - هدايا فريدة من Emirates Gifts">
+    <meta property="og:image" content="https://m5zoon.com/public/uploads/products/1745836780725584.webp">
+    <meta property="og:url" content="https://sherow1982.github.io/emirates-gifts/products/ساعة-اوميغا-سواتش-بيبي-بلوالبوكس-الأصلي.html">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="Emirates Gifts">
+    <meta property="og:locale" content="ar_AE">
+    <meta property="product:price:amount" content="350.0">
+    <meta property="product:price:currency" content="AED">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - Emirates Gifts">
+    <meta name="twitter:description" content="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - هدايا فريدة من Emirates Gifts">
+    <meta name="twitter:image" content="https://m5zoon.com/public/uploads/products/1745836780725584.webp">
+    
+
+<!-- Product Schema JSON-LD (Auto) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي",
+  "image": [
+    "https://m5zoon.com/public/uploads/products/1745836780725584.webp"
+  ],
+  "description": "ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - هدايا فريدة من Emirates Gifts مع توصيل سريع",
+  "brand": {
+    "@type": "Brand",
+    "name": "Emirates Gifts"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://sherow1982.github.io/emirates-gifts/products/ساعة-اوميغا-سواتش-بيبي-بلوالبوكس-الأصلي.html",
+    "priceCurrency": "AED",
+    "price": "350.0",
+    "priceValidUntil": "2026-12-01",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Emirates Gifts"
+    }
+  }
+}
+</script>
+
+<!-- LocalBusiness Schema JSON-LD (Auto) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Emirates Gifts",
+  "image": "https://sherow1982.github.io/emirates-gifts/logo.png",
+  "url": "https://sherow1982.github.io/emirates-gifts/",
+  "telephone": "+201110760081",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "الإمارات العربية المتحدة",
+    "addressLocality": "دبي",
+    "addressRegion": "دبي",
+    "postalCode": "00000",
+    "addressCountry": "AE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "25.2048",
+    "longitude": "55.2708"
+  },
+  "openingHours": "Su-Sa 08:00-23:00",
+  "priceRange": "$$"
+}
+</script>
+
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="https://sherow1982.github.io/hadaya-emirates/" class="logo">🛍️ متجر هدايا الإمارات</a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="https://sherow1982.github.io/hadaya-emirates/">الرئيسية</a></li>
+                        <li><a href="https://sherow1982.github.io/hadaya-emirates/about.html">من نحن</a></li>
+                        <li><a href="https://sherow1982.github.io/hadaya-emirates/contact.html">اتصل بنا</a></li>
+                        <li><a href="https://sherow1982.github.io/hadaya-emirates/shipping.html">الشحن</a></li>
+                        <li><a href="https://sherow1982.github.io/hadaya-emirates/return.html">الاستبدال</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <p class="tagline">أفضل المنتجات بأقل الأسعار</p>
+        </div>
+    </header>
+
+    <div class="product-page">
+        <div class="product-container">
+            <div class="breadcrumb">
+                <a href="https://sherow1982.github.io/hadaya-emirates/">الرئيسية</a> / 
+                <a href="https://sherow1982.github.io/hadaya-emirates/">ساعات</a> / 
+                <span>ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي</span>
+            </div>
+
+            <div class="product-layout">
+                <div class="product-image-section">
+                    <img src="https://m5zoon.com/public/uploads/products/1745836780725584.webp" alt="ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي" class="product-main-image">
+                    <div class="discount-badge">-12%</div>
+                </div>
+
+                <div class="product-info-section">
+                    <h1 class="product-title">ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي</h1>
+                    <span class="category-badge">ساعات</span>
+
+                    <div class="price-section">
+                        <span class="old-price">400 د.إ</span>
+                        <span class="current-price">350 د.إ</span>
+                    </div>
+
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>منتج أصلي 100%</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🚚</span>
+                            <span>شحن سريع</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔄</span>
+                            <span>استبدال مجاني</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💳</span>
+                            <span>دفع عند الاستلام</span>
+                        </div>
+                    </div>
+
+                    <div class="product-description">
+                        <h3>📋 وصف المنتج</h3>
+                        <p><strong>ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي</strong> - منتج فاخر وأصلي 100% من متجر هدايا الإمارات. نقدم أفضل جودة بأسعار تنافسية مع ضمان كامل. توصيل سريع لجميع أنحاء الإمارات مع إمكانية الدفع عند الاستلام.</p>
+                        <p>نحن نضمن لك الحصول على منتج أصلي وعالي الجودة. جميع منتجاتنا معتمدة ومضمونة.</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="https://wa.me/201110760081?text=مرحباً، أرغب في طلب:\nساعة اوميغا سواتش بيبي بلو+البوكس الأصلي\nالسعر: 350 د.إ" target="_blank" class="whatsapp-btn">
+                            📱 اطلب عبر الواتساب
+                        </a>
+                        <a href="https://sherow1982.github.io/hadaya-emirates/" class="back-btn">
+                            🏠 العودة للمتجر
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن المتجر</h3>
+                    <p>متجر هدايا الإمارات - وجهتك الأولى للحصول على أفضل الساعات والعطور الأصلية.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://sherow1982.github.io/hadaya-emirates/">الرئيسية</a></li>
+                        <li><a href="https://sherow1982.github.io/hadaya-emirates/about.html">من نحن</a></li>
+                        <li><a href="https://sherow1982.github.io/hadaya-emirates/contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>السياسات</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://sherow1982.github.io/hadaya-emirates/shipping.html">سياسة الشحن</a></li>
+                        <li><a href="https://sherow1982.github.io/hadaya-emirates/return.html">سياسة الاستبدال</a></li>
+                        <li><a href="https://sherow1982.github.io/hadaya-emirates/privacy.html">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <p>📱 واتساب: <a href="https://wa.me/201110760081" target="_blank" style="color:#3498db">+201110760081</a></p>
+                    <p>🌍 الإمارات العربية المتحدة</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 متجر هدايا الإمارات - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

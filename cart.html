@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar-AE" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سلة التسوق - متجر هدايا الإمارات</title>
+    <meta name="description" content="سلة التسوق الخاصة بك في متجر هدايا الإمارات. راجع منتجاتك واتمم الطلب.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/cart.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="./" class="logo">
+                <div class="logo-icon">
+                    <img src="./logo.png" alt="هدايا الإمارات" style="width: 50px; height: 50px; object-fit: contain;">
+                </div>
+                <div>
+                    <div class="logo-title">هدايا الإمارات</div>
+                    <div class="logo-subtitle">Emirates Gifts</div>
+                </div>
+            </a>
+            
+            <nav class="header-nav">
+                <a href="./" class="nav-link">
+                    <i class="fas fa-home"></i> الرئيسية
+                </a>
+                <a href="./products-showcase.html" class="nav-link">
+                    <i class="fas fa-th-large"></i> جميع المنتجات
+                </a>
+                <a href="./checkout.html" class="nav-link checkout-link">
+                    <i class="fas fa-credit-card"></i> إتمام الطلب
+                </a>
+                <a href="./en/" class="nav-link" target="_blank" style="background: #1e3c72; color: white;">
+                    <i class="fas fa-globe"></i> English
+                </a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <div class="cart-header">
+            <h1 class="cart-title">🛒 سلة التسوق</h1>
+            <p class="cart-subtitle">راجع منتجاتك المختارة واتمم طلبك بسهولة</p>
+        </div>
+        
+        <div id="cartContent">
+            <div style="text-align: center; padding: 60px; color: #D4AF37;">
+                <i class="fas fa-spinner" style="font-size: 2rem; animation: spin 1s linear infinite; margin-bottom: 20px;"></i>
+                <div style="font-size: 1.2rem;">جارِ تحميل سلة التسوق...</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- External JS for cart logic -->
+    <script src="./js/cart.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar-AE" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سياسة الخصوصية - متجر هدايا الإمارات</title>
+    <meta name="description" content="سياسة الخصوصية وحماية البيانات في متجر هدايا الإمارات">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
+    <link rel="stylesheet" href="./css/emirates-reviews-style.css">
+</head>
+<body>
+    <div class="page-container">
+        <header class="page-header">
+            <a href="./" class="back-link">
+                <i class="fas fa-arrow-right"></i>
+                العودة للرئيسية
+            </a>
+            <h1>🔒 سياسة الخصوصية</h1>
+            <p class="page-subtitle">نحن في متجر هدايا الإمارات نلتزم بحماية خصوصيتكم</p>
+        </header>
+
+        <main class="page-content">
+            <section class="policy-section">
+                <h2>جمع البيانات</h2>
+                <p>نقوم بجمع البيانات التالية عند تفاعلكم مع متجرنا:</p>
+                <ul>
+                    <li>الاسم ورقم الهاتف</li>
+                    <li>عنوان التوصيل (عند الطلب)</li>
+                    <li>معلومات المنتجات المطلوبة</li>
+                    <li>بيانات تصفح الموقع (غير شخصية)</li>
+                </ul>
+            </section>
+
+            <section class="policy-section">
+                <h2>استخدام البيانات</h2>
+                <p>نستخدم بياناتكم في الأغراض التالية فقط:</p>
+                <ul>
+                    <li>معالجة طلباتكم وتوصيل المنتجات</li>
+                    <li>تقديم خدمة عملاء ممتازة</li>
+                    <li>تحسين خدماتنا ومنتجاتنا</li>
+                    <li>التواصل معكم بخصوص الطلبات</li>
+                </ul>
+            </section>
+
+            <section class="policy-section">
+                <h2>حماية بياناتكم</h2>
+                <p>نلتزم بحماية بياناتكم الشخصية عبر:</p>
+                <ul>
+                    <li>عدم مشاركة بياناتكم مع أطراف ثالثة</li>
+                    <li>حفظ بياناتكم بطريقة آمنة</li>
+                    <li>استخدام بياناتكم فقط لأغراض الخدمة</li>
+                    <li>حقكم في حذف أو تعديل بياناتكم في أي وقت</li>
+                </ul>
+            </section>
+
+            <section class="policy-section">
+                <h2>تواصل معنا</h2>
+                <p>لأي استفسار حول سياسة الخصوصية، يمكنكم التواصل معنا:</p>
+                <div class="contact-info">
+                    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/201110760081">+20 111 076 0081</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@emirates-gifts.com">info@emirates-gifts.com</a></p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Dynamically load contact info from seo_config.json
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('./seo_config.json')
+                .then(response => response.json())
+                .then(config => {
+                    const details = config.business_details;
+                    if (!details) return;
+
+                    const contactDiv = document.querySelector('.contact-info');
+                    if (contactDiv) {
+                        contactDiv.innerHTML = `
+                            <p><i class="fab fa-whatsapp"></i> <a href="${details.whatsapp}">${details.telephone}</a></p>
+                            <p><i class="fas fa-envelope"></i> <a href="mailto:${details.email}">${details.email}</a></p>
+                        `;
+                    }
+                })
+                .catch(error => console.error('Error loading contact config:', error));
+        });
+    </script>
+
+    <style>
+    .page-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: 'Cairo', sans-serif;
+        line-height: 1.6;
+    }
+    
+    .page-header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 3px solid #D4AF37;
+    }
+    
+    .page-header h1 {
+        color: #1a1a1a;
+        font-size: 36px;
+        margin: 20px 0;
+    }
+    
+    .page-subtitle {
+        color: #666;
+        font-size: 18px;
+    }
+    
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #D4AF37;
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    
+    .back-link:hover {
+        color: #B8941F;
+    }
+    
+    .policy-section {
+        margin-bottom: 40px;
+        padding: 30px;
+        background: #ffffff;
+        border: 1px solid #e8ecef;
+        border-radius: 10px;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+    
+    .policy-section h2 {
+        color: #D4AF37;
+        font-size: 24px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .policy-section ul {
+        padding-right: 20px;
+    }
+    
+    .policy-section li {
+        margin: 10px 0;
+        color: #333;
+    }
+    
+    .contact-info {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        border-right: 4px solid #00A16B;
+    }
+    
+    .contact-info a {
+        color: #00A16B;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    
+    .contact-info a:hover {
+        color: #00845A;
+    }
+    </style>
+</body>
+</html>

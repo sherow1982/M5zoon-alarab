@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:g="http://base.google.com/ns/1.0">
+  <id>https://emirates-gifts.arabsad.com/product-feed.xml</id>
+  <title>Emirates Gifts Store - Product Feed</title>
+  <link href="https://emirates-gifts.arabsad.com/" rel="alternate" type="text/html"/>
+  <link href="https://emirates-gifts.arabsad.com/product-feed.xml" rel="self" type="application/atom+xml"/>
+  <updated>2025-10-31T20:00:00Z</updated>
+  <author>
+    <name>Emirates Gifts Store</name>
+    <email>info@emirates-gifts.com</email>
+  </author>
+  <subtitle>Complete product feed for all Emirates Gifts products including perfumes and watches</subtitle>
+  
+  <!-- Sample Products - This would be dynamically generated -->
+  <entry>
+    <id>https://emirates-gifts.arabsad.com/product/perfume_1</id>
+    <title>شانيل كوكو عطر فاخر 100مل</title>
+    <link href="https://emirates-gifts.arabsad.com/product-details.html?id=perfume_1" rel="alternate" type="text/html"/>
+    <updated>2025-10-31T20:00:00Z</updated>
+    <summary>عطر شانيل كوكو فاخر بتركيبة عالية الجودة 100مل</summary>
+    <g:price>345.00 AED</g:price>
+    <g:availability>in stock</g:availability>
+    <g:condition>new</g:condition>
+    <g:brand>Chanel</g:brand>
+    <g:google_product_category>Health &amp; Beauty &gt; Personal Care &gt; Cosmetics &gt; Fragrance</g:category>
+    <category term="perfumes"/>
+  </entry>
+  
+  <entry>
+    <id>https://emirates-gifts.arabsad.com/product/watch_1</id>
+    <title>رولكس يخت ماستر فضي فاخر</title>
+    <link href="https://emirates-gifts.arabsad.com/product-details.html?id=watch_1" rel="alternate" type="text/html"/>
+    <updated>2025-10-31T20:00:00Z</updated>
+    <summary>ساعة رولكس يخت ماستر فضية فاخرة عالية الجودة</summary>
+    <g:price>1850.00 AED</g:price>
+    <g:availability>in stock</g:availability>
+    <g:condition>new</g:condition>
+    <g:brand>Rolex</g:brand>
+    <g:google_product_category>Apparel &amp; Accessories &gt; Jewelry &gt; Watches</g:category>
+    <category term="watches"/>
+  </entry>
+</feed>
