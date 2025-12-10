@@ -3,10 +3,26 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصفحة غير موجودة - متجر هدايا الإمارات</title>
-    <meta name="description" content="الصفحة التي تبحث عنها غير موجودة. ارجع إلى متجر هدايا الإمارات للعطور والهدايا عالية الجودة.">
-    <link rel="canonical" href="https://emirates-gifts.arabsad.com/404.html">
-    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/404.html">
+    <title id="page-title">الصفحة غير موجودة - متجر هدايا الإمارات</title>
+    <meta name="description" id="page-description" content="الصفحة التي تبحث عنها غير موجودة. ارجع إلى متجر هدايا الإمارات للعطور والهدايا عالية الجودة.">
+    
+    <!-- Dynamic Canonical URL from seo_config.json -->
+    <script type="text/javascript">
+        (async function() {
+            try {
+                const response = await fetch('./seo_config.json');
+                const config = await response.json();
+                const baseUrl = config.base_url || "https://sherow1982.github.io/emirates-gifts";
+                const canonicalLink = document.createElement('link');
+                canonicalLink.rel = 'canonical';
+                canonicalLink.href = `${baseUrl}/404.html`;
+                document.head.appendChild(canonicalLink);
+            } catch (error) {
+                console.error('Error loading seo_config.json for canonical URL:', error);
+            }
+        })();
+    </script>
+    <link rel="alternate" hreflang="en" href="https://sherow1982.github.io/emirates-gifts/en/404.html">
     <style>
     body{font-family:'Cairo',sans-serif;margin:0;background:linear-gradient(135deg,#f8f9ff,#fff);color:#2c3e50;text-align:center;padding:50px 20px}
     .error-container{max-width:600px;margin:0 auto}

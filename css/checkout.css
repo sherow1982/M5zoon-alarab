@@ -1,0 +1,230 @@
+/* General Styles for Checkout Page */
+body {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    margin: 0;
+    background: #f8f9fa;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+/* Header */
+.header {
+    background: white;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #2c3e50;
+}
+
+.logo-icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.logo-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1B2951;
+}
+
+.logo-subtitle {
+    font-size: 0.8rem;
+    color: #D4AF37;
+}
+
+.header-nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-link {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.nav-link:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: #D4AF37;
+}
+
+.nav-link[style*="background"] {
+    border: 2px solid transparent;
+}
+
+/* Main Content */
+.main-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.checkout-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.checkout-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1B2951;
+    margin-bottom: 15px;
+}
+
+.checkout-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* Checkout Layout */
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.customer-info,
+.order-summary {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1B2951;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Form Styles */
+.form-group { margin-bottom: 25px; }
+.form-label { display: block; font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 1rem; }
+.required { color: #e74c3c; }
+.form-input { width: 100%; padding: 15px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem; font-family: 'Cairo', sans-serif; transition: all 0.3s ease; background: #f8f9fa; box-sizing: border-box; }
+.form-input:focus { outline: none; border-color: #D4AF37; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); background: white; }
+.form-input.error { border-color: #e74c3c; }
+.error-message { color: #e74c3c; font-size: 0.85rem; margin-top: 5px; font-weight: 500; }
+.form-help { color: #666; font-size: 0.85rem; margin-top: 5px; }
+
+/* Order Summary */
+.order-item { display: flex; align-items: center; gap: 15px; padding: 15px 0; border-bottom: 1px solid #eee; }
+.order-item:last-child { border-bottom: none; }
+.item-image-small { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
+.item-details-small { flex: 1; }
+.item-name { font-weight: 600; color: #2c3e50; margin-bottom: 5px; font-size: 0.95rem; }
+.item-qty-price { color: #666; font-size: 0.85rem; }
+.item-total { font-weight: 700; color: #25D366; }
+
+.summary-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 1rem; }
+.summary-total { font-size: 1.4rem; font-weight: bold; padding-top: 15px; border-top: 2px solid #D4AF37; margin-top: 20px; color: #25D366; }
+
+/* Action Button */
+.whatsapp-order-btn {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(135deg, #25D366, #20B358);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+    text-decoration: none;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-order-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+}
+
+/* Security Info Box */
+.security-info {
+    background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #1B2951;
+    border: 2px solid #D4AF37;
+}
+
+.security-info i {
+    color: #25D366;
+    margin-left: 8px;
+}
+
+/* Empty Cart Message */
+.empty-cart-message {
+    text-align: center;
+    padding: 80px 20px;
+    grid-column: 1 / -1;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .checkout-layout {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .checkout-title {
+        font-size: 2rem;
+    }
+    .header-nav {
+        display: none;
+    }
+    .form-input {
+        padding: 12px;
+    }
+}
+
+/* Animation */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

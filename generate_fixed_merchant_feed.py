@@ -12,21 +12,36 @@ import re
 from pathlib import Path
 import logging
 
+try:
+    from slugify import slugify
+except ImportError:
+    logging.error("مكتبة slugify غير مثبتة. يرجى تثبيتها: pip install python-slugify")
+    exit(1)
+
 # إعداد اللوغ
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 # إعدادات المتجر
-STORE_CONFIG = {
-    'name': 'متجر هدايا الإمارات',
-    'domain': 'https://emirates-gifts.arabsad.com',
-    'currency': 'AED',
-    'country': 'AE',
-    'language': 'ar',
-    'brand': 'Emirates Gifts',
-    'gtin_prefix': '1234567',
-    'mpn_prefix': 'EG'
-}
+def load_store_config():
+    """تحميل الإعدادات من ملف seo_config.json وتكييفها."""
+    config_path = Path(__file__).parent / "seo_config.json"
+    if not config_path.exists():
+        logger.error(f"ملف الإعدادات غير موجود: {config_path}")
+        raise FileNotFoundError
+    with open(config_path, 'r', encoding='utf-8') as f:
+        config = json.load(f)
+    
+    return {
+        'name': config['business_details']['name'] or config['brand_name'], # Use business name if available
+        'domain': config['base_url'],
+        'currency': config['product_defaults']['currency'],
+        'country': config['business_details']['address']['addressCountry'],
+        'language': 'ar',
+        'brand': config['brand_name'],
+        'gtin_prefix': '1234567', # يمكن نقله إلى الإعدادات إذا لزم الأمر
+        'mpn_prefix': 'EG'      # يمكن نقله إلى الإعدادات إذا لزم الأمر
+    }
 
 # فئات المنتجات Google
 GOOGLE_CATEGORIES = {
@@ -78,7 +93,7 @@ def classify_product(product, data_source):
         return 'watch'
     
     # تصنيف بناء على النص
-    title = (product.get('title', '') or '').lower()
+    title = str(product.get('title', '') or '').lower()
     
     # حساب نقاط الساعات
     watch_score = sum(1 for keyword in WATCH_KEYWORDS if keyword.lower() in title)
@@ -94,10 +109,10 @@ def classify_product(product, data_source):
     else:
         return 'gift'
 
-def generate_gtin(product_id, category):
+def generate_gtin(product_id, category, store_config):
     """إنشاء GTIN موحد"""
     category_code = {'perfume': '00', 'watch': '10', 'gift': '20'}[category]
-    base = STORE_CONFIG['gtin_prefix'] + category_code
+    base = store_config['gtin_prefix'] + category_code
     padded_id = str(product_id).zfill(4)
     
     code = base + padded_id
@@ -107,11 +122,11 @@ def generate_gtin(product_id, category):
     
     return code + str(check_digit)
 
-def generate_mpn(product_id, title, category):
+def generate_mpn(product_id, title, category, store_config):
     """إنشاء MPN موحد"""
     category_prefix = {'perfume': 'PERF', 'watch': 'WATCH', 'gift': 'GIFT'}[category]
-    sanitized_title = re.sub(r'[^\u0600-\u06FF\w\s]', '', title)[:8].replace(' ', '')
-    return f"{STORE_CONFIG['mpn_prefix']}-{category_prefix}-{sanitized_title}-{product_id}"
+    sanitized_title = re.sub(r'[^\u0600-\u06FF\w\s]', '', str(title))[:8].replace(' ', '')
+    return f"{store_config['mpn_prefix']}-{category_prefix}-{sanitized_title}-{product_id}"
 
 def sanitize_text(text, max_length=150):
     """تنظيف النص"""
@@ -119,7 +134,7 @@ def sanitize_text(text, max_length=150):
         return ''
     return re.sub(r'[<>"&]', '', str(text)).strip()[:max_length]
 
-def generate_description(product, category):
+def generate_description(product, category, store_config):
     """إنشاء وصف مفصل"""
     category_text = {
         'perfume': 'عطور فاخرة',
@@ -127,7 +142,7 @@ def generate_description(product, category):
         'gift': 'هدايا مميزة'
     }[category]
     
-    base_desc = f"{product['title']} - {category_text} عالية الجودة من متجر هدايا الإمارات"
+    base_desc = f"{product['title']} - {category_text} عالية الجودة من {store_config['name']}"
     
     additional_info = {
         'perfume': ' مع توصيل مجاني في جميع إمارات الدولة. عطور أصلية بأفضل الأسعار.',
@@ -163,15 +178,23 @@ def load_products_data():
     
     return products
 
-def create_product_xml(product_data, index):
+def create_product_xml(product_data, index, store_config):
     """إنشاء XML لمنتج واحد"""
     product, data_source = product_data
     category = classify_product(product, data_source)
     category_config = GOOGLE_CATEGORIES[category]
     
     # البيانات الأساسية
-    product_id = product.get('id', f"{data_source.upper()}_{index}")
-    title = sanitize_text(product.get('title', 'منتج'))
+    product_id = product.get('id')
+    if not product_id:
+        logger.warning(f"تخطي منتج في الفهرس {index} من مصدر {data_source} لعدم وجود ID")
+        return None
+        
+    title = sanitize_text(product.get('title'))
+    if not title:
+        logger.warning(f"تخطي المنتج {product_id} - لا يوجد عنوان")
+        return None
+
     price = float(product.get('sale_price', product.get('price', 0)) or 0)
     
     # تخطي المنتجات بدون أسعار صحيحة
@@ -180,52 +203,59 @@ def create_product_xml(product_data, index):
         return None
     
     # إنشاء المعرفات
-    gtin = generate_gtin(product_id, category)
-    mpn = generate_mpn(product_id, title, category)
-    description = generate_description(product, category)
+    gtin = generate_gtin(product_id, category, store_config)
+    mpn = generate_mpn(product_id, title, category, store_config)
+    description = generate_description(product, category, store_config)
     
     # URL المنتج
-    slug = re.sub(r'[^\u0600-\u06FF\w\s-]', '', title.lower()).replace(' ', '-')[:50]
-    product_url = f"{STORE_CONFIG['domain']}/products/{slug}-{product_id}.html"
+    slug = slugify(title) if title else f"product-{product_id}"
+    product_url = f"{store_config['domain']}/product-details.html?id={product_id}&category={category}&slug={slug}"
     
     # إنشاء XML element
     item = ET.Element('item')
     
+    g_ns = '{http://base.google.com/ns/1.0}'
+    
     # إضافة العناصر المطلوبة
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}id').text = str(product_id)
+    ET.SubElement(item, g_ns + 'id').text = str(product_id)
     ET.SubElement(item, 'title').text = title
     ET.SubElement(item, 'description').text = description
     ET.SubElement(item, 'link').text = product_url
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}image_link').text = product.get('image_link', '')
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}condition').text = category_config['condition']
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}availability').text = 'in_stock'
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}price').text = f"{price} {STORE_CONFIG['currency']}"
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}brand').text = STORE_CONFIG['brand']
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}gtin').text = gtin
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}mpn').text = mpn
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}google_product_category').text = category_config['google_category']
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}product_type').text = category_config['product_type']
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}age_group').text = category_config['age_group']
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}gender').text = category_config['gender']
+    ET.SubElement(item, g_ns + 'image_link').text = product.get('image_link', '')
+    ET.SubElement(item, g_ns + 'condition').text = category_config['condition']
+    ET.SubElement(item, g_ns + 'availability').text = 'in_stock'
+    ET.SubElement(item, g_ns + 'price').text = f"{price:.2f} {store_config['currency']}"
+    ET.SubElement(item, g_ns + 'brand').text = store_config['brand']
+    ET.SubElement(item, g_ns + 'gtin').text = gtin
+    ET.SubElement(item, g_ns + 'mpn').text = mpn
+    ET.SubElement(item, g_ns + 'google_product_category').text = category_config['google_category']
+    ET.SubElement(item, g_ns + 'product_type').text = category_config['product_type']
+    ET.SubElement(item, g_ns + 'age_group').text = category_config['age_group']
+    ET.SubElement(item, g_ns + 'gender').text = category_config['gender']
     
     # معلومات الشحن
-    shipping = ET.SubElement(item, '{http://base.google.com/ns/1.0}shipping')
-    ET.SubElement(shipping, '{http://base.google.com/ns/1.0}country').text = STORE_CONFIG['country']
-    ET.SubElement(shipping, '{http://base.google.com/ns/1.0}service').text = 'شحن مجاني'
-    ET.SubElement(shipping, '{http://base.google.com/ns/1.0}price').text = f"0 {STORE_CONFIG['currency']}"
+    shipping = ET.SubElement(item, g_ns + 'shipping')
+    ET.SubElement(shipping, g_ns + 'country').text = store_config['country']
+    ET.SubElement(shipping, g_ns + 'service').text = 'شحن مجاني'
+    ET.SubElement(shipping, g_ns + 'price').text = f"0.00 {store_config['currency']}"
     
-    ET.SubElement(item, '{http://base.google.com/ns/1.0}shipping_weight').text = '0.5 kg'
+    ET.SubElement(item, g_ns + 'shipping_weight').text = '0.5 kg'
     
     # معلومات الضرائب
-    tax = ET.SubElement(item, '{http://base.google.com/ns/1.0}tax')
-    ET.SubElement(tax, '{http://base.google.com/ns/1.0}country').text = STORE_CONFIG['country']
-    ET.SubElement(tax, '{http://base.google.com/ns/1.0}rate').text = '0'
+    tax = ET.SubElement(item, g_ns + 'tax')
+    ET.SubElement(tax, g_ns + 'country').text = store_config['country']
+    ET.SubElement(tax, g_ns + 'rate').text = '0'
     
     return item, category
 
 def generate_merchant_feed():
     """إنشاء Google Merchant Feed كامل"""
     logger.info("بدء إنشاء Google Merchant Feed 🛍")
+    
+    try:
+        store_config = load_store_config()
+    except FileNotFoundError:
+        return False
     
     # تحميل البيانات
     products = load_products_data()
@@ -244,10 +274,10 @@ def generate_merchant_feed():
     channel = ET.SubElement(rss, 'channel')
     
     # معلومات القناة
-    ET.SubElement(channel, 'title').text = STORE_CONFIG['name']
-    ET.SubElement(channel, 'link').text = STORE_CONFIG['domain']
+    ET.SubElement(channel, 'title').text = store_config['name']
+    ET.SubElement(channel, 'link').text = store_config['domain']
     ET.SubElement(channel, 'description').text = 'متجر إلكتروني متخصص في بيع العطور والساعات الفاخرة'
-    ET.SubElement(channel, 'language').text = f"{STORE_CONFIG['language']}-{STORE_CONFIG['country']}"
+    ET.SubElement(channel, 'language').text = f"{store_config['language']}-{store_config['country']}"
     ET.SubElement(channel, 'lastBuildDate').text = datetime.now().strftime('%a, %d %b %Y %H:%M:%S GMT')
     ET.SubElement(channel, 'generator').text = 'Emirates Gifts Store - Fixed Merchant Feed Generator v2.1'
     
@@ -256,7 +286,7 @@ def generate_merchant_feed():
     
     # معالجة المنتجات
     for index, product_data in enumerate(products, 1):
-        result = create_product_xml(product_data, index)
+        result = create_product_xml(product_data, index, store_config)
         
         if result:
             item, category = result

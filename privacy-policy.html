@@ -69,6 +69,27 @@
         </main>
     </div>
 
+    <script>
+        // Dynamically load contact info from seo_config.json
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('./seo_config.json')
+                .then(response => response.json())
+                .then(config => {
+                    const details = config.business_details;
+                    if (!details) return;
+
+                    const contactDiv = document.querySelector('.contact-info');
+                    if (contactDiv) {
+                        contactDiv.innerHTML = `
+                            <p><i class="fab fa-whatsapp"></i> <a href="${details.whatsapp}">${details.telephone}</a></p>
+                            <p><i class="fas fa-envelope"></i> <a href="mailto:${details.email}">${details.email}</a></p>
+                        `;
+                    }
+                })
+                .catch(error => console.error('Error loading contact config:', error));
+        });
+    </script>
+
     <style>
     .page-container {
         max-width: 800px;

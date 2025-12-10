@@ -1,0 +1,29 @@
+{
+  "base_url": "https://sherow1982.github.io/emirates-gifts",
+  "default_image": "/logo.png",
+  "brand_name": "Emirates Gifts",
+  "business_details": {
+    "name": "هدايا الإمارات",
+    "telephone": "+201110760081",
+    "email": "info@emirates-gifts.com",
+    "whatsapp": "https://wa.me/201110760081",
+    "address": {
+      "streetAddress": "شارع الشيخ زايد",
+      "addressLocality": "دبي",
+      "addressRegion": "دبي",
+      "postalCode": "00000",
+      "addressCountry": "AE"
+    },
+    "geo": {
+      "latitude": "25.2048",
+      "longitude": "55.2708"
+    },
+    "openingHours": "Su-Sa 08:00-23:00",
+    "priceRange": "$$"
+  },
+  "product_defaults": {
+    "currency": "AED",
+    "availability": "https://schema.org/InStock",
+    "condition": "https://schema.org/NewCondition"
+  }
+}

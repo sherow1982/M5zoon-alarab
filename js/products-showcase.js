@@ -636,6 +636,40 @@
     }
     
     /**
+     * Dynamically load footer content from seo_config.json
+     */
+    function updateFooterFromConfig() {
+        fetch('./seo_config.json')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to load seo_config.json');
+                return response.json();
+            })
+            .then(config => {
+                const details = config.business_details;
+                if (!details) return;
+
+                // Update Contact Info
+                const contactList = document.querySelector('.footer-section:nth-of-type(4) ul');
+                if (contactList) {
+                    contactList.innerHTML = `
+                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:${details.telephone}">${details.telephone}</a></li>
+                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:${details.email}">${details.email}</a></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>${details.address.addressLocality}, ${details.address.addressCountry === 'AE' ? 'الإمارات العربية المتحدة' : details.address.addressCountry}</span></li>
+                        <li><i class="fas fa-clock" aria-hidden="true"></i><span>خدمة العملاء: 24/7</span></li>
+                    `;
+                }
+
+                // Update WhatsApp links
+                const whatsappSocial = document.querySelector('.social-links a');
+                if (whatsappSocial) whatsappSocial.href = details.whatsapp;
+
+                const whatsappService = document.querySelector('.footer-section:nth-of-type(3) ul li:last-child a');
+                if (whatsappService) whatsappService.href = details.whatsapp;
+            })
+            .catch(error => error('❌ Error loading footer config:', error));
+    }
+    
+    /**
      * Enhanced progress bar
      */
     function updateProgressSecurely() {
@@ -761,6 +795,9 @@
             
             // Initialize secure filters
             initializeSecureFilters();
+
+            // Update footer from config
+            updateFooterFromConfig();
             
             // Setup progress bar with throttling
             let scrollTimeout;

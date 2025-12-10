@@ -3,14 +3,13 @@
 
 import sys
 import pathlib
+import json
 import subprocess
 from datetime import datetime, timezone
 from urllib.parse import urljoin, quote
 from xml.etree.ElementTree import Element, SubElement, ElementTree
 from xml.dom import minidom
 
-# Base URL for project site (ensure trailing slash)
-BASE_URL = "https://sherow1982.github.io/Kuwait-matjar/products/"
 PRODUCTS_DIR = pathlib.Path("products")
 SITEMAP_FILE = pathlib.Path("sitemap-products.xml")
 SITEMAP_PREFIX = "sitemap-products"   # for chunked files like sitemap-products-1.xml
@@ -65,7 +64,19 @@ def write_sitemap_index(files: list[str], outfile: pathlib.Path):
         # lastmod optional for index; omitted for simplicity
     outfile.write_bytes(prettify_xml(idx))
 
+def get_base_url_from_config():
+    """Reads the base_url from seo_config.json."""
+    config_path = pathlib.Path(__file__).parent / "seo_config.json"
+    if not config_path.exists():
+        print(f"Error: Config file not found at {config_path}", file=sys.stderr)
+        sys.exit(1)
+    with open(config_path, 'r', encoding='utf-8') as f:
+        config = json.load(f)
+    return config.get("base_url")
+
 def main():
+    base_url = get_base_url_from_config()
+    products_url = urljoin(ensure_trailing_slash(base_url), "products/")
     if not PRODUCTS_DIR.exists():
         print("Missing products/ directory", file=sys.stderr)
         sys.exit(1)
@@ -73,7 +84,7 @@ def main():
     # Collect URLs
     items = []
     for f in iter_product_files(PRODUCTS_DIR):
-        loc = build_url(BASE_URL, PRODUCTS_DIR, f)
+        loc = build_url(products_url, PRODUCTS_DIR, f)
         lastmod = git_last_commit_iso(f)
         items.append((loc, lastmod))
 
@@ -92,9 +103,8 @@ def main():
             part_name = f"{SITEMAP_PREFIX}-{part_idx}.xml"
             part_path = pathlib.Path(part_name)
             write_sitemap(chunk, part_path)
-            # web location of the part file is at project root
-            # replace 'products/' in BASE_URL with project root by going two levels up
-            part_files_web.append(f"https://sherow1982.github.io/Kuwait-matjar/{part_name}")
+            # The web location of the part file is at the project root
+            part_files_web.append(urljoin(base_url, part_name))
         # Create sitemap index
         write_sitemap_index(part_files_web, pathlib.Path("sitemap-index.xml"))
         print(f"Wrote {len(part_files_web)} sitemap parts and sitemap-index.xml")

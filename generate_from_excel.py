@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os
 import json
 import html
 import pathlib
+import sys
+import logging
+
 import pandas as pd
 from slugify import slugify
 
@@ -14,16 +16,28 @@ CANDIDATES = [
     pathlib.Path("products-template.xlsx")
 ]
 
+# --- إعدادات ---
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+TEMPLATE_FILE = pathlib.Path(__file__).parent / "product_template.html"
 OUTPUT_DIR = pathlib.Path("products")
-DEFAULT_CURRENCY = "KWD"
-DEFAULT_BRAND = "المتجر الكويتي"
 DEFAULT_AVAIL = "https://schema.org/InStock"
 
 def find_excel():
     for p in CANDIDATES:
         if p.exists():
             return p
-    raise FileNotFoundError("Excel file not found. Put it at data/products-template.xlsx")
+    raise FileNotFoundError("لم يتم العثور على ملف Excel. يرجى وضعه في data/products-template.xlsx")
+
+def load_config():
+    """Loads configuration from the central seo_config.json file."""
+    config_path = pathlib.Path(__file__).parent / "seo_config.json"
+    if not config_path.exists():
+        raise FileNotFoundError(f"ملف الإعدادات غير موجود في {config_path}")
+    with open(config_path, 'r', encoding='utf-8') as f:
+        config = json.load(f)
+    return config
 
 def clean_price(val):
     if pd.isna(val):
@@ -34,67 +48,64 @@ def clean_price(val):
         return None
     return keep.replace(",", ".")
 
-def build_jsonld(title, image, desc, link, price, currency, brand, availability):
-    offers = None
-    if price:
-        offers = {
-            "@type": "Offer",
-            "url": link or "",
-            "price": price,
-            "priceCurrency": currency or DEFAULT_CURRENCY,
-            "availability": availability or DEFAULT_AVAIL
-        }
+def build_jsonld(product_data, config):
+    """بناء سكيما JSON-LD كاملة للمنتج."""
+    product_defaults = config.get("product_defaults", {})
+    
     data = {
         "@context": "https://schema.org/",
         "@type": "Product",
-        "name": title,
-        "image": image or "",
-        "description": desc or "",
-        "brand": {"@type": "Brand", "name": brand or DEFAULT_BRAND}
+        "name": product_data['title'],
+        "image": product_data['image'] or "",
+        "description": product_data['desc'] or f"{product_data['title']} - منتج عالي الجودة من {config.get('brand_name')}",
+        "brand": {
+            "@type": "Brand",
+            "name": product_data['brand']
+        }
     }
-    if offers:
-        data["offers"] = offers
-    return json.dumps(data, ensure_ascii=False, separators=(",", ":"))
 
-def render_html(title, image, desc, display_price, buy_link, json_ld):
-    esc_title = html.escape(title, quote=True)
-    esc_desc_attr = html.escape(desc or "", quote=True)
-    esc_img = html.escape(image or "", quote=True)
-    esc_buy = html.escape(buy_link or "#", quote=True)
-    body_title = html.escape(title)
-    body_desc = html.escape(desc or "")
-    body_price = html.escape(display_price or "")
-    return f"""<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{esc_title}</title>
-  <meta name="description" content="{esc_desc_attr}">
-  <link rel="stylesheet" href="../style.css">
-  <script type="application/ld+json">
-{json_ld}
-  </script>
-</head>
-<body>
-  <header>
-    <a href="../index.html">العودة للرئيسية</a>
-  </header>
-  <main>
-    <img src="{esc_img}" alt="{esc_title}" style="max-width:300px;border-radius:10px;">
-    <h1>{body_title}</h1>
-    <p>{body_desc}</p>
-    {f'<p><strong>{body_price}</strong></p>' if display_price else ''}
-    <a href="{esc_buy}" class="btn">اشتري الآن</a>
-  </main>
-</body>
-</html>
-"""
+    if product_data.get('price'):
+        data["offers"] = {
+            "@type": "Offer",
+            "url": product_data['link'] or "",
+            "price": product_data['price'],
+            "priceCurrency": product_data['currency'],
+            "availability": product_data['availability'],
+            "itemCondition": product_defaults.get("condition", "https://schema.org/NewCondition"),
+            "seller": {
+                "@type": "Organization",
+                "name": config.get("brand_name")
+            }
+        }
+    return json.dumps(data, ensure_ascii=False, indent=2)
+
+def render_html(template_content, context):
+    """تعويض المتغيرات في قالب HTML."""
+    content = template_content
+    for key, value in context.items():
+        # تحويل القيم إلى نص وتشفيرها لـ HTML
+        safe_value = html.escape(str(value or ''), quote=True)
+        content = content.replace(f"{{{{{key}}}}}", safe_value)
+        # للمتغيرات التي لا تحتاج تشفير (مثل JSON-LD)
+        content = content.replace(f"{{{{{key}_raw}}}}}", str(value or ''))
+    return content
 
 def main():
-    excel_path = find_excel()
+    try:
+        config = load_config()
+        excel_path = find_excel()
+        if not TEMPLATE_FILE.exists():
+            raise FileNotFoundError(f"ملف القالب غير موجود: {TEMPLATE_FILE}")
+        template_str = TEMPLATE_FILE.read_text(encoding="utf-8")
+    except FileNotFoundError as e:
+        logger.error(f"❌ خطأ في الإعداد: {e}")
+        sys.exit(1)
+
+    default_brand = config.get("brand_name", "Emirates Gifts")
+    default_currency = config.get("product_defaults", {}).get("currency", "AED")
+
     df = pd.read_excel(excel_path, engine="openpyxl").fillna("")  # requires openpyxl
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    OUTPUT_DIR.mkdir(exist_ok=True)
 
     products = []
     used_slugs = set()
@@ -103,15 +114,16 @@ def main():
         title = (row.get("title") or "").strip()
         if not title:
             continue
+
         desc = (row.get("desc") or "").strip()
         image = (row.get("image") or "").strip()
         link = (row.get("link") or "").strip()
         price = clean_price(row.get("price"))
-        currency = (row.get("currency") or DEFAULT_CURRENCY).strip()
-        brand = (row.get("brand") or DEFAULT_BRAND).strip()
+        currency = (row.get("currency") or default_currency).strip()
+        brand = (row.get("brand") or default_brand).strip()
         availability_raw = (row.get("availability") or "InStock").strip()
         availability = f"https://schema.org/{availability_raw}" if "schema.org" not in availability_raw else availability_raw
-
+        
         # slug
         custom_slug = (row.get("slug") or "").strip()
         slug = custom_slug or slugify(title)
@@ -122,12 +134,27 @@ def main():
             i += 1
         used_slugs.add(slug)
 
-        json_ld = build_jsonld(title, image, desc, link, price, currency, brand, availability)
+        product_record = {
+            "title": title, "desc": desc, "image": image, "link": link,
+            "price": price, "currency": currency, "brand": brand,
+            "availability": availability, "slug": slug
+        }
+
+        json_ld_str = build_jsonld(product_record, config)
         display_price = f"{price} {currency}" if price else ""
-        html_page = render_html(title, image, desc, display_price, link, json_ld)
+
+        html_context = {
+            "title": title,
+            "description": desc,
+            "image_url": image,
+            "buy_link": link,
+            "display_price": display_price,
+            "json_ld_raw": json_ld_str
+        }
+        html_page = render_html(template_str, html_context)
 
         # write HTML
-        (OUTPUT_DIR / f"{slug}.html").write_text(html_page, encoding="utf-8")
+        (OUTPUT_DIR / f"{slug}.html").write_text(html_page, encoding="utf-8", errors="xmlcharrefreplace")
 
         # accumulate JSON for index
         products.append({
@@ -141,7 +168,7 @@ def main():
 
     # write products.json
     (OUTPUT_DIR / "products.json").write_text(json.dumps(products, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Generated {len(products)} products into {OUTPUT_DIR}")
+    logger.info(f"✅ تم إنشاء {len(products)} صفحة منتج في المجلد: {OUTPUT_DIR}")
 
 if __name__ == "__main__":
     main()

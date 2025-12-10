@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مدونة مخزون العرب | نصائح ومراجعات العطور والساعات الفاخرة</title>
+    <title>مدونة هدايا الإمارات | نصائح ومراجعات العطور والساعات الفاخرة</title>
     <meta name="description" content="اكتشف أفضل العطور والساعات الفاخرة مع مراجعات مفصلة ونصائح الخبراء. أفضل مدونة عربية للعطور والهدايا الفاخرة">
     <meta name="keywords" content="مدونة عطور, مراجعات ساعات, نصائح عطور, أفضل عطر 2025, مراجعات رولكس, عطور نسائية">
-    <link rel="canonical" href="https://emirates-gifts.vercel.app/blog.html">
+    <link rel="canonical" href="https://sherow1982.github.io/emirates-gifts/blog.html">
     
     <style>
         * {
@@ -345,8 +345,8 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <h1>📝 مدونة مخزون العرب</h1>
+    <header class="header" id="blog-header">
+        <h1>📝 مدونة هدايا الإمارات</h1>
         <p>عالم العطور والساعات الفاخرة - مراجعات ونصائح احترافية</p>
     </header>
     
@@ -500,12 +500,12 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div>
-                    <h4>🏠 مخزون العرب</h4>
+                <div id="footer-brand-info">
+                    <h4>🏠 هدايا الإمارات</h4>
                     <p>متجركم الموثوق للعطور والساعات الفاخرة</p>
-                    <p>📞 هاتف: <a href="tel:+971501234567">+971 50 123 4567</a></p>
+                    <p>📞 هاتف: <a href="tel:+201110760081">+20 111 076 0081</a></p>
                 </div>
-                
+
                 <div>
                     <h4>🔗 روابط سريعة</h4>
                     <p><a href="./index.html">الصفحة الرئيسية</a></p>
@@ -515,29 +515,60 @@
                 
                 <div>
                     <h4>📱 تواصل معنا</h4>
-                    <p><a href="https://wa.me/971501234567" target="_blank">📲 واتساب</a></p>
+                    <p><a href="https://wa.me/201110760081" target="_blank">📲 واتساب</a></p>
                     <p><a href="mailto:info@emirates-gifts.com">✉️ إيميل</a></p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 مخزون العرب - جميع الحقوق محفوظة</p>
+                <p>&copy; 2025 هدايا الإمارات - جميع الحقوق محفوظة</p>
             </div>
         </div>
     </footer>
     
     <!-- JSON-LD for SEO -->
     <script type="application/ld+json">
+    // Auto-generated Schema from seo_config.json
+    (async function() {
+        try {
+            const response = await fetch('./seo_config.json');
+            const config = await response.json();
+            const brandName = config.brand_name || "Emirates Gifts";
+            const baseUrl = config.base_url || "https://sherow1982.github.io/emirates-gifts";
+
+            const schema = {
+                "@context": "https://schema.org",
+                "@type": "Blog",
+                "name": `مدونة ${brandName}`,
+                "description": `مدونة متخصصة في مراجعات العطور والساعات الفاخرة من ${brandName}`,
+                "url": `${baseUrl}/blog.html`,
+                "inLanguage": "ar",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": brandName
+                }
+            };
+            const scriptTag = document.createElement('script');
+            scriptTag.type = 'application/ld+json';
+            scriptTag.textContent = JSON.stringify(schema, null, 2);
+            document.head.appendChild(scriptTag);
+        } catch (error) {
+            console.error('Error loading or parsing seo_config.json for blog schema:', error);
+        }
+    })();
+    </script>
+    <!-- Original static JSON-LD (will be removed by the dynamic script if it runs after) -->
+    <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Blog",
-        "name": "مدونة مخزون العرب",
-        "description": "مدونة متخصصة في مراجعات العطور والساعات الفاخرة",
-        "url": "https://emirates-gifts.vercel.app/blog.html",
+        "name": "مدونة هدايا الإمارات",
+        "description": "مدونة متخصصة في مراجعات العطور والساعات الفاخرة من هدايا الإمارات",
+        "url": "https://sherow1982.github.io/emirates-gifts/blog.html",
         "inLanguage": "ar",
         "publisher": {
             "@type": "Organization",
-            "name": "مخزون العرب"
+            "name": "هدايا الإمارات"
         }
     }
     </script>

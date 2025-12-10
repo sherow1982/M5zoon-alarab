@@ -396,6 +396,28 @@
         document.getElementById('backToTop')?.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // Dynamically load contact info from seo_config.json
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('./seo_config.json')
+                .then(response => response.json())
+                .then(config => {
+                    const details = config.business_details;
+                    if (!details) return;
+
+                    const contactSection = document.querySelector('.contact-section');
+                    if (contactSection) {
+                        const whatsappLink = contactSection.querySelector('a.btn-primary');
+                        const phonePara = contactSection.querySelector('p:last-of-type');
+
+                        if (whatsappLink) whatsappLink.href = details.whatsapp;
+                        if (phonePara) {
+                            phonePara.innerHTML = `هاتف: ${details.telephone}<br>أوقات العمل: يومياً 9:00 ص - 10:00 م`;
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading contact config:', error));
+        });
     </script>
     
     <!-- تحميل النظام الجديد -->
