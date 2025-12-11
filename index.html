@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Enhanced Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;">
     
     <!-- SEO Meta Tags -->
     <title>متجر هدايا الإمارات - عطور وساعات عالية الجودة | شحن مجاني وضمان إرجاع</title>
@@ -37,7 +37,7 @@
     <!-- Performance Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" as="style">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap"></noscript>
     
     <!-- Font Awesome with SRI for Security -->
@@ -71,7 +71,7 @@
             <div class="header-content">
                 <a href="./" class="logo" aria-label="العودة إلى الصفحة الرئيسية">
                     <div class="logo-icon">
-                        <img src="./logo.png" alt="شعار هدايا الإمارات" width="50" height="50" loading="eager">
+                        <img src="./images/logo.png" alt="شعار هدايا الإمارات" width="50" height="50" loading="eager">
                     </div>
                     <div class="logo-text">
                         <div class="logo-title">هدايا الإمارات</div>
@@ -106,6 +106,27 @@
             </div>
         </div>
     </header>
+
+    <!-- Mobile Sidebar (Initially Hidden) -->
+    <div class="mobile-sidebar" id="mobileSidebar" role="dialog" aria-modal="true" aria-labelledby="sidebarTitle" hidden>
+        <div class="sidebar-header">
+            <h2 id="sidebarTitle" class="sidebar-title">القائمة</h2>
+            <button class="close-sidebar" id="closeSidebar" aria-label="إغلاق القائمة">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="./" class="sidebar-link active" aria-current="page">الرئيسية</a>
+            <a href="./products-showcase.html" class="sidebar-link">جميع المنتجات</a>
+            <a href="#perfumes-section" class="sidebar-link">العطور</a>
+            <a href="#watches-section" class="sidebar-link">الساعات</a>
+            <a href="https://wa.me/201110760081" class="sidebar-link" target="_blank" rel="noopener">تواصل معنا</a>
+            <a href="./en/" class="sidebar-link english-link" target="_blank" rel="noopener">
+                <i class="fas fa-globe"></i> English
+            </a>
+        </nav>
+    </div>
+    <div class="mobile-overlay" id="mobileOverlay" hidden></div>
 
     <main role="main">
         <section class="hero">
@@ -155,16 +176,14 @@
                     </div>
                     <div class="products-grid" id="perfumes-grid" role="grid" aria-label="شبكة عرض العطور">
                         <div class="loading-message" role="status" aria-live="polite">
-                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;" aria-hidden="true"></i>
+                            <i class="fas fa-spinner loading-spinner-icon" aria-hidden="true"></i>
                             جارِ تحميل العطور عالية الجودة...
                         </div>
                     </div>
                     
                     <!-- 🔥 ENHANCED VIEW MORE BUTTON FOR PERFUMES -->
                     <div class="view-more-container">
-                        <button class="view-more-button" id="perfumes-view-more" 
-                                style="display: inline-flex;" 
-                                aria-label="عرض المزيد من العطور">
+                        <button class="view-more-button" id="perfumes-view-more" aria-label="عرض المزيد من العطور">
                             <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             <span>شاهد المزيد من العطور</span>
                             <i class="fas fa-arrow-down" aria-hidden="true"></i>
@@ -189,16 +208,14 @@
                     </div>
                     <div class="products-grid" id="watches-grid" role="grid" aria-label="شبكة عرض الساعات">
                         <div class="loading-message" role="status" aria-live="polite">
-                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;" aria-hidden="true"></i>
+                            <i class="fas fa-spinner loading-spinner-icon" aria-hidden="true"></i>
                             جارِ تحميل الساعات عالية الجودة...
                         </div>
                     </div>
                     
                     <!-- 🔥 ENHANCED VIEW MORE BUTTON FOR WATCHES -->
                     <div class="view-more-container">
-                        <button class="view-more-button" id="watches-view-more" 
-                                style="display: inline-flex;" 
-                                aria-label="عرض المزيد من الساعات">
+                        <button class="view-more-button" id="watches-view-more" aria-label="عرض المزيد من الساعات">
                             <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             <span>شاهد المزيد من الساعات</span>
                             <i class="fas fa-arrow-down" aria-hidden="true"></i>
@@ -230,9 +247,9 @@
                     <ul>
                         <li><a href="./">الرئيسية</a></li>
                         <li><a href="./products-showcase.html">جميع المنتجات</a></li>
-                        <li><a href="./cart.html" style="color: #D4AF37; font-weight: bold;">السلة</a></li>
-                        <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">إتمام الطلب</a></li>
-                        <li><a href="./en/" target="_blank" rel="noopener" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe" aria-hidden="true"></i> English Version</a></li>
+                        <li><a href="./cart.html" class="footer-link-highlight-gold">السلة</a></li>
+                        <li><a href="./checkout.html" class="footer-link-highlight-green">إتمام الطلب</a></li>
+                        <li><a href="./en/" target="_blank" rel="noopener" class="footer-link-highlight-gold"><i class="fas fa-globe" aria-hidden="true"></i> English Version</a></li>
                     </ul>
                 </div>
 
@@ -271,7 +288,7 @@
                 <div class="footer-legal">
                     <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
                 </div>
-                <div style="display: flex; gap: 30px; flex-wrap: wrap; color: #ccc; font-size: 0.9rem;">
+                <div class="footer-bottom-features">
                     <span><i class="fas fa-truck" aria-hidden="true"></i> شحن مجاني خلال 1-3 أيام عمل</span>
                     <span><i class="fas fa-undo" aria-hidden="true"></i> إرجاع خلال 14 يوم + مصاريف الشحن</span>
                     <span><i class="fas fa-star" aria-hidden="true"></i> جودة عالية مضمونة</span>
@@ -284,8 +301,11 @@
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
+    <!-- Screen Reader Announcer for Accessibility -->
+    <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
     <!-- Load main script safely -->
-    <script src="./js/main.js"></script>
+    <script src="./js/main.js" defer></script>
 
     <script>
         // Dynamically load footer content from seo_config.json
@@ -322,6 +342,41 @@
                 })
                 .catch(error => console.error('Error loading footer config:', error));
         });
+    </script>
+
+    <!-- Auto-generated JSON-LD Schema for SEO -->
+    <script type="application/ld+json">
+    (async function() {
+        try {
+            const response = await fetch('./seo_config.json');
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const config = await response.json();
+
+            const schema = {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": config.business_details.name,
+                "url": config.base_url,
+                "logo": `${config.base_url}${config.default_image}`,
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": config.business_details.telephone,
+                    "contactType": "Customer Service"
+                },
+                "address": config.business_details.address,
+                "sameAs": [
+                    config.business_details.whatsapp
+                ]
+            };
+
+            const scriptTag = document.createElement('script');
+            scriptTag.type = 'application/ld+json';
+            scriptTag.textContent = JSON.stringify(schema, null, 2);
+            document.head.appendChild(scriptTag);
+        } catch (error) {
+            console.error('Error loading or generating schema:', error);
+        }
+    })();
     </script>
 </body>
 </html>

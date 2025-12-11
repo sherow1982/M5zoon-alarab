@@ -637,6 +637,10 @@ button, .btn-primary, .btn-secondary, .btn-add-cart, .btn-whatsapp, .nav-link, .
     grid-column: 1 / -1;
 }
 
+.loading-spinner-icon {
+    animation: spin 1s linear infinite;
+}
+
 .footer {
     background: var(--deep-blue);
     color: white;
@@ -729,6 +733,24 @@ button, .btn-primary, .btn-secondary, .btn-add-cart, .btn-whatsapp, .nav-link, .
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+}
+
+.footer-bottom-features {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.footer-link-highlight-gold {
+    color: #D4AF37 !important;
+    font-weight: bold;
+}
+
+.footer-link-highlight-green {
+    color: #25D366 !important;
+    font-weight: bold;
 }
 
 .back-to-top {

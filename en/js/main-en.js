@@ -1,580 +1,557 @@
-/**
- * Emirates Gifts English Main System v20251101
- * Core functionality and initialization for English version
- * Author: Emirates Gifts Development Team
- */
+// 🚫 ZERO POPUP + ZERO INLINE CODE ENVIRONMENT
+const isDev = window.location.hostname === 'localhost';
+const log = isDev ? console.log.bind(console) : () => {};
+const warn = isDev ? console.warn.bind(console) : () => {};
+const error = console.error.bind(console);
 
-(function() {
-    'use strict';
+log('🚫 EMIRATES GIFTS ENGLISH - ZERO INLINE CODE');
+
+// Strict popup blocking
+window.alert = function() { log('🚫 Alert blocked'); return undefined; };
+window.confirm = function() { log('🚫 Confirm blocked'); return true; };
+window.prompt = function() { log('🚫 Prompt blocked'); return null; };
+window.open = function() { log('🚫 window.open blocked'); return null; };
+
+let currentPerfumes = [];
+let currentWatches = [];
+let displayedPerfumes = 8;
+let displayedWatches = 8;
+
+// Enhanced image error handler (ZERO INLINE)
+function setupSecureImageHandler(imgElement) {
+    if (!imgElement || imgElement.dataset.secureHandler) return;
     
-    console.log('🏠 Initializing English Main System v20251101');
+    imgElement.addEventListener('error', function() {
+        if (this.dataset.fallbackApplied === 'true') return;
+        
+        this.dataset.fallbackApplied = 'true';
+        this.src = 'https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=Premium+Product';
+        this.alt = 'Premium Product - Fallback Image';
+        warn('⚠️ Image fallback applied');
+    });
     
-    /**
-     * English Main Controller
-     */
-    const EnglishMain = {
-        version: '20251101',
-        initialized: false,
-        
-        /**
-         * Initialize main system
-         */
-        init() {
-            if (this.initialized) {
-                console.log('⚠️ English main already initialized');
-                return;
-            }
-            
-            this.setupGlobalEventListeners();
-            this.initializeComponents();
-            this.setupPerformanceMonitoring();
-            this.initializeAccessibility();
-            this.setupErrorHandling();
-            
-            this.initialized = true;
-            console.log('✅ English main system initialized');
-        },
-        
-        /**
-         * Setup global event listeners
-         */
-        setupGlobalEventListeners() {
-            // Smooth scroll for hash links
-            document.addEventListener('click', (e) => {
-                const link = e.target.closest('a[href^="#"]');
-                if (link) {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        
-                        // Update URL without triggering reload
-                        history.replaceState(null, null, `#${targetId}`);
-                    }
-                }
-            });
-            
-            // Handle external links
-            document.addEventListener('click', (e) => {
-                const link = e.target.closest('a[href^="http"], a[href^="https://"]');
-                if (link && !link.hasAttribute('target')) {
-                    link.setAttribute('target', '_blank');
-                    link.setAttribute('rel', 'noopener noreferrer');
-                }
-            });
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Tab') {
-                    document.body.classList.add('keyboard-navigation');
-                }
-            });
-            
-            document.addEventListener('mousedown', () => {
-                document.body.classList.remove('keyboard-navigation');
-            });
-        },
-        
-        /**
-         * Initialize components
-         */
-        initializeComponents() {
-            this.initializeHeader();
-            this.initializeMobileMenu();
-            this.initializeScrollEffects();
-            this.initializeImageHandling();
-            this.initializeButtons();
-        },
-        
-        /**
-         * Initialize header functionality
-         */
-        initializeHeader() {
-            const header = document.getElementById('header');
-            if (!header) return;
-            
-            let lastScrollTop = 0;
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                if (scrollTop > lastScrollTop && scrollTop > 100) {
-                    // Scrolling down
-                    header.style.transform = 'translateY(-100%)';
-                } else {
-                    // Scrolling up
-                    header.style.transform = 'translateY(0)';
-                }
-                
-                // Add background on scroll
-                if (scrollTop > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-                
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-            }, { passive: true });
-        },
-        
-        /**
-         * Initialize mobile menu
-         */
-        initializeMobileMenu() {
-            const menuToggle = document.getElementById('openSidebar');
-            const sidebar = document.getElementById('mobileSidebar');
-            const overlay = document.getElementById('mobileOverlay');
-            const closeBtn = document.getElementById('closeSidebar');
-            
-            if (!menuToggle || !sidebar) return;
-            
-            const openMenu = () => {
-                sidebar.classList.add('active');
-                if (overlay) overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                menuToggle.setAttribute('aria-expanded', 'true');
-            };
-            
-            const closeMenu = () => {
-                sidebar.classList.remove('active');
-                if (overlay) overlay.classList.remove('active');
-                document.body.style.overflow = '';
-                menuToggle.setAttribute('aria-expanded', 'false');
-            };
-            
-            menuToggle.addEventListener('click', openMenu);
-            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-            if (overlay) overlay.addEventListener('click', closeMenu);
-            
-            // Close on escape
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && sidebar.classList.contains('active')) {
-                    closeMenu();
-                }
-            });
-        },
-        
-        /**
-         * Initialize scroll effects
-         */
-        initializeScrollEffects() {
-            // Progress bar
-            const progressBar = document.getElementById('progressBar');
-            if (progressBar) {
-                window.addEventListener('scroll', () => {
-                    const scrollTop = window.pageYOffset;
-                    const docHeight = document.body.scrollHeight - window.innerHeight;
-                    const scrollPercent = (scrollTop / docHeight) * 100;
-                    progressBar.style.width = Math.min(scrollPercent, 100) + '%';
-                }, { passive: true });
-            }
-            
-            // Back to top button
-            const backToTopBtn = document.getElementById('backToTop');
-            if (backToTopBtn) {
-                window.addEventListener('scroll', () => {
-                    backToTopBtn.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
-                }, { passive: true });
-                
-                backToTopBtn.addEventListener('click', () => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-            
-            // Reveal on scroll
-            if ('IntersectionObserver' in window) {
-                const revealObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('revealed');
-                            revealObserver.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.1 });
-                
-                document.querySelectorAll('.reveal-on-scroll, .product-card, .section-header').forEach(el => {
-                    revealObserver.observe(el);
-                });
-            }
-        },
-        
-        /**
-         * Initialize image handling
-         */
-        initializeImageHandling() {
-            // Lazy loading
-            if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            if (img.dataset.src) {
-                                img.src = img.dataset.src;
-                                img.classList.remove('lazy');
-                                img.classList.add('loaded');
-                                imageObserver.unobserve(img);
-                            }
-                        }
-                    });
-                });
-                
-                document.querySelectorAll('img[data-src]').forEach(img => {
-                    imageObserver.observe(img);
-                });
-            }
-            
-            // Error handling for all images
-            document.querySelectorAll('img').forEach(img => {
-                img.addEventListener('error', function() {
-                    if (!this.dataset.errorHandled) {
-                        this.dataset.errorHandled = 'true';
-                        this.src = 'https://via.placeholder.com/400x300/D4AF37/FFFFFF?text=Image+Not+Available';
-                        this.alt = 'Image not available';
-                    }
-                });
-            });
-        },
-        
-        /**
-         * Initialize button functionality
-         */
-        initializeButtons() {
-            // Order Now buttons
-            document.addEventListener('click', (e) => {
-                const orderBtn = e.target.closest('.order-now-btn');
-                if (orderBtn && !orderBtn.dataset.productId) {
-                    // General order now - go to cart/checkout
-                    e.preventDefault();
-                    window.location.href = './checkout.html';
-                }
-            });
-            
-            // WhatsApp buttons
-            document.addEventListener('click', (e) => {
-                const whatsappBtn = e.target.closest('a[href*="wa.me"], a[href*="whatsapp"]');
-                if (whatsappBtn) {
-                    // Track WhatsApp clicks
-                    console.log('📞 WhatsApp contact initiated');
-                }
-            });
-        },
-        
-        /**
-         * Setup performance monitoring
-         */
-        setupPerformanceMonitoring() {
-            // Performance metrics
-            if ('performance' in window) {
-                window.addEventListener('load', () => {
-                    const navigation = performance.getEntriesByType('navigation')[0];
-                    const loadTime = navigation.loadEventEnd - navigation.loadEventStart;
-                    
-                    console.log(`📡 English page load time: ${loadTime.toFixed(2)}ms`);
-                    
-                    if (loadTime > 3000) {
-                        console.warn('⚠️ Slow page load detected');
-                    }
-                });
-            }
-            
-            // Memory monitoring (if available)
-            if ('memory' in performance) {
-                setInterval(() => {
-                    const memory = performance.memory;
-                    if (memory.usedJSHeapSize > 50000000) { // 50MB
-                        console.warn('⚠️ High memory usage detected');
-                    }
-                }, 60000); // Check every minute
-            }
-        },
-        
-        /**
-         * Initialize accessibility features
-         */
-        initializeAccessibility() {
-            // Skip link functionality
-            const skipLink = document.querySelector('.skip-link');
-            if (skipLink) {
-                skipLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const mainContent = document.getElementById('main-content');
-                    if (mainContent) {
-                        mainContent.focus();
-                        mainContent.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            }
-            
-            // Focus management for dynamic content
-            document.addEventListener('focusin', (e) => {
-                if (e.target.matches('.product-card, .cart-item, .form-group')) {
-                    e.target.classList.add('focused');
-                }
-            });
-            
-            document.addEventListener('focusout', (e) => {
-                if (e.target.matches('.product-card, .cart-item, .form-group')) {
-                    e.target.classList.remove('focused');
-                }
-            });
-        },
-        
-        /**
-         * Setup global error handling
-         */
-        setupErrorHandling() {
-            // Global error handler
-            window.addEventListener('error', (e) => {
-                console.error('🚨 Global error:', e.error);
-                
-                // Show user-friendly error for critical failures
-                if (e.filename && e.filename.includes('.js')) {
-                    this.showErrorMessage('Something went wrong. Please refresh the page.');
-                }
-            });
-            
-            // Unhandled promise rejections
-            window.addEventListener('unhandledrejection', (e) => {
-                console.error('🚨 Unhandled promise rejection:', e.reason);
-                e.preventDefault(); // Prevent browser console error
-            });
-        },
-        
-        /**
-         * Show error message to user
-         */
-        showErrorMessage(message, duration = 5000) {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'global-error-message';
-            errorDiv.style.cssText = `
-                position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-                background: linear-gradient(135deg, #e74c3c, #c0392b);
-                color: white; padding: 15px 25px; border-radius: 10px;
-                font-weight: 600; font-family: 'Inter', sans-serif;
-                box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
-                z-index: 10000; max-width: 90%; text-align: center;
-                animation: slideInDown 0.4s ease;
-            `;
-            
-            errorDiv.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 10px; justify-content: center;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>${message}</span>
-                    <button onclick="this.parentElement.parentElement.remove()" 
-                            style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; margin-left: 10px;">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `;
-            
-            document.body.appendChild(errorDiv);
-            
-            // Auto remove after duration
-            setTimeout(() => {
-                if (errorDiv.parentNode) {
-                    errorDiv.remove();
-                }
-            }, duration);
-        },
-        
-        /**
-         * Utility functions
-         */
-        utils: {
-            /**
-             * Debounce function calls
-             */
-            debounce(func, wait) {
-                let timeout;
-                return function executedFunction(...args) {
-                    const later = () => {
-                        clearTimeout(timeout);
-                        func(...args);
-                    };
-                    clearTimeout(timeout);
-                    timeout = setTimeout(later, wait);
-                };
-            },
-            
-            /**
-             * Throttle function calls
-             */
-            throttle(func, limit) {
-                let inThrottle;
-                return function() {
-                    const args = arguments;
-                    const context = this;
-                    if (!inThrottle) {
-                        func.apply(context, args);
-                        inThrottle = true;
-                        setTimeout(() => inThrottle = false, limit);
-                    }
-                };
-            },
-            
-            /**
-             * Format currency for UAE
-             */
-            formatCurrency(amount) {
-                return `${parseFloat(amount).toFixed(2)} AED`;
-            },
-            
-            /**
-             * Validate email
-             */
-            validateEmail(email) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return emailRegex.test(email);
-            },
-            
-            /**
-             * Validate UAE phone
-             */
-            validateUAEPhone(phone) {
-                const uaePhoneRegex = /^(\+971|971|0)?[0-9]{9}$/;
-                return uaePhoneRegex.test(phone.replace(/\s/g, ''));
-            }
-        }
+    imgElement.dataset.secureHandler = 'true';
+    
+    // Handle pre-failed images
+    if (imgElement.complete && imgElement.naturalWidth === 0) {
+        imgElement.dispatchEvent(new Event('error'));
+    }
+}
+
+// English product name converter with enhanced mapping
+function getEnglishProductName(arabicTitle, productId) {
+    const specificTranslations = {
+        'watch_88': 'Rolex Kaaba Design Premium Watch',
+        'watch_3': 'Rolex Black Dial Professional R21',
+        'watch_1': 'Rolex Yacht Master Silver Edition',
+        'watch_8': 'Omega Swatch Baby Blue Limited Edition',
+        'watch_2': 'Rolex Submariner Black Premium',
+        'watch_4': 'Rolex Daytona Gold Collection',
+        'watch_5': 'Omega Speedmaster Professional',
+        'watch_6': 'Patek Philippe Calatrava Classic',
+        'watch_7': 'TAG Heuer Formula 1 Racing',
+        'watch_9': 'Breitling Navitimer Pilot',
+        'watch_10': 'IWC Portuguese Chronograph',
+        'perfume_1': 'Chanel Coco Premium Perfume 100ml',
+        'perfume_10': 'Dior Sauvage Premium Fragrance',
+        'perfume_15': 'Tom Ford Black Orchid Luxury',
+        'perfume_2': 'Chanel No.5 Classic Edition',
+        'perfume_3': 'Creed Aventus Premium Collection',
+        'perfume_4': 'Tom Ford Oud Wood Oriental',
+        'perfume_5': 'Dior Miss Dior Blooming Bouquet',
+        'perfume_6': 'Guerlain Shalimar Oriental Classic',
+        'perfume_7': 'Yves Saint Laurent Black Opium',
+        'perfume_8': 'Giorgio Armani Si Passione',
+        'perfume_9': 'Versace Eros Flame Intense'
     };
     
-    /**
-     * Add English-specific CSS
-     */
-    function addEnglishCSS() {
-        if (document.querySelector('#english-main-css')) return;
-        
-        const style = document.createElement('style');
-        style.id = 'english-main-css';
-        style.textContent = `
-            /* English Main System Styles */
-            .keyboard-navigation *:focus {
-                outline: 2px solid var(--primary-gold, #D4AF37) !important;
-                outline-offset: 2px !important;
-            }
-            
-            .header {
-                transition: transform 0.3s ease, background 0.3s ease;
-            }
-            
-            .header.scrolled {
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
-                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            }
-            
-            .focused {
-                box-shadow: 0 0 0 2px var(--primary-gold, #D4AF37) !important;
-                border-radius: 8px;
-            }
-            
-            .revealed {
-                animation: fadeInUp 0.6s ease forwards;
-            }
-            
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            
-            @keyframes slideInDown {
-                from {
-                    transform: translate(-50%, -100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translate(-50%, 0);
-                    opacity: 1;
-                }
-            }
-            
-            /* Improve button interactions */
-            .btn-primary, .btn-secondary {
-                transition: all 0.3s ease;
-                position: relative;
-                overflow: hidden;
-            }
-            
-            .btn-primary:hover, .btn-secondary:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            }
-            
-            .btn-primary:active, .btn-secondary:active {
-                transform: translateY(0);
-            }
-            
-            /* Loading states */
-            .loading-message {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 40px;
-                color: var(--primary-gold, #D4AF37);
-                font-weight: 600;
-                animation: pulse 2s ease-in-out infinite alternate;
-            }
-            
-            @keyframes pulse {
-                from { opacity: 0.6; }
-                to { opacity: 1; }
-            }
-            
-            /* Mobile optimizations */
-            @media (max-width: 768px) {
-                .header {
-                    transform: none !important; /* Disable header hiding on mobile */
-                }
-                
-                .mobile-sidebar {
-                    transform: translateX(100%);
-                    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                }
-                
-                .mobile-sidebar.active {
-                    transform: translateX(0);
-                }
-            }
-        `;
-        
-        document.head.appendChild(style);
+    if (specificTranslations[productId]) {
+        return specificTranslations[productId];
     }
     
-    /**
-     * Auto-initialize system
-     */
-    function initialize() {
-        addEnglishCSS();
-        
-        // Set English language attributes
-        document.documentElement.setAttribute('lang', 'en-US');
-        document.documentElement.setAttribute('dir', 'ltr');
-        
-        EnglishMain.init();
-        
-        console.log('✨ English main system ready');
+    if (!arabicTitle || typeof arabicTitle !== 'string') return 'Premium Product';
+    
+    // Enhanced brand and feature detection
+    const title = arabicTitle.toLowerCase();
+    let parts = [];
+    
+    // Brand detection
+    if (title.includes('rolex') || title.includes('روليكس')) parts.push('Rolex');
+    else if (title.includes('omega') || title.includes('أوميغا')) parts.push('Omega');
+    else if (title.includes('chanel') || title.includes('شانيل')) parts.push('Chanel');
+    else if (title.includes('dior') || title.includes('ديور')) parts.push('Dior');
+    else if (title.includes('tom ford')) parts.push('Tom Ford');
+    else if (title.includes('creed')) parts.push('Creed');
+    
+    // Color/style detection
+    if (title.includes('black') || title.includes('أسود')) parts.push('Black');
+    else if (title.includes('gold') || title.includes('ذهبي')) parts.push('Gold');
+    else if (title.includes('silver') || title.includes('فضي')) parts.push('Silver');
+    else if (title.includes('blue') || title.includes('أزرق')) parts.push('Blue');
+    
+    // Product type
+    if (productId && productId.includes('watch')) {
+        parts.push('Premium Watch');
+    } else if (productId && productId.includes('perfume')) {
+        parts.push('Premium Perfume');
     }
     
-    // Export to global scope
-    window.EnglishMain = EnglishMain;
+    return parts.length > 0 ? parts.join(' ') : 'Premium Luxury Product';
+}
+
+// Enhanced product loading
+async function loadProducts() {
+    try {
+        log('📦 Loading products for English version...');
+        
+        const loadWithRetry = async (url, retries = 3) => {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url + '?v=' + Date.now());
+                    if (response.ok) {
+                        const data = await response.json();
+                        return Array.isArray(data) ? data : [];
+                    }
+                } catch (e) {
+                    warn(`⚠️ Retry ${i + 1}/${retries} failed for ${url}`);
+                    if (i === retries - 1) throw e;
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+            }
+            return [];
+        };
+        
+        const [perfumes, watches] = await Promise.all([
+            loadWithRetry('../data/otor.json'),
+            loadWithRetry('../data/sa3at.json')
+        ]);
+        
+        currentPerfumes = perfumes;
+        currentWatches = watches;
+        
+        if (currentPerfumes.length > 0) {
+            const perfumesWithEnglish = currentPerfumes.map(p => ({
+                ...p,
+                englishName: getEnglishProductName(p.title, p.id)
+            }));
+            displayProductsSecurely(perfumesWithEnglish.slice(0, displayedPerfumes), 'perfumes-grid');
+            updateViewMoreButton('perfumes-view-more', currentPerfumes.length, displayedPerfumes);
+            log(`✅ Loaded ${currentPerfumes.length} perfumes`);
+        }
+        
+        if (currentWatches.length > 0) {
+            const watchesWithEnglish = currentWatches.map(p => ({
+                ...p,
+                englishName: getEnglishProductName(p.title, p.id)
+            }));
+            displayProductsSecurely(watchesWithEnglish.slice(0, displayedWatches), 'watches-grid');
+            updateViewMoreButton('watches-view-more', currentWatches.length, displayedWatches);
+            log(`✅ Loaded ${currentWatches.length} watches`);
+        }
+        
+    } catch (error) {
+        error('❌ Product loading failed:', error);
+    }
+}
+
+// Update view more button
+function updateViewMoreButton(buttonId, totalItems, displayedItems) {
+    const button = document.getElementById(buttonId);
+    if (!button) return;
     
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initialize);
+    if (totalItems > displayedItems) {
+        button.style.display = 'inline-flex';
+        button.style.visibility = 'visible';
+        button.style.opacity = '1';
+        log(`✅ ${buttonId} shown (${displayedItems}/${totalItems})`);
     } else {
-        initialize();
+        button.style.display = 'none';
+        log(`ℹ️ ${buttonId} hidden - all shown`);
+    }
+}
+
+// SECURE PRODUCTS DISPLAY (ZERO INLINE CODE)
+function displayProductsSecurely(products, gridId) {
+    const grid = document.getElementById(gridId);
+    if (!grid || !Array.isArray(products) || products.length === 0) {
+        warn(`⚠️ No products for ${gridId}`);
+        return;
     }
     
-})();
+    try {
+        const productsHTML = products.map(product => {
+            if (!product || typeof product !== 'object') return '';
+            
+            const finalPrice = parseFloat(product.sale_price || product.price || 0);
+            const displayName = product.englishName || getEnglishProductName(product.title, product.id);
+            const productId = String(product.id || Date.now());
+            const productType = gridId.includes('perfume') ? 'perfume' : 'watch';
+            const imageUrl = product.image_link || 'https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=Premium+Product';
+            
+            // ❌ NO INLINE ONCLICK/ONERROR - COMPLETELY SECURE
+            return `
+                <div class="product-card" 
+                     data-product-id="${productId}" 
+                     data-product-type="${productType}"
+                     role="button"
+                     tabindex="0"
+                     aria-label="View details for ${displayName}">
+                    <div class="product-image-container">
+                        <img src="${imageUrl}" 
+                             alt="${displayName}" 
+                             loading="lazy"
+                             width="300"
+                             height="250"
+                             data-fallback-applied="false">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-title">${displayName}</h4>
+                        <div class="price">AED ${finalPrice.toFixed(2)}</div>
+                    </div>
+                </div>
+            `;
+        }).filter(html => html.trim().length > 0).join('');
+        
+        grid.innerHTML = productsHTML;
+        
+        // Setup secure event handlers
+        const productCards = grid.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            // Click navigation
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productId = this.dataset.productId;
+                const productType = this.dataset.productType;
+                
+                if (productId && productType) {
+                    navigateToProductSecurely(productId, productType);
+                }
+            });
+            
+            // Keyboard accessibility
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+            
+            // Secure image handling
+            const img = card.querySelector('img');
+            if (img) {
+                setupSecureImageHandler(img);
+            }
+        });
+        
+        log(`📦 Securely displayed ${products.length} products in ${gridId}`);
+        
+    } catch (displayError) {
+        error('❌ Display error:', displayError);
+        grid.innerHTML = '<div class="loading-message" role="alert">❌ Error displaying products</div>';
+    }
+}
+
+// Secure navigation
+function navigateToProductSecurely(productId, type) {
+    if (!productId || !type) {
+        error('❌ Missing navigation data');
+        return;
+    }
+    
+    log(`🔗 Secure navigation to: ${productId}`);
+    
+    const product = type === 'perfume' ? 
+        currentPerfumes.find(p => p && String(p.id) === String(productId)) :
+        currentWatches.find(p => p && String(p.id) === String(productId));
+    
+    if (product) {
+        const englishName = getEnglishProductName(product.title, productId);
+        const slug = englishName
+            .toLowerCase()
+            .replace(/[^a-z0-9\s]/g, '')
+            .replace(/\s+/g, '-')
+            .substring(0, 50)
+            .trim();
+        
+        const params = new URLSearchParams({
+            id: productId,
+            category: type,
+            slug: slug || 'product'
+        });
+        
+        try {
+            window.location.href = `./product-details.html?${params.toString()}`;
+        } catch (navError) {
+            error('❌ Navigation error:', navError);
+            window.location.href = `./product-details.html?id=${encodeURIComponent(productId)}&category=${encodeURIComponent(type)}`;
+        }
+    } else {
+        error('❌ Product not found:', productId);
+    }
+}
+
+// Show more functions with accessibility
+function showMorePerfumesSecurely() {
+    try {
+        const oldCount = displayedPerfumes;
+        displayedPerfumes = Math.min(displayedPerfumes + 8, currentPerfumes.length);
+        
+        const perfumesWithEnglish = currentPerfumes.map(p => ({
+            ...p,
+            englishName: getEnglishProductName(p.title, p.id)
+        }));
+        
+        displayProductsSecurely(perfumesWithEnglish.slice(0, displayedPerfumes), 'perfumes-grid');
+        updateViewMoreButton('perfumes-view-more', currentPerfumes.length, displayedPerfumes);
+        
+        // Smooth scroll to new content
+        const section = document.getElementById('perfumes-section');
+        if (section && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        log(`🔄 Perfumes: ${oldCount} → ${displayedPerfumes}/${currentPerfumes.length}`);
+    } catch (error) {
+        error('❌ Show more perfumes error:', error);
+    }
+}
+
+function showMoreWatchesSecurely() {
+    try {
+        const oldCount = displayedWatches;
+        displayedWatches = Math.min(displayedWatches + 8, currentWatches.length);
+        
+        const watchesWithEnglish = currentWatches.map(p => ({
+            ...p,
+            englishName: getEnglishProductName(p.title, p.id)
+        }));
+        
+        displayProductsSecurely(watchesWithEnglish.slice(0, displayedWatches), 'watches-grid');
+        updateViewMoreButton('watches-view-more', currentWatches.length, displayedWatches);
+        
+        // Smooth scroll to new content
+        const section = document.getElementById('watches-section');
+        if (section && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        log(`🔄 Watches: ${oldCount} → ${displayedWatches}/${currentWatches.length}`);
+    } catch (error) {
+        error('❌ Show more watches error:', error);
+    }
+}
+
+// Enhanced cart counter
+function updateCartCounter() {
+    try {
+        const cartData = localStorage.getItem('emirates_cart');
+        let cart = [];
+        
+        if (cartData) {
+            try {
+                cart = JSON.parse(cartData);
+            } catch (parseError) {
+                warn('⚠️ Cart data corrupted');
+                cart = [];
+            }
+        }
+        
+        if (!Array.isArray(cart)) cart = [];
+        
+        const totalItems = cart.reduce((sum, item) => {
+            if (!item || typeof item !== 'object') return sum;
+            const qty = parseInt(item.quantity || 0);
+            return sum + (isNaN(qty) ? 0 : Math.max(0, qty));
+        }, 0);
+        
+        const counter = document.getElementById('cart-counter');
+        if (counter) {
+            counter.textContent = totalItems.toString();
+            counter.style.display = totalItems > 0 ? 'flex' : 'none';
+            counter.setAttribute('aria-label', `Number of items in cart: ${totalItems}`);
+        }
+    } catch (error) {
+        error('❌ Cart counter error:', error);
+    }
+}
+
+// Enhanced progress bar
+function updateProgressSecurely() {
+    try {
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+        const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        
+        if (maxScroll > 0) {
+            const progress = Math.max(0, Math.min(100, (scrolled / maxScroll) * 100));
+            const bar = document.getElementById('progressBar');
+            if (bar) {
+                bar.style.width = progress + '%';
+            }
+        }
+    } catch (error) {
+        error('❌ Progress error:', error);
+    }
+}
+
+// Enhanced back to top
+function updateBackToTopSecurely() {
+    try {
+        const backToTop = document.getElementById('backToTop');
+        if (!backToTop) return;
+        
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+        const shouldShow = scrolled > 300;
+        
+        if (shouldShow && !backToTop.classList.contains('show')) {
+            backToTop.classList.add('show');
+        } else if (!shouldShow && backToTop.classList.contains('show')) {
+            backToTop.classList.remove('show');
+        }
+    } catch (error) {
+        error('❌ Back to top error:', error);
+    }
+}
+
+// Enhanced smooth scroll
+function initSmoothScrollSecurely() {
+    try {
+        const anchorLinks = document.querySelectorAll('a[href^="#"]');
+        anchorLinks.forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                if (target) {
+                    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    
+                    target.scrollIntoView({ 
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            });
+        });
+        log('✅ Smooth scroll initialized');
+    } catch (error) {
+        error('❌ Smooth scroll error:', error);
+    }
+}
+
+// Enhanced initialization
+function initializeEnglishHomepage() {
+    log('🚫 English Homepage Init - Zero Inline Code...');
+    
+    try {
+        // Update cart counter
+        updateCartCounter();
+        
+        // Load products
+        loadProducts();
+        
+        // Initialize smooth scroll
+        initSmoothScrollSecurely();
+        
+        // Enhanced View More buttons
+        const perfumesViewMore = document.getElementById('perfumes-view-more');
+        const watchesViewMore = document.getElementById('watches-view-more');
+        
+        if (perfumesViewMore) {
+            perfumesViewMore.addEventListener('click', showMorePerfumesSecurely);
+            perfumesViewMore.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    showMorePerfumesSecurely();
+                }
+            });
+        }
+        
+        if (watchesViewMore) {
+            watchesViewMore.addEventListener('click', showMoreWatchesSecurely);
+            watchesViewMore.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    showMoreWatchesSecurely();
+                }
+            });
+        }
+        
+        // Scroll events with throttling
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) return;
+            scrollTimeout = setTimeout(() => {
+                updateProgressSecurely();
+                updateBackToTopSecurely();
+                scrollTimeout = null;
+            }, 16);
+        }, { passive: true });
+        
+        // Enhanced back to top
+        const backToTopBtn = document.getElementById('backToTop');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                
+                try {
+                    window.scrollTo({ 
+                        top: 0, 
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                    });
+                } catch (scrollError) {
+                    window.scrollTo(0, 0);
+                }
+            });
+            
+            backToTopBtn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        }
+        
+        log('✅ English homepage fully initialized');
+        
+    } catch (initError) {
+        error('❌ Initialization error:', initError);
+    }
+}
+
+// Global error handling
+window.addEventListener('error', function(event) {
+    error('❌ Global error:', event.error);
+    event.preventDefault();
+    return true;
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+    error('❌ Unhandled promise:', event.reason);
+    event.preventDefault();
+});
+
+// Smart DOM initialization
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeEnglishHomepage);
+} else {
+    setTimeout(initializeEnglishHomepage, 0);
+}
+
+// Secure global exports
+if (typeof window !== 'undefined') {
+    window.EmiratesGiftsEN = Object.freeze({
+        version: '2.0.0-english-secure',
+        navigateToProduct: navigateToProductSecurely,
+        showMorePerfumes: showMorePerfumesSecurely,
+        showMoreWatches: showMoreWatchesSecurely,
+        updateCartCounter: updateCartCounter,
+        loadProducts: loadProducts,
+        isDevelopment: isDev
+    });
+    
+    // Legacy support
+    window.navigateToProduct = navigateToProductSecurely;
+}
+
+log('✅ Emirates Gifts English v2.0 - ZERO INLINE CODE');

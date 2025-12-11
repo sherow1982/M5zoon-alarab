@@ -7,26 +7,13 @@ import json
 import subprocess
 from datetime import datetime, timezone
 from urllib.parse import urljoin, quote
-from xml.etree.ElementTree import Element, SubElement, ElementTree
+from xml.etree.ElementTree import Element, SubElement, tostring as xml_tostring
 from xml.dom import minidom
 
-PRODUCTS_DIR = pathlib.Path("products")
-SITEMAP_FILE = pathlib.Path("sitemap-products.xml")
-SITEMAP_PREFIX = "sitemap-products"   # for chunked files like sitemap-products-1.xml
-MAX_URLS_PER_SITEMAP = 50000          # per protocol
-# Note: keep total uncompressed file size <= 50MB per sitemap
+BASE_URL = ""
 
-def git_last_commit_iso(path: pathlib.Path) -> str:
-    """Return last commit time in ISO-8601 with timezone, else file mtime in UTC."""
-    try:
-        ts = subprocess.check_output(
-            ["git", "log", "-1", "--format=%cI", "--", str(path)],
-            text=True
-        ).strip()
-        if ts:
-            return ts
-    except Exception:
-        pass
+def get_file_mtime_iso(path: pathlib.Path) -> str:
+    """Return file modification time in ISO-8601 UTC format."""
     dt = datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc).replace(microsecond=0)
     return dt.isoformat()
 
@@ -34,83 +21,148 @@ def ensure_trailing_slash(u: str) -> str:
     return u if u.endswith("/") else u + "/"
 
 def build_url(base_url: str, products_dir: pathlib.Path, file_path: pathlib.Path) -> str:
-    rel_path = file_path.relative_to(products_dir).as_posix()
-    rel_url = quote(rel_path, safe="/-_.~")
-    return urljoin(ensure_trailing_slash(base_url), rel_url)
+    """Builds a clean, SEO-friendly URL."""
+    rel_path = file_path.relative_to(products_dir).with_suffix('').as_posix()
+    # Example: products/watch/watch_1/index.html -> watch/watch_1
+    if rel_path.endswith('/index'):
+        rel_path = rel_path[:-6]
+    
+    # Ensure we are using the correct base for products
+    products_base = urljoin(ensure_trailing_slash(base_url), "product/")
+    return urljoin(products_base, quote(rel_path, safe="/-_.~"))
 
 def prettify_xml(elem: Element) -> bytes:
-    import io
-    rough = ElementTree(elem)
-    buf = io.BytesIO()
-    rough.write(buf, encoding="utf-8", xml_declaration=True)
-    return minidom.parseString(buf.getvalue()).toprettyxml(indent="  ", encoding="utf-8")
-
-def iter_product_files(root: pathlib.Path):
-    return sorted(root.rglob("*.html"))
-
-def write_sitemap(url_items: list[tuple[str, str]], outfile: pathlib.Path):
-    urlset = Element("urlset", attrib={"xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9"})
-    for loc, lastmod in url_items:
-        url = SubElement(urlset, "url")
-        SubElement(url, "loc").text = loc
-        SubElement(url, "lastmod").text = lastmod
-    outfile.write_bytes(prettify_xml(urlset))
-
-def write_sitemap_index(files: list[str], outfile: pathlib.Path):
-    idx = Element("sitemapindex", attrib={"xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9"})
-    for loc in files:
-        sm = SubElement(idx, "sitemap")
-        SubElement(sm, "loc").text = loc
-        # lastmod optional for index; omitted for simplicity
-    outfile.write_bytes(prettify_xml(idx))
+    """Renders an XML element to a pretty-printed string."""
+    rough_string = xml_tostring(elem, 'utf-8')
+    reparsed = minidom.parseString(rough_string)
+    return reparsed.toprettyxml(indent="  ", encoding="utf-8")
 
 def get_base_url_from_config():
     """Reads the base_url from seo_config.json."""
+    global BASE_URL
     config_path = pathlib.Path(__file__).parent / "seo_config.json"
     if not config_path.exists():
         print(f"Error: Config file not found at {config_path}", file=sys.stderr)
         sys.exit(1)
     with open(config_path, 'r', encoding='utf-8') as f:
         config = json.load(f)
-    return config.get("base_url")
-
-def main():
-    base_url = get_base_url_from_config()
-    products_url = urljoin(ensure_trailing_slash(base_url), "products/")
-    if not PRODUCTS_DIR.exists():
-        print("Missing products/ directory", file=sys.stderr)
+    BASE_URL = config.get("base_url")
+    if not BASE_URL:
+        print("Error: base_url not found in seo_config.json", file=sys.stderr)
         sys.exit(1)
 
-    # Collect URLs
-    items = []
-    for f in iter_product_files(PRODUCTS_DIR):
-        loc = build_url(products_url, PRODUCTS_DIR, f)
-        lastmod = git_last_commit_iso(f)
-        items.append((loc, lastmod))
+def generate_product_sitemap():
+    """Generates sitemap for product detail pages."""
+    products_dir = pathlib.Path("products")
+    if not products_dir.exists():
+        print("Warning: Missing products/ directory, skipping product sitemap.", file=sys.stderr)
+        return []
 
-    count = len(items)
-    if count == 0:
-        print("No product HTML files found under products/", file=sys.stderr)
-        sys.exit(0)
+    urlset = Element("urlset", attrib={"xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9"})
+    
+    product_files = sorted(products_dir.rglob("*.html"))
+    if not product_files:
+        print("No product HTML files found, skipping product sitemap.", file=sys.stderr)
+        return []
 
-    # Chunk if needed
-    if count > MAX_URLS_PER_SITEMAP:
-        # write parts: sitemap-products-1.xml, -2.xml, ...
-        part_files_web = []
-        for i in range(0, count, MAX_URLS_PER_SITEMAP):
-            chunk = items[i:i + MAX_URLS_PER_SITEMAP]
-            part_idx = i // MAX_URLS_PER_SITEMAP + 1
-            part_name = f"{SITEMAP_PREFIX}-{part_idx}.xml"
-            part_path = pathlib.Path(part_name)
-            write_sitemap(chunk, part_path)
-            # The web location of the part file is at the project root
-            part_files_web.append(urljoin(base_url, part_name))
-        # Create sitemap index
-        write_sitemap_index(part_files_web, pathlib.Path("sitemap-index.xml"))
-        print(f"Wrote {len(part_files_web)} sitemap parts and sitemap-index.xml")
-    else:
-        write_sitemap(items, SITEMAP_FILE)
-        print(f"Wrote {count} URLs to {SITEMAP_FILE}")
+    for f in product_files:
+        # Generate clean URL: /product/watch/watch_1/
+        rel_path = f.relative_to(products_dir).parent.as_posix()
+        loc = urljoin(ensure_trailing_slash(BASE_URL), f"product/{rel_path}/")
+        
+        lastmod = get_file_mtime_iso(f)
+        
+        url_element = SubElement(urlset, "url")
+        SubElement(url_element, "loc").text = loc
+        SubElement(url_element, "lastmod").text = lastmod
+        SubElement(url_element, "changefreq").text = "weekly"
+        SubElement(url_element, "priority").text = "0.8"
+
+    sitemap_path = pathlib.Path("sitemap-products.xml")
+    sitemap_path.write_bytes(prettify_xml(urlset))
+    print(f"Generated {len(product_files)} URLs in {sitemap_path}")
+    return [urljoin(BASE_URL, sitemap_path.name)]
+
+def generate_static_pages_sitemap():
+    """Generates sitemap for static pages like index.html, about.html, etc."""
+    urlset = Element("urlset", attrib={"xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9", "xmlns:xhtml": "http://www.w3.org/1999/xhtml"})
+    
+    static_pages = [
+        {"path": "index.html", "priority": "1.0", "freq": "daily"},
+        {"path": "products-showcase.html", "priority": "0.9", "freq": "daily"},
+        {"path": "about.html", "priority": "0.7", "freq": "monthly"},
+        {"path": "privacy-policy.html", "priority": "0.5", "freq": "yearly"},
+        {"path": "terms-conditions.html", "priority": "0.5", "freq": "yearly"},
+        {"path": "shipping-policy.html", "priority": "0.5", "freq": "monthly"},
+        {"path": "return-policy.html", "priority": "0.5", "freq": "monthly"},
+    ]
+
+    for page in static_pages:
+        ar_path = pathlib.Path(page["path"])
+        en_path = pathlib.Path("en") / page["path"]
+
+        if ar_path.exists() and en_path.exists():
+            ar_loc = urljoin(BASE_URL, ar_path.as_posix())
+            en_loc = urljoin(BASE_URL, en_path.as_posix())
+            
+            # Entry for Arabic URL
+            url_ar = SubElement(urlset, "url")
+            SubElement(url_ar, "loc").text = ar_loc
+            SubElement(url_ar, "lastmod").text = get_file_mtime_iso(ar_path)
+            SubElement(url_ar, "changefreq").text = page["freq"]
+            SubElement(url_ar, "priority").text = page["priority"]
+            SubElement(url_ar, "xhtml:link", rel="alternate", hreflang="en", href=en_loc)
+            SubElement(url_ar, "xhtml:link", rel="alternate", hreflang="ar", href=ar_loc)
+            SubElement(url_ar, "xhtml:link", rel="alternate", hreflang="x-default", href=ar_loc)
+
+            # Entry for English URL
+            url_en = SubElement(urlset, "url")
+            SubElement(url_en, "loc").text = en_loc
+            SubElement(url_en, "lastmod").text = get_file_mtime_iso(en_path)
+            SubElement(url_en, "changefreq").text = page["freq"]
+            SubElement(url_en, "priority").text = page["priority"]
+            SubElement(url_en, "xhtml:link", rel="alternate", hreflang="en", href=en_loc)
+            SubElement(url_en, "xhtml:link", rel="alternate", hreflang="ar", href=ar_loc)
+            SubElement(url_en, "xhtml:link", rel="alternate", hreflang="x-default", href=ar_loc)
+
+    sitemap_path = pathlib.Path("sitemap-pages.xml")
+    sitemap_path.write_bytes(prettify_xml(urlset))
+    print(f"Generated {len(static_pages) * 2} static page URLs in {sitemap_path}")
+    return [urljoin(BASE_URL, sitemap_path.name)]
+
+def generate_sitemap_index(sitemap_files: list):
+    """Generates the main sitemap index file."""
+    if not sitemap_files:
+        print("No sitemaps to index.", file=sys.stderr)
+        return
+
+    sitemapindex = Element("sitemapindex", attrib={"xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9"})
+    
+    for sitemap_url in sitemap_files:
+        sitemap_element = SubElement(sitemapindex, "sitemap")
+        SubElement(sitemap_element, "loc").text = sitemap_url
+        # lastmod is optional in sitemap index, but good practice
+        # For simplicity, we use today's date
+        SubElement(sitemap_element, "lastmod").text = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+
+    index_path = pathlib.Path("sitemap-index.xml")
+    index_path.write_bytes(prettify_xml(sitemapindex))
+    print(f"Generated sitemap index at {index_path} with {len(sitemap_files)} entries.")
+
+def main():
+    print("🚀 Starting sitemap generation...")
+    get_base_url_from_config()
+    
+    all_sitemaps = []
+    all_sitemaps.extend(generate_static_pages_sitemap())
+    all_sitemaps.extend(generate_product_sitemap())
+    
+    # Add other sitemaps if they exist
+    if pathlib.Path("hreflang-sitemap.xml").exists():
+        all_sitemaps.append(urljoin(BASE_URL, "hreflang-sitemap.xml"))
+
+    generate_sitemap_index(all_sitemaps)
+    print("✅ Sitemap generation complete.")
 
 if __name__ == "__main__":
     main()
