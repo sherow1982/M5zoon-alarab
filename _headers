@@ -1,0 +1,12 @@
+/*
+  # Content Security Policy
+  default-src 'self';
+  script-src 'self' https://cdnjs.cloudflare.com 'sha256-qvIt1A2rW5HW6SKd7/U+JOImvo4pQPqPJ8XZI9SSWoI=';
+  style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'sha256-3iWUMCW4GRNsl9lmN8Wro4hcxvNn0cNv2QwnTd21Edc=' 'sha256-00ixD57sVwfkEHg9MtLrttpMFlz5eKwHkjnietjKIcg=' 'sha256-Z9FZs0d1yHNZ9oEGbxCclX1u12NR6hpMdsBbWHeZTfM=' 'sha256-BPNfFp6nn3z1sIGfk7y6voTyUO6YmmF9OuZ9qwShKV4=' 'sha256-Tzu/rtDkHuVwOXoVk+2B9ca9+KwLX1fG5Rjnn/RQfvs=';
+  img-src 'self' https://m5zoon.com data:;
+  font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+  connect-src 'self';
+  frame-ancestors 'none';
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
