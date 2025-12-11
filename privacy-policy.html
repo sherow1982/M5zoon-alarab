@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="./css/dkhoon-inspired-style.css">
-    <link rel="stylesheet" href="./css/emirates-reviews-style.css">
+    <!-- Use main stylesheet for consistency -->
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
     <div class="page-container">
@@ -69,27 +69,8 @@
         </main>
     </div>
 
-    <script>
-        // Dynamically load contact info from seo_config.json
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('./seo_config.json')
-                .then(response => response.json())
-                .then(config => {
-                    const details = config.business_details;
-                    if (!details) return;
-
-                    const contactDiv = document.querySelector('.contact-info');
-                    if (contactDiv) {
-                        contactDiv.innerHTML = `
-                            <p><i class="fab fa-whatsapp"></i> <a href="${details.whatsapp}">${details.telephone}</a></p>
-                            <p><i class="fas fa-envelope"></i> <a href="mailto:${details.email}">${details.email}</a></p>
-                        `;
-                    }
-                })
-                .catch(error => console.error('Error loading contact config:', error));
-        });
-    </script>
-
+    <!-- Load dynamic data from external script -->
+    <script src="./js/init-seo.js" defer></script>
     <style>
     .page-container {
         max-width: 800px;

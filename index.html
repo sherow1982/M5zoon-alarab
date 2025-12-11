@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Enhanced Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; object-src 'none'; base-uri 'self';">
     
     <!-- SEO Meta Tags -->
     <title>متجر هدايا الإمارات - عطور وساعات عالية الجودة | شحن مجاني وضمان إرجاع</title>
@@ -306,77 +306,8 @@
 
     <!-- Load main script safely -->
     <script src="./js/main.js" defer></script>
-
-    <script>
-        // Dynamically load footer content from seo_config.json
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('./seo_config.json')
-                .then(response => response.json())
-                .then(config => {
-                    const details = config.business_details;
-                    if (!details) return;
-
-                    // Update Contact Info
-                    const contactList = document.querySelector('#footer-contact-info ul');
-                    if (contactList) {
-                        contactList.innerHTML = `
-                            <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:${details.telephone}">${details.telephone}</a></li>
-                            <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:${details.email}">${details.email}</a></li>
-                            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>${details.address.addressLocality}, ${details.address.addressCountry === 'AE' ? 'الإمارات العربية المتحدة' : details.address.addressCountry}</span></li>
-                            <li><i class="fas fa-clock" aria-hidden="true"></i><span>خدمة العملاء: 24/7</span></li>
-                        `;
-                    }
-
-                    // Update WhatsApp links
-                    const whatsappSocial = document.getElementById('footer-whatsapp-social');
-                    if (whatsappSocial) whatsappSocial.href = details.whatsapp;
-
-                    const whatsappService = document.getElementById('footer-whatsapp-service');
-                    if (whatsappService) whatsappService.href = details.whatsapp;
-
-                    // Update OG image if it's a placeholder
-                    const ogImage = document.querySelector('meta[property="og:image"]');
-                    if (ogImage && ogImage.content.includes('unsplash.com')) {
-                        ogImage.content = `${config.base_url}${config.default_image}`;
-                    }
-                })
-                .catch(error => console.error('Error loading footer config:', error));
-        });
-    </script>
-
-    <!-- Auto-generated JSON-LD Schema for SEO -->
-    <script type="application/ld+json">
-    (async function() {
-        try {
-            const response = await fetch('./seo_config.json');
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            const config = await response.json();
-
-            const schema = {
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                "name": config.business_details.name,
-                "url": config.base_url,
-                "logo": `${config.base_url}${config.default_image}`,
-                "contactPoint": {
-                    "@type": "ContactPoint",
-                    "telephone": config.business_details.telephone,
-                    "contactType": "Customer Service"
-                },
-                "address": config.business_details.address,
-                "sameAs": [
-                    config.business_details.whatsapp
-                ]
-            };
-
-            const scriptTag = document.createElement('script');
-            scriptTag.type = 'application/ld+json';
-            scriptTag.textContent = JSON.stringify(schema, null, 2);
-            document.head.appendChild(scriptTag);
-        } catch (error) {
-            console.error('Error loading or generating schema:', error);
-        }
-    })();
-    </script>
+    
+    <!-- Load dynamic SEO and Footer data -->
+    <script src="./js/init-seo.js" defer></script>
 </body>
 </html>
