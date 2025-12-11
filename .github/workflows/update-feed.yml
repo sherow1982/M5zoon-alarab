@@ -65,9 +65,18 @@ jobs:
           git add -A
           if ! git diff --cached --quiet; then
             git commit -m "تحديث تلقائي للمنتجات والمحتوى - $(date +'%Y-%m-%d %H:%M:%S')"
-            # Pull remote changes and rebase our commit on top to avoid conflicts
-            git pull --rebase
-            git push # This will now be a fast-forward push
+            
+            # Retry loop for push to handle race conditions
+            for i in 1 2 3 4 5; do
+              # Pull remote changes and rebase our commit on top
+              git pull --rebase
+              # Attempt to push
+              if git push; then
+                echo "✅ Push successful on attempt $i"
+                break
+              fi
+              sleep 5 # Wait 5 seconds before retrying
+            done
           else
             echo "لا توجد تغييرات للدفع"
           fi
