@@ -27,8 +27,12 @@ on:
 jobs:
   update:
     permissions:
-      # Give the default GITHUB_TOKEN write permission to commit and push the changes
+      # Required for committing and pushing to main branch
       contents: write
+      # Required for uploading the artifact for deployment
+      pages: write
+      # Required for authenticating with the Pages deployment
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -45,6 +49,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-prod.txt
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Prepare deployment directory
         run: |
@@ -68,13 +75,11 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact for deployment
+        uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          # No need for exclude, we are publishing a clean directory
+          path: ./dist
 
       - name: Commit and push generated files to main branch
         if: github.ref == 'refs/heads/main'
@@ -93,3 +98,18 @@ jobs:
           else
             echo "لا توجد تغييرات في الملفات المولدة ليتم رفعها."
           fi
+
+  # Separate job for deployment for speed and security
+  deploy:
+    needs: update
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
