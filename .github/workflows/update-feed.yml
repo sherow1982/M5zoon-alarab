@@ -56,12 +56,10 @@ jobs:
       - name: Prepare deployment directory
         run: |
           mkdir -p dist
-          # Copy all site assets except for python scripts and config files
-          rsync -av --progress . ./dist/ \
-            --exclude="dist" --exclude=".git*" --exclude=".github" \
-            --exclude="*.py" --exclude="*.txt" --exclude="*.xlsx" --exclude="*.md"
-          # Explicitly copy the data directory to ensure products are loaded
-          cp -r data/ ./dist/
+          # Copy all necessary assets to the dist folder for deployment
+          rsync -av --delete \
+            ./css ./js ./images ./data ./en ./products ./*.html ./*.xml ./*.webmanifest ./robots.txt \
+            ./dist/
 
       - name: Run build script
         run: python build.py
