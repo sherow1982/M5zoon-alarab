@@ -26,6 +26,9 @@ on:
 
 jobs:
   update:
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the changes
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
