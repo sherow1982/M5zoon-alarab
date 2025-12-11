@@ -1,11 +1,10 @@
 # robots.txt for Emirates Gifts Store
 # SEO-optimized for UAE market and bilingual content
-# Enhanced version - Updated: November 1, 2025
+# Updated: November 1, 2025
 
 # Allow all crawlers to access the site
 User-agent: *
 Allow: /
-
 # Disallow access to sensitive directories and files
 Disallow: /data/
 Disallow: /.git/
@@ -17,21 +16,16 @@ Disallow: /tmp/
 Disallow: /cache/
 Disallow: /logs/
 Disallow: /backups/
-Disallow: /config/
-
 # Disallow development and system files
-Disallow: /*.py$
-Disallow: /*.md$
-Disallow: /*.yml$
-Disallow: /*.yaml$
+Disallow: /config/
+Disallow: /.env
+Disallow: /.htaccess
+Disallow: /.htpasswd
 Disallow: /*.log$
 Disallow: /*.bak$
 Disallow: /*.conf$
 Disallow: /*.ini$
 Disallow: /*~$
-Disallow: /.env
-Disallow: /.htaccess
-Disallow: /.htpasswd
 
 # Disallow search and filter URLs to prevent duplicate content
 Disallow: /*?*sort=
@@ -39,21 +33,10 @@ Disallow: /*?*filter=
 Disallow: /*?*page=
 Disallow: /*?*search=
 
-# Allow access to important files and directories
-Allow: /favicon.ico
-Allow: /robots.txt
-Allow: /sitemap*.xml
-Allow: /product-feed.xml
-Allow: /google-merchant-feed*.xml
-Allow: /css/
-Allow: /js/
-Allow: /assets/
-Allow: /images/
-Allow: /img/
-Allow: /en/
-Allow: /blog/
-
 # Special rules for different crawlers
+# Note: Crawl-delay is not honored by Google.
+# It's better to set the crawl rate in Google Search Console.
+
 # Google - highest priority
 User-agent: Googlebot
 Allow: /
@@ -141,38 +124,3 @@ Sitemap: https://emirates-gifts.arabsad.com/sitemap-products.xml
 Sitemap: https://emirates-gifts.arabsad.com/sitemap-blog.xml
 Sitemap: https://emirates-gifts.arabsad.com/en/sitemap-en.xml
 Sitemap: https://emirates-gifts.arabsad.com/product-feed.xml
-Sitemap: https://emirates-gifts.arabsad.com/google-merchant-feed-complete.xml
-
-# Host specification for better SEO
-Host: https://emirates-gifts.arabsad.com
-
-# Clean URLs - specific allowances for SEO
-Allow: /products-showcase
-Allow: /about
-Allow: /blog/
-Allow: /shipping-policy
-Allow: /return-policy
-Allow: /privacy-policy
-Allow: /terms-conditions
-Allow: /cart
-Allow: /checkout
-
-# English version paths
-Allow: /en/
-Allow: /en/products-showcase
-Allow: /en/about
-Allow: /en/blog/
-Allow: /en/shipping-policy
-Allow: /en/return-policy
-Allow: /en/privacy-policy
-Allow: /en/terms-conditions
-
-# Product detail pages
-Allow: /product-details
-Allow: /en/product-details
-
-# Category pages
-Allow: /perfumes
-Allow: /watches
-Allow: /en/perfumes
-Allow: /en/watches
