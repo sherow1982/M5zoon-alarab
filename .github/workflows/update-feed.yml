@@ -65,7 +65,9 @@ jobs:
           git add -A
           if ! git diff --cached --quiet; then
             git commit -m "تحديث تلقائي للمنتجات والمحتوى - $(date +'%Y-%m-%d %H:%M:%S')"
-            git push
+            # Pull remote changes and rebase our commit on top to avoid conflicts
+            git pull --rebase
+            git push # This will now be a fast-forward push
           else
             echo "لا توجد تغييرات للدفع"
           fi
@@ -77,4 +79,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
           exclude: .git* .github* *.py requirements*.txt *.xlsx
-          cname: m5zoon-alarab.com
