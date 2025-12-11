@@ -60,6 +60,8 @@ jobs:
           rsync -av --progress . ./dist/ \
             --exclude="dist" --exclude=".git*" --exclude=".github" \
             --exclude="*.py" --exclude="*.txt" --exclude="*.xlsx" --exclude="*.md"
+          # Explicitly copy the data directory to ensure products are loaded
+          cp -r data/ ./dist/
 
       - name: Run build script
         run: python build.py
