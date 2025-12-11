@@ -76,4 +76,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
+          exclude: .git* .github* *.py requirements*.txt *.xlsx
           cname: m5zoon-alarab.com
