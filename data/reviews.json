@@ -2,6 +2,7 @@
   {
     "productId": "perfume_1",
     "productTitle": "عطر كوكو شانيل 100 مل",
+    "productSlug": "عطر-كوكو-شانيل-100-مل",
     "category": "perfumes",
     "reviews": [
       {
@@ -92,6 +93,7 @@
   {
     "productId": "perfume_2",
     "productTitle": "عطر جوتشي فلورا",
+    "productSlug": "عطر-جوتشي-فلورا",
     "category": "perfumes",
     "reviews": [
       {
@@ -152,6 +154,7 @@
   {
     "productId": "perfume_3",
     "productTitle": "عطر جوتشي بلوم",
+    "productSlug": "عطر-جوتشي-بلوم",
     "category": "perfumes",
     "reviews": [
       {
@@ -202,6 +205,7 @@
   {
     "productId": "watch_1",
     "productTitle": "ساعة رولكس يخت ماستر - فضي",
+    "productSlug": "ساعة-رولكس-يخت-ماستر---فضي",
     "category": "watches",
     "reviews": [
       {
@@ -272,6 +276,7 @@
   {
     "productId": "watch_2",
     "productTitle": "ساعة Rolex كلاسيكية 41 ملم 2022",
+    "productSlug": "ساعة-Rolex-كلاسيكية-41-ملم-2022",
     "category": "watches",
     "reviews": [
       {
@@ -322,6 +327,7 @@
   {
     "productId": "perfume_4",
     "productTitle": "عطر سوفاج ديور 100 مل",
+    "productSlug": "عطر-سوفاج-ديور--100-مل",
     "category": "perfumes",
     "reviews": [
       {
@@ -362,6 +368,7 @@
   {
     "productId": "perfume_5",
     "productTitle": "عطر فرزاتشي ايروس",
+    "productSlug": "عطر-فرزاتشي-ايروس",
     "category": "perfumes",
     "reviews": [
       {
@@ -392,6 +399,7 @@
   {
     "productId": "watch_88",
     "productTitle": "ساعة رولكس بتصميم الكعبة",
+    "productSlug": "ساعة-رولكس-بتصميم-الكعبة",
     "category": "watches",
     "reviews": [
       {
