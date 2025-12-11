@@ -46,6 +46,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-prod.txt
 
+      - name: Prepare deployment directory
+        run: |
+          mkdir -p dist
+          # Copy all site assets except for python scripts and config files
+          rsync -av --progress . ./dist/ \
+            --exclude="dist" --exclude=".git*" --exclude=".github" \
+            --exclude="*.py" --exclude="*.txt" --exclude="*.xlsx" --exclude="*.md"
+
       - name: Run build script
         run: python build.py
 
@@ -54,7 +62,7 @@ jobs:
 
       - name: Generate sitemap
         run: python generate_sitemap.py
-
+        
       - name: Configure Git
         run: |
           git config --local user.email "action@github.com"
@@ -65,8 +73,8 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          exclude: .git* .github* *.py requirements*.txt *.xlsx
+          publish_dir: ./dist
+          # No need for exclude, we are publishing a clean directory
 
       - name: Commit and push generated files to main branch
         if: github.ref == 'refs/heads/main'

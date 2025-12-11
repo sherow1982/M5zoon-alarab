@@ -78,7 +78,7 @@ def generate_product_sitemap():
         SubElement(url_element, "changefreq").text = "weekly"
         SubElement(url_element, "priority").text = "0.8"
 
-    sitemap_path = pathlib.Path("sitemap-products.xml")
+    sitemap_path = pathlib.Path("dist/sitemap-products.xml")
     sitemap_path.write_bytes(prettify_xml(urlset))
     print(f"Generated {len(product_files)} URLs in {sitemap_path}")
     return [urljoin(BASE_URL, sitemap_path.name)]
@@ -125,7 +125,7 @@ def generate_static_pages_sitemap():
             SubElement(url_en, "xhtml:link", rel="alternate", hreflang="ar", href=ar_loc)
             SubElement(url_en, "xhtml:link", rel="alternate", hreflang="x-default", href=ar_loc)
 
-    sitemap_path = pathlib.Path("sitemap-pages.xml")
+    sitemap_path = pathlib.Path("dist/sitemap-pages.xml")
     sitemap_path.write_bytes(prettify_xml(urlset))
     print(f"Generated {len(static_pages) * 2} static page URLs in {sitemap_path}")
     return [urljoin(BASE_URL, sitemap_path.name)]
@@ -145,7 +145,7 @@ def generate_sitemap_index(sitemap_files: list):
         # For simplicity, we use today's date
         SubElement(sitemap_element, "lastmod").text = datetime.now(timezone.utc).strftime('%Y-%m-%d')
 
-    index_path = pathlib.Path("sitemap-index.xml")
+    index_path = pathlib.Path("dist/sitemap-index.xml")
     index_path.write_bytes(prettify_xml(sitemapindex))
     print(f"Generated sitemap index at {index_path} with {len(sitemap_files)} entries.")
 
@@ -158,8 +158,9 @@ def main():
     all_sitemaps.extend(generate_product_sitemap())
     
     # Add other sitemaps if they exist
-    if pathlib.Path("hreflang-sitemap.xml").exists():
-        all_sitemaps.append(urljoin(BASE_URL, "hreflang-sitemap.xml"))
+    hreflang_path = pathlib.Path("dist/hreflang-sitemap.xml")
+    if hreflang_path.exists():
+        all_sitemaps.append(urljoin(BASE_URL, hreflang_path.name))
 
     generate_sitemap_index(all_sitemaps)
     print("✅ Sitemap generation complete.")
