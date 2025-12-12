@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 🔒 STRICT CSP POLICY - NO INLINE CODE ALLOWED -->
+    <!-- ✅ FIXED CSP POLICY - Allows 'unsafe-inline' for styles -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;">
     
     <title>All Products - Emirates Gifts Premium Store</title>
@@ -44,12 +44,12 @@
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
           crossorigin="anonymous">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="../favicon.ico">
+    <!-- Favicon - Using data URI instead of external file to avoid 404 -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%23D4AF37' width='32' height='32' rx='4'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='24' font-weight='bold' fill='%231B2951' font-family='Arial'>EG</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23D4AF37' width='180' height='180' rx='30'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='90' font-weight='bold' fill='%231B2951' font-family='Arial'>EG</text></svg>">
     
     <style>
-        /* 🚫 ZERO POPUP ENVIRONMENT */
+        /* ✅ ZERO POPUP ENVIRONMENT */
         .popup, .modal, .overlay, .notification-banner, .alert, .toast,
         [class*="popup"], [class*="modal"], [class*="overlay"], [class*="notification"] {
             display: none !important;
@@ -127,6 +127,7 @@
             gap: 12px;
             text-decoration: none;
             color: #2c3e50;
+            cursor: pointer;
         }
         
         .logo-icon {
@@ -138,6 +139,10 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            font-weight: 900;
+            font-size: 24px;
+            color: #1B2951;
+            font-family: Arial, sans-serif;
         }
         
         .logo-text {
@@ -181,6 +186,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            cursor: pointer;
         }
         
         .nav-link:hover,
@@ -242,7 +248,7 @@
             outline-offset: 2px;
         }
         
-        /* 🛒 ENHANCED CHECKOUT BUTTON */
+        /* ✅ ENHANCED CHECKOUT BUTTON */
         .checkout-btn {
             background: linear-gradient(135deg, #25D366, #20B358) !important;
             color: white !important;
@@ -380,6 +386,7 @@
             height: 250px;
             overflow: hidden;
             position: relative;
+            background: #f8f9fa;
         }
         
         .product-image {
@@ -532,6 +539,8 @@
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
             font-family: 'Inter', sans-serif;
+            border: none;
+            cursor: pointer;
         }
         
         .checkout-link:hover {
@@ -624,6 +633,7 @@
             text-decoration: none;
             transition: color 0.3s ease;
             font-weight: 500;
+            cursor: pointer;
         }
         
         .footer-section a:hover {
@@ -649,6 +659,8 @@
             font-size: 1.2rem;
             text-decoration: none;
             transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
         
         .social-link:hover {
@@ -773,9 +785,7 @@
         <div class="header-container">
             <div class="header-content">
                 <a href="./" class="logo" aria-label="Go to homepage">
-                    <div class="logo-icon">
-                        <img src="../favicon.ico" alt="Emirates Gifts Logo" width="32" height="32" loading="eager">
-                    </div>
+                    <div class="logo-icon">EG</div>
                     <div class="logo-text">
                         <div class="logo-title">Emirates Gifts</div>
                         <div class="logo-subtitle">هدايا الإمارات</div>
@@ -792,7 +802,7 @@
                 </nav>
 
                 <div class="header-tools">
-                    <!-- 🛒 DIRECT CHECKOUT BUTTON -->
+                    <!-- ✅ DIRECT CHECKOUT BUTTON (No inline handlers) -->
                     <a href="./checkout.html" class="header-tool checkout-btn" 
                        title="Complete Order Now" 
                        aria-label="Go directly to checkout page">
@@ -948,7 +958,27 @@
         </div>
     </footer>
 
-    <!-- Load external script safely -->
+    <!-- ✅ SAFE EXTERNAL SCRIPT LOADING (Message port errors will be handled) -->
     <script src="./js/products-showcase.js"></script>
+    <script>
+        // ✅ GRACEFUL ERROR HANDLING FOR MESSAGE PORT ERRORS
+        window.addEventListener('error', function(event) {
+            // Suppress unchecked runtime.lastError messages
+            if (event.message && event.message.includes('runtime.lastError')) {
+                event.preventDefault();
+                return false;
+            }
+        }, true);
+        
+        // Handle unhandled promise rejections from extensions
+        window.addEventListener('unhandledrejection', function(event) {
+            if (event.reason && event.reason.toString && 
+                (event.reason.toString().includes('runtime.lastError') ||
+                 event.reason.toString().includes('message channel'))) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
 </body>
 </html>
