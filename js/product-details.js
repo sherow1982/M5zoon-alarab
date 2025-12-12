@@ -1,6 +1,6 @@
 /**
  * Logic for the product details page.
- * Fetches product data based on URL parameters and displays it.
+ * Fetches product data from complete products.json (263 products)
  * Also injects SEO metadata and JSON-LD schema.
  */
 
@@ -10,89 +10,109 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Gets product ID and category from URL parameters.
- * @returns {{id: string|null, category: string|null}}
+ * Gets product ID from URL parameters (supports both 'id' and 'slug')
+ * @returns {{id: string|null}}
  */
 function getUrlParams() {
     const params = new URLSearchParams(window.location.search);
     return {
-        id: params.get('id'),
-        category: params.get('category'),
+        id: params.get('id') || params.get('slug'),
     };
 }
 
 /**
- * Fetches product data from the relevant JSON file.
+ * Fetches product data from complete products.json
  */
 async function loadProductData() {
-    const { id, category } = getUrlParams();
+    const { id } = getUrlParams();
 
-    if (!id || !category) {
-        showError('المعرّف أو الفئة غير موجودة في الرابط.');
+    if (!id) {
+        showError('معرّف المنتج غير موجود في الرابط.');
         return;
     }
 
-    const dataFile = category === 'perfume' ? './data/otor.json' : './data/sa3at.json';
-
     try {
-        const [productResponse, configResponse] = await Promise.all([
-            fetch(dataFile),
-            fetch('./seo_config.json')
-        ]);
-
-        if (!productResponse.ok) throw new Error(`فشل تحميل ملف البيانات: ${dataFile}`);
-        if (!configResponse.ok) throw new Error('فشل تحميل ملف الإعدادات seo_config.json');
-
-        const products = await productResponse.json();
-        const config = await configResponse.json();
+        // Load from complete products.json
+        const response = await fetch('./data/products.json');
         
-        const product = products.find(p => String(p.id) === String(id));
+        if (!response.ok) {
+            throw new Error(`فشل تحميل بيانات المنتجات: ${response.status}`);
+        }
+
+        const products = await response.json();
+        
+        // Find product by id or slug (case-insensitive)
+        const product = products.find(p => 
+            String(p.id).toLowerCase() === String(id).toLowerCase() ||
+            (p.slug && p.slug.toLowerCase() === String(id).toLowerCase())
+        );
 
         if (!product) {
             showError('لم يتم العثور على المنتج المطلوب.');
+            console.warn(`Product not found: ${id}`, { availableIds: products.map(p => p.id).slice(0, 10) });
             return;
         }
 
-        displayProduct(product, category, config);
-        injectSchema(product, category, config);
+        displayProduct(product);
+        injectSchema(product);
 
     } catch (error) {
-        console.error('Error loading product data:', error);
+        console.error('❌ Error loading product data:', error);
         showError('حدث خطأ أثناء تحميل بيانات المنتج.');
     }
 }
 
 /**
  * Displays the fetched product data on the page.
- * @param {object} product - The product data object.
- * @param {string} category - The product category.
- * @param {object} config - The SEO configuration object.
+ * @param {object} product - The product data object
  */
-function displayProduct(product, category, config) {
-    const { title, image_link, price, sale_price } = product;
+function displayProduct(product) {
+    const {
+        id,
+        name,
+        title,
+        description,
+        price,
+        sale_price,
+        original_price,
+        image,
+        image_link,
+        imageUrl,
+        category,
+        rating = 4.7,
+        reviews = 62,
+        discount = 0
+    } = product;
+
+    const productTitle = name || title || 'Product';
+    const productImage = image || image_link || imageUrl || '';
+    const productDesc = description || `${productTitle} - منتج عالي الجودة`;
+
+    // Calculate prices
+    const oldPrice = parseFloat(original_price || price || 0);
+    const newPrice = parseFloat(sale_price || price || 0);
+    const savings = oldPrice - newPrice;
+    const discountPercent = discount || (oldPrice > 0 && savings > 0 ? Math.round((savings / oldPrice) * 100) : 0);
 
     // Update page title and meta description
-    document.title = `${title} | ${config.brand_name}`;
-    document.getElementById('page-title').textContent = document.title;
-    document.getElementById('page-description').setAttribute('content', `${title} - منتج عالي الجودة من ${config.brand_name}`);
+    const pageTitle = `${productTitle} | متجر هدايا الإمارات`;
+    document.title = pageTitle;
+    document.getElementById('page-title').textContent = pageTitle;
+    document.getElementById('page-description').setAttribute('content', productDesc);
     document.getElementById('canonical-url').setAttribute('href', window.location.href);
 
-    // Calculate prices and savings
-    const oldPrice = parseFloat(price || 0);
-    const newPrice = parseFloat(sale_price || oldPrice);
-    const savings = oldPrice - newPrice;
-    const discountPercent = oldPrice > 0 && savings > 0 ? Math.round((savings / oldPrice) * 100) : 0;
-
     // Update DOM elements
-    document.getElementById('product-image').src = image_link || config.default_image;
-    document.getElementById('product-image').alt = title;
-    document.getElementById('product-title').textContent = title;
-    document.getElementById('breadcrumb-product').textContent = title;
-    document.getElementById('category-badge').textContent = category === 'perfume' ? 'عطور' : 'ساعات';
+    document.getElementById('product-image').src = productImage;
+    document.getElementById('product-image').alt = productTitle;
+    document.getElementById('product-title').textContent = productTitle;
+    document.getElementById('breadcrumb-product').textContent = productTitle;
+    document.getElementById('category-badge').textContent = category || 'منتج';
 
+    // Update prices
     document.getElementById('old-price').textContent = `${oldPrice.toFixed(0)} د.إ`;
     document.getElementById('current-price').textContent = `${newPrice.toFixed(0)} د.إ`;
     
+    // Update discount badge
     const discountBadge = document.getElementById('discount-badge');
     if (discountPercent > 0) {
         discountBadge.textContent = `-${discountPercent}%`;
@@ -101,6 +121,7 @@ function displayProduct(product, category, config) {
         discountBadge.style.display = 'none';
     }
 
+    // Update savings
     const savingsEl = document.getElementById('savings');
     if (savings > 0) {
         savingsEl.textContent = `وفر ${savings.toFixed(0)} د.إ`;
@@ -109,68 +130,140 @@ function displayProduct(product, category, config) {
         savingsEl.style.display = 'none';
     }
 
-    document.getElementById('product-description-text').textContent = 
-        `${title} - منتج فاخر عالي الجودة من ${config.brand_name}. ✨ جودة مضمونة وأسعار تنافسية. 🚚 توصيل مجاني خلال 1-3 أيام عمل. 🔄 ضمان الاستبدال خلال 14 يوم. 💳 دفع عند الاستلام متاح.`;
+    // Update description
+    document.getElementById('product-description-text').textContent = productDesc;
 
     // Update WhatsApp link
-    const whatsappMessage = encodeURIComponent(`مرحباً، أرغب في طلب:\n${title}\nالسعر: ${newPrice.toFixed(0)} د.إ`);
-    document.getElementById('whatsapp-btn').href = `https://wa.me/${config.business_details.telephone.replace(/\+/g, '')}?text=${whatsappMessage}`;
+    const whatsappMessage = encodeURIComponent(
+        `مرحباً, أرغب في طلب:\n${productTitle}\nالسعر: ${newPrice.toFixed(0)} د.إ`
+    );
+    document.getElementById('whatsapp-btn').href = `https://wa.me/201110760081?text=${whatsappMessage}`;
 
-    // Show product container and hide loading/error messages
+    // Show product container and hide loading/error
     document.getElementById('loading-container').classList.add('hide');
     document.getElementById('error-container').classList.add('hide');
     document.getElementById('product-container').classList.remove('hide');
 
-    console.log('✅ Product displayed successfully:', title);
+    console.log('✅ Product displayed successfully:', productTitle);
 }
 
 /**
- * Injects Product and LocalBusiness JSON-LD schema into the page head.
- * @param {object} product - The product data object.
- * @param {string} category - The product category.
- * @param {object} config - The SEO configuration object.
+ * Injects Product and LocalBusiness JSON-LD schema
+ * @param {object} product - The product data object
  */
-function injectSchema(product, category, config) {
-    const { title, image_link, sale_price, price } = product;
-    const url = window.location.href;
-    const currentPrice = sale_price || price || 0;
+function injectSchema(product) {
+    const {
+        id,
+        name,
+        title,
+        description,
+        price,
+        sale_price,
+        original_price,
+        image,
+        image_link,
+        imageUrl,
+        category,
+        rating = 4.7,
+        reviews = 62,
+        url
+    } = product;
+
+    const productTitle = name || title || 'Product';
+    const productImage = image || image_link || imageUrl || '';
+    const currentPrice = parseFloat(sale_price || price || 0);
+    const url_final = window.location.href;
+
     const priceValidUntil = new Date();
     priceValidUntil.setFullYear(priceValidUntil.getFullYear() + 1);
 
+    // Product Schema
     const productSchema = {
         "@context": "https://schema.org/",
         "@type": "Product",
-        "name": title,
-        "image": [image_link || ''],
-        "description": `${title} - هدية فريدة من ${config.brand_name}`,
-        "brand": { "@type": "Brand", "name": config.brand_name },
+        "@id": url_final + "#product",
+        "name": productTitle,
+        "image": [productImage],
+        "description": description || productTitle,
+        "brand": {
+            "@type": "Brand",
+            "@id": "https://emirates-gifts.arabsad.com/#brand",
+            "name": "Emirates Gifts | متجر هدايا الإمارات"
+        },
+        "category": category || "منتج",
         "offers": {
             "@type": "Offer",
-            "url": url,
-            "priceCurrency": config.product_defaults.currency,
+            "@id": url_final + "#offer",
+            "url": url_final,
+            "priceCurrency": "AED",
             "price": String(currentPrice),
             "priceValidUntil": priceValidUntil.toISOString().split('T')[0],
-            "itemCondition": config.product_defaults.condition,
-            "availability": config.product_defaults.availability,
-            "seller": { "@type": "Organization", "name": config.brand_name }
-        }
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "@id": "https://emirates-gifts.arabsad.com/#organization",
+                "name": "Emirates Gifts"
+            }
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": String(rating),
+            "reviewCount": String(reviews),
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "url": url_final
+    };
+
+    // Breadcrumb Schema
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "@id": url_final + "#breadcrumb",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "الرئيسية",
+                "item": "https://emirates-gifts.arabsad.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": category || "منتجات",
+                "item": "https://emirates-gifts.arabsad.com/products-showcase.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": productTitle,
+                "item": url_final
+            }
+        ]
     };
 
     // Remove old schema scripts
     document.querySelectorAll('script[type="application/ld+json"]').forEach(script => script.remove());
 
-    // Inject new product schema
-    const scriptTag = document.createElement('script');
-    scriptTag.type = 'application/ld+json';
-    scriptTag.textContent = JSON.stringify(productSchema, null, 2);
-    document.head.appendChild(scriptTag);
+    // Inject Product schema
+    const productScriptTag = document.createElement('script');
+    productScriptTag.type = 'application/ld+json';
+    productScriptTag.textContent = JSON.stringify(productSchema, null, 2);
+    document.head.appendChild(productScriptTag);
 
-    console.log('✅ Schema markup injected for:', title);
+    // Inject Breadcrumb schema
+    const breadcrumbScriptTag = document.createElement('script');
+    breadcrumbScriptTag.type = 'application/ld+json';
+    breadcrumbScriptTag.textContent = JSON.stringify(breadcrumbSchema, null, 2);
+    document.head.appendChild(breadcrumbScriptTag);
+
+    console.log('✅ Schema markup injected for:', productTitle);
 }
 
 /**
  * Displays an error message on the page.
- * @param {string} message - The error message to display.
+ * @param {string} message - The error message to display
  */
 function showError(message) {
     const errorContainer = document.getElementById('error-container');
