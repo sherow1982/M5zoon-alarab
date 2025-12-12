@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{productNameAR}} - عطر فاخر وهدية من متجر الإمارات. شحن سريع في جميع أنحاء الإمارات.">
+    <meta name="keywords" content="{{productNameAR}}, عطر فاخر, هدية, إمارات, شراء">
+    <title>{{productNameAR}} - متجر الإمارات للهدايا</title>
+    
+    <!-- Hreflang للـ SEO ثنائي اللغة -->
+    <link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/products/{{productSlug}}.html" />
+    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/en/product-detail.html?id={{productId}}" />
+    <link rel="canonical" href="https://emirates-gifts.arabsad.com/products/{{productSlug}}.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="product">
+    <meta property="og:title" content="{{productNameAR}} - متجر الإمارات">
+    <meta property="og:description" content="{{productDescriptionAR}}">
+    <meta property="og:image" content="https://emirates-gifts.arabsad.com/images/products/{{productId}}.jpg">
+    <meta property="og:url" content="https://emirates-gifts.arabsad.com/products/{{productSlug}}.html">
+    <meta property="og:site_name" content="متجر الإمارات للهدايا">
+    
+    <!-- Structured Data - Product Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "{{productNameAR}}",
+      "description": "{{productDescriptionAR}}",
+      "image": "https://emirates-gifts.arabsad.com/images/products/{{productId}}.jpg",
+      "sku": "{{productId}}",
+      "gtin": "{{productGtin}}",
+      "brand": {
+        "@type": "Brand",
+        "name": "{{brandNameAR}}"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://emirates-gifts.arabsad.com/products/{{productSlug}}.html",
+        "priceCurrency": "AED",
+        "price": "{{price}}",
+        "priceValidUntil": "2025-12-31",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "متجر الإمارات للهدايا"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{rating}}",
+        "ratingCount": "{{ratingCount}}",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://emirates-gifts.arabsad.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "المنتجات",
+          "item": "https://emirates-gifts.arabsad.com/products/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{categoryNameAR}}",
+          "item": "https://emirates-gifts.arabsad.com/products/?category={{category}}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "{{productNameAR}}",
+          "item": "https://emirates-gifts.arabsad.com/products/{{productSlug}}.html"
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Arial', 'Droid Arabic Kufi';
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+            border-bottom: 3px solid #D4AF37;
+            text-align: right;
+        }
+        
+        header a {
+            color: #D4AF37;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #666;
+            text-align: right;
+        }
+        
+        .breadcrumb a {
+            color: #D4AF37;
+            text-decoration: none;
+        }
+        
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+            height: 500px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            order: 2;
+        }
+        
+        .product-info {
+            order: 1;
+        }
+        
+        .product-info h1 {
+            font-size: 36px;
+            color: #D4AF37;
+            margin-bottom: 15px;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: flex-end;
+        }
+        
+        .stars {
+            color: #D4AF37;
+            font-size: 18px;
+        }
+        
+        .rating-text {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .price {
+            font-size: 32px;
+            color: #D4AF37;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            text-align: right;
+        }
+        
+        .features {
+            margin-bottom: 30px;
+        }
+        
+        .features h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .features ul {
+            list-style: none;
+            padding-right: 0;
+        }
+        
+        .features li {
+            padding: 8px 0;
+            padding-right: 25px;
+            position: relative;
+            color: #666;
+            text-align: right;
+        }
+        
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: #D4AF37;
+            font-weight: bold;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-direction: row-reverse;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: #D4AF37;
+            color: black;
+            flex: 1;
+        }
+        
+        .btn-primary:hover {
+            background: #e6c200;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #D4AF37;
+            flex: 1;
+        }
+        
+        .btn-secondary:hover {
+            background: #f0f0f0;
+        }
+        
+        .info-box {
+            background: #f9f9f9;
+            padding: 15px;
+            border-right: 4px solid #D4AF37;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            text-align: right;
+        }
+        
+        .reviews {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+        
+        .review-item {
+            background: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            text-align: right;
+        }
+        
+        .review-author {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .review-rating {
+            color: #D4AF37;
+            margin-bottom: 10px;
+        }
+        
+        .review-text {
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .product-image {
+                height: 300px;
+                order: 1;
+            }
+            
+            .product-info {
+                order: 2;
+            }
+            
+            .buttons {
+                flex-direction: column-reverse;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/">← العودة للرئيسية</a>
+    </header>
+    
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <span>{{productNameAR}}</span> / 
+            <a href="/products/?category={{category}}">{{categoryNameAR}}</a> / 
+            <a href="/products/">المنتجات</a> / 
+            <a href="/">الرئيسية</a>
+        </div>
+        
+        <!-- Product Details -->
+        <div class="product-container">
+            <!-- Product Image -->
+            <div class="product-image">
+                {{emoji}}
+            </div>
+            
+            <!-- Product Info -->
+            <div class="product-info">
+                <h1>{{productNameAR}}</h1>
+                
+                <!-- Rating -->
+                <div class="rating">
+                    <span class="rating-text">({{ratingCount}} تقييمات)</span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                
+                <!-- Price -->
+                <div class="price">{{price}} درهم</div>
+                
+                <!-- Description -->
+                <div class="description">
+                    {{productDescriptionAR}}
+                </div>
+                
+                <!-- Features -->
+                <div class="features">
+                    <h3>المميزات الرئيسية:</h3>
+                    <ul>
+                        <li>جودة عالية جداً</li>
+                        <li>شحن سريع في جميع أنحاء الإمارات</li>
+                        <li>ضمان استرجاع الأموال 30 يوم</li>
+                        <li>أصلي وموثق 100%</li>
+                        <li>تغليف هدية فاخر</li>
+                    </ul>
+                </div>
+                
+                <!-- Buttons -->
+                <div class="buttons">
+                    <button class="btn btn-secondary" onclick="toggleWishlist('{{productId}}')">♥ قائمة الرغبات</button>
+                    <button class="btn btn-primary" onclick="addToCart('{{productId}}')">أضف للسلة</button>
+                </div>
+                
+                <!-- Info Boxes -->
+                <div class="info-box">
+                    <strong>🚚 شحن مجاني</strong><br>
+                    على الطلبات فوق 200 درهم في الإمارات
+                </div>
+                
+                <div class="info-box">
+                    <strong>💰 أفضل سعر مضمون</strong><br>
+                    نوفر أفضل الأسعار التنافسية في السوق
+                </div>
+            </div>
+        </div>
+        
+        <!-- Customer Reviews -->
+        <div class="reviews">
+            <h2>تقييمات العملاء</h2>
+            
+            <div class="review-item">
+                <div class="review-author">أحمد محمد - عملية معتمدة</div>
+                <div class="review-rating">★★★★★</div>
+                <div class="review-text">جودة ممتازة! الوصول كان في الموعد والتغليف احترافي جداً. أنصح به بشدة.</div>
+            </div>
+            
+            <div class="review-item">
+                <div class="review-author">سارة علي - عملية معتمدة</div>
+                <div class="review-rating">★★★★★</div>
+                <div class="review-text">هدية مثالية! المنتج بالفعل كما هو موصوف وخدمة العملاء كانت رائعة جداً.</div>
+            </div>
+            
+            <div class="review-item">
+                <div class="review-author">محمد كريم - عملية معتمدة</div>
+                <div class="review-rating">★★★★★</div>
+                <div class="review-text">شحن سريع وقيمة رائعة مقابل المال. سأطلب مجدداً بالتأكيد!</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function addToCart(productId) {
+            alert('تم إضافة المنتج للسلة! (ID: ' + productId + ')');
+            // Add actual cart functionality here
+        }
+        
+        function toggleWishlist(productId) {
+            alert('تمت إضافته لقائمة الرغبات! (ID: ' + productId + ')');
+            // Add actual wishlist functionality here
+        }
+    </script>
+</body>
+</html>
