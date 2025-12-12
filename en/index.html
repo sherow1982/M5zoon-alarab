@@ -17,7 +17,7 @@
     <meta property="og:description" content="Discover the finest collections of premium perfumes and luxury gifts in the UAE.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sherow1982.github.io/emirates-gifts/en/">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1541643600914-78b084683601?w=1200&h=630&fit=crop&crop=center">
+    <meta property="og:image" content="https://sherow1982.github.io/emirates-gifts/images/logo.svg">
     
     <!-- Performance Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,8 +30,13 @@
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
           crossorigin="anonymous">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/logo.svg">
+    <link rel="apple-touch-icon" href="../images/logo.svg">
+
     <!-- Main Stylesheet for English version -->
     <link rel="stylesheet" href="./css/main-en.css">
+    <link rel="stylesheet" href="./css/buttons.css">
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
@@ -49,7 +54,7 @@
             <div class="header-content">
                 <a href="./" class="logo" aria-label="Go to homepage">
                     <div class="logo-icon">
-                        <img src="../images/logo.png" alt="Emirates Gifts Logo" width="50" height="50" loading="eager">
+                        <img src="../images/logo.svg" alt="Emirates Gifts Logo" width="50" height="50" loading="eager">
                     </div>
                     <div class="logo-text">
                         <div class="logo-title">Emirates Gifts</div>
@@ -69,7 +74,7 @@
                 </nav>
 
                 <div class="header-tools">
-                    <!-- 🛒 DIRECT CHECKOUT BUTTON (REPLACING CART) -->
+                    <!-- 🛒 DIRECT CHECKOUT BUTTON -->
                     <a href="./checkout.html" class="header-tool checkout-btn" 
                        title="Complete Order Now" 
                        aria-label="Go directly to checkout page">
@@ -96,14 +101,14 @@
                     <p class="hero-subtitle">
                         Discover the most exquisite collections of premium Eastern and Western perfumes, and distinctive luxury gifts that express your refined taste
                     </p>
-                    <div class="hero-cta">
+                    <div class="hero-cta button-group">
                         <a href="#perfumes-section" class="btn-primary" aria-label="Start shopping in perfumes section">
                             <i class="fas fa-shopping-bag" aria-hidden="true"></i>
-                            Shop Now
+                            <span>Shop Now</span>
                         </a>
                         <a href="./products-showcase.html" class="btn-secondary" aria-label="View all products">
                             <i class="fas fa-star" aria-hidden="true"></i>
-                            View All Products
+                            <span>View All Products</span>
                         </a>
                     </div>
                 </div>
@@ -128,20 +133,19 @@
                         </p>
                         <a href="./products-showcase.html?category=perfumes" class="view-all-link" aria-label="View all perfumes">
                             <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                            View All Perfumes
+                            <span>View All Perfumes</span>
                         </a>
                     </div>
                     <div class="products-grid" id="perfumes-grid" role="grid" aria-label="Perfumes display grid">
                         <div class="loading-message" role="status" aria-live="polite">
-                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;" aria-hidden="true"></i>
+                            <i class="fas fa-spinner loading-spinner-icon" aria-hidden="true"></i>
                             Loading premium perfumes...
                         </div>
                     </div>
                     
+                    <!-- VIEW MORE BUTTON -->
                     <div class="view-more-container">
-                        <button class="view-more-button" id="perfumes-view-more" 
-                                style="display: inline-flex;" 
-                                aria-label="View more perfumes">
+                        <button class="view-more-button" id="perfumes-view-more" aria-label="View more perfumes">
                             <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             <span>View More Perfumes</span>
                             <i class="fas fa-arrow-down" aria-hidden="true"></i>
@@ -161,20 +165,19 @@
                         </p>
                         <a href="./products-showcase.html?category=watches" class="view-all-link" aria-label="View all watches">
                             <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                            View All Watches
+                            <span>View All Watches</span>
                         </a>
                     </div>
                     <div class="products-grid" id="watches-grid" role="grid" aria-label="Watches display grid">
                         <div class="loading-message" role="status" aria-live="polite">
-                            <i class="fas fa-spinner" style="animation: spin 1s linear infinite;" aria-hidden="true"></i>
+                            <i class="fas fa-spinner loading-spinner-icon" aria-hidden="true"></i>
                             Loading premium watches...
                         </div>
                     </div>
                     
+                    <!-- VIEW MORE BUTTON -->
                     <div class="view-more-container">
-                        <button class="view-more-button" id="watches-view-more" 
-                                style="display: inline-flex;" 
-                                aria-label="View more watches">
+                        <button class="view-more-button" id="watches-view-more" aria-label="View more watches">
                             <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             <span>View More Watches</span>
                             <i class="fas fa-arrow-down" aria-hidden="true"></i>
@@ -206,9 +209,9 @@
                     <ul>
                         <li><a href="./">Home</a></li>
                         <li><a href="./products-showcase.html">All Products</a></li>
-                        <li><a href="./cart.html" style="color: #D4AF37; font-weight: bold;">Cart</a></li>
-                        <li><a href="./checkout.html" style="color: #25D366; font-weight: bold;">Complete Order</a></li>
-                        <li><a href="../" target="_blank" rel="noopener" style="color: #D4AF37; font-weight: bold;"><i class="fas fa-globe" aria-hidden="true"></i> Arabic Version</a></li>
+                        <li><a href="./cart.html" class="footer-link-highlight-gold">Cart</a></li>
+                        <li><a href="./checkout.html" class="footer-link-highlight-green">Complete Order</a></li>
+                        <li><a href="../" target="_blank" rel="noopener" class="footer-link-highlight-gold"><i class="fas fa-globe" aria-hidden="true"></i> Arabic Version</a></li>
                     </ul>
                 </div>
 
@@ -237,7 +240,7 @@
                 <div class="footer-legal">
                     <p>&copy; 2024 Emirates Gifts. All rights reserved.</p>
                 </div>
-                <div style="display: flex; gap: 30px; flex-wrap: wrap; color: #ccc; font-size: 0.9rem;">
+                <div class="footer-bottom-features">
                     <span><i class="fas fa-truck" aria-hidden="true"></i> Shipping within 1-3 business days</span>
                     <span><i class="fas fa-undo" aria-hidden="true"></i> Returns within 14 days + shipping fees</span>
                     <span><i class="fas fa-star" aria-hidden="true"></i> Premium quality guaranteed</span>
