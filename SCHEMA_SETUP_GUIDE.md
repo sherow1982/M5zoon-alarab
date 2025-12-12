@@ -27,20 +27,19 @@ lib/
 
 ### لل Next.js App Router:
 
-```javascript
-// app/layout.js
+Open your layout.js and add this code:
 
+```javascript
 import Head from 'next/head';
 import { getProductsSchema } from '@/lib/schema-handler';
 
 export default function RootLayout({ children }) {
-  const isArabic = true; // ريً a على locale
+  const isArabic = true; // Based on your locale
   const schema = getProductsSchema(isArabic ? 'ar' : 'en');
 
   return (
     <html>
       <head>
-        {/* Schema Markup */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -67,14 +66,12 @@ export default function RootLayout({ children }) {
 ### لل Product Page:
 
 ```javascript
-// app/products/[id]/page.js
-
 import { useEffect } from 'react';
 import { getProductSchema, injectSchema } from '@/lib/schema-handler';
 
 export default function ProductPage({ params, product }) {
   useEffect(() => {
-    const schema = getProductSchema(product, 'ar'); // أو 'en'
+    const schema = getProductSchema(product, 'ar');
     injectSchema(schema);
   }, [product]);
 
@@ -91,8 +88,6 @@ export default function ProductPage({ params, product }) {
 ## 4️⃣ التثبيت لل Pages Router (Pages Directory):
 
 ```javascript
-// pages/_document.js
-
 import { Html, Head, Main, NextScript } from 'next/document';
 import { getProductsSchema } from '@/lib/schema-handler';
 
@@ -132,24 +127,22 @@ export default function Document() {
 
 1. **Google Rich Results Test:**
    - https://search.google.com/test/rich-results
-   - انسخ ت الرابط الموقع
-   - اضغط "Test URL"
+   - Copy your website link
+   - Click Test URL
 
 2. **Schema.org Validator:**
    - https://validator.schema.org/
-   - الق رابطك هنا
+   - Paste your link here
 
 3. **Browser Dev Tools:**
-   - F12 → Console
-   - ابحث عن `<script type="application/ld+json">`
+   - F12 then Console tab
+   - Search for script type="application/ld+json"
 
 ---
 
 ## 6️⃣ مثال لل Dynamic Products:
 
 ```javascript
-// components/ProductList.js
-
 import { useEffect, useState } from 'react';
 import { injectSchema } from '@/lib/schema-handler';
 
@@ -157,13 +150,11 @@ export default function ProductList() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // جلب المنتجات
     const fetchProducts = async () => {
       const res = await fetch('/api/products');
       const data = await res.json();
       setProducts(data);
 
-      // أضف schema لكل منتج
       data.forEach(product => {
         injectSchema(getProductSchema(product, 'ar'));
       });
@@ -192,10 +183,10 @@ export default function ProductList() {
 
 | المشكلة | السبب | الحل |
 |-------|--------|------|
-| ما تظهر السكيما | قد تكون في _document.js | الق ممحا بسيطة في Head |
-| JSON Invalid | أو Invalid JSON | استخدم JSON.stringify() |
-| Prices Missing | البيانات ناقصة | اربط مع API مباشر |
-| Language Issues | locale غير صحيح | تحقق من router.locale |
+| ما تظهر السكيما | قد تكون في _document.js | Check Head placement |
+| JSON Invalid | Bad JSON format | Use JSON.stringify() |
+| Prices Missing | Data incomplete | Connect to API |
+| Language Issues | Wrong locale | Check router.locale |
 
 ---
 
@@ -203,33 +194,36 @@ export default function ProductList() {
 
 ✅ **أزيا السكيما:**
 
-- 🕳️ **SEO أفضل** - Google يفهم المنتجات
-- ⭐ **Rich Snippets** - عرض التقييمات
-- 📄 **Google Merchant** - للعرض قيمه
-- 📈 **Analytics** - تحسين CTR
-- 🌏 **Voice Search** - تأثير على Alexa/Google Home
+- Better SEO - Google understands products
+- Rich Snippets - Shows ratings and prices
+- Google Merchant - Better listings
+- Analytics - Better CTR tracking
+- Voice Search - Works with Alexa/Google Home
 
 ---
 
 ## 9️⃣ الملفات الجاهزة:
 
 ✅ **JSON Schema Files:**
-- `public/schema/products-schema-ar.json` (رابط: https://github.com/sherow1982/emirates-gifts/blob/main/public/schema/products-schema-ar.json)
-- `public/schema/products-schema-en.json` (رابط: https://github.com/sherow1982/emirates-gifts/blob/main/public/schema/products-schema-en.json)
+- public/schema/products-schema-ar.json
+- public/schema/products-schema-en.json
 
 ✅ **Utility Function:**
-- `lib/schema-handler.js` (رابط: https://github.com/sherow1982/emirates-gifts/blob/main/lib/schema-handler.js)
+- lib/schema-handler.js
 
 ---
 
 ## ❓ الأسئلة الشائعة:
 
-**Q: هل هذا يأثر على مشاهدة الموقع?**
-الا: لا! السكيما للبحث فقط (Hidden from view)
+Q: Does this affect page viewing?
+A: No! Schema is hidden from users (for search engines only)
 
-**Q: يريد كل منتج سكيما منفرد?**
-الا: نعم! استخدم `getProductSchema()` لكل منتج
+Q: Do I need schema per product?
+A: Yes! Use getProductSchema() for each product
+
+Q: Where do I add this code?
+A: In your layout.js or _document.js file
 
 ---
 
-**✨ تم العمل!**
+**Done! Your schema is set up correctly!**
