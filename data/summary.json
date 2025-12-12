@@ -1,14 +1,13 @@
 {
-  "timestamp": "2025-12-12T14:20:00Z",
-  "total_products": 241,
+  "timestamp": "2025-12-12T15:01:53.859Z",
+  "total_products": 263,
   "perfumes": 66,
-  "watches": 175,
+  "watches": 197,
   "status": "success",
-  "message": "All products data loaded successfully",
   "feeds": {
-    "csv_ar": "https://emirates-gifts.arabsad.com/feeds/merchant-feed-ar.csv",
-    "csv_en": "https://emirates-gifts.arabsad.com/feeds/merchant-feed-en.csv",
-    "xml": "https://emirates-gifts.arabsad.com/feeds/merchant-feed.xml",
-    "json": "https://emirates-gifts.arabsad.com/data/products.json"
+    "csv_ar": "https://raw.githubusercontent.com/sherow1982/emirates-gifts/main/public/feeds/merchant-feed-ar.csv",
+    "csv_en": "https://raw.githubusercontent.com/sherow1982/emirates-gifts/main/public/feeds/merchant-feed-en.csv",
+    "xml": "https://raw.githubusercontent.com/sherow1982/emirates-gifts/main/public/feeds/merchant-feed.xml",
+    "json": "https://raw.githubusercontent.com/sherow1982/emirates-gifts/main/data/products.json"
   }
 }

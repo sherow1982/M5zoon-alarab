@@ -1,65 +1,3427 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
 <channel>
-  <title>Emirates Gifts - Products Feed</title>
-  <link>https://emirates-gifts.arabsad.com</link>
-  <description>Premium gifts collection - perfumes and watches</description>
-  
-  <item>
-    <g:id>perfume_1</g:id>
-    <title>عطر كوكو شانيل 100 مل</title>
-    <description>عطر كوكو شانيل مباشر من المخزن - هدية فريدة</description>
-    <link>https://emirates-gifts.arabsad.com/products/perfume_1</link>
-    <g:image_link>https://m5zoon.com/public/uploads/products/1722352332177124.webp</g:image_link>
-    <g:price>352 AED</g:price>
-    <g:sale_price>252 AED</g:sale_price>
-    <g:availability>in stock</g:availability>
-    <g:condition>new</g:condition>
-    <g:brand>Chanel</g:brand>
-    <g:product_type>عطور</g:product_type>
-  </item>
-  
-  <item>
-    <g:id>perfume_2</g:id>
-    <title>عطر جوتشي فلورا</title>
-    <description>عطر جوتشي فلورا للنساء - هدية فريدة</description>
-    <link>https://emirates-gifts.arabsad.com/products/perfume_2</link>
-    <g:image_link>https://m5zoon.com/public/uploads/products/1720344963790342.webp</g:image_link>
-    <g:price>352 AED</g:price>
-    <g:sale_price>252 AED</g:sale_price>
-    <g:availability>in stock</g:availability>
-    <g:condition>new</g:condition>
-    <g:brand>Gucci</g:brand>
-    <g:product_type>عطور</g:product_type>
-  </item>
-  
-  <item>
-    <g:id>watch_1</g:id>
-    <title>ساعة رولكس يخت ماستر - فضي</title>
-    <description>ساعة رولكس يخت ماستر بالفضي - ساعة فاخرة</description>
-    <link>https://emirates-gifts.arabsad.com/products/watch_1</link>
-    <g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
-    <g:price>370 AED</g:price>
-    <g:sale_price>320 AED</g:sale_price>
-    <g:availability>in stock</g:availability>
-    <g:condition>new</g:condition>
-    <g:brand>Rolex</g:brand>
-    <g:product_type>ساعات</g:product_type>
-  </item>
-  
-  <item>
-    <g:id>watch_2</g:id>
-    <title>ساعة Rolex كلاسيكية 41 ملم 2022</title>
-    <description>ساعة Rolex كلاسيكية - ساعة فاخرة</description>
-    <link>https://emirates-gifts.arabsad.com/products/watch_2</link>
-    <g:image_link>https://m5zoon.com/public/uploads/products/1741223185271965.png</g:image_link>
-    <g:price>375 AED</g:price>
-    <g:sale_price>325 AED</g:sale_price>
-    <g:availability>in stock</g:availability>
-    <g:condition>new</g:condition>
-    <g:brand>Rolex</g:brand>
-    <g:product_type>ساعات</g:product_type>
-  </item>
-  
+<title>Emirates Gifts - Products Feed</title>
+<link>https://emirates-gifts.arabsad.com</link>
+<description>Premium gifts collection</description>
+<item>
+  <g:id>perfume_1</g:id>
+  <title>عطر كوكو شانيل 100 مل</title>
+  <description>عطر كوكو شانيل 100 مل - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_1</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1722352332177124.webp</g:image_link>
+  <g:price>352 AED</g:price>
+  <g:sale_price>252 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_2</g:id>
+  <title>عطر جوتشي فلورا</title>
+  <description>عطر جوتشي فلورا - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_2</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1720344963790342.webp</g:image_link>
+  <g:price>352 AED</g:price>
+  <g:sale_price>252 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_3</g:id>
+  <title>عطر جوتشي بلوم</title>
+  <description>عطر جوتشي بلوم - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_3</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1720344971935939.webp</g:image_link>
+  <g:price>352 AED</g:price>
+  <g:sale_price>252 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_4</g:id>
+  <title>عطر سوفاج ديور  100 مل</title>
+  <description>عطر سوفاج ديور  100 مل - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_4</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1720344979304336.webp</g:image_link>
+  <g:price>352 AED</g:price>
+  <g:sale_price>252 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_5</g:id>
+  <title>عطر فرزاتشي ايروس</title>
+  <description>عطر فرزاتشي ايروس - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_5</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1720345001981811.webp</g:image_link>
+  <g:price>352 AED</g:price>
+  <g:sale_price>252 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_6</g:id>
+  <title>فواحة عطرية للسيارة قابلة لإعادة الشحن</title>
+  <description>فواحة عطرية للسيارة قابلة لإعادة الشحن - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_6</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1722352237120309.webp</g:image_link>
+  <g:price>364 AED</g:price>
+  <g:sale_price>264 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_7</g:id>
+  <title>Eau The Audacity Penhaligons Green</title>
+  <description>Eau The Audacity Penhaligons Green - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_7</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175669385359976.webp</g:image_link>
+  <g:price>385 AED</g:price>
+  <g:sale_price>285 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_8</g:id>
+  <title>Eau The Audacity Penhaligons white</title>
+  <description>Eau The Audacity Penhaligons white - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_8</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1756693962685036.webp</g:image_link>
+  <g:price>385 AED</g:price>
+  <g:sale_price>285 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_9</g:id>
+  <title>Fleurs  Bohemes Inverness</title>
+  <description>Fleurs  Bohemes Inverness - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_9</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1756694224611806.webp</g:image_link>
+  <g:price>385 AED</g:price>
+  <g:sale_price>285 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_10</g:id>
+  <title>Tom Ford Vanilla Sex</title>
+  <description>Tom Ford Vanilla Sex - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_10</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1757731212122499.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>265 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_11</g:id>
+  <title>Tom Ford Myrrhe Mystere</title>
+  <description>Tom Ford Myrrhe Mystere - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_11</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175773127350287.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>265 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_12</g:id>
+  <title>Tom Ford Eau De Soleil Blanc</title>
+  <description>Tom Ford Eau De Soleil Blanc - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_12</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175773142284159.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>265 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_13</g:id>
+  <title>Tom Ford Ombre Leather</title>
+  <description>Tom Ford Ombre Leather - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_13</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1757731526832014.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>265 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_14</g:id>
+  <title>Tomber</title>
+  <description>Tomber - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_14</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175899730567885.webp</g:image_link>
+  <g:price>419 AED</g:price>
+  <g:sale_price>319 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_15</g:id>
+  <title>Aromatic</title>
+  <description>Aromatic - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_15</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758997399436910.webp</g:image_link>
+  <g:price>419 AED</g:price>
+  <g:sale_price>319 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_16</g:id>
+  <title>Khaneen</title>
+  <description>Khaneen - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_16</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758997512844520.webp</g:image_link>
+  <g:price>419 AED</g:price>
+  <g:sale_price>319 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_17</g:id>
+  <title>Paradise ( Black) 50ml</title>
+  <description>Paradise ( Black) 50ml - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_17</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758997664611779.webp</g:image_link>
+  <g:price>419 AED</g:price>
+  <g:sale_price>319 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_18</g:id>
+  <title>Paradise  ( white) 30ml</title>
+  <description>Paradise  ( white) 30ml - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_18</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758997816586574.webp</g:image_link>
+  <g:price>381 AED</g:price>
+  <g:sale_price>281 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_19</g:id>
+  <title>De louvre (black) 50ml</title>
+  <description>De louvre (black) 50ml - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_19</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758998016168560.webp</g:image_link>
+  <g:price>419 AED</g:price>
+  <g:sale_price>319 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_20</g:id>
+  <title>De louvre (white) 30ml</title>
+  <description>De louvre (white) 30ml - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_20</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758998095266894.webp</g:image_link>
+  <g:price>381 AED</g:price>
+  <g:sale_price>281 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_21</g:id>
+  <title>Autumn</title>
+  <description>Autumn - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_21</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758998200679705.webp</g:image_link>
+  <g:price>381 AED</g:price>
+  <g:sale_price>281 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_22</g:id>
+  <title>Emotion (black) 50ml</title>
+  <description>Emotion (black) 50ml - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_22</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758994695538187.webp</g:image_link>
+  <g:price>419 AED</g:price>
+  <g:sale_price>319 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_23</g:id>
+  <title>Emotion (white) 30ml</title>
+  <description>Emotion (white) 30ml - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_23</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758994813953968.webp</g:image_link>
+  <g:price>381 AED</g:price>
+  <g:sale_price>281 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_24</g:id>
+  <title>Emotion ( HAIR SERUM )</title>
+  <description>Emotion ( HAIR SERUM ) - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_24</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758994946411884.webp</g:image_link>
+  <g:price>385 AED</g:price>
+  <g:sale_price>285 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_25</g:id>
+  <title>Emotion ( HAIR & BODY MIST)</title>
+  <description>Emotion ( HAIR & BODY MIST) - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_25</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758995006710566.webp</g:image_link>
+  <g:price>390 AED</g:price>
+  <g:sale_price>290 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_26</g:id>
+  <title>Glory</title>
+  <description>Glory - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_26</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758995050816081.webp</g:image_link>
+  <g:price>470 AED</g:price>
+  <g:sale_price>370 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_27</g:id>
+  <title>ARIAF</title>
+  <description>ARIAF - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_27</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758995115569006.webp</g:image_link>
+  <g:price>381 AED</g:price>
+  <g:sale_price>281 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_28</g:id>
+  <title>JORA (HAIR SERUM )</title>
+  <description>JORA (HAIR SERUM ) - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_28</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758995171280243.webp</g:image_link>
+  <g:price>385 AED</g:price>
+  <g:sale_price>285 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_29</g:id>
+  <title>JORA ( HAIR & BODY MIST)</title>
+  <description>JORA ( HAIR & BODY MIST) - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_29</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758995240771137.webp</g:image_link>
+  <g:price>390 AED</g:price>
+  <g:sale_price>290 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_30</g:id>
+  <title>Oud Al-Brayeh</title>
+  <description>Oud Al-Brayeh - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_30</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758995285297398.webp</g:image_link>
+  <g:price>390 AED</g:price>
+  <g:sale_price>290 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_31</g:id>
+  <title>SHAIKAH HIND</title>
+  <description>SHAIKAH HIND - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_31</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758995318698510.webp</g:image_link>
+  <g:price>390 AED</g:price>
+  <g:sale_price>290 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_32</g:id>
+  <title>دخون راقيه</title>
+  <description>دخون راقيه - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_32</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758995634493034.webp</g:image_link>
+  <g:price>390 AED</g:price>
+  <g:sale_price>290 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_33</g:id>
+  <title>دخون عبدالرشيد</title>
+  <description>دخون عبدالرشيد - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_33</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758995672598233.webp</g:image_link>
+  <g:price>390 AED</g:price>
+  <g:sale_price>290 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_34</g:id>
+  <title>دخون بو خالد</title>
+  <description>دخون بو خالد - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_34</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758995694164281.webp</g:image_link>
+  <g:price>390 AED</g:price>
+  <g:sale_price>290 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_35</g:id>
+  <title>دخون بن لوتاه</title>
+  <description>دخون بن لوتاه - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_35</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758995715273869.webp</g:image_link>
+  <g:price>390 AED</g:price>
+  <g:sale_price>290 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_36</g:id>
+  <title>Tom Ford Bitter Peach</title>
+  <description>Tom Ford Bitter Peach - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_36</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759671271239887.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_37</g:id>
+  <title>Tom Ford Tuscan Leather</title>
+  <description>Tom Ford Tuscan Leather - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_37</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759671443655830.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_38</g:id>
+  <title>Tom Ford Black Lacouer</title>
+  <description>Tom Ford Black Lacouer - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_38</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759671623798685.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_39</g:id>
+  <title>Tom Ford Oud Minerale</title>
+  <description>Tom Ford Oud Minerale - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_39</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759671814358679.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_40</g:id>
+  <title>Tom Ford Ebene Fume</title>
+  <description>Tom Ford Ebene Fume - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_40</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759672010235875.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_41</g:id>
+  <title>Tom Ford Neroli Portofino</title>
+  <description>Tom Ford Neroli Portofino - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_41</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759672123220700.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_42</g:id>
+  <title>Hermes Maguet Porcelaine</title>
+  <description>Hermes Maguet Porcelaine - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_42</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759672442981598.webp</g:image_link>
+  <g:price>380 AED</g:price>
+  <g:sale_price>280 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_43</g:id>
+  <title>Penhaligons Halfeti Leather</title>
+  <description>Penhaligons Halfeti Leather - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_43</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759672817518252.png</g:image_link>
+  <g:price>380 AED</g:price>
+  <g:sale_price>280 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_44</g:id>
+  <title>Xerjoff Tonny Iommi</title>
+  <description>Xerjoff Tonny Iommi - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_44</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759672907296410.webp</g:image_link>
+  <g:price>380 AED</g:price>
+  <g:sale_price>280 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_45</g:id>
+  <title>Kayali vanilla candy pink</title>
+  <description>Kayali vanilla candy pink - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_45</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759673129924512.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>275 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_46</g:id>
+  <title>Kayali Eden</title>
+  <description>Kayali Eden - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_46</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759673390418898.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>275 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_47</g:id>
+  <title>Kayali Vanilla</title>
+  <description>Kayali Vanilla - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_47</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759673587418353.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>275 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_48</g:id>
+  <title>Kayali Lovefest</title>
+  <description>Kayali Lovefest - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_48</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759674736187451.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>275 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_49</g:id>
+  <title>Kayali Vanilla Candy Purple</title>
+  <description>Kayali Vanilla Candy Purple - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_49</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759674917780142.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>275 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_50</g:id>
+  <title>Yves Saint Laurent Eau Fraiche</title>
+  <description>Yves Saint Laurent Eau Fraiche - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_50</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759741516302878.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_51</g:id>
+  <title>Yves Saint Laurent Eau De Parfum</title>
+  <description>Yves Saint Laurent Eau De Parfum - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_51</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759741384587711.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_52</g:id>
+  <title>Yves Saint laurent intense</title>
+  <description>Yves Saint laurent intense - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_52</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759741673848880.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_53</g:id>
+  <title>عطر ايف سان لوران ليبر أو دو تواليت</title>
+  <description>عطر ايف سان لوران ليبر أو دو تواليت - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_53</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/17597420384190.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_54</g:id>
+  <title>عطر ايف سان لوران ماي سيلف</title>
+  <description>عطر ايف سان لوران ماي سيلف - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_54</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759742278653756.png</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_55</g:id>
+  <title>عطر ايف سان لوران لوم او دو تواليت</title>
+  <description>عطر ايف سان لوران لوم او دو تواليت - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_55</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759742530807604.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_56</g:id>
+  <title>عطر ايف سان لوران ليبر</title>
+  <description>عطر ايف سان لوران ليبر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_56</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761129701703382.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_57</g:id>
+  <title>عطر ايف سان لوران ليبر فلاورز اند فليمز</title>
+  <description>عطر ايف سان لوران ليبر فلاورز اند فليمز - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_57</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761130241239728.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_58</g:id>
+  <title>عطر ايف سان لوران ليبر انتنس</title>
+  <description>عطر ايف سان لوران ليبر انتنس - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_58</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761130441694431.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_59</g:id>
+  <title>عطر ايف سان لوران لا نوي</title>
+  <description>عطر ايف سان لوران لا نوي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_59</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761130531790935.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_60</g:id>
+  <title>عطر ايف سان لوران بلاك اوبيوم</title>
+  <description>عطر ايف سان لوران بلاك اوبيوم - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_60</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759742975829378.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>260 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_61</g:id>
+  <title>Marly Delina La Rosee</title>
+  <description>Marly Delina La Rosee - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_61</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175975181394783.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>265 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_62</g:id>
+  <title>Marly Oriana</title>
+  <description>Marly Oriana - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_62</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759752059894649.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>265 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_63</g:id>
+  <title>Marly palatine</title>
+  <description>Marly palatine - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_63</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759752155317065.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>265 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_64</g:id>
+  <title>Marly Safanad</title>
+  <description>Marly Safanad - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_64</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759752249414638.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>265 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_65</g:id>
+  <title>Valaya de Marly</title>
+  <description>Valaya de Marly - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_65</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759752352855323.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>265 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>perfume_66</g:id>
+  <title>Marly Delina</title>
+  <description>Marly Delina - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/perfume_66</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759752504730376.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>265 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Perfumes</g:brand>
+  <g:product_type>Perfumes</g:product_type>
+</item>
+<item>
+  <g:id>watch_1</g:id>
+  <title>ساعة رولكس يخت ماستر - فضي</title>
+  <description>ساعة رولكس يخت ماستر - فضي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_1</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1689086291310824.webp</g:image_link>
+  <g:price>370 AED</g:price>
+  <g:sale_price>320 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_2</g:id>
+  <title>ساعة Rolex كلاسيكية 41 ملم 2022</title>
+  <description>ساعة Rolex كلاسيكية 41 ملم 2022 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_2</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741223185271965.png</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_3</g:id>
+  <title>ساعة rolex باللون الأسود.  R21</title>
+  <description>ساعة rolex باللون الأسود.  R21 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_3</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1681005528571671.webp</g:image_link>
+  <g:price>364 AED</g:price>
+  <g:sale_price>314 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_4</g:id>
+  <title>ساعة rolex 40ملم  R54</title>
+  <description>ساعة rolex 40ملم  R54 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_4</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1681164046332341.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_5</g:id>
+  <title>ساعة rolex باللون الأخضر الملكي.</title>
+  <description>ساعة rolex باللون الأخضر الملكي. - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_5</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741222920546873.png</g:image_link>
+  <g:price>364 AED</g:price>
+  <g:sale_price>314 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_6</g:id>
+  <title>ساعة rolex باللون الذهبي والأسود.</title>
+  <description>ساعة rolex باللون الذهبي والأسود. - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_6</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1757284688463569.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>310 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_7</g:id>
+  <title>ساعة rolex باللون الأسود والفضي.</title>
+  <description>ساعة rolex باللون الأسود والفضي. - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_7</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741222642273682.png</g:image_link>
+  <g:price>390 AED</g:price>
+  <g:sale_price>340 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_8</g:id>
+  <title>ساعة اوميغا سواتش بيبي بلو</title>
+  <description>ساعة اوميغا سواتش بيبي بلو - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_8</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1720305672749191.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_9</g:id>
+  <title>ساعة اوميغا سواتش نبيتى</title>
+  <description>ساعة اوميغا سواتش نبيتى - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_9</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741222388454456.png</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_10</g:id>
+  <title>ساعة اوميغا سواتش صفراء</title>
+  <description>ساعة اوميغا سواتش صفراء - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_10</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741221412352160.png</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_11</g:id>
+  <title>ساعة اوميغا سواتش اسود</title>
+  <description>ساعة اوميغا سواتش اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_11</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/174122229293204.png</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_12</g:id>
+  <title>ساعة اوميغا سواتش خضراء</title>
+  <description>ساعة اوميغا سواتش خضراء - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_12</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741222202630361.png</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_13</g:id>
+  <title>ساعة اوميغا سواتش زرقاء</title>
+  <description>ساعة اوميغا سواتش زرقاء - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_13</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741221794295947.png</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_14</g:id>
+  <title>ساعة اوميغا سواتش رصاصي</title>
+  <description>ساعة اوميغا سواتش رصاصي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_14</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741221694642499.png</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_15</g:id>
+  <title>ساعة سربنتي توبوغاس</title>
+  <description>ساعة سربنتي توبوغاس - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_15</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741220746882687.png</g:image_link>
+  <g:price>470 AED</g:price>
+  <g:sale_price>420 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_16</g:id>
+  <title>ساعة نسائية ديور - مينا صغير SL0012</title>
+  <description>ساعة نسائية ديور - مينا صغير SL0012 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_16</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741220693290036.png</g:image_link>
+  <g:price>385 AED</g:price>
+  <g:sale_price>335 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_17</g:id>
+  <title>ساعة سربنتي توبوغاس gold</title>
+  <description>ساعة سربنتي توبوغاس gold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_17</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741220582559375.png</g:image_link>
+  <g:price>470 AED</g:price>
+  <g:sale_price>420 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_18</g:id>
+  <title>ساعة اوميغا سواتش بنى</title>
+  <description>ساعة اوميغا سواتش بنى - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_18</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1731699670370340.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_19</g:id>
+  <title>بوكس الساعة والايربودز  6 في 1</title>
+  <description>بوكس الساعة والايربودز  6 في 1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_19</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1693928071589621.webp</g:image_link>
+  <g:price>410 AED</g:price>
+  <g:sale_price>360 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_20</g:id>
+  <title>ساعة Ultra مع ايربودز هدية</title>
+  <description>ساعة Ultra مع ايربودز هدية - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_20</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1731698702725313.webp</g:image_link>
+  <g:price>352 AED</g:price>
+  <g:sale_price>302 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_21</g:id>
+  <title>ساعة رولكس يخت ماستر - ذهبي</title>
+  <description>ساعة رولكس يخت ماستر - ذهبي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_21</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1731699218702214.webp</g:image_link>
+  <g:price>364 AED</g:price>
+  <g:sale_price>314 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_22</g:id>
+  <title>ساعة ذكية مزودة بكاميرا</title>
+  <description>ساعة ذكية مزودة بكاميرا - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_22</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1731362264876264.webp</g:image_link>
+  <g:price>356 AED</g:price>
+  <g:sale_price>306 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_23</g:id>
+  <title>ساعة rolex باللون الازرق</title>
+  <description>ساعة rolex باللون الازرق - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_23</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1731361953514688.webp</g:image_link>
+  <g:price>364 AED</g:price>
+  <g:sale_price>314 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_24</g:id>
+  <title>ساعة فورسينغ  كلاسيكي فضي</title>
+  <description>ساعة فورسينغ  كلاسيكي فضي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_24</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1731361789334824.webp</g:image_link>
+  <g:price>421 AED</g:price>
+  <g:sale_price>371 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_25</g:id>
+  <title>ساعة فورسينغ كلاسيكي ذهبي</title>
+  <description>ساعة فورسينغ كلاسيكي ذهبي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_25</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1731361642576895.webp</g:image_link>
+  <g:price>421 AED</g:price>
+  <g:sale_price>371 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_26</g:id>
+  <title>ساعة اوميغا سواتش أحمر</title>
+  <description>ساعة اوميغا سواتش أحمر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_26</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1731361206322275.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_27</g:id>
+  <title>ساعة ذكية A58 plus</title>
+  <description>ساعة ذكية A58 plus - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_27</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741220160853406.png</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>310 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_28</g:id>
+  <title>ساعة Rolex باللون الأخضر الملكي + البوكس الأصلي</title>
+  <description>ساعة Rolex باللون الأخضر الملكي + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_28</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1737384308361283.webp</g:image_link>
+  <g:price>390 AED</g:price>
+  <g:sale_price>340 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_29</g:id>
+  <title>ساعة Rolex كلاسيكية 41 ملم 2022 + البوكس الأصلي</title>
+  <description>ساعة Rolex كلاسيكية 41 ملم 2022 + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_29</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1737396086718850.webp</g:image_link>
+  <g:price>405 AED</g:price>
+  <g:sale_price>355 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_30</g:id>
+  <title>ساعة رولكس يخت ماستر ذهبي + البوكس الأصلي</title>
+  <description>ساعة رولكس يخت ماستر ذهبي + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_30</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1737397213723650.webp</g:image_link>
+  <g:price>394 AED</g:price>
+  <g:sale_price>344 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_31</g:id>
+  <title>ساعة رولكس يخت ماستر اسود - كوبي 1</title>
+  <description>ساعة رولكس يخت ماستر اسود - كوبي 1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_31</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741220095315902.png</g:image_link>
+  <g:price>590 AED</g:price>
+  <g:sale_price>540 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_32</g:id>
+  <title>ساعة رولكس باتمان اسود</title>
+  <description>ساعة رولكس باتمان اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_32</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741220018820605.png</g:image_link>
+  <g:price>590 AED</g:price>
+  <g:sale_price>540 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_33</g:id>
+  <title>ساعة Rolex ديت جاست مينا اخضر</title>
+  <description>ساعة Rolex ديت جاست مينا اخضر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_33</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741219965465187.png</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_34</g:id>
+  <title>ساعة Rolex ديت جاست مينا اسود  (36mm)</title>
+  <description>ساعة Rolex ديت جاست مينا اسود  (36mm) - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_34</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741219862491625.png</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_35</g:id>
+  <title>Rolex oyster اسود في ذهبي (42mm)</title>
+  <description>Rolex oyster اسود في ذهبي (42mm) - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_35</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741219710495579.png</g:image_link>
+  <g:price>370 AED</g:price>
+  <g:sale_price>320 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_36</g:id>
+  <title>ساعة رولكس Date just  ازرق فاتح *جولد (36mm)</title>
+  <description>ساعة رولكس Date just  ازرق فاتح *جولد (36mm) - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_36</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/174118277945310.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_37</g:id>
+  <title>ساعة رولكس انيقة باللون الازرق</title>
+  <description>ساعة رولكس انيقة باللون الازرق - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_37</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1741616006216496.webp</g:image_link>
+  <g:price>370 AED</g:price>
+  <g:sale_price>320 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_38</g:id>
+  <title>ساعة رولكس مينا بني (31mm)</title>
+  <description>ساعة رولكس مينا بني (31mm) - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_38</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1744965057677330.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>310 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_39</g:id>
+  <title>rolex daytona black high quality</title>
+  <description>rolex daytona black high quality - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_39</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1745247293243228.webp</g:image_link>
+  <g:price>575 AED</g:price>
+  <g:sale_price>525 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_40</g:id>
+  <title>ساعة رولكس نسائي مينا أخضر ملكي (31mm) (W)</title>
+  <description>ساعة رولكس نسائي مينا أخضر ملكي (31mm) (W) - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_40</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1745420116792035.webp</g:image_link>
+  <g:price>360 AED</g:price>
+  <g:sale_price>310 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_41</g:id>
+  <title>ساعة رولكس مينا أخضر ملكي (31mm) + البوكس الأصلي (W)</title>
+  <description>ساعة رولكس مينا أخضر ملكي (31mm) + البوكس الأصلي (W) - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_41</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1745582225766979.webp</g:image_link>
+  <g:price>390 AED</g:price>
+  <g:sale_price>340 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_42</g:id>
+  <title>ساعة رولكس مينا أبيض (M) (41mm)</title>
+  <description>ساعة رولكس مينا أبيض (M) (41mm) - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_42</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1745609014583872.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_43</g:id>
+  <title>ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي</title>
+  <description>ساعة اوميغا سواتش بيبي بلو+البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_43</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1745836780725584.webp</g:image_link>
+  <g:price>400 AED</g:price>
+  <g:sale_price>350 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_44</g:id>
+  <title>Rolex watch silver and gold (w) (31mm) + البوكس الأصلي</title>
+  <description>Rolex watch silver and gold (w) (31mm) + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_44</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1745837050237538.webp</g:image_link>
+  <g:price>410 AED</g:price>
+  <g:sale_price>360 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_45</g:id>
+  <title>Rolex GMT Black</title>
+  <description>Rolex GMT Black - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_45</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746181059555396.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_46</g:id>
+  <title>Rolex GMT Batman</title>
+  <description>Rolex GMT Batman - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_46</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746181464408885.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_47</g:id>
+  <title>Rolex GMT 2 Batman</title>
+  <description>Rolex GMT 2 Batman - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_47</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746181605739421.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_48</g:id>
+  <title>Rolex GMT Pepsi</title>
+  <description>Rolex GMT Pepsi - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_48</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746181717142457.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_49</g:id>
+  <title>Rolex GMT Red Black</title>
+  <description>Rolex GMT Red Black - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_49</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746181903494936.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_50</g:id>
+  <title>Rolex GMT Golden Silver</title>
+  <description>Rolex GMT Golden Silver - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_50</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746182079990165.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_51</g:id>
+  <title>Rolex Datejust Green</title>
+  <description>Rolex Datejust Green - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_51</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746182515551179.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_52</g:id>
+  <title>Rolex Datejust Brown silver</title>
+  <description>Rolex Datejust Brown silver - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_52</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746184369399410.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_53</g:id>
+  <title>Rolex Datejust Blue silver</title>
+  <description>Rolex Datejust Blue silver - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_53</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746184513791138.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_54</g:id>
+  <title>Rolex Datejust || Blue silver</title>
+  <description>Rolex Datejust || Blue silver - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_54</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746184700388993.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_55</g:id>
+  <title>Rolex Datejust Black</title>
+  <description>Rolex Datejust Black - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_55</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746185014846505.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_56</g:id>
+  <title>Rolex Daydate Green Olive</title>
+  <description>Rolex Daydate Green Olive - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_56</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746186466334048.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_57</g:id>
+  <title>Rolex Daydate mint green</title>
+  <description>Rolex Daydate mint green - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_57</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746187778346572.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_58</g:id>
+  <title>Rolex Daydate Black 41mm</title>
+  <description>Rolex Daydate Black 41mm - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_58</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746189390932241.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_59</g:id>
+  <title>Rolex Daydate Ice Blue 41mm</title>
+  <description>Rolex Daydate Ice Blue 41mm - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_59</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746189543271503.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_60</g:id>
+  <title>Rolex Daydate gold-black 41mm</title>
+  <description>Rolex Daydate gold-black 41mm - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_60</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746196018274769.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_61</g:id>
+  <title>Rolex Daydate rose gold-brown 41mm</title>
+  <description>Rolex Daydate rose gold-brown 41mm - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_61</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746196155893617.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_62</g:id>
+  <title>Rolex Daydate silver 41mm</title>
+  <description>Rolex Daydate silver 41mm - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_62</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746196240133469.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_63</g:id>
+  <title>Rolex Oyster Perpetual - Blue</title>
+  <description>Rolex Oyster Perpetual - Blue - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_63</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746196600697526.webp</g:image_link>
+  <g:price>370 AED</g:price>
+  <g:sale_price>320 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_64</g:id>
+  <title>Rolex Oyster Perpetual - yellow</title>
+  <description>Rolex Oyster Perpetual - yellow - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_64</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746196714322531.webp</g:image_link>
+  <g:price>370 AED</g:price>
+  <g:sale_price>320 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_65</g:id>
+  <title>Rolex Oyster Perpetual - light blue</title>
+  <description>Rolex Oyster Perpetual - light blue - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_65</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/174619683662416.webp</g:image_link>
+  <g:price>370 AED</g:price>
+  <g:sale_price>320 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_66</g:id>
+  <title>Rolex Oyster Perpetual - green</title>
+  <description>Rolex Oyster Perpetual - green - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_66</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746196895411006.webp</g:image_link>
+  <g:price>370 AED</g:price>
+  <g:sale_price>320 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_67</g:id>
+  <title>ساعة رولكس ذهبي نسائي مميزة</title>
+  <description>ساعة رولكس ذهبي نسائي مميزة - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_67</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746404336390866.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_68</g:id>
+  <title>ساعة Rolex ديت جاست مينا اسود (36mm) + البوكس الأصلي</title>
+  <description>ساعة Rolex ديت جاست مينا اسود (36mm) + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_68</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746607047394087.png</g:image_link>
+  <g:price>405 AED</g:price>
+  <g:sale_price>355 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_69</g:id>
+  <title>Rolex GMT Golden Silver + البوكس الأصلي</title>
+  <description>Rolex GMT Golden Silver + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_69</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1746974614613186.webp</g:image_link>
+  <g:price>395 AED</g:price>
+  <g:sale_price>345 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_70</g:id>
+  <title>Rolex Daydate olive gold high quality</title>
+  <description>Rolex Daydate olive gold high quality - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_70</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1747145774156279.webp</g:image_link>
+  <g:price>560 AED</g:price>
+  <g:sale_price>510 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_71</g:id>
+  <title>gold rolex watch for women</title>
+  <description>gold rolex watch for women - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_71</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1747237008436551.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_72</g:id>
+  <title>ساعة رولكس نسائي مينا أخضر</title>
+  <description>ساعة رولكس نسائي مينا أخضر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_72</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1747497427813513.webp</g:image_link>
+  <g:price>370 AED</g:price>
+  <g:sale_price>320 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_73</g:id>
+  <title>ساعة رولكس يخت ماستر اسود + البوكس الأصلي</title>
+  <description>ساعة رولكس يخت ماستر اسود + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_73</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1747652707865326.png</g:image_link>
+  <g:price>620 AED</g:price>
+  <g:sale_price>570 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_74</g:id>
+  <title>ستيل Rolex جولد و سيلفر (31mm)+ البوكس الأصلي</title>
+  <description>ستيل Rolex جولد و سيلفر (31mm)+ البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_74</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/174827948380468.webp</g:image_link>
+  <g:price>397 AED</g:price>
+  <g:sale_price>347 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_75</g:id>
+  <title>ساعة رولكس دايتون جولد</title>
+  <description>ساعة رولكس دايتون جولد - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_75</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1748439740739970.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_76</g:id>
+  <title>Audemars Piguet Royal - Orange</title>
+  <description>Audemars Piguet Royal - Orange - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_76</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1749109017733058.webp</g:image_link>
+  <g:price>660 AED</g:price>
+  <g:sale_price>610 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_77</g:id>
+  <title>ساعة رولكس اويستر جولد*سيلفر مينا اسود</title>
+  <description>ساعة رولكس اويستر جولد*سيلفر مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_77</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1749650147932375.webp</g:image_link>
+  <g:price>385 AED</g:price>
+  <g:sale_price>335 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_78</g:id>
+  <title>ساعة رولكس اويستر سيلفر مينا اسود</title>
+  <description>ساعة رولكس اويستر سيلفر مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_78</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1749650255855109.webp</g:image_link>
+  <g:price>385 AED</g:price>
+  <g:sale_price>335 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_79</g:id>
+  <title>ساعة رولكس اويستر مينا اخضر</title>
+  <description>ساعة رولكس اويستر مينا اخضر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_79</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1749650379632795.webp</g:image_link>
+  <g:price>385 AED</g:price>
+  <g:sale_price>335 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_80</g:id>
+  <title>ساعة رولكس اويستر مينا كحلي</title>
+  <description>ساعة رولكس اويستر مينا كحلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_80</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1749650467665542.webp</g:image_link>
+  <g:price>385 AED</g:price>
+  <g:sale_price>335 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_81</g:id>
+  <title>ساعة رولكس يخت ماستر - أسود</title>
+  <description>ساعة رولكس يخت ماستر - أسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_81</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1749907175329443.webp</g:image_link>
+  <g:price>370 AED</g:price>
+  <g:sale_price>320 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_82</g:id>
+  <title>ساعة رولكس ديت جاست للرجال</title>
+  <description>ساعة رولكس ديت جاست للرجال - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_82</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1749907743553826.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_83</g:id>
+  <title>ساعة ديت جاست جولد و سيلفر مينا بني</title>
+  <description>ساعة ديت جاست جولد و سيلفر مينا بني - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_83</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1750060846527552.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_84</g:id>
+  <title>ساعة رولكس ديت جاست سيلفر في جولد مينا اسود</title>
+  <description>ساعة رولكس ديت جاست سيلفر في جولد مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_84</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/17499912923186.webp</g:image_link>
+  <g:price>385 AED</g:price>
+  <g:sale_price>335 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_85</g:id>
+  <title>ساعة رولكس ديت جاست سيلفر في جولد مينا اسود بالبوكس الاصلي</title>
+  <description>ساعة رولكس ديت جاست سيلفر في جولد مينا اسود بالبوكس الاصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_85</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1750149140107247.webp</g:image_link>
+  <g:price>415 AED</g:price>
+  <g:sale_price>365 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_86</g:id>
+  <title>ساعة رولكس اويستر مينا كحلي بالبوكس الأصلي</title>
+  <description>ساعة رولكس اويستر مينا كحلي بالبوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_86</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1750149812497686.webp</g:image_link>
+  <g:price>420 AED</g:price>
+  <g:sale_price>370 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_87</g:id>
+  <title>ساعة رولكس اويستر مينا اخضر+البوكس الأصلي</title>
+  <description>ساعة رولكس اويستر مينا اخضر+البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_87</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1750159016228559.webp</g:image_link>
+  <g:price>420 AED</g:price>
+  <g:sale_price>370 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_88</g:id>
+  <title>ساعة رولكس بتصميم الكعبة</title>
+  <description>ساعة رولكس بتصميم الكعبة - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_88</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1750340228334282.webp</g:image_link>
+  <g:price>540 AED</g:price>
+  <g:sale_price>490 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_89</g:id>
+  <title>ساعة رولكس رجالي سبرايت new</title>
+  <description>ساعة رولكس رجالي سبرايت new - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_89</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1750346888724103.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_90</g:id>
+  <title>ساعة رولكس ديت جاست سيلفر*جولد</title>
+  <description>ساعة رولكس ديت جاست سيلفر*جولد - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_90</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1750854553419596.webp</g:image_link>
+  <g:price>377 AED</g:price>
+  <g:sale_price>327 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_91</g:id>
+  <title>ساعة رولكس نسائي جولد مينا أبيض</title>
+  <description>ساعة رولكس نسائي جولد مينا أبيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_91</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1750877880119754.webp</g:image_link>
+  <g:price>377 AED</g:price>
+  <g:sale_price>327 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_92</g:id>
+  <title>رولكس ديت جاست سيلفر مينا ازرق</title>
+  <description>رولكس ديت جاست سيلفر مينا ازرق - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_92</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751200672540929.webp</g:image_link>
+  <g:price>550 AED</g:price>
+  <g:sale_price>500 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_93</g:id>
+  <title>Burberry watches لون اسود مينا ازرق</title>
+  <description>Burberry watches لون اسود مينا ازرق - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_93</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751369978749040.webp</g:image_link>
+  <g:price>620 AED</g:price>
+  <g:sale_price>570 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_94</g:id>
+  <title>Burberry watches لون سيلفر مينا ابيض</title>
+  <description>Burberry watches لون سيلفر مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_94</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751370116882448.webp</g:image_link>
+  <g:price>620 AED</g:price>
+  <g:sale_price>570 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_95</g:id>
+  <title>Burberry watches لون اسود مينا اسود</title>
+  <description>Burberry watches لون اسود مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_95</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751370565818324.webp</g:image_link>
+  <g:price>620 AED</g:price>
+  <g:sale_price>570 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_96</g:id>
+  <title>Burberry watches لون سيلفر مينا نبيتي</title>
+  <description>Burberry watches لون سيلفر مينا نبيتي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_96</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751370682936787.webp</g:image_link>
+  <g:price>620 AED</g:price>
+  <g:sale_price>570 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_97</g:id>
+  <title>Burberry watches لون سيلفر مينا اسود</title>
+  <description>Burberry watches لون سيلفر مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_97</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751370794144466.webp</g:image_link>
+  <g:price>620 AED</g:price>
+  <g:sale_price>570 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_98</g:id>
+  <title>Burberry watches لون سيلفر مينا كحلي</title>
+  <description>Burberry watches لون سيلفر مينا كحلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_98</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751370911816816.webp</g:image_link>
+  <g:price>620 AED</g:price>
+  <g:sale_price>570 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_99</g:id>
+  <title>Burberry watches سيلفر</title>
+  <description>Burberry watches سيلفر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_99</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751371744995356.webp</g:image_link>
+  <g:price>620 AED</g:price>
+  <g:sale_price>570 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_100</g:id>
+  <title>Burberry watches اسود مينا رصاصي</title>
+  <description>Burberry watches اسود مينا رصاصي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_100</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751371859193388.webp</g:image_link>
+  <g:price>620 AED</g:price>
+  <g:sale_price>570 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_101</g:id>
+  <title>Rolex Daytona Platinum Blue copy1</title>
+  <description>Rolex Daytona Platinum Blue copy1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_101</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751812044876798.webp</g:image_link>
+  <g:price>600 AED</g:price>
+  <g:sale_price>550 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_102</g:id>
+  <title>Rolex Yacht-Master  gold copy1</title>
+  <description>Rolex Yacht-Master  gold copy1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_102</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175181222818362.webp</g:image_link>
+  <g:price>600 AED</g:price>
+  <g:sale_price>550 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_103</g:id>
+  <title>Rolex Submariner black copy1</title>
+  <description>Rolex Submariner black copy1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_103</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175181238524703.webp</g:image_link>
+  <g:price>600 AED</g:price>
+  <g:sale_price>550 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_104</g:id>
+  <title>Patek philippe geneve royal blue & gold - copy 1</title>
+  <description>Patek philippe geneve royal blue & gold - copy 1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_104</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751993512231502.webp</g:image_link>
+  <g:price>560 AED</g:price>
+  <g:sale_price>510 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_105</g:id>
+  <title>Audemars Piguet blue & silver copy 1</title>
+  <description>Audemars Piguet blue & silver copy 1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_105</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1751993781852135.webp</g:image_link>
+  <g:price>580 AED</g:price>
+  <g:sale_price>530 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_106</g:id>
+  <title>Rolex Datejust Green + البوكس الاصلي</title>
+  <description>Rolex Datejust Green + البوكس الاصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_106</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1752057721201515.webp</g:image_link>
+  <g:price>395 AED</g:price>
+  <g:sale_price>345 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_107</g:id>
+  <title>Rolex datejust brown silver - copy 1</title>
+  <description>Rolex datejust brown silver - copy 1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_107</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1752071301392347.webp</g:image_link>
+  <g:price>540 AED</g:price>
+  <g:sale_price>490 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_108</g:id>
+  <title>ساعة رولكس يخت ماستر - أسود - موديل حديث</title>
+  <description>ساعة رولكس يخت ماستر - أسود - موديل حديث - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_108</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175233238867849.webp</g:image_link>
+  <g:price>370 AED</g:price>
+  <g:sale_price>320 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_109</g:id>
+  <title>ساعة رولكس يخت ماستر - أسود - موديل حديث + البوكس الأصلي</title>
+  <description>ساعة رولكس يخت ماستر - أسود - موديل حديث + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_109</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1752332472489634.webp</g:image_link>
+  <g:price>400 AED</g:price>
+  <g:sale_price>350 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_110</g:id>
+  <title>Rolex Oyster Perpetual Daytona silver</title>
+  <description>Rolex Oyster Perpetual Daytona silver - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_110</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753366503225791.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_111</g:id>
+  <title>Rolex Oyster Perpetual Daytona rosegold</title>
+  <description>Rolex Oyster Perpetual Daytona rosegold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_111</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753367784126760.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_112</g:id>
+  <title>Rolex Oyster Perpetual Daytona gold</title>
+  <description>Rolex Oyster Perpetual Daytona gold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_112</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175336774489564.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_113</g:id>
+  <title>Rolex Oyster Perpetual Daytona blue</title>
+  <description>Rolex Oyster Perpetual Daytona blue - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_113</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753367922554262.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_114</g:id>
+  <title>Versace Casual Chronograph استيك هافان</title>
+  <description>Versace Casual Chronograph استيك هافان - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_114</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753368382531031.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_115</g:id>
+  <title>Versace Casual Chronograph استيك اسود مينا ابيض</title>
+  <description>Versace Casual Chronograph استيك اسود مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_115</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175336848158797.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_116</g:id>
+  <title>Versace Casual Chronograph استيك اسود مينا اسود</title>
+  <description>Versace Casual Chronograph استيك اسود مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_116</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753368533605832.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_117</g:id>
+  <title>Patek Philippe مينا سوداء</title>
+  <description>Patek Philippe مينا سوداء - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_117</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753712133267951.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_118</g:id>
+  <title>Patek Philippe مينا كحلي</title>
+  <description>Patek Philippe مينا كحلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_118</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753712279952594.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_119</g:id>
+  <title>Patek Philippe مينا بيضا</title>
+  <description>Patek Philippe مينا بيضا - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_119</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753712462987314.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_120</g:id>
+  <title>Patek Philippe مينا بيج</title>
+  <description>Patek Philippe مينا بيج - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_120</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753712566754148.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_121</g:id>
+  <title>Emporio Armani كحلي</title>
+  <description>Emporio Armani كحلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_121</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753713139664965.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_122</g:id>
+  <title>Emporio Armani اسود مينا ابيض</title>
+  <description>Emporio Armani اسود مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_122</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753713265494853.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_123</g:id>
+  <title>Emporio Armani اسود مينا اسود</title>
+  <description>Emporio Armani اسود مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_123</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753713342179796.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_124</g:id>
+  <title>Emporio Armani اسود هافان</title>
+  <description>Emporio Armani اسود هافان - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_124</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753713415756893.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_125</g:id>
+  <title>Cartier Tank اسود مينا اسود</title>
+  <description>Cartier Tank اسود مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_125</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753713564735416.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_126</g:id>
+  <title>Cartier Tank اسود مينا ابيض</title>
+  <description>Cartier Tank اسود مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_126</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753713761513914.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_127</g:id>
+  <title>Cartier Tank اسود كحلي</title>
+  <description>Cartier Tank اسود كحلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_127</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753714143726784.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_128</g:id>
+  <title>Cartier Tank اسود هافان</title>
+  <description>Cartier Tank اسود هافان - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_128</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175371443140178.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_129</g:id>
+  <title>Emporio Armani Watch For Women ابيض</title>
+  <description>Emporio Armani Watch For Women ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_129</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753714598253004.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_130</g:id>
+  <title>Emporio Armani Watch For Women اسود</title>
+  <description>Emporio Armani Watch For Women اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_130</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753714676788171.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_131</g:id>
+  <title>Emporio Armani Watch For Women هافان</title>
+  <description>Emporio Armani Watch For Women هافان - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_131</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753714732396997.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_132</g:id>
+  <title>Emporio Armani Watch For Women احمر</title>
+  <description>Emporio Armani Watch For Women احمر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_132</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753714797626239.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_133</g:id>
+  <title>Emporio Armani Watch For Women كحلي</title>
+  <description>Emporio Armani Watch For Women كحلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_133</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175371485999260.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_134</g:id>
+  <title>Emporio Armani Watch For Women اخضر</title>
+  <description>Emporio Armani Watch For Women اخضر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_134</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753714913529844.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_135</g:id>
+  <title>Breitling Endurance Pro كحلي</title>
+  <description>Breitling Endurance Pro كحلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_135</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753715027424007.webp</g:image_link>
+  <g:price>375 AED</g:price>
+  <g:sale_price>325 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_136</g:id>
+  <title>Omega watch - navy blue strap</title>
+  <description>Omega watch - navy blue strap - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_136</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1753972808675319.webp</g:image_link>
+  <g:price>620 AED</g:price>
+  <g:sale_price>570 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_137</g:id>
+  <title>Rolex datejust Black silver - copy 1</title>
+  <description>Rolex datejust Black silver - copy 1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_137</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1754412726895640.webp</g:image_link>
+  <g:price>530 AED</g:price>
+  <g:sale_price>480 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_138</g:id>
+  <title>Rolex datejust green watch</title>
+  <description>Rolex datejust green watch - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_138</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175447227738668.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_139</g:id>
+  <title>ساعة رولكس مينا أخضر نسائي نيو موديل</title>
+  <description>ساعة رولكس مينا أخضر نسائي نيو موديل - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_139</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1754574717779013.webp</g:image_link>
+  <g:price>377 AED</g:price>
+  <g:sale_price>327 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_140</g:id>
+  <title>Rolex Oyster Perpetual 41 - Silver copy1</title>
+  <description>Rolex Oyster Perpetual 41 - Silver copy1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_140</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1755255922525936.webp</g:image_link>
+  <g:price>525 AED</g:price>
+  <g:sale_price>475 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_141</g:id>
+  <title>Patek philippe geneve black copy 1</title>
+  <description>Patek philippe geneve black copy 1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_141</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1755444255492836.webp</g:image_link>
+  <g:price>560 AED</g:price>
+  <g:sale_price>510 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_142</g:id>
+  <title>(Rolex Submariner Green COPY 1  ( AUTOMATIC</title>
+  <description>(Rolex Submariner Green COPY 1  ( AUTOMATIC - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_142</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1755603291676285.webp</g:image_link>
+  <g:price>530 AED</g:price>
+  <g:sale_price>480 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_143</g:id>
+  <title>Rolex datejust mint green copy 1  automatic 41mm</title>
+  <description>Rolex datejust mint green copy 1  automatic 41mm - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_143</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1755963296244340.webp</g:image_link>
+  <g:price>690 AED</g:price>
+  <g:sale_price>640 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_144</g:id>
+  <title>Rolex day - date just white copy 1 automatic</title>
+  <description>Rolex day - date just white copy 1 automatic - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_144</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1756294484966883.webp</g:image_link>
+  <g:price>715 AED</g:price>
+  <g:sale_price>665 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_145</g:id>
+  <title>Rolex روز جولد (31mm) + البوكس الأصلي</title>
+  <description>Rolex روز جولد (31mm) + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_145</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1757099201703253.webp</g:image_link>
+  <g:price>405 AED</g:price>
+  <g:sale_price>355 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_146</g:id>
+  <title>Rolex Daydate rose gold-brown 41mm + البوكس الأصلي</title>
+  <description>Rolex Daydate rose gold-brown 41mm + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_146</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/175718095635360.webp</g:image_link>
+  <g:price>395 AED</g:price>
+  <g:sale_price>345 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_147</g:id>
+  <title>Couple Rolex watch - Silver</title>
+  <description>Couple Rolex watch - Silver - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_147</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1757524816214151.webp</g:image_link>
+  <g:price>445 AED</g:price>
+  <g:sale_price>395 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_148</g:id>
+  <title>Couple Rolex watch - Silver&black</title>
+  <description>Couple Rolex watch - Silver&black - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_148</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1757524962884190.webp</g:image_link>
+  <g:price>445 AED</g:price>
+  <g:sale_price>395 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_149</g:id>
+  <title>Couple Rolex watch - gold&black</title>
+  <description>Couple Rolex watch - gold&black - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_149</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1757525126959642.webp</g:image_link>
+  <g:price>445 AED</g:price>
+  <g:sale_price>395 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_150</g:id>
+  <title>Couple Rolex watch - gold &black &silver</title>
+  <description>Couple Rolex watch - gold &black &silver - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_150</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1757525267213998.webp</g:image_link>
+  <g:price>445 AED</g:price>
+  <g:sale_price>395 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_151</g:id>
+  <title>Couple Rolex watch - gold</title>
+  <description>Couple Rolex watch - gold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_151</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1757525426185833.webp</g:image_link>
+  <g:price>445 AED</g:price>
+  <g:sale_price>395 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_152</g:id>
+  <title>Couple Rolex watch - white&silver&gold</title>
+  <description>Couple Rolex watch - white&silver&gold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_152</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1757525529148384.webp</g:image_link>
+  <g:price>445 AED</g:price>
+  <g:sale_price>395 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_153</g:id>
+  <title>Couple Rolex watch - green&silver&gold</title>
+  <description>Couple Rolex watch - green&silver&gold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_153</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1757525635608050.webp</g:image_link>
+  <g:price>445 AED</g:price>
+  <g:sale_price>395 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_154</g:id>
+  <title>ساعة رولكس نسائي مينا أخضر + البوكس الأصلي</title>
+  <description>ساعة رولكس نسائي مينا أخضر + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_154</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758053169323932.webp</g:image_link>
+  <g:price>435 AED</g:price>
+  <g:sale_price>385 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_155</g:id>
+  <title>ساعة رولكس نسائي مينا أزرق + البوكس الأصلي</title>
+  <description>ساعة رولكس نسائي مينا أزرق + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_155</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758053303204910.webp</g:image_link>
+  <g:price>430 AED</g:price>
+  <g:sale_price>380 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_156</g:id>
+  <title>Rolex datejust chocolate for women</title>
+  <description>Rolex datejust chocolate for women - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_156</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758469890649889.webp</g:image_link>
+  <g:price>377 AED</g:price>
+  <g:sale_price>327 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_157</g:id>
+  <title>Rolex datejust all silver copy 1</title>
+  <description>Rolex datejust all silver copy 1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_157</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758546095954083.webp</g:image_link>
+  <g:price>525 AED</g:price>
+  <g:sale_price>475 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_158</g:id>
+  <title>ساعة رولكس نسائي مينا بني + البوكس الأصلي</title>
+  <description>ساعة رولكس نسائي مينا بني + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_158</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758742078744162.webp</g:image_link>
+  <g:price>430 AED</g:price>
+  <g:sale_price>380 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_159</g:id>
+  <title>Rolex datejust chocolate for women + البوكس الأصلي</title>
+  <description>Rolex datejust chocolate for women + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_159</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1758744551129745.webp</g:image_link>
+  <g:price>407 AED</g:price>
+  <g:sale_price>357 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_160</g:id>
+  <title>ساعة رولكس مينا أخضر نسائي نيو موديل + البوكس الاصلي</title>
+  <description>ساعة رولكس مينا أخضر نسائي نيو موديل + البوكس الاصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_160</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759334391865213.webp</g:image_link>
+  <g:price>407 AED</g:price>
+  <g:sale_price>357 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_161</g:id>
+  <title>Rolex day - date rose gold chocolate copy 1</title>
+  <description>Rolex day - date rose gold chocolate copy 1 - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_161</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759341674220265.webp</g:image_link>
+  <g:price>550 AED</g:price>
+  <g:sale_price>500 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_162</g:id>
+  <title>Rolex Datejust || Blue silver + البوكس الاصلي</title>
+  <description>Rolex Datejust || Blue silver + البوكس الاصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_162</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759356021504771.webp</g:image_link>
+  <g:price>395 AED</g:price>
+  <g:sale_price>345 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_163</g:id>
+  <title>ساعة ديت جاست جولد و سيلفر مينا بني+ البوكس الاصلي</title>
+  <description>ساعة ديت جاست جولد و سيلفر مينا بني+ البوكس الاصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_163</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1759770308161661.webp</g:image_link>
+  <g:price>395 AED</g:price>
+  <g:sale_price>345 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_164</g:id>
+  <title>Rolex Datejust 41 Two Tone Rose Gold</title>
+  <description>Rolex Datejust 41 Two Tone Rose Gold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_164</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1760005930625468.webp</g:image_link>
+  <g:price>540 AED</g:price>
+  <g:sale_price>490 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_165</g:id>
+  <title>Rolex Date Just Wimbledon</title>
+  <description>Rolex Date Just Wimbledon - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_165</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1760091360730496.webp</g:image_link>
+  <g:price>530 AED</g:price>
+  <g:sale_price>480 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_166</g:id>
+  <title>ساعة رولكس فضي مينا أبيض</title>
+  <description>ساعة رولكس فضي مينا أبيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_166</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1760368436660482.webp</g:image_link>
+  <g:price>365 AED</g:price>
+  <g:sale_price>315 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_167</g:id>
+  <title>ساعة رولكس فضي مينا أبيض + البوكس الأصلي</title>
+  <description>ساعة رولكس فضي مينا أبيض + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_167</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1760368527279408.webp</g:image_link>
+  <g:price>395 AED</g:price>
+  <g:sale_price>345 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_168</g:id>
+  <title>Rolex Datejust 28ml black</title>
+  <description>Rolex Datejust 28ml black - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_168</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761057799460976.webp</g:image_link>
+  <g:price>540 AED</g:price>
+  <g:sale_price>490 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_169</g:id>
+  <title>ساعة ديور نسائية دائري مينا اسود</title>
+  <description>ساعة ديور نسائية دائري مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_169</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761058180115134.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_170</g:id>
+  <title>ساعة ديور نسائية دائري مينا ابيض</title>
+  <description>ساعة ديور نسائية دائري مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_170</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761058250637754.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_171</g:id>
+  <title>ساعة ديور نسائية دائري مينا اخضر</title>
+  <description>ساعة ديور نسائية دائري مينا اخضر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_171</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761058305782570.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_172</g:id>
+  <title>ساعة ديور نسائية جولد و سيلفر مينا ابيض</title>
+  <description>ساعة ديور نسائية جولد و سيلفر مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_172</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761058693749451.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_173</g:id>
+  <title>ساعة ديور نسائية جولد و سيلفر مينا اخضر</title>
+  <description>ساعة ديور نسائية جولد و سيلفر مينا اخضر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_173</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/176105879096577.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_174</g:id>
+  <title>ساعة ديور نسائية سيلفر مينا ابيض</title>
+  <description>ساعة ديور نسائية سيلفر مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_174</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761058955825455.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_175</g:id>
+  <title>ساعة ديور نسائية سيلفر مينا اسود</title>
+  <description>ساعة ديور نسائية سيلفر مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_175</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761059022113201.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_176</g:id>
+  <title>ساعة ديور نسائية جولد مينا اسود</title>
+  <description>ساعة ديور نسائية جولد مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_176</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761059124893031.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_177</g:id>
+  <title>ساعة ديور نسائية جولد مينا ابيض</title>
+  <description>ساعة ديور نسائية جولد مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_177</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761059185702630.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_178</g:id>
+  <title>Aigner watch gold strab</title>
+  <description>Aigner watch gold strab - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_178</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761061092894534.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_179</g:id>
+  <title>Aigner watch silver strab مينا ابيض</title>
+  <description>Aigner watch silver strab مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_179</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761061317936794.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_180</g:id>
+  <title>Aigner watch silver strab مينا اسود</title>
+  <description>Aigner watch silver strab مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_180</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/176106137087541.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_181</g:id>
+  <title>Aigner watch silver*gold strab مينا اسود</title>
+  <description>Aigner watch silver*gold strab مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_181</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/176106153438940.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_182</g:id>
+  <title>Aigner watch silver strab مينا ابيض</title>
+  <description>Aigner watch silver strab مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_182</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761061732362698.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_183</g:id>
+  <title>Aigner watch silver strab مينا اخضر</title>
+  <description>Aigner watch silver strab مينا اخضر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_183</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761061776840789.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_184</g:id>
+  <title>Aigner watch 1 gold</title>
+  <description>Aigner watch 1 gold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_184</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/176112166341271.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_185</g:id>
+  <title>Aigner watch 1 silver strab مينا ابيض</title>
+  <description>Aigner watch 1 silver strab مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_185</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/176112173168356.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_186</g:id>
+  <title>Aigner watch 1 silver strab مينا اسود</title>
+  <description>Aigner watch 1 silver strab مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_186</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761121784104784.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_187</g:id>
+  <title>Aigner watch 1 silver*gold مينا اخضر</title>
+  <description>Aigner watch 1 silver*gold مينا اخضر - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_187</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761121941149980.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_188</g:id>
+  <title>Aigner watch 1 silver*gold مينا بني</title>
+  <description>Aigner watch 1 silver*gold مينا بني - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_188</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761121998362983.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_189</g:id>
+  <title>Aigner watch 1 silver*gold مينا ابيض</title>
+  <description>Aigner watch 1 silver*gold مينا ابيض - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_189</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761122053977631.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_190</g:id>
+  <title>Piaget watch silver</title>
+  <description>Piaget watch silver - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_190</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761122396851293.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_191</g:id>
+  <title>Piaget watch silver*gold</title>
+  <description>Piaget watch silver*gold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_191</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761122539172326.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_192</g:id>
+  <title>مينا ابيض Piaget watch gold</title>
+  <description>مينا ابيض Piaget watch gold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_192</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/176112260435495.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_193</g:id>
+  <title>مينا اخضر Piaget watch gold</title>
+  <description>مينا اخضر Piaget watch gold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_193</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/176112265599750.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_194</g:id>
+  <title>مينا اسود Piaget watch gold</title>
+  <description>مينا اسود Piaget watch gold - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_194</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761123021259283.webp</g:image_link>
+  <g:price>372 AED</g:price>
+  <g:sale_price>322 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_195</g:id>
+  <title>ساعة كوبل رولكس اويستر مينا بني</title>
+  <description>ساعة كوبل رولكس اويستر مينا بني - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_195</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761123423859239.webp</g:image_link>
+  <g:price>439 AED</g:price>
+  <g:sale_price>389 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_196</g:id>
+  <title>ساعة كوبل رولكس اويستر مينا اسود</title>
+  <description>ساعة كوبل رولكس اويستر مينا اسود - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_196</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761123469483260.webp</g:image_link>
+  <g:price>439 AED</g:price>
+  <g:sale_price>389 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
+<item>
+  <g:id>watch_197</g:id>
+  <title>ساعة Rolex ديت جاست مينا اخضر + البوكس الأصلي</title>
+  <description>ساعة Rolex ديت جاست مينا اخضر + البوكس الأصلي - هدية فريدة من Emirates Gifts</description>
+  <link>https://emirates-gifts.arabsad.com/products/watch_197</link>
+  <g:image_link>https://m5zoon.com/public/uploads/products/1761157567360958.png</g:image_link>
+  <g:price>405 AED</g:price>
+  <g:sale_price>355 AED</g:sale_price>
+  <g:availability>in stock</g:availability>
+  <g:condition>new</g:condition>
+  <g:brand>Watches</g:brand>
+  <g:product_type>Watches</g:product_type>
+</item>
 </channel>
 </rss>
