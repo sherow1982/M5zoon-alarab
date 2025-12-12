@@ -1,6 +1,7 @@
 # robots.txt for Emirates Gifts Store
 # SEO-optimized for bilingual content (AR + EN)
 # Updated: 2025-12-12
+# Encoding: UTF-8
 
 # Default access for all crawlers
 User-agent: *
