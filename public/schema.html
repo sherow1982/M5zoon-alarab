@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emirates Gifts - Schema Integration</title>
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Organization",
+      "name": "Emirates Gifts",
+      "url": "https://emirates-gifts.arabsad.com",
+      "logo": "https://emirates-gifts.arabsad.com/logo.png",
+      "description": "متجر هدايا فاخرة متخصص في العطور والساعات",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "email": "support@emirates-gifts.arabsad.com"
+      },
+      "sameAs": [
+        "https://www.facebook.com/emirates-gifts",
+        "https://www.instagram.com/emirates-gifts"
+      ]
+    }
+    </script>
+    
+    <!-- Products Collection Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "ItemList",
+      "name": "منتجات Emirates Gifts",
+      "description": "قائمة منتجات عطور وساعات فاخرة",
+      "url": "https://emirates-gifts.arabsad.com",
+      "itemListElement": [
+        {
+          "@type": "Product",
+          "position": 1,
+          "name": "عطر كوكو شانيل 100 مل",
+          "description": "عطر كوكو شانيل إصلي - هدية فريدة",
+          "url": "https://emirates-gifts.arabsad.com/products/perfume_1",
+          "image": "https://m5zoon.com/public/uploads/products/1722352332177124.webp",
+          "brand": {"@type": "Brand", "name": "Chanel"},
+          "offers": {
+            "@type": "Offer",
+            "url": "https://emirates-gifts.arabsad.com/products/perfume_1",
+            "priceCurrency": "AED",
+            "price": "252",
+            "availability": "https://schema.org/InStock"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "45"
+          }
+        },
+        {
+          "@type": "Product",
+          "position": 2,
+          "name": "عطر جوتشي فلورا",
+          "description": "عطر جوتشي فلورا - هدية فريدة",
+          "url": "https://emirates-gifts.arabsad.com/products/perfume_2",
+          "image": "https://m5zoon.com/public/uploads/products/1720344963790342.webp",
+          "brand": {"@type": "Brand", "name": "Gucci"},
+          "offers": {
+            "@type": "Offer",
+            "url": "https://emirates-gifts.arabsad.com/products/perfume_2",
+            "priceCurrency": "AED",
+            "price": "252",
+            "availability": "https://schema.org/InStock"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "38"
+          }
+        },
+        {
+          "@type": "Product",
+          "position": 3,
+          "name": "ساعة رولكس يخت ماستر",
+          "description": "ساعة رولكس يخت ماستر فضي - هدية فريدة",
+          "url": "https://emirates-gifts.arabsad.com/products/watch_1",
+          "image": "https://m5zoon.com/public/uploads/products/1689086291310824.webp",
+          "brand": {"@type": "Brand", "name": "Rolex"},
+          "offers": {
+            "@type": "Offer",
+            "url": "https://emirates-gifts.arabsad.com/products/watch_1",
+            "priceCurrency": "AED",
+            "price": "320",
+            "availability": "https://schema.org/InStock"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "52"
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <h1>📊 Schema.org Markup</h1>
+    <p>✅ Organization Schema - سكيما المؤسسة</p>
+    <p>✅ Products ItemList - سكيما قائمة المنتجات</p>
+    <p>✅ Individual Product Schemas - سكيما المنتجات الفردية</p>
+    
+    <h2>💡 كيفية الاستخدام:</h2>
+    <ol>
+        <li>ارفع هذا الملف على موقعك</li>
+        <li>انسخ الـ schema من HTML</li>
+        <li>الصقه في head بتاع موقعك</li>
+        <li>اطلب عرض نتائجك في Google Search Console</li>
+    </ol>
+    
+    <script src="/schema/inject-schema.js"></script>
+</body>
+</html>
