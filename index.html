@@ -52,8 +52,9 @@
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="./favicon.ico">
     
-    <!-- Main Stylesheet -->
+    <!-- Main Stylesheets -->
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/buttons.css">
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
@@ -91,7 +92,7 @@
                 </nav>
 
                 <div class="header-tools">
-                    <!-- 🛒 DIRECT CHECKOUT BUTTON (REPLACING CART) -->
+                    <!-- 🛒 DIRECT CHECKOUT BUTTON -->
                     <a href="./checkout.html" class="header-tool checkout-btn" 
                        title="إتمام الطلب فوراً" 
                        aria-label="الانتقال مباشرة إلى صفحة إتمام الطلب">
@@ -107,7 +108,7 @@
         </div>
     </header>
 
-    <!-- Mobile Sidebar (Initially Hidden) -->
+    <!-- Mobile Sidebar -->
     <div class="mobile-sidebar" id="mobileSidebar" role="dialog" aria-modal="true" aria-labelledby="sidebarTitle" hidden>
         <div class="sidebar-header">
             <h2 id="sidebarTitle" class="sidebar-title">القائمة</h2>
@@ -139,14 +140,14 @@
                     <p class="hero-subtitle">
                         اكتشف أجمل التشكيلات من العطور الشرقية والغربية عالية الجودة، والهدايا المميزة التي تعبر عن ذوقك الرفيع
                     </p>
-                    <div class="hero-cta">
+                    <div class="hero-cta button-group">
                         <a href="#perfumes-section" class="btn-primary" aria-label="بدء التسوق في قسم العطور">
                             <i class="fas fa-shopping-bag" aria-hidden="true"></i>
-                            تسوق الآن
+                            <span>تسوق الآن</span>
                         </a>
                         <a href="./products-showcase.html" class="btn-secondary" aria-label="عرض جميع المنتجات">
                             <i class="fas fa-star" aria-hidden="true"></i>
-                            شاهد جميع المنتجات
+                            <span>شاهد جميع المنتجات</span>
                         </a>
                     </div>
                 </div>
@@ -171,7 +172,7 @@
                         </p>
                         <a href="./products-showcase.html?category=perfumes" class="view-all-link" aria-label="عرض جميع العطور">
                             <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                            شاهد جميع العطور
+                            <span>شاهد جميع العطور</span>
                         </a>
                     </div>
                     <div class="products-grid" id="perfumes-grid" role="grid" aria-label="شبكة عرض العطور">
@@ -181,7 +182,7 @@
                         </div>
                     </div>
                     
-                    <!-- 🔥 ENHANCED VIEW MORE BUTTON FOR PERFUMES -->
+                    <!-- VIEW MORE BUTTON -->
                     <div class="view-more-container">
                         <button class="view-more-button" id="perfumes-view-more" aria-label="عرض المزيد من العطور">
                             <i class="fas fa-plus-circle" aria-hidden="true"></i>
@@ -203,7 +204,7 @@
                         </p>
                         <a href="./products-showcase.html?category=watches" class="view-all-link" aria-label="عرض جميع الساعات">
                             <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                            شاهد جميع الساعات
+                            <span>شاهد جميع الساعات</span>
                         </a>
                     </div>
                     <div class="products-grid" id="watches-grid" role="grid" aria-label="شبكة عرض الساعات">
@@ -213,7 +214,7 @@
                         </div>
                     </div>
                     
-                    <!-- 🔥 ENHANCED VIEW MORE BUTTON FOR WATCHES -->
+                    <!-- VIEW MORE BUTTON -->
                     <div class="view-more-container">
                         <button class="view-more-button" id="watches-view-more" aria-label="عرض المزيد من الساعات">
                             <i class="fas fa-plus-circle" aria-hidden="true"></i>
@@ -301,13 +302,11 @@
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <!-- Screen Reader Announcer for Accessibility -->
+    <!-- Screen Reader Announcer -->
     <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-    <!-- Load main script safely -->
+    <!-- Scripts -->
     <script src="./js/main.js" defer></script>
-    
-    <!-- Load dynamic SEO and Footer data -->
     <script src="./js/init-seo.js" defer></script>
 </body>
 </html>
