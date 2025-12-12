@@ -30,8 +30,8 @@ if (typeof window !== 'undefined') {
 // Global state
 let currentPerfumes = [];
 let currentWatches = [];
-let displayedPerfumes = 6;
-let displayedWatches = 6;
+let displayedPerfumes = 999; // Show all initially
+let displayedWatches = 999;  // Show all initially
 let isLoading = false;
 
 // Enhanced image error handler (REPLACES INLINE ONERROR)
@@ -126,7 +126,7 @@ async function loadProducts() {
         
         logger.log(`📊 Loaded ${currentPerfumes.length} perfumes, ${currentWatches.length} watches`);
         
-        // Display initial products
+        // Display initial products - show ALL
         if (currentPerfumes.length > 0) {
             displayProductsSecurely(currentPerfumes.slice(0, displayedPerfumes), 'perfumes-grid');
             updateViewMoreButton('perfumes-view-more', currentPerfumes.length, displayedPerfumes);
