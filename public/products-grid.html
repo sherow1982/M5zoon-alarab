@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Emirates Gifts</title>
+    <meta name="description" content="Emirates Gifts - Browse 100+ premium fragrances, luxury watches and care products. Bilingual shopping experience in Arabic and English.">
+    <meta name="keywords" content="perfume, watches, gifts, luxury, UAE, shopping">
+    <title>Products - Emirates Gifts Store</title>
+    
+    <link rel="canonical" href="https://emirates-gifts.arabsad.com/products-grid.html">
+    <link rel="alternate" hreflang="ar" href="https://emirates-gifts.arabsad.com/products-grid.html" />
+    <link rel="alternate" hreflang="en" href="https://emirates-gifts.arabsad.com/products-grid.html" />
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Products",
+      "description": "Browse our collection of premium fragrances, watches and gifts",
+      "url": "https://emirates-gifts.arabsad.com/products-grid.html"
+    }
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -20,16 +38,6 @@
             --hover-color: #e6c200;
         }
 
-        html[dir="rtl"] {
-            direction: rtl;
-            text-align: right;
-        }
-
-        html[dir="ltr"] {
-            direction: ltr;
-            text-align: left;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, var(--dark-bg) 0%, #0f0f0f 100%);
@@ -37,49 +45,7 @@
             line-height: 1.6;
         }
 
-        /* Header */
-        header {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 20px;
-            border-bottom: 2px solid var(--primary-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-            letter-spacing: 2px;
-        }
-
-        .lang-switch {
-            display: flex;
-            gap: 10px;
-        }
-
-        .lang-btn {
-            padding: 8px 16px;
-            background: var(--primary-color);
-            color: black;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn.active {
-            background: var(--hover-color);
-            transform: scale(1.05);
-        }
-
-        .lang-btn:hover {
-            background: var(--hover-color);
-        }
-
-        /* Container */
+        /* Main Content */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -104,7 +70,7 @@
             color: var(--text-secondary);
         }
 
-        /* Filter Buttons */
+        /* Filter Section */
         .filter-section {
             display: flex;
             justify-content: center;
@@ -165,14 +131,7 @@
             justify-content: center;
             font-size: 60px;
             color: var(--primary-color);
-            overflow: hidden;
             position: relative;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .category-badge {
@@ -263,33 +222,51 @@
             .header-section h1 {
                 font-size: 32px;
             }
-
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">🎁 Emirates Gifts</div>
-        <div class="lang-switch">
-            <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
-            <button class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
+    <!-- Header Component (Reusable) -->
+    <header id="main-header" class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="/" class="logo" id="logo-link">
+                    <span class="logo-icon">🎁</span>
+                    <span class="logo-text" id="logo-text">Emirates Gifts</span>
+                </a>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="/" id="nav-home" class="nav-link">Home</a></li>
+                    <li><a href="/products-grid.html" id="nav-products" class="nav-link">Products</a></li>
+                    <li><a href="#about" id="nav-about" class="nav-link">About</a></li>
+                    <li><a href="#contact" id="nav-contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" id="lang-btn-en" onclick="switchLanguage('en')">EN</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" id="lang-btn-ar" onclick="switchLanguage('ar')">العربية</button>
+                </div>
+                <button class="search-btn" id="search-btn" aria-label="Search">🔍</button>
+                <button class="cart-btn" id="cart-btn" aria-label="Shopping Cart">🛒 <span class="cart-count" id="cart-count">0</span></button>
+            </div>
         </div>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Header Section -->
         <div class="header-section">
             <h1 id="title">Our Products</h1>
             <p id="subtitle">Luxury collection of perfumes, watches and exclusive gifts</p>
         </div>
 
-        <!-- Filter Section -->
         <div class="filter-section">
             <button class="filter-btn active" onclick="filterProducts('all')" id="filter-all">All Products</button>
             <button class="filter-btn" onclick="filterProducts('perfume')" id="filter-perfume">Perfumes</button>
@@ -297,15 +274,82 @@
             <button class="filter-btn" onclick="filterProducts('care')" id="filter-care">Hair & Care</button>
         </div>
 
-        <!-- Products Grid -->
         <div class="products-grid" id="productsGrid"></div>
     </div>
+
+    <!-- Footer Component (Reusable) -->
+    <footer id="main-footer" class="main-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section company-info">
+                    <h3 id="footer-about-title">About Emirates Gifts</h3>
+                    <p id="footer-about-desc">Premium online store for luxury fragrances, designer watches, and exclusive gifts in UAE.</p>
+                    <div class="social-links">
+                        <a href="https://facebook.com/emiratesgifts" class="social-link" id="social-facebook" aria-label="Facebook">f</a>
+                        <a href="https://instagram.com/emiratesgifts" class="social-link" id="social-instagram" aria-label="Instagram">📷</a>
+                        <a href="https://twitter.com/emiratesgifts" class="social-link" id="social-twitter" aria-label="Twitter">𝕏</a>
+                        <a href="https://tiktok.com/@emiratesgifts" class="social-link" id="social-tiktok" aria-label="TikTok">♪</a>
+                    </div>
+                </div>
+                <div class="footer-section quick-links">
+                    <h3 id="footer-quick-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="/products-grid.html?category=perfume" id="footer-perfumes">Fragrances</a></li>
+                        <li><a href="/products-grid.html?category=watch" id="footer-watches">Watches</a></li>
+                        <li><a href="/products-grid.html?category=care" id="footer-care">Care Products</a></li>
+                        <li><a href="#sale" id="footer-sale">On Sale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section customer-service">
+                    <h3 id="footer-service-title">Customer Service</h3>
+                    <ul>
+                        <li><a href="#contact" id="footer-contact">Contact Us</a></li>
+                        <li><a href="#faq" id="footer-faq">FAQ</a></li>
+                        <li><a href="#shipping" id="footer-shipping">Shipping Info</a></li>
+                        <li><a href="#returns" id="footer-returns">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section legal">
+                    <h3 id="footer-legal-title">Legal</h3>
+                    <ul>
+                        <li><a href="#privacy" id="footer-privacy">Privacy Policy</a></li>
+                        <li><a href="#terms" id="footer-terms">Terms & Conditions</a></li>
+                        <li><a href="#cookies" id="footer-cookies">Cookie Policy</a></li>
+                        <li><a href="#sitemap" id="footer-sitemap">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact-info">
+                    <h3 id="footer-contact-title">Contact Info</h3>
+                    <p id="footer-phone">📞 +971-4-XXXX-XXXX</p>
+                    <p id="footer-email">✉️ support@emiratesgifts.com</p>
+                    <p id="footer-address">📍 Dubai, UAE</p>
+                    <p id="footer-hours">⏰ Sat-Thu: 9AM-9PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="payment-methods">
+                    <span id="footer-payment-title">We Accept:</span>
+                    <span class="payment-icon">💳</span>
+                    <span class="payment-icon">💰</span>
+                    <span class="payment-icon">📱</span>
+                </div>
+                <div class="footer-copyright">
+                    <p id="footer-copyright">© 2025 Emirates Gifts Store. All rights reserved.</p>
+                </div>
+                <div class="back-to-top">
+                    <button id="back-to-top-btn" onclick="scrollToTop()" aria-label="Back to top">↑ Top</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include Header-Footer Styles -->
+    <link rel="stylesheet" href="/header-footer.html" />
 
     <script>
         // Products Data
         const productsData = {
             en: [
-                // Perfumes
                 { id: 1, name: 'ARIAF Perfume', category: 'perfume', price: 'AED 299', desc: 'Premium fragrance', emoji: '🌸' },
                 { id: 2, name: 'Aromatic Blend', category: 'perfume', price: 'AED 349', desc: 'Luxury scent', emoji: '🌹' },
                 { id: 3, name: 'Autumn Collection', category: 'perfume', price: 'AED 399', desc: 'Seasonal special', emoji: '🍂' },
@@ -314,26 +358,12 @@
                 { id: 6, name: 'Kayali Eden', category: 'perfume', price: 'AED 679', desc: 'Paradise scent', emoji: '🌺' },
                 { id: 7, name: 'Marly Delina', category: 'perfume', price: 'AED 799', desc: 'Royal fragrance', emoji: '👑' },
                 { id: 8, name: 'Oud Al Brayeh', category: 'perfume', price: 'AED 899', desc: 'Precious wood', emoji: '🌳' },
-                { id: 9, name: 'Paradise Collection', category: 'perfume', price: 'AED 449', desc: 'Dream-like scent', emoji: '✨' },
-                { id: 10, name: 'Penhaligons Leather', category: 'perfume', price: 'AED 749', desc: 'Sophisticated', emoji: '🎩' },
-                
-                // Watches
                 { id: 11, name: 'Rolex Datejust', category: 'watch', price: 'AED 8,999', desc: 'Swiss luxury', emoji: '⌚' },
                 { id: 12, name: 'Cartier Tank', category: 'watch', price: 'AED 12,999', desc: 'Iconic design', emoji: '⌚' },
-                { id: 13, name: 'Omega Seamaster', category: 'watch', price: 'AED 9,999', desc: 'Professional', emoji: '⌚' },
-                { id: 14, name: 'Patek Philippe', category: 'watch', price: 'AED 45,999', desc: 'Masterpiece', emoji: '⌚' },
-                { id: 15, name: 'Aigner Classic', category: 'watch', price: 'AED 4,999', desc: 'Elegant style', emoji: '⌚' },
-                { id: 16, name: 'Emporio Armani', category: 'watch', price: 'AED 3,499', desc: 'Modern design', emoji: '⌚' },
-                { id: 17, name: 'Breitling Pro', category: 'watch', price: 'AED 15,999', desc: 'Professional', emoji: '⌚' },
-                { id: 18, name: 'Piaget Altiplano', category: 'watch', price: 'AED 18,999', desc: 'Ultra-thin', emoji: '⌚' },
-                
-                // Hair & Care
-                { id: 19, name: 'Emotion Hair Serum', category: 'care', price: 'AED 129', desc: 'Nourishing', emoji: '💇' },
-                { id: 20, name: 'JORA Body Mist', category: 'care', price: 'AED 149', desc: 'Fresh & light', emoji: '💨' },
-                { id: 21, name: 'Premium Hair Oil', category: 'care', price: 'AED 179', desc: 'Silky smooth', emoji: '🧴' },
+                { id: 101, name: 'Emotion Hair Serum', category: 'care', price: 'AED 129', desc: 'Luxury nourishing', emoji: '💇' },
+                { id: 102, name: 'Emotion Body Mist', category: 'care', price: 'AED 149', desc: 'Light refreshing', emoji: '💨' }
             ],
             ar: [
-                // العطور
                 { id: 1, name: 'عطر أريف', category: 'perfume', price: 'درهم 299', desc: 'عطر فاخر', emoji: '🌸' },
                 { id: 2, name: 'مزيج عطري', category: 'perfume', price: 'درهم 349', desc: 'رائحة فاخرة', emoji: '🌹' },
                 { id: 3, name: 'مجموعة الخريف', category: 'perfume', price: 'درهم 399', desc: 'عرض موسمي', emoji: '🍂' },
@@ -342,27 +372,14 @@
                 { id: 6, name: 'كايالي إيدن', category: 'perfume', price: 'درهم 679', desc: 'رائحة الجنة', emoji: '🌺' },
                 { id: 7, name: 'مارلي ديلينا', category: 'perfume', price: 'درهم 799', desc: 'عطر ملكي', emoji: '👑' },
                 { id: 8, name: 'عود البريه', category: 'perfume', price: 'درهم 899', desc: 'خشب نفيس', emoji: '🌳' },
-                { id: 9, name: 'مجموعة الجنة', category: 'perfume', price: 'درهم 449', desc: 'رائحة الأحلام', emoji: '✨' },
-                { id: 10, name: 'بينهاليجونز جلد', category: 'perfume', price: 'درهم 749', desc: 'متطور', emoji: '🎩' },
-                
-                // الساعات
                 { id: 11, name: 'رولكس ديت جاست', category: 'watch', price: 'درهم 8,999', desc: 'فخامة سويسرية', emoji: '⌚' },
                 { id: 12, name: 'كارتييه تانك', category: 'watch', price: 'درهم 12,999', desc: 'تصميم أيقوني', emoji: '⌚' },
-                { id: 13, name: 'أوميجا سيماستر', category: 'watch', price: 'درهم 9,999', desc: 'احترافية', emoji: '⌚' },
-                { id: 14, name: 'باتيك فيليب', category: 'watch', price: 'درهم 45,999', desc: 'تحفة فنية', emoji: '⌚' },
-                { id: 15, name: 'آينجر كلاسيك', category: 'watch', price: 'درهم 4,999', desc: 'أناقة راقية', emoji: '⌚' },
-                { id: 16, name: 'إمبوريو أرماني', category: 'watch', price: 'درهم 3,499', desc: 'تصميم حديث', emoji: '⌚' },
-                { id: 17, name: 'بريتلينج برو', category: 'watch', price: 'درهم 15,999', desc: 'احترافية', emoji: '⌚' },
-                { id: 18, name: 'بياجيه ألتيبلانو', category: 'watch', price: 'درهم 18,999', desc: 'رقيقة جداً', emoji: '⌚' },
-                
-                // العناية
-                { id: 19, name: 'مصل شعر إيموشن', category: 'care', price: 'درهم 129', desc: 'مغذي', emoji: '💇' },
-                { id: 20, name: 'رذاذ جسم جورا', category: 'care', price: 'درهم 149', desc: 'منعش وخفيف', emoji: '💨' },
-                { id: 21, name: 'زيت شعر فاخر', category: 'care', price: 'درهم 179', desc: 'ناعم وحريري', emoji: '🧴' },
+                { id: 101, name: 'مصل شعر إيموشن', category: 'care', price: 'درهم 129', desc: 'مغذي فاخر', emoji: '💇' },
+                { id: 102, name: 'رذاذ جسم إيموشن', category: 'care', price: 'درهم 149', desc: 'منعش خفيف', emoji: '💨' }
             ]
         };
 
-        // Text translations
+        // Translations
         const translations = {
             en: {
                 title: 'Our Products',
@@ -414,6 +431,68 @@
             document.getElementById('filter-watch').textContent = trans.watch;
             document.getElementById('filter-care').textContent = trans.care;
             renderProducts();
+            updateHeaderFooter();
+        }
+
+        function updateHeaderFooter() {
+            // Header Updates
+            document.getElementById('logo-text').textContent = currentLang === 'ar' ? 'متجر الإمارات' : 'Emirates Gifts';
+            document.getElementById('nav-home').textContent = currentLang === 'ar' ? 'الرئيسية' : 'Home';
+            document.getElementById('nav-products').textContent = currentLang === 'ar' ? 'المنتجات' : 'Products';
+            document.getElementById('nav-about').textContent = currentLang === 'ar' ? 'عننا' : 'About';
+            document.getElementById('nav-contact').textContent = currentLang === 'ar' ? 'اتصل بنا' : 'Contact';
+
+            // Footer Updates (Arabic)
+            if (currentLang === 'ar') {
+                document.getElementById('footer-about-title').textContent = 'عن متجر الإمارات';
+                document.getElementById('footer-about-desc').textContent = 'متجر أونلاين متخصص ببيع العطور الفاخرة والساعات الفاخرة والهدايا الحصرية في الإمارات.';
+                document.getElementById('footer-quick-title').textContent = 'روابط سريعة';
+                document.getElementById('footer-perfumes').textContent = 'العطور';
+                document.getElementById('footer-watches').textContent = 'الساعات';
+                document.getElementById('footer-care').textContent = 'منتجات العناية';
+                document.getElementById('footer-sale').textContent = 'عروض خاصة';
+                document.getElementById('footer-service-title').textContent = 'خدمة العملاء';
+                document.getElementById('footer-contact').textContent = 'اتصل بنا';
+                document.getElementById('footer-faq').textContent = 'أسئلة شائعة';
+                document.getElementById('footer-shipping').textContent = 'معلومات الشحن';
+                document.getElementById('footer-returns').textContent = 'الإرجاع';
+                document.getElementById('footer-legal-title').textContent = 'قانوني';
+                document.getElementById('footer-privacy').textContent = 'سياسة الخصوصية';
+                document.getElementById('footer-terms').textContent = 'الشروط والأحكام';
+                document.getElementById('footer-cookies').textContent = 'سياسة الكوكيز';
+                document.getElementById('footer-sitemap').textContent = 'خريطة الموقع';
+                document.getElementById('footer-contact-title').textContent = 'معلومات التواصل';
+                document.getElementById('footer-address').textContent = '📍 دبي، الإمارات';
+                document.getElementById('footer-hours').textContent = '⏰ السبت-الخميس: 9 صباحاً-9 مساءً';
+                document.getElementById('footer-payment-title').textContent = 'ندقبل:';
+                document.getElementById('footer-copyright').textContent = '© 2025 متجر الإمارات للهدايا. جميع الحقوق محفوظة.';
+                document.getElementById('back-to-top-btn').textContent = 'أعلى ↑';
+            } else {
+                // English Footer (default)
+                document.getElementById('footer-about-title').textContent = 'About Emirates Gifts';
+                document.getElementById('footer-about-desc').textContent = 'Premium online store for luxury fragrances, designer watches, and exclusive gifts in UAE.';
+                document.getElementById('footer-quick-title').textContent = 'Quick Links';
+                document.getElementById('footer-perfumes').textContent = 'Fragrances';
+                document.getElementById('footer-watches').textContent = 'Watches';
+                document.getElementById('footer-care').textContent = 'Care Products';
+                document.getElementById('footer-sale').textContent = 'On Sale';
+                document.getElementById('footer-service-title').textContent = 'Customer Service';
+                document.getElementById('footer-contact').textContent = 'Contact Us';
+                document.getElementById('footer-faq').textContent = 'FAQ';
+                document.getElementById('footer-shipping').textContent = 'Shipping Info';
+                document.getElementById('footer-returns').textContent = 'Returns';
+                document.getElementById('footer-legal-title').textContent = 'Legal';
+                document.getElementById('footer-privacy').textContent = 'Privacy Policy';
+                document.getElementById('footer-terms').textContent = 'Terms & Conditions';
+                document.getElementById('footer-cookies').textContent = 'Cookie Policy';
+                document.getElementById('footer-sitemap').textContent = 'Sitemap';
+                document.getElementById('footer-contact-title').textContent = 'Contact Info';
+                document.getElementById('footer-address').textContent = '📍 Dubai, UAE';
+                document.getElementById('footer-hours').textContent = '⏰ Sat-Thu: 9AM-9PM';
+                document.getElementById('footer-payment-title').textContent = 'We Accept:';
+                document.getElementById('footer-copyright').textContent = '© 2025 Emirates Gifts Store. All rights reserved.';
+                document.getElementById('back-to-top-btn').textContent = 'Top ↑';
+            }
         }
 
         function renderProducts() {
@@ -448,8 +527,15 @@
             `).join('');
         }
 
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // Initialize
-        updateUI();
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUI();
+        });
     </script>
 </body>
 </html>
