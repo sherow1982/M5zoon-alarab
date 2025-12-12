@@ -29,7 +29,7 @@ Disallow: /api/admin/
 User-agent: Googlebot
 Allow: /
 Allow: /en/
-Crawl-delay: 0
+Crawl-delay: 1
 
 User-agent: Googlebot-Image
 Allow: /
@@ -52,6 +52,7 @@ Disallow: /
 Crawl-delay: 10
 
 User-agent: MJ12bot
+Disallow: /
 Crawl-delay: 10
 
 # Sitemaps - Critical for multilingual SEO
