@@ -50,6 +50,93 @@
     
     <!-- External Stylesheet -->
     <link rel="stylesheet" href="./css/products-showcase.css">
+    
+    <!-- Load More Button Styles -->
+    <style>
+        .load-more-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        #loadMoreBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #D4AF37, #B8860B);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #loadMoreBtn:hover {
+            background: linear-gradient(135deg, #E5C158, #D4AF37);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        #loadMoreBtn:active {
+            transform: translateY(0);
+        }
+        
+        #loadMoreBtn:focus-visible {
+            outline: 3px solid #D4AF37;
+            outline-offset: 2px;
+        }
+        
+        #loadMoreBtn i {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+        
+        #loadMoreBtn:hover i {
+            transform: scale(1.1);
+        }
+        
+        .btn-text {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (max-width: 768px) {
+            #loadMoreBtn {
+                padding: 14px 28px;
+                font-size: 14px;
+            }
+            
+            #loadMoreBtn i {
+                font-size: 16px;
+            }
+            
+            .load-more-container {
+                padding: 30px 15px;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
@@ -140,6 +227,17 @@
                 <h3>جارِ تحميل جميع المنتجات عالية الجودة...</h3>
                 <p style="color: #666; margin-top: 15px;">دعم شامل لجميع الروابط - يرجى الانتظار</p>
             </div>
+        </div>
+        
+        <!-- 📄 LOAD MORE BUTTON - BILINGUAL -->
+        <div class="load-more-container" id="loadMoreContainer" style="display:none;">
+            <button id="loadMoreBtn" 
+                    type="button" 
+                    aria-label="تحميل المزيد من المنتجات"
+                    title="انقر لتحميل المزيد من المنتجات">
+                <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                <span class="btn-text">تحميل المزيد</span>
+            </button>
         </div>
         
         <div class="checkout-cta">
