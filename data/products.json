@@ -1,0 +1,67 @@
+[
+  {
+    "id": "perfume_1",
+    "title": "عطر كوكو شانيل 100 مل",
+    "price": 352,
+    "sale_price": 252,
+    "image_link": "https://m5zoon.com/public/uploads/products/1722352332177124.webp",
+    "slug": "عطر-كوكو-شانيل-100-مل",
+    "meta_description": "عطر كوكو شانيل 100 مل - هدية فريدة من Emirates Gifts",
+    "brand": "Chanel",
+    "category": "عطور",
+    "rating": 4.8,
+    "review_count": 45
+  },
+  {
+    "id": "perfume_2",
+    "title": "عطر جوتشي فلورا",
+    "price": 352,
+    "sale_price": 252,
+    "image_link": "https://m5zoon.com/public/uploads/products/1720344963790342.webp",
+    "slug": "عطر-جوتشي-فلورا",
+    "meta_description": "عطر جوتشي فلورا - هدية فريدة من Emirates Gifts",
+    "brand": "Gucci",
+    "category": "عطور",
+    "rating": 4.8,
+    "review_count": 38
+  },
+  {
+    "id": "perfume_3",
+    "title": "عطر جوتشي بلوم",
+    "price": 352,
+    "sale_price": 252,
+    "image_link": "https://m5zoon.com/public/uploads/products/1720344971935939.webp",
+    "slug": "عطر-جوتشي-بلوم",
+    "meta_description": "عطر جوتشي بلوم - هدية فريدة من Emirates Gifts",
+    "brand": "Gucci",
+    "category": "عطور",
+    "rating": 4.8,
+    "review_count": 35
+  },
+  {
+    "id": "watch_1",
+    "title": "ساعة رولكس يخت ماستر - فضي",
+    "price": 370,
+    "sale_price": 320,
+    "image_link": "https://m5zoon.com/public/uploads/products/1689086291310824.webp",
+    "slug": "ساعة-رولكس-يخت-ماستر---فضي",
+    "meta_description": "ساعة رولكس يخت ماستر - فضي - هدية فريدة من Emirates Gifts",
+    "brand": "Rolex",
+    "category": "ساعات",
+    "rating": 4.9,
+    "review_count": 52
+  },
+  {
+    "id": "watch_2",
+    "title": "ساعة Rolex كلاسيكية 41 ملم 2022",
+    "price": 375,
+    "sale_price": 325,
+    "image_link": "https://m5zoon.com/public/uploads/products/1741223185271965.png",
+    "slug": "ساعة-Rolex-كلاسيكية-41-ملم-2022",
+    "meta_description": "ساعة Rolex كلاسيكية 41 ملم 2022 - هدية فريدة من Emirates Gifts",
+    "brand": "Rolex",
+    "category": "ساعات",
+    "rating": 4.9,
+    "review_count": 48
+  }
+]
