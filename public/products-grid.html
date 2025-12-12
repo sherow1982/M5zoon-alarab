@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Emirates Gifts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #D4AF37;
+            --dark-bg: #1a1a1a;
+            --card-bg: #2a2a2a;
+            --text-primary: #fff;
+            --text-secondary: #ccc;
+            --hover-color: #e6c200;
+        }
+
+        html[dir="rtl"] {
+            direction: rtl;
+            text-align: right;
+        }
+
+        html[dir="ltr"] {
+            direction: ltr;
+            text-align: left;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #0f0f0f 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: var(--primary-color);
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--hover-color);
+            transform: scale(1.05);
+        }
+
+        .lang-btn:hover {
+            background: var(--hover-color);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header-section h1 {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .header-section p {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        /* Filter Buttons */
+        .filter-section {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: black;
+            transform: translateY(-2px);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--primary-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary-color);
+            color: black;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        html[dir="rtl"] .category-badge {
+            right: auto;
+            left: 10px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .add-btn {
+            padding: 8px 16px;
+            background: var(--primary-color);
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .add-btn:hover {
+            background: var(--hover-color);
+            transform: scale(1.05);
+        }
+
+        /* No Results */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+            font-size: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .header-section h1 {
+                font-size: 32px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">🎁 Emirates Gifts</div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+            <button class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h1 id="title">Our Products</h1>
+            <p id="subtitle">Luxury collection of perfumes, watches and exclusive gifts</p>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterProducts('all')" id="filter-all">All Products</button>
+            <button class="filter-btn" onclick="filterProducts('perfume')" id="filter-perfume">Perfumes</button>
+            <button class="filter-btn" onclick="filterProducts('watch')" id="filter-watch">Watches</button>
+            <button class="filter-btn" onclick="filterProducts('care')" id="filter-care">Hair & Care</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+    <script>
+        // Products Data
+        const productsData = {
+            en: [
+                // Perfumes
+                { id: 1, name: 'ARIAF Perfume', category: 'perfume', price: 'AED 299', desc: 'Premium fragrance', emoji: '🌸' },
+                { id: 2, name: 'Aromatic Blend', category: 'perfume', price: 'AED 349', desc: 'Luxury scent', emoji: '🌹' },
+                { id: 3, name: 'Autumn Collection', category: 'perfume', price: 'AED 399', desc: 'Seasonal special', emoji: '🍂' },
+                { id: 4, name: 'De Louvre Black', category: 'perfume', price: 'AED 549', desc: 'Elegant & bold', emoji: '🖤' },
+                { id: 5, name: 'Emotion Fragrance', category: 'perfume', price: 'AED 459', desc: 'Feel the essence', emoji: '💎' },
+                { id: 6, name: 'Kayali Eden', category: 'perfume', price: 'AED 679', desc: 'Paradise scent', emoji: '🌺' },
+                { id: 7, name: 'Marly Delina', category: 'perfume', price: 'AED 799', desc: 'Royal fragrance', emoji: '👑' },
+                { id: 8, name: 'Oud Al Brayeh', category: 'perfume', price: 'AED 899', desc: 'Precious wood', emoji: '🌳' },
+                { id: 9, name: 'Paradise Collection', category: 'perfume', price: 'AED 449', desc: 'Dream-like scent', emoji: '✨' },
+                { id: 10, name: 'Penhaligons Leather', category: 'perfume', price: 'AED 749', desc: 'Sophisticated', emoji: '🎩' },
+                
+                // Watches
+                { id: 11, name: 'Rolex Datejust', category: 'watch', price: 'AED 8,999', desc: 'Swiss luxury', emoji: '⌚' },
+                { id: 12, name: 'Cartier Tank', category: 'watch', price: 'AED 12,999', desc: 'Iconic design', emoji: '⌚' },
+                { id: 13, name: 'Omega Seamaster', category: 'watch', price: 'AED 9,999', desc: 'Professional', emoji: '⌚' },
+                { id: 14, name: 'Patek Philippe', category: 'watch', price: 'AED 45,999', desc: 'Masterpiece', emoji: '⌚' },
+                { id: 15, name: 'Aigner Classic', category: 'watch', price: 'AED 4,999', desc: 'Elegant style', emoji: '⌚' },
+                { id: 16, name: 'Emporio Armani', category: 'watch', price: 'AED 3,499', desc: 'Modern design', emoji: '⌚' },
+                { id: 17, name: 'Breitling Pro', category: 'watch', price: 'AED 15,999', desc: 'Professional', emoji: '⌚' },
+                { id: 18, name: 'Piaget Altiplano', category: 'watch', price: 'AED 18,999', desc: 'Ultra-thin', emoji: '⌚' },
+                
+                // Hair & Care
+                { id: 19, name: 'Emotion Hair Serum', category: 'care', price: 'AED 129', desc: 'Nourishing', emoji: '💇' },
+                { id: 20, name: 'JORA Body Mist', category: 'care', price: 'AED 149', desc: 'Fresh & light', emoji: '💨' },
+                { id: 21, name: 'Premium Hair Oil', category: 'care', price: 'AED 179', desc: 'Silky smooth', emoji: '🧴' },
+            ],
+            ar: [
+                // العطور
+                { id: 1, name: 'عطر أريف', category: 'perfume', price: 'درهم 299', desc: 'عطر فاخر', emoji: '🌸' },
+                { id: 2, name: 'مزيج عطري', category: 'perfume', price: 'درهم 349', desc: 'رائحة فاخرة', emoji: '🌹' },
+                { id: 3, name: 'مجموعة الخريف', category: 'perfume', price: 'درهم 399', desc: 'عرض موسمي', emoji: '🍂' },
+                { id: 4, name: 'دو لوفر الأسود', category: 'perfume', price: 'درهم 549', desc: 'أنيق وجريء', emoji: '🖤' },
+                { id: 5, name: 'عطر الإيموشن', category: 'perfume', price: 'درهم 459', desc: 'اشعر بالجوهر', emoji: '💎' },
+                { id: 6, name: 'كايالي إيدن', category: 'perfume', price: 'درهم 679', desc: 'رائحة الجنة', emoji: '🌺' },
+                { id: 7, name: 'مارلي ديلينا', category: 'perfume', price: 'درهم 799', desc: 'عطر ملكي', emoji: '👑' },
+                { id: 8, name: 'عود البريه', category: 'perfume', price: 'درهم 899', desc: 'خشب نفيس', emoji: '🌳' },
+                { id: 9, name: 'مجموعة الجنة', category: 'perfume', price: 'درهم 449', desc: 'رائحة الأحلام', emoji: '✨' },
+                { id: 10, name: 'بينهاليجونز جلد', category: 'perfume', price: 'درهم 749', desc: 'متطور', emoji: '🎩' },
+                
+                // الساعات
+                { id: 11, name: 'رولكس ديت جاست', category: 'watch', price: 'درهم 8,999', desc: 'فخامة سويسرية', emoji: '⌚' },
+                { id: 12, name: 'كارتييه تانك', category: 'watch', price: 'درهم 12,999', desc: 'تصميم أيقوني', emoji: '⌚' },
+                { id: 13, name: 'أوميجا سيماستر', category: 'watch', price: 'درهم 9,999', desc: 'احترافية', emoji: '⌚' },
+                { id: 14, name: 'باتيك فيليب', category: 'watch', price: 'درهم 45,999', desc: 'تحفة فنية', emoji: '⌚' },
+                { id: 15, name: 'آينجر كلاسيك', category: 'watch', price: 'درهم 4,999', desc: 'أناقة راقية', emoji: '⌚' },
+                { id: 16, name: 'إمبوريو أرماني', category: 'watch', price: 'درهم 3,499', desc: 'تصميم حديث', emoji: '⌚' },
+                { id: 17, name: 'بريتلينج برو', category: 'watch', price: 'درهم 15,999', desc: 'احترافية', emoji: '⌚' },
+                { id: 18, name: 'بياجيه ألتيبلانو', category: 'watch', price: 'درهم 18,999', desc: 'رقيقة جداً', emoji: '⌚' },
+                
+                // العناية
+                { id: 19, name: 'مصل شعر إيموشن', category: 'care', price: 'درهم 129', desc: 'مغذي', emoji: '💇' },
+                { id: 20, name: 'رذاذ جسم جورا', category: 'care', price: 'درهم 149', desc: 'منعش وخفيف', emoji: '💨' },
+                { id: 21, name: 'زيت شعر فاخر', category: 'care', price: 'درهم 179', desc: 'ناعم وحريري', emoji: '🧴' },
+            ]
+        };
+
+        // Text translations
+        const translations = {
+            en: {
+                title: 'Our Products',
+                subtitle: 'Luxury collection of perfumes, watches and exclusive gifts',
+                all: 'All Products',
+                perfume: 'Perfumes',
+                watch: 'Watches',
+                care: 'Hair & Care',
+                addCart: 'Add to Cart',
+                noResults: 'No products found'
+            },
+            ar: {
+                title: 'منتجاتنا',
+                subtitle: 'مجموعة فاخرة من العطور والساعات والهدايا الحصرية',
+                all: 'جميع المنتجات',
+                perfume: 'العطور',
+                watch: 'الساعات',
+                care: 'العناية والشعر',
+                addCart: 'أضف للسلة',
+                noResults: 'لم يتم العثور على منتجات'
+            }
+        };
+
+        let currentLang = 'en';
+        let currentFilter = 'all';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            updateUI();
+        }
+
+        function filterProducts(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderProducts();
+        }
+
+        function updateUI() {
+            const trans = translations[currentLang];
+            document.getElementById('title').textContent = trans.title;
+            document.getElementById('subtitle').textContent = trans.subtitle;
+            document.getElementById('filter-all').textContent = trans.all;
+            document.getElementById('filter-perfume').textContent = trans.perfume;
+            document.getElementById('filter-watch').textContent = trans.watch;
+            document.getElementById('filter-care').textContent = trans.care;
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            const products = productsData[currentLang];
+            const trans = translations[currentLang];
+            
+            let filtered = currentFilter === 'all' 
+                ? products 
+                : products.filter(p => p.category === currentFilter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="no-results">${trans.noResults}</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        ${product.emoji}
+                        <span class="category-badge">${product.category}</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-desc">${product.desc}</div>
+                        <div class="product-footer">
+                            <span class="product-price">${product.price}</span>
+                            <button class="add-btn">${trans.addCart}</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize
+        updateUI();
+    </script>
+</body>
+</html>
