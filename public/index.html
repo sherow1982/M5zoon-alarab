@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emirates Gifts - هدايا فاخرة من الإمارات</title>
+    <meta name="description" content="متجر هدايا فاخرة - عطور وساعات سويسرية مميزة من Emirates Gifts">
+    <meta name="keywords" content="هدايا, عطور, ساعات, الإمارات">
+    <meta property="og:title" content="Emirates Gifts - هدايا فاخرة">
+    <meta property="og:description" content="متجر هدايا مميز">
+    <meta property="og:url" content="https://emirates-gifts.arabsad.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Organization",
+      "name": "Emirates Gifts",
+      "url": "https://emirates-gifts.arabsad.com",
+      "logo": "https://emirates-gifts.arabsad.com/logo.png",
+      "description": "متجر هدايا فاخرة متخصص في العطور والساعات",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "email": "support@emirates-gifts.arabsad.com",
+        "telephone": "+971"
+      },
+      "sameAs": [
+        "https://www.facebook.com/emirates-gifts",
+        "https://www.instagram.com/emirates-gifts"
+      ]
+    }
+    </script>
+    
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "WebSite",
+      "name": "Emirates Gifts",
+      "url": "https://emirates-gifts.arabsad.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://emirates-gifts.arabsad.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://emirates-gifts.arabsad.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "عطور",
+          "item": "https://emirates-gifts.arabsad.com/perfumes"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ساعات",
+          "item": "https://emirates-gifts.arabsad.com/watches"
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 40px;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        
+        p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .stat {
+            background: #f5f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .feeds {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .feeds h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .feed-link {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9em;
+        }
+        
+        .feed-link:last-child {
+            border-bottom: none;
+        }
+        
+        .feed-icon {
+            margin-left: 10px;
+            font-size: 1.2em;
+        }
+        
+        .feed-url {
+            color: #667eea;
+            word-break: break-all;
+            font-size: 0.85em;
+        }
+        
+        .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .schema-info {
+            background: #e8f4f8;
+            border-left: 4px solid #00bcd4;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #00695c;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎁 Emirates Gifts</h1>
+        <p>متجر هدايا فاخرة مهتمة بالعطور والساعات السويسرية المميزة</p>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="perfume-count">66</div>
+                <div class="stat-label">عطر</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="watch-count">0</div>
+                <div class="stat-label">ساعة</div>
+            </div>
+        </div>
+        
+        <div class="feeds">
+            <h3>📄 الفيدات المتاحة:</h3>
+            <div class="feed-link">
+                <span class="feed-icon">📄</span>
+                <div>
+                    <div>CSV عربي</div>
+                    <div class="feed-url">merchant-feed-ar.csv</div>
+                </div>
+            </div>
+            <div class="feed-link">
+                <span class="feed-icon">📄</span>
+                <div>
+                    <div>CSV إنجليزي</div>
+                    <div class="feed-url">merchant-feed-en.csv</div>
+                </div>
+            </div>
+            <div class="feed-link">
+                <span class="feed-icon">📄</span>
+                <div>
+                    <div>XML Feed</div>
+                    <div class="feed-url">merchant-feed.xml</div>
+                </div>
+            </div>
+            <div class="feed-link">
+                <span class="feed-icon">📄</span>
+                <div>
+                    <div>JSON Data</div>
+                    <div class="feed-url">products.json</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="schema-info">
+            ✅ Schema.org markup مضاف ومفعل <br>
+            البيانات معروضة في متحركات البحث
+        </div>
+        
+        <div class="buttons">
+            <a href="https://github.com/sherow1982/emirates-gifts" class="btn btn-primary" target="_blank">🔗 GitHub</a>
+            <a href="https://search.google.com/test/rich-results" class="btn btn-secondary" target="_blank">🔍 Test Schema</a>
+        </div>
+    </div>
+    
+    <script>
+        // Load product count from summary.json
+        async function loadStats() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/sherow1982/emirates-gifts/main/data/summary.json');
+                const data = await response.json();
+                
+                if (data.perfumes) {
+                    document.getElementById('perfume-count').textContent = data.perfumes;
+                }
+                if (data.watches) {
+                    document.getElementById('watch-count').textContent = data.watches;
+                }
+            } catch (error) {
+                console.log('ملخص البيانات لم يتم تحميله بعد');
+            }
+        }
+        
+        loadStats();
+    </script>
+</body>
+</html>
