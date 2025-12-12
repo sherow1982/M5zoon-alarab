@@ -1,0 +1,597 @@
+<!-- ===== HEADER COMPONENT (Reusable) ===== -->
+
+<!-- Header Component -->
+<header id="main-header" class="main-header">
+    <div class="header-container">
+        <!-- Logo Section -->
+        <div class="logo-section">
+            <a href="/" class="logo" id="logo-link">
+                <span class="logo-icon">🎁</span>
+                <span class="logo-text" id="logo-text">Emirates Gifts</span>
+            </a>
+        </div>
+        
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+            <ul class="nav-list">
+                <li><a href="/" id="nav-home" class="nav-link">Home</a></li>
+                <li><a href="/products-grid.html" id="nav-products" class="nav-link">Products</a></li>
+                <li><a href="#about" id="nav-about" class="nav-link">About</a></li>
+                <li><a href="#contact" id="nav-contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Language & Auth Section -->
+        <div class="header-actions">
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="lang-btn-en" onclick="switchLanguage('en')">EN</button>
+                <span class="lang-divider">|</span>
+                <button class="lang-btn" id="lang-btn-ar" onclick="switchLanguage('ar')">العربية</button>
+            </div>
+            <button class="search-btn" id="search-btn" aria-label="Search">🔍</button>
+            <button class="cart-btn" id="cart-btn" aria-label="Shopping Cart">🛒 <span class="cart-count" id="cart-count">0</span></button>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+
+<!-- ===== FOOTER COMPONENT (Reusable) ===== -->
+
+<footer id="main-footer" class="main-footer">
+    <div class="footer-container">
+        <!-- Footer Content Grid -->
+        <div class="footer-grid">
+            <!-- Company Info -->
+            <div class="footer-section company-info">
+                <h3 id="footer-about-title">About Emirates Gifts</h3>
+                <p id="footer-about-desc">Premium online store for luxury fragrances, designer watches, and exclusive gifts in UAE.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com/emiratesgifts" class="social-link" id="social-facebook" aria-label="Facebook">f</a>
+                    <a href="https://instagram.com/emiratesgifts" class="social-link" id="social-instagram" aria-label="Instagram">📷</a>
+                    <a href="https://twitter.com/emiratesgifts" class="social-link" id="social-twitter" aria-label="Twitter">𝕏</a>
+                    <a href="https://tiktok.com/@emiratesgifts" class="social-link" id="social-tiktok" aria-label="TikTok">♪</a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="footer-section quick-links">
+                <h3 id="footer-quick-title">Quick Links</h3>
+                <ul>
+                    <li><a href="/products-grid.html?category=perfume" id="footer-perfumes">Fragrances</a></li>
+                    <li><a href="/products-grid.html?category=watch" id="footer-watches">Watches</a></li>
+                    <li><a href="/products-grid.html?category=care" id="footer-care">Care Products</a></li>
+                    <li><a href="#sale" id="footer-sale">On Sale</a></li>
+                </ul>
+            </div>
+            
+            <!-- Customer Service -->
+            <div class="footer-section customer-service">
+                <h3 id="footer-service-title">Customer Service</h3>
+                <ul>
+                    <li><a href="#contact" id="footer-contact">Contact Us</a></li>
+                    <li><a href="#faq" id="footer-faq">FAQ</a></li>
+                    <li><a href="#shipping" id="footer-shipping">Shipping Info</a></li>
+                    <li><a href="#returns" id="footer-returns">Returns</a></li>
+                </ul>
+            </div>
+            
+            <!-- Legal -->
+            <div class="footer-section legal">
+                <h3 id="footer-legal-title">Legal</h3>
+                <ul>
+                    <li><a href="#privacy" id="footer-privacy">Privacy Policy</a></li>
+                    <li><a href="#terms" id="footer-terms">Terms & Conditions</a></li>
+                    <li><a href="#cookies" id="footer-cookies">Cookie Policy</a></li>
+                    <li><a href="#sitemap" id="footer-sitemap">Sitemap</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="footer-section contact-info">
+                <h3 id="footer-contact-title">Contact Info</h3>
+                <p id="footer-phone">📞 +971-4-XXXX-XXXX</p>
+                <p id="footer-email">✉️ support@emiratesgifts.com</p>
+                <p id="footer-address">📍 Dubai, UAE</p>
+                <p id="footer-hours">⏰ Sat-Thu: 9AM-9PM</p>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <span id="footer-payment-title">We Accept:</span>
+                <span class="payment-icon">💳</span>
+                <span class="payment-icon">💰</span>
+                <span class="payment-icon">📱</span>
+            </div>
+            
+            <div class="footer-copyright">
+                <p id="footer-copyright">© 2025 Emirates Gifts Store. All rights reserved.</p>
+            </div>
+            
+            <div class="back-to-top">
+                <button id="back-to-top-btn" onclick="scrollToTop()" aria-label="Back to top">↑ Top</button>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== STYLES ===== -->
+
+<style>
+    /* Header Styles */
+    .main-header {
+        background: rgba(26, 26, 26, 0.98);
+        border-bottom: 3px solid #D4AF37;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .header-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .logo-section {
+        flex: 0 0 auto;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #D4AF37;
+        font-size: 24px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+    
+    .logo:hover {
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+    
+    .logo-icon {
+        font-size: 28px;
+    }
+    
+    .nav-menu {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .nav-list {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+    
+    .nav-link {
+        color: #f5f5f5;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover {
+        color: #D4AF37;
+        background: rgba(212, 175, 55, 0.1);
+    }
+    
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .lang-switcher {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .lang-btn {
+        background: transparent;
+        border: 2px solid #D4AF37;
+        color: #D4AF37;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 12px;
+        transition: all 0.3s ease;
+    }
+    
+    .lang-btn:hover {
+        background: #D4AF37;
+        color: black;
+    }
+    
+    .lang-btn.active {
+        background: #D4AF37;
+        color: black;
+    }
+    
+    .lang-divider {
+        color: #D4AF37;
+        font-weight: bold;
+    }
+    
+    .search-btn,
+    .cart-btn {
+        background: transparent;
+        border: none;
+        color: #D4AF37;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 8px 12px;
+    }
+    
+    .search-btn:hover,
+    .cart-btn:hover {
+        color: #e6c200;
+        transform: scale(1.1);
+    }
+    
+    .cart-count {
+        background: #D4AF37;
+        color: black;
+        border-radius: 50%;
+        padding: 0 6px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 4px;
+    }
+    
+    .mobile-menu-toggle {
+        display: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .mobile-menu-toggle span {
+        width: 24px;
+        height: 3px;
+        background: #D4AF37;
+        transition: all 0.3s ease;
+    }
+    
+    /* Footer Styles */
+    .main-footer {
+        background: rgba(26, 26, 26, 0.98);
+        border-top: 3px solid #D4AF37;
+        color: #f5f5f5;
+        margin-top: 80px;
+    }
+    
+    .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 60px 20px 0;
+    }
+    
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .footer-section h3 {
+        color: #D4AF37;
+        margin-bottom: 15px;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .footer-section ul {
+        list-style: none;
+    }
+    
+    .footer-section li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-section a {
+        color: #aaa;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .footer-section a:hover {
+        color: #D4AF37;
+    }
+    
+    .company-info p {
+        color: #999;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 12px;
+        margin-top: 15px;
+    }
+    
+    .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: rgba(212, 175, 55, 0.1);
+        border: 2px solid #D4AF37;
+        border-radius: 50%;
+        color: #D4AF37;
+        font-weight: bold;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+        background: #D4AF37;
+        color: black;
+        transform: translateY(-3px);
+    }
+    
+    .contact-info p {
+        color: #aaa;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    
+    .footer-bottom {
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .payment-methods {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #999;
+        font-size: 14px;
+    }
+    
+    .payment-icon {
+        font-size: 20px;
+    }
+    
+    .footer-copyright {
+        color: #666;
+        font-size: 13px;
+    }
+    
+    .back-to-top {
+        flex: 0 0 auto;
+    }
+    
+    .back-to-top button {
+        background: #D4AF37;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    
+    .back-to-top button:hover {
+        background: #e6c200;
+        transform: translateY(-2px);
+    }
+    
+    /* RTL Support */
+    html[dir="rtl"] .header-container {
+        flex-direction: row-reverse;
+    }
+    
+    html[dir="rtl"] .logo {
+        flex-direction: row-reverse;
+    }
+    
+    html[dir="rtl"] .nav-list {
+        flex-direction: row-reverse;
+    }
+    
+    html[dir="rtl"] .header-actions {
+        flex-direction: row-reverse;
+    }
+    
+    html[dir="rtl"] .lang-switcher {
+        flex-direction: row-reverse;
+    }
+    
+    html[dir="rtl"] .footer-bottom {
+        flex-direction: row-reverse;
+    }
+    
+    html[dir="rtl"] .footer-section {
+        text-align: right;
+    }
+    
+    html[dir="rtl"] .social-links {
+        flex-direction: row-reverse;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .nav-menu {
+            display: none;
+        }
+        
+        .mobile-menu-toggle {
+            display: flex;
+        }
+        
+        .header-container {
+            padding: 10px 15px;
+        }
+        
+        .logo {
+            font-size: 18px;
+        }
+        
+        .logo-icon {
+            font-size: 22px;
+        }
+        
+        .footer-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .footer-bottom {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>
+
+<!-- ===== JAVASCRIPT ===== -->
+
+<script>
+    // Language Switching
+    function switchLanguage(lang) {
+        const htmlElement = document.documentElement;
+        const enBtn = document.getElementById('lang-btn-en');
+        const arBtn = document.getElementById('lang-btn-ar');
+        
+        if (lang === 'ar') {
+            htmlElement.dir = 'rtl';
+            htmlElement.lang = 'ar';
+            arBtn.classList.add('active');
+            enBtn.classList.remove('active');
+            localStorage.setItem('language', 'ar');
+            updateContentArabic();
+        } else {
+            htmlElement.dir = 'ltr';
+            htmlElement.lang = 'en';
+            enBtn.classList.add('active');
+            arBtn.classList.remove('active');
+            localStorage.setItem('language', 'en');
+            updateContentEnglish();
+        }
+    }
+    
+    // Update Content to Arabic
+    function updateContentArabic() {
+        document.getElementById('logo-text').textContent = 'متجر الإمارات';
+        document.getElementById('nav-home').textContent = 'الرئيسية';
+        document.getElementById('nav-products').textContent = 'المنتجات';
+        document.getElementById('nav-about').textContent = 'عننا';
+        document.getElementById('nav-contact').textContent = 'اتصل بنا';
+        
+        document.getElementById('footer-about-title').textContent = 'عن متجر الإمارات';
+        document.getElementById('footer-about-desc').textContent = 'متجر أونلاين متخصص ببيع العطور الفاخرة والساعات الفاخرة والهدايا الحصرية في الإمارات.';
+        document.getElementById('footer-quick-title').textContent = 'روابط سريعة';
+        document.getElementById('footer-perfumes').textContent = 'العطور';
+        document.getElementById('footer-watches').textContent = 'الساعات';
+        document.getElementById('footer-care').textContent = 'منتجات العناية';
+        document.getElementById('footer-sale').textContent = 'عروض خاصة';
+        document.getElementById('footer-service-title').textContent = 'خدمة العملاء';
+        document.getElementById('footer-contact').textContent = 'اتصل بنا';
+        document.getElementById('footer-faq').textContent = 'أسئلة شائعة';
+        document.getElementById('footer-shipping').textContent = 'معلومات الشحن';
+        document.getElementById('footer-returns').textContent = 'الإرجاع';
+        document.getElementById('footer-legal-title').textContent = 'قانوني';
+        document.getElementById('footer-privacy').textContent = 'سياسة الخصوصية';
+        document.getElementById('footer-terms').textContent = 'الشروط والأحكام';
+        document.getElementById('footer-cookies').textContent = 'سياسة الكوكيز';
+        document.getElementById('footer-sitemap').textContent = 'خريطة الموقع';
+        document.getElementById('footer-contact-title').textContent = 'معلومات التواصل';
+        document.getElementById('footer-phone').textContent = '📞 +971-4-XXXX-XXXX';
+        document.getElementById('footer-email').textContent = '✉️ support@emiratesgifts.com';
+        document.getElementById('footer-address').textContent = '📍 دبي، الإمارات';
+        document.getElementById('footer-hours').textContent = '⏰ السبت-الخميس: 9 صباحاً-9 مساءً';
+        document.getElementById('footer-payment-title').textContent = 'ندقبل:';
+        document.getElementById('footer-copyright').textContent = '© 2025 متجر الإمارات. جميع الحقوق محفوظة.';
+        document.getElementById('back-to-top-btn').textContent = 'أعلى ↑';
+    }
+    
+    // Update Content to English
+    function updateContentEnglish() {
+        document.getElementById('logo-text').textContent = 'Emirates Gifts';
+        document.getElementById('nav-home').textContent = 'Home';
+        document.getElementById('nav-products').textContent = 'Products';
+        document.getElementById('nav-about').textContent = 'About';
+        document.getElementById('nav-contact').textContent = 'Contact';
+        
+        document.getElementById('footer-about-title').textContent = 'About Emirates Gifts';
+        document.getElementById('footer-about-desc').textContent = 'Premium online store for luxury fragrances, designer watches, and exclusive gifts in UAE.';
+        document.getElementById('footer-quick-title').textContent = 'Quick Links';
+        document.getElementById('footer-perfumes').textContent = 'Fragrances';
+        document.getElementById('footer-watches').textContent = 'Watches';
+        document.getElementById('footer-care').textContent = 'Care Products';
+        document.getElementById('footer-sale').textContent = 'On Sale';
+        document.getElementById('footer-service-title').textContent = 'Customer Service';
+        document.getElementById('footer-contact').textContent = 'Contact Us';
+        document.getElementById('footer-faq').textContent = 'FAQ';
+        document.getElementById('footer-shipping').textContent = 'Shipping Info';
+        document.getElementById('footer-returns').textContent = 'Returns';
+        document.getElementById('footer-legal-title').textContent = 'Legal';
+        document.getElementById('footer-privacy').textContent = 'Privacy Policy';
+        document.getElementById('footer-terms').textContent = 'Terms & Conditions';
+        document.getElementById('footer-cookies').textContent = 'Cookie Policy';
+        document.getElementById('footer-sitemap').textContent = 'Sitemap';
+        document.getElementById('footer-contact-title').textContent = 'Contact Info';
+        document.getElementById('footer-phone').textContent = '📞 +971-4-XXXX-XXXX';
+        document.getElementById('footer-email').textContent = '✉️ support@emiratesgifts.com';
+        document.getElementById('footer-address').textContent = '📍 Dubai, UAE';
+        document.getElementById('footer-hours').textContent = '⏰ Sat-Thu: 9AM-9PM';
+        document.getElementById('footer-payment-title').textContent = 'We Accept:';
+        document.getElementById('footer-copyright').textContent = '© 2025 Emirates Gifts Store. All rights reserved.';
+        document.getElementById('back-to-top-btn').textContent = 'Top ↑';
+    }
+    
+    // Scroll to Top
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Initialize language from localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedLanguage = localStorage.getItem('language') || 'en';
+        switchLanguage(savedLanguage);
+    });
+    
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function() {
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+    }
+</script>
