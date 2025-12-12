@@ -1,13 +1,15 @@
 # robots.txt for Emirates Gifts Store
-# SEO-optimized for bilingual content
+# SEO-optimized for bilingual content (AR + EN)
 # Updated: 2025-12-12
 
 # Default access for all crawlers
 User-agent: *
 Allow: /
 Allow: /products/
+Allow: /en/products/
 Allow: /css/
 Allow: /js/
+Allow: /images/
 Disallow: /data/
 Disallow: /.git/
 Disallow: /.github/
@@ -20,10 +22,17 @@ Disallow: /en/cart.html
 Disallow: /en/checkout.html
 Disallow: /products-showcase.html?
 Disallow: /en/products-showcase.html?
+Disallow: /admin/
+Disallow: /api/admin/
 
 User-agent: Googlebot
 Allow: /
+Allow: /en/
 Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /images/
 
 User-agent: Bingbot
 Allow: /
@@ -34,10 +43,17 @@ Allow: /
 Crawl-delay: 2
 
 User-agent: AhrefsBot
+Disallow: /
 Crawl-delay: 10
 
 User-agent: SemrushBot
+Disallow: /
 Crawl-delay: 10
 
-# Sitemaps
+User-agent: MJ12bot
+Crawl-delay: 10
+
+# Sitemaps - Critical for multilingual SEO
 Sitemap: https://emirates-gifts.arabsad.com/sitemap.xml
+Sitemap: https://emirates-gifts.arabsad.com/sitemap-en.xml
+Sitemap: https://emirates-gifts.arabsad.com/sitemap-index.xml
