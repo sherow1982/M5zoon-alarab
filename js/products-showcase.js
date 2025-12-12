@@ -1,4 +1,4 @@
-// 🚫 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.2 - PRODUCTS.JSON
+// 🚫 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.3 - WITH LOAD MORE PAGINATION
 
 (function() {
     'use strict';
@@ -8,7 +8,7 @@
     const warn = isDev ? console.warn.bind(console) : () => {};
     const error = console.error.bind(console);
     
-    log('🚫 EMIRATES PRODUCTS SHOWCASE v2.2 - LOADING FROM products.json');
+    log('🚫 EMIRATES PRODUCTS SHOWCASE v2.3 - WITH LOAD MORE PAGINATION');
     
     // Strict popup blocking
     window.alert = function() { log('🚫 Alert blocked'); return undefined; };
@@ -17,7 +17,6 @@
     window.open = function(url) { 
         log('🚫 window.open intercepted:', url); 
         if (url && url.includes('wa.me')) {
-            // Allow WhatsApp only
             const link = document.createElement('a');
             link.href = url;
             link.target = '_blank';
@@ -30,8 +29,11 @@
     };
     
     let currentProducts = [];
+    let filteredProducts = [];
+    let displayedCount = 12; // Initially show 12 products
     let loadingAttempts = 0;
     const maxAttempts = 3;
+    const itemsPerLoad = 12; // Load 12 items at a time
     
     // Enhanced image error handler (ZERO INLINE)
     function setupSecureImageHandler(imgElement) {
@@ -48,7 +50,6 @@
         
         imgElement.dataset.secureHandler = 'true';
         
-        // Handle pre-failed images
         if (imgElement.complete && imgElement.naturalWidth === 0) {
             imgElement.dispatchEvent(new Event('error'));
         }
@@ -103,14 +104,12 @@
     // 📊 Inject SEO Schema Markup
     function injectSeoSchema(products) {
         try {
-            // Remove old schema scripts
             document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
                 if (script.dataset.type === 'products-schema' || script.dataset.type === 'organization-schema' || script.dataset.type === 'breadcrumb-schema') {
                     script.remove();
                 }
             });
             
-            // Organization Schema
             const orgSchema = {
                 "@context": "https://schema.org",
                 "@type": "Organization",
@@ -142,7 +141,6 @@
             orgScript.textContent = JSON.stringify(orgSchema, null, 2);
             document.head.appendChild(orgScript);
             
-            // Breadcrumb Schema
             const breadcrumbSchema = {
                 "@context": "https://schema.org",
                 "@type": "BreadcrumbList",
@@ -168,7 +166,6 @@
             breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema, null, 2);
             document.head.appendChild(breadcrumbScript);
             
-            // Product Collection Schema (ItemList)
             const productCollection = {
                 "@context": "https://schema.org",
                 "@type": "CollectionPage",
@@ -220,7 +217,6 @@
                 throw new Error('No products data returned');
             }
             
-            // Normalize product data
             const normalizedProducts = allProducts.map(product => ({
                 ...product,
                 category_type: product.category === 'Perfumes' ? 'perfume' : 'watch',
@@ -228,11 +224,15 @@
             }));
             
             currentProducts = normalizedProducts;
-            displayProductsSecurely(normalizedProducts);
+            filteredProducts = normalizedProducts;
+            displayedCount = itemsPerLoad; // Reset to initial load
+            
+            displayProductsSecurely(normalizedProducts.slice(0, displayedCount));
             updateFilterCountsSecurely();
+            updateLoadMoreButtonVisibility();
             injectSeoSchema(normalizedProducts);
             
-            log(`✅ Successfully loaded and displayed ${normalizedProducts.length} products from products.json`);
+            log(`✅ Successfully loaded and displayed ${normalizedProducts.length} products`);
             
         } catch (loadError) {
             error('❌ Product loading error:', loadError);
@@ -327,7 +327,14 @@
                 `;
             }).filter(html => html.trim().length > 0).join('');
             
-            grid.innerHTML = productsHTML;
+            // For initial load, replace entire grid
+            if (displayedCount === itemsPerLoad) {
+                grid.innerHTML = productsHTML;
+            } else {
+                // For load more, append to existing products
+                grid.innerHTML += productsHTML;
+            }
+            
             setupProductEventHandlersSecurely();
             
             log(`📦 Securely displayed ${products.length} products`);
@@ -339,12 +346,62 @@
     }
     
     /**
+     * Load more products handler
+     */
+    function loadMoreProducts() {
+        const nextCount = Math.min(displayedCount + itemsPerLoad, filteredProducts.length);
+        const newProducts = filteredProducts.slice(displayedCount, nextCount);
+        
+        if (newProducts.length > 0) {
+            displayProductsSecurely(newProducts);
+            displayedCount = nextCount;
+            updateLoadMoreButtonVisibility();
+            
+            // Smooth scroll to new products
+            setTimeout(() => {
+                const firstNewCard = document.querySelectorAll('.product-card')[displayedCount - itemsPerLoad];
+                if (firstNewCard) {
+                    firstNewCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+            
+            log(`📦 Loaded ${newProducts.length} more products. Total displayed: ${displayedCount}`);
+        }
+    }
+    
+    /**
+     * Update load more button visibility
+     */
+    function updateLoadMoreButtonVisibility() {
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        if (!loadMoreBtn) return;
+        
+        if (displayedCount >= filteredProducts.length) {
+            loadMoreBtn.style.display = 'none';
+            log('✅ All products loaded');
+        } else {
+            loadMoreBtn.style.display = 'flex';
+            const remaining = filteredProducts.length - displayedCount;
+            const btnText = loadMoreBtn.querySelector('.btn-text');
+            if (btnText) {
+                btnText.textContent = `تحميل المزيد (${remaining} منتج متبقي)`;
+            }
+        }
+    }
+    
+    /**
      * Setup secure event handlers (ZERO INLINE)
      */
     function setupProductEventHandlersSecurely() {
-        // Product card navigation handlers
         document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', function(e) {
+            // Remove existing listeners by cloning
+            const newCard = card.cloneNode(true);
+            card.parentNode.replaceChild(newCard, card);
+            
+            // Re-attach to new clone
+            const clonedCard = newCard;
+            
+            clonedCard.addEventListener('click', function(e) {
                 if (e.target.closest('.product-actions')) return;
                 
                 e.preventDefault();
@@ -356,7 +413,7 @@
                 }
             });
             
-            card.addEventListener('keydown', function(e) {
+            clonedCard.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     if (!e.target.closest('.product-actions')) {
                         e.preventDefault();
@@ -365,11 +422,10 @@
                 }
             });
             
-            const img = card.querySelector('.product-image');
+            const img = clonedCard.querySelector('.product-image');
             if (img) setupSecureImageHandler(img);
         });
         
-        // Add to cart buttons
         document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -473,7 +529,7 @@
             
         } catch (cartError) {
             error('❌ Cart error:', cartError);
-            showSecureNotification('خطأ في إضافة المنتج', true);
+            showSecureNotification('خطأ في إضافة المنتج للسلة', true);
         }
     }
     
@@ -595,18 +651,27 @@
                     this.setAttribute('aria-checked', 'true');
                     
                     const filter = this.getAttribute('data-filter');
-                    let filteredProducts = [];
+                    let tempFiltered = [];
                     
                     if (filter === 'all') {
-                        filteredProducts = currentProducts;
+                        tempFiltered = currentProducts;
                     } else if (filter === 'perfumes') {
-                        filteredProducts = currentProducts.filter(p => p.category === 'Perfumes');
+                        tempFiltered = currentProducts.filter(p => p.category === 'Perfumes');
                     } else if (filter === 'watches') {
-                        filteredProducts = currentProducts.filter(p => p.category === 'Watches');
+                        tempFiltered = currentProducts.filter(p => p.category === 'Watches');
                     }
                     
-                    displayProductsSecurely(filteredProducts);
-                    log(`🔍 Filtered: ${filter} (${filteredProducts.length} products)`);
+                    filteredProducts = tempFiltered;
+                    displayedCount = itemsPerLoad; // Reset displayed count
+                    
+                    // Clear grid and display filtered products
+                    const grid = document.getElementById('allProductsGrid');
+                    if (grid) grid.innerHTML = '';
+                    
+                    displayProductsSecurely(filteredProducts.slice(0, displayedCount));
+                    updateLoadMoreButtonVisibility();
+                    
+                    log(`🔍 Filtered: ${filter} (${tempFiltered.length} products)`);
                     
                 } catch (filterError) {
                     error('❌ Filter error:', filterError);
@@ -619,6 +684,32 @@
                     this.click();
                 }
             });
+        });
+    }
+    
+    /**
+     * Setup load more button
+     */
+    function setupLoadMoreButton() {
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        if (!loadMoreBtn) return;
+        
+        loadMoreBtn.addEventListener('click', function() {
+            this.style.opacity = '0.6';
+            this.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+                loadMoreProducts();
+                this.style.opacity = '1';
+                this.style.pointerEvents = 'auto';
+            }, 300);
+        });
+        
+        loadMoreBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
         });
     }
     
@@ -694,12 +785,13 @@
      * Enhanced initialization
      */
     function initializeProductsShowcaseSecurely() {
-        log('🚫 Zero Inline Code Products Showcase Init v2.2...');
+        log('🚫 Zero Inline Code Products Showcase Init v2.3...');
         
         try {
             updateCartBadgeSecurely();
             loadAllProductsSecurely();
             initializeSecureFilters();
+            setupLoadMoreButton();
             
             let scrollTimeout;
             window.addEventListener('scroll', () => {
@@ -710,7 +802,7 @@
                 }, 16);
             }, { passive: true });
             
-            log('✅ Products Showcase v2.2 initialized');
+            log('✅ Products Showcase v2.3 initialized with Load More pagination');
             
         } catch (initError) {
             error('❌ Initialization error:', initError);
@@ -739,15 +831,16 @@
     // Secure global exports
     if (typeof window !== 'undefined') {
         window.EmiratesShowcaseSecure = Object.freeze({
-            version: '2.2.0-products-json',
+            version: '2.3.0-with-load-more',
             navigateToProduct: navigateToProductDetailsSecurely,
             addToCart: addToCartSecurely,
             updateCartBadge: updateCartBadgeSecurely,
             loadProducts: loadAllProductsSecurely,
+            loadMoreProducts: loadMoreProducts,
             isDevelopment: isDev
         });
     }
     
-    log('✅ Emirates Products Showcase v2.2 - LOADING ALL 126 PRODUCTS FROM products.json WITH SEO');
+    log('✅ Emirates Products Showcase v2.3 - WITH LOAD MORE PAGINATION');
     
 })();
