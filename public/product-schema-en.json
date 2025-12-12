@@ -1,0 +1,49 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "ProductCollection",
+  "name": "Emirates Gifts - Premium Perfumes & Watches",
+  "description": "Luxury collection of perfumes, watches and exclusive gifts from worldwide brands",
+  "url": "https://emirates-gifts.arabsad.com/en/",
+  "logo": "https://emirates-gifts.arabsad.com/images/logo.png",
+  "image": "https://emirates-gifts.arabsad.com/images/banner.jpg",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Emirates Gifts Store",
+    "url": "https://emirates-gifts.arabsad.com",
+    "logo": "https://emirates-gifts.arabsad.com/images/logo.png",
+    "description": "Premium perfumes, watches and luxury gifts",
+    "sameAs": [
+      "https://www.facebook.com/emiratesgifts",
+      "https://www.instagram.com/emiratesgifts",
+      "https://twitter.com/emiratesgifts"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "telephone": "+971-XXXXXXXXX",
+      "email": "support@emirates-gifts.arabsad.com",
+      "areaServed": "AE"
+    }
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Product Catalog",
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "name": "Perfumes",
+        "url": "https://emirates-gifts.arabsad.com/en/products/"
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Watches",
+        "url": "https://emirates-gifts.arabsad.com/en/products/"
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Hair & Body Care",
+        "url": "https://emirates-gifts.arabsad.com/en/products/"
+      }
+    ]
+  }
+}
