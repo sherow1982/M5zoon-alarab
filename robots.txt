@@ -41,4 +41,3 @@ Crawl-delay: 10
 
 # Sitemaps
 Sitemap: https://emirates-gifts.arabsad.com/sitemap.xml
-Sitemap: https://emirates-gifts.arabsad.com/sitemap-index.xml
