@@ -152,76 +152,93 @@
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3), inset 0 0 0 2px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* View More Button */
+/* View More Button - Homepage */
 .view-more-button {
-    background: linear-gradient(135deg, #D4AF37 0%, #FFD700 25%, #B8860B 50%, #FFA500 100%) !important;
-    background-size: 300% 300% !important;
-    animation: gradientShift 4s ease infinite !important;
+    background: linear-gradient(135deg, #D4AF37, #B8860B) !important;
     color: white !important;
-    padding: 18px 42px !important;
+    padding: 16px 40px !important;
     border: none !important;
-    border-radius: 30px !important;
-    font-weight: 900 !important;
-    font-size: 1.3rem !important;
+    border-radius: 25px !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
     font-family: 'Cairo', sans-serif !important;
     cursor: pointer !important;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    transition: all 0.3s ease !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 15px !important;
-    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5) !important;
+    gap: 12px !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
     position: relative !important;
     overflow: hidden !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
-    letter-spacing: 1px !important;
-}
-
-@keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-.view-more-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-    z-index: 0;
-}
-
-.view-more-button:hover::before {
-    left: 100%;
+    text-decoration: none !important;
 }
 
 .view-more-button:hover {
-    transform: translateY(-6px) scale(1.05) !important;
-    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.7) !important;
+    background: linear-gradient(135deg, #E5C158, #D4AF37) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4) !important;
 }
 
 .view-more-button:active {
-    transform: translateY(-2px) scale(0.98) !important;
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4) !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3) !important;
 }
 
 .view-more-button:focus-visible {
-    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5), inset 0 0 0 2px rgba(0, 0, 0, 0.2) !important;
+    outline: 3px solid #D4AF37 !important;
+    outline-offset: 2px !important;
 }
 
 .view-more-button i {
-    font-size: 1.5rem !important;
-    animation: pulse 2s infinite !important;
-    position: relative !important;
-    z-index: 1 !important;
+    font-size: 18px !important;
+    transition: transform 0.3s ease !important;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+.view-more-button:hover i {
+    transform: scale(1.1) !important;
+}
+
+.view-more-button:hover i:first-child {
+    transform: rotate(180deg) !important;
+}
+
+.view-more-button:hover i:last-child {
+    animation: slideDown 0.4s ease !important;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-8px);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(8px);
+        opacity: 0;
+    }
+}
+
+/* View More Container */
+.view-more-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 40px 20px !important;
+    animation: fadeIn 0.6s ease !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Checkout Button */
@@ -319,9 +336,16 @@
     }
     
     .view-more-button {
-        padding: 16px 32px !important;
-        font-size: 1.1rem !important;
-        min-width: 240px !important;
+        padding: 14px 28px !important;
+        font-size: 14px !important;
+    }
+    
+    .view-more-button i {
+        font-size: 16px !important;
+    }
+    
+    .view-more-container {
+        padding: 30px 15px !important;
     }
     
     .btn-whatsapp {
@@ -332,6 +356,18 @@
     .view-all-link {
         font-size: 0.95rem !important;
         padding: 10px 18px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .view-more-button {
+        padding: 12px 20px !important;
+        font-size: 13px !important;
+        gap: 8px !important;
+    }
+    
+    .view-more-button i {
+        font-size: 14px !important;
     }
 }
 
@@ -404,8 +440,6 @@
     
     .btn-primary::before,
     .btn-whatsapp::before,
-    .btn-whatsapp::before,
-    .view-more-button::before,
     .view-all-link::before {
         transition: none !important;
     }
