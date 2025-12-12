@@ -8,7 +8,7 @@
     const warn = isDev ? console.warn.bind(console) : () => {};
     const error = console.error.bind(console);
     
-    log('🚫 EMIRATES PRODUCT DETAILS EN - ZERO INLINE CODE');
+    log('🚫 EMIRATES PRODUCT DETAILS EN - ZERO INLINE CODE - PRODUCTS.JSON');
     
     // Strict popup blocking
     window.alert = function() { log('🚫 Alert blocked'); return undefined; };
@@ -141,11 +141,11 @@
     }
     
     /**
-     * Universal product loading system
+     * Universal product loading system - LOADS FROM products.json
      */
     async function loadProductUniversal() {
         try {
-            log('🔍 Starting universal product search (English)...');
+            log('🔍 Starting universal product search from products.json (English)...');
             
             if (!productId) {
                 throw new Error('Product ID is required in the URL');
@@ -153,67 +153,42 @@
             
             let product = null;
             
-            // Search targets based on URL parameters
-            const searchTargets = [];
-            
-            // Determine search targets based on all URL parameters
-            if (productCategory === 'watch' || productType === 'watch' || 
-                productSource === 'sa3at' || productId.includes('watch')) {
-                searchTargets.push({ file: '../data/sa3at.json', type: 'watch' });
-            }
-            
-            if (productCategory === 'perfume' || productType === 'perfume' || 
-                productSource === 'otor' || productId.includes('perfume')) {
-                searchTargets.push({ file: '../data/otor.json', type: 'perfume' });
-            }
-            
-            // If no specific type detected, search both
-            if (searchTargets.length === 0) {
-                searchTargets.push(
-                    { file: '../data/sa3at.json', type: 'watch' },
-                    { file: '../data/otor.json', type: 'perfume' }
-                );
-            }
-            
-            // Search in all target files with retry logic
-            for (const target of searchTargets) {
-                try {
-                    log(`🔍 Searching in ${target.file} for ${productId}...`);
-                    
-                    const response = await fetch(target.file + '?v=' + Date.now());
-                    if (response.ok) {
-                        const products = await response.json();
-                        if (Array.isArray(products)) {
-                            const arabicProduct = products.find(p => 
-                                p && (String(p.id) === String(productId) || p.id === productId)
-                            );
+            try {
+                log(`🔍 Loading from ../data/products.json for ${productId}...`);
+                
+                const response = await fetch('../data/products.json?v=' + Date.now());
+                if (response.ok) {
+                    const allProducts = await response.json();
+                    if (Array.isArray(allProducts)) {
+                        const arabicProduct = allProducts.find(p => 
+                            p && (String(p.id) === String(productId) || p.id === productId)
+                        );
+                        
+                        if (arabicProduct) {
+                            const productType = arabicProduct.category === 'Perfumes' ? 'perfume' : 'watch';
                             
-                            if (arabicProduct) {
-                                // Translate to English
-                                product = {
-                                    id: arabicProduct.id,
-                                    title: arabicProduct.title,
-                                    displayName: getEnglishProductName(arabicProduct.title, arabicProduct.id),
-                                    price: arabicProduct.price,
-                                    sale_price: arabicProduct.sale_price,
-                                    image_link: arabicProduct.image_link,
-                                    category: target.type === 'watch' ? 'Watches' : 'Perfumes',
-                                    icon: target.type === 'watch' ? '⏰' : '🌸',
-                                    description: target.type === 'watch' ? 
-                                        'Premium luxury watch with high-quality materials, precise movement, and elegant design suitable for all occasions.' :
-                                        'Premium luxury perfume with high-quality ingredients, long-lasting fragrance, and elegant packaging perfect for special moments.',
-                                    sourceType: target.type
-                                };
-                                
-                                log(`✅ Product found and translated from ${target.file}: ${product.displayName}`);
-                                break;
-                            }
+                            // Translate to English
+                            product = {
+                                id: arabicProduct.id,
+                                title: arabicProduct.title,
+                                displayName: getEnglishProductName(arabicProduct.title, arabicProduct.id),
+                                price: arabicProduct.price,
+                                sale_price: arabicProduct.sale_price,
+                                image_link: arabicProduct.image_link,
+                                category: arabicProduct.category,
+                                icon: arabicProduct.category === 'Perfumes' ? '🌸' : '⏰',
+                                description: arabicProduct.category === 'Perfumes' ?
+                                    'Premium luxury perfume with high-quality ingredients, long-lasting fragrance, and elegant packaging perfect for special moments. Authenticity guaranteed with international specifications.' :
+                                    'Premium luxury watch with high-quality materials, precise movement, and elegant design suitable for all occasions. Authenticity guaranteed with manufacturer warranty.',
+                                sourceType: productType
+                            };
+                            
+                            log(`✅ Product found and translated from products.json: ${product.displayName}`);
                         }
                     }
-                } catch (fileError) {
-                    warn(`⚠️ Error loading ${target.file}:`, fileError);
-                    continue;
                 }
+            } catch (fileError) {
+                warn(`⚠️ Error loading products.json:`, fileError);
             }
             
             if (product) {
@@ -221,8 +196,8 @@
                 displayProductSecurely(product);
                 log('✅ Product successfully loaded and displayed (English)');
             } else {
-                error(`❌ Product ${productId} not found in any source`);
-                showErrorMessageSecurely(`Product ${productId} not found`);
+                error(`❌ Product ${productId} not found in products.json`);
+                showErrorMessageSecurely(`Product <strong>${productId}</strong> not found in our database. Please check the product link and try again.`);
             }
             
         } catch (loadError) {
@@ -470,15 +445,27 @@
         try {
             const finalPrice = parseFloat(currentProduct.sale_price || currentProduct.price || 0);
             
-            const message = `🛍️ Order from Emirates Gifts Store\n\n` +
-                `🎁 Product: ${currentProduct.displayName}\n` +
-                `💰 Price: AED ${finalPrice.toFixed(2)}\n` +
-                `🏦 Store: Emirates Gifts (English)\n` +
-                `🌐 Link: ${window.location.href}\n\n` +
-                `✅ Guaranteed Services:\n` +
-                `🚚 UAE delivery 1-3 days\n` +
-                `🔄 14-day return policy\n` +
-                `🛡️ 100% authenticity guarantee\n\n` +
+            const message = `🛍️ Order from Emirates Gifts Store
+
+` +
+                `🎁 Product: ${currentProduct.displayName}
+` +
+                `💰 Price: AED ${finalPrice.toFixed(2)}
+` +
+                `🏶 Store: Emirates Gifts (English)
+` +
+                `🌐 Link: ${window.location.href}
+
+` +
+                `✅ Guaranteed Services:
+` +
+                `🚚 UAE delivery 1-3 days
+` +
+                `🔄 14-day return policy
+` +
+                `🛡 100% authenticity guarantee
+
+` +
                 `Please confirm order details!`;
             
             const whatsappUrl = `https://wa.me/201110760081?text=${encodeURIComponent(message)}`;
@@ -642,13 +629,13 @@
     
     // Enhanced initialization
     function initializeEnglishProductDetails() {
-        log('🚫 English Product Details Init - Zero Inline Code...');
+        log('🚫 English Product Details Init - Zero Inline Code - PRODUCTS.JSON...');
         
         try {
             // Update cart counter
             updateCartCounterSecurely();
             
-            // Load product
+            // Load product from products.json
             loadProductUniversal();
             
             // Setup progress bar with throttling
@@ -690,7 +677,7 @@
     // Secure global exports
     if (typeof window !== 'undefined') {
         window.EmiratesProductDetailsEN = Object.freeze({
-            version: '2.0.0-english-secure',
+            version: '2.0.0-english-secure-products-json',
             addToCart: addToCartSecurely,
             updateCartCounter: updateCartCounterSecurely,
             loadProduct: loadProductUniversal,
@@ -698,6 +685,6 @@
         });
     }
     
-    log('✅ Emirates Product Details EN v2.0 - ZERO INLINE CODE');
+    log('✅ Emirates Product Details EN v2.0 - ZERO INLINE CODE - LOADS FROM products.json');
     
 })();
