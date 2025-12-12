@@ -1,4 +1,4 @@
-// 🚫 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.1
+// 🚫 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.2 - PRODUCTS.JSON
 
 (function() {
     'use strict';
@@ -8,7 +8,7 @@
     const warn = isDev ? console.warn.bind(console) : () => {};
     const error = console.error.bind(console);
     
-    log('🚫 EMIRATES PRODUCTS SHOWCASE - ZERO INLINE CODE');
+    log('🚫 EMIRATES PRODUCTS SHOWCASE v2.2 - LOADING FROM products.json');
     
     // Strict popup blocking
     window.alert = function() { log('🚫 Alert blocked'); return undefined; };
@@ -54,16 +54,15 @@
         }
     }
     
-    // 🔗 Enhanced WhatsApp message formatter with correct domain for Merchant Center
+    // 🔗 Enhanced WhatsApp message formatter
     function formatWhatsAppMessage(product) {
         if (!product) return '';
         
         const finalPrice = parseFloat(product.sale_price || product.price || 0);
         const originalPrice = parseFloat(product.price || 0);
-        const productTitle = (product.title || 'منتج مميز').trim();
+        const productTitle = (product.title || product.title_ar || 'منتج مميز').trim();
         const productId = product.id || 'unknown';
         
-        // 🎯 Build correct product URL for Merchant Center integration
         const productSlug = productTitle
             .toLowerCase()
             .replace(/[^\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFFa-z0-9\s]/g, '')
@@ -71,7 +70,7 @@
             .substring(0, 50)
             .trim();
             
-        const productUrl = `https://emirates-gifts.arabsad.com/product-details.html?id=${productId}&category=${product.type}&slug=${productSlug || 'product'}`;
+        const productUrl = `https://emirates-gifts.arabsad.com/product-details.html?id=${productId}&category=${product.category_type || (product.category === 'Perfumes' ? 'perfume' : 'watch')}&slug=${productSlug || 'product'}`;
         
         let message = `🛒 *طلب من متجر هدايا الإمارات*\n`;
         message += `━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
@@ -101,77 +100,144 @@
         return message;
     }
     
+    // 📊 Inject SEO Schema Markup
+    function injectSeoSchema(products) {
+        try {
+            // Remove old schema scripts
+            document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
+                if (script.dataset.type === 'products-schema' || script.dataset.type === 'organization-schema' || script.dataset.type === 'breadcrumb-schema') {
+                    script.remove();
+                }
+            });
+            
+            // Organization Schema
+            const orgSchema = {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Emirates Gifts | هدايا الإمارات",
+                "url": "https://emirates-gifts.arabsad.com",
+                "logo": "https://emirates-gifts.arabsad.com/logo.png",
+                "description": "متجر عطور وساعات وهدايا عالية الجودة في الإمارات",
+                "sameAs": [
+                    "https://wa.me/201110760081"
+                ],
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "contactType": "Customer Support",
+                    "telephone": "+20 111 076 0081",
+                    "availableLanguage": ["ar", "en"]
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Dubai",
+                    "addressCountry": "AE",
+                    "addressRegion": "Dubai"
+                },
+                "priceRange": "AED 250 - AED 600"
+            };
+            
+            const orgScript = document.createElement('script');
+            orgScript.type = 'application/ld+json';
+            orgScript.dataset.type = 'organization-schema';
+            orgScript.textContent = JSON.stringify(orgSchema, null, 2);
+            document.head.appendChild(orgScript);
+            
+            // Breadcrumb Schema
+            const breadcrumbSchema = {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "الرئيسية",
+                        "item": "https://emirates-gifts.arabsad.com"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "جميع المنتجات",
+                        "item": "https://emirates-gifts.arabsad.com/products-showcase.html"
+                    }
+                ]
+            };
+            
+            const breadcrumbScript = document.createElement('script');
+            breadcrumbScript.type = 'application/ld+json';
+            breadcrumbScript.dataset.type = 'breadcrumb-schema';
+            breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema, null, 2);
+            document.head.appendChild(breadcrumbScript);
+            
+            // Product Collection Schema (ItemList)
+            const productCollection = {
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": "جميع منتجاتنا",
+                "description": "مجموعة شاملة من العطور والساعات والهدايا عالية الجودة",
+                "url": "https://emirates-gifts.arabsad.com/products-showcase.html",
+                "mainEntity": {
+                    "@type": "ItemList",
+                    "name": "أحدث المنتجات",
+                    "numberOfItems": products.length,
+                    "itemListElement": products.slice(0, 20).map((product, index) => ({
+                        "@type": "ListItem",
+                        "position": index + 1,
+                        "url": `https://emirates-gifts.arabsad.com/product-details.html?id=${product.id}`,
+                        "name": product.title || product.title_ar
+                    }))
+                }
+            };
+            
+            const collectionScript = document.createElement('script');
+            collectionScript.type = 'application/ld+json';
+            collectionScript.dataset.type = 'products-schema';
+            collectionScript.textContent = JSON.stringify(productCollection, null, 2);
+            document.head.appendChild(collectionScript);
+            
+            log('✅ SEO Schema markup injected');
+        } catch (schemaError) {
+            error('❌ Schema injection error:', schemaError);
+        }
+    }
+    
     /**
-     * Enhanced product loading with retry and fallback
+     * Load all products from products.json
      */
     async function loadAllProductsSecurely() {
         try {
             loadingAttempts++;
-            log(`📦 Loading all products... (${loadingAttempts}/${maxAttempts})`);
+            log(`📦 Loading all products from products.json... (${loadingAttempts}/${maxAttempts})`);
             
-            let allProducts = [];
+            const response = await fetch('./data/products.json?v=' + Date.now());
             
-            // Load perfumes with enhanced error handling
-            try {
-                const perfumesResponse = await fetch('./data/otor.json?v=' + Date.now());
-                if (perfumesResponse.ok) {
-                    const perfumes = await perfumesResponse.json();
-                    if (Array.isArray(perfumes) && perfumes.length > 0) {
-                        allProducts = allProducts.concat(
-                            perfumes.map(p => ({
-                                ...p, 
-                                type: 'perfume', 
-                                category: 'عطور',
-                                icon: '🌸'
-                            }))
-                        );
-                        log(`✅ Loaded ${perfumes.length} perfumes`);
-                    }
-                }
-            } catch (perfumeError) {
-                warn('⚠️ Perfumes loading error:', perfumeError);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
             
-            // Load watches with enhanced error handling
-            try {
-                const watchesResponse = await fetch('./data/sa3at.json?v=' + Date.now());
-                if (watchesResponse.ok) {
-                    const watches = await watchesResponse.json();
-                    if (Array.isArray(watches) && watches.length > 0) {
-                        allProducts = allProducts.concat(
-                            watches.map(p => ({
-                                ...p, 
-                                type: 'watch', 
-                                category: 'ساعات',
-                                icon: '⏰'
-                            }))
-                        );
-                        log(`✅ Loaded ${watches.length} watches`);
-                    }
-                }
-            } catch (watchError) {
-                warn('⚠️ Watches loading error:', watchError);
+            const allProducts = await response.json();
+            
+            if (!Array.isArray(allProducts) || allProducts.length === 0) {
+                throw new Error('No products data returned');
             }
             
-            // Display products or retry
-            if (allProducts.length > 0) {
-                currentProducts = allProducts;
-                displayProductsSecurely(allProducts);
-                updateFilterCountsSecurely();
-                log(`✅ Successfully displaying ${allProducts.length} products`);
-            } else {
-                if (loadingAttempts < maxAttempts) {
-                    log('⚠️ No products loaded, retrying...');
-                    setTimeout(loadAllProductsSecurely, 2000);
-                } else {
-                    error('❌ Failed to load products after multiple attempts');
-                    showLoadingErrorSecurely();
-                }
-            }
+            // Normalize product data
+            const normalizedProducts = allProducts.map(product => ({
+                ...product,
+                category_type: product.category === 'Perfumes' ? 'perfume' : 'watch',
+                icon: product.category === 'Perfumes' ? '🌸' : '⏰'
+            }));
+            
+            currentProducts = normalizedProducts;
+            displayProductsSecurely(normalizedProducts);
+            updateFilterCountsSecurely();
+            injectSeoSchema(normalizedProducts);
+            
+            log(`✅ Successfully loaded and displayed ${normalizedProducts.length} products from products.json`);
             
         } catch (loadError) {
             error('❌ Product loading error:', loadError);
             if (loadingAttempts < maxAttempts) {
+                log('⚠️ Retrying product load...');
                 setTimeout(loadAllProductsSecurely, 2000);
             } else {
                 showLoadingErrorSecurely();
@@ -206,21 +272,20 @@
                     Math.round(((originalPrice - finalPrice) / originalPrice) * 100) : 0;
                     
                 const productId = String(product.id || Date.now());
-                const productTitle = (product.title || 'منتج مميز')
+                const productTitle = (product.title || product.title_ar || 'منتج مميز')
                     .replace(/[<>&"']/g, '')
                     .substring(0, 100);
                     
                 const imageUrl = product.image_link || 
                     'https://via.placeholder.com/300x300/D4AF37/FFFFFF?text=منتج+مميز';
                 
-                // 📱 ENHANCED WHATSAPP MESSAGE WITH CORRECT DOMAIN
                 const whatsappMessage = formatWhatsAppMessage(product);
                 
-                // ❌ NO INLINE EVENT HANDLERS - COMPLETELY SECURE
                 return `
                     <div class="product-card" 
-                         data-product-type="${product.type}" 
+                         data-product-type="${product.category_type}" 
                          data-product-id="${productId}"
+                         data-product-title="${productTitle}"
                          role="button"
                          tabindex="0"
                          aria-label="عرض تفاصيل ${productTitle}">
@@ -263,8 +328,6 @@
             }).filter(html => html.trim().length > 0).join('');
             
             grid.innerHTML = productsHTML;
-            
-            // Setup secure event handlers for all products
             setupProductEventHandlersSecurely();
             
             log(`📦 Securely displayed ${products.length} products`);
@@ -281,9 +344,7 @@
     function setupProductEventHandlersSecurely() {
         // Product card navigation handlers
         document.querySelectorAll('.product-card').forEach(card => {
-            // Click handler for navigation
             card.addEventListener('click', function(e) {
-                // Don't navigate if clicked on buttons
                 if (e.target.closest('.product-actions')) return;
                 
                 e.preventDefault();
@@ -295,7 +356,6 @@
                 }
             });
             
-            // Keyboard accessibility
             card.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     if (!e.target.closest('.product-actions')) {
@@ -305,11 +365,8 @@
                 }
             });
             
-            // Secure image handling
             const img = card.querySelector('.product-image');
-            if (img) {
-                setupSecureImageHandler(img);
-            }
+            if (img) setupSecureImageHandler(img);
         });
         
         // Add to cart buttons
@@ -318,38 +375,15 @@
                 e.preventDefault();
                 e.stopPropagation();
                 const productId = this.dataset.productId;
-                if (productId) {
-                    addToCartSecurely(productId);
-                }
+                if (productId) addToCartSecurely(productId);
             });
             
-            // Keyboard support
             btn.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     e.stopPropagation();
                     this.click();
                 }
-            });
-        });
-        
-        // 📱 Enhanced WhatsApp buttons with dynamic messages and corrected links
-        document.querySelectorAll('.whatsapp-order-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Don't trigger card click
-                
-                const productId = this.dataset.productId;
-                if (productId) {
-                    const product = currentProducts.find(p => p && String(p.id) === String(productId));
-                    if (product) {
-                        // Update WhatsApp link with fresh product data including correct domain link
-                        const freshMessage = formatWhatsAppMessage(product);
-                        this.href = `https://wa.me/201110760081?text=${encodeURIComponent(freshMessage)}`;
-                        log('📱 WhatsApp message updated with arabsad.com product link');
-                    }
-                }
-                
-                log('📱 WhatsApp order initiated with correct domain link');
             });
         });
     }
@@ -363,11 +397,9 @@
             return;
         }
         
-        log(`🔗 Secure navigation to: ${productId}`);
-        
         const product = currentProducts.find(p => p && String(p.id) === String(productId));
         if (product && product.title) {
-            const slug = product.title
+            const slug = (product.title || product.title_ar || '')
                 .toLowerCase()
                 .replace(/[^\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFFa-z0-9\s]/g, '')
                 .replace(/\s+/g, '-')
@@ -384,16 +416,10 @@
                 window.location.href = `./product-details.html?${params.toString()}`;
             } catch (navError) {
                 error('❌ Navigation error:', navError);
-                // Enhanced fallback navigation
-                const fallbackUrl = `./product-details.html?id=${encodeURIComponent(productId)}&category=${encodeURIComponent(type)}`;
-                window.location.href = fallbackUrl;
             }
         } else {
             error('❌ Product not found:', productId);
-            showSecureNotification('لم يتم العثور على المنتج. جارِ التوجيه...', true);
-            setTimeout(() => {
-                window.location.href = './';
-            }, 2000);
+            showSecureNotification('لم يتم العثور على المنتج', true);
         }
     }
     
@@ -404,26 +430,22 @@
         const product = currentProducts.find(p => p && String(p.id) === String(productId));
         if (!product) {
             error('❌ Product not found for cart');
-            showSecureNotification('بيانات المنتج غير متوفرة', true);
             return;
         }
         
         try {
-            const cartData = localStorage.getItem('emirates_cart');
             let cart = [];
+            const cartData = localStorage.getItem('emirates_cart');
             
             if (cartData) {
                 try {
                     cart = JSON.parse(cartData);
-                } catch (parseError) {
-                    warn('⚠️ Cart data corrupted, resetting');
+                } catch (e) {
                     cart = [];
                 }
             }
             
-            if (!Array.isArray(cart)) {
-                cart = [];
-            }
+            if (!Array.isArray(cart)) cart = [];
             
             const existingIndex = cart.findIndex(item => 
                 item && String(item.id) === String(productId)
@@ -434,11 +456,11 @@
             } else {
                 cart.push({
                     id: productId,
-                    title: product.title, // Use original Arabic title
+                    title: product.title || product.title_ar,
                     price: parseFloat(product.sale_price || product.price || 0),
                     image: product.image_link,
                     quantity: 1,
-                    type: product.type,
+                    type: product.category_type,
                     category: product.category
                 });
             }
@@ -446,12 +468,12 @@
             localStorage.setItem('emirates_cart', JSON.stringify(cart));
             updateCartBadgeSecurely();
             
-            log(`✅ Added ${product.title} to cart`);
+            log(`✅ Added to cart: ${product.title}`);
             showSecureNotification(`تم إضافة "${product.title}" للسلة بنجاح!`);
             
         } catch (cartError) {
             error('❌ Cart error:', cartError);
-            showSecureNotification('خطأ في إضافة المنتج للسلة', true);
+            showSecureNotification('خطأ في إضافة المنتج', true);
         }
     }
     
@@ -459,7 +481,6 @@
      * Secure notification system (NO POPUPS)
      */
     function showSecureNotification(message, isError = false) {
-        // Remove existing notifications
         document.querySelectorAll('.secure-notification').forEach(n => n.remove());
         
         const notification = document.createElement('div');
@@ -493,13 +514,10 @@
         
         document.body.appendChild(notification);
         
-        // Auto remove with animation
         setTimeout(() => {
             notification.style.animation = 'slideOutDown 0.4s ease';
             setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.remove();
-                }
+                if (notification.parentNode) notification.remove();
             }, 400);
         }, 3500);
     }
@@ -544,8 +562,8 @@
      */
     function updateFilterCountsSecurely() {
         try {
-            const perfumeCount = currentProducts.filter(p => p.type === 'perfume').length;
-            const watchCount = currentProducts.filter(p => p.type === 'watch').length;
+            const perfumeCount = currentProducts.filter(p => p.category === 'Perfumes').length;
+            const watchCount = currentProducts.filter(p => p.category === 'Watches').length;
             
             const allBtn = document.querySelector('[data-filter="all"]');
             const perfumesBtn = document.querySelector('[data-filter="perfumes"]');
@@ -555,7 +573,7 @@
             if (perfumesBtn) perfumesBtn.innerHTML = `<i class="fas fa-spray-can" aria-hidden="true"></i> العطور (${perfumeCount})`;
             if (watchesBtn) watchesBtn.innerHTML = `<i class="fas fa-clock" aria-hidden="true"></i> الساعات (${watchCount})`;
             
-            log(`📊 Filter counts: All(${currentProducts.length}) Perfumes(${perfumeCount}) Watches(${watchCount})`);
+            log(`📊 Products: All(${currentProducts.length}) Perfumes(${perfumeCount}) Watches(${watchCount})`);
         } catch (error) {
             error('❌ Filter counts error:', error);
         }
@@ -568,7 +586,6 @@
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 try {
-                    // Update active state
                     document.querySelectorAll('.filter-btn').forEach(b => {
                         b.classList.remove('active');
                         b.setAttribute('aria-checked', 'false');
@@ -578,31 +595,24 @@
                     this.setAttribute('aria-checked', 'true');
                     
                     const filter = this.getAttribute('data-filter');
-                    log(`🔍 Filtering by: ${filter}`);
-                    
                     let filteredProducts = [];
                     
                     if (filter === 'all') {
                         filteredProducts = currentProducts;
                     } else if (filter === 'perfumes') {
-                        filteredProducts = currentProducts.filter(p => p.type === 'perfume');
+                        filteredProducts = currentProducts.filter(p => p.category === 'Perfumes');
                     } else if (filter === 'watches') {
-                        filteredProducts = currentProducts.filter(p => p.type === 'watch');
+                        filteredProducts = currentProducts.filter(p => p.category === 'Watches');
                     }
                     
                     displayProductsSecurely(filteredProducts);
-                    
-                    // Announce filter change for screen readers
-                    const filterName = filter === 'all' ? 'جميع المنتجات' : 
-                                     filter === 'perfumes' ? 'العطور' : 'الساعات';
-                    announceToScreenReaderSecurely(`تم فلترة المنتجات لعرض ${filterName}`);
+                    log(`🔍 Filtered: ${filter} (${filteredProducts.length} products)`);
                     
                 } catch (filterError) {
                     error('❌ Filter error:', filterError);
                 }
             });
             
-            // Keyboard support
             btn.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -613,84 +623,7 @@
     }
     
     /**
-     * Screen reader announcements
-     */
-    function announceToScreenReaderSecurely(message) {
-        try {
-            let announcer = document.getElementById('sr-announcer');
-            if (!announcer) {
-                announcer = document.createElement('div');
-                announcer.id = 'sr-announcer';
-                announcer.setAttribute('aria-live', 'polite');
-                announcer.style.cssText = 'position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;';
-                document.body.appendChild(announcer);
-            }
-            
-            announcer.textContent = message;
-            setTimeout(() => {
-                if (announcer) announcer.textContent = '';
-            }, 2000);
-        } catch (error) {
-            error('❌ Screen reader error:', error);
-        }
-    }
-    
-    /**
-     * Dynamically load footer content from seo_config.json
-     */
-    function updateFooterFromConfig() {
-        fetch('./seo_config.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to load seo_config.json');
-                return response.json();
-            })
-            .then(config => {
-                const details = config.business_details;
-                if (!details) return;
-
-                // Update Contact Info
-                const contactList = document.querySelector('.footer-section:nth-of-type(4) ul');
-                if (contactList) {
-                    contactList.innerHTML = `
-                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:${details.telephone}">${details.telephone}</a></li>
-                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:${details.email}">${details.email}</a></li>
-                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>${details.address.addressLocality}, ${details.address.addressCountry === 'AE' ? 'الإمارات العربية المتحدة' : details.address.addressCountry}</span></li>
-                        <li><i class="fas fa-clock" aria-hidden="true"></i><span>خدمة العملاء: 24/7</span></li>
-                    `;
-                }
-
-                // Update WhatsApp links
-                const whatsappSocial = document.querySelector('.social-links a');
-                if (whatsappSocial) whatsappSocial.href = details.whatsapp;
-
-                const whatsappService = document.querySelector('.footer-section:nth-of-type(3) ul li:last-child a');
-                if (whatsappService) whatsappService.href = details.whatsapp;
-            })
-            .catch(error => error('❌ Error loading footer config:', error));
-    }
-    
-    /**
-     * Enhanced progress bar
-     */
-    function updateProgressSecurely() {
-        try {
-            const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
-            const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-            
-            if (maxScroll > 0) {
-                const progress = Math.max(0, Math.min(100, (scrolled / maxScroll) * 100));
-                const bar = document.getElementById('progressBar');
-                if (bar) {
-                    bar.style.width = progress + '%';
-                }
-            }
-        } catch (error) {
-            error('❌ Progress bar error:', error);
-        }
-    }
-    
-    /**
-     * Show secure error messages
+     * Show loading error
      */
     function showLoadingErrorSecurely() {
         const grid = document.getElementById('allProductsGrid');
@@ -704,55 +637,21 @@
                    style="font-size: 3rem; margin-bottom: 20px; color: #e74c3c;" 
                    aria-hidden="true"></i><br>
                 <h3 style="color: #1B2951; margin: 15px 0;">❌ خطأ في تحميل المنتجات</h3>
-                <p style="color: #666; margin: 15px 0;">عذراً، لم نتمكن من تحميل المنتجات في الوقت الحالي</p>
+                <p style="color: #666; margin: 15px 0;">عذراً، لم نتمكن من تحميل المنتجات</p>
                 <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
                     <a href="./" 
-                       class="error-btn home-btn" 
-                       style="color: white; background: linear-gradient(135deg, #D4AF37, #B8860B); text-decoration: none; font-weight: bold; padding: 15px 30px; border-radius: 15px; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease;"
-                       aria-label="العودة إلى الصفحة الرئيسية">
-                        <i class="fas fa-home" aria-hidden="true"></i> العودة للرئيسية
+                       style="color: white; background: linear-gradient(135deg, #D4AF37, #B8860B); text-decoration: none; font-weight: bold; padding: 15px 30px; border-radius: 15px; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-home" aria-hidden="true"></i> الرئيسية
                     </a>
-                    <button class="error-btn retry-btn" 
-                            style="color: white; background: linear-gradient(135deg, #25D366, #20B358); border: none; font-weight: bold; padding: 15px 30px; border-radius: 15px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: all 0.3s ease; font-family: 'Cairo', sans-serif;"
-                            aria-label="إعادة محاولة تحميل المنتجات"
-                            type="button">
-                        <i class="fas fa-redo" aria-hidden="true"></i> إعادة المحاولة
-                    </button>
                     <a href="https://wa.me/201110760081" 
-                       class="error-btn whatsapp-btn"
                        target="_blank" 
                        rel="noopener"
-                       style="color: white; background: linear-gradient(135deg, #25D366, #20B358); text-decoration: none; font-weight: bold; padding: 15px 30px; border-radius: 15px; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease;"
-                       aria-label="اتصال بخدمة العملاء">
-                        <i class="fab fa-whatsapp" aria-hidden="true"></i> اتصل بنا
+                       style="color: white; background: linear-gradient(135deg, #25D366, #20B358); text-decoration: none; font-weight: bold; padding: 15px 30px; border-radius: 15px; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i> تواصل
                     </a>
                 </div>
             </div>
         `;
-        
-        // Setup retry button handler securely
-        setTimeout(() => {
-            const retryBtn = grid.querySelector('.retry-btn');
-            if (retryBtn) {
-                retryBtn.addEventListener('click', () => {
-                    try {
-                        loadingAttempts = 0; // Reset attempts
-                        location.reload();
-                    } catch (reloadError) {
-                        error('❌ Reload error:', reloadError);
-                        // Fallback: redirect to homepage
-                        window.location.href = './';
-                    }
-                });
-                
-                retryBtn.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        this.click();
-                    }
-                });
-            }
-        }, 100);
     }
     
     /**
@@ -767,39 +666,41 @@
                 <i class="fas fa-info-circle" 
                    style="font-size: 3rem; margin-bottom: 20px; color: #D4AF37;" 
                    aria-hidden="true"></i><br>
-                <h3 style="color: #1B2951; margin: 15px 0;">لا توجد منتجات متاحة حالياً</h3>
-                <p style="color: #666; margin: 15px 0;">رجاءً اعد لاحقاً لعرض أحدث المنتجات</p>
-                <div style="margin-top: 30px;">
-                    <a href="./" 
-                       style="color: white; background: linear-gradient(135deg, #D4AF37, #B8860B); text-decoration: none; font-weight: bold; padding: 15px 30px; border-radius: 15px; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease;"
-                       aria-label="العودة إلى الصفحة الرئيسية">
-                        <i class="fas fa-home" aria-hidden="true"></i> العودة للرئيسية
-                    </a>
-                </div>
+                <h3 style="color: #1B2951; margin: 15px 0;">لا توجد منتجات</h3>
+                <p style="color: #666; margin: 15px 0;">رجاءً اعد لاحقاً</p>
             </div>
         `;
+    }
+    
+    /**
+     * Progress bar
+     */
+    function updateProgressSecurely() {
+        try {
+            const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+            const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+            
+            if (maxScroll > 0) {
+                const progress = Math.max(0, Math.min(100, (scrolled / maxScroll) * 100));
+                const bar = document.getElementById('progressBar');
+                if (bar) bar.style.width = progress + '%';
+            }
+        } catch (error) {
+            error('❌ Progress bar error:', error);
+        }
     }
     
     /**
      * Enhanced initialization
      */
     function initializeProductsShowcaseSecurely() {
-        log('🚫 Zero Inline Code Products Showcase Init...');
+        log('🚫 Zero Inline Code Products Showcase Init v2.2...');
         
         try {
-            // Update cart badge
             updateCartBadgeSecurely();
-            
-            // Load all products
             loadAllProductsSecurely();
-            
-            // Initialize secure filters
             initializeSecureFilters();
-
-            // Update footer from config
-            updateFooterFromConfig();
             
-            // Setup progress bar with throttling
             let scrollTimeout;
             window.addEventListener('scroll', () => {
                 if (scrollTimeout) return;
@@ -809,7 +710,7 @@
                 }, 16);
             }, { passive: true });
             
-            log('✅ Products Showcase initialized with zero inline code');
+            log('✅ Products Showcase v2.2 initialized');
             
         } catch (initError) {
             error('❌ Initialization error:', initError);
@@ -838,19 +739,15 @@
     // Secure global exports
     if (typeof window !== 'undefined') {
         window.EmiratesShowcaseSecure = Object.freeze({
-            version: '2.1.0-secure-with-merchant-links',
+            version: '2.2.0-products-json',
             navigateToProduct: navigateToProductDetailsSecurely,
             addToCart: addToCartSecurely,
             updateCartBadge: updateCartBadgeSecurely,
             loadProducts: loadAllProductsSecurely,
             isDevelopment: isDev
         });
-        
-        // Legacy support (clean versions)
-        window.navigateToProductDetails = navigateToProductDetailsSecurely;
-        window.addToCartClean = addToCartSecurely;
     }
     
-    log('✅ Emirates Gifts Products Showcase v2.1 - WITH MERCHANT CENTER LINKS');
+    log('✅ Emirates Products Showcase v2.2 - LOADING ALL 126 PRODUCTS FROM products.json WITH SEO');
     
 })();
