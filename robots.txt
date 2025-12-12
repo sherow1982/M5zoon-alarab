@@ -2,8 +2,8 @@
 # SEO-optimized for bilingual content (AR + EN)
 # Updated: 2025-12-12
 
+# --- General rules for all crawlers ---
 User-agent: *
-# Allow all crawlers full access by default, then specify Disallows
 Allow: /
 
 # Disallow sensitive files and directories
@@ -14,34 +14,23 @@ Disallow: /.env
 Disallow: /*.log$
 Disallow: /*.bak$
 
-# Disallow non-public pages
+# Disallow non-public pages and potential duplicate content
 Disallow: /admin/
 Disallow: /api/admin/
 Disallow: /cart.html
 Disallow: /checkout.html
 Disallow: /en/cart.html
 Disallow: /en/checkout.html
-
-# Disallow parameterized URLs that can cause duplicate content
 Disallow: /products-showcase.html?
 Disallow: /en/products-showcase.html?
 
-# Specific rules for major bots
-User-agent: Googlebot
-Allow: /
-Allow: /en/
-# Note: Crawl-delay is deprecated by Google. Use Google Search Console to manage crawl rate.
+# --- Specific rules for crawlers ---
 
+# Allow Google Image Bot to crawl images folder
 User-agent: Googlebot-Image
 Allow: /images/
 
-User-agent: Bingbot
-Crawl-delay: 1
-
-User-agent: Baiduspider
-Crawl-delay: 2
-
-# Block common SEO/marketing crawlers
+# Block common SEO/marketing crawlers to save bandwidth
 User-agent: AhrefsBot
 Disallow: /
 
@@ -51,5 +40,6 @@ Disallow: /
 User-agent: MJ12bot
 Disallow: /
 
-# Sitemaps - List the index file if it contains the others
+# --- Sitemaps ---
+# Provide the sitemap index file which contains links to all other sitemaps
 Sitemap: https://emirates-gifts.arabsad.com/sitemap-index.xml
