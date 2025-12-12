@@ -1,0 +1,168 @@
+# Emirates Gifts Store - robots.txt
+# Optimized for Google Search 2025
+# Last Updated: December 12, 2025
+
+# Default rules for all bots
+User-agent: *
+Allow: /
+Allow: /products/
+Allow: /en/products/
+Allow: /products-grid.html
+Allow: /public/
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /assets/
+
+# Disallow private/admin areas
+Disallow: /admin/
+Disallow: /api/admin/
+Disallow: /dashboard/
+Disallow: /user/profile/
+Disallow: /account/
+Disallow: /settings/
+
+# Disallow checkout/payment flows (user-specific)
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /payment/
+Disallow: /order-history/
+Disallow: /my-orders/
+Disallow: /wishlist/
+Disallow: /saved-items/
+
+# Disallow search pages (parameter-based duplicates)
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*page=
+Disallow: /*?*session_id=
+Disallow: /*?*utm_source=
+Disallow: /*?*utm_medium=
+Disallow: /*?*utm_campaign=
+
+# Disallow system files
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.env
+Disallow: /.env.local
+Disallow: /node_modules/
+Disallow: /config/
+Disallow: /*.log$
+Disallow: /*.bak$
+Disallow: /*.tmp$
+Disallow: /*.backup$
+Disallow: /backup/
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /cache/
+
+# Disallow duplicate content issues
+Disallow: /products/*?id=
+Disallow: /search/
+Disallow: /tag/
+Disallow: /category/*page=
+
+# Specific bot rules
+
+# GoogleBot - Optimized crawl
+User-agent: Googlebot
+Allow: /
+Allow: /products/
+Allow: /en/
+Crawl-delay: 0
+Request-rate: 1/0.1
+
+# GoogleBot-Image - Allow image crawling
+User-agent: Googlebot-Image
+Allow: /
+Allow: /images/
+Allow: /products/
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+Allow: /products/
+Allow: /en/
+Crawl-delay: 1
+Request-rate: 1/1
+
+# Yandex Bot
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+Request-rate: 1/2
+
+# Baidu Bot
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+Request-rate: 1/2
+
+# Block low-quality/bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: spbot
+Disallow: /
+
+User-agent: AhrefsBot-Site
+Disallow: /
+
+User-agent: SEMrushBot
+Disallow: /
+
+# Archive.org - Allow crawling for transparency
+User-agent: ia_archiver
+Allow: /
+
+# Google AdsBot
+User-agent: AdsBot-Google
+Allow: /
+
+# Sitemap URLs - CRITICAL FOR GOOGLE
+Sitemap: https://emirates-gifts.arabsad.com/sitemap-index.xml
+Sitemap: https://emirates-gifts.arabsad.com/sitemap.xml
+Sitemap: https://emirates-gifts.arabsad.com/sitemap-ar.xml
+Sitemap: https://emirates-gifts.arabsad.com/sitemap-en.xml
+Sitemap: https://emirates-gifts.arabsad.com/sitemap-products.xml
+Sitemap: https://emirates-gifts.arabsad.com/sitemap-products-ar.xml
+Sitemap: https://emirates-gifts.arabsad.com/sitemap-products-en.xml
+
+# Additional crawl hints
+User-agent: *
+Allow: /products-grid.html
+Allow: /products-data.json
+Allow: /all-products-263.json
+Allow: /product-template.html
+Allow: /product-template-ar.html
+
+# Crawl delay for generic bots (milliseconds)
+Crawl-delay: 1
+Request-rate: 5/1
+
+# Host preference (canonical domain)
+Host: emirates-gifts.arabsad.com
+
+# Clean-param directive for tracking parameters
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
+Clean-param: session_id&tracking_id
+
+# Comment: SEO Best Practices 2025
+# 1. Allow Google to crawl all public content
+# 2. Block only unnecessary/duplicate pages
+# 3. Specify sitemaps clearly
+# 4. Block bad/low-quality bots
+# 5. Set appropriate crawl delays
+# 6. Use clean-param for tracking params
