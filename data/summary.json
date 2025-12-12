@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-12-12T14:20:00Z",
+  "total_products": 241,
+  "perfumes": 66,
+  "watches": 175,
+  "status": "success",
+  "message": "All products data loaded successfully",
+  "feeds": {
+    "csv_ar": "https://emirates-gifts.arabsad.com/feeds/merchant-feed-ar.csv",
+    "csv_en": "https://emirates-gifts.arabsad.com/feeds/merchant-feed-en.csv",
+    "xml": "https://emirates-gifts.arabsad.com/feeds/merchant-feed.xml",
+    "json": "https://emirates-gifts.arabsad.com/data/products.json"
+  }
+}
