@@ -39,37 +39,31 @@ update-products.js  (7.2 KB)
 ```
 1. اذهب إلى: https://github.com/sherow1982/emirates-gifts
 2. اختر: Settings > Actions
-3. تأكد من أن Workflows مُفعّل ✅
+3. تأكد من أن Workflows مفعّل ✅
 ```
 
-### الخطوة 2: إضافة Secrets (للنشر)
+### الخطوة 2: إضافة Secrets (optional)
 
-إذا كنت تستخدم **Vercel**:
+For Vercel:
 ```
 1. Settings > Secrets and variables > Actions
-2. أضف:
-   - VERCEL_TOKEN       (من Vercel Dashboard)
-   - VERCEL_ORG_ID      (Organization ID)
-   - VERCEL_PROJECT_ID  (Project ID)
+2. Add: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID
 ```
 
-إذا كنت تستخدم **Cloudflare Pages**:
+For Cloudflare:
 ```
 1. Settings > Secrets
-2. أضف:
-   - CLOUDFLARE_API_TOKEN    (API Token)
-   - CLOUDFLARE_ACCOUNT_ID   (Account ID)
+2. Add: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID
 ```
 
-إذا كنت تستخدم **GitHub Pages**:
+For GitHub Pages:
 ```
-- لا تحتاج لإضافة أي secrets!
-- يعمل مباشرة
+- No secrets needed - works automatically!
 ```
 
 ---
 
-## 📍 الآليات المُفعّلة:
+## 📍 الآليات المفعّلة:
 
 ### ✅ تحديث المنتجات يعمل تلقائياً في:
 
@@ -91,40 +85,23 @@ update-products.js  (7.2 KB)
 
 ## 🔄 الـ Workflow التلقائي:
 
+**Process Flow:**
 ```
-┌─────────────────────────────────────────────┐
-│  1️⃣ رفع كود على GitHub                    │
-└──────────────┬──────────────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────────────┐
-│  2️⃣ GitHub Actions يستقبل الإشارة       │
-└──────────────┬──────────────────────────────┘
-               │
-        ┌──────┴──────┐
-        │             │
-        ▼             ▼
-   ┌────────┐   ┌──────────┐
-   │ Script│   │Workflow  │
-   │Update │   │Build    │
-   │Data   │   │         │
-   └────┬──┘   └──┬───────┘
-        │         │
-        ▼         ▼
-   ┌────────────────────┐
-   │ حفظ التغييرات    │
-   └────────┬───────────┘
-            │
-            ▼
-   ┌────────────────────┐
-   │ نشر على Vercel  │
-   │ Cloudflare/Pages │
-   └────────┬───────────┘
-            │
-            ▼
-   ┌────────────────────┐
-   │ ✅ جاهز!          │
-   └────────────────────┘
+Run workflow
+   ↓
+Node.js script executes
+   ↓
+Data updates generated
+   ↓
+Schema files created
+   ↓
+Changes saved automatically
+   ↓
+Build triggered
+   ↓
+Deployed to production
+   ↓
+✅ Done!
 ```
 
 ---
@@ -133,17 +110,19 @@ update-products.js  (7.2 KB)
 
 ### لتشغيل تحديث المنتجات يدوياً:
 
-1. اذهب إلى: `https://github.com/sherow1982/emirates-gifts/actions`
-2. اختر الـ Workflow: `🚀 Update Products Data & Schema`
-3. اضغط: `Run workflow`
-4. اختر Branch: `main`
-5. اضغط: `Run workflow`
+1. Go to: `https://github.com/sherow1982/emirates-gifts/actions`
+2. Select: `🚀 Update Products Data & Schema`
+3. Click: `Run workflow`
+4. Select Branch: `main`
+5. Click: `Run workflow`
 
 ### النتيجة:
-- ✅ سيعمل الـ Script
-- ✅ سيحدث البيانات
-- ✅ سيرفع التغييرات تلقائياً
-- ✅ سيبني ونشر الموقع
+- Script runs
+- Data updates
+- Schema generated
+- Changes committed
+- Build triggered
+- Website deployed
 
 ---
 
@@ -151,144 +130,121 @@ update-products.js  (7.2 KB)
 
 ### عرض السجلات:
 
-1. اذهب إلى: `Actions` > `Workflows`
-2. اختر آخر تشغيل
-3. شاهد السجلات المفصلة
-4. تأكد من النجاح ✅
+1. Go to: `Actions` > `Workflows`
+2. Select: Latest run
+3. Watch: Detailed logs
+4. Check: Success status
 
 ### عرض التغييرات:
 
-1. اذهب إلى: `Commits`
-2. ابحث عن "AUTO: Update" أو "Build"
-3. شاهد التغييرات
+1. Go to: `Commits`
+2. Look for: "AUTO: Update" or "Build"
+3. See: What changed
 
 ---
 
 ## ⚡ الفوائد:
 
-### ✅ لا توجد عمليات يدوية:
-- ❌ بدون npm install محلي
-- ❌ بدون npm run build محلي
-- ❌ بدون git push محلي
-- ❌ بدون npm start محلي
+### ✅ لا عمليات يدوية:
+- ✓ No npm install locally
+- ✓ No npm build locally  
+- ✓ No git push locally
+- ✓ No npm start locally
 
-### ✅ كل شيء تلقائي:
-- ✅ تحديث البيانات يومياً
-- ✅ بناء المشروع تلقائياً
-- ✅ نشر فوري بعد البناء
-- ✅ إشعارات النجاح/الفشل
+### ✅ تحديث تلقائي كامل:
+- ✓ Data updates daily
+- ✓ Schema auto-generated
+- ✓ Website auto-deployed
+- ✓ Everything automatic
+
+### ✅ مراقبة واضحة:
+- ✓ Full logs in GitHub
+- ✓ Clear status visibility
+- ✓ Success/failure alerts
 
 ---
 
 ## 🛠️ التخصيص:
 
-### تغيير وقت التحديث اليومي:
+### تغيير وقت التحديث:
 
-1. افتح: `.github/workflows/update-products.yml`
-2. ابحث عن: `schedule:`
-3. غيّر:
-   ```yaml
-   schedule:
-     - cron: '0 3 * * *'  # 3 صباحاً UTC
-   ```
-   إلى:
-   ```yaml
-   schedule:
-     - cron: '0 12 * * *'  # 12 ظهراً UTC
-   ```
+Edit: `.github/workflows/update-products.yml`
+
+Find: `schedule:` section
+
+Change: `cron: '0 3 * * *'` (3 AM UTC)
+To: `cron: '0 12 * * *'` (12 PM UTC)
 
 ### تغيير البيانات:
 
-1. افتح: `update-products.js`
-2. عدّل المصفوفات:
-   ```javascript
-   const PERFUMES = [ ... ];
-   const WATCHES = [ ... ];
-   ```
-3. ارفع التغييرات
-4. GitHub سيحدث تلقائياً!
+1. Edit: `update-products.js`
+2. Modify: PERFUMES and WATCHES arrays
+3. Push: Changes to main
+4. GitHub: Updates automatically!
 
 ---
 
 ## 📈 الإحصائيات:
 
-بعد التشغيل الأول:
+After first run:
 
 ```
-✅ البيانات المُحدثة:
-   • 66 عطر
-   • 175 ساعة
-   • إجمالي: 241 منتج
+✅ Updated Data:
+   - 66 Perfumes
+   - 175 Watches
+   - Total: 241 Products
 
-✅ الملفات المُنشأة:
-   • data/products.json
-   • data/perfumes.json
-   • data/watches.json
-   • public/schema/products-schema-ar.json
-   • public/schema/products-schema-en.json
-   • data/summary.json
+✅ Files Created:
+   - data/products.json
+   - data/perfumes.json
+   - data/watches.json
+   - public/schema/products-schema-ar.json
+   - public/schema/products-schema-en.json
+   - data/summary.json
 
-✅ الموقع المُنشور:
-   • https://emirates-gifts.arabsad.com
+✅ Website Published:
+   - https://emirates-gifts.arabsad.com
 ```
-
----
-
-## ⚙️ إزالة الأتمتة (إذا احتجت):
-
-إذا أردت إيقاف التحديث اليومي:
-
-1. افتح: `.github/workflows/update-products.yml`
-2. غيّر:
-   ```yaml
-   schedule:
-     - cron: '0 3 * * *'   # احذف هذا السطر
-   ```
-   إلى:
-   ```yaml
-   # schedule:
-   #   - cron: '0 3 * * *'
-   ```
-3. ارفع التغييرات
 
 ---
 
 ## 🆘 استكشاف الأخطاء:
 
-### المشكلة: Workflow لم يعمل
-**الحل:**
-1. تأكد من تفعيل Actions
-2. تحقق من .github/workflows هل موجود
-3. راجع السجلات للأخطاء
+**Problem:** Workflow didn't run
+**Solution:** 
+1. Check Settings > Actions enabled
+2. Check logs for errors
+3. Verify .github/workflows exists
 
-### المشكلة: البيانات لم تُحدث
-**الحل:**
-1. تشغيل يدوي من Actions
-2. تحقق من سجل commit
-3. راجع update-products.js
+**Problem:** Data not updating
+**Solution:**
+1. Manual run from Actions tab
+2. Check update-products.js syntax
+3. Review logs for errors
 
-### المشكلة: النشر فشل
-**الحل:**
-1. تحقق من Secrets
-2. راجع سجل build-deploy.yml
-3. تأكد من صحة Token
+**Problem:** Deploy failed
+**Solution:**
+1. Verify Secrets added
+2. Check build-deploy.yml
+3. Review deployment logs
 
 ---
 
 ## 📝 الملاحظات:
 
-✅ **كل شيء مُفعّل وجاهز!**
-✅ **لا تحتاج لأي تعديلات إضافية**
-✅ **GitHub سيتولى كل شيء**
-✅ **الموقع سيُحدث تلقائياً**
+✓ All systems enabled and working
+✓ No additional edits needed
+✓ GitHub runs everything
+✓ Monitor from Actions tab
 
 ---
 
 ## 🎉 الآن أنت جاهز!
 
-كل ما عليك:
-1. ✅ افعّل Secrets (إذا تستخدم Vercel/Cloudflare)
-2. ✅ اتركه يعمل!
-3. ✅ تفقد النتائج بعد ساعة
+All you need to do:
+1. Enable Actions
+2. Add Secrets (optional)
+3. Test from Actions tab
+4. Let GitHub work!
 
-**Perfect! 🚀**
+**Perfect! Everything is ready to go! 🚀**
