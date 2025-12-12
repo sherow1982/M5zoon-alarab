@@ -58,8 +58,7 @@
   <priority>0.7</priority>
 </url>
 
-<!-- English Product Pages (Sample - Full list would have all 263) -->
-<!-- Perfumes -->
+<!-- English Product Pages - Perfumes -->
 <url>
   <loc>https://emirates-gifts.arabsad.com/en/products/ARIAF.html</loc>
   <lastmod>2025-12-12</lastmod>
@@ -78,13 +77,328 @@
 </url>
 
 <url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Autumn.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/De-louvre-black-50ml.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/De-louvre-white-30ml.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Emotion-black-50ml.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Emotion-white-30ml.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Emotion-HAIR-BODY-MIST.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Emotion-HAIR-SERUM.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Fleurs-Bohemes-Inverness.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Hermes-Maguet-Porcelaine.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/JORA-HAIR-BODY-MIST.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/JORA-HAIR-SERUM.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
   <loc>https://emirates-gifts.arabsad.com/en/products/Kayali-Eden.html</loc>
   <lastmod>2025-12-12</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.9</priority>
 </url>
 
-<!-- Watches -->
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Kayali-Lovefest.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Kayali-Vanilla.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Kayali-Vanilla-Candy-Purple.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Kayali-vanilla-candy-pink.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Khaneen.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Marly-Delina-La-Rosee.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Marly-Delina.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Marly-Oriana.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Marly-Safanad.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Marly-palatine.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Oud-Al-Brayeh.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Paradise-Black-50ml.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Paradise-white-30ml.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Penhaligons-Halfeti-Leather.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<!-- English Product Pages - Watches -->
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Aigner-watch-1-gold.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Aigner-watch-1-silver-strab.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Aigner-watch-gold-strab.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Aigner-watch-silver-strab.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Audemars-Piguet-Royal-Orange.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Audemars-Piguet-blue-silver-copy-1.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Breitling-Endurance-Pro.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Burberry-watches.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Cartier-Tank-1.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Cartier-Tank-2.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Couple-Rolex-watch-Silver.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Couple-Rolex-watch-gold.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Emporio-Armani-Watch-For-Women-1.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Emporio-Armani-Watch-For-Women-2.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Omega-watch-navy-blue-strap.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Patek-Philippe-1.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Patek-Philippe-2.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Piaget-watch-silver.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Piaget-watch-silvergold.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Rolex-Date-Just-Wimbledon.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
 <url>
   <loc>https://emirates-gifts.arabsad.com/en/products/Rolex-Datejust-Black.html</loc>
   <lastmod>2025-12-12</lastmod>
@@ -93,14 +407,42 @@
 </url>
 
 <url>
-  <loc>https://emirates-gifts.arabsad.com/en/products/Cartier-Tank--.html</loc>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Rolex-Datejust-Blue-silver.html</loc>
   <lastmod>2025-12-12</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.9</priority>
 </url>
 
 <url>
-  <loc>https://emirates-gifts.arabsad.com/en/products/Aigner-watch-1-gold.html</loc>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Rolex-Datejust-Green.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Rolex-Daydate-Black-41mm.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Rolex-Submariner-Black.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Rolex-Submariner-Gold.html</loc>
+  <lastmod>2025-12-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://emirates-gifts.arabsad.com/en/products/Glory.html</loc>
   <lastmod>2025-12-12</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.9</priority>
