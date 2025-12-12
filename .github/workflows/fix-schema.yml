@@ -1,0 +1,65 @@
+name: 🔧 Fix Product Schema
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'products/**/*.html'
+      - 'fix-product-schema.py'
+
+jobs:
+  fix-schema:
+    name: 🚀 Fix Product Schema
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⤵️ Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ⚙️ Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: 🚀 Run Schema Fix Script
+        run: |
+          export LANG=en_US.UTF-8
+          export LC_ALL=en_US.UTF-8
+          python3 fix-product-schema.py 2>&1
+        continue-on-error: true
+
+      - name: 📄 Check for Changes
+        id: verify
+        run: |
+          if git diff --quiet; then
+            echo "No changes detected"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            git diff --stat
+          fi
+
+      - name: ➡️ Commit & Push Changes
+        if: steps.verify.outputs.has_changes == 'true'
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Bot"
+          git add -A
+          git commit -m "🔧 AUTO: Fixed product schema on all pages"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ✅ Done
+        run: |
+          echo "════════════════════════════════════════"
+          echo "✅ Schema تم ضبطه على كل الصفحات!"
+          echo "════════════════════════════════════════"
+          echo "✓ Product Schema (مهم جداً لـ Google)"
+          echo "✓ BreadcrumbList Schema"
+          echo "✓ Rating & Offer data"
+          echo "✓ Image metadata"
