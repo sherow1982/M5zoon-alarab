@@ -7,10 +7,13 @@
 User-agent: *
 Allow: /
 Allow: /products/
-Allow: /en/products/
+Allow: /en/
+Allow: /ar/
 Allow: /css/
 Allow: /js/
 Allow: /images/
+Allow: /products-grid.html
+Allow: /en/products-grid.html
 Disallow: /data/
 Disallow: /.git/
 Disallow: /.github/
@@ -25,36 +28,56 @@ Disallow: /products-showcase.html?
 Disallow: /en/products-showcase.html?
 Disallow: /admin/
 Disallow: /api/admin/
+Disallow: /node_modules/
+Disallow: /build/
+Disallow: /.cache/
 
+# Google Crawler
 User-agent: Googlebot
 Allow: /
 Allow: /en/
-Crawl-delay: 0
+Allow: /ar/
+Allow: /products/
+Allow: /images/
+Crawl-delay: 1
+Request-rate: 30/60
 
+# Google Images
 User-agent: Googlebot-Image
 Allow: /
 Allow: /images/
+Allow: /products/
 
+# Bing
 User-agent: Bingbot
+Allow: /
+Allow: /en/
+Crawl-delay: 1
+Request-rate: 20/60
+
+# Baidu
+User-agent: Baiduspider
 Allow: /
 Crawl-delay: 1
 
-User-agent: Baiduspider
-Allow: /
-Crawl-delay: 2
-
+# Block bad crawlers
 User-agent: AhrefsBot
 Disallow: /
-Crawl-delay: 10
 
 User-agent: SemrushBot
 Disallow: /
-Crawl-delay: 10
 
 User-agent: MJ12bot
-Crawl-delay: 10
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
 
 # Sitemaps - Critical for multilingual SEO
 Sitemap: https://emirates-gifts.arabsad.com/sitemap.xml
 Sitemap: https://emirates-gifts.arabsad.com/sitemap-en.xml
-Sitemap: https://emirates-gifts.arabsad.com/sitemap-index.xml
+Sitemap: https://emirates-gifts.arabsad.com/sitemap-ar.xml
