@@ -1,61 +1,55 @@
 # robots.txt for Emirates Gifts Store
 # SEO-optimized for bilingual content (AR + EN)
 # Updated: 2025-12-12
-# Encoding: UTF-8
 
-# Default access for all crawlers
 User-agent: *
+# Allow all crawlers full access by default, then specify Disallows
 Allow: /
-Allow: /products/
-Allow: /en/products/
-Allow: /css/
-Allow: /js/
-Allow: /images/
+
+# Disallow sensitive files and directories
 Disallow: /data/
 Disallow: /.git/
 Disallow: /.github/
 Disallow: /.env
 Disallow: /*.log$
 Disallow: /*.bak$
+
+# Disallow non-public pages
+Disallow: /admin/
+Disallow: /api/admin/
 Disallow: /cart.html
 Disallow: /checkout.html
 Disallow: /en/cart.html
 Disallow: /en/checkout.html
+
+# Disallow parameterized URLs that can cause duplicate content
 Disallow: /products-showcase.html?
 Disallow: /en/products-showcase.html?
-Disallow: /admin/
-Disallow: /api/admin/
 
+# Specific rules for major bots
 User-agent: Googlebot
 Allow: /
 Allow: /en/
-Crawl-delay: 1
+# Note: Crawl-delay is deprecated by Google. Use Google Search Console to manage crawl rate.
 
 User-agent: Googlebot-Image
-Allow: /
 Allow: /images/
 
 User-agent: Bingbot
-Allow: /
 Crawl-delay: 1
 
 User-agent: Baiduspider
-Allow: /
 Crawl-delay: 2
 
+# Block common SEO/marketing crawlers
 User-agent: AhrefsBot
 Disallow: /
-Crawl-delay: 10
 
 User-agent: SemrushBot
 Disallow: /
-Crawl-delay: 10
 
 User-agent: MJ12bot
 Disallow: /
-Crawl-delay: 10
 
-# Sitemaps - Critical for multilingual SEO
-Sitemap: https://emirates-gifts.arabsad.com/sitemap.xml
-Sitemap: https://emirates-gifts.arabsad.com/sitemap-en.xml
+# Sitemaps - List the index file if it contains the others
 Sitemap: https://emirates-gifts.arabsad.com/sitemap-index.xml
