@@ -4,7 +4,7 @@ const log = isDev ? console.log.bind(console) : () => {};
 const warn = isDev ? console.warn.bind(console) : () => {};
 const error = console.error.bind(console);
 
-log('🚫 EMIRATES GIFTS ENGLISH - ZERO INLINE CODE');
+log('🚫 EMIRATES GIFTS ENGLISH - ZERO INLINE CODE - ALL PRODUCTS');
 
 // Strict popup blocking
 window.alert = function() { log('🚫 Alert blocked'); return undefined; };
@@ -14,8 +14,8 @@ window.open = function() { log('🚫 window.open blocked'); return null; };
 
 let currentPerfumes = [];
 let currentWatches = [];
-let displayedPerfumes = 999; // Show all initially
-let displayedWatches = 999;  // Show all initially
+let displayedPerfumes = 999; // Show ALL
+let displayedWatches = 999;  // Show ALL
 
 // Enhanced image error handler (ZERO INLINE)
 function setupSecureImageHandler(imgElement) {
@@ -99,10 +99,10 @@ function getEnglishProductName(arabicTitle, productId) {
     return parts.length > 0 ? parts.join(' ') : 'Premium Luxury Product';
 }
 
-// Enhanced product loading
+// Enhanced product loading - LOAD ALL from products.json
 async function loadProducts() {
     try {
-        log('📦 Loading products for English version...');
+        log('📦 Loading ALL products from products.json for English...');
         
         const loadWithRetry = async (url, retries = 3) => {
             for (let i = 0; i < retries; i++) {
@@ -121,22 +121,23 @@ async function loadProducts() {
             return [];
         };
         
-        const [perfumes, watches] = await Promise.all([
-            loadWithRetry('../data/otor.json'),
-            loadWithRetry('../data/sa3at.json')
-        ]);
+        // Load ALL products from single file
+        const allProducts = await loadWithRetry('../data/products.json');
         
-        currentPerfumes = perfumes;
-        currentWatches = watches;
+        // Split by category
+        currentPerfumes = allProducts.filter(p => p && p.category === 'Perfumes');
+        currentWatches = allProducts.filter(p => p && p.category === 'Watches');
+        
+        log(`📊 Loaded ${currentPerfumes.length} perfumes + ${currentWatches.length} watches = ${allProducts.length} total`);
         
         if (currentPerfumes.length > 0) {
             const perfumesWithEnglish = currentPerfumes.map(p => ({
                 ...p,
                 englishName: getEnglishProductName(p.title, p.id)
             }));
-            displayProductsSecurely(perfumesWithEnglish.slice(0, displayedPerfumes), 'perfumes-grid');
-            updateViewMoreButton('perfumes-view-more', currentPerfumes.length, displayedPerfumes);
-            log(`✅ Loaded ${currentPerfumes.length} perfumes`);
+            displayProductsSecurely(perfumesWithEnglish, 'perfumes-grid'); // Show ALL
+            updateViewMoreButton('perfumes-view-more', currentPerfumes.length, currentPerfumes.length);
+            log(`✅ Loaded and displayed ALL ${currentPerfumes.length} perfumes`);
         }
         
         if (currentWatches.length > 0) {
@@ -144,9 +145,9 @@ async function loadProducts() {
                 ...p,
                 englishName: getEnglishProductName(p.title, p.id)
             }));
-            displayProductsSecurely(watchesWithEnglish.slice(0, displayedWatches), 'watches-grid');
-            updateViewMoreButton('watches-view-more', currentWatches.length, displayedWatches);
-            log(`✅ Loaded ${currentWatches.length} watches`);
+            displayProductsSecurely(watchesWithEnglish, 'watches-grid'); // Show ALL
+            updateViewMoreButton('watches-view-more', currentWatches.length, currentWatches.length);
+            log(`✅ Loaded and displayed ALL ${currentWatches.length} watches`);
         }
         
     } catch (error) {
@@ -166,7 +167,7 @@ function updateViewMoreButton(buttonId, totalItems, displayedItems) {
         log(`✅ ${buttonId} shown (${displayedItems}/${totalItems})`);
     } else {
         button.style.display = 'none';
-        log(`ℹ️ ${buttonId} hidden - all shown`);
+        log(`ℹ️ ${buttonId} hidden - all ${totalItems} shown`);
     }
 }
 
@@ -243,7 +244,7 @@ function displayProductsSecurely(products, gridId) {
             }
         });
         
-        log(`📦 Securely displayed ${products.length} products in ${gridId}`);
+        log(`📦 Securely displayed ALL ${products.length} products in ${gridId}`);
         
     } catch (displayError) {
         error('❌ Display error:', displayError);
@@ -287,57 +288,6 @@ function navigateToProductSecurely(productId, type) {
         }
     } else {
         error('❌ Product not found:', productId);
-    }
-}
-
-// Show more functions with accessibility
-function showMorePerfumesSecurely() {
-    try {
-        const oldCount = displayedPerfumes;
-        displayedPerfumes = Math.min(displayedPerfumes + 8, currentPerfumes.length);
-        
-        const perfumesWithEnglish = currentPerfumes.map(p => ({
-            ...p,
-            englishName: getEnglishProductName(p.title, p.id)
-        }));
-        
-        displayProductsSecurely(perfumesWithEnglish.slice(0, displayedPerfumes), 'perfumes-grid');
-        updateViewMoreButton('perfumes-view-more', currentPerfumes.length, displayedPerfumes);
-        
-        // Smooth scroll to new content
-        const section = document.getElementById('perfumes-section');
-        if (section && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-        
-        log(`🔄 Perfumes: ${oldCount} → ${displayedPerfumes}/${currentPerfumes.length}`);
-    } catch (error) {
-        error('❌ Show more perfumes error:', error);
-    }
-}
-
-function showMoreWatchesSecurely() {
-    try {
-        const oldCount = displayedWatches;
-        displayedWatches = Math.min(displayedWatches + 8, currentWatches.length);
-        
-        const watchesWithEnglish = currentWatches.map(p => ({
-            ...p,
-            englishName: getEnglishProductName(p.title, p.id)
-        }));
-        
-        displayProductsSecurely(watchesWithEnglish.slice(0, displayedWatches), 'watches-grid');
-        updateViewMoreButton('watches-view-more', currentWatches.length, displayedWatches);
-        
-        // Smooth scroll to new content
-        const section = document.getElementById('watches-section');
-        if (section && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-        
-        log(`🔄 Watches: ${oldCount} → ${displayedWatches}/${currentWatches.length}`);
-    } catch (error) {
-        error('❌ Show more watches error:', error);
     }
 }
 
@@ -438,9 +388,9 @@ function initSmoothScrollSecurely() {
     }
 }
 
-// Enhanced initialization
+// Enhanced initialization - SHOW ALL PRODUCTS
 function initializeEnglishHomepage() {
-    log('🚫 English Homepage Init - Zero Inline Code...');
+    log('🚫 English Homepage Init - Zero Inline Code - SHOW ALL PRODUCTS...');
     
     try {
         // Update cart counter
@@ -452,28 +402,18 @@ function initializeEnglishHomepage() {
         // Initialize smooth scroll
         initSmoothScrollSecurely();
         
-        // Enhanced View More buttons
+        // Hide view more buttons since we show ALL now
         const perfumesViewMore = document.getElementById('perfumes-view-more');
         const watchesViewMore = document.getElementById('watches-view-more');
         
         if (perfumesViewMore) {
-            perfumesViewMore.addEventListener('click', showMorePerfumesSecurely);
-            perfumesViewMore.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    showMorePerfumesSecurely();
-                }
-            });
+            perfumesViewMore.style.display = 'none';
+            log('✅ Perfumes view-more hidden (showing ALL)');
         }
         
         if (watchesViewMore) {
-            watchesViewMore.addEventListener('click', showMoreWatchesSecurely);
-            watchesViewMore.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    showMoreWatchesSecurely();
-                }
-            });
+            watchesViewMore.style.display = 'none';
+            log('✅ Watches view-more hidden (showing ALL)');
         }
         
         // Scroll events with throttling
@@ -512,7 +452,7 @@ function initializeEnglishHomepage() {
             });
         }
         
-        log('✅ English homepage fully initialized');
+        log('✅ English homepage fully initialized - SHOWING ALL PRODUCTS');
         
     } catch (initError) {
         error('❌ Initialization error:', initError);
@@ -541,10 +481,8 @@ if (document.readyState === 'loading') {
 // Secure global exports
 if (typeof window !== 'undefined') {
     window.EmiratesGiftsEN = Object.freeze({
-        version: '2.0.0-english-secure',
+        version: '2.0.0-english-secure-all-products',
         navigateToProduct: navigateToProductSecurely,
-        showMorePerfumes: showMorePerfumesSecurely,
-        showMoreWatches: showMoreWatchesSecurely,
         updateCartCounter: updateCartCounter,
         loadProducts: loadProducts,
         isDevelopment: isDev
@@ -554,4 +492,4 @@ if (typeof window !== 'undefined') {
     window.navigateToProduct = navigateToProductSecurely;
 }
 
-log('✅ Emirates Gifts English v2.0 - ZERO INLINE CODE');
+log('✅ Emirates Gifts English v2.0 - ZERO INLINE CODE - ALL 126 PRODUCTS');
