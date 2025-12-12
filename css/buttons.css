@@ -1,0 +1,430 @@
+/* 
+ * Professional Button Styles - Emirates Gifts Store
+ * Premium, Modern, and Accessible Button Components
+ */
+
+/* Primary Action Button */
+.btn-primary {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #D4AF37 100%);
+    background-size: 200% 200%;
+    color: white !important;
+    padding: 16px 36px !important;
+    border: none !important;
+    border-radius: 25px !important;
+    font-weight: 800 !important;
+    font-size: 1.1rem !important;
+    font-family: 'Cairo', sans-serif !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    letter-spacing: 0.5px !important;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    box-shadow: 0 15px 45px rgba(212, 175, 55, 0.5) !important;
+    background: linear-gradient(135deg, #FFA500 0%, #FFD700 50%, #FFA500 100%) !important;
+}
+
+.btn-primary:active {
+    transform: translateY(-1px) scale(0.98) !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
+}
+
+.btn-primary:focus {
+    outline: 3px solid rgba(212, 175, 55, 0.5) !important;
+    outline-offset: 3px !important;
+}
+
+/* Secondary Action Button */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #1B2951 !important;
+    padding: 16px 36px !important;
+    border: 2px solid #D4AF37 !important;
+    border-radius: 25px !important;
+    font-weight: 800 !important;
+    font-size: 1.1rem !important;
+    font-family: 'Cairo', sans-serif !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.2) !important;
+    position: relative !important;
+    letter-spacing: 0.5px !important;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #FFE4B5 0%, #FFEFD5 100%) !important;
+    border-color: #FFD700 !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4) !important;
+}
+
+.btn-secondary:active {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2) !important;
+}
+
+.btn-secondary:focus {
+    outline: 3px solid rgba(212, 175, 55, 0.5) !important;
+    outline-offset: 3px !important;
+}
+
+/* WhatsApp Action Button */
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #20B358 100%) !important;
+    color: white !important;
+    padding: 14px 24px !important;
+    border: none !important;
+    border-radius: 15px !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    font-family: 'Cairo', sans-serif !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-whatsapp::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-whatsapp:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5) !important;
+    background: linear-gradient(135deg, #20B358 0%, #25D366 100%) !important;
+}
+
+.btn-whatsapp:active {
+    transform: translateY(-1px) !important;
+}
+
+.btn-whatsapp:focus {
+    outline: 3px solid rgba(37, 211, 102, 0.5) !important;
+    outline-offset: 2px !important;
+}
+
+/* View More Button */
+.view-more-button {
+    background: linear-gradient(135deg, #D4AF37 0%, #FFD700 25%, #B8860B 50%, #FFA500 100%) !important;
+    background-size: 300% 300% !important;
+    animation: gradientShift 4s ease infinite !important;
+    color: white !important;
+    padding: 18px 42px !important;
+    border: none !important;
+    border-radius: 30px !important;
+    font-weight: 900 !important;
+    font-size: 1.3rem !important;
+    font-family: 'Cairo', sans-serif !important;
+    cursor: pointer !important;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    letter-spacing: 1px !important;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.view-more-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 0;
+}
+
+.view-more-button:hover::before {
+    left: 100%;
+}
+
+.view-more-button:hover {
+    transform: translateY(-6px) scale(1.05) !important;
+    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.7) !important;
+}
+
+.view-more-button:active {
+    transform: translateY(-2px) scale(0.98) !important;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4) !important;
+}
+
+.view-more-button:focus {
+    outline: 3px solid rgba(212, 175, 55, 0.7) !important;
+    outline-offset: 3px !important;
+}
+
+.view-more-button i {
+    font-size: 1.5rem !important;
+    animation: pulse 2s infinite !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Checkout Button */
+.checkout-btn {
+    background: linear-gradient(135deg, #25D366 0%, #20B358 100%) !important;
+    color: white !important;
+    padding: 12px 24px !important;
+    border-radius: 20px !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    font-family: 'Cairo', sans-serif !important;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.checkout-btn:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5) !important;
+    background: linear-gradient(135deg, #20B358 0%, #1fa34d 100%) !important;
+}
+
+.checkout-btn:focus {
+    outline: 3px solid rgba(37, 211, 102, 0.5) !important;
+    outline-offset: 2px !important;
+}
+
+/* View All Link Button */
+.view-all-link {
+    color: #D4AF37 !important;
+    text-decoration: none !important;
+    font-weight: 800 !important;
+    font-size: 1.05rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    padding: 12px 24px !important;
+    border: 2px solid #D4AF37 !important;
+    border-radius: 25px !important;
+    background: transparent !important;
+    position: relative !important;
+    overflow: hidden !important;
+    font-family: 'Cairo', sans-serif !important;
+}
+
+.view-all-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background: var(--gradient-gold);
+    transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: -1;
+}
+
+.view-all-link:hover::before {
+    width: 100%;
+    z-index: 0;
+}
+
+.view-all-link:hover {
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3) !important;
+}
+
+.view-all-link:focus {
+    outline: 2px solid #1B2951 !important;
+    outline-offset: 2px !important;
+}
+
+/* Button Icon Styling */
+.btn-primary i,
+.btn-secondary i,
+.btn-whatsapp i,
+.view-more-button i,
+.view-all-link i {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Responsive Button Styling */
+@media (max-width: 768px) {
+    .btn-primary,
+    .btn-secondary {
+        padding: 14px 28px !important;
+        font-size: 1rem !important;
+        gap: 8px !important;
+    }
+    
+    .view-more-button {
+        padding: 16px 32px !important;
+        font-size: 1.1rem !important;
+        min-width: 240px !important;
+    }
+    
+    .btn-whatsapp {
+        padding: 12px 20px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .view-all-link {
+        font-size: 0.95rem !important;
+        padding: 10px 18px !important;
+    }
+}
+
+/* Button Group Styling */
+.button-group {
+    display: flex !important;
+    gap: 20px !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+}
+
+@media (max-width: 768px) {
+    .button-group {
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+    
+    .button-group .btn-primary,
+    .button-group .btn-secondary {
+        width: 100% !important;
+    }
+}
+
+/* Disabled Button State */
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-whatsapp:disabled,
+.view-more-button:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+/* Loading State for Buttons */
+.btn-primary.loading,
+.btn-secondary.loading,
+.btn-whatsapp.loading {
+    pointer-events: none !important;
+    opacity: 0.8 !important;
+}
+
+.btn-primary.loading::after,
+.btn-secondary.loading::after,
+.btn-whatsapp.loading::after {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-left: 8px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .btn-primary,
+    .btn-secondary,
+    .btn-whatsapp,
+    .view-more-button,
+    .view-all-link {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .btn-primary::before,
+    .btn-whatsapp::before,
+    .btn-whatsapp::before,
+    .view-more-button::before,
+    .view-all-link::before {
+        transition: none !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .btn-primary,
+    .btn-secondary,
+    .btn-whatsapp,
+    .view-more-button,
+    .view-all-link {
+        box-shadow: none !important;
+        transform: none !important;
+    }
+}
