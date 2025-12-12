@@ -14,8 +14,8 @@ window.open = function() { log('🚫 window.open blocked'); return null; };
 
 let currentPerfumes = [];
 let currentWatches = [];
-let displayedPerfumes = 8;
-let displayedWatches = 8;
+let displayedPerfumes = 999; // Show all initially
+let displayedWatches = 999;  // Show all initially
 
 // Enhanced image error handler (ZERO INLINE)
 function setupSecureImageHandler(imgElement) {
