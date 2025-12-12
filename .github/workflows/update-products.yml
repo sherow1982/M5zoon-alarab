@@ -7,7 +7,7 @@ on:
 
 jobs:
   merge:
-    name: 🚀 Merge Products & Generate Feeds
+    name: 🚀 Merge Products & Generate Feeds & Pages
     runs-on: ubuntu-latest
     
     steps:
@@ -29,6 +29,13 @@ jobs:
           node merge-products.js 2>&1
         continue-on-error: true
 
+      - name: 📄 Generate Product Pages with Schema
+        run: |
+          export LANG=en_US.UTF-8
+          export LC_ALL=en_US.UTF-8
+          node generate-product-pages.js 2>&1
+        continue-on-error: true
+
       - name: 🔍 Check for Changes
         id: verify
         run: |
@@ -47,7 +54,7 @@ jobs:
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Data Bot"
           git add -A
-          git commit -m "🚀 AUTO: Merged products data with real images - $(date)"
+          git commit -m "🚀 AUTO: Generated product pages with schema - $(date)"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,14 +62,15 @@ jobs:
       - name: ✅ Success
         run: |
           echo "════════════════════════════════════════"
-          echo "✅ بيانات المنتجات تم تحديثها!"
+          echo "✅ تم توليد كل البيانات!"
           echo "════════════════════════════════════════"
-          echo "✓ عطور + ساعات"
-          echo "✓ CSV + XML + JSON + Schema"
-          echo "✓ بيانات فعلية مع صور حقيقية"
+          echo "✓ منتجات مع بيانات كاملة"
+          echo "✓ صفحات HTML لكل منتج"
+          echo "✓ Schema محفور في كل صفحة"
+          echo "✓ CSV + XML + JSON فيدات"
 
       - name: ❌ Handle Errors
         if: failure()
         run: |
-          echo "❌ العملية تمت لكن هناك تنبيهات"
+          echo "❌ العملية انتهت لكن خذ بالك"
           exit 0
