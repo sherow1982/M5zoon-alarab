@@ -13,6 +13,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./css/product-details.css">
+
+    <!-- JSON-LD Schema for Product - Will be enhanced with aggregateRating and reviews -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "منتج من متجر هدايا الإمارات",
+      "image": "https://emirates-gifts.arabsad.com/images/product-default.jpg",
+      "description": "منتج فاخر من متجر هدايا الإمارات",
+      "brand": {
+        "@type": "Brand",
+        "name": "Emirates Gifts"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://emirates-gifts.arabsad.com/",
+        "priceCurrency": "AED",
+        "price": "0",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Emirates Gifts Store"
+        }
+      }
+    }
+    </script>
 </head>
 <body>
     <header class="header">
@@ -68,6 +94,17 @@
                     <h1 class="product-title" id="product-title">اسم المنتج</h1>
                     <span class="category-badge" id="category-badge">عطور</span>
 
+                    <!-- Ratings Display -->
+                    <div class="ratings-section" id="ratings-section" style="display: none;">
+                        <div class="rating-stars">
+                            <span class="rating-value" id="rating-value">★★★★★</span>
+                            <span class="rating-info">
+                                <span class="rating-average" id="rating-average">4.5</span>/5
+                                (<span class="rating-count" id="rating-count">0</span> تقييم)
+                            </span>
+                        </div>
+                    </div>
+
                     <div class="price-section">
                         <span class="old-price" id="old-price">0 د.إ</span>
                         <span class="current-price" id="current-price">0 د.إ</span>
@@ -106,6 +143,12 @@
                         <p id="product-description-text">وصف المنتج سيظهر هنا...</p>
                     </div>
 
+                    <!-- Recent Reviews Section -->
+                    <div class="reviews-section" id="reviews-section" style="display: none; margin-top: 30px;">
+                        <h3>⭐ آراء المشترين</h3>
+                        <div class="reviews-list" id="reviews-list"></div>
+                    </div>
+
                     <div class="action-buttons">
                         <a href="#" id="whatsapp-btn" class="whatsapp-btn" target="_blank">
                             <i class="fab fa-whatsapp"></i>
@@ -121,6 +164,9 @@
         </div>
     </div>
 
+    <!-- Schema Enhancer Script - Adds aggregateRating and reviews to JSON-LD -->
+    <script src="./js/schema-enhancer.js" defer></script>
+    
     <!-- External JS for product details logic -->
     <script src="./js/product-details.js" defer></script>
 
