@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; object-src 'none'; base-uri 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; frame-ancestors 'none';">
     <title>متجر هدايا الإمارات | عطور وهدايا عالية الجودة</title>
     <meta name="description" content="متجر هدايا الإمارات - عطور وساعات وهدايا عالية الجودة في الإمارات">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -742,123 +742,138 @@
     </footer>
 
     <script>
-        // تحديث السلة badge
-        function updateCartBadge() {
-            try {
-                const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
-                const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-                document.getElementById('cart-counter').textContent = total;
-            } catch (e) {
-                console.error('Cart error:', e);
-            }
-        }
+        (function() {
+            'use strict';
 
-        // تحميل المنتجات
-        async function loadProducts() {
-            try {
-                const response = await fetch('./data/products.json?v=' + Date.now());
-                const products = await response.json();
-                const perfumes = products.filter(p => p.category === 'Perfumes').slice(0, 6);
-                
-                const grid = document.getElementById('perfumes-grid');
-                if (perfumes.length === 0) {
-                    grid.innerHTML = '<div class="loading-message" style="grid-column: 1/-1;">No products available</div>';
-                    return;
+            function updateCartBadge() {
+                try {
+                    const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
+                    const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                    const badge = document.getElementById('cart-counter');
+                    if (badge) {
+                        badge.textContent = total;
+                    }
+                } catch (e) {
+                    console.error('Cart error:', e);
                 }
-                
-                grid.innerHTML = perfumes.map(product => `
-                    <div class="product-card" onclick="goToCheckout(${product.id})" style="cursor: pointer;">
-                        <div class="product-image-container">
-                            <img src="${product.image_link || 'https://via.placeholder.com/300x250/D4AF37/FFFFFF?text=Product'}" alt="${product.title}" class="product-image">
-                            ${product.sale_price && product.sale_price < product.price ? `
-                                <div class="discount-badge">خصم ${Math.round(((product.price - product.sale_price) / product.price) * 100)}%</div>
-                            ` : ''}
-                        </div>
-                        <div class="product-info">
-                            <div class="product-title">${product.title}</div>
-                            <div class="product-price">
-                                ${(product.sale_price || product.price).toFixed(2)} د.إ
-                                ${product.sale_price && product.sale_price < product.price ? `<span class="original-price">${product.price.toFixed(2)}</span>` : ''}
-                            </div>
-                            <div class="product-actions">
-                                <button class="btn-cart" onclick="event.stopPropagation(); addToCart(${product.id}, '${product.title}')">
-                                    <i class="fas fa-cart-plus"></i>
-                                    اطلب
-                                </button>
-                                <a href="https://wa.me/201110760081" class="btn-whatsapp" onclick="event.stopPropagation()">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-            } catch (error) {
-                console.error('Products loading error:', error);
-                document.getElementById('perfumes-grid').innerHTML = '<div class="loading-message" style="grid-column: 1/-1; color: #e74c3c;">خطأ في تحميل المنتجات</div>';
             }
-        }
 
-        // إضافة للسلة
-        function addToCart(id, title) {
-            try {
-                let cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
-                const found = cart.find(p => p.id == id);
-                if (found) {
-                    found.quantity = (found.quantity || 1) + 1;
-                } else {
-                    const products = JSON.parse(localStorage.getItem('_temp_products') || '[]');
-                    const product = products.find(p => p.id == id);
-                    cart.push({
-                        id,
-                        title,
-                        price: product?.price || 0,
-                        quantity: 1
-                    });
+            async function loadProducts() {
+                try {
+                    const response = await fetch('./data/products.json?v=' + Date.now());
+                    if (!response.ok) throw new Error('Failed to load products');
+                    
+                    const products = await response.json();
+                    const perfumes = products.filter(p => p.category === 'Perfumes').slice(0, 6);
+                    
+                    const grid = document.getElementById('perfumes-grid');
+                    if (!grid) return;
+                    
+                    if (perfumes.length === 0) {
+                        grid.innerHTML = '<div class="loading-message" style="grid-column: 1/-1;">No products available</div>';
+                        return;
+                    }
+                    
+                    grid.innerHTML = perfumes.map(product => {
+                        const finalPrice = product.sale_price || product.price;
+                        const originalPrice = product.price;
+                        const hasDiscount = product.sale_price && product.sale_price < product.price;
+                        const discountPercent = hasDiscount ? Math.round(((originalPrice - finalPrice) / originalPrice) * 100) : 0;
+                        
+                        return `
+                            <div class="product-card" onclick="goToCheckout(${product.id})">
+                                <div class="product-image-container">
+                                    <img src="${product.image_link || 'https://via.placeholder.com/300x250/D4AF37/FFFFFF?text=Product'}" alt="${product.title}" class="product-image">
+                                    ${hasDiscount ? `<div class="discount-badge">خصم ${discountPercent}%</div>` : ''}
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title">${product.title}</div>
+                                    <div class="product-price">
+                                        ${finalPrice.toFixed(2)} د.إ
+                                        ${hasDiscount ? `<span class="original-price">${originalPrice.toFixed(2)}</span>` : ''}
+                                    </div>
+                                    <div class="product-actions">
+                                        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(${product.id}, '${product.title}')">
+                                            <i class="fas fa-cart-plus"></i>
+                                            اطلب
+                                        </button>
+                                        <a href="https://wa.me/201110760081" class="btn-whatsapp" onclick="event.stopPropagation()">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } catch (error) {
+                    console.error('Products loading error:', error);
+                    const grid = document.getElementById('perfumes-grid');
+                    if (grid) {
+                        grid.innerHTML = '<div class="loading-message" style="grid-column: 1/-1; color: #e74c3c;">خطأ في تحميل المنتجات</div>';
+                    }
                 }
-                localStorage.setItem('emirates_cart', JSON.stringify(cart));
-                updateCartBadge();
-                alert('✅ تم إضافة "' + title + '" للسلة');
-            } catch (e) {
-                console.error('Add to cart error:', e);
             }
-        }
 
-        // اذهب للطلب
-        function goToCheckout(productId) {
-            const products = JSON.parse(localStorage.getItem('_temp_products') || '[]');
-            const product = products.find(p => p.id == productId);
-            if (product) {
-                let cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
-                const found = cart.find(p => p.id == productId);
-                if (!found) {
-                    cart.push({
-                        id: productId,
-                        title: product.title,
-                        price: product.price,
-                        quantity: 1
-                    });
+            window.addToCart = function(id, title) {
+                try {
+                    let cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
+                    const found = cart.find(p => p.id == id);
+                    if (found) {
+                        found.quantity = (found.quantity || 1) + 1;
+                    } else {
+                        cart.push({
+                            id,
+                            title,
+                            price: 0,
+                            quantity: 1
+                        });
+                    }
                     localStorage.setItem('emirates_cart', JSON.stringify(cart));
                     updateCartBadge();
-                    setTimeout(() => {
-                        window.location.href = './checkout.html';
-                    }, 500);
-                } else {
-                    window.location.href = './checkout.html';
+                    alert('✅ تم إضافة "' + title + '" للسلة');
+                } catch (e) {
+                    console.error('Add to cart error:', e);
                 }
+            };
+
+            window.goToCheckout = function(productId) {
+                try {
+                    let cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
+                    const found = cart.find(p => p.id == productId);
+                    if (!found) {
+                        cart.push({
+                            id: productId,
+                            title: 'Product',
+                            price: 0,
+                            quantity: 1
+                        });
+                        localStorage.setItem('emirates_cart', JSON.stringify(cart));
+                        updateCartBadge();
+                    }
+                    window.location.href = './checkout.html';
+                } catch (e) {
+                    console.error('Checkout error:', e);
+                }
+            };
+
+            window.addEventListener('scroll', function() {
+                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                const bar = document.getElementById('progressBar');
+                if (bar) {
+                    bar.style.width = scrolled + '%';
+                }
+            }, { passive: true });
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    updateCartBadge();
+                    loadProducts();
+                });
+            } else {
+                updateCartBadge();
+                loadProducts();
             }
-        }
-
-        // Progress bar
-        window.addEventListener('scroll', () => {
-            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            document.getElementById('progressBar').style.width = scrolled + '%';
-        });
-
-        // التهيئة
-        window.addEventListener('DOMContentLoaded', () => {
-            updateCartBadge();
-            loadProducts();
-        });
+        })();
     </script>
 </body>
 </html>
