@@ -1,0 +1,107 @@
+name: 📁 Process Orders (CSV → Excel)
+
+on:
+  repository_dispatch:
+    types: [save_order]
+  workflow_dispatch:
+
+jobs:
+  process_orders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: 📦 Install pandas & openpyxl
+        run: pip install pandas openpyxl
+      
+      - name: 💨 Save Order to CSV
+        run: |
+          python3 << 'EOF'
+          import json
+          import csv
+          import os
+          from datetime import datetime
+          
+          # Get order from GitHub event
+          order_data = {
+              'orderId': '${{ github.event.client_payload.orderId }}',
+              'fullName': '${{ github.event.client_payload.fullName }}',
+              'phone': '${{ github.event.client_payload.phone }}',
+              'city': '${{ github.event.client_payload.city }}',
+              'items': '${{ github.event.client_payload.items }}',
+              'total': '${{ github.event.client_payload.total }}',
+              'date': '${{ github.event.client_payload.date }}'
+          }
+          
+          csv_file = 'data/orders.csv'
+          os.makedirs('data', exist_ok=True)
+          
+          # Check if file exists
+          file_exists = os.path.isfile(csv_file)
+          
+          with open(csv_file, 'a', newline='', encoding='utf-8') as f:
+              writer = csv.DictWriter(f, fieldnames=[
+                  'رقم الطلب', 'الاسم', 'الهاتف', 
+                  'المدينة', 'المنتجات', 
+                  'الإجمالي', 'التاريخ'
+              ])
+              
+              if not file_exists:
+                  writer.writeheader()
+              
+              writer.writerow({
+                  'رقم الطلب': order_data.get('orderId', ''),
+                  'الاسم': order_data.get('fullName', ''),
+                  'الهاتف': order_data.get('phone', ''),
+                  'المدينة': order_data.get('city', ''),
+                  'المنتجات': order_data.get('items', ''),
+                  'الإجمالي': order_data.get('total', ''),
+                  'التاريخ': order_data.get('date', '')
+              })
+          
+          print('✅ CSV updated')
+          EOF
+      
+      - name: 📊 Convert CSV to Excel
+        run: |
+          python3 << 'EOF'
+          import pandas as pd
+          import os
+          
+          csv_file = 'data/orders.csv'
+          excel_file = 'data/Orders.xlsx'
+          
+          if os.path.isfile(csv_file):
+              # Read CSV
+              df = pd.read_csv(csv_file, encoding='utf-8')
+              
+              # Save to Excel
+              os.makedirs('data', exist_ok=True)
+              df.to_excel(excel_file, index=False, sheet_name='الطلبيات')
+              
+              print(f'✅ Excel file created: {excel_file}')
+              print(f'📊 Total orders: {len(df)}')
+          else:
+              print('⚠️ No CSV file found')
+          EOF
+      
+      - name: 📤 Commit & Push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '📁 Add order: ${{ github.event.client_payload.orderId }}'
+          file_pattern: 'data/*'
+          skip_dirty_check: false
+          skip_fetch: false
+          skip_checkout: false
+      
+      - name: ✅ Done
+        run: |
+          echo '✅ Order processed successfully!'
+          echo '📁 CSV: data/orders.csv'
+          echo '📊 Excel: data/Orders.xlsx'
