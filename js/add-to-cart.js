@@ -1,7 +1,8 @@
 /**
- * منطق إضافة المنتج للسلة
+ * منطلق إضافة المنتج للسلة
  * يعمل على جميع صفحات المنتجات
- * Emirates Gifts v3.2
+ * ليحول للخروج مباشرة
+ * Emirates Gifts v3.3
  */
 
 class AddToCart {
@@ -21,7 +22,8 @@ class AddToCart {
             }
         });
         
-        console.log('✅ نظام إضافة للسلة فعال');
+        console.log('%c✅ نظام إضافة للسلة فعال', 'color: #27ae60; font-weight: bold');
+        console.log('%c🚍 التحويل الفوري للخروج', 'color: #3498db; font-weight: bold');
     }
     
     /**
@@ -48,18 +50,21 @@ class AddToCart {
             return;
         }
         
+        console.log('%c🐛 بيانات المنتج:', product);
+        
         // إضافة للسلة
         const success = this.cart.addProduct(product);
         
         if (success) {
-            this.showNotification(`مت الإضافة "${product.title}" ✅`, 'success');
+            console.log('%c✅ تم الإضافة', 'color: #27ae60; font-weight: bold', product.title);
+            this.showNotification(`تم الإضافة "‎${product.title}‎" ✅`, 'success');
             this.animateButton(btn);
             
-            // التحويل الفوري للسلة
+            // التحويل الفوري للخروج
             setTimeout(() => {
-                console.log('🔄 التحويل اللحظة للسلة');
-                window.location.href = './cart.html';
-            }, 800);
+                console.log('%c🚍 الإعادة التوجيه للخروج...', 'color: #e74c3c; font-weight: bold; font-size: 12px');
+                window.location.href = './checkout.html';
+            }, 1000);
         } else {
             this.showNotification('فشل إضافة المنتج', 'error');
         }
@@ -75,7 +80,8 @@ class AddToCart {
             price: parseFloat(container.dataset.productPrice || container.querySelector('[data-price]')?.textContent?.match(/\d+\.?\d*/)?.[0] || 0),
             sale_price: parseFloat(container.dataset.salePrice || container.dataset.productSalePrice || container.querySelector('[data-sale-price]')?.textContent?.match(/\d+\.?\d*/)?.[0] || 0),
             image_link: container.dataset.productImage || container.querySelector('img')?.src,
-            image: container.dataset.productImage || container.querySelector('img')?.src
+            image: container.dataset.productImage || container.querySelector('img')?.src,
+            quantity: 1
         };
     }
     
@@ -101,7 +107,7 @@ class AddToCart {
             btn.innerHTML = originalText;
             btn.className = originalClass;
             btn.disabled = false;
-        }, 800);
+        }, 1000);
     }
     
     /**
