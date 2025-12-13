@@ -1,126 +1,347 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar-AE" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سياسة الاسترجاع - الإمارات للهدايا | Emirates Gifts</title>
-    <meta name="description" content="سياسة الاسترجاع لمتجر الإمارات للهدايا. استرجع منتجاتك خلال 14 يومًا.">
+    <title>سياسة الاسترجاع - متجر هدايا الإمارات</title>
+    <meta name="description" content="سياسة الاسترجاع والرواجع 14 يوم لمتجر هدايا الإمارات">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f9f9f9;
+        :root {
+            --dark-blue: #1e3c72;
+            --light-blue: #2a5298;
+            --gold: #D4AF37;
+            --white: #ffffff;
         }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        header { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 60px 20px; text-align: center; }
-        header h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .policy-section { background: white; padding: 40px; margin: 30px 0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-right: 5px solid #e74c3c; }
-        .policy-section h2 { color: #e74c3c; font-size: 1.8em; margin-bottom: 15px; }
-        .policy-section h3 { color: #555; font-size: 1.3em; margin: 20px 0 10px 0; }
-        .policy-section ul { margin: 15px 0 15px 30px; }
-        .policy-section li { margin: 10px 0; line-height: 1.8; }
-        .highlight-box { background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; margin: 20px 0; border-radius: 5px; }
-        .warning-box { background: #f8d7da; border-left: 4px solid #e74c3c; padding: 20px; margin: 20px 0; border-radius: 5px; color: #721c24; }
-        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 20px; margin: 20px 0; border-radius: 5px; color: #155724; }
-        footer { background: #333; color: white; text-align: center; padding: 30px; margin-top: 60px; }
-        .step { background: #f5f5f5; padding: 15px; margin: 15px 0; border-radius: 5px; border-left: 4px solid #e74c3c; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #f0f4f8 100%);
+        }
+        .legal-header-nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 20px;
+            border-bottom: 4px solid #f5576c;
+        }
+        .legal-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .legal-nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .legal-nav-title {
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legal-nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .legal-nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .legal-nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .legal-contact-quick {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .legal-contact-quick a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .legal-contact-quick a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 3em;
+            color: var(--dark-blue);
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold);
+            padding-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.8em;
+            color: var(--dark-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .info-box {
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.1) 0%, rgba(231, 76, 60, 0.1) 100%);
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .success-box {
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, rgba(39, 174, 96, 0.1) 100%);
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .steps-list {
+            list-style: none;
+            margin: 20px 0;
+            counter-reset: step-counter;
+        }
+        .steps-list li {
+            counter-increment: step-counter;
+            margin: 15px 0;
+            padding: 15px 20px 15px 50px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            position: relative;
+            font-size: 1.1em;
+        }
+        .steps-list li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            background: var(--gold);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .legal-footer {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 20px 30px;
+            margin-top: 80px;
+            border-top: 4px solid #f5576c;
+        }
+        .legal-footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .legal-footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .legal-footer-section h3 {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f5576c;
+            padding-bottom: 10px;
+        }
+        .legal-footer-section ul {
+            list-style: none;
+        }
+        .legal-footer-section li {
+            margin: 12px 0;
+        }
+        .legal-footer-section a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legal-footer-section a:hover {
+            color: #f5576c;
+            transform: translateX(5px);
+        }
+        .legal-divider {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin: 30px 0;
+        }
+        .legal-footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .legal-footer-bottom p {
+            margin: 10px 0;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+        .legal-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .legal-badge {
+            background: rgba(245,87,108,0.2);
+            border: 1px solid #f5576c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .container { margin: 30px auto; padding: 20px; }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>🔄 سياسة الاسترجاع</h1>
-        <p>نحن نقدم سياسة استرجاع مرنة وعادلة لراحتك</p>
+    <header class="legal-header-nav">
+        <div class="legal-nav-container">
+            <div class="legal-nav-wrapper">
+                <a href="/index.html" class="legal-nav-title">🎁 الإمارات للهدايا</a>
+                <ul class="legal-nav-links">
+                    <li><a href="/legal/about.html">ℹ️ من نحن</a></li>
+                    <li><a href="/legal/return-policy.html">🔄 الاسترجاع</a></li>
+                    <li><a href="/legal/privacy-policy.html">🔐 الخصوصية</a></li>
+                    <li><a href="/legal/shipping-policy.html">🚚 الشحن</a></li>
+                </ul>
+                <div class="legal-contact-quick">
+                    <a href="/legal/contact-us.html">📞 اتصل</a>
+                    <a href="https://wa.me/201110760081" target="_blank">💬 واتساب</a>
+                </div>
+            </div>
+        </div>
     </header>
 
     <div class="container">
-        <div class="policy-section">
-            <h2>📄 ملخص سياسة الاسترجاع</h2>
-            <p>
-                في الإمارات للهدايا، نحرص على رضاك بنسبة 100%. إذا لم تكن راضياً عن منتجاتك، 
-                هذه سياستنا بشأن الاسترجاع والتبديل.
-            </p>
+        <h1>🔄 سياسة الاسترجاع والرواجع</h1>
+
+        <div class="success-box">
+            <h3>✅ ضمان الرضا</h3>
+            <p>نأذن بمسؤولية تامة عن رضاك 100%. إذا لم تكن راضياً عن المنتج المشتراه بدون اسخدام و يكون بالحالة الأصلية برالشارط التالية.</p>
         </div>
 
-        <div class="policy-section">
-            <h2>🕒 مدة الاسترجاع</h2>
-            <div class="highlight-box">
-                <h3>📚 مدة 14 يوماً من تاريخ استلام المنتج</h3>
-                <p>لديك 14 يوماً من استلام منتجاتك لرفع طلب استرجاع بدون أي أسئلة.</p>
-            </div>
+        <h2>⚠️ التعريفات المهمة</h2>
+        <p>
+            <strong>منتجات التجميل (Cosmetics):</strong> أي منتجات مر رعَية الجلد أو مستحضرات بيوتية مثل: كريمات بموطبات ، مختلفة الوجه والشعر.
+        </p>
+
+        <h2>📄 عرطة الاسترجاع</h2>
+        <div class="info-box">
+            <p><span class="highlight">14 يوماً</span> من بعد استلامك للمنتج لميع المنتجات إصريق من التجميل</p>
         </div>
 
-        <div class="policy-section">
-            <h2>🚧 استثناءات مهمة</h2>
-            <div class="warning-box">
-                <h3>⚠️ منتجات التجميل لا يمكن استرجاعها</h3>
-                <ul>
-                    <li>مواد التجميل والعناية (مكياجال تجميل والترطيب الععيا)</u060c</li>
-                    <li>عطور وعطور عبارة</li>
-                    <li>العناية بالشعر والجلد</li>
-                    <li>منتجات هيجينية للعناية الشخصية</li>
-                </ul>
-                <p><strong>السبب:</strong> لأسباب صحية مرعية، لا يمكن استرجاع منتجات التجميل بعد استخدامها.</p>
-            </div>
+        <h2>✅ شروط الاسترجاع</h2>
+        <ul class="steps-list">
+            <li>يجب أن يكون المنتج بالحالة الأصلية بدون استخدامات</li>
+            <li>يجب أن يأتي مع ضع ولوازمه كاملة</li>
+            <li>يجب رفع طلب الاسترجاع خلال 14 يوماً من بعد استلام الطلب</li>
+            <li>يجب السعال عبر خدمة الشحن الجديدة وعلى حسابنا</li>
+        </ul>
+
+        <h2>🛡️ الاستثناءات المهمة</h2>
+        <div class="info-box">
+            <p><span class="highlight">✨ NO RETURNS ON COSMETICS ✨</span></p>
+            <p>بموجب البراطوذاو القانونالا الدولية ، لا يمكن استرجاع أي منتجات تجميل أو عطور جسم آبف تاليو مهما كان السبب.</p>
         </div>
 
-        <div class="policy-section">
-            <h2>📁 شروط الاسترجاع</h2>
-            <h3>يجب توفر الشروط التالية:</h3>
-            <div class="step">
-                <strong>١. الحالة الأصلية</strong>
-                <p>يجب أن يكون المنتج في حالته الأصلية وبدون علامات استخدام.</p>
-            </div>
-            <div class="step">
-                <strong>٢. التعبئة الأصلية</strong>
-                <p>يجب أن يكون المنتج متر فعه بعبوته الأصلية كما ورد ليها.</p>
-            </div>
-            <div class="step">
-                <strong>٣. رسيط الإرجاع</strong>
-                <p>يجب ملئه رسالب الرجوع مع منطقباي الشراءب.</p>
-            </div>
-            <div class="step">
-                <strong>٤. عدم الأضرار</strong>
-                <p>لم يكن هناك أي أضرار أو عيوب خلال فترة الاسترجاع.</p>
-            </div>
-        </div>
+        <h2>💵 عرطة استرجاع المبلغ</h2>
+        <p>عند موافقتنا على طلب الاسترجاع واستلامنا للمنتج رولفي الحالة الأصلية ، سيتم التبرير للعا لفه في 3-5 أيام عمل.</p>
 
-        <div class="policy-section">
-            <h2>📅 خطوات طلب الاسترجاع</h2>
-            <div class="success-box">
-                <h3>لابتدا بعملية الاسترجاع:</h3>
-                <ol style="margin-right: 20px;">
-                    <li><strong>تواصل معنا:</strong> اتصل بفريق خدمة العملاء خلال 14 يوم</li>
-                    <li><strong>معلومات الطلب:</strong> أخبرنا برقم الطلب وسبب الاسترجاع</li>
-                    <li><strong>إرسال المنتج:</strong> أعد المنتج بتعبئته الأصلية</li>
-                    <li><strong>الرسوم:</strong> ندفع رسوم رجوع مربية (اذا طلبت حه التبديل)</li>
-                    <li><strong>المعالجة:</strong> نضق المنتج ونعيد برسالته إياك بسرعة</li>
-                </ol>
-            </div>
-        </div>
+        <h2>📄 الخطوات لطلب الاسترجاع</h2>
+        <ol style="margin-left: 20px; font-size: 1.1em; line-height: 2;">
+            <li>تواصل معنا عبر البريد الإلكتروني أو الواتساب</li>
+            <li>قدم اسم الطلب وطلب برطاو الاسترجاع</li>
+            <li>انتظر الموافقة علل طلبك للاسترجاع</li>
+            <li>اررسل المنتج بعبر خدمة الاثلام الجديدة</li>
+            <li>استلم أموالك بعد عمارى مبالغتنا علما رولب</li>
+        </ol>
 
-        <div class="policy-section">
-            <h2>💰 سياسة المبالغ المسترجعة</h2>
-            <ul>
-                <li><strong>استرجاع كامل:</strong> أعيد تمويلاً بنسبة 100% للمنتج</li>
-                <li><strong>رسوم الرجوع:</strong> رسوم التحويل بالبطاقة تطبق حسب سياسة البنك الخاصة بك</li>
-                <li><strong>وقت الرجوع:</strong> نعيد المبلغ خلال 7-10 أيام عمل</li>
-            </ul>
-        </div>
-
-        <div class="policy-section">
-            <h2>📞 التواصل بخصوص الاسترجاع</h2>
-            <p>إذا كان لديك أية استفسارات حول سياسة الاسترجاع، رجاء منك التواصل معنا:</p>
-            <p>📧 <strong>البريد:</strong> <a href="mailto:sherow1982@gmail.com" style="color: #e74c3c; text-decoration: none;">sherow1982@gmail.com</a></p>
-            <p>📧 <strong>البريد البديل:</strong> <a href="mailto:info@arabsad.com" style="color: #e74c3c; text-decoration: none;">info@arabsad.com</a></p>
-            <p>📱 <strong>واتساب:</strong> <a href="https://wa.me/201110760081" style="color: #e74c3c; text-decoration: none;" target="_blank">التواصل السريع</a></p>
+        <div class="success-box" style="margin-top: 40px;">
+            <h3>📞 للاتصال معنا</h3>
+            <p>مروا فه اللأن و سنجاش عليه بسرعة بخرسو <a href="/legal/contact-us.html" style="color: #27ae60; text-decoration: underline; font-weight: bold;">📞 اتصل بنا الآن</a></p>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 الإمارات للهدايا. جميع الحقوق محفوظة.</p>
-        <p>آخر تحديث: ديسمبر 2025</p>
+    <footer class="legal-footer">
+        <div class="legal-footer-container">
+            <div class="legal-footer-grid">
+                <div class="legal-footer-section">
+                    <h3>📄 البوليسات والشروط</h3>
+                    <ul>
+                        <li><a href="/legal/about.html" target="_blank">ℹ️ من نحن</a></li>
+                        <li><a href="/legal/return-policy.html" target="_blank">🔄 سياسة الاسترجاع</a></li>
+                        <li><a href="/legal/privacy-policy.html" target="_blank">🔐 سياسة الخصوصية</a></li>
+                        <li><a href="/legal/shipping-policy.html" target="_blank">🚚 سياسة الشحن</a></li>
+                    </ul>
+                </div>
+                <div class="legal-footer-section">
+                    <h3>📞 طرق الاتصال</h3>
+                    <ul>
+                        <li><a href="mailto:sherow1982@gmail.com">📧 sherow1982@gmail.com</a></li>
+                        <li><a href="mailto:info@arabsad.com">📧 info@arabsad.com</a></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank">💬 WhatsApp</a></li>
+                        <li><a href="/legal/contact-us.html" target="_blank">📞 اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="legal-footer-section">
+                    <h3>🌟 لماذا نخترنا</h3>
+                    <ul>
+                        <li>✓ الجودة العالية</li>
+                        <li>✓ الاسترجاع 14 يوم</li>
+                        <li>✓ شحن مجاني</li>
+                        <li>✓ دعم 24/7</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div class="legal-footer-bottom">
+                <div class="legal-badges">
+                    <span class="legal-badge">🔒 آمن 100%</span>
+                    <span class="legal-badge">✅ أصلي 100%</span>
+                    <span class="legal-badge">🚚 شحن سريع</span>
+                    <span class="legal-badge">⭐ موثوق</span>
+                </div>
+                <p>&copy; 2025 الإمارات للهدايا. جميع الحقوق محفوظة ©</p>
+                <p>آخر تحديث: ديسمبر 2025</p>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
