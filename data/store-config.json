@@ -1,0 +1,217 @@
+{
+  "store": {
+    "name": "متجر هدايا الإمارات",
+    "nameEnglish": "Emirates Gifts Store",
+    "description": "متجر متخصص في بيع الهدايا المميزة والفاخرة في الإمارات العربية المتحدة",
+    "descriptionEnglish": "Specialized store for premium and luxury gifts in the United Arab Emirates",
+    "logo": "/images/logo.png",
+    "favicon": "/images/favicon.ico",
+    "colors": {
+      "primary": "#D4AF37",
+      "secondary": "#1e3c72",
+      "accent": "#25D366",
+      "success": "#27ae60",
+      "error": "#e74c3c",
+      "warning": "#f39c12"
+    }
+  },
+  "company": {
+    "name": "متجر هدايا الإمارات",
+    "nameArabic": "متجر هدايا الإمارات",
+    "nameEnglish": "Emirates Gifts Store",
+    "tagline": "جودة عالية، أسعار مناسبة، خدمة ممتازة",
+    "taglineEnglish": "High Quality, Reasonable Prices, Excellent Service",
+    "foundedYear": 2024,
+    "location": "دبي، الإمارات العربية المتحدة",
+    "locationEnglish": "Dubai, United Arab Emirates",
+    "email": "info@emiratesgifts.ae",
+    "phone": "+971 4 XXX XXXX",
+    "whatsapp": "+971 50 XXX XXXX",
+    "headquarters": "دبي - الإمارات العربية المتحدة"
+  },
+  "social": {
+    "facebook": "https://facebook.com/emiratesgifts",
+    "instagram": "https://instagram.com/emiratesgifts",
+    "tiktok": "https://tiktok.com/@emiratesgifts",
+    "twitter": "https://twitter.com/emiratesgifts",
+    "youtube": "https://youtube.com/@emiratesgifts",
+    "whatsapp": "https://wa.me/971XXXXXXXXX"
+  },
+  "shipping": {
+    "defaultCost": 0,
+    "freeShippingThreshold": 200,
+    "methods": [
+      {
+        "id": "pickup",
+        "name": "الاستلام من المتجر",
+        "nameEnglish": "Store Pickup",
+        "cost": 0,
+        "days": "نفس اليوم",
+        "description": "استلم طلبك من فرعنا في دبي"
+      },
+      {
+        "id": "express",
+        "name": "التوصيل السريع",
+        "nameEnglish": "Express Delivery",
+        "cost": 25,
+        "days": "1-2",
+        "description": "توصيل سريع داخل دبي والعجمان وام القيوين"
+      },
+      {
+        "id": "standard",
+        "name": "التوصيل العادي",
+        "nameEnglish": "Standard Delivery",
+        "cost": 15,
+        "days": "2-3",
+        "description": "توصيل عادي لجميع إمارات الدولة"
+      },
+      {
+        "id": "international",
+        "name": "التوصيل الدولي",
+        "nameEnglish": "International Shipping",
+        "cost": 50,
+        "days": "5-10",
+        "description": "توصيل دولي إلى جميع دول الخليج"
+      }
+    ]
+  },
+  "payment": {
+    "methods": [
+      {
+        "id": "whatsapp",
+        "name": "واتس آب",
+        "icon": "whatsapp",
+        "enabled": true,
+        "description": "التواصل عبر واتس آب لإتمام الطلب"
+      },
+      {
+        "id": "bankTransfer",
+        "name": "تحويل بنكي",
+        "icon": "bank",
+        "enabled": true,
+        "description": "تحويل بنكي آمن وسريع"
+      },
+      {
+        "id": "cashOnDelivery",
+        "name": "الدفع عند الاستلام",
+        "icon": "money",
+        "enabled": true,
+        "description": "الدفع نقداً عند استقبال الطلب"
+      }
+    ]
+  },
+  "legalPages": {
+    "aboutUs": {
+      "title": "من نحن",
+      "titleEnglish": "About Us",
+      "slug": "about-us",
+      "description": "تعرف على متجر هدايا الإمارات وقصتنا"
+    },
+    "privacyPolicy": {
+      "title": "سياسة الخصوصية",
+      "titleEnglish": "Privacy Policy",
+      "slug": "privacy-policy",
+      "description": "اطلع على سياستنا في حماية بيانات العملاء"
+    },
+    "termsOfService": {
+      "title": "شروط الخدمة",
+      "titleEnglish": "Terms of Service",
+      "slug": "terms-of-service",
+      "description": "اقرأ شروط استخدام موقعنا"
+    },
+    "returnPolicy": {
+      "title": "سياسة الاسترجاع",
+      "titleEnglish": "Return Policy",
+      "slug": "return-policy",
+      "description": "سياسة الاسترجاع والتبديل"
+    },
+    "shippingPolicy": {
+      "title": "سياسة التوصيل",
+      "titleEnglish": "Shipping Policy",
+      "slug": "shipping-policy",
+      "description": "معلومات التوصيل والشحن"
+    },
+    "contactUs": {
+      "title": "اتصل بنا",
+      "titleEnglish": "Contact Us",
+      "slug": "contact-us",
+      "description": "تواصل معنا للإجابة على أسئلتك"
+    }
+  },
+  "seo": {
+    "defaultTitle": "متجر هدايا الإمارات | أفضل الهدايا الفاخرة في دبي",
+    "defaultDescription": "متجر هدايا متخصص يقدم أفضل الهدايا الفاخرة والمميزة في الإمارات. جودة عالية، أسعار مناسبة، توصيل سريع.",
+    "defaultKeywords": "هدايا الإمارات، هدايا دبي، هدايا فاخرة، هدايا مميزة، متجر هدايا",
+    "socialImage": "/images/og-image.png",
+    "socialTitle": "متجر هدايا الإمارات - جودة وفخامة",
+    "socialDescription": "اكتشف أفضل الهدايا الفاخرة في الإمارات",
+    "twitterHandle": "@emiratesgifts"
+  },
+  "features": {
+    "reviews": true,
+    "ratings": true,
+    "wishlists": true,
+    "recommendations": true,
+    "newsletter": true,
+    "liveChat": false,
+    "videoSupport": false
+  },
+  "trust": {
+    "badges": [
+      {
+        "name": "آمن 100%",
+        "description": "موقع آمن وموثوق",
+        "icon": "shield-check"
+      },
+      {
+        "name": "توصيل سريع",
+        "description": "توصيل خلال 24-48 ساعة",
+        "icon": "truck"
+      },
+      {
+        "name": "ضمان الجودة",
+        "description": "جودة عالية مضمونة",
+        "icon": "star"
+      },
+      {
+        "name": "دعم عملاء",
+        "description": "فريق دعم متاح 24/7",
+        "icon": "headset"
+      }
+    ]
+  },
+  "analytics": {
+    "googleAnalyticsId": "G-XXXXXXXXXX",
+    "googleSearchConsoleToken": "token-here",
+    "facebookPixelId": "xxxxxxxxxxxx"
+  },
+  "categories": [
+    {
+      "id": 1,
+      "name": "هدايا رجالية",
+      "nameEnglish": "Men's Gifts",
+      "slug": "mens-gifts",
+      "image": "/images/categories/mens-gifts.jpg",
+      "seoTitle": "هدايا رجالية فاخرة | متجر هدايا الإمارات",
+      "seoDescription": "اختر من أفضل الهدايا الرجالية الفاخرة والمميزة"
+    },
+    {
+      "id": 2,
+      "name": "هدايا نسائية",
+      "nameEnglish": "Women's Gifts",
+      "slug": "womens-gifts",
+      "image": "/images/categories/womens-gifts.jpg",
+      "seoTitle": "هدايا نسائية فاخرة | متجر هدايا الإمارات",
+      "seoDescription": "اختر من أفضل الهدايا النسائية الفاخرة والأنيقة"
+    },
+    {
+      "id": 3,
+      "name": "هدايا الأطفال",
+      "nameEnglish": "Kids Gifts",
+      "slug": "kids-gifts",
+      "image": "/images/categories/kids-gifts.jpg",
+      "seoTitle": "هدايا للأطفال | متجر هدايا الإمارات",
+      "seoDescription": "اختر هدايا مميزة وآمنة للأطفال"
+    }
+  ]
+}
