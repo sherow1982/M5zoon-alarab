@@ -1,4 +1,4 @@
-// 🚫 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.3 - WITH LOAD MORE PAGINATION
+// 🚫 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.4 - DIRECT CHECKOUT
 
 (function() {
     'use strict';
@@ -8,7 +8,7 @@
     const warn = isDev ? console.warn.bind(console) : () => {};
     const error = console.error.bind(console);
     
-    log('🚫 EMIRATES PRODUCTS SHOWCASE v2.3 - WITH LOAD MORE PAGINATION');
+    log('🚫 EMIRATES PRODUCTS SHOWCASE v2.4 - DIRECT CHECKOUT');
     
     // Strict popup blocking
     window.alert = function() { log('🚫 Alert blocked'); return undefined; };
@@ -308,9 +308,10 @@
                             <div class="product-actions">
                                 <button class="btn-primary add-to-cart-btn" 
                                         data-product-id="${productId}"
+                                        data-product-title="${productTitle}"
                                         type="button"
-                                        aria-label="إضافة ${productTitle} إلى السلة">
-                                    <i class="fas fa-cart-plus" aria-hidden="true"></i> أضف للسلة
+                                        aria-label="إضافة ${productTitle} إلى السلة والذهاب للطلب">
+                                    <i class="fas fa-cart-plus" aria-hidden="true"></i> اطلب الآن
                                 </button>
                                 <a href="https://wa.me/201110760081?text=${encodeURIComponent(whatsappMessage)}" 
                                    class="btn-whatsapp whatsapp-order-btn" 
@@ -319,7 +320,7 @@
                                    data-product-id="${productId}"
                                    data-product-title="${productTitle}"
                                    aria-label="طلب ${productTitle} عبر واتساب">
-                                    <i class="fab fa-whatsapp" aria-hidden="true"></i> اطلب
+                                    <i class="fab fa-whatsapp" aria-hidden="true"></i> واتس
                                 </a>
                             </div>
                         </div>
@@ -431,7 +432,7 @@
                 e.preventDefault();
                 e.stopPropagation();
                 const productId = this.dataset.productId;
-                if (productId) addToCartSecurely(productId);
+                if (productId) addToCartAndCheckout(productId);
             });
             
             btn.addEventListener('keydown', function(e) {
@@ -480,9 +481,9 @@
     }
     
     /**
-     * Secure add to cart system
+     * ✅ NEW: Add to cart AND redirect to checkout
      */
-    function addToCartSecurely(productId) {
+    function addToCartAndCheckout(productId) {
         const product = currentProducts.find(p => p && String(p.id) === String(productId));
         if (!product) {
             error('❌ Product not found for cart');
@@ -514,7 +515,9 @@
                     id: productId,
                     title: product.title || product.title_ar,
                     price: parseFloat(product.sale_price || product.price || 0),
+                    sale_price: parseFloat(product.sale_price || 0),
                     image: product.image_link,
+                    url: product.image_link,
                     quantity: 1,
                     type: product.category_type,
                     category: product.category
@@ -522,10 +525,16 @@
             }
             
             localStorage.setItem('emirates_cart', JSON.stringify(cart));
+            localStorage.setItem('emirates_cart_data', JSON.stringify(cart));
             updateCartBadgeSecurely();
             
             log(`✅ Added to cart: ${product.title}`);
-            showSecureNotification(`تم إضافة "${product.title}" للسلة بنجاح!`);
+            showSecureNotification(`✅ تم إضافة "${product.title}" والانتقال للطلب...`);
+            
+            // 🚀 Redirect to checkout after 1 second
+            setTimeout(() => {
+                window.location.href = './checkout.html';
+            }, 1000);
             
         } catch (cartError) {
             error('❌ Cart error:', cartError);
@@ -785,7 +794,7 @@
      * Enhanced initialization
      */
     function initializeProductsShowcaseSecurely() {
-        log('🚫 Zero Inline Code Products Showcase Init v2.3...');
+        log('🚫 Zero Inline Code Products Showcase Init v2.4 - DIRECT CHECKOUT...');
         
         try {
             updateCartBadgeSecurely();
@@ -802,7 +811,7 @@
                 }, 16);
             }, { passive: true });
             
-            log('✅ Products Showcase v2.3 initialized with Load More pagination');
+            log('✅ Products Showcase v2.4 initialized with Direct Checkout');
             
         } catch (initError) {
             error('❌ Initialization error:', initError);
@@ -831,9 +840,9 @@
     // Secure global exports
     if (typeof window !== 'undefined') {
         window.EmiratesShowcaseSecure = Object.freeze({
-            version: '2.3.0-with-load-more',
+            version: '2.4.0-direct-checkout',
             navigateToProduct: navigateToProductDetailsSecurely,
-            addToCart: addToCartSecurely,
+            addToCart: addToCartAndCheckout,
             updateCartBadge: updateCartBadgeSecurely,
             loadProducts: loadAllProductsSecurely,
             loadMoreProducts: loadMoreProducts,
@@ -841,6 +850,6 @@
         });
     }
     
-    log('✅ Emirates Products Showcase v2.3 - WITH LOAD MORE PAGINATION');
+    log('✅ Emirates Products Showcase v2.4 - WITH DIRECT CHECKOUT');
     
 })();
