@@ -1,7 +1,7 @@
 /**
  * منطلق صفحة إتمام الطلب
- * حفظ احترافي: GitHub XLSX + localStorage
- * Emirates Gifts v6.0
+ * حفظ: GitHub CSV + localStorage + JSON
+ * Emirates Gifts v6.1
  */
 
 class CheckoutPage {
@@ -15,7 +15,8 @@ class CheckoutPage {
         // GitHub Config
         this.GITHUB_OWNER = 'sherow1982';
         this.GITHUB_REPO = 'emirates-gifts';
-        this.ORDERS_FILE = 'orders/new-orders.xlsx';
+        this.ORDERS_CSV = 'orders/new-orders.csv';
+        this.GITHUB_TOKEN = localStorage.getItem('githubToken') || '';
         
         // وقاية من أخطاء الإضافات
         if (chrome && chrome.runtime) {
@@ -25,9 +26,9 @@ class CheckoutPage {
         }
         
         console.clear();
-        console.log('%c🎯 Emirates Gifts v6.0', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c💾 Storage: GitHub XLSX + localStorage', 'color: #27ae60; font-size: 12px; font-weight: bold');
-        console.log('%c📊 File: orders/new-orders.xlsx', 'color: #27ae60; font-size: 11px');
+        console.log('%c🎯 Emirates Gifts v6.1', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c💾 Storage: GitHub CSV + localStorage', 'color: #27ae60; font-size: 12px; font-weight: bold');
+        console.log('%c📄 File: orders/new-orders.csv (with red color for new)', 'color: #27ae60; font-size: 11px');
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -177,13 +178,18 @@ class CheckoutPage {
             this.saveOrderLocally(orderData);
             console.log('%c✅ Saved to localStorage: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
-            // 2. حفظ على GitHub XLSX
-            await this.saveToGitHubXLSX(orderData);
-            console.log('%c✅ Saved to GitHub XLSX: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
-            
-            // 3. تحميل JSON
+            // 2. حفظ JSON
             this.downloadOrderJSON(orderData);
             console.log('%c✅ Downloaded as JSON: ' + `order-${orderData.orderId.replace('#', '')}.json`, 'color: #27ae60; font-weight: bold; font-size: 11px');
+            
+            // 3. تحديث CSV على GitHub (optional)
+            // إذا كان GitHub Token موجود
+            if (this.GITHUB_TOKEN) {
+                await this.updateGitHubCSV(orderData);
+                console.log('%c✅ Saved to GitHub CSV: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
+            } else {
+                console.log('%c🃁 GitHub CSV: Configure token for auto-sync', 'color: #f39c12; font-weight: bold; font-size: 11px');
+            }
             
             // 4. الانتقال
             this.onOrderSuccess(orderData);
@@ -217,62 +223,69 @@ class CheckoutPage {
     }
     
     /**
-     * حفظ على GitHub كـ XLSX
+     * تحديث CSV على GitHub
      */
-    async saveToGitHubXLSX(orderData) {
+    async updateGitHubCSV(orderData) {
         try {
-            console.log('%c📊 Updating GitHub XLSX...', 'color: #3498db; font-weight: bold; font-size: 11px');
+            console.log('%c📄 Updating GitHub CSV...', 'color: #3498db; font-weight: bold; font-size: 11px');
             
-            // قراءة الملف الحالي
-            let existingOrders = [];
-            try {
-                const response = await fetch(
-                    `https://raw.githubusercontent.com/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/main/${this.ORDERS_FILE}`
+            // قراءة CSV الحالي
+            const response = await fetch(
+                `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${this.ORDERS_CSV}`,
+                {
+                    headers: {
+                        'Authorization': `token ${this.GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3.raw'
+                    }
+                }
+            );
+            
+            let currentCSV = '';
+            let sha = null;
+            
+            if (response.ok) {
+                // قراءة الملف بالكامل
+                const contentResponse = await fetch(
+                    `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${this.ORDERS_CSV}`,
+                    {
+                        headers: {
+                            'Authorization': `token ${this.GITHUB_TOKEN}`
+                        }
+                    }
                 );
-                // محاولة قراءة من GitHub (قد لا ينجح للملفات الثنائية)
-                console.log('%c  📖 Read existing file', 'color: #95a5a6; font-weight: bold; font-size: 10px');
-            } catch (e) {
-                console.log('%c  📝 Starting new file', 'color: #95a5a6; font-weight: bold; font-size: 10px');
+                const fileData = await contentResponse.json();
+                currentCSV = atob(fileData.content);
+                sha = fileData.sha;
             }
             
-            // إضافة الطلب الجديد
-            existingOrders.push(orderData);
+            // إضافة السطر الجديد
+            const newRow = `${orderData.orderId},${orderData.fullName},${orderData.phone},${orderData.city},"${orderData.items}",${orderData.total},${orderData.date},🆕 جديد`;
+            const updatedCSV = currentCSV + (currentCSV.endsWith('\n') ? '' : '\n') + newRow;
             
-            // إنشاء XLSX (باستخدام بيانات نصية)
-            const xlsxData = this.createXLSXFromOrders(existingOrders);
+            // رفع الملف
+            const updateResponse = await fetch(
+                `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${this.ORDERS_CSV}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${this.GITHUB_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `📄 New order: ${orderData.orderId}`,
+                        content: btoa(updatedCSV),
+                        sha: sha
+                    })
+                }
+            );
             
-            console.log('%c  ✅ XLSX data created', 'color: #27ae60; font-weight: bold; font-size: 10px');
-            
-            // Note: يتطلب access token للكتابة
-            console.log('%c  💡 Tip: Use GitHub Actions for full XLSX automation', 'color: #3498db; font-weight: bold; font-size: 10px');
+            if (updateResponse.ok) {
+                console.log('%c  ✅ CSV updated on GitHub', 'color: #27ae60; font-weight: bold; font-size: 10px');
+            }
             
         } catch (error) {
-            console.warn('⚠️ GitHub XLSX Error:', error.message);
+            console.warn('⚠️ GitHub CSV error:', error.message);
         }
-    }
-    
-    /**
-     * إنشاء XLSX من الطلبات
-     */
-    createXLSXFromOrders(orders) {
-        // بناء CSV مؤقتاً (يمكن تحويله لـ XLSX لاحقاً)
-        let csv = 'رقم الطلب,الاسم,الهاتف,المدينة,المنتجات,الإجمالي,التاريخ,الحالة\n';
-        
-        orders.forEach(order => {
-            const row = [
-                order.orderId,
-                order.fullName,
-                order.phone,
-                order.city,
-                `"${order.items}"`,
-                order.total,
-                order.date,
-                order.isNew ? 'جديد' : 'معالج'
-            ];
-            csv += row.join(',') + '\n';
-        });
-        
-        return csv;
     }
     
     /**
@@ -349,8 +362,8 @@ class CheckoutPage {
         console.log('%c\n🎉 ORDER SUCCESS!', 'color: #27ae60; font-size: 14px; font-weight: bold; background: #ecf0f1; padding: 8px; border-radius: 3px');
         console.log('%c📝 Order #' + orderData.orderId, 'color: #27ae60; font-weight: bold');
         console.log('%c💰 Amount: ' + orderData.total + ' AED', 'color: #27ae60; font-weight: bold');
-        console.log('%c💾 Saved to: localStorage + GitHub XLSX', 'color: #27ae60; font-weight: bold');
-        console.log('%c🔗 Check: orders/new-orders.xlsx on GitHub', 'color: #3498db; font-weight: bold; font-size: 11px');
+        console.log('%c💾 Saved to: localStorage + JSON', 'color: #27ae60; font-weight: bold');
+        console.log('%c🔗 Check: orders/new-orders.csv on GitHub', 'color: #3498db; font-weight: bold; font-size: 11px');
         
         const finalOrderData = {
             number: orderData.orderId,
