@@ -11,13 +11,34 @@ window.prompt = function() { return null; };
 
 let cartData = [];
 
+// مفاتيح localStorage المحتملة
+const STORAGE_KEYS = {
+    primary: 'emirates_shopping_cart',
+    fallback1: 'emirates_cart',
+    fallback2: 'cart',
+    total: 'emirates_cart_total',
+    totalFallback: 'totalPrice'
+};
+
 /**
  * Loads cart data from localStorage.
  */
 function loadCart() {
     try {
-        cartData = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
-        console.log(`📦 تم تحميل ${cartData.length} عنصر في السلة`);
+        // جرب المفاتيح بالترتيب
+        for (const key of [STORAGE_KEYS.primary, STORAGE_KEYS.fallback1, STORAGE_KEYS.fallback2]) {
+            const data = localStorage.getItem(key);
+            if (data) {
+                cartData = JSON.parse(data);
+                console.log(`📦 تم تحميل ${cartData.length} عنصر من ${key}`);
+                displayCart();
+                return;
+            }
+        }
+        
+        // إذا لم نجد بيانات
+        cartData = [];
+        console.log('📦 السلة فارغة (لم يتم العثور على بيانات)');
         displayCart();
     } catch (error) {
         console.error('❌ خطأ تحميل السلة:', error);
@@ -32,7 +53,7 @@ function loadCart() {
 function displayCart() {
     const cartContent = document.getElementById('cartContent');
     
-    if (cartData.length === 0) {
+    if (!cartData || cartData.length === 0) {
         cartContent.innerHTML = `
             <div class="empty-cart">
                 <i class="fas fa-shopping-cart"></i>
@@ -55,15 +76,15 @@ function displayCart() {
     let totalItems = 0;
     
     const itemsHTML = cartData.map(item => {
-        const itemPrice = parseFloat(item.price || 0);
-        const quantity = item.quantity || 1;
+        const itemPrice = parseFloat(item.sale_price || item.price || 0);
+        const quantity = parseInt(item.quantity) || 1;
         const itemTotal = itemPrice * quantity;
         total += itemTotal;
         totalItems += quantity;
         
         return `
             <div class="cart-item">
-                <img src="${item.image || 'https://via.placeholder.com/80x80/D4AF37/FFFFFF?text=منتج'}" 
+                <img src="${item.image_link || item.image || 'https://via.placeholder.com/80x80/D4AF37/FFFFFF?text=منتج'}" 
                      alt="${item.title}" 
                      class="item-image"
                      onerror="this.src='https://via.placeholder.com/80x80/D4AF37/FFFFFF?text=منتج'">
@@ -71,10 +92,10 @@ function displayCart() {
                     <div class="item-title">${item.title}</div>
                     <div class="item-price">${itemPrice.toFixed(2)} د.إ للقطعة</div>
                     <div class="quantity-controls">
-                            <button class="quantity-btn decrease-qty" data-item-id="${item.id}" data-quantity="${quantity}" aria-label="تقليل الكمية"><i class="fas fa-minus"></i></button>
+                        <button class="quantity-btn decrease-qty" data-item-id="${item.id}" data-quantity="${quantity}" aria-label="تقليل الكمية"><i class="fas fa-minus"></i></button>
                         <span class="quantity">${quantity}</span>
-                            <button class="quantity-btn increase-qty" data-item-id="${item.id}" data-quantity="${quantity}" aria-label="زيادة الكمية"><i class="fas fa-plus"></i></button>
-                            <button class="remove-btn" data-item-id="${item.id}" aria-label="إزالة المنتج"><i class="fas fa-trash"></i> حذف</button>
+                        <button class="quantity-btn increase-qty" data-item-id="${item.id}" data-quantity="${quantity}" aria-label="زيادة الكمية"><i class="fas fa-plus"></i></button>
+                        <button class="remove-btn" data-item-id="${item.id}" aria-label="إزالة المنتج"><i class="fas fa-trash"></i> حذف</button>
                     </div>
                 </div>
                 <div class="item-total-price">${itemTotal.toFixed(2)} د.إ</div>
@@ -106,6 +127,10 @@ function displayCart() {
             </div>
         </div>
     `;
+    
+    // حفظ الإجمالي في localStorage
+    localStorage.setItem(STORAGE_KEYS.total, total.toFixed(2));
+    localStorage.setItem(STORAGE_KEYS.totalFallback, total.toFixed(2));
 
     setupEventListeners();
 }
@@ -120,7 +145,7 @@ function updateQuantity(itemId, newQuantity) {
         removeItem(itemId);
         return;
     }
-    const item = cartData.find(item => item.id === itemId);
+    const item = cartData.find(item => String(item.id) === String(itemId));
     if (item) {
         item.quantity = newQuantity;
         saveCart();
@@ -134,7 +159,7 @@ function updateQuantity(itemId, newQuantity) {
  * @param {string} itemId - The ID of the item to remove.
  */
 function removeItem(itemId) {
-    cartData = cartData.filter(item => item.id !== itemId);
+    cartData = cartData.filter(item => String(item.id) !== String(itemId));
     saveCart();
     displayCart();
     console.log(`🗑️ تم حذف المنتج: ${itemId}`);
@@ -145,12 +170,17 @@ function clearCart() {
     cartData = [];
     saveCart();
     displayCart();
-    console.log('🧽 تم إفراغ السلة');
+    console.log('🧻 تم إفراغ السلة');
 }
 
 /** Saves the current cart data to localStorage. */
 function saveCart() {
-    localStorage.setItem('emirates_cart', JSON.stringify(cartData));
+    // احفظ في جميع المفاتيح المحتملة
+    const data = JSON.stringify(cartData);
+    localStorage.setItem(STORAGE_KEYS.primary, data);
+    localStorage.setItem(STORAGE_KEYS.fallback1, data);
+    localStorage.setItem(STORAGE_KEYS.fallback2, data);
+    console.log('💾 تم حفظ السلة');
 }
 
 /**
