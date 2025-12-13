@@ -34,9 +34,6 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v4
       
-      - name: 📁 Create Orders Directory
-        run: mkdir -p orders
-      
       - name: 📝 Extract Order Data
         id: order
         run: |
@@ -47,42 +44,16 @@ jobs:
           ITEMS="${{ github.event.client_payload.items || inputs.items }}"
           TOTAL="${{ github.event.client_payload.total || inputs.total }}"
           DATE="${{ github.event.client_payload.date || inputs.date }}"
-          TIMESTAMP=$(date +%s000)
+          TIMESTAMP=$(date +%s%3N)
           
           echo "order_id=${ORDER_ID}" >> $GITHUB_OUTPUT
           echo "timestamp=${TIMESTAMP}" >> $GITHUB_OUTPUT
           echo "full_name=${FULL_NAME}" >> $GITHUB_OUTPUT
       
-      - name: 💾 Save JSON Order
+      - name: 📊 Append Order to Data File
         run: |
-          mkdir -p orders
-          
-          ORDER_ID="${{ github.event.client_payload.orderId || inputs.orderId }}"
-          FULL_NAME="${{ github.event.client_payload.fullName || inputs.fullName }}"
-          PHONE="${{ github.event.client_payload.phone || inputs.phone }}"
-          CITY="${{ github.event.client_payload.city || inputs.city }}"
-          ITEMS="${{ github.event.client_payload.items || inputs.items }}"
-          TOTAL="${{ github.event.client_payload.total || inputs.total }}"
-          DATE="${{ github.event.client_payload.date || inputs.date }}"
-          TIMESTAMP="${{ steps.order.outputs.timestamp }}"
-          
-          cat > "orders/${ORDER_ID}-${TIMESTAMP}.json" << EOF
-          {
-            "orderId": "${ORDER_ID}",
-            "fullName": "${FULL_NAME}",
-            "phone": "${PHONE}",
-            "city": "${CITY}",
-            "items": "${ITEMS}",
-            "total": "${TOTAL}",
-            "date": "${DATE}",
-            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          }
-          EOF
-          echo "✅ JSON saved to orders/${ORDER_ID}-${TIMESTAMP}.json"
-      
-      - name: 📊 Update CSV
-        run: |
-          CSV_FILE="orders/new-orders.csv"
+          DATA_FILE="data/orders.jsonl"
+          mkdir -p data
           
           ORDER_ID="${{ github.event.client_payload.orderId || inputs.orderId }}"
           FULL_NAME="${{ github.event.client_payload.fullName || inputs.fullName }}"
@@ -92,23 +63,18 @@ jobs:
           TOTAL="${{ github.event.client_payload.total || inputs.total }}"
           DATE="${{ github.event.client_payload.date || inputs.date }}"
           
-          # Create header if not exists
-          if [ ! -f "$CSV_FILE" ]; then
-            printf "رقم الطلب,الاسم,الهاتف,المدينة,المنتجات,الإجمالي,التاريخ\n" > "$CSV_FILE"
-          fi
+          # Escape special characters for JSON
+          ITEMS_ESCAPED="$(echo "${ITEMS}" | sed 's/"/\\&/g')"
           
-          # Escape quotes in items
-          ITEMS_ESCAPED="${ITEMS//\"/\"\"}"
-          
-          # Add order to CSV
-          echo "${ORDER_ID},${FULL_NAME},${PHONE},${CITY},\"${ITEMS_ESCAPED}\",${TOTAL},${DATE}" >> "$CSV_FILE"
-          echo "✅ CSV updated"
+          # Write as JSONL (one line per order)
+          echo "{\"orderId\":\"${ORDER_ID}\",\"fullName\":\"${FULL_NAME}\",\"phone\":\"${PHONE}\",\"city\":\"${CITY}\",\"items\":\"${ITEMS_ESCAPED}\",\"total\":\"${TOTAL}\",\"date\":\"${DATE}\",\"savedAt\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" >> "${DATA_FILE}"
+          echo "✅ Order saved to data/orders.jsonl"
       
-      - name: 📤 Commit & Push Orders
+      - name: 📤 Commit & Push
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "🎁 New order: ${{ github.event.client_payload.orderId || inputs.orderId }}"
-          file_pattern: "orders/*"
+          file_pattern: "data/orders.jsonl"
           skip_dirty_check: false
           skip_fetch: false
           skip_checkout: false
