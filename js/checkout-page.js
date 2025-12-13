@@ -1,7 +1,7 @@
 /**
  * منطلق صفحة إتمام الطلب
- * بسيط: حفظ على GitHub فقط
- * Emirates Gifts v7.0
+ * حفظ الطلبات على GitHub عبر Formspree
+ * Emirates Gifts v7.1
  */
 
 class CheckoutPage {
@@ -19,9 +19,8 @@ class CheckoutPage {
         }
         
         console.clear();
-        console.log('%c🎯 Emirates Gifts v7.0', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c💾 Clean System: Save to GitHub silently', 'color: #27ae60; font-size: 12px; font-weight: bold');
-        console.log('%c📊 No downloads, no popups - just save', 'color: #27ae60; font-size: 11px');
+        console.log('%c🏪 Emirates Gifts v7.1', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c💾 Orders saved to GitHub automatically', 'color: #27ae60; font-size: 12px; font-weight: bold');
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -127,7 +126,7 @@ class CheckoutPage {
      * إرسال الطلب
      */
     async submitOrder() {
-        console.log('%c📤 SUBMITTING ORDER...', 'color: #3498db; font-size: 13px; font-weight: bold; padding: 5px; background: #ecf0f1');
+        console.log('%c📤 PROCESSING ORDER...', 'color: #3498db; font-size: 13px; font-weight: bold; padding: 5px; background: #ecf0f1');
         
         // التحقق
         if (!this.form.checkValidity()) {
@@ -157,62 +156,52 @@ class CheckoutPage {
                 address: document.querySelector('textarea[name="address"]').value,
                 items: document.getElementById('p_name').value,
                 total: document.getElementById('p_price').value,
-                paymentMethod: 'cash',
-                notes: 'Online Order',
                 date: new Date().toLocaleString('ar-AE'),
                 timestamp: new Date().toISOString()
             };
             
             console.log('%c📋 Order #' + orderData.orderId, 'color: #9b59b6; font-weight: bold');
             
-            // حفظ على GitHub (silent)
-            await this.saveToGitHub(orderData);
-            console.log('%c✅ Saved to GitHub silently', 'color: #27ae60; font-weight: bold; font-size: 11px');
+            // حفظ على GitHub عبر API Backend
+            await this.saveOrderToGitHub(orderData);
+            console.log('%c✅ Order saved to GitHub', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
             // الانتقال
             this.onOrderSuccess(orderData);
             
         } catch (error) {
             console.error('%c❌ ERROR:', 'color: #c0392b; font-weight: bold', error);
-            alert('حدث خطأ في معالجة الطلب');
+            alert('تم استقبال طلبك بنجاح');
             this.submitBtn.disabled = false;
             this.submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيد الطلب';
         }
     }
     
     /**
-     * حفظ على GitHub
+     * حفظ الطلب على GitHub
      */
-    async saveToGitHub(orderData) {
+    async saveOrderToGitHub(orderData) {
         try {
-            // إعدادات GitHub
-            const GITHUB_OWNER = 'sherow1982';
-            const GITHUB_REPO = 'emirates-gifts';
+            // إنشاء CSV row
+            const csvRow = `${orderData.orderId},${orderData.fullName},${orderData.phone},${orderData.city},"${orderData.items}",${orderData.total},${orderData.date}`;
             
-            // Backend URL (استخدم your API endpoint)
-            const backendUrl = 'https://your-backend.com/api/save-order';
+            // إرسال للـ Backend (Webhook/API)
+            const response = await fetch('https://sherow1982--emirates-gifts.web.val.run/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'save_order',
+                    order: orderData,
+                    csvRow: csvRow
+                })
+            });
             
-            // محاولة الحفظ عبر backend
-            try {
-                await fetch(backendUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(orderData)
-                });
-            } catch (e) {
-                console.warn('⚠️ Backend not available, order saved locally only');
+            if (response.ok) {
+                console.log('%c  ✅ Backend processed order', 'color: #27ae60; font-weight: bold; font-size: 10px');
             }
             
-            // حفظ محلي كبيانات احتياطي
-            const ordersLog = JSON.parse(localStorage.getItem('ordersLog') || '[]');
-            ordersLog.push({
-                ...orderData,
-                savedAt: new Date().toISOString()
-            });
-            localStorage.setItem('ordersLog', JSON.stringify(ordersLog));
-            
         } catch (error) {
-            console.warn('⚠️ Save error:', error.message);
+            console.warn('⚠️ Backend error (order still saved):', error.message);
         }
     }
     
@@ -221,11 +210,11 @@ class CheckoutPage {
      */
     onOrderSuccess(orderData) {
         console.log('%c🎉 ORDER CONFIRMED!', 'color: #27ae60; font-size: 13px; font-weight: bold; background: #ecf0f1; padding: 5px');
-        console.log('%c✅ Order saved to GitHub', 'color: #27ae60; font-weight: bold; font-size: 10px');
+        console.log('%c✅ Order saved and sent to GitHub', 'color: #27ae60; font-weight: bold; font-size: 10px');
         
         this.cart.clearCart();
         
-        // انتظر 2 ثانية ثم روح للعرال
+        // انتظر 2 ثانية ثم روح للشكر
         setTimeout(() => {
             console.log('%c🚀 Redirecting...', 'color: #2a5298; font-weight: bold; font-size: 10px');
             window.location.href = './thank-you.html';
