@@ -41,6 +41,94 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #f0f4f8 100%);
         }
 
+        /* Legal Header Styles */
+        .legal-header-nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 0;
+            border-bottom: 4px solid #f5576c;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 0;
+        }
+        .legal-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+        .legal-nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .legal-nav-title {
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legal-nav-title:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+        .legal-nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .legal-nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        .legal-nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .legal-nav-links li {
+            margin: 0;
+        }
+        .legal-nav-links li:first-child a {
+            background: rgba(255,255,255,0.2);
+            border-left: 3px solid #f5576c;
+        }
+        .legal-contact-quick {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .legal-contact-quick a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95em;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .legal-contact-quick a:hover {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
         .progress-bar {
             position: fixed;
             top: 0;
@@ -674,82 +762,76 @@
             }
         }
 
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, var(--dark-blue), #1a2a4a);
-            color: var(--white);
-            padding: 60px 20px 20px;
-            margin-top: 40px;
+        /* Legal Footer Styles */
+        .legal-footer {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 20px 30px;
+            margin-top: 80px;
+            border-top: 4px solid #f5576c;
         }
-
-        .footer-container {
-            max-width: 1400px;
+        .legal-footer-container {
+            max-width: 1200px;
             margin: 0 auto;
         }
-
-        .footer-links-nav {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-
-        .footer-links-nav a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 600;
-            border-right: 1px solid rgba(255, 255, 255, 0.3);
-            padding-right: 15px;
-        }
-
-        .footer-links-nav a:last-child {
-            border-right: none;
-        }
-
-        .footer-links-nav a:hover {
-            color: var(--gold);
-        }
-
-        .footer-content {
+        .legal-footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
-
-        .footer-section h3 {
-            color: var(--gold);
+        .legal-footer-section h3 {
+            font-size: 1.3em;
             margin-bottom: 20px;
-            font-size: 18px;
+            border-bottom: 2px solid #f5576c;
+            padding-bottom: 10px;
         }
-
-        .footer-section ul {
+        .legal-footer-section ul {
             list-style: none;
         }
-
-        .footer-section li {
-            margin-bottom: 12px;
-            line-height: 1.8;
+        .legal-footer-section li {
+            margin: 12px 0;
         }
-
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
+        .legal-footer-section a {
+            color: #e0e0e0;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-
-        .footer-section a:hover {
-            color: var(--gold);
+        .legal-footer-section a:hover {
+            color: #f5576c;
+            transform: translateX(5px);
         }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-            padding-top: 20px;
+        .legal-divider {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin: 30px 0;
+        }
+        .legal-footer-bottom {
             text-align: center;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .legal-footer-bottom p {
+            margin: 10px 0;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+        .legal-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .legal-badge {
+            background: rgba(245,87,108,0.2);
+            border: 1px solid #f5576c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
         }
 
         /* Responsive */
@@ -784,20 +866,16 @@
                 width: 100%;
             }
 
-            .footer-links-nav {
+            .legal-nav-links,
+            .legal-contact-quick {
                 flex-direction: column;
+                align-items: flex-start;
                 gap: 10px;
+                width: 100%;
             }
-
-            .footer-links-nav a {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-                padding-right: 0;
-                padding-bottom: 10px;
-            }
-
-            .footer-links-nav a:last-child {
-                border-bottom: none;
+            .legal-nav-wrapper {
+                flex-direction: column;
+                gap: 15px;
             }
 
             .floating-checkout-btn {
@@ -845,6 +923,29 @@
 <body>
     <div class="progress-bar" id="progressBar"></div>
     
+    <!-- طبقة الهيدر القانونية -->
+    <header class="legal-header-nav">
+        <div class="legal-nav-container">
+            <div class="legal-nav-wrapper">
+                <a href="/index.html" class="legal-nav-title">
+                    🎁 الإمارات للهدايا
+                </a>
+                
+                <ul class="legal-nav-links">
+                    <li><a href="/legal/about.html">ℹ️ من نحن</a></li>
+                    <li><a href="/legal/return-policy.html">🔄 الاسترجاع</a></li>
+                    <li><a href="/legal/privacy-policy.html">🔐 الخصوصية</a></li>
+                    <li><a href="/legal/shipping-policy.html">🚚 الشحن</a></li>
+                </ul>
+                
+                <div class="legal-contact-quick">
+                    <a href="/legal/contact-us.html">📞 اتصل</a>
+                    <a href="https://wa.me/201110760081" target="_blank">💬 واتساب</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <div class="top-banner">
         <div class="banner-text">
             <i class="fas fa-shipping-fast"></i>
@@ -853,7 +954,7 @@
         </div>
     </div>
 
-    <!-- 🔙 FLOATING CHECKOUT BUTTON -->
+    <!-- زر سلة معوم -->
     <a href="./checkout.html" class="floating-checkout-btn" title="اذهب إلى السلة" aria-label="الانتقال إلى السلة">
         <i class="fas fa-shopping-bag" aria-hidden="true"></i>
         <span class="floating-checkout-badge" id="floatingCheckoutBadge">0</span>
@@ -940,43 +1041,55 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-links-nav">
-                <a href="./">🏠 الرئيسية</a>
-                <a href="#all-products">📚 المنتجات</a>
-                <a href="./checkout.html">🛒 السلة</a>
-                <a href="./en/">🌍 English</a>
+    <!-- طبقة الفوتر القانونية -->
+    <footer class="legal-footer">
+        <div class="legal-footer-container">
+            <div class="legal-footer-grid">
+                <!-- الصفحات القانونية -->
+                <div class="legal-footer-section">
+                    <h3>📄 البوليسات والشروط</h3>
+                    <ul>
+                        <li><a href="/legal/about.html" target="_blank">ℹ️ من نحن</a></li>
+                        <li><a href="/legal/return-policy.html" target="_blank">🔄 سياسة الاسترجاع</a></li>
+                        <li><a href="/legal/privacy-policy.html" target="_blank">🔐 سياسة الخصوصية</a></li>
+                        <li><a href="/legal/shipping-policy.html" target="_blank">🚚 سياسة الشحن</a></li>
+                    </ul>
+                </div>
+
+                <!-- طرق الاتصال -->
+                <div class="legal-footer-section">
+                    <h3>📞 طرق الاتصال</h3>
+                    <ul>
+                        <li><a href="mailto:sherow1982@gmail.com">📧 sherow1982@gmail.com</a></li>
+                        <li><a href="mailto:info@arabsad.com">📧 info@arabsad.com</a></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank">💬 WhatsApp</a></li>
+                        <li><a href="/legal/contact-us.html" target="_blank">📞 اتصل بنا</a></li>
+                    </ul>
+                </div>
+
+                <!-- الميزات -->
+                <div class="legal-footer-section">
+                    <h3>🌟 لماذا نخترنا🌟</h3>
+                    <ul>
+                        <li>✓ الجودة العالية</li>
+                        <li>✓ الاسترجاع 14 يوم</li>
+                        <li>✓ شحن مجاني</li>
+                        <li>✓ دعم 24/7</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>🏪 هدايا الإمارات</h3>
-                    <ul>
-                        <li>🌸 عطور عالية الجودة</li>
-                        <li>⏰ ساعات فاخرة</li>
-                        <li>🎁 هدايا مميزة</li>
-                    </ul>
+            <div class="legal-divider"></div>
+
+            <div class="legal-footer-bottom">
+                <div class="legal-badges">
+                    <span class="legal-badge">🔒 آمن 100%</span>
+                    <span class="legal-badge">✅ أصلي 100%</span>
+                    <span class="legal-badge">🚚 شحن سريع</span>
+                    <span class="legal-badge">⭐ موثوق</span>
                 </div>
-                <div class="footer-section">
-                    <h3>🚀 خدماتنا</h3>
-                    <ul>
-                        <li><i class="fas fa-shipping-fast"></i> شحن سريع 1-3 أيام</li>
-                        <li><i class="fas fa-undo"></i> ضمان 14 يوم</li>
-                        <li><i class="fas fa-headset"></i> دعم 24/7</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>📞 تواصل معنا</h3>
-                    <ul>
-                        <li><a href="https://wa.me/201110760081" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-                        <li><a href="mailto:info@emirates-gifts.com"><i class="fas fa-envelope"></i> بريد</a></li>
-                        <li><a href="tel:+201110760081"><i class="fas fa-phone"></i> هاتف</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 هدايا الإمارات. جميع الحقوق محفوظة.</p>
+                <p>&copy; 2025 الإمارات للهدايا. جميع الحقوق محفوظة ©</p>
+                <p>آخر تحديث: ديسمبر 2025</p>
             </div>
         </div>
     </footer>
