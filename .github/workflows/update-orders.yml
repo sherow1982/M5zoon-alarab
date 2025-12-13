@@ -1,0 +1,44 @@
+name: 📄 Update Orders XLSX
+
+on:
+  push:
+    paths:
+      - 'orders/*.json'
+      - 'scripts/update-orders-xlsx.js'
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'  # Every 5 minutes
+
+jobs:
+  update-xlsx:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🛍 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: 📄 Install dependencies
+        run: npm install exceljs
+      
+      - name: 📋 Run update script
+        run: node scripts/update-orders-xlsx.js
+      
+      - name: 📤 Commit changes
+        run: |
+          git config user.name "bot-emirates"
+          git config user.email "bot@emirates-gifts.local"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add orders/new-orders.xlsx
+            git commit -m "📄 Update: New orders added to XLSX"
+            git push
+          else
+            echo "No changes to commit"
+          fi
+      
+      - name: ✅ Done
+        run: echo "XLSX updated successfully 🎉"
