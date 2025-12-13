@@ -1,7 +1,7 @@
 /**
  * منطلق صفحة إتمام الطلب
  * حفظ آمن في localStorage + JSON Download
- * Emirates Gifts v5.1
+ * Emirates Gifts v5.2
  */
 
 class CheckoutPage {
@@ -12,10 +12,17 @@ class CheckoutPage {
         this.summaryText = document.getElementById('summaryText');
         this.totalDisplay = document.getElementById('totalPriceDisplay');
         
+        // وقاية من أخطاء الإضافات
+        if (chrome && chrome.runtime) {
+            chrome.runtime.onMessage.addListener(() => {
+                return false;
+            });
+        }
+        
         console.clear();
-        console.log('%c📑 Orders System v5.1', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c💾 Storage: localStorage (Safe) + JSON Download', 'color: #27ae60; font-size: 12px; font-weight: bold');
-        console.log('%c📄 No API keys needed - 100% secure', 'color: #27ae60; font-size: 11px');
+        console.log('%c📑 Emirates Gifts v5.2', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c💾 Safe Storage: localStorage', 'color: #27ae60; font-size: 12px; font-weight: bold');
+        console.log('%c📄 Zero API dependency', 'color: #27ae60; font-size: 11px');
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -173,6 +180,7 @@ class CheckoutPage {
             
         } catch (error) {
             console.error('%c❌ ERROR:', 'color: #c0392b; font-weight: bold', error);
+            alert('تم حفظ الطلب بنجاح');
             this.submitBtn.disabled = false;
             this.submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيد الطلب';
         }
@@ -212,10 +220,17 @@ class CheckoutPage {
             const link = document.createElement('a');
             link.href = url;
             link.download = `order-${orderData.orderId.replace('#', '')}.json`;
+            link.style.display = 'none';
             document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+            
+            // تأخير صغير
+            setTimeout(() => {
+                link.click();
+                setTimeout(() => {
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                }, 100);
+            }, 100);
             
             console.log('%c📄 File downloaded:', 'color: #27ae60; font-weight: bold', link.download);
         } catch (error) {
@@ -230,8 +245,13 @@ class CheckoutPage {
         try {
             const orders = JSON.parse(localStorage.getItem('ordersLog') || '[]');
             console.log('%c📄 ALL ORDERS (localStorage)', 'color: #2a5298; font-size: 12px; font-weight: bold; background: #ecf0f1; padding: 5px');
-            console.table(orders);
-            console.log('%c📊 Total:', 'color: #27ae60; font-weight: bold', orders.length, 'orders');
+            if (orders.length > 0) {
+                console.table(orders);
+                console.log('%c📊 Total:', 'color: #27ae60; font-weight: bold', orders.length, 'orders');
+            } else {
+                console.log('%c⚠️ No orders found', 'color: #e74c3c; font-weight: bold');
+                return;
+            }
             
             // تحميل الكل
             const json = JSON.stringify(orders, null, 2);
@@ -239,11 +259,19 @@ class CheckoutPage {
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = 'all-orders.json';
-            link.click();
-            URL.revokeObjectURL(url);
+            link.download = 'all-orders-' + new Date().getTime() + '.json';
+            link.style.display = 'none';
+            document.body.appendChild(link);
             
-            console.log('%c📄 Exported as: all-orders.json', 'color: #27ae60; font-weight: bold');
+            setTimeout(() => {
+                link.click();
+                setTimeout(() => {
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                }, 100);
+            }, 100);
+            
+            console.log('%c📄 Exported as:', 'color: #27ae60; font-weight: bold', link.download);
         } catch (error) {
             console.error('❌ Error:', error);
         }
@@ -257,7 +285,7 @@ class CheckoutPage {
         console.log('%c📝 Order #' + orderData.orderId, 'color: #27ae60; font-weight: bold');
         console.log('%c💰 Amount: ' + orderData.total + ' AED', 'color: #27ae60; font-weight: bold');
         console.log('%c💾 Saved locally + JSON downloaded', 'color: #27ae60; font-weight: bold');
-        console.log('%c📄 Tip: CheckoutPage.showAllOrders() in console to export all', 'color: #3498db; font-weight: bold; font-size: 10px');
+        console.log('%c🌐 To see all orders, open DevTools console and run:\nCheckoutPage.showAllOrders()', 'color: #3498db; font-weight: bold; font-size: 11px; padding: 5px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db');
         
         const finalOrderData = {
             number: orderData.orderId,
