@@ -1,8 +1,31 @@
-name: 🎁 Auto-Save Order (Webhook)
+name: 🎁 Auto-Save Order
 
 on:
   repository_dispatch:
     types: [save_order]
+  workflow_dispatch:
+    inputs:
+      orderId:
+        description: 'Order ID'
+        required: true
+      fullName:
+        description: 'Customer Name'
+        required: true
+      phone:
+        description: 'Phone'
+        required: true
+      city:
+        description: 'City'
+        required: true
+      items:
+        description: 'Items'
+        required: true
+      total:
+        description: 'Total'
+        required: true
+      date:
+        description: 'Date'
+        required: true
 
 jobs:
   save_order:
@@ -12,43 +35,88 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
       
-      - name: 📝 Create Order JSON
+      - name: 🔤 Prepare Order Data
+        id: prepare
         run: |
-          mkdir -p orders
-          TIMESTAMP=$(date +%s000)
-          ORDER_ID="${{ github.event.client_payload.orderId }}"
+          # من webhook dispatch
+          ORDER_ID="${{ github.event.client_payload.orderId || github.event.inputs.orderId }}"
+          FULL_NAME="${{ github.event.client_payload.fullName || github.event.inputs.fullName }}"
+          PHONE="${{ github.event.client_payload.phone || github.event.inputs.phone }}"
+          CITY="${{ github.event.client_payload.city || github.event.inputs.city }}"
+          ITEMS="${{ github.event.client_payload.items || github.event.inputs.items }}"
+          TOTAL="${{ github.event.client_payload.total || github.event.inputs.total }}"
+          DATE="${{ github.event.client_payload.date || github.event.inputs.date }}"
           
-          cat > "orders/${ORDER_ID#\#}-${TIMESTAMP}.json" << 'EOF'
-          {
-            "orderId": "${{ github.event.client_payload.orderId }}",
-            "fullName": "${{ github.event.client_payload.fullName }}",
-            "phone": "${{ github.event.client_payload.phone }}",
-            "city": "${{ github.event.client_payload.city }}",
-            "items": "${{ github.event.client_payload.items }}",
-            "total": "${{ github.event.client_payload.total }}",
-            "date": "${{ github.event.client_payload.date }}",
-            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          }
-          EOF
+          echo "ORDER_ID=$ORDER_ID" >> $GITHUB_ENV
+          echo "FULL_NAME=$FULL_NAME" >> $GITHUB_ENV
+          echo "PHONE=$PHONE" >> $GITHUB_ENV
+          echo "CITY=$CITY" >> $GITHUB_ENV
+          echo "ITEMS=$ITEMS" >> $GITHUB_ENV
+          echo "TOTAL=$TOTAL" >> $GITHUB_ENV
+          echo "DATE=$DATE" >> $GITHUB_ENV
+          echo "TIMESTAMP=$(date +%s000)" >> $GITHUB_ENV
       
-      - name: 📊 Update CSV
+      - name: 📁 Create Orders Directory
+        run: mkdir -p orders
+      
+      - name: 📝 Create JSON File
+        run: |
+          cat > "orders/${ORDER_ID#\#}-${TIMESTAMP}.json" << 'JSONEOF'
+{
+  "orderId": "${{ env.ORDER_ID }}",
+  "fullName": "${{ env.FULL_NAME }}",
+  "phone": "${{ env.PHONE }}",
+  "city": "${{ env.CITY }}",
+  "items": "${{ env.ITEMS }}",
+  "total": "${{ env.TOTAL }}",
+  "date": "${{ env.DATE }}",
+  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+}
+JSONEOF
+          cat "orders/${ORDER_ID#\#}-${TIMESTAMP}.json"
+      
+      - name: 📊 Update CSV File
         run: |
           CSV_FILE="orders/new-orders.csv"
+          ORDER_ID="${{ env.ORDER_ID }}"
+          FULL_NAME="${{ env.FULL_NAME }}"
+          PHONE="${{ env.PHONE }}"
+          CITY="${{ env.CITY }}"
+          ITEMS="${{ env.ITEMS }}"
+          TOTAL="${{ env.TOTAL }}"
+          DATE="${{ env.DATE }}"
           
+          # تحقق من وجود الملف
           if [ ! -f "$CSV_FILE" ]; then
             echo "رقم الطلب,الاسم,الهاتف,المدينة,المنتجات,الإجمالي,التاريخ" > "$CSV_FILE"
           fi
           
-          echo "${{ github.event.client_payload.orderId }},${{ github.event.client_payload.fullName }},${{ github.event.client_payload.phone }},${{ github.event.client_payload.city }},\"${{ github.event.client_payload.items }}\",${{ github.event.client_payload.total }},${{ github.event.client_payload.date }}" >> "$CSV_FILE"
+          # أضيف الطلب الجديد
+          # حول الفواصل في البيانات لتجنب مشاكل CSV
+          ITEMS_ESCAPED="${ITEMS//\"/\"\"}"
+          
+          echo '"'"$ORDER_ID"'",'"$FULL_NAME"',"$PHONE",'"$CITY"','"'"$ITEMS_ESCAPED"'"','"$TOTAL"','"$DATE"'" >> "$CSV_FILE"
+          
+          echo "✅ CSV Updated:"
+          tail -1 "$CSV_FILE"
       
-      - name: 🔄 Commit & Push
+      - name: 🔄 Git Config
         run: |
-          git config user.name "bot-emirates"
-          git config user.email "orders@emirates-gifts.local"
-          git add orders/
-          git commit -m "🎁 New order: ${{ github.event.client_payload.orderId }}" || true
-          git push
+          git config user.name "emirates-bot"
+          git config user.email "bot@emirates-gifts.local"
       
-      - name: ✅ Success
-        run: echo "✅ Order saved! ${{ github.event.client_payload.orderId }}"
+      - name: 💾 Commit & Push
+        run: |
+          git add orders/
+          git commit -m "🎁 New order: ${{ env.ORDER_ID }}" || echo "Nothing to commit"
+          git push || echo "Nothing to push"
+      
+      - name: ✅ Complete
+        run: |
+          echo "✅ Order processed successfully!"
+          echo "📦 Order ID: ${{ env.ORDER_ID }}"
+          echo "👤 Customer: ${{ env.FULL_NAME }}"
+          echo "📍 City: ${{ env.CITY }}"
+          echo "💰 Total: ${{ env.TOTAL }}"
