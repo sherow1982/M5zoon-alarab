@@ -1,76 +1,76 @@
 # 🎨 Emirates Gifts - Design System Guide
 
-## 📖 Overview
+## 📖 نظرة عامة
 
-This is a **professional, premium e-commerce design system** specifically optimized for the UAE market. The design features:
+هذا نظام تصميم **احترافي وفاخر للتجارة الإلكترونية** محسّن خصيصاً للسوق الإماراتي. يتميز التصميم بـ:
 
-- ✨ **Stunning Visual Design** - Gold accents, professional gradients, premium aesthetic
-- 🚀 **Performance Optimized** - Fast loading, smooth animations, responsive
-- 📱 **Fully Responsive** - Mobile, tablet, desktop, widescreen support
-- 🔍 **Google SEO Ready** - Schema markup, meta tags, structured data
-- 🌍 **Arabic/RTL Optimized** - Full RTL support, Arabic typography
-- 💳 **E-commerce Features** - Shopping cart, product filtering, reviews
+- ✨ **تصميم بصري مذهل** - لمسات ذهبية واحترافية وجماليات فاخرة
+- 🚀 **محسّن للأداء** - تحميل سريع وسلس وحركات سلسة
+- 📱 **متجاوب تماماً** - دعم الموبايل والتابليت والديسكتوب والشاشات العريضة
+- 🔍 **جاهز لـ SEO جوجل** - علامات Schema وبيانات منظمة
+- 🌍 **محسّن للعربية** - دعم RTL كامل وتوبوجرافيا عربية
+- 💳 **مميزات التجارة الإلكترونية** - سلة التسوق وتصفية المنتجات والتقييمات
 
 ---
 
-## 🎯 Key Features
+## 🎯 المميزات الرئيسية
 
-### 1. Premium Color Palette
+### 1. لوحة الألوان المميزة
 ```css
---gold: #D4AF37          /* Primary brand color */
---dark-blue: #1e3c72     /* Header/Footer background */
---light-blue: #2a5298    /* Secondary backgrounds */
---green: #25D366         /* Success/WhatsApp color */
---accent: #f5576c        /* Highlights & alerts */
+--gold: #D4AF37          /* لون العلامة التجارية الأساسي */
+--dark-blue: #1e3c72     /* خلفية الرأس والتذييل */
+--light-blue: #2a5298    /* خلفيات ثانوية */
+--green: #25D366         /* النجاح/لون واتس آب */
+--accent: #f5576c        /* التمييزات والتنبيهات */
 ```
 
-### 2. Design Components
-- 🏪 **Header Navigation** - Sticky, branded, fully responsive
-- 🏠 **Hero Section** - Eye-catching with animated gradients
-- 📦 **Product Grid** - Beautiful card layout with hover effects
-- 📝 **Product Details** - Image zoom, reviews, CTAs
-- ⚖️ **Legal Pages** - Professional styling with table of contents
-- 📋 **Footer** - Multi-column with links and badges
+### 2. مكونات التصميم
+- 🏠 **تنقل الرأس** - ثابت وموسوم وسهل التجاوب
+- 🌟 **قسم البطل** - جذاب مع تدرجات متحركة
+- 📦 **شبكة المنتجات** - تخطيط بطاقة جميل مع تأثيرات التحويم
+- 🛍️ **تفاصيل المنتج** - تكبير الصور والتقييمات والدعوات للعمل
+- ⚖️ **الصفحات القانونية** - نمط احترافي مع جدول محتويات
+- 🔗 **التذييل** - متعدد الأعمدة مع الروابط والشارات
 
-### 3. Interactive Features
-- 🎬 Smooth animations & transitions
-- 💬 Reviews & ratings section
-- 🛒 Floating shopping cart button
-- 📞 WhatsApp integration button
-- ⚡ Loading progress bar
-- 🔄 Lazy loading images
+### 3. المميزات التفاعلية
+- 🎬 حركات سلسة وتحولات
+- 💬 قسم التقييمات والتقييمات
+- 🛒 زر سلة التسوق العائم
+- 📞 زر تكامل واتس آب
+- ⚡ شريط التقدم عند التحميل
+- 🖼️ تحميل الصور الكسول
 
 ---
 
-## 📁 File Structure
+## 📁 هيكل الملفات
 
 ```
 emiratesgifts/
 ├── css/
-│   ├── home-premium.css          # Homepage styles
-│   ├── product-details.css       # Product page styles
-│   └── legal-pages.css           # Legal pages styling
+│   ├── home-premium.css          # أنماط الصفحة الرئيسية
+│   ├── product-details.css       # أنماط صفحة المنتج
+│   └── legal-pages.css           # أنماط الصفحات القانونية
 ├── js/
-│   ├── style-manager.js          # CSS management & themes
-│   └── seo-optimizer.js          # SEO schema & meta tags
+│   ├── style-manager.js          # إدارة CSS والمواضيع
+│   └── seo-optimizer.js          # مخطط SEO والبيانات الوصفية
 ├── data/
-│   └── store-config.json         # Store configuration
-└── DESIGN-GUIDE.md               # This file
+│   └── store-config.json         # إعدادات المتجر
+└── DESIGN-GUIDE.md               # هذا الملف
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🚀 البدء السريع
 
-### 1. Load All Styles
+### 1. تحميل جميع الأنماط
 
-Add to your HTML `<head>`:
+أضف إلى `<head>` في HTML:
 
 ```html
-<!-- Load style manager first -->
+<!-- حمل مدير النمط أولاً -->
 <script src="/js/style-manager.js"></script>
 
-<!-- Load home page styles -->
+<!-- حمل أنماط الصفحة الرئيسية -->
 <script>
     window.addEventListener('DOMContentLoaded', () => {
         window.styleManager.loadHomeStyles();
@@ -78,22 +78,22 @@ Add to your HTML `<head>`:
 </script>
 ```
 
-### 2. Load Product Details Page
+### 2. تحميل صفحة تفاصيل المنتج
 
 ```javascript
 window.styleManager.loadProductDetailsStyles();
 ```
 
-### 3. Load Legal Pages
+### 3. تحميل الصفحات القانونية
 
 ```javascript
 window.styleManager.loadLegalPageStyles();
 ```
 
-### 4. Setup SEO
+### 4. إعداد SEO
 
 ```html
-<!-- Add SEO optimizer -->
+<!-- إضافة محسّن SEO -->
 <script src="/js/seo-optimizer.js"></script>
 
 <script>
@@ -107,120 +107,120 @@ window.styleManager.loadLegalPageStyles();
 
 ---
 
-## 🎨 Customization
+## 🎨 التخصيص
 
-### Change Brand Color
+### تغيير لون العلامة التجارية
 
 ```css
 :root {
-    --gold: #your-color-here;
-    --dark-blue: #your-color-here;
-    --green: #your-color-here;
+    --gold: #لونك-هنا;
+    --dark-blue: #لونك-هنا;
+    --green: #لونك-هنا;
 }
 ```
 
-### Override Font Family
+### تجاوز عائلة الخط
 
 ```css
 body {
-    font-family: 'Your Font', sans-serif;
+    font-family: 'خطك', sans-serif;
 }
 ```
 
-### Customize Layout Width
+### تخصيص عرض التخطيط
 
 ```css
 .container {
-    max-width: 1200px;  /* Change this value */
+    max-width: 1200px;  /* غيّر هذه القيمة */
 }
 ```
 
-### Add Custom Theme
+### إضافة موضوع مخصص
 
 ```javascript
-styleManager.setTheme('dark');  // or 'light'
+styleManager.setTheme('dark');  /* أو 'light' */
 ```
 
 ---
 
-## 📱 Responsive Breakpoints
+## 📱 نقاط الفاصل المتجاوبة
 
 ```css
-/* Mobile - Below 480px */
+/* الموبايل - أقل من 480px */
 @media (max-width: 480px) { }
 
-/* Tablet - 480px to 768px */
+/* التابليت - من 480px إلى 768px */
 @media (max-width: 768px) { }
 
-/* Desktop - 768px to 1024px */
+/* سطح المكتب - من 768px إلى 1024px */
 @media (max-width: 1024px) { }
 
-/* Widescreen - Above 1024px */
-/* Default styles */
+/* الشاشة العريضة - فوق 1024px */
+/* الأنماط الافتراضية */
 ```
 
 ---
 
-## 🔍 SEO Features
+## 🔍 مميزات SEO
 
-### Automatic Features
-- ✅ Schema markup (Organization, LocalBusiness, Product)
-- ✅ Open Graph tags (Facebook sharing)
-- ✅ Twitter Card tags
-- ✅ Meta descriptions
-- ✅ Canonical URLs
-- ✅ Structured data (JSON-LD)
-- ✅ RTL language tags
-- ✅ Arabic keyword optimization
+### المميزات التلقائية
+- ✅ علامات Schema (المنظمة والعمل المحلي والمنتج)
+- ✅ علامات Open Graph (مشاركة Facebook)
+- ✅ علامات Twitter Card
+- ✅ أوصاف البيانات الوصفية
+- ✅ عناوين URL الكنسية
+- ✅ البيانات المنظمة (JSON-LD)
+- ✅ علامات لغة RTL
+- ✅ تحسين الكلمات الرئيسية العربية
 
-### Setup for Google Ranking
+### الإعداد لترتيب جوجل
 
-1. **Add to store-config.json:**
+1. **إضافة إلى store-config.json:**
 ```json
 {
   "analytics": {
     "googleAnalyticsId": "G-XXXXXXXXXX",
-    "googleSearchConsoleToken": "token-here"
+    "googleSearchConsoleToken": "الرمز-هنا"
   }
 }
 ```
 
-2. **Create sitemap.xml:**
+2. **إنشاء sitemap.xml:**
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://yoursite.com/</loc>
+    <loc>https://موقعك.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 </urlset>
 ```
 
-3. **Create robots.txt:**
+3. **إنشاء robots.txt:**
 ```
 User-agent: *
 Allow: /
 Disallow: /admin
-Sitemap: https://yoursite.com/sitemap.xml
+Sitemap: https://موقعك.com/sitemap.xml
 ```
 
 ---
 
-## 🛒 Product Page Features
+## 🛍️ مميزات صفحة المنتج
 
-### Product Schema Markup
+### علامة مخطط المنتج
 ```javascript
 seoOptimizer.addProductSchema({
-    name: 'Product Name',
-    description: 'Product Description',
+    name: 'اسم المنتج',
+    description: 'وصف المنتج',
     image: '/images/product.jpg',
     price: 100,
     rating: { value: 4.5, count: 120 }
 });
 ```
 
-### Breadcrumb Navigation
+### التنقل في المسارات
 ```javascript
 seoOptimizer.addBreadcrumbSchema([
     { name: 'الرئيسية', url: '/' },
@@ -231,76 +231,76 @@ seoOptimizer.addBreadcrumbSchema([
 
 ---
 
-## 🎯 Performance Tips
+## ⚡ نصائح الأداء
 
-### 1. Image Optimization
+### 1. تحسين الصور
 ```html
-<!-- Use data-src for lazy loading -->
-<img data-src="/images/product.jpg" alt="Product">
+<!-- استخدم data-src للتحميل الكسول -->
+<img data-src="/images/product.jpg" alt="المنتج">
 ```
 
-### 2. CSS Minification
-Minify CSS files in production:
+### 2. تقليل CSS
+صغّر ملفات CSS في الإنتاج:
 ```bash
 npm install -g cssnano
 cssnano input.css > output.min.css
 ```
 
-### 3. Enable Compression
+### 3. تفعيل الضغط
 ```javascript
-// Compress CSS in production
+// ضغط CSS في الإنتاج
 gzip -9 css/home-premium.css
 ```
 
-### 4. CDN Deployment
-Deploy assets to CDN for faster loading:
-- Cloudflare (recommended for UAE)
+### 4. نشر CDN
+انشر الأصول إلى CDN لتحميل أسرع:
+- Cloudflare (موصى به للإمارات)
 - AWS CloudFront
 - Netlify CDN
 
 ---
 
-## 🌐 UAE Localization
+## 🌍 التعريب للإمارات
 
-### Supported Features
-- ✅ Arabic language (RTL)
-- ✅ UAE phone numbers format
-- ✅ AED currency
-- ✅ Local payment methods (Bank Transfer, Cash on Delivery)
-- ✅ UAE shipping zones
-- ✅ Dubai-based company info
+### المميزات المدعومة
+- ✅ اللغة العربية (RTL)
+- ✅ صيغة أرقام الهاتف الإماراتية
+- ✅ عملة الإمارات (د.إ)
+- ✅ طرق الدفع المحلية (تحويل بنكي وعند الاستلام)
+- ✅ مناطق الشحن الإماراتية
+- ✅ معلومات الشركة المقرها دبي
 
-### Language Switching
+### التبديل بين اللغات
 ```javascript
-// Set to Arabic
+// تعيين إلى العربية
 document.documentElement.lang = 'ar';
 document.documentElement.dir = 'rtl';
 
-// Set to English
+/* تعيين إلى الإنجليزية */
 document.documentElement.lang = 'en';
 document.documentElement.dir = 'ltr';
 ```
 
 ---
 
-## 📊 Analytics Integration
+## 📊 تكامل التحليلات
 
-### Track Events
+### تتبع الأحداث
 ```javascript
-// Track product view
+// تتبع عرض المنتج
 seoOptimizer.trackEvent('view_product', {
     product_id: '123',
-    product_name: 'Product Name',
+    product_name: 'اسم المنتج',
     price: 100
 });
 
-// Track add to cart
+// تتبع إضافة إلى السلة
 seoOptimizer.trackEvent('add_to_cart', {
     product_id: '123',
     quantity: 1
 });
 
-// Track purchase
+// تتبع الشراء
 seoOptimizer.trackEvent('purchase', {
     transaction_id: '456',
     value: 100,
@@ -310,33 +310,33 @@ seoOptimizer.trackEvent('purchase', {
 
 ---
 
-## 🔐 Trust & Security Badges
+## 🔐 شارات الثقة والأمان
 
 ```html
-<!-- SSL Certificate Badge -->
-<img src="/images/ssl-badge.svg" alt="SSL Secure">
+<!-- شارة شهادة SSL -->
+<img src="/images/ssl-badge.svg" alt="SSL آمن">
 
-<!-- Payment Methods -->
+<!-- طرق الدفع -->
 <div class="payment-methods">
     <img src="/images/visa.svg" alt="Visa">
     <img src="/images/mastercard.svg" alt="Mastercard">
-    <img src="/images/whatsapp.svg" alt="WhatsApp Pay">
+    <img src="/images/whatsapp.svg" alt="واتس آب">
 </div>
 ```
 
 ---
 
-## 🎬 Animation Classes
+## 🎬 فئات الحركة
 
 ```html
-<!-- Add animation on scroll -->
+<!-- إضافة حركة عند التمرير -->
 <div data-animate>
-    This element will animate when visible
+    سيتحرك هذا العنصر عندما يكون مرئياً
 </div>
 ```
 
 ```css
-/* Custom animation -->
+/* حركة مخصصة -->
 @keyframes slideUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -349,61 +349,61 @@ seoOptimizer.trackEvent('purchase', {
 
 ---
 
-## 🐛 Debugging
+## 🐛 تصحيح الأخطاء
 
-### Check SEO Status
+### تحقق من حالة SEO
 ```javascript
 seoOptimizer.logSEOStatus();
-// Output: 🔍 SEO Status: { hasH1: true, hasMetaDescription: true, ... }
+// الإخراج: 🔍 حالة SEO: { hasH1: true, hasMetaDescription: true, ... }
 ```
 
-### Check Style Info
+### تحقق من معلومات النمط
 ```javascript
 console.log(styleManager.getStyleInfo());
-// Output: { theme: 'light', viewport: 'desktop', direction: 'rtl', language: 'ar' }
+// الإخراج: { theme: 'light', viewport: 'desktop', direction: 'rtl', language: 'ar' }
 ```
 
-### Enable Developer Mode
+### تفعيل وضع المطور
 ```javascript
 localStorage.setItem('debug', 'true');
 ```
 
 ---
 
-## 📞 Support & Contact
+## 📞 الدعم والاتصال
 
-**Email:** info@emiratesgifts.ae
-**WhatsApp:** +971 50 XXXX XXXX
-**Phone:** +971 4 XXXX XXXX
-
----
-
-## 📄 License
-
-All designs and code are the exclusive property of Emirates Gifts Store.
+**البريد الإلكتروني:** info@emiratesgifts.ae
+**واتس آب:** +971 50 XXXX XXXX
+**الهاتف:** +971 4 XXXX XXXX
 
 ---
 
-## ✅ Checklist for Launch
+## 📄 الترخيص
 
-- [ ] Update store-config.json with your details
-- [ ] Add Google Analytics ID
-- [ ] Create sitemap.xml
-- [ ] Create robots.txt
-- [ ] Upload favicon.ico
-- [ ] Setup SSL certificate
-- [ ] Configure CDN
-- [ ] Test on mobile devices
-- [ ] Submit to Google Search Console
-- [ ] Submit to Google Business Profile
-- [ ] Setup email verification
-- [ ] Configure payment gateway
-- [ ] Setup shipping integration
-- [ ] Test checkout flow
-- [ ] Monitor analytics
+جميع التصاميم والأكواد هي ملكية حصرية لمتجر هدايا الإمارات.
 
 ---
 
-**Last Updated:** December 2024
-**Version:** 1.0.0
-**Status:** ✅ Production Ready
+## ✅ قائمة التحقق من الإطلاق
+
+- [ ] تحديث store-config.json بتفاصيلك
+- [ ] إضافة Google Analytics ID
+- [ ] إنشاء sitemap.xml
+- [ ] إنشاء robots.txt
+- [ ] تحميل favicon.ico
+- [ ] إعداد شهادة SSL
+- [ ] تكوين CDN
+- [ ] الاختبار على أجهزة موبايل
+- [ ] الإرسال إلى Google Search Console
+- [ ] الإرسال إلى ملف تعريف Google Business
+- [ ] إعداد التحقق من البريد الإلكتروني
+- [ ] تكوين بوابة الدفع
+- [ ] إعداد تكامل الشحن
+- [ ] اختبار تدفق الدفع
+- [ ] مراقبة التحليلات
+
+---
+
+**آخر تحديث:** ديسمبر 2024
+**الإصدار:** 1.0.0
+**الحالة:** ✅ جاهز للإنتاج
