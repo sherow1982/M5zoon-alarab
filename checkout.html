@@ -190,7 +190,7 @@
                     try {
                         return JSON.parse(data);
                     } catch (e) {
-                        console.error(`❌ خطأ في قراءة ${key}:`, e);
+                        console.error(`❌ خطأ في قرائة ${key}:`, e);
                     }
                 }
             }
@@ -272,18 +272,15 @@
 
             fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form)})
             .then(response => {
-                // نجاح الطلب
-                alert('✅ تم استلام طلبك بنجاح! شكراً لثقتك في هدايا الإمارات.');
-                
-                // تفريغ السلة من جميع المفاتيح
+                // نجاح الطلب - تنظيف السلة وروح للصفحة الشكر مباشرة
                 localStorage.removeItem(STORAGE_KEYS.primary);
                 localStorage.removeItem(STORAGE_KEYS.fallback1);
                 localStorage.removeItem(STORAGE_KEYS.fallback2);
                 localStorage.removeItem(STORAGE_KEYS.total);
                 localStorage.removeItem(STORAGE_KEYS.totalFallback);
                 
-                // إعادة التوجيه للصفحة الرئيسية
-                window.location.href = "./index.html";
+                // روح للابل (بدون alert)
+                window.location.href = "./thank-you.html";
             })
             .catch(error => {
                 console.error('Error!', error.message);
