@@ -9,6 +9,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./css/checkout.css">
+    
+    <style>
+        /* تنسيقات إضافية خاصة بالنموذج لضمان المظهر الجيد */
+        .checkout-form-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .form-group { margin-bottom: 20px; text-align: right; }
+        .form-label { display: block; margin-bottom: 8px; font-weight: 700; color: #1e3c72; }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #D4AF37;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3); }
+        .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+        .error-msg { color: #dc3545; font-size: 12px; margin-top: 5px; display: none; }
+        .order-summary { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px dashed #1e3c72; }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -43,23 +91,161 @@
     <main class="main-content">
         <div class="checkout-header">
             <h1 class="checkout-title">💳 إتمام الطلب</h1>
-            <p class="checkout-subtitle">فقط بيانات بسيطة وإتمام سريع عبر واتساب</p>
+            <p class="checkout-subtitle">بيانات الشحن (الإمارات العربية المتحدة 🇦🇪)</p>
             
             <div style="background: linear-gradient(135deg, #25D366, #20B358); color: white; padding: 15px; border-radius: 12px; margin: 20px auto; display: inline-block; max-width: 600px;">
-                <i class="fas fa-truck"></i> شحن خلال 1-3 أيام عمل • 
-                <i class="fas fa-undo"></i> ضمان إرجاع 14 يوم + مصاريف شحن
+                <i class="fas fa-truck"></i> شحن سريع لكل الإمارات خلال 1-3 أيام عمل
             </div>
         </div>
         
         <div id="checkoutContent">
-            <div style="text-align: center; padding: 40px; color: #D4AF37;">
-                <i class="fas fa-spinner" style="font-size: 2rem; animation: spin 1s linear infinite; margin-bottom: 20px;"></i>
-                <div>جارِ تحضير نموذج إتمام الطلب...</div>
+            <div class="checkout-form-container">
+                
+                <!-- ملخص الطلب السريع -->
+                <div class="order-summary">
+                    <h3 style="margin: 0 0 10px 0; color: #1e3c72; font-size: 16px;">ملخص الطلب:</h3>
+                    <div id="summaryText" style="font-size: 14px; color: #555;">جاري تحميل السلة...</div>
+                    <div id="totalPriceDisplay" style="font-weight: bold; color: #D4AF37; margin-top: 5px; font-size: 18px;"></div>
+                </div>
+
+                <form id="orderForm">
+                    <!-- حقول مخفية للبيانات -->
+                    <input type="hidden" name="product_name" id="p_name" value="">
+                    <input type="hidden" name="total_price" id="p_price" value="">
+                    <input type="hidden" name="order_date" id="o_date" value="">
+
+                    <!-- الاسم -->
+                    <div class="form-group">
+                        <label class="form-label">الاسم بالكامل</label>
+                        <input type="text" name="customer_name" class="form-input" required placeholder="الاسم الثلاثي">
+                    </div>
+
+                    <!-- رقم الهاتف (الإمارات) -->
+                    <div class="form-group">
+                        <label class="form-label">رقم الموبايل (الإمارات)</label>
+                        <input type="tel" name="phone" id="phoneInput" class="form-input" required placeholder="05xxxxxxxx" dir="ltr" maxlength="10">
+                        <div id="phoneError" class="error-msg">يرجى إدخال رقم هاتف إماراتي صحيح يبدأ بـ 05 (10 أرقام)</div>
+                    </div>
+
+                    <!-- الإمارة -->
+                    <div class="form-group">
+                        <label class="form-label">الإمارة</label>
+                        <select name="emirate" class="form-select" required>
+                            <option value="" disabled selected>اختر الإمارة...</option>
+                            <option value="Dubai">دبي (Dubai)</option>
+                            <option value="Abu Dhabi">أبوظبي (Abu Dhabi)</option>
+                            <option value="Sharjah">الشارقة (Sharjah)</option>
+                            <option value="Ajman">عجمان (Ajman)</option>
+                            <option value="Ras Al Khaimah">رأس الخيمة (RAK)</option>
+                            <option value="Fujairah">الفجيرة (Fujairah)</option>
+                            <option value="Umm Al Quwain">أم القيوين (UAQ)</option>
+                        </select>
+                    </div>
+
+                    <!-- العنوان -->
+                    <div class="form-group">
+                        <label class="form-label">العنوان بالتفصيل</label>
+                        <textarea name="address" class="form-textarea" required rows="2" placeholder="المنطقة، اسم الشارع، رقم المبنى/الفيلا..."></textarea>
+                    </div>
+
+                    <!-- زر الإرسال -->
+                    <button type="submit" id="submitBtn" class="submit-btn">
+                        <span>تأكيد الطلب الآن</span>
+                        <i class="fas fa-check-circle"></i>
+                    </button>
+                    
+                    <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #777;">
+                        <i class="fas fa-lock"></i> بياناتك مشفرة وآمنة 100%
+                    </p>
+                </form>
             </div>
         </div>
     </main>
 
-    <!-- External JS for checkout logic -->
-    <script src="./js/checkout.js" defer></script>
+    <script>
+        // رابط السكربت الخاص بك
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyWYpWnXV9wlo6sH-ABKR480ekh_9MsOSX0ypA9pMViSR7x5lDKCnBaVWwRr9pd_L2Nw/exec';
+
+        const form = document.getElementById('orderForm');
+        const phoneInput = document.getElementById('phoneInput');
+        const phoneError = document.getElementById('phoneError');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // 1. تحميل بيانات السلة عند فتح الصفحة
+        window.addEventListener('load', () => {
+            // التاريخ
+            document.getElementById('o_date').value = new Date().toLocaleString('en-GB');
+
+            // جلب البيانات من LocalStorage (المستخدمة في Cart.js)
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            if (cartItems.length === 0) {
+                document.getElementById('summaryText').innerHTML = '<span style="color:red">السلة فارغة!</span>';
+                submitBtn.disabled = true;
+                submitBtn.innerText = "السلة فارغة";
+                return;
+            }
+
+            // تجهيز نص المنتجات والسعر
+            const productNames = cartItems.map(item => `${item.title} (x${item.quantity || 1})`).join(' + ');
+            const totalPrice = localStorage.getItem('totalPrice') || '0';
+
+            // تعبئة الحقول المخفية
+            document.getElementById('p_name').value = productNames;
+            document.getElementById('p_price').value = totalPrice;
+
+            // العرض للمستخدم
+            document.getElementById('summaryText').textContent = productNames;
+            document.getElementById('totalPriceDisplay').textContent = `الإجمالي: ${totalPrice} درهم`;
+        });
+
+        // 2. التحقق من رقم الهاتف الإماراتي (يبدأ بـ 05 وطوله 10 أرقام)
+        phoneInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, ''); // أرقام فقط
+            
+            const uaeRegex = /^05\d{8}$/;
+            if (this.value.length > 0 && !uaeRegex.test(this.value)) {
+                phoneError.style.display = 'block';
+                this.style.borderColor = 'red';
+            } else {
+                phoneError.style.display = 'none';
+                this.style.borderColor = '#28a745'; // أخضر عند الصح
+            }
+        });
+
+        // 3. إرسال الطلب
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            // تحقق نهائي
+            const uaeRegex = /^05\d{8}$/;
+            if (!uaeRegex.test(phoneInput.value)) {
+                alert('يرجى التأكد من رقم الهاتف (يجب أن يبدأ بـ 05 ويتكون من 10 أرقام)');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تسجيل الطلب...';
+
+            fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                // نجاح الطلب
+                alert('✅ تم استلام طلبك بنجاح! شكراً لثقتك في هدايا الإمارات.');
+                
+                // تفريغ السلة
+                localStorage.removeItem('cart');
+                localStorage.removeItem('totalPrice');
+                
+                // إعادة التوجيه للصفحة الرئيسية
+                window.location.href = "./index.html";
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('حدث خطأ بسيط في الاتصال، لكن طلبك قد يكون وصل. يرجى المحاولة مرة أخرى أو التواصل عبر واتساب.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'تأكيد الطلب الآن';
+            });
+        });
+    </script>
 </body>
 </html>
