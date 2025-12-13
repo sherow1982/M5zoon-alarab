@@ -1,7 +1,7 @@
 /**
  * منطلق صفحة إتمام الطلب
  * حفظ الطلبات عبر GitHub Actions تلقائياً
- * Emirates Gifts v10.0 - Automatic Order Processing
+ * Emirates Gifts v10.1 - Fixed UTF-8 + Dispatch
  */
 
 class CheckoutPage {
@@ -15,16 +15,14 @@ class CheckoutPage {
         // GitHub Config
         this.GITHUB_OWNER = 'sherow1982';
         this.GITHUB_REPO = 'emirates-gifts';
-        this.WORKFLOW_DISPATCH_URL = `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/dispatches`;
         
         if (chrome && chrome.runtime) {
             chrome.runtime.onMessage.addListener(() => false);
         }
         
         console.clear();
-        console.log('%c🏪 Emirates Gifts v10.0', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c✅ Automatic Order Processing', 'color: #27ae60; font-size: 12px; font-weight: bold');
-        console.log('%c🔐 GitHub Actions Powered', 'color: #3498db; font-size: 11px; font-weight: bold');
+        console.log('%c🏪 Emirates Gifts v10.1', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c✅ GitHub Actions + UTF-8 Support', 'color: #27ae60; font-size: 12px; font-weight: bold');
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -135,74 +133,66 @@ class CheckoutPage {
             };
             
             console.log('%c📝 Order #' + orderData.orderId, 'color: #9b59b6; font-weight: bold');
+            console.log('%c📤 Sending to GitHub...', 'color: #3498db; font-weight: bold');
             
-            // استدعاء GitHub Actions Workflow
+            // ارسل ل GitHub Actions Workflow
             await this.triggerWorkflow(orderData);
             
-            // حفظ ملي في localStorage للرجوع له اذا فشل ال workflow
-            localStorage.setItem('lastOrder', JSON.stringify(orderData));
-            
-            console.log('%c✅ Order submitted to GitHub', 'color: #27ae60; font-weight: bold; font-size: 11px');
-            console.log('%c✅ Workflow will process it automatically', 'color: #27ae60; font-weight: bold; font-size: 11px');
+            console.log('%c✅ Workflow triggered', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
             this.onOrderSuccess(orderData);
             
         } catch (error) {
-            console.error('%c❌ ERROR:', 'color: #c0392b; font-weight: bold', error.message);
-            console.log('%c⚠️ Order saved locally, will sync when available', 'color: #f39c12; font-weight: bold');
-            alert('تم استقبال طلبك بنجاح');
+            console.error('%c❌ ERROR:', 'color: #c0392b; font-weight: bold', error);
+            alert('خطأ: ' + error.message);
             this.submitBtn.disabled = false;
             this.submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيد الطلب';
         }
     }
     
     async triggerWorkflow(orderData) {
-        // الطريقة 1: حاول repository_dispatch (بدون token)
-        // هذا بيهجر مع GitHub Pages
-        try {
-            const response = await fetch('https://api.github.com/repos/sherow1982/emirates-gifts/dispatches', {
+        const response = await fetch(
+            `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/dispatches`,
+            {
                 method: 'POST',
                 headers: {
+                    'Accept': 'application/vnd.github.v3+json',
                     'Content-Type': 'application/json',
-                    'Accept': 'application/vnd.github.v3+json'
+                    'X-GitHub-Api-Version': '2022-11-28'
                 },
                 body: JSON.stringify({
                     event_type: 'save_order',
-                    client_payload: orderData
+                    client_payload: {
+                        orderId: orderData.orderId,
+                        fullName: orderData.fullName,
+                        phone: orderData.phone,
+                        city: orderData.city,
+                        items: orderData.items,
+                        total: orderData.total,
+                        date: orderData.date
+                    }
                 })
-            });
-            
-            if (!response.ok) {
-                // إذا لم ينجح ال dispatch - استخدم طريقة العمل المباشرة
-                console.log('%c📝 Fallback: Saving order directly to repository', 'color: #f39c12; font-weight: bold');
-                await this.saveDirectly(orderData);
             }
-        } catch (e) {
-            console.error('Dispatch error:', e);
-            await this.saveDirectly(orderData);
-        }
-    }
-    
-    async saveDirectly(orderData) {
-        // طريقة بديلة: حفظ مباشر عبر gist أو external service
-        // للآن سنحفظ localStorage ونخبر backend
-        console.log('%c📄 Order stored in localStorage for sync', 'color: #3498db; font-weight: bold');
+        );
         
-        // بلاي خصارة الجذابة؛ الحل الأبسط هو استخدم formspree.io أو similar
-        await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(orderData)
-        }).catch(() => {
-            // ما بيهرإ - على الأقل البيانات محفوظة
-            console.log('%c✅ Order saved locally', 'color: #27ae60; font-weight: bold');
-        });
+        if (response.status === 204) {
+            console.log('%c✅ Dispatch accepted', 'color: #27ae60; font-weight: bold');
+        } else if (response.status === 401) {
+            throw new Error('الوصول مرفوض');
+        } else if (response.status === 422) {
+            const error = await response.json();
+            console.error('Validation error:', error);
+            throw new Error('بيانات غير صحيحة');
+        } else {
+            const error = await response.text();
+            throw new Error(`خطأ: ${response.status} - ${error}`);
+        }
     }
     
     onOrderSuccess(orderData) {
         console.log('%c\n🎉 ORDER CONFIRMED!', 'color: #27ae60; font-size: 13px; font-weight: bold; background: #ecf0f1; padding: 5px');
         console.log('%c✅ تم استقبال طلبك', 'color: #27ae60; font-weight: bold');
-        console.log('%b🔗 https://github.com/sherow1982/emirates-gifts/tree/main/orders', 'color: #3498db; font-weight: bold; font-size: 10px');
+        console.log('%c🔗 https://github.com/sherow1982/emirates-gifts/tree/main/orders', 'color: #3498db; font-weight: bold; font-size: 10px');
         
         this.cart.clearCart();
         
