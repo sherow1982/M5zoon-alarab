@@ -165,21 +165,64 @@
     <script>
         // رابط السكريبت الخاص بك
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyWYpWnXV9wlo6sH-ABKR480ekh_9MsOSX0ypA9pMViSR7x5lDKCnBaVWwRr9pd_L2Nw/exec';
+        
+        // مفاتيح localStorage المحتملة
+        const STORAGE_KEYS = {
+            primary: 'emirates_shopping_cart',
+            fallback1: 'emirates_cart',
+            fallback2: 'cart',
+            total: 'emirates_cart_total',
+            totalFallback: 'totalPrice'
+        };
 
         const form = document.getElementById('orderForm');
         const phoneInput = document.getElementById('phoneInput');
         const phoneError = document.getElementById('phoneError');
         const submitBtn = document.getElementById('submitBtn');
+        
+        /**
+         * جلب بيانات السلة
+         */
+        function getCart() {
+            for (const key of [STORAGE_KEYS.primary, STORAGE_KEYS.fallback1, STORAGE_KEYS.fallback2]) {
+                const data = localStorage.getItem(key);
+                if (data) {
+                    try {
+                        return JSON.parse(data);
+                    } catch (e) {
+                        console.error(`❌ خطأ في قراءة ${key}:`, e);
+                    }
+                }
+            }
+            return [];
+        }
+        
+        /**
+         * جلب الإجمالي
+         */
+        function getTotal() {
+            for (const key of [STORAGE_KEYS.total, STORAGE_KEYS.totalFallback]) {
+                const data = localStorage.getItem(key);
+                if (data) return data;
+            }
+            return '0';
+        }
 
         // 1. تحميل بيانات السلة عند فتح الصفحة
         window.addEventListener('load', () => {
+            console.log('📦 بدء تحميل checkout...');
+            
             // التاريخ
             document.getElementById('o_date').value = new Date().toLocaleString('en-GB');
 
-            // جلب البيانات من LocalStorage (المستخدمة في Cart.js)
-            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            // جلب بيانات السلة
+            const cartItems = getCart();
+            const totalPrice = getTotal();
             
-            if (cartItems.length === 0) {
+            console.log('📦 بيانات السلة:', { عدد: cartItems.length, إجمالي: totalPrice });
+            
+            if (!cartItems || cartItems.length === 0) {
+                console.log('❌ السلة فارغة');
                 document.getElementById('summaryText').innerHTML = '<span style="color:red">السلة فارغة!</span>';
                 submitBtn.disabled = true;
                 submitBtn.innerText = "السلة فارغة";
@@ -188,7 +231,6 @@
 
             // تجهيز نص المنتجات والسعر
             const productNames = cartItems.map(item => `${item.title} (x${item.quantity || 1})`).join(' + ');
-            const totalPrice = localStorage.getItem('totalPrice') || '0';
 
             // تعبئة الحقول المخفية
             document.getElementById('p_name').value = productNames;
@@ -197,6 +239,7 @@
             // العرض للمستخدم
             document.getElementById('summaryText').textContent = productNames;
             document.getElementById('totalPriceDisplay').textContent = `الإجمالي: ${totalPrice} درهم`;
+            console.log('✅ بيانات السلة تمت بنجاح');
         });
 
         // 2. التحقق من رقم الهاتف الإماراتي (يبدأ بـ 05 وطوله 10 أرقام)
@@ -232,9 +275,12 @@
                 // نجاح الطلب
                 alert('✅ تم استلام طلبك بنجاح! شكراً لثقتك في هدايا الإمارات.');
                 
-                // تفريغ السلة
-                localStorage.removeItem('cart');
-                localStorage.removeItem('totalPrice');
+                // تفريغ السلة من جميع المفاتيح
+                localStorage.removeItem(STORAGE_KEYS.primary);
+                localStorage.removeItem(STORAGE_KEYS.fallback1);
+                localStorage.removeItem(STORAGE_KEYS.fallback2);
+                localStorage.removeItem(STORAGE_KEYS.total);
+                localStorage.removeItem(STORAGE_KEYS.totalFallback);
                 
                 // إعادة التوجيه للصفحة الرئيسية
                 window.location.href = "./index.html";
