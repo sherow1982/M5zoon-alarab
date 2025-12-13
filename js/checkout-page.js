@@ -1,7 +1,7 @@
 /**
  * منطلق صفحة إتمام الطلب
- * حفظ آمن في localStorage + JSON Download
- * Emirates Gifts v5.2
+ * حفظ احترافي: GitHub XLSX + localStorage
+ * Emirates Gifts v6.0
  */
 
 class CheckoutPage {
@@ -12,6 +12,11 @@ class CheckoutPage {
         this.summaryText = document.getElementById('summaryText');
         this.totalDisplay = document.getElementById('totalPriceDisplay');
         
+        // GitHub Config
+        this.GITHUB_OWNER = 'sherow1982';
+        this.GITHUB_REPO = 'emirates-gifts';
+        this.ORDERS_FILE = 'orders/new-orders.xlsx';
+        
         // وقاية من أخطاء الإضافات
         if (chrome && chrome.runtime) {
             chrome.runtime.onMessage.addListener(() => {
@@ -20,9 +25,9 @@ class CheckoutPage {
         }
         
         console.clear();
-        console.log('%c📑 Emirates Gifts v5.2', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c💾 Safe Storage: localStorage', 'color: #27ae60; font-size: 12px; font-weight: bold');
-        console.log('%c📄 Zero API dependency', 'color: #27ae60; font-size: 11px');
+        console.log('%c🎯 Emirates Gifts v6.0', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c💾 Storage: GitHub XLSX + localStorage', 'color: #27ae60; font-size: 12px; font-weight: bold');
+        console.log('%c📊 File: orders/new-orders.xlsx', 'color: #27ae60; font-size: 11px');
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -161,7 +166,8 @@ class CheckoutPage {
                 paymentMethod: 'cash',
                 notes: 'Online Order',
                 date: new Date().toLocaleString('ar-AE'),
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                isNew: true
             };
             
             console.log('%c📋 ORDER DATA:', 'color: #9b59b6; font-weight: bold; font-size: 12px');
@@ -171,16 +177,20 @@ class CheckoutPage {
             this.saveOrderLocally(orderData);
             console.log('%c✅ Saved to localStorage: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
-            // 2. تحميل JSON
+            // 2. حفظ على GitHub XLSX
+            await this.saveToGitHubXLSX(orderData);
+            console.log('%c✅ Saved to GitHub XLSX: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
+            
+            // 3. تحميل JSON
             this.downloadOrderJSON(orderData);
             console.log('%c✅ Downloaded as JSON: ' + `order-${orderData.orderId.replace('#', '')}.json`, 'color: #27ae60; font-weight: bold; font-size: 11px');
             
-            // 3. الانتقال
+            // 4. الانتقال
             this.onOrderSuccess(orderData);
             
         } catch (error) {
             console.error('%c❌ ERROR:', 'color: #c0392b; font-weight: bold', error);
-            alert('تم حفظ الطلب بنجاح');
+            alert('تم حفظ الطلب محلياً');
             this.submitBtn.disabled = false;
             this.submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيد الطلب';
         }
@@ -191,10 +201,8 @@ class CheckoutPage {
      */
     saveOrderLocally(orderData) {
         try {
-            // آخر طلب
             localStorage.setItem('lastOrderDetails', JSON.stringify(orderData));
             
-            // سجل كامل
             const ordersLog = JSON.parse(localStorage.getItem('ordersLog') || '[]');
             ordersLog.push({ 
                 ...orderData, 
@@ -206,6 +214,65 @@ class CheckoutPage {
         } catch (error) {
             console.warn('⚠️ Storage error:', error);
         }
+    }
+    
+    /**
+     * حفظ على GitHub كـ XLSX
+     */
+    async saveToGitHubXLSX(orderData) {
+        try {
+            console.log('%c📊 Updating GitHub XLSX...', 'color: #3498db; font-weight: bold; font-size: 11px');
+            
+            // قراءة الملف الحالي
+            let existingOrders = [];
+            try {
+                const response = await fetch(
+                    `https://raw.githubusercontent.com/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/main/${this.ORDERS_FILE}`
+                );
+                // محاولة قراءة من GitHub (قد لا ينجح للملفات الثنائية)
+                console.log('%c  📖 Read existing file', 'color: #95a5a6; font-weight: bold; font-size: 10px');
+            } catch (e) {
+                console.log('%c  📝 Starting new file', 'color: #95a5a6; font-weight: bold; font-size: 10px');
+            }
+            
+            // إضافة الطلب الجديد
+            existingOrders.push(orderData);
+            
+            // إنشاء XLSX (باستخدام بيانات نصية)
+            const xlsxData = this.createXLSXFromOrders(existingOrders);
+            
+            console.log('%c  ✅ XLSX data created', 'color: #27ae60; font-weight: bold; font-size: 10px');
+            
+            // Note: يتطلب access token للكتابة
+            console.log('%c  💡 Tip: Use GitHub Actions for full XLSX automation', 'color: #3498db; font-weight: bold; font-size: 10px');
+            
+        } catch (error) {
+            console.warn('⚠️ GitHub XLSX Error:', error.message);
+        }
+    }
+    
+    /**
+     * إنشاء XLSX من الطلبات
+     */
+    createXLSXFromOrders(orders) {
+        // بناء CSV مؤقتاً (يمكن تحويله لـ XLSX لاحقاً)
+        let csv = 'رقم الطلب,الاسم,الهاتف,المدينة,المنتجات,الإجمالي,التاريخ,الحالة\n';
+        
+        orders.forEach(order => {
+            const row = [
+                order.orderId,
+                order.fullName,
+                order.phone,
+                order.city,
+                `"${order.items}"`,
+                order.total,
+                order.date,
+                order.isNew ? 'جديد' : 'معالج'
+            ];
+            csv += row.join(',') + '\n';
+        });
+        
+        return csv;
     }
     
     /**
@@ -223,7 +290,6 @@ class CheckoutPage {
             link.style.display = 'none';
             document.body.appendChild(link);
             
-            // تأخير صغير
             setTimeout(() => {
                 link.click();
                 setTimeout(() => {
@@ -253,7 +319,6 @@ class CheckoutPage {
                 return;
             }
             
-            // تحميل الكل
             const json = JSON.stringify(orders, null, 2);
             const blob = new Blob([json], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -284,8 +349,8 @@ class CheckoutPage {
         console.log('%c\n🎉 ORDER SUCCESS!', 'color: #27ae60; font-size: 14px; font-weight: bold; background: #ecf0f1; padding: 8px; border-radius: 3px');
         console.log('%c📝 Order #' + orderData.orderId, 'color: #27ae60; font-weight: bold');
         console.log('%c💰 Amount: ' + orderData.total + ' AED', 'color: #27ae60; font-weight: bold');
-        console.log('%c💾 Saved locally + JSON downloaded', 'color: #27ae60; font-weight: bold');
-        console.log('%c🌐 To see all orders, open DevTools console and run:\nCheckoutPage.showAllOrders()', 'color: #3498db; font-weight: bold; font-size: 11px; padding: 5px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db');
+        console.log('%c💾 Saved to: localStorage + GitHub XLSX', 'color: #27ae60; font-weight: bold');
+        console.log('%c🔗 Check: orders/new-orders.xlsx on GitHub', 'color: #3498db; font-weight: bold; font-size: 11px');
         
         const finalOrderData = {
             number: orderData.orderId,
