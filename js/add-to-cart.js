@@ -1,7 +1,7 @@
 /**
  * منطق إضافة المنتج للسلة
  * يعمل على جميع صفحات المنتجات
- * Emirates Gifts v3.1
+ * Emirates Gifts v3.2
  */
 
 class AddToCart {
@@ -52,14 +52,14 @@ class AddToCart {
         const success = this.cart.addProduct(product);
         
         if (success) {
-            this.showNotification(`تم إضافة "${product.title}" للسلة ✅`, 'success');
+            this.showNotification(`مت الإضافة "${product.title}" ✅`, 'success');
             this.animateButton(btn);
             
-            // التحويل التلقائي للسلة بعد 1500ms
+            // التحويل الفوري للسلة
             setTimeout(() => {
-                console.log('🔄 التحويل للسلة');
+                console.log('🔄 التحويل اللحظة للسلة');
                 window.location.href = './cart.html';
-            }, 1500);
+            }, 800);
         } else {
             this.showNotification('فشل إضافة المنتج', 'error');
         }
@@ -101,7 +101,7 @@ class AddToCart {
             btn.innerHTML = originalText;
             btn.className = originalClass;
             btn.disabled = false;
-        }, 1500);
+        }, 800);
     }
     
     /**
