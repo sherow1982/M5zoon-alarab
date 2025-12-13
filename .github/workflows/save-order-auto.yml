@@ -3,6 +3,33 @@ name: 📝 Save Order
 on:
   repository_dispatch:
     types: [save_order]
+  workflow_dispatch:
+    inputs:
+      orderId:
+        description: 'Order ID'
+        required: true
+      fullName:
+        description: 'Customer Name'
+        required: true
+      phone:
+        description: 'Phone'
+        required: true
+      city:
+        description: 'City'
+        required: true
+      items:
+        description: 'Items'
+        required: true
+      total:
+        description: 'Total'
+        required: true
+      date:
+        description: 'Date'
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   save_order:
@@ -12,6 +39,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
       
       - name: 📁 Create Orders Directory
         run: mkdir -p orders
@@ -19,13 +47,13 @@ jobs:
       - name: 📝 Extract Order Data
         id: order
         run: |
-          ORDER_ID="${{ github.event.client_payload.orderId }}"
-          FULL_NAME="${{ github.event.client_payload.fullName }}"
-          PHONE="${{ github.event.client_payload.phone }}"
-          CITY="${{ github.event.client_payload.city }}"
-          ITEMS="${{ github.event.client_payload.items }}"
-          TOTAL="${{ github.event.client_payload.total }}"
-          DATE="${{ github.event.client_payload.date }}"
+          ORDER_ID="${{ github.event.client_payload.orderId || inputs.orderId }}"
+          FULL_NAME="${{ github.event.client_payload.fullName || inputs.fullName }}"
+          PHONE="${{ github.event.client_payload.phone || inputs.phone }}"
+          CITY="${{ github.event.client_payload.city || inputs.city }}"
+          ITEMS="${{ github.event.client_payload.items || inputs.items }}"
+          TOTAL="${{ github.event.client_payload.total || inputs.total }}"
+          DATE="${{ github.event.client_payload.date || inputs.date }}"
           TIMESTAMP=$(date +%s000)
           
           echo "order_id=${ORDER_ID}" >> $GITHUB_OUTPUT
@@ -36,13 +64,13 @@ jobs:
           mkdir -p orders
           cat > "orders/${{ steps.order.outputs.order_id }}-${{ steps.order.outputs.timestamp }}.json" << 'EOF'
           {
-            "orderId": "${{ github.event.client_payload.orderId }}",
-            "fullName": "${{ github.event.client_payload.fullName }}",
-            "phone": "${{ github.event.client_payload.phone }}",
-            "city": "${{ github.event.client_payload.city }}",
-            "items": "${{ github.event.client_payload.items }}",
-            "total": "${{ github.event.client_payload.total }}",
-            "date": "${{ github.event.client_payload.date }}",
+            "orderId": "${{ github.event.client_payload.orderId || inputs.orderId }}",
+            "fullName": "${{ github.event.client_payload.fullName || inputs.fullName }}",
+            "phone": "${{ github.event.client_payload.phone || inputs.phone }}",
+            "city": "${{ github.event.client_payload.city || inputs.city }}",
+            "items": "${{ github.event.client_payload.items || inputs.items }}",
+            "total": "${{ github.event.client_payload.total || inputs.total }}",
+            "date": "${{ github.event.client_payload.date || inputs.date }}",
             "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }
           EOF
@@ -58,13 +86,13 @@ jobs:
           fi
           
           # Add new order row
-          ORDER_ID="${{ github.event.client_payload.orderId }}"
-          FULL_NAME="${{ github.event.client_payload.fullName }}"
-          PHONE="${{ github.event.client_payload.phone }}"
-          CITY="${{ github.event.client_payload.city }}"
-          ITEMS="${{ github.event.client_payload.items }}"
-          TOTAL="${{ github.event.client_payload.total }}"
-          DATE="${{ github.event.client_payload.date }}"
+          ORDER_ID="${{ github.event.client_payload.orderId || inputs.orderId }}"
+          FULL_NAME="${{ github.event.client_payload.fullName || inputs.fullName }}"
+          PHONE="${{ github.event.client_payload.phone || inputs.phone }}"
+          CITY="${{ github.event.client_payload.city || inputs.city }}"
+          ITEMS="${{ github.event.client_payload.items || inputs.items }}"
+          TOTAL="${{ github.event.client_payload.total || inputs.total }}"
+          DATE="${{ github.event.client_payload.date || inputs.date }}"
           
           # Escape quotes in items
           ITEMS_ESCAPED="${ITEMS//\"/\"\"}"
@@ -74,17 +102,22 @@ jobs:
       
       - name: 🔧 Git Config
         run: |
-          git config user.name "emirates-bot"
-          git config user.email "bot@emirates-gifts.local"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
       
       - name: 📤 Commit & Push
         run: |
-          git add orders/
-          git diff --cached --quiet || git commit -m "🎁 New order: ${{ github.event.client_payload.orderId }}"
-          git push || echo "Nothing to push"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add orders/
+            git commit -m "🎁 New order: ${{ github.event.client_payload.orderId || inputs.orderId }}"
+            git push origin main
+            echo "✅ Changes pushed successfully"
+          else
+            echo "ℹ️ No changes to commit"
+          fi
       
       - name: ✅ Done
         run: |
           echo "Order saved successfully!"
-          echo "Order ID: ${{ github.event.client_payload.orderId }}"
-          echo "Customer: ${{ github.event.client_payload.fullName }}"
+          echo "Order ID: ${{ github.event.client_payload.orderId || inputs.orderId }}"
+          echo "Customer: ${{ github.event.client_payload.fullName || inputs.fullName }}"
