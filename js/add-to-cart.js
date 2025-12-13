@@ -1,7 +1,7 @@
 /**
  * منطق إضافة المنتج للسلة
  * يعمل على جميع صفحات المنتجات
- * Emirates Gifts v3.0
+ * Emirates Gifts v3.1
  */
 
 class AddToCart {
@@ -39,7 +39,7 @@ class AddToCart {
             return;
         }
         
-        // استخراج بيانات المنتج
+        // استخراج البيانات
         const product = this.extractProductData(container);
         
         if (!product || !product.id) {
@@ -52,29 +52,35 @@ class AddToCart {
         const success = this.cart.addProduct(product);
         
         if (success) {
-            this.showNotification(`تم إضافة "${product.title}" للسلة`, 'success');
+            this.showNotification(`تم إضافة "${product.title}" للسلة ✅`, 'success');
             this.animateButton(btn);
+            
+            // التحويل التلقائي للسلة بعد 1500ms
+            setTimeout(() => {
+                console.log('🔄 التحويل للسلة');
+                window.location.href = './cart.html';
+            }, 1500);
         } else {
             this.showNotification('فشل إضافة المنتج', 'error');
         }
     }
     
     /**
-     * استخراج بيانات المنتج من الـ DOM
+     * استخراج بيانات المنتج من DOM
      */
     extractProductData(container) {
         return {
             id: container.dataset.productId || container.dataset.id || this.generateId(),
             title: container.dataset.productTitle || container.querySelector('h2, h3, .title')?.textContent?.trim(),
-            price: container.dataset.productPrice || container.querySelector('[data-price]')?.textContent?.match(/\d+\.?\d*/)?.[0],
-            sale_price: container.dataset.salePrice || container.dataset.productSalePrice || container.querySelector('[data-sale-price]')?.textContent?.match(/\d+\.?\d*/)?.[0],
+            price: parseFloat(container.dataset.productPrice || container.querySelector('[data-price]')?.textContent?.match(/\d+\.?\d*/)?.[0] || 0),
+            sale_price: parseFloat(container.dataset.salePrice || container.dataset.productSalePrice || container.querySelector('[data-sale-price]')?.textContent?.match(/\d+\.?\d*/)?.[0] || 0),
             image_link: container.dataset.productImage || container.querySelector('img')?.src,
             image: container.dataset.productImage || container.querySelector('img')?.src
         };
     }
     
     /**
-     * توليد معرّف فريد
+     * توليد معرف فريد
      */
     generateId() {
         return 'product_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -89,18 +95,19 @@ class AddToCart {
         
         btn.innerHTML = '<i class="fas fa-check"></i> تمت الإضافة';
         btn.classList.add('success');
+        btn.disabled = true;
         
         setTimeout(() => {
             btn.innerHTML = originalText;
             btn.className = originalClass;
-        }, 2000);
+            btn.disabled = false;
+        }, 1500);
     }
     
     /**
      * عرض إشعار
      */
     showNotification(message, type = 'info') {
-        // إنشاء عنصر الإشعار
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.innerHTML = `
@@ -110,13 +117,10 @@ class AddToCart {
             </div>
         `;
         
-        // إضافة للصفحة
         document.body.appendChild(notification);
         
-        // تأثير الظهور
         setTimeout(() => notification.classList.add('show'), 10);
         
-        // الحذف التلقائي
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => notification.remove(), 300);
@@ -133,7 +137,7 @@ if (document.readyState === 'loading') {
     new AddToCart();
 }
 
-// إضافة أنماط للإشعارات
+// أنماط الإشعارات
 const style = document.createElement('style');
 style.textContent = `
     .notification {

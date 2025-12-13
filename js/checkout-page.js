@@ -1,7 +1,7 @@
 /**
  * منطق صفحة إتمام الطلب
  * معالجة بيانات المستخدم والطلب
- * Emirates Gifts v3.2
+ * Emirates Gifts v3.3
  */
 
 class CheckoutPage {
@@ -11,12 +11,6 @@ class CheckoutPage {
         this.cart = window.cartSystem;
         this.summaryText = document.getElementById('summaryText');
         this.totalDisplay = document.getElementById('totalPriceDisplay');
-        
-        // مفاتيح الإرسال المحتملة
-        this.GOOGLE_SCRIPT_URLS = [
-            'https://script.google.com/macros/s/AKfycbwyWYpWnXV9wlo6sH-ABKR480ekh_9MsOSX0ypA9pMViSR7x5lDKCnBaVWwRr9pd_L2Nw/exec',
-            'https://formspree.io/f/YOUR_ID',  // بديل
-        ];
         
         if (!this.form) {
             console.error('❌ لم يتم العثور على النموذج');
@@ -30,7 +24,7 @@ class CheckoutPage {
      * التهيئة
      */
     init() {
-        console.log('📄 بدء تهيئة إتمام الطلب');
+        console.log('📋 بدء تهيئة إتمام الطلب');
         this.loadCartData();
         this.setupValidation();
         this.setupFormSubmit();
@@ -43,7 +37,7 @@ class CheckoutPage {
         const items = this.cart.getCart();
         const total = this.cart.getTotal();
         
-        console.log('📌 بيانات السلة:', { عدد: items.length, إجمالي: total });
+        console.log('📦 بيانات السلة:', { عدد: items.length, إجمالي: total });
         
         if (items.length === 0) {
             this.showEmptyCart();
@@ -60,7 +54,7 @@ class CheckoutPage {
         document.getElementById('p_price').value = total.toFixed(2);
         document.getElementById('o_date').value = new Date().toLocaleString('ar-AE');
         
-        console.log('✅ تم تحميل بيانات السلة بنجاح');
+        console.log('✅ تم تحميل بيانات السلة');
     }
     
     /**
@@ -132,7 +126,7 @@ class CheckoutPage {
      * إرسال الطلب
      */
     async submitOrder() {
-        console.log('📄 بدء عملية الإرسال');
+        console.log('📤 بدء إرسال الطلب');
         
         // التحقق النهائي
         if (!this.form.checkValidity()) {
@@ -155,35 +149,53 @@ class CheckoutPage {
         try {
             const formData = new FormData(this.form);
             
-            // طلب ذي مهلة أطول
-            const fetchOptions = {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors'  // لتجنب مشاكل CORS
+            // جمع البيانات
+            const orderData = {
+                customer_name: document.querySelector('input[name="customer_name"]').value,
+                phone: phoneInput.value,
+                emirate: document.querySelector('select[name="emirate"]').value,
+                address: document.querySelector('textarea[name="address"]').value,
+                product_name: document.getElementById('p_name').value,
+                total_price: document.getElementById('p_price').value,
+                order_date: new Date().toLocaleString('ar-AE'),
+                timestamp: new Date().toISOString()
             };
             
-            console.log('📌 إرسال لل:', this.GOOGLE_SCRIPT_URLS[0]);
+            console.log('📋 بيانات الطلب:', orderData);
             
-            const response = await Promise.race([
-                fetch(this.GOOGLE_SCRIPT_URLS[0], fetchOptions),
-                new Promise((_, reject) => 
-                    setTimeout(() => reject(new Error('مهلة انتظار')), 10000)
-                )
-            ]);
-            
-            console.log('✅ الرد: بنجاح');
-            
-            // نجاح الطلب (حتى لو الرد فيه خطأ)
-            this.onOrderSuccess();
+            // محاولة الإرسال (لكن لن ننتظر النجاح)
+            this.sendToGoogleSheets(formData).catch(err => {
+                console.warn('⚠️ خطأ الإرسال (سننتقل للصفحة التالية):', err);
+            }).finally(() => {
+                // نتقدم على أي حال
+                this.onOrderSuccess();
+            });
             
         } catch (error) {
-            console.error('❌ خطأ الإرسال:', error.message);
-            
-            // عرض رسالة لكن سنصل للشكر
-            console.log('⚠️ محاولة مين نفس العملية...');
-            
-            // نتقدم مع تجاهل الخطأ (على أمل أن الطلب وصل)
+            console.error('❌ خطأ عام:', error);
+            // نتقدم حتى لو حدث خطأ
             this.onOrderSuccess();
+        }
+    }
+    
+    /**
+     * إرسال البيانات لـ Google Sheets
+     */
+    async sendToGoogleSheets(formData) {
+        const url = 'https://script.google.com/macros/s/AKfycbwyWYpWnXV9wlo6sH-ABKR480ekh_9MsOSX0ypA9pMViSR7x5lDKCnBaVWwRr9pd_L2Nw/exec';
+        
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            });
+            
+            console.log('✅ تم الإرسال بنجاح');
+            return response;
+        } catch (error) {
+            console.error('❌ خطأ الإرسال:', error);
+            throw error;
         }
     }
     
@@ -201,24 +213,22 @@ class CheckoutPage {
             timestamp: Date.now()
         };
         
-        console.log('📊 بيانات الطلب:', orderData);
+        console.log('💾 حفظ بيانات الطلب:', orderData);
         
         try {
             localStorage.setItem('lastOrder', JSON.stringify(orderData));
         } catch (e) {
-            console.warn('⚠️ خطأ في حفظ بيانات الطلب:', e);
+            console.warn('⚠️ خطأ حفظ البيانات:', e);
         }
         
         // تنظيف السلة
         this.cart.clearCart();
         
-        // إرسال حدث
-        window.dispatchEvent(new CustomEvent('orderSubmitted', { detail: orderData }));
-        
         // الانتقال لصفحة الشكر
         setTimeout(() => {
+            console.log('🚀 الانتقال لصفحة الشكر');
             window.location.href = './thank-you.html';
-        }, 500);
+        }, 800);
     }
 }
 
