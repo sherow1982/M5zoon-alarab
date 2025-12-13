@@ -1,7 +1,7 @@
 /**
  * منطق صفحة إتمام الطلب
  * مباشرة لـ Google Sheets
- * Emirates Gifts v4.0
+ * Emirates Gifts v4.1
  */
 
 class CheckoutPage {
@@ -12,13 +12,13 @@ class CheckoutPage {
         this.summaryText = document.getElementById('summaryText');
         this.totalDisplay = document.getElementById('totalPriceDisplay');
         
-        // رابط Google Sheets مباشر
+        // رابط Google Sheets
         this.SHEETS_ID = '18T87KMCzvInuRoqbjwSQzIRFtb4xW71_LVNOCK5iHp0';
         this.GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyWYpWnXV9wlo6sH-ABKR480ekh_9MsOSX0ypA9pMViSR7x5lDKCnBaVWwRr9pd_L2Nw/exec';
         
         console.clear();
-        console.log('%c🌐 Google Sheets Connected', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px');
-        console.log('%c📄 Sheets ID: ' + this.SHEETS_ID, 'color: #27ae60; font-size: 11px');
+        console.log('%c🌐 Google Sheets Connected', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c📄 Sheets ID: ' + this.SHEETS_ID, 'color: #27ae60; font-size: 11px; font-weight: bold');
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -56,7 +56,6 @@ class CheckoutPage {
         this.summaryText.textContent = itemsList;
         this.totalDisplay.textContent = `الإجمالي: ${total.toFixed(2)} د.إ`;
         
-        // حفظ البيانات
         document.getElementById('p_name').value = itemsList;
         document.getElementById('p_price').value = total.toFixed(2);
         document.getElementById('o_date').value = new Date().toLocaleString('ar-AE');
@@ -125,7 +124,7 @@ class CheckoutPage {
      * إرسال الطلب
      */
     async submitOrder() {
-        console.log('%c\n📤 Submitting Order...', 'color: #3498db; font-size: 13px; font-weight: bold; background: #ecf0f1; padding: 5px');
+        console.log('%c\n📤 SUBMITTING ORDER...', 'color: #3498db; font-size: 14px; font-weight: bold; background: #ecf0f1; padding: 8px; border-radius: 3px');
         
         // التحقق
         if (!this.form.checkValidity()) {
@@ -143,7 +142,7 @@ class CheckoutPage {
         
         // تحديث الزر
         this.submitBtn.disabled = true;
-        this.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة...';
+        this.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري...';
         
         try {
             // جمع البيانات
@@ -160,20 +159,22 @@ class CheckoutPage {
             
             orderData.orderId = '#' + new Date().getFullYear() + String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
             
-            console.log('%c📋 Order Data:', 'color: #9b59b6; font-weight: bold');
+            console.log('%c📋 ORDER DATA:', 'color: #9b59b6; font-weight: bold; font-size: 12px');
             console.table(orderData);
             
-            // حفظ باكاب
+            // 1. حفظ باكاب محلي
             this.backupOrderData(orderData);
+            console.log('%c✅ Backup to localStorage: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
-            // الإرسال مباشرة
-            await this.sendToGoogleSheets(orderData);
+            // 2. الإرسال لGoogle Sheets
+            this.sendToGoogleSheets(orderData);
+            console.log('%c✅ Sent to Google Sheets', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
-            // نجاح
+            // 3. الانتقال للصفحة التالية
             this.onOrderSuccess(orderData);
             
         } catch (error) {
-            console.error('%c❌ Error:', 'color: #c0392b; font-weight: bold', error);
+            console.error('%c❌ ERROR:', 'color: #c0392b; font-weight: bold', error);
             this.submitBtn.disabled = false;
             this.submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيد الطلب';
         }
@@ -188,40 +189,39 @@ class CheckoutPage {
             const ordersLog = JSON.parse(localStorage.getItem('ordersLog') || '[]');
             ordersLog.push({ ...orderData, backup_timestamp: new Date().toISOString() });
             localStorage.setItem('ordersLog', JSON.stringify(ordersLog));
-            console.log('%c💾 Backup to localStorage', 'color: #f39c12; font-weight: bold');
         } catch (error) {
             console.warn('⚠️ Backup error:', error);
         }
     }
     
     /**
-     * إرسال مباشر لGoogle Sheets
+     * إرسال باستخدام sendBeacon (موثوق)
      */
-    async sendToGoogleSheets(orderData) {
-        console.log('%c🌐 Sending to Google Sheets...', 'color: #3498db; font-weight: bold');
-        
-        const formData = new FormData();
-        for (const [key, value] of Object.entries(orderData)) {
-            formData.append(key, value);
-        }
-        
+    sendToGoogleSheets(orderData) {
         try {
-            const response = await Promise.race([
+            console.log('%c🌐 Sending to Google Sheets...', 'color: #3498db; font-weight: bold; font-size: 11px');
+            
+            // إنشاء URLSearchParams
+            const params = new URLSearchParams();
+            for (const [key, value] of Object.entries(orderData)) {
+                params.append(key, value);
+            }
+            
+            // الجريبة 1: sendBeacon (الأقوى و موثوقة)
+            if (navigator.sendBeacon) {
+                const success = navigator.sendBeacon(this.GOOGLE_SCRIPT_URL, params);
+                console.log('%c  ✅ sendBeacon queued:', 'color: #27ae60; font-weight: bold', success);
+            } else {
+                // العودة ل_fetch
                 fetch(this.GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    body: formData,
-                    mode: 'no-cors'
-                }),
-                new Promise((_, reject) => 
-                    setTimeout(() => reject(new Error('Timeout')), 8000)
-                )
-            ]);
-            
-            console.log('%c✅ Successfully sent to Google Sheets!', 'color: #27ae60; font-weight: bold; font-size: 12px');
-            return response;
+                    body: params,
+                    mode: 'no-cors',
+                    keepalive: true
+                }).catch(err => console.warn('⚠️ fetch:', err.message));
+            }
         } catch (error) {
-            console.error('%c⚠️ Google Sheets Error:', 'color: #e74c3c; font-weight: bold', error.message);
-            throw error;
+            console.error('%c⚠️ Google Sheets Error:', 'color: #e74c3c; font-weight: bold; font-size: 11px', error.message);
         }
     }
     
@@ -229,7 +229,7 @@ class CheckoutPage {
      * عند نجاح الطلب
      */
     onOrderSuccess(orderData) {
-        console.log('%c\n🎉 Order Success!', 'color: #27ae60; font-size: 13px; font-weight: bold; background: #ecf0f1; padding: 5px');
+        console.log('%c\n🎉 ORDER SUCCESS!', 'color: #27ae60; font-size: 14px; font-weight: bold; background: #ecf0f1; padding: 8px; border-radius: 3px');
         console.log('%c📝 Order #' + orderData.orderId, 'color: #27ae60; font-weight: bold');
         console.log('%c💰 Amount: ' + orderData.total + ' AED', 'color: #27ae60; font-weight: bold');
         
