@@ -1,7 +1,7 @@
 /**
- * منطق صفحة إتمام الطلب
- * حفظ الطلبات مباشرة على GitHub
- * Emirates Gifts v5.0
+ * منطلق صفحة إتمام الطلب
+ * حفظ آمن في localStorage + JSON Download
+ * Emirates Gifts v5.1
  */
 
 class CheckoutPage {
@@ -12,15 +12,10 @@ class CheckoutPage {
         this.summaryText = document.getElementById('summaryText');
         this.totalDisplay = document.getElementById('totalPriceDisplay');
         
-        // GitHub API
-        this.GITHUB_OWNER = 'sherow1982';
-        this.GITHUB_REPO = 'emirates-gifts';
-        this.GITHUB_TOKEN = 'ghp_C9OKhVVLtJOYnHG8H3dV2mVX5qw8nH1kLU2r'; // استخدم env variable بدلا
-        
         console.clear();
-        console.log('%c📑 Orders System v5.0', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c📄 GitHub Repo: ' + this.GITHUB_OWNER + '/' + this.GITHUB_REPO, 'color: #27ae60; font-size: 12px; font-weight: bold');
-        console.log('%c💾 Saving orders to:', 'color: #27ae60; font-size: 11px', 'orders/ directory on GitHub');
+        console.log('%c📑 Orders System v5.1', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c💾 Storage: localStorage (Safe) + JSON Download', 'color: #27ae60; font-size: 12px; font-weight: bold');
+        console.log('%c📄 No API keys needed - 100% secure', 'color: #27ae60; font-size: 11px');
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -165,147 +160,92 @@ class CheckoutPage {
             console.log('%c📋 ORDER DATA:', 'color: #9b59b6; font-weight: bold; font-size: 12px');
             console.table(orderData);
             
-            // 1. حفظ باكاب محلي
-            this.backupOrderData(orderData);
-            console.log('%c✅ Backup to localStorage: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
+            // 1. حفظ محلي
+            this.saveOrderLocally(orderData);
+            console.log('%c✅ Saved to localStorage: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
-            // 2. حفظ على GitHub
-            await this.saveToGitHub(orderData);
-            console.log('%c✅ Saved to GitHub: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
+            // 2. تحميل JSON
+            this.downloadOrderJSON(orderData);
+            console.log('%c✅ Downloaded as JSON: ' + `order-${orderData.orderId.replace('#', '')}.json`, 'color: #27ae60; font-weight: bold; font-size: 11px');
             
-            // 3. الانتقال للصفحة التالية
+            // 3. الانتقال
             this.onOrderSuccess(orderData);
             
         } catch (error) {
             console.error('%c❌ ERROR:', 'color: #c0392b; font-weight: bold', error);
-            alert('حدث خطأ، لكن تم حفظ الطلب محلياً');
             this.submitBtn.disabled = false;
             this.submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيد الطلب';
         }
     }
     
     /**
-     * حفظ بيانات الطلب
+     * حفظ محلياً
      */
-    backupOrderData(orderData) {
+    saveOrderLocally(orderData) {
         try {
+            // آخر طلب
             localStorage.setItem('lastOrderDetails', JSON.stringify(orderData));
+            
+            // سجل كامل
             const ordersLog = JSON.parse(localStorage.getItem('ordersLog') || '[]');
-            ordersLog.push({ ...orderData, backup_timestamp: new Date().toISOString() });
-            localStorage.setItem('ordersLog', JSON.stringify(ordersLog));
-        } catch (error) {
-            console.warn('⚠️ Backup error:', error);
-        }
-    }
-    
-    /**
-     * حفظ على GitHub
-     */
-    async saveToGitHub(orderData) {
-        console.log('%c💸 Saving to GitHub...', 'color: #3498db; font-weight: bold; font-size: 11px');
-        
-        try {
-            // إنشاء JSON
-            const filename = `orders/${orderData.orderId.replace('#', '')}-${Date.now()}.json`;
-            const content = JSON.stringify(orderData, null, 2);
-            const encodedContent = btoa(unescape(encodeURIComponent(content)));
-            
-            // إرسال لGitHub API
-            const response = await fetch(
-                `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${filename}`,
-                {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${this.GITHUB_TOKEN}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: `📅 New Order: ${orderData.orderId}`,
-                        content: encodedContent,
-                        branch: 'main'
-                    })
-                }
-            );
-            
-            if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.message || 'GitHub API error');
-            }
-            
-            console.log('%c  ✅ Order saved:', 'color: #27ae60; font-weight: bold', filename);
-            
-            // تحديث التمام الرئيسية
-            await this.updateOrdersIndex(orderData);
-            
-        } catch (error) {
-            console.error('%c⚠️ GitHub Error:', 'color: #e74c3c; font-weight: bold', error.message);
-            throw error;
-        }
-    }
-    
-    /**
-     * تحديث ملف الطلبات JSON
-     */
-    async updateOrdersIndex(newOrder) {
-        try {
-            const indexFile = 'orders/orders.json';
-            
-            // قراءة الملف الحالي
-            const getResponse = await fetch(
-                `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${indexFile}`,
-                {
-                    headers: {
-                        'Authorization': `token ${this.GITHUB_TOKEN}`
-                    }
-                }
-            );
-            
-            let orders = [];
-            let sha = null;
-            
-            if (getResponse.ok) {
-                const fileData = await getResponse.json();
-                orders = JSON.parse(atob(fileData.content));
-                sha = fileData.sha;
-            }
-            
-            // إضافة الطلب الجديد
-            orders.push({
-                orderId: newOrder.orderId,
-                fullName: newOrder.fullName,
-                phone: newOrder.phone,
-                city: newOrder.city,
-                total: newOrder.total,
-                date: newOrder.date,
-                timestamp: newOrder.timestamp
+            ordersLog.push({ 
+                ...orderData, 
+                backup_timestamp: new Date().toISOString() 
             });
+            localStorage.setItem('ordersLog', JSON.stringify(ordersLog));
             
-            // الحفظ
-            const content = btoa(unescape(encodeURIComponent(JSON.stringify(orders, null, 2))));
-            
-            const updateResponse = await fetch(
-                `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${indexFile}`,
-                {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${this.GITHUB_TOKEN}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: `📄 Update orders index`,
-                        content: content,
-                        sha: sha,
-                        branch: 'main'
-                    })
-                }
-            );
-            
-            if (updateResponse.ok) {
-                console.log('%c  ✅ Index updated', 'color: #27ae60; font-weight: bold');
-            }
-            
+            console.log('%c💾 Total orders in storage:', 'color: #f39c12; font-weight: bold', ordersLog.length);
         } catch (error) {
-            console.warn('⚠️ Index update error:', error.message);
+            console.warn('⚠️ Storage error:', error);
+        }
+    }
+    
+    /**
+     * تحميل JSON تلقائياً
+     */
+    downloadOrderJSON(orderData) {
+        try {
+            const jsonString = JSON.stringify(orderData, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `order-${orderData.orderId.replace('#', '')}.json`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            console.log('%c📄 File downloaded:', 'color: #27ae60; font-weight: bold', link.download);
+        } catch (error) {
+            console.warn('⚠️ Download error:', error);
+        }
+    }
+    
+    /**
+     * عرض جميع الطلبات
+     */
+    static showAllOrders() {
+        try {
+            const orders = JSON.parse(localStorage.getItem('ordersLog') || '[]');
+            console.log('%c📄 ALL ORDERS (localStorage)', 'color: #2a5298; font-size: 12px; font-weight: bold; background: #ecf0f1; padding: 5px');
+            console.table(orders);
+            console.log('%c📊 Total:', 'color: #27ae60; font-weight: bold', orders.length, 'orders');
+            
+            // تحميل الكل
+            const json = JSON.stringify(orders, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'all-orders.json';
+            link.click();
+            URL.revokeObjectURL(url);
+            
+            console.log('%c📄 Exported as: all-orders.json', 'color: #27ae60; font-weight: bold');
+        } catch (error) {
+            console.error('❌ Error:', error);
         }
     }
     
@@ -316,7 +256,8 @@ class CheckoutPage {
         console.log('%c\n🎉 ORDER SUCCESS!', 'color: #27ae60; font-size: 14px; font-weight: bold; background: #ecf0f1; padding: 8px; border-radius: 3px');
         console.log('%c📝 Order #' + orderData.orderId, 'color: #27ae60; font-weight: bold');
         console.log('%c💰 Amount: ' + orderData.total + ' AED', 'color: #27ae60; font-weight: bold');
-        console.log('%c🃁 Saved to GitHub in orders/ directory', 'color: #27ae60; font-weight: bold');
+        console.log('%c💾 Saved locally + JSON downloaded', 'color: #27ae60; font-weight: bold');
+        console.log('%c📄 Tip: CheckoutPage.showAllOrders() in console to export all', 'color: #3498db; font-weight: bold; font-size: 10px');
         
         const finalOrderData = {
             number: orderData.orderId,
@@ -328,7 +269,7 @@ class CheckoutPage {
         try {
             localStorage.setItem('lastOrder', JSON.stringify(finalOrderData));
         } catch (e) {
-            console.warn('⚠️ LocalStorage Error:', e);
+            console.warn('⚠️ Storage Error:', e);
         }
         
         this.cart.clearCart();
