@@ -38,7 +38,6 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
       
       - name: 📁 Create Orders Directory
@@ -102,15 +101,21 @@ jobs:
       
       - name: 🔧 Git Config
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global credential.helper store
       
       - name: 📤 Commit & Push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -n "$(git status --porcelain)" ]; then
             git add orders/
             git commit -m "🎁 New order: ${{ github.event.client_payload.orderId || inputs.orderId }}"
-            git push origin main
+            
+            # Push with explicit authentication
+            git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+            git push origin HEAD:main
             echo "✅ Changes pushed successfully"
           else
             echo "ℹ️ No changes to commit"
