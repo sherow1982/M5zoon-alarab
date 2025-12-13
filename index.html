@@ -92,6 +92,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .logo {
@@ -101,6 +103,7 @@
             text-decoration: none;
             color: var(--dark-blue);
             font-weight: 700;
+            white-space: nowrap;
         }
 
         .logo-icon {
@@ -111,6 +114,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .logo-icon img {
@@ -131,13 +135,15 @@
 
         .main-nav {
             flex: 1;
-            margin: 0 40px;
+            min-width: 300px;
+            margin: 0 30px;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 40px;
+            gap: 30px;
+            justify-content: center;
         }
 
         .nav-link {
@@ -147,6 +153,7 @@
             font-size: 14px;
             transition: color 0.3s;
             position: relative;
+            white-space: nowrap;
         }
 
         .nav-link:hover,
@@ -167,14 +174,15 @@
 
         .header-tools {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .checkout-btn {
             background: linear-gradient(135deg, var(--dark-blue), var(--light-blue));
             color: var(--white);
-            padding: 12px 28px;
+            padding: 12px 20px;
             border-radius: 25px;
             text-decoration: none;
             display: flex;
@@ -186,6 +194,7 @@
             position: relative;
             border: none;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .checkout-btn:hover {
@@ -204,6 +213,7 @@
             justify-content: center;
             font-size: 12px;
             font-weight: 700;
+            min-width: 24px;
         }
 
         /* Hero Section */
@@ -378,6 +388,10 @@
             box-shadow: var(--shadow);
             transition: all 0.3s;
             cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .product-card:hover {
@@ -401,6 +415,7 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s;
+            pointer-events: none;
         }
 
         .product-card:hover .product-image {
@@ -417,10 +432,12 @@
             border-radius: 20px;
             font-weight: 700;
             font-size: 13px;
+            pointer-events: none;
         }
 
         .product-info {
             padding: 20px;
+            pointer-events: none;
         }
 
         .product-title {
@@ -453,6 +470,7 @@
         .product-actions {
             display: flex;
             gap: 10px;
+            pointer-events: auto;
         }
 
         .product-actions button,
@@ -559,6 +577,31 @@
             color: var(--gold);
         }
 
+        .footer-links-nav {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .footer-links-nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 600;
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+            padding-right: 15px;
+        }
+
+        .footer-links-nav a:last-child {
+            border-right: none;
+        }
+
+        .footer-links-nav a:hover {
+            color: var(--gold);
+        }
+
         .footer-bottom {
             border-top: 1px solid rgba(212, 175, 55, 0.3);
             padding-top: 20px;
@@ -578,7 +621,7 @@
             }
 
             .nav-menu {
-                gap: 20px;
+                gap: 15px;
             }
 
             .section-title {
@@ -598,6 +641,22 @@
             .btn-secondary {
                 width: 100%;
             }
+
+            .footer-links-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-links-nav a {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                padding-right: 0;
+                padding-bottom: 10px;
+            }
+
+            .footer-links-nav a:last-child {
+                border-bottom: none;
+            }
         }
 
         @media (max-width: 480px) {
@@ -608,6 +667,8 @@
 
             .main-nav {
                 margin: 0;
+                min-width: unset;
+                width: 100%;
             }
 
             .nav-menu {
@@ -651,9 +712,10 @@
                 
                 <nav class="main-nav">
                     <ul class="nav-menu">
-                        <li><a href="./" class="nav-link active">الرئيسية</a></li>
-                        <li><a href="./products-showcase.html" class="nav-link">المنتجات</a></li>
-                        <li><a href="./en/" class="nav-link english-link"><i class="fas fa-globe"></i> English</a></li>
+                        <li><a href="./" class="nav-link active">🏪 الرئيسية</a></li>
+                        <li><a href="./products-showcase.html" class="nav-link">📐 المنتجات</a></li>
+                        <li><a href="./checkout.html" class="nav-link">🛒 السلة</a></li>
+                        <li><a href="./en/" class="nav-link"><i class="fas fa-globe"></i> English</a></li>
                     </ul>
                 </nav>
                 
@@ -709,6 +771,14 @@
 
     <footer class="footer">
         <div class="footer-container">
+            <div class="footer-links-nav">
+                <a href="./">🏪 الرئيسية</a>
+                <a href="./products-showcase.html">📐 المنتجات</a>
+                <a href="./checkout.html">🛒 السلة</a>
+                <a href="./sync-orders.html">📈 طلبياتي</a>
+                <a href="./en/">🌐 English</a>
+            </div>
+
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>🏪 هدايا الإمارات</h3>
@@ -781,7 +851,7 @@
                         const discountPercent = hasDiscount ? Math.round(((originalPrice - finalPrice) / originalPrice) * 100) : 0;
                         
                         return `
-                            <div class="product-card" onclick="goToCheckout(${product.id})">
+                            <div class="product-card" data-product-id="${product.id}">
                                 <div class="product-image-container">
                                     <img src="${product.image_link || 'https://via.placeholder.com/300x250/D4AF37/FFFFFF?text=Product'}" alt="${product.title}" class="product-image">
                                     ${hasDiscount ? `<div class="discount-badge">خصم ${discountPercent}%</div>` : ''}
@@ -793,11 +863,11 @@
                                         ${hasDiscount ? `<span class="original-price">${originalPrice.toFixed(2)}</span>` : ''}
                                     </div>
                                     <div class="product-actions">
-                                        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(${product.id}, '${product.title}')">
+                                        <button class="btn-cart" data-action="addcart" data-id="${product.id}" data-title="${product.title}">
                                             <i class="fas fa-cart-plus"></i>
                                             اطلب
                                         </button>
-                                        <a href="https://wa.me/201110760081" class="btn-whatsapp" onclick="event.stopPropagation()">
+                                        <a href="https://wa.me/201110760081" class="btn-whatsapp" target="_blank" rel="noopener">
                                             <i class="fab fa-whatsapp"></i>
                                         </a>
                                     </div>
@@ -805,6 +875,24 @@
                             </div>
                         `;
                     }).join('');
+
+                    document.querySelectorAll('.product-card').forEach(card => {
+                        card.addEventListener('click', function(e) {
+                            if (!e.target.closest('.product-actions')) {
+                                const productId = this.getAttribute('data-product-id');
+                                goToCheckout(productId);
+                            }
+                        });
+
+                        card.querySelectorAll('[data-action="addcart"]').forEach(btn => {
+                            btn.addEventListener('click', function(e) {
+                                e.stopPropagation();
+                                const id = this.getAttribute('data-id');
+                                const title = this.getAttribute('data-title');
+                                addToCart(id, title);
+                            });
+                        });
+                    });
                 } catch (error) {
                     console.error('Products loading error:', error);
                     const grid = document.getElementById('perfumes-grid');
