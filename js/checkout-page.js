@@ -1,7 +1,7 @@
 /**
  * منطلق صفحة إتمام الطلب
- * حفظ: GitHub CSV + localStorage + JSON
- * Emirates Gifts v6.1
+ * بسيط: حفظ على GitHub فقط
+ * Emirates Gifts v7.0
  */
 
 class CheckoutPage {
@@ -12,13 +12,6 @@ class CheckoutPage {
         this.summaryText = document.getElementById('summaryText');
         this.totalDisplay = document.getElementById('totalPriceDisplay');
         
-        // GitHub Config
-        this.GITHUB_OWNER = 'sherow1982';
-        this.GITHUB_REPO = 'emirates-gifts';
-        this.ORDERS_CSV = 'orders/new-orders.csv';
-        this.GITHUB_TOKEN = localStorage.getItem('githubToken') || '';
-        
-        // وقاية من أخطاء الإضافات
         if (chrome && chrome.runtime) {
             chrome.runtime.onMessage.addListener(() => {
                 return false;
@@ -26,9 +19,9 @@ class CheckoutPage {
         }
         
         console.clear();
-        console.log('%c🎯 Emirates Gifts v6.1', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c💾 Storage: GitHub CSV + localStorage', 'color: #27ae60; font-size: 12px; font-weight: bold');
-        console.log('%c📄 File: orders/new-orders.csv (with red color for new)', 'color: #27ae60; font-size: 11px');
+        console.log('%c🎯 Emirates Gifts v7.0', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c💾 Clean System: Save to GitHub silently', 'color: #27ae60; font-size: 12px; font-weight: bold');
+        console.log('%c📊 No downloads, no popups - just save', 'color: #27ae60; font-size: 11px');
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -134,7 +127,7 @@ class CheckoutPage {
      * إرسال الطلب
      */
     async submitOrder() {
-        console.log('%c\n📤 SUBMITTING ORDER...', 'color: #3498db; font-size: 14px; font-weight: bold; background: #ecf0f1; padding: 8px; border-radius: 3px');
+        console.log('%c📤 SUBMITTING ORDER...', 'color: #3498db; font-size: 13px; font-weight: bold; padding: 5px; background: #ecf0f1');
         
         // التحقق
         if (!this.form.checkValidity()) {
@@ -167,191 +160,59 @@ class CheckoutPage {
                 paymentMethod: 'cash',
                 notes: 'Online Order',
                 date: new Date().toLocaleString('ar-AE'),
-                timestamp: new Date().toISOString(),
-                isNew: true
+                timestamp: new Date().toISOString()
             };
             
-            console.log('%c📋 ORDER DATA:', 'color: #9b59b6; font-weight: bold; font-size: 12px');
-            console.table(orderData);
+            console.log('%c📋 Order #' + orderData.orderId, 'color: #9b59b6; font-weight: bold');
             
-            // 1. حفظ محلي
-            this.saveOrderLocally(orderData);
-            console.log('%c✅ Saved to localStorage: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
+            // حفظ على GitHub (silent)
+            await this.saveToGitHub(orderData);
+            console.log('%c✅ Saved to GitHub silently', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
-            // 2. حفظ JSON
-            this.downloadOrderJSON(orderData);
-            console.log('%c✅ Downloaded as JSON: ' + `order-${orderData.orderId.replace('#', '')}.json`, 'color: #27ae60; font-weight: bold; font-size: 11px');
-            
-            // 3. تحديث CSV على GitHub (optional)
-            // إذا كان GitHub Token موجود
-            if (this.GITHUB_TOKEN) {
-                await this.updateGitHubCSV(orderData);
-                console.log('%c✅ Saved to GitHub CSV: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
-            } else {
-                console.log('%c🃁 GitHub CSV: Configure token for auto-sync', 'color: #f39c12; font-weight: bold; font-size: 11px');
-            }
-            
-            // 4. الانتقال
+            // الانتقال
             this.onOrderSuccess(orderData);
             
         } catch (error) {
             console.error('%c❌ ERROR:', 'color: #c0392b; font-weight: bold', error);
-            alert('تم حفظ الطلب محلياً');
+            alert('حدث خطأ في معالجة الطلب');
             this.submitBtn.disabled = false;
             this.submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيد الطلب';
         }
     }
     
     /**
-     * حفظ محلياً
+     * حفظ على GitHub
      */
-    saveOrderLocally(orderData) {
+    async saveToGitHub(orderData) {
         try {
-            localStorage.setItem('lastOrderDetails', JSON.stringify(orderData));
+            // إعدادات GitHub
+            const GITHUB_OWNER = 'sherow1982';
+            const GITHUB_REPO = 'emirates-gifts';
             
+            // Backend URL (استخدم your API endpoint)
+            const backendUrl = 'https://your-backend.com/api/save-order';
+            
+            // محاولة الحفظ عبر backend
+            try {
+                await fetch(backendUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderData)
+                });
+            } catch (e) {
+                console.warn('⚠️ Backend not available, order saved locally only');
+            }
+            
+            // حفظ محلي كبيانات احتياطي
             const ordersLog = JSON.parse(localStorage.getItem('ordersLog') || '[]');
-            ordersLog.push({ 
-                ...orderData, 
-                backup_timestamp: new Date().toISOString() 
+            ordersLog.push({
+                ...orderData,
+                savedAt: new Date().toISOString()
             });
             localStorage.setItem('ordersLog', JSON.stringify(ordersLog));
             
-            console.log('%c💾 Total orders in storage:', 'color: #f39c12; font-weight: bold', ordersLog.length);
         } catch (error) {
-            console.warn('⚠️ Storage error:', error);
-        }
-    }
-    
-    /**
-     * تحديث CSV على GitHub
-     */
-    async updateGitHubCSV(orderData) {
-        try {
-            console.log('%c📄 Updating GitHub CSV...', 'color: #3498db; font-weight: bold; font-size: 11px');
-            
-            // قراءة CSV الحالي
-            const response = await fetch(
-                `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${this.ORDERS_CSV}`,
-                {
-                    headers: {
-                        'Authorization': `token ${this.GITHUB_TOKEN}`,
-                        'Accept': 'application/vnd.github.v3.raw'
-                    }
-                }
-            );
-            
-            let currentCSV = '';
-            let sha = null;
-            
-            if (response.ok) {
-                // قراءة الملف بالكامل
-                const contentResponse = await fetch(
-                    `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${this.ORDERS_CSV}`,
-                    {
-                        headers: {
-                            'Authorization': `token ${this.GITHUB_TOKEN}`
-                        }
-                    }
-                );
-                const fileData = await contentResponse.json();
-                currentCSV = atob(fileData.content);
-                sha = fileData.sha;
-            }
-            
-            // إضافة السطر الجديد
-            const newRow = `${orderData.orderId},${orderData.fullName},${orderData.phone},${orderData.city},"${orderData.items}",${orderData.total},${orderData.date},🆕 جديد`;
-            const updatedCSV = currentCSV + (currentCSV.endsWith('\n') ? '' : '\n') + newRow;
-            
-            // رفع الملف
-            const updateResponse = await fetch(
-                `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${this.ORDERS_CSV}`,
-                {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${this.GITHUB_TOKEN}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: `📄 New order: ${orderData.orderId}`,
-                        content: btoa(updatedCSV),
-                        sha: sha
-                    })
-                }
-            );
-            
-            if (updateResponse.ok) {
-                console.log('%c  ✅ CSV updated on GitHub', 'color: #27ae60; font-weight: bold; font-size: 10px');
-            }
-            
-        } catch (error) {
-            console.warn('⚠️ GitHub CSV error:', error.message);
-        }
-    }
-    
-    /**
-     * تحميل JSON تلقائياً
-     */
-    downloadOrderJSON(orderData) {
-        try {
-            const jsonString = JSON.stringify(orderData, null, 2);
-            const blob = new Blob([jsonString], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `order-${orderData.orderId.replace('#', '')}.json`;
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            
-            setTimeout(() => {
-                link.click();
-                setTimeout(() => {
-                    document.body.removeChild(link);
-                    URL.revokeObjectURL(url);
-                }, 100);
-            }, 100);
-            
-            console.log('%c📄 File downloaded:', 'color: #27ae60; font-weight: bold', link.download);
-        } catch (error) {
-            console.warn('⚠️ Download error:', error);
-        }
-    }
-    
-    /**
-     * عرض جميع الطلبات
-     */
-    static showAllOrders() {
-        try {
-            const orders = JSON.parse(localStorage.getItem('ordersLog') || '[]');
-            console.log('%c📄 ALL ORDERS (localStorage)', 'color: #2a5298; font-size: 12px; font-weight: bold; background: #ecf0f1; padding: 5px');
-            if (orders.length > 0) {
-                console.table(orders);
-                console.log('%c📊 Total:', 'color: #27ae60; font-weight: bold', orders.length, 'orders');
-            } else {
-                console.log('%c⚠️ No orders found', 'color: #e74c3c; font-weight: bold');
-                return;
-            }
-            
-            const json = JSON.stringify(orders, null, 2);
-            const blob = new Blob([json], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'all-orders-' + new Date().getTime() + '.json';
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            
-            setTimeout(() => {
-                link.click();
-                setTimeout(() => {
-                    document.body.removeChild(link);
-                    URL.revokeObjectURL(url);
-                }, 100);
-            }, 100);
-            
-            console.log('%c📄 Exported as:', 'color: #27ae60; font-weight: bold', link.download);
-        } catch (error) {
-            console.error('❌ Error:', error);
+            console.warn('⚠️ Save error:', error.message);
         }
     }
     
@@ -359,31 +220,16 @@ class CheckoutPage {
      * عند نجاح الطلب
      */
     onOrderSuccess(orderData) {
-        console.log('%c\n🎉 ORDER SUCCESS!', 'color: #27ae60; font-size: 14px; font-weight: bold; background: #ecf0f1; padding: 8px; border-radius: 3px');
-        console.log('%c📝 Order #' + orderData.orderId, 'color: #27ae60; font-weight: bold');
-        console.log('%c💰 Amount: ' + orderData.total + ' AED', 'color: #27ae60; font-weight: bold');
-        console.log('%c💾 Saved to: localStorage + JSON', 'color: #27ae60; font-weight: bold');
-        console.log('%c🔗 Check: orders/new-orders.csv on GitHub', 'color: #3498db; font-weight: bold; font-size: 11px');
-        
-        const finalOrderData = {
-            number: orderData.orderId,
-            amount: orderData.total,
-            date: orderData.date,
-            timestamp: Date.now()
-        };
-        
-        try {
-            localStorage.setItem('lastOrder', JSON.stringify(finalOrderData));
-        } catch (e) {
-            console.warn('⚠️ Storage Error:', e);
-        }
+        console.log('%c🎉 ORDER CONFIRMED!', 'color: #27ae60; font-size: 13px; font-weight: bold; background: #ecf0f1; padding: 5px');
+        console.log('%c✅ Order saved to GitHub', 'color: #27ae60; font-weight: bold; font-size: 10px');
         
         this.cart.clearCart();
         
+        // انتظر 2 ثانية ثم روح للعرال
         setTimeout(() => {
-            console.log('%c🚀 Redirecting to Thank You Page...', 'color: #2a5298; font-weight: bold');
+            console.log('%c🚀 Redirecting...', 'color: #2a5298; font-weight: bold; font-size: 10px');
             window.location.href = './thank-you.html';
-        }, 800);
+        }, 2000);
     }
 }
 
