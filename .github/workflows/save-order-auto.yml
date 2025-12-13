@@ -1,0 +1,54 @@
+name: 🎁 Auto-Save Order (Webhook)
+
+on:
+  repository_dispatch:
+    types: [save_order]
+
+jobs:
+  save_order:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 📝 Create Order JSON
+        run: |
+          mkdir -p orders
+          TIMESTAMP=$(date +%s000)
+          ORDER_ID="${{ github.event.client_payload.orderId }}"
+          
+          cat > "orders/${ORDER_ID#\#}-${TIMESTAMP}.json" << 'EOF'
+          {
+            "orderId": "${{ github.event.client_payload.orderId }}",
+            "fullName": "${{ github.event.client_payload.fullName }}",
+            "phone": "${{ github.event.client_payload.phone }}",
+            "city": "${{ github.event.client_payload.city }}",
+            "items": "${{ github.event.client_payload.items }}",
+            "total": "${{ github.event.client_payload.total }}",
+            "date": "${{ github.event.client_payload.date }}",
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+      
+      - name: 📊 Update CSV
+        run: |
+          CSV_FILE="orders/new-orders.csv"
+          
+          if [ ! -f "$CSV_FILE" ]; then
+            echo "رقم الطلب,الاسم,الهاتف,المدينة,المنتجات,الإجمالي,التاريخ" > "$CSV_FILE"
+          fi
+          
+          echo "${{ github.event.client_payload.orderId }},${{ github.event.client_payload.fullName }},${{ github.event.client_payload.phone }},${{ github.event.client_payload.city }},\"${{ github.event.client_payload.items }}\",${{ github.event.client_payload.total }},${{ github.event.client_payload.date }}" >> "$CSV_FILE"
+      
+      - name: 🔄 Commit & Push
+        run: |
+          git config user.name "bot-emirates"
+          git config user.email "orders@emirates-gifts.local"
+          git add orders/
+          git commit -m "🎁 New order: ${{ github.event.client_payload.orderId }}" || true
+          git push
+      
+      - name: ✅ Success
+        run: echo "✅ Order saved! ${{ github.event.client_payload.orderId }}"
