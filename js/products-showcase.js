@@ -1,4 +1,4 @@
-// 🚫 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.4 - DIRECT CHECKOUT
+// 🛒 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.5 - FIXED PRICING
 
 (function() {
     'use strict';
@@ -8,7 +8,7 @@
     const warn = isDev ? console.warn.bind(console) : () => {};
     const error = console.error.bind(console);
     
-    log('🚫 EMIRATES PRODUCTS SHOWCASE v2.4 - DIRECT CHECKOUT');
+    log('🛒 EMIRATES PRODUCTS SHOWCASE v2.5 - FIXED PRICING');
     
     // Strict popup blocking
     window.alert = function() { log('🚫 Alert blocked'); return undefined; };
@@ -30,10 +30,10 @@
     
     let currentProducts = [];
     let filteredProducts = [];
-    let displayedCount = 12; // Initially show 12 products
+    let displayedCount = 12;
     let loadingAttempts = 0;
     const maxAttempts = 3;
-    const itemsPerLoad = 12; // Load 12 items at a time
+    const itemsPerLoad = 12;
     
     // Enhanced image error handler (ZERO INLINE)
     function setupSecureImageHandler(imgElement) {
@@ -225,7 +225,7 @@
             
             currentProducts = normalizedProducts;
             filteredProducts = normalizedProducts;
-            displayedCount = itemsPerLoad; // Reset to initial load
+            displayedCount = itemsPerLoad;
             
             displayProductsSecurely(normalizedProducts.slice(0, displayedCount));
             updateFilterCountsSecurely();
@@ -482,6 +482,7 @@
     
     /**
      * ✅ NEW: Add to cart AND redirect to checkout
+     * FIXED: Use sale_price with proper fallback
      */
     function addToCartAndCheckout(productId) {
         const product = currentProducts.find(p => p && String(p.id) === String(productId));
@@ -508,19 +509,24 @@
                 item && String(item.id) === String(productId)
             );
             
+            // ✅ FIXED PRICING: Use sale_price, fallback to price
+            const displayPrice = parseFloat(product.sale_price || product.price || 0);
+            const actualPrice = parseFloat(product.price || 0);
+            
             if (existingIndex !== -1) {
                 cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
             } else {
                 cart.push({
                     id: productId,
-                    title: product.title || product.title_ar,
-                    price: parseFloat(product.sale_price || product.price || 0),
-                    sale_price: parseFloat(product.sale_price || 0),
-                    image: product.image_link,
-                    url: product.image_link,
+                    title: (product.title || product.title_ar || 'منتج').substring(0, 100),
+                    price: actualPrice,
+                    sale_price: displayPrice,
+                    image_link: product.image_link || '',
+                    image: product.image_link || '',
+                    url: product.image_link || '',
                     quantity: 1,
-                    type: product.category_type,
-                    category: product.category
+                    type: product.category_type || 'unknown',
+                    category: product.category || 'unknown'
                 });
             }
             
@@ -528,7 +534,7 @@
             localStorage.setItem('emirates_cart_data', JSON.stringify(cart));
             updateCartBadgeSecurely();
             
-            log(`✅ Added to cart: ${product.title}`);
+            log(`✅ Added to cart: ${product.title} (Price: ${displayPrice})`);
             showSecureNotification(`✅ تم إضافة "${product.title}" والانتقال للطلب...`);
             
             // 🚀 Redirect to checkout after 1 second
@@ -671,7 +677,7 @@
                     }
                     
                     filteredProducts = tempFiltered;
-                    displayedCount = itemsPerLoad; // Reset displayed count
+                    displayedCount = itemsPerLoad;
                     
                     // Clear grid and display filtered products
                     const grid = document.getElementById('allProductsGrid');
@@ -794,7 +800,7 @@
      * Enhanced initialization
      */
     function initializeProductsShowcaseSecurely() {
-        log('🚫 Zero Inline Code Products Showcase Init v2.4 - DIRECT CHECKOUT...');
+        log('🛒 Zero Inline Code Products Showcase Init v2.5 - FIXED PRICING...');
         
         try {
             updateCartBadgeSecurely();
@@ -811,7 +817,7 @@
                 }, 16);
             }, { passive: true });
             
-            log('✅ Products Showcase v2.4 initialized with Direct Checkout');
+            log('✅ Products Showcase v2.5 initialized with Fixed Pricing');
             
         } catch (initError) {
             error('❌ Initialization error:', initError);
@@ -840,7 +846,7 @@
     // Secure global exports
     if (typeof window !== 'undefined') {
         window.EmiratesShowcaseSecure = Object.freeze({
-            version: '2.4.0-direct-checkout',
+            version: '2.5.0-fixed-pricing',
             navigateToProduct: navigateToProductDetailsSecurely,
             addToCart: addToCartAndCheckout,
             updateCartBadge: updateCartBadgeSecurely,
@@ -850,6 +856,6 @@
         });
     }
     
-    log('✅ Emirates Products Showcase v2.4 - WITH DIRECT CHECKOUT');
+    log('✅ Emirates Products Showcase v2.5 - WITH FIXED PRICING');
     
 })();
