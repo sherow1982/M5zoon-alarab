@@ -4,13 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ماناجر الطلبيات - زم localStorage</title>
+    <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Arial', sans-serif;
-            background: #f5f5f5;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+        
+        /* شاشة دخول كلمة المرور */
+        .password-screen {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .password-screen h1 {
+            color: #1e3c72;
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .password-screen p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        
+        .password-input-group {
+            margin-bottom: 20px;
+        }
+        
+        .password-input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Arial', sans-serif;
+            transition: all 0.3s;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        
+        .password-input-group input:focus {
+            outline: none;
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 60, 114, 0.3);
+        }
+        
+        .login-btn:active {
+            transform: translateY(0);
+        }
+        
+        .error-msg {
+            color: #f44336;
+            font-size: 13px;
+            margin-top: 10px;
+            display: none;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        /* شاشة إدارة الطلبيات */
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -18,12 +115,19 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: none;
         }
+        
+        .container.show {
+            display: block;
+        }
+        
         h1 {
             color: #333;
             margin-bottom: 20px;
             text-align: center;
         }
+        
         .info-box {
             background: #e3f2fd;
             border-left: 4px solid #2196F3;
@@ -31,9 +135,11 @@
             margin-bottom: 20px;
             border-radius: 4px;
         }
+        
         .info-box strong {
             color: #1976D2;
         }
+        
         .btn {
             display: inline-block;
             padding: 10px 16px;
@@ -45,6 +151,7 @@
             transition: all 0.3s;
             font-weight: bold;
         }
+        
         .btn-primary {
             background: #2196F3;
             color: white;
@@ -52,31 +159,50 @@
             margin: 10px 0;
             display: block;
         }
+        
         .btn-primary:hover {
             background: #1976D2;
         }
+        
         .btn-danger {
             background: #f44336;
             color: white;
         }
+        
         .btn-danger:hover {
             background: #d32f2f;
         }
+        
         .btn-success {
             background: #4CAF50;
             color: white;
         }
+        
         .btn-success:hover {
             background: #45a049;
         }
+        
         .btn-small {
             padding: 6px 12px;
             font-size: 12px;
             margin: 3px;
         }
+        
+        .btn-logout {
+            background: #ff9800;
+            color: white;
+            float: left;
+            margin-bottom: 20px;
+        }
+        
+        .btn-logout:hover {
+            background: #e68900;
+        }
+        
         .orders-list {
             margin-top: 30px;
         }
+        
         .order-item {
             background: #f9f9f9;
             border: 2px solid #ddd;
@@ -85,10 +211,12 @@
             border-radius: 8px;
             transition: all 0.3s;
         }
+        
         .order-item:hover {
             border-color: #2196F3;
             box-shadow: 0 3px 10px rgba(33, 150, 243, 0.2);
         }
+        
         .order-header {
             display: flex;
             justify-content: space-between;
@@ -97,15 +225,18 @@
             border-bottom: 2px solid #e0e0e0;
             padding-bottom: 10px;
         }
+        
         .order-id {
             font-weight: bold;
             color: #2196F3;
             font-size: 16px;
         }
+        
         .order-actions {
             display: flex;
             gap: 8px;
         }
+        
         .order-section {
             margin-bottom: 15px;
             padding: 12px;
@@ -113,6 +244,7 @@
             border-radius: 6px;
             border-left: 3px solid #2196F3;
         }
+        
         .section-title {
             font-weight: bold;
             color: #333;
@@ -120,16 +252,19 @@
             font-size: 14px;
             text-transform: uppercase;
         }
+        
         .order-details {
             font-size: 13px;
             color: #666;
             line-height: 1.8;
         }
+        
         .order-details strong {
             color: #333;
             display: inline-block;
             width: 120px;
         }
+        
         .product-item {
             background: #f5f5f5;
             padding: 10px;
@@ -137,14 +272,16 @@
             border-radius: 4px;
             border-right: 3px solid #4CAF50;
         }
+        
         .product-link {
             color: #2196F3;
             text-decoration: none;
-            cursor: pointer;
         }
+        
         .product-link:hover {
             text-decoration: underline;
         }
+        
         .status {
             margin-top: 20px;
             padding: 15px;
@@ -152,18 +289,22 @@
             text-align: center;
             font-weight: bold;
         }
+        
         .status.success {
             background: #4CAF50;
             color: white;
         }
+        
         .status.error {
             background: #f44336;
             color: white;
         }
+        
         .status.info {
             background: #2196F3;
             color: white;
         }
+        
         textarea {
             width: 100%;
             height: 200px;
@@ -174,23 +315,27 @@
             border-radius: 6px;
             margin: 10px 0;
         }
+        
         .buttons-group {
             display: flex;
             gap: 10px;
             margin: 15px 0;
             flex-wrap: wrap;
         }
+        
         .buttons-group .btn-primary {
             width: auto;
             margin: 0;
             flex: 1;
             min-width: 150px;
         }
+        
         .price {
             color: #d32f2f;
             font-weight: bold;
             font-size: 15px;
         }
+        
         .quantity {
             background: #fff3e0;
             padding: 4px 8px;
@@ -198,6 +343,7 @@
             color: #e65100;
             font-weight: bold;
         }
+        
         .summary-card {
             background: #e8f5e9;
             border: 2px solid #4CAF50;
@@ -205,15 +351,40 @@
             border-radius: 8px;
             margin-bottom: 20px;
         }
+        
         .summary-text {
             font-size: 16px;
             color: #2e7d32;
             font-weight: bold;
         }
+        
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .order-header { flex-direction: column; align-items: flex-start; }
+            .order-actions { margin-top: 10px; }
+            .password-screen { padding: 30px 20px; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- شاشة دخول كلمة المرور -->
+    <div class="password-screen" id="passwordScreen">
+        <h1>🔏 إدارة الطلبيات</h1>
+        <p>الرجاء إدخال كلمة المرور</p>
+        
+        <div class="password-input-group">
+            <input type="password" id="passwordInput" placeholder="كلمة المرور" onkeypress="handlePasswordKeyPress(event)">
+            <div class="error-msg" id="errorMsg">❌ كلمة مرور غير صحيحة</div>
+        </div>
+        
+        <button class="login-btn" onclick="checkPassword()">دخول</button>
+    </div>
+    
+    <!-- محتوى إدارة الطلبيات -->
+    <div class="container" id="mainContent">
+        <button class="btn btn-logout" onclick="logout()">🚀 تسجيل خروج</button>
+        <div style="clear: both;"></div>
+        
         <h1>📦 ماناجر الطلبيات</h1>
         
         <div class="info-box">
@@ -244,6 +415,46 @@
     </div>
     
     <script>
+        // الكلمة السرية
+        const SECRET_PASSWORD = '123321';
+        
+        // التحقق من كلمة المرور
+        function checkPassword() {
+            const passwordInput = document.getElementById('passwordInput');
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if (passwordInput.value === SECRET_PASSWORD) {
+                // كلمة مرور صحيحة
+                sessionStorage.setItem('authenticated', 'true');
+                document.getElementById('passwordScreen').style.display = 'none';
+                document.getElementById('mainContent').classList.add('show');
+                errorMsg.style.display = 'none';
+                displayOrders();
+            } else {
+                // كلمة مرور غير صحيحة
+                errorMsg.style.display = 'block';
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        }
+        
+        // معالجة الضغط على Enter
+        function handlePasswordKeyPress(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        }
+        
+        // تسجيل خروج
+        function logout() {
+            sessionStorage.removeItem('authenticated');
+            document.getElementById('passwordScreen').style.display = 'block';
+            document.getElementById('mainContent').classList.remove('show');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordInput').focus();
+        }
+        
+        // عرض الطلبيات
         function displayOrders() {
             const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
             const container = document.getElementById('ordersContainer');
@@ -330,6 +541,7 @@
             status.innerHTML = '';
         }
         
+        // حذف طلبية
         function deleteOrder(index) {
             if (confirm('هل تريد حذف هذه الطلبية؟')) {
                 const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
@@ -344,6 +556,7 @@
             }
         }
         
+        // نسخ طلبية
         function copyOrderJSON(index) {
             const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
             const orderJSON = JSON.stringify(orders[index]);
@@ -362,6 +575,7 @@
             }, 2000);
         }
         
+        // نسخ البيانات
         function copyToClipboard() {
             const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
             const jsonlText = orders.map(order => JSON.stringify(order)).join('\n');
@@ -379,6 +593,7 @@
             }, 3000);
         }
         
+        // حذف الجميع
         function clearOrders() {
             if (confirm('⚠️ هل أنت متأكد؟ سيتم حذف جميع الطلبيات ولا يمكن التراجع!')) {
                 localStorage.removeItem('emirates_orders');
@@ -389,8 +604,16 @@
             }
         }
         
-        // Display orders on page load
-        window.addEventListener('load', displayOrders);
+        // التحقق من التوثيق عند التحميل
+        window.addEventListener('load', () => {
+            if (sessionStorage.getItem('authenticated') === 'true') {
+                document.getElementById('passwordScreen').style.display = 'none';
+                document.getElementById('mainContent').classList.add('show');
+                displayOrders();
+            } else {
+                document.getElementById('passwordInput').focus();
+            }
+        });
     </script>
 </body>
 </html>
