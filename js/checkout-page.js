@@ -1,7 +1,7 @@
 /**
  * منطلق صفحة إتمام الطلب
- * حفظ الطلبات على GitHub تلقائياً
- * Emirates Gifts v8.1 - Production Ready
+ * حفظ مباشر على GitHub عبر API
+ * Emirates Gifts v9.0 - GitHub Native
  */
 
 class CheckoutPage {
@@ -12,16 +12,19 @@ class CheckoutPage {
         this.summaryText = document.getElementById('summaryText');
         this.totalDisplay = document.getElementById('totalPriceDisplay');
         
-        // API URL
-        this.API_URL = '/api/save-order';
+        // GitHub Config
+        this.GITHUB_OWNER = 'sherow1982';
+        this.GITHUB_REPO = 'emirates-gifts';
+        this.GITHUB_TOKEN = localStorage.getItem('github_token');
         
         if (chrome && chrome.runtime) {
             chrome.runtime.onMessage.addListener(() => false);
         }
         
         console.clear();
-        console.log('%c🏪 Emirates Gifts v8.1', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c✅ Orders auto-saving to GitHub', 'color: #27ae60; font-size: 12px; font-weight: bold');
+        console.log('%c🤖 Emirates Gifts v9.0', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c💾 Direct GitHub API Integration', 'color: #27ae60; font-size: 12px; font-weight: bold');
+        console.log('%c⚠️ Token: ' + (this.GITHUB_TOKEN ? '✅ Loaded' : '❌ Not found'), 'color: ' + (this.GITHUB_TOKEN ? '#27ae60' : '#e74c3c'));
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -42,8 +45,6 @@ class CheckoutPage {
         const items = this.cart.getCart();
         const total = this.cart.getTotal();
         
-        console.log('%c📦 Cart Data', 'color: #27ae60; font-weight: bold', { items: items.length, total });
-        
         if (items.length === 0) {
             this.showEmptyCart();
             return;
@@ -59,7 +60,6 @@ class CheckoutPage {
     }
     
     showEmptyCart() {
-        console.warn('⚠️ Empty Cart');
         this.summaryText.innerHTML = '<span style="color: #e74c3c;">السلة فارغة!</span>';
         this.submitBtn.disabled = true;
         this.submitBtn.textContent = 'لا توجد منتجات';
@@ -118,6 +118,17 @@ class CheckoutPage {
             return;
         }
         
+        if (!this.GITHUB_TOKEN) {
+            alert('يرجى إدخال GitHub Token');
+            const token = prompt('ادخل GitHub Token الخاص بك:');
+            if (token) {
+                localStorage.setItem('github_token', token);
+                this.GITHUB_TOKEN = token;
+            } else {
+                return;
+            }
+        }
+        
         this.submitBtn.disabled = true;
         this.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري...';
         
@@ -136,33 +147,104 @@ class CheckoutPage {
             
             console.log('%c📝 Order #' + orderData.orderId, 'color: #9b59b6; font-weight: bold');
             
-            const response = await fetch(this.API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ order: orderData })
-            });
+            // Save JSON
+            await this.saveOrderJSON(orderData);
+            console.log('%c✅ JSON saved to GitHub', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
-            const result = await response.json();
+            // Update CSV
+            await this.updateOrdersCSV(orderData);
+            console.log('%c✅ CSV updated', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
-            if (response.ok && result.success) {
-                console.log('%c✅ Order saved to GitHub!', 'color: #27ae60; font-weight: bold');
-                console.log('%c📁 File: orders/' + orderData.orderId.replace('#', ''), 'color: #27ae60; font-weight: bold; font-size: 10px');
-                this.onOrderSuccess(orderData);
-            } else {
-                throw new Error(result.error || 'Unknown error');
-            }
+            this.onOrderSuccess(orderData);
             
         } catch (error) {
             console.error('%c❌ ERROR:', 'color: #c0392b; font-weight: bold', error.message);
-            alert('تم استقبال طلبك بنجاح');
+            alert('خطأ: ' + error.message);
             this.submitBtn.disabled = false;
             this.submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيد الطلب';
         }
     }
     
+    async saveOrderJSON(orderData) {
+        const filename = `orders/${orderData.orderId.replace('#', '')}-${Date.now()}.json`;
+        const content = JSON.stringify(orderData, null, 2);
+        const encodedContent = btoa(unescape(encodeURIComponent(content)));
+        
+        const response = await fetch(
+            `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${filename}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${this.GITHUB_TOKEN}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: `📄 New order: ${orderData.orderId}`,
+                    content: encodedContent
+                })
+            }
+        );
+        
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(`JSON save failed: ${error.message}`);
+        }
+    }
+    
+    async updateOrdersCSV(orderData) {
+        const csvFile = 'orders/new-orders.csv';
+        const csvRow = `${orderData.orderId},${orderData.fullName},${orderData.phone},${orderData.city},"${orderData.items}",${orderData.total},${orderData.date}`;
+        
+        let sha = null;
+        let csvContent = '';
+        
+        try {
+            const getRes = await fetch(
+                `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${csvFile}`,
+                { 
+                    headers: { 
+                        'Authorization': `token ${this.GITHUB_TOKEN}`
+                    } 
+                }
+            );
+            
+            if (getRes.ok) {
+                const fileData = await getRes.json();
+                sha = fileData.sha;
+                csvContent = decodeURIComponent(atob(fileData.content));
+            }
+        } catch (e) {
+            console.log('📝 CSV file not found, will create new');
+        }
+        
+        const newCSV = csvContent + (csvContent ? '\n' : '') + csvRow;
+        const encodedContent = btoa(unescape(encodeURIComponent(newCSV)));
+        
+        const response = await fetch(
+            `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${csvFile}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${this.GITHUB_TOKEN}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: `📋 Add order: ${orderData.orderId}`,
+                    content: encodedContent,
+                    sha: sha
+                })
+            }
+        );
+        
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(`CSV update failed: ${error.message}`);
+        }
+    }
+    
     onOrderSuccess(orderData) {
         console.log('%c\n🎉 ORDER CONFIRMED!', 'color: #27ae60; font-size: 13px; font-weight: bold; background: #ecf0f1; padding: 5px');
-        console.log('%c✅ تم حفظ الطلب بنجاح', 'color: #27ae60; font-weight: bold');
+        console.log('%c✅ تم حفظ الطلب على GitHub', 'color: #27ae60; font-weight: bold');
         console.log('%b🔗 https://github.com/sherow1982/emirates-gifts/tree/main/orders', 'color: #3498db; font-weight: bold; font-size: 10px');
         
         this.cart.clearCart();
