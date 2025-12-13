@@ -1,8 +1,30 @@
 /**
  * Logic for the product details page.
  * Fetches product data from complete products.json (263 products)
- * Also injects SEO metadata and JSON-LD schema.
+ * Also injects SEO metadata and JSON-LD schema with UAE keywords.
  */
+
+// 📋 UAE Keyword Description Generator
+function generateUAEKeywordDescription(productName, category) {
+    const uaeLocations = ['دبي', 'أبوظبي', 'الشارقة', 'عجمان', 'الفجيرة', 'رأس الخيمة', 'أم القيوين'];
+    const qualityKeywords = ['عالي الجودة', 'أصلي 100%', 'فاخر', 'متميز', 'متخصص'];
+    
+    let description = `${productName} - منتج متميز من متجر هدايا الإمارات.\n\n`;
+    description += `متجر هدايا الإمارات يقدم المه ${productName} بأفضل جودة لجميع عملائنا في الإمارات.\n\n`;
+    
+    if (category === 'Perfumes') {
+        description += `عطر متميز ✓ أصلي 100% ✓ موثوق من متجر هدايا الإمارات.\n`;
+        description += `عطر عالي الجودة موفر الآن لجميع الإمارات - دبي, ابو ظبي, الشارقة, عجمان وباقي أنحاء الدولة.\n\n`;
+    } else if (category === 'Watches') {
+        description += `ساعة فاخرة ✓ أصلي 100% ✓ موثوق من متجر هدايا الإمارات.\n`;
+        description += `ساعات عالية الجودة موفرة الآن في شتى مدن الإمارات - دبي, ابو ظبي, الشارقة والأمارات الأخرى.\n\n`;
+    }
+    
+    description += `شحن سريع خلال 1-3 أيام عمل ✓ ضمان إرجاع 14 يوم ✓ دعم عملاء 24/7.\n`;
+    description += `متجر هدايا الإمارات هو اختيارك الأول للمنتجات الهدايا عالية الجودة.`;
+    
+    return description;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 Initializing product details page...');
@@ -94,11 +116,16 @@ function displayProduct(product) {
     const savings = oldPrice - newPrice;
     const discountPercent = discount || (oldPrice > 0 && savings > 0 ? Math.round((savings / oldPrice) * 100) : 0);
 
+    // مباشر توليد الوصف الاحترافي
+    const enhancedDescription = generateUAEKeywordDescription(productTitle, category);
+
     // Update page title and meta description
-    const pageTitle = `${productTitle} | متجر هدايا الإمارات`;
+    const pageTitle = `🛒 ${productTitle} | متجر هدايا الإمارات`;
+    const metaDescription = `اشتري ${productTitle} من متجر هدايا الإمارات - ${category === 'Perfumes' ? 'عطور' : 'ساعات'} عالية الجودة. شحن سريع إلى دبي وأبوظبي والشارقة. ضمان 14 يوم + استرجاع مجاني.`;
+    
     document.title = pageTitle;
     document.getElementById('page-title').textContent = pageTitle;
-    document.getElementById('page-description').setAttribute('content', productDesc);
+    document.getElementById('page-description').setAttribute('content', metaDescription);
     document.getElementById('canonical-url').setAttribute('href', window.location.href);
 
     // Update DOM elements
@@ -130,8 +157,8 @@ function displayProduct(product) {
         savingsEl.style.display = 'none';
     }
 
-    // Update description
-    document.getElementById('product-description-text').textContent = productDesc;
+    // Update description with UAE keywords
+    document.getElementById('product-description-text').textContent = enhancedDescription;
 
     // Update WhatsApp link
     const whatsappMessage = encodeURIComponent(
@@ -148,7 +175,7 @@ function displayProduct(product) {
 }
 
 /**
- * Injects Product and LocalBusiness JSON-LD schema
+ * Injects Product and LocalBusiness JSON-LD schema with UAE keywords
  * @param {object} product - The product data object
  */
 function injectSchema(product) {
@@ -177,18 +204,18 @@ function injectSchema(product) {
     const priceValidUntil = new Date();
     priceValidUntil.setFullYear(priceValidUntil.getFullYear() + 1);
 
-    // Product Schema
+    // Product Schema with UAE focus
     const productSchema = {
         "@context": "https://schema.org/",
         "@type": "Product",
         "@id": url_final + "#product",
-        "name": productTitle,
+        "name": `${productTitle} | متجر هدايا الإمارات`,
         "image": [productImage],
-        "description": description || productTitle,
+        "description": `${productTitle} من متجر هدايا الإمارات - عرض مباشر لأفضل المنتجات بأسعار منافسة في الإمارات.`,
         "brand": {
             "@type": "Brand",
             "@id": "https://emirates-gifts.arabsad.com/#brand",
-            "name": "Emirates Gifts | متجر هدايا الإمارات"
+            "name": "🛒 متجر هدايا الإمارات"
         },
         "category": category || "منتج",
         "offers": {
@@ -203,7 +230,8 @@ function injectSchema(product) {
             "seller": {
                 "@type": "Organization",
                 "@id": "https://emirates-gifts.arabsad.com/#organization",
-                "name": "Emirates Gifts"
+                "name": "🛒 متجر هدايا الإمارات",
+                "areaServed": ["AE-DU", "AE-AZ", "AE-SH", "AE-AJ", "AE-FU", "AE-RK", "AE-UM"]
             }
         },
         "aggregateRating": {
