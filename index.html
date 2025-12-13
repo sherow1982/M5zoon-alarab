@@ -997,7 +997,7 @@
                                 ${hasDiscount ? `<span class="original-price">${originalPrice.toFixed(2)}</span>` : ''}
                             </div>
                             <div class="product-actions">
-                                <button class="btn-cart" data-action="addcart" data-id="${product.id}" data-title="${product.title}">
+                                <button class="btn-cart" data-action="addcart" data-id="${product.id}" data-title="${product.title}" data-price="${finalPrice}" data-sale-price="${product.sale_price || finalPrice}">
                                     <i class="fas fa-cart-plus"></i>
                                     اطلب
                                 </button>
@@ -1054,7 +1054,9 @@
                             e.stopPropagation();
                             const id = this.getAttribute('data-id');
                             const title = this.getAttribute('data-title');
-                            addToCart(id, title);
+                            const price = parseFloat(this.getAttribute('data-price'));
+                            const salePrice = parseFloat(this.getAttribute('data-sale-price'));
+                            addToCart(id, title, price, salePrice);
                         });
                     });
                 });
@@ -1074,23 +1076,26 @@
                 window.location.href = url;
             }
 
-            window.addToCart = function(id, title) {
+            window.addToCart = function(id, title, price, salePrice) {
                 try {
                     let cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
                     const found = cart.find(p => p.id == id);
+                    
                     if (found) {
                         found.quantity = (found.quantity || 1) + 1;
                     } else {
                         cart.push({
                             id,
                             title,
-                            price: 0,
+                            price: price || 0,
+                            sale_price: salePrice || price || 0,
                             quantity: 1
                         });
                     }
+                    
                     localStorage.setItem('emirates_cart', JSON.stringify(cart));
                     updateCartBadge();
-                    alert('✅ تم إضافة "' + title + '" للسلة');
+                    alert('✅ تم إضافة "' + title + '" للسلة بسعر ' + (salePrice || price).toFixed(2) + ' د.إ');
                 } catch (e) {
                     console.error('Add to cart error:', e);
                 }
