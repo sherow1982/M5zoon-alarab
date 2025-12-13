@@ -1,7 +1,7 @@
 /**
  * منطلق صفحة إتمام الطلب
  * حفظ الطلبات في localStorage + تحميلها على GitHub مباشرة
- * Emirates Gifts v10.4 - localStorage + Direct Push
+ * Emirates Gifts v10.5 - Full Product Details
  */
 
 class CheckoutPage {
@@ -13,8 +13,8 @@ class CheckoutPage {
         this.totalDisplay = document.getElementById('totalPriceDisplay');
         
         console.clear();
-        console.log('%c🏪 Emirates Gifts v10.4', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c✅ localStorage + GitHub Direct Integration', 'color: #27ae60; font-size: 12px; font-weight: bold');
+        console.log('%c🏪 Emirates Gifts v10.5', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c✅ Full Product Details Tracking', 'color: #27ae60; font-size: 12px; font-weight: bold');
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -40,13 +40,18 @@ class CheckoutPage {
             return;
         }
         
+        // عرض ملخص المنتجات
         const itemsList = items.map(item => `${item.title} (x${item.quantity})`).join(' + ');
         this.summaryText.textContent = itemsList;
         this.totalDisplay.textContent = `الإجمالي: ${total.toFixed(2)} د.إ`;
         
+        // احفظ البيانات في الحقول المخفية
         document.getElementById('p_name').value = itemsList;
         document.getElementById('p_price').value = total.toFixed(2);
         document.getElementById('o_date').value = new Date().toLocaleString('ar-AE');
+        
+        // احفظ البيانات الكاملة في data attribute
+        document.getElementById('orderForm').dataset.cartItems = JSON.stringify(items);
     }
     
     showEmptyCart() {
@@ -112,19 +117,31 @@ class CheckoutPage {
         this.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري...';
         
         try {
+            // احصل على بيانات السلة
+            const cartItems = JSON.parse(document.getElementById('orderForm').dataset.cartItems || '[]');
+            
+            // حول المنتجات للصيغة الجديدة
+            const itemsFormatted = cartItems.map(item => ({
+                name: item.title,
+                url: item.url || `./products-showcase.html#${item.id}`,
+                price: `${item.price.toFixed(2)} د.إ`,
+                quantity: item.quantity
+            }));
+            
             const orderData = {
                 orderId: 'ORD-' + new Date().getFullYear() + String(Math.floor(Math.random() * 1000000)).padStart(6, '0'),
                 fullName: document.querySelector('input[name="customer_name"]').value,
                 phone: phoneInput.value,
                 city: document.querySelector('select[name="emirate"]').value,
                 address: document.querySelector('textarea[name="address"]').value,
-                items: document.getElementById('p_name').value,
-                total: document.getElementById('p_price').value,
+                items: itemsFormatted,  // ✅ الصيغة الجديدة
+                total: document.getElementById('p_price').value + ' د.إ',
                 date: new Date().toLocaleString('ar-AE'),
                 savedAt: new Date().toISOString()
             };
             
             console.log('%c📝 Order #' + orderData.orderId, 'color: #9b59b6; font-weight: bold');
+            console.log('%c📦 Items:', 'color: #3498db; font-weight: bold', orderData.items);
             
             // 1️⃣ احفظ في localStorage أولاً
             this.saveToLocalStorage(orderData);
@@ -157,7 +174,7 @@ class CheckoutPage {
             ordersText += jsonlLine + '\n';
             localStorage.setItem('emirates_orders_jsonl', ordersText);
             
-            console.log('%c✅ Order saved locally', 'color: #27ae60; font-weight: bold');
+            console.log('%c✅ Order saved locally with full details', 'color: #27ae60; font-weight: bold');
             
         } catch (error) {
             console.error('❌ localStorage save error:', error);
