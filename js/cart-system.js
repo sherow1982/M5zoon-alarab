@@ -4,8 +4,47 @@
  * - تخزين آمن في localStorage
  * - دعم متعدد المفاتيح
  * - تطبيع البيانات من جميع الصيغ
- * Emirates Gifts v3.2
+ * - منع BFCache لتجنب أخطاء Extension
+ * Emirates Gifts v3.3
  */
+
+(function() {
+    'use strict';
+    
+    /**
+     * 🔧 CRITICAL: Prevent BFCache to avoid extension port errors
+     * BFCache (Back-Forward Cache) breaks extension connections during navigation
+     */
+    function preventBFCache() {
+        // Use unload handler - most reliable across all browsers
+        window.addEventListener('unload', function() {}, false);
+        
+        // Firebase/third-party scripts often use this pattern
+        window.addEventListener('beforeunload', function() {}, false);
+        
+        // Handle page restoration from BFCache
+        window.addEventListener('pagehide', function(event) {
+            if (event.persisted) {
+                console.log('⚠️ Page entering BFCache');
+            }
+        }, false);
+        
+        // Sync cart when page is restored
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                console.log('✅ Page restored from BFCache - syncing cart');
+                if (window.cartSystem && typeof window.cartSystem.syncDisplay === 'function') {
+                    window.cartSystem.syncDisplay();
+                }
+            }
+        }, false);
+        
+        console.log('🔒 BFCache prevention enabled');
+    }
+    
+    // Enable BFCache prevention immediately
+    preventBFCache();
+})();
 
 class CartSystem {
     constructor() {
@@ -30,6 +69,40 @@ class CartSystem {
         
         console.log('🛒 نظام السلة بدء بنجاح');
         console.log('📦 عدد العناصر:', this.cart.length);
+        
+        // Set up display sync
+        this.setupDisplaySync();
+    }
+    
+    /**
+     * Setup automatic display sync
+     */
+    setupDisplaySync() {
+        // Sync when page visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                this.syncDisplay();
+            }
+        });
+        
+        // Initial sync
+        this.syncDisplay();
+    }
+    
+    /**
+     * Sync cart display with UI
+     */
+    syncDisplay() {
+        try {
+            const badge = document.getElementById('cartBadge');
+            if (badge) {
+                const count = this.getItemsCount();
+                badge.textContent = count.toString();
+                badge.style.display = count > 0 ? 'flex' : 'none';
+            }
+        } catch (e) {
+            // Silent fail - element might not exist
+        }
     }
     
     /**
@@ -141,6 +214,7 @@ class CartSystem {
         }
         
         this.saveCart();
+        this.syncDisplay();
         return true;
     }
     
@@ -159,6 +233,7 @@ class CartSystem {
         item.quantity = quantity;
         
         this.saveCart();
+        this.syncDisplay();
         return true;
     }
     
@@ -175,6 +250,7 @@ class CartSystem {
         
         const removed = this.cart.splice(index, 1)[0];
         this.saveCart();
+        this.syncDisplay();
         console.log(`🗑️ تم حذف: ${removed.title}`);
         return true;
     }
@@ -185,6 +261,7 @@ class CartSystem {
     clearCart() {
         this.cart = [];
         this.saveCart();
+        this.syncDisplay();
         console.log('🯙 تم إفراغ السلة');
     }
     
