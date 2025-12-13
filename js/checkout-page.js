@@ -1,7 +1,7 @@
 /**
  * منطق صفحة إتمام الطلب
  * معالجة بيانات المستخدم والطلب
- * Emirates Gifts v3.4
+ * Emirates Gifts v3.5
  */
 
 class CheckoutPage {
@@ -12,7 +12,7 @@ class CheckoutPage {
         this.summaryText = document.getElementById('summaryText');
         this.totalDisplay = document.getElementById('totalPriceDisplay');
         
-        // URL Google Sheets
+        // URL Google Sheets - الكود الصحيح
         this.GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyWYpWnXV9wlo6sH-ABKR480ekh_9MsOSX0ypA9pMViSR7x5lDKCnBaVWwRr9pd_L2Nw/exec';
         
         if (!this.form) {
@@ -152,26 +152,33 @@ class CheckoutPage {
         this.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة الطلب...';
         
         try {
-            const formData = new FormData(this.form);
-            
-            // جمع البيانات
+            // جمع البيانات بالأسماء الصحيحة للGoogle Script
             const orderData = {
-                customer_name: document.querySelector('input[name="customer_name"]').value,
+                fullName: document.querySelector('input[name="customer_name"]').value,
                 phone: phoneInput.value,
-                emirate: document.querySelector('select[name="emirate"]').value,
+                city: document.querySelector('select[name="emirate"]').value,
                 address: document.querySelector('textarea[name="address"]').value,
-                product_name: document.getElementById('p_name').value,
-                total_price: document.getElementById('p_price').value,
-                order_date: new Date().toLocaleString('ar-AE'),
-                timestamp: new Date().toISOString()
+                items: document.getElementById('p_name').value,
+                total: document.getElementById('p_price').value,
+                paymentMethod: 'cash',
+                notes: 'Online order from Emirates Gifts'
             };
             
-            console.log('%c📋 بيانات الطلب الكاملة:', 'color: #9b59b6; font-weight: bold', orderData);
+            // إضافة ID معرف للطلب
+            orderData.orderId = '#' + new Date().getFullYear() + String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
+            
+            console.log('%c📋 بيانات الطلب المرسلة:', 'color: #9b59b6; font-weight: bold', orderData);
             
             // حفظ البيانات في localStorage أولاً (backup)
             this.backupOrderData(orderData);
             
-            // محاولة الإرسال لـ Google Sheets (بدون انتظار)
+            // إنشاء FormData مع الأسماء الصحيحة
+            const formData = new FormData();
+            for (const [key, value] of Object.entries(orderData)) {
+                formData.append(key, value);
+            }
+            
+            // محاولة الإرسال لـ Google Sheets
             this.sendToGoogleSheets(formData)
                 .then(response => {
                     console.log('%c✅ نجح الإرسال إلى Google Sheets!', 'color: #27ae60; font-weight: bold; font-size: 13px');
@@ -182,7 +189,7 @@ class CheckoutPage {
                 .finally(() => {
                     // الانتقال على أي حال
                     console.log('%c🚀 الانتقال لصفحة الشكر...', 'color: #2a5298; font-weight: bold; font-size: 13px');
-                    this.onOrderSuccess();
+                    this.onOrderSuccess(orderData);
                 });
             
         } catch (error) {
@@ -222,6 +229,12 @@ class CheckoutPage {
     async sendToGoogleSheets(formData) {
         console.log('%c🌐 جاري الاتصال بـ Google Sheets...', 'color: #3498db; font-size: 12px');
         console.log('%c🔗 URL:', 'color: #3498db; font-size: 11px', this.GOOGLE_SCRIPT_URL);
+        console.log('%c📃 FormData المرسلة:', 'color: #3498db; font-size: 11px');
+        
+        // طباعة FormData
+        for (let [key, value] of formData.entries()) {
+            console.log(`  - ${key}: ${value}`);
+        }
         
         try {
             const response = await Promise.race([
@@ -246,22 +259,22 @@ class CheckoutPage {
     /**
      * عند نجاح الطلب
      */
-    onOrderSuccess() {
+    onOrderSuccess(orderData) {
         console.log('%c🎉 الطلب نجح! الانتقال الآن...', 'color: #27ae60; font-size: 14px; font-weight: bold');
         
         // حفظ بيانات الطلب النهائية
-        const orderData = {
-            number: '#' + new Date().getFullYear() + String(Math.floor(Math.random() * 1000000)).padStart(6, '0'),
-            amount: document.getElementById('p_price').value,
+        const finalOrderData = {
+            number: orderData.orderId,
+            amount: orderData.total,
             date: new Date().toLocaleString('ar-AE'),
             timestamp: Date.now()
         };
         
-        console.log('%c📝 رقم الطلب:', 'color: #27ae60; font-weight: bold', orderData.number);
-        console.log('%c💰 الإجمالي:', 'color: #27ae60; font-weight: bold', orderData.amount);
+        console.log('%c📝 رقم الطلب:', 'color: #27ae60; font-weight: bold', finalOrderData.number);
+        console.log('%c💰 الإجمالي:', 'color: #27ae60; font-weight: bold', finalOrderData.amount);
         
         try {
-            localStorage.setItem('lastOrder', JSON.stringify(orderData));
+            localStorage.setItem('lastOrder', JSON.stringify(finalOrderData));
         } catch (e) {
             console.warn('%c⚠️ خطأ حفظ البيانات النهائية:', 'color: #f39c12', e);
         }
