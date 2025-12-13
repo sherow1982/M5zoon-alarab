@@ -1,5 +1,5 @@
-// Emirates Gifts - Main Homepage Script v2.1
-// Limited products display with View More buttons
+// Emirates Gifts - Main Homepage Script v2.2
+// Limited products display with View More buttons + Add to Cart functionality
 
 (function() {
     'use strict';
@@ -15,7 +15,7 @@
     let perfumesLoaded = false;
     let watchesLoaded = false;
     
-    log('🏠 Emirates Gifts Homepage v2.1 - Limited Products Mode');
+    log('🏠 Emirates Gifts Homepage v2.2 - Limited Products Mode + Add to Cart');
     
     /**
      * Load products from JSON
@@ -45,7 +45,7 @@
     }
     
     /**
-     * Display limited products in grid
+     * Display limited products in grid with Add to Cart button
      */
     function displayLimitedProducts(products, gridSelector, limit) {
         const grid = document.querySelector(gridSelector);
@@ -81,9 +81,8 @@
                 <div class="product-card" 
                      data-product-id="${product.id}" 
                      data-product-type="${product.categoryType}" 
-                     role="button" 
-                     tabindex="0"
-                     aria-label="عرض تفاصيل ${productTitle}">
+                     role="article" 
+                     aria-label="${productTitle}">
                     <div class="product-image-container">
                         <img src="${imageUrl}" 
                              alt="${productTitle}" 
@@ -99,6 +98,25 @@
                             <span class="price-current">${finalPrice.toFixed(2)} د.إ</span>
                             ${hasDiscount ? `<span class="price-original">${originalPrice.toFixed(2)} د.إ</span>` : ''}
                         </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart-btn" 
+                                    data-product-id="${product.id}"
+                                    data-title="${productTitle}"
+                                    data-price="${originalPrice}"
+                                    data-sale-price="${finalPrice}"
+                                    data-image="${imageUrl}"
+                                    data-category="${product.category}"
+                                    type="button"
+                                    aria-label="أضف ${productTitle} إلى السلة">
+                                <i class="fas fa-shopping-cart"></i>
+                                أضف للسلة
+                            </button>
+                            <button class="view-details-btn" 
+                                    type="button"
+                                    aria-label="عرض تفاصيل ${productTitle}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -112,24 +130,36 @@
      * Setup product event handlers
      */
     function setupProductHandlers() {
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const productId = this.dataset.productId;
-                const productType = this.dataset.productType;
-                if (productId && productType) {
-                    navigateToProductDetails(productId, productType);
+        // View details button
+        document.querySelectorAll('.view-details-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = this.closest('.product-card');
+                if (card) {
+                    const productId = card.dataset.productId;
+                    const productType = card.dataset.productType;
+                    if (productId && productType) {
+                        navigateToProductDetails(productId, productType);
+                    }
                 }
             });
-            
-            card.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
+        });
+        
+        // Add to cart buttons
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (window.handleAddToCart) {
+                    window.handleAddToCart(this);
+                } else {
+                    console.warn('⚠️ Cart integration not loaded');
                 }
             });
-            
-            const img = card.querySelector('.product-image');
-            if (img) setupImageErrorHandler(img);
+        });
+        
+        // Card image error handler
+        document.querySelectorAll('.product-image').forEach(img => {
+            setupImageErrorHandler(img);
         });
     }
     
@@ -182,7 +212,8 @@
      */
     function updateCartBadge() {
         try {
-            const cartData = localStorage.getItem('emirates_cart');
+            const cartData = localStorage.getItem('emirates_shopping_cart') || 
+                           localStorage.getItem('emirates_cart');
             let cart = [];
             
             if (cartData) {
