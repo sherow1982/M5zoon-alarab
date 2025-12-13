@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">تفاصيل المنتج | متجر هدايا الإمارات</title>
-    <meta name="description" id="page-description" content="عطور وساعات عالية الجودة من متجر هدايا الإمارات">
-    <meta name="keywords" content="عطور, ساعات, هدايا, الإمارات, متجر">
+    <title id="page-title">تفاصيل المنتج | 🛒 متجر هدايا الإمارات</title>
+    <meta name="description" id="page-description" content="عطور وساعات عالية الجودة من متجر هدايا الإمارات المتخصص">
+    <meta name="keywords" content="عطور الإمارات, ساعات, هدايا, دبي, أبوظبي, الشارقة">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
     <link rel="canonical" id="canonical-url" href="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,17 +16,17 @@
     <link rel="stylesheet" href="./css/product-details.css">
     <link rel="stylesheet" href="./css/product-actions.css">
 
-    <!-- JSON-LD Schema for Product - Will be enhanced with aggregateRating and reviews -->
+    <!-- JSON-LD Schema for Product -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "Product",
       "name": "منتج من متجر هدايا الإمارات",
       "image": "https://sherow1982.github.io/emirates-gifts/images/product-default.jpg",
-      "description": "منتج فاخر من متجر هدايا الإمارات",
+      "description": "منتج فاخر من متجر هدايا الإمارات - متخصص في العطور والساعات عالية الجودة",
       "brand": {
         "@type": "Brand",
-        "name": "Emirates Gifts"
+        "name": "🛒 متجر هدايا الإمارات"
       },
       "offers": {
         "@type": "Offer",
@@ -35,13 +36,16 @@
         "availability": "https://schema.org/InStock",
         "seller": {
           "@type": "Organization",
-          "name": "Emirates Gifts Store"
+          "name": "🛒 متجر هدايا الإمارات"
         }
       }
     }
     </script>
 
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f5f7fa; color: #333; }
+        
         /* 🔐 LEGAL HEADER & FOOTER STYLES */
         .legal-header-nav { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px 20px; border-bottom: 4px solid #f5576c; }
         .legal-nav-container { max-width: 1200px; margin: 0 auto; }
@@ -49,10 +53,10 @@
         .legal-nav-title { color: white; font-size: 1.3em; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .legal-nav-title:hover { color: #fff; }
         .legal-nav-links { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; }
-        .legal-nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 5px; transition: all 0.3s; }
+        .legal-nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 5px; transition: all 0.3s; font-size: 14px; }
         .legal-nav-links a:hover { background: rgba(255,255,255,0.2); }
         .legal-contact-quick { display: flex; gap: 15px; flex-wrap: wrap; }
-        .legal-contact-quick a { color: white; text-decoration: none; padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 5px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 5px; }
+        .legal-contact-quick a { color: white; text-decoration: none; padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 5px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 5px; font-size: 14px; }
         .legal-contact-quick a:hover { background: rgba(255,255,255,0.2); }
         .legal-footer { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 60px 20px 30px; margin-top: 80px; border-top: 4px solid #f5576c; }
         .legal-footer-container { max-width: 1200px; margin: 0 auto; }
@@ -117,25 +121,101 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
+        .header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 15px 20px; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #1e3c72; font-weight: 700; }
+        .logo-title { font-size: 16px; color: #1e3c72; }
+        .nav-links { display: flex; list-style: none; gap: 20px; flex-wrap: wrap; }
+        .nav-link { text-decoration: none; color: #333; font-weight: 600; font-size: 14px; transition: color 0.3s; }
+        .nav-link:hover { color: #D4AF37; }
+        .nav-link.active { color: #D4AF37; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .breadcrumb { margin: 20px 0; font-size: 14px; color: #666; }
+        .breadcrumb a { color: #D4AF37; text-decoration: none; }
+
+        .loading-container, .error-container { text-align: center; padding: 60px 20px; }
+        .loading-spinner { font-size: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .product-container.hide { display: none; }
+        .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .product-image-container { position: relative; width: 100%; height: 400px; background: #f0f0f0; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .product-main-image { width: 100%; height: 100%; object-fit: cover; }
+        .discount-badge { position: absolute; top: 20px; left: 20px; background: #f4a261; color: white; padding: 10px 20px; border-radius: 20px; font-weight: 700; }
+
+        .product-info-section { padding: 20px; }
+        .product-title { font-size: 28px; font-weight: 900; color: #1e3c72; margin-bottom: 15px; }
+        .category-badge { display: inline-block; background: #D4AF37; color: #1e3c72; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 13px; margin-bottom: 15px; }
+
+        .price-section { margin: 20px 0; padding: 20px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+        .old-price { text-decoration: line-through; color: #999; font-size: 16px; margin-right: 10px; }
+        .current-price { font-size: 32px; font-weight: 900; color: #D4AF37; }
+        .savings { color: #27ae60; font-weight: 600; margin-left: 20px; }
+
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 30px 0; }
+        .feature-item { padding: 15px; background: #f9f9f9; border-radius: 8px; text-align: center; font-size: 13px; }
+        .feature-icon { font-size: 20px; display: block; margin-bottom: 8px; }
+
+        .product-description { margin: 30px 0; padding: 20px; background: #f9f9f9; border-radius: 8px; line-height: 1.6; }
+        .product-description h3 { color: #1e3c72; margin-bottom: 12px; font-size: 18px; }
+        .product-description p { color: #555; font-size: 14px; }
+
+        .action-buttons { display: flex; flex-direction: column; gap: 12px; margin-top: 30px; }
+        .action-buttons button, .action-buttons a { padding: 14px 20px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; transition: all 0.3s; }
+        .add-to-cart-btn { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; }
+        .add-to-cart-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3); }
+        .whatsapp-btn { background: linear-gradient(135deg, #25D366, #20B358); color: white; }
+        .whatsapp-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
+        .back-btn { background: #f0f0f0; color: #333; }
+        .back-btn:hover { background: #e0e0e0; }
+
+        /* Policy Buttons */
+        .policy-buttons { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 20px 0; padding: 20px; background: #f0f8ff; border-radius: 8px; border: 2px solid #d0e8ff; }
+        .policy-btn { padding: 12px 16px; background: white; border: 2px solid #2196F3; color: #1e3c72; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 12px; text-align: center; transition: all 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+        .policy-btn:hover { background: #2196F3; color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3); }
+        .policy-btn i { font-size: 14px; }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .floating-cart-btn {
-                bottom: 20px;
-                left: 20px;
-                width: 60px;
-                height: 60px;
-                font-size: 24px;
-            }
+            .product-layout { grid-template-columns: 1fr; gap: 20px; }
+            .product-image-container { height: 300px; }
+            .product-title { font-size: 22px; }
+            .current-price { font-size: 24px; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .action-buttons { flex-direction: column; }
+            .policy-buttons { grid-template-columns: repeat(2, 1fr); }
+            .legal-nav-links, .legal-contact-quick { flex-direction: column; gap: 8px; width: 100%; }
+            .legal-nav-wrapper { flex-direction: column; gap: 12px; }
+            .floating-cart-btn { bottom: 20px; left: 20px; width: 60px; height: 60px; font-size: 24px; }
             .floating-cart-badge { width: 24px; height: 24px; font-size: 11px; }
-            .legal-nav-links, .legal-contact-quick { flex-direction: column; gap: 10px; width: 100%; }
+            .nav-links { gap: 10px; }
+            .nav-link { font-size: 12px; }
+            .breadcrumb { font-size: 12px; }
+        }
+
+        @media (max-width: 480px) {
+            .product-title { font-size: 18px; }
+            .current-price { font-size: 20px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .policy-buttons { grid-template-columns: 1fr; }
+            .legal-nav-title { font-size: 1.1em; }
+            .action-buttons button, .action-buttons a { padding: 12px 16px; font-size: 13px; }
         }
     </style>
 </head>
 <body>
-    <!-- 🔐 PROFESSIONAL LEGAL HEADER -->
+    <!-- 🛒 FLOATING CART BUTTON -->
+    <a href="./checkout.html" class="floating-cart-btn" title="اذهب إلى السلة" aria-label="الانتقال إلى صفحة السلة">
+        <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+        <span class="floating-cart-badge" id="floatingCartBadge">0</span>
+    </a>
+
+    <!-- 🛒 PROFESSIONAL LEGAL HEADER -->
     <header class="legal-header-nav">
         <div class="legal-nav-container">
             <div class="legal-nav-wrapper">
-                <a href="/index.html" class="legal-nav-title">🎁 الإمارات للهدايا</a>
+                <a href="/index.html" class="legal-nav-title">🛒 متجر هدايا الإمارات</a>
                 <ul class="legal-nav-links">
                     <li><a href="/legal/about.html">ℹ️ من نحن</a></li>
                     <li><a href="/legal/return-policy.html">🔄 الاسترجاع</a></li>
@@ -149,12 +229,6 @@
             </div>
         </div>
     </header>
-
-    <!-- 🛒 FLOATING CART BUTTON -->
-    <a href="./checkout.html" class="floating-cart-btn" title="اذهب إلى السلة" aria-label="الانتقال إلى صفحة السلة">
-        <i class="fas fa-shopping-bag" aria-hidden="true"></i>
-        <span class="floating-cart-badge" id="floatingCartBadge">0</span>
-    </a>
 
     <header class="header">
         <div class="header-content">
@@ -193,7 +267,7 @@
             <h3>عذراً، لم يتم العثور على المنتج</h3>
             <p>المنتج المطلوب غير موجود أو تم حذفه</p>
             <div style="margin-top: 30px;">
-                <a href="./" class="back-btn">العودة للرئيسية</a>
+                <a href="./" class="back-btn" style="display: inline-block;">العودة للرئيسية</a>
             </div>
         </div>
 
@@ -201,24 +275,15 @@
         <div class="product-container hide" id="product-container">
             <div class="product-layout">
                 <div class="product-image-section">
-                    <img id="product-image" src="" alt="" class="product-main-image">
-                    <div class="discount-badge" id="discount-badge">-0%</div>
+                    <div class="product-image-container">
+                        <img id="product-image" src="" alt="" class="product-main-image">
+                        <div class="discount-badge" id="discount-badge">-0%</div>
+                    </div>
                 </div>
 
                 <div class="product-info-section">
                     <h1 class="product-title" id="product-title">اسم المنتج</h1>
                     <span class="category-badge" id="category-badge">عطور</span>
-
-                    <!-- Ratings Display -->
-                    <div class="ratings-section" id="ratings-section" style="display: none;">
-                        <div class="rating-stars">
-                            <span class="rating-value" id="rating-value">★★★★★</span>
-                            <span class="rating-info">
-                                <span class="rating-average" id="rating-average">4.5</span>/5
-                                (<span class="rating-count" id="rating-count">0</span> تقييم)
-                            </span>
-                        </div>
-                    </div>
 
                     <div class="price-section">
                         <span class="old-price" id="old-price">0 د.إ</span>
@@ -227,30 +292,32 @@
                     </div>
 
                     <div class="features-grid">
-                        <div class="feature-item">
-                            <span class="feature-icon">✅</span>
-                            <span>منتج أصلي 100%</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">🚚</span>
-                            <span>شحن سريع</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">🔄</span>
-                            <span>استبدال مجاني</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">💳</span>
-                            <span>دفع عند الاستلام</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">🛡️</span>
-                            <span>ضمان الجودة</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">📞</span>
-                            <span>دعم 24/7</span>
-                        </div>
+                        <div class="feature-item"><span class="feature-icon">✅</span><span>منتج أصلي 100%</span></div>
+                        <div class="feature-item"><span class="feature-icon">🚚</span><span>شحن سريع</span></div>
+                        <div class="feature-item"><span class="feature-icon">🔄</span><span>استبدال مجاني</span></div>
+                        <div class="feature-item"><span class="feature-icon">💳</span><span>دفع عند الاستلام</span></div>
+                        <div class="feature-item"><span class="feature-icon">🛡️</span><span>ضمان الجودة</span></div>
+                        <div class="feature-item"><span class="feature-icon">📞</span><span>دعم 24/7</span></div>
+                    </div>
+
+                    <!-- Policy Buttons -->
+                    <div class="policy-buttons">
+                        <a href="/legal/shipping-policy.html" class="policy-btn" target="_blank">
+                            <i class="fas fa-truck"></i>
+                            <span>سياسة الشحن</span>
+                        </a>
+                        <a href="/legal/return-policy.html" class="policy-btn" target="_blank">
+                            <i class="fas fa-undo"></i>
+                            <span>سياسة الاسترجاع</span>
+                        </a>
+                        <a href="/legal/privacy-policy.html" class="policy-btn" target="_blank">
+                            <i class="fas fa-lock"></i>
+                            <span>الخصوصية</span>
+                        </a>
+                        <a href="/legal/about.html" class="policy-btn" target="_blank">
+                            <i class="fas fa-info-circle"></i>
+                            <span>من نحن</span>
+                        </a>
                     </div>
 
                     <div class="product-description">
@@ -258,23 +325,17 @@
                         <p id="product-description-text">وصف المنتج سيظهر هنا...</p>
                     </div>
 
-                    <!-- Recent Reviews Section -->
-                    <div class="reviews-section" id="reviews-section" style="display: none; margin-top: 30px;">
-                        <h3>⭐ آراء المشترين</h3>
-                        <div class="reviews-list" id="reviews-list"></div>
-                    </div>
-
                     <!-- 🛒 ADD TO CART SECTION -->
-                    <div class="action-buttons" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #eee;">
-                        <button id="add-to-cart-btn" class="add-to-cart-btn" style="width: 100%; margin-bottom: 15px;" aria-label="إضافة المنتج للسلة">
+                    <div class="action-buttons">
+                        <button id="add-to-cart-btn" class="add-to-cart-btn" aria-label="إضافة المنتج للسلة">
                             <i class="fas fa-shopping-cart"></i>
                             أضف للسلة
                         </button>
-                        <a href="#" id="whatsapp-btn" class="whatsapp-btn" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px;" target="_blank">
+                        <a href="#" id="whatsapp-btn" class="whatsapp-btn" target="_blank">
                             <i class="fab fa-whatsapp"></i>
                             اطلب عبر الواتساب
                         </a>
-                        <a href="./" class="back-btn" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                        <a href="./" class="back-btn">
                             <i class="fas fa-home"></i>
                             العودة للمتجر
                         </a>
@@ -284,7 +345,7 @@
         </div>
     </div>
 
-    <!-- 🔐 PROFESSIONAL LEGAL FOOTER -->
+    <!-- 🛒 PROFESSIONAL LEGAL FOOTER -->
     <footer class="legal-footer">
         <div class="legal-footer-container">
             <div class="legal-footer-grid">
@@ -307,7 +368,7 @@
                     </ul>
                 </div>
                 <div class="legal-footer-section">
-                    <h3>🌟 لماذا نخترنا</h3>
+                    <h3>🌟 لماذا متجر هدايا الإمارات</h3>
                     <ul>
                         <li>✓ الجودة العالية</li>
                         <li>✓ الاسترجاع 14 يوم</li>
@@ -324,22 +385,15 @@
                     <span class="legal-badge">🚚 شحن سريع</span>
                     <span class="legal-badge">⭐ موثوق</span>
                 </div>
-                <p>&copy; 2025 الإمارات للهدايا. جميع الحقوق محفوظة ©</p>
+                <p>&copy; 2025 🛒 متجر هدايا الإمارات. جميع الحقوق محفوظة ©</p>
                 <p>آخر تحديث: ديسمبر 2025</p>
             </div>
         </div>
     </footer>
 
-    <!-- Schema Enhancer Script - Adds aggregateRating and reviews to JSON-LD -->
     <script src="./js/schema-enhancer.js" defer></script>
-    
-    <!-- Cart Integration -->
     <script src="./js/add-to-cart-integration.js" defer></script>
-    
-    <!-- Product Details Logic -->
     <script src="./js/product-details.js" defer></script>
-    
-    <!-- Product Details Cart Handler -->
     <script src="./js/product-details-cart.js" defer></script>
 
     <script>
@@ -357,15 +411,31 @@
             }
         }
 
-        // بالبداية
         updateFloatingCartBadge();
-
-        // مراقبة التغييرات
         document.addEventListener('storage', updateFloatingCartBadge);
-
-        // للطرق بباب أمر مخصصة للتحديث
         window.updateFloatingCartBadge = updateFloatingCartBadge;
-    </script>
 
+        // Auto-generate product description with UAE keywords
+        document.addEventListener('DOMContentLoaded', function() {
+            const generateProductDescription = (productTitle, category) => {
+                const uaeLocations = ['دبي', 'أبوظبي', 'الشارقة', 'عجمان', 'الفجيرة', 'رأس الخيمة', 'أم القيوين'];
+                const keywords = ['متجر هدايا الإمارات', 'متخصص', 'عالي الجودة', 'أصلي 100%', 'شحن سريع', 'ضمان 14 يوم'];
+                
+                let description = `${productTitle} - منتج فاخر من متجر هدايا الإمارات المتخصص في الهدايا والعطور عالية الجودة في الإمارات العربية المتحدة. `;
+                
+                if (category === 'Perfumes') {
+                    description += `عطر أصلي 100% من متجر هدايا الإمارات يتوفر في ${uaeLocations[0]} و${uaeLocations[1]} والشارقة. منتج فاخر للهدايا المميزة. `;
+                } else if (category === 'Watches') {
+                    description += `ساعة فاخرة أصلية من متجر هدايا الإمارات متوفرة في جميع إمارات الدولة. هدية مثالية للمناسبات. `;
+                }
+                
+                description += `شحن سريع خلال 1-3 أيام عمل إلى جميع أنحاء الإمارات. ضمان إرجاع 14 يوم + مصاريف الشحن. ${keywords[0]} يقدم لك أفضل المنتجات بأسعار منافسة.`;
+                
+                return description;
+            };
+
+            window.generateProductDescription = generateProductDescription;
+        });
+    </script>
 </body>
 </html>
