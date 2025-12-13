@@ -27,18 +27,12 @@ on:
         description: 'Date'
         required: true
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   save_order:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       
       - name: 📁 Create Orders Directory
         run: mkdir -p orders
@@ -57,34 +51,39 @@ jobs:
           
           echo "order_id=${ORDER_ID}" >> $GITHUB_OUTPUT
           echo "timestamp=${TIMESTAMP}" >> $GITHUB_OUTPUT
+          echo "full_name=${FULL_NAME}" >> $GITHUB_OUTPUT
       
       - name: 💾 Save JSON Order
         run: |
           mkdir -p orders
-          cat > "orders/${{ steps.order.outputs.order_id }}-${{ steps.order.outputs.timestamp }}.json" << 'EOF'
+          
+          ORDER_ID="${{ github.event.client_payload.orderId || inputs.orderId }}"
+          FULL_NAME="${{ github.event.client_payload.fullName || inputs.fullName }}"
+          PHONE="${{ github.event.client_payload.phone || inputs.phone }}"
+          CITY="${{ github.event.client_payload.city || inputs.city }}"
+          ITEMS="${{ github.event.client_payload.items || inputs.items }}"
+          TOTAL="${{ github.event.client_payload.total || inputs.total }}"
+          DATE="${{ github.event.client_payload.date || inputs.date }}"
+          TIMESTAMP="${{ steps.order.outputs.timestamp }}"
+          
+          cat > "orders/${ORDER_ID}-${TIMESTAMP}.json" << EOF
           {
-            "orderId": "${{ github.event.client_payload.orderId || inputs.orderId }}",
-            "fullName": "${{ github.event.client_payload.fullName || inputs.fullName }}",
-            "phone": "${{ github.event.client_payload.phone || inputs.phone }}",
-            "city": "${{ github.event.client_payload.city || inputs.city }}",
-            "items": "${{ github.event.client_payload.items || inputs.items }}",
-            "total": "${{ github.event.client_payload.total || inputs.total }}",
-            "date": "${{ github.event.client_payload.date || inputs.date }}",
+            "orderId": "${ORDER_ID}",
+            "fullName": "${FULL_NAME}",
+            "phone": "${PHONE}",
+            "city": "${CITY}",
+            "items": "${ITEMS}",
+            "total": "${TOTAL}",
+            "date": "${DATE}",
             "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }
           EOF
-          echo "✅ JSON saved"
+          echo "✅ JSON saved to orders/${ORDER_ID}-${TIMESTAMP}.json"
       
       - name: 📊 Update CSV
         run: |
           CSV_FILE="orders/new-orders.csv"
           
-          # Create header if not exists
-          if [ ! -f "$CSV_FILE" ]; then
-            printf "رقم الطلب,الاسم,الهاتف,المدينة,المنتجات,الإجمالي,التاريخ\n" > "$CSV_FILE"
-          fi
-          
-          # Add new order row
           ORDER_ID="${{ github.event.client_payload.orderId || inputs.orderId }}"
           FULL_NAME="${{ github.event.client_payload.fullName || inputs.fullName }}"
           PHONE="${{ github.event.client_payload.phone || inputs.phone }}"
@@ -93,36 +92,29 @@ jobs:
           TOTAL="${{ github.event.client_payload.total || inputs.total }}"
           DATE="${{ github.event.client_payload.date || inputs.date }}"
           
+          # Create header if not exists
+          if [ ! -f "$CSV_FILE" ]; then
+            printf "رقم الطلب,الاسم,الهاتف,المدينة,المنتجات,الإجمالي,التاريخ\n" > "$CSV_FILE"
+          fi
+          
           # Escape quotes in items
           ITEMS_ESCAPED="${ITEMS//\"/\"\"}"
           
-          echo "$ORDER_ID,$FULL_NAME,$PHONE,$CITY,\"$ITEMS_ESCAPED\",$TOTAL,$DATE" >> "$CSV_FILE"
+          # Add order to CSV
+          echo "${ORDER_ID},${FULL_NAME},${PHONE},${CITY},\"${ITEMS_ESCAPED}\",${TOTAL},${DATE}" >> "$CSV_FILE"
           echo "✅ CSV updated"
       
-      - name: 🔧 Git Config
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global credential.helper store
-      
-      - name: 📤 Commit & Push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            git add orders/
-            git commit -m "🎁 New order: ${{ github.event.client_payload.orderId || inputs.orderId }}"
-            
-            # Push with explicit authentication
-            git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-            git push origin HEAD:main
-            echo "✅ Changes pushed successfully"
-          else
-            echo "ℹ️ No changes to commit"
-          fi
+      - name: 📤 Commit & Push Orders
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🎁 New order: ${{ github.event.client_payload.orderId || inputs.orderId }}"
+          file_pattern: "orders/*"
+          skip_dirty_check: false
+          skip_fetch: false
+          skip_checkout: false
       
       - name: ✅ Done
         run: |
           echo "Order saved successfully!"
           echo "Order ID: ${{ github.event.client_payload.orderId || inputs.orderId }}"
-          echo "Customer: ${{ github.event.client_payload.fullName || inputs.fullName }}"
+          echo "Customer: ${{ steps.order.outputs.full_name }}"
