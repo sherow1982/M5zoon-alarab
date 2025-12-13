@@ -63,7 +63,8 @@
     const langReviews = reviewsDatabase[language] || reviewsDatabase.ar;
 
     let category = 'gift';
-    if (عطر' in productName || 'perfume' in nameLower || 'fragrance' in nameLower) {
+    // Fixed: Check for Arabic and English keywords properly
+    if ('عطر' in productName || 'perfume' in nameLower || 'fragrance' in nameLower) {
       category = 'perfume';
     } else if ('ساعة' in productName || 'watch' in nameLower || 'clock' in nameLower) {
       category = 'watch';
@@ -146,7 +147,7 @@
 
           // Update script content
           script.textContent = JSON.stringify(schema, null, 2);
-          console.log('✓ Schema enhanced:', productName, `Rating: ${aggregateRating.ratingValue}/5`);
+          console.log('✅ Schema enhanced:', productName, `Rating: ${aggregateRating.ratingValue}/5`);
         }
       } catch (e) {
         console.warn('Failed to parse JSON-LD schema:', e.message);
