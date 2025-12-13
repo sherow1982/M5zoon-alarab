@@ -2,7 +2,7 @@
 <html lang="ar-AE" dir="rtl">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; frame-ancestors 'none';">
     <title>🛒 متجر هدايا الإمارات | عطور وساعات عالية الجودة في دبي وأبوظبي</title>
     <meta name="description" content="🛒 متجر هدايا الإمارات - عطور شرقية وغربية وساعات عالية الجودة. شحن خلال 1-3 أيام عمل، ضمان 14 يوم. تسوق الآن بأسعار منافسة!">
@@ -23,8 +23,8 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://sherow1982.github.io/emirates-gifts/">
-    <meta name="twitter:title" content="🛒 متجر هدايا الإمارات | عطور وساعات عالية الجودة">
-    <meta name="twitter:description" content="متجر هدايا الإمارات - عطور شرقية وغربية وساعات عالية الجودة.">
+    <meta name="twitter:title" content="🛒 متجر هدايا الإمارات | عطور وساعات">
+    <meta name="twitter:description" content="متجر هدايا الإمارات - عطور وساعات عالية الجودة.">
     <meta name="twitter:image" content="https://sherow1982.github.io/emirates-gifts/logo.png">
     
     <!-- Schema.org JSON-LD -->
@@ -35,9 +35,10 @@
       "name": "🛒 متجر هدايا الإمارات",
       "image": "https://sherow1982.github.io/emirates-gifts/logo.png",
       "description": "متجر هدايا الإمارات - عطور وساعات وهدايا عالية الجودة في الإمارات العربية المتحدة",
+      "areaServed": ["AE", "AE-DU", "AE-AZ", "AE-SH", "AE-AJ", "AE-FU", "AE-RK", "AE-UM"],
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "دبي, الإمارات العربية المتحدة",
+        "streetAddress": "متجر هدايا الإمارات",
         "addressLocality": "دبي",
         "addressRegion": "دبي",
         "postalCode": "00971",
@@ -84,13 +85,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
+    <link rel="apple-touch-icon" href="./logo.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --gold: #D4AF37;
             --dark-blue: #1e3c72;
@@ -103,893 +100,141 @@
             --shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             --shadow-lg: 0 20px 60px rgba(212, 175, 55, 0.2);
         }
-
-        html, body {
-            height: 100%;
-            font-family: 'Cairo', sans-serif;
-            color: var(--dark-gray);
-        }
-
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #f0f4f8 100%);
-        }
+        html, body { height: 100%; font-family: 'Cairo', sans-serif; color: var(--dark-gray); }
+        body { background: linear-gradient(135deg, #f5f7fa 0%, #f0f4f8 100%); }
 
         /* 🔐 LEGAL HEADER STYLES */
-        .legal-header-nav {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 0;
-            border-bottom: 4px solid #f5576c;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 0;
-        }
-        .legal-nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px 20px;
-        }
-        .legal-nav-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .legal-nav-title {
-            color: white;
-            font-size: 1.3em;
-            font-weight: bold;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .legal-nav-title:hover {
-            color: #fff;
-            text-decoration: none;
-        }
-        .legal-nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-            flex-wrap: wrap;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .legal-nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 12px;
-            border-radius: 5px;
-        }
-        .legal-nav-links a:hover {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            transform: translateY(-2px);
-        }
-        .legal-nav-links li {
-            margin: 0;
-        }
-        .legal-nav-links li:first-child a {
-            background: rgba(255,255,255,0.2);
-            border-left: 3px solid #f5576c;
-        }
-        .legal-contact-quick {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .legal-contact-quick a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.95em;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 12px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-        .legal-contact-quick a:hover {
-            background: rgba(255,255,255,0.2);
-            color: white;
-        }
+        .legal-header-nav { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 0; border-bottom: 4px solid #f5576c; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 0; }
+        .legal-nav-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; }
+        .legal-nav-wrapper { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .legal-nav-title { color: white; font-size: 1.3em; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .legal-nav-title:hover { color: #fff; text-decoration: none; }
+        .legal-nav-links { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
+        .legal-nav-links a { color: white; text-decoration: none; font-weight: 500; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; border-radius: 5px; font-size: 14px; }
+        .legal-nav-links a:hover { background: rgba(255,255,255,0.2); color: white; transform: translateY(-2px); }
+        .legal-nav-links li { margin: 0; }
+        .legal-nav-links li:first-child a { background: rgba(255,255,255,0.2); border-left: 3px solid #f5576c; }
+        .legal-contact-quick { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+        .legal-contact-quick a { color: white; text-decoration: none; font-size: 0.95em; display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 5px; transition: all 0.3s ease; }
+        .legal-contact-quick a:hover { background: rgba(255,255,255,0.2); color: white; }
 
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gold), var(--light-blue), var(--teal));
-            width: 0;
-            z-index: 9999;
-            transition: width 0.3s ease;
-        }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--light-blue), var(--teal)); width: 0; z-index: 9999; transition: width 0.3s ease; }
 
-        .top-banner {
-            background: linear-gradient(90deg, var(--dark-blue), var(--light-blue));
-            color: var(--white);
-            padding: 12px 20px;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 600;
-        }
+        .top-banner { background: linear-gradient(90deg, var(--dark-blue), var(--light-blue)); color: var(--white); padding: 12px 20px; text-align: center; font-size: 13px; font-weight: 600; }
+        .banner-text { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .banner-text i { color: var(--gold); }
 
-        .banner-text {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .banner-text i {
-            color: var(--gold);
-        }
-
-        /* Header */
-        .header {
-            background: var(--white);
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--dark-blue);
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--sand));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .logo-icon img {
-            width: 40px;
-            height: 40px;
-        }
-
-        .logo-text .logo-title {
-            font-size: 18px;
-            color: var(--dark-blue);
-        }
-
-        .logo-text .logo-subtitle {
-            font-size: 11px;
-            color: var(--gold);
-            font-weight: 500;
-        }
-
-        .main-nav {
-            flex: 1;
-            min-width: 300px;
-            margin: 0 30px;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-            justify-content: center;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--dark-gray);
-            font-weight: 600;
-            font-size: 14px;
-            transition: color 0.3s;
-            position: relative;
-            white-space: nowrap;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--gold);
-        }
-
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gold);
-            border-radius: 2px;
-        }
-
-        .header-tools {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .checkout-btn {
-            background: linear-gradient(135deg, var(--dark-blue), var(--light-blue));
-            color: var(--white);
-            padding: 12px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s;
-            position: relative;
-            border: none;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .checkout-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.3);
-        }
-
-        .cart-counter {
-            background: var(--gold);
-            color: var(--dark-blue);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-            min-width: 24px;
-        }
+        .header { background: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; }
+        .header-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; flex-wrap: wrap; gap: 20px; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark-blue); font-weight: 700; white-space: nowrap; }
+        .logo-icon { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--sand)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .logo-icon img { width: 40px; height: 40px; }
+        .logo-text .logo-title { font-size: 18px; color: var(--dark-blue); }
+        .logo-text .logo-subtitle { font-size: 11px; color: var(--gold); font-weight: 500; }
+        .main-nav { flex: 1; min-width: 300px; margin: 0 30px; }
+        .nav-menu { display: flex; list-style: none; gap: 30px; justify-content: center; flex-wrap: wrap; }
+        .nav-link { text-decoration: none; color: var(--dark-gray); font-weight: 600; font-size: 14px; transition: color 0.3s; position: relative; white-space: nowrap; }
+        .nav-link:hover, .nav-link.active { color: var(--gold); }
+        .nav-link.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: var(--gold); border-radius: 2px; }
+        .header-tools { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+        .checkout-btn { background: linear-gradient(135deg, var(--dark-blue), var(--light-blue)); color: var(--white); padding: 12px 20px; border-radius: 25px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; transition: all 0.3s; position: relative; border: none; cursor: pointer; white-space: nowrap; }
+        .checkout-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(30, 60, 114, 0.3); }
+        .cart-counter { background: var(--gold); color: var(--dark-blue); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; min-width: 24px; }
 
         /* 🛒 FLOATING CHECKOUT BUTTON */
-        .floating-checkout-btn {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #D4AF37, #B8860B);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
-            transition: all 0.3s ease;
-            z-index: 999;
-            font-size: 28px;
-            text-decoration: none;
-            justify-content: center;
-        }
+        .floating-checkout-btn { position: fixed; bottom: 30px; left: 30px; width: 70px; height: 70px; background: linear-gradient(135deg, #D4AF37, #B8860B); color: white; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4); transition: all 0.3s ease; z-index: 999; font-size: 28px; text-decoration: none; }
+        .floating-checkout-btn:hover { transform: scale(1.15) translateY(-5px); box-shadow: 0 12px 40px rgba(212, 175, 55, 0.6); }
+        .floating-checkout-btn:active { transform: scale(1.05); }
+        .floating-checkout-badge { position: absolute; top: -10px; right: -10px; background: #e74c3c; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; border: 2px solid white; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }
 
-        .floating-checkout-btn:hover {
-            transform: scale(1.15) translateY(-5px);
-            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.6);
-        }
+        .hero { background: linear-gradient(135deg, var(--dark-blue) 0%, var(--light-blue) 100%); color: var(--white); padding: 100px 20px; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; right: 0; width: 400px; height: 400px; background: rgba(212, 175, 55, 0.1); border-radius: 50%; transform: translate(100px, -100px); }
+        .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 300px; height: 300px; background: rgba(42, 157, 143, 0.1); border-radius: 50%; transform: translate(-50px, 50px); }
+        .hero-content { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
+        .hero-title { font-size: 56px; font-weight: 900; margin-bottom: 20px; line-height: 1.2; }
+        .hero-title span { background: linear-gradient(135deg, var(--gold), var(--sand)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-subtitle { font-size: 18px; margin-bottom: 40px; opacity: 0.9; line-height: 1.6; }
+        .button-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary, .btn-secondary { padding: 16px 40px; border-radius: 30px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s; font-size: 16px; border: none; cursor: pointer; }
+        .btn-primary { background: linear-gradient(135deg, var(--gold), var(--sand)); color: var(--dark-blue); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.2); color: var(--white); border: 2px solid var(--white); }
+        .btn-secondary:hover { background: var(--white); color: var(--dark-blue); }
 
-        .floating-checkout-btn:active {
-            transform: scale(1.05);
-        }
+        .section { padding: 80px 20px; }
+        .section-container { max-width: 1400px; margin: 0 auto; }
+        .filter-controls { display: flex; gap: 10px; margin-bottom: 50px; flex-wrap: wrap; justify-content: center; }
+        .filter-btn { background: var(--white); color: var(--dark-blue); border: 2px solid var(--gold); padding: 12px 25px; border-radius: 25px; cursor: pointer; font-weight: 700; font-size: 14px; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
+        .filter-btn:hover, .filter-btn.active { background: linear-gradient(135deg, var(--gold), var(--sand)); color: var(--dark-blue); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
+        .section-title { font-size: 42px; font-weight: 900; color: var(--dark-blue); position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; right: 0; width: 100px; height: 4px; background: linear-gradient(90deg, var(--gold), var(--sand)); border-radius: 2px; }
+        .view-all-link { display: inline-flex; align-items: center; gap: 10px; color: var(--gold); text-decoration: none; font-weight: 700; font-size: 16px; transition: all 0.3s; }
+        .view-all-link:hover { gap: 15px; color: var(--sand); }
 
-        .floating-checkout-badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #e74c3c;
-            color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 900;
-            border: 2px solid white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--light-blue) 100%);
-            color: var(--white);
-            padding: 100px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 400px;
-            height: 400px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 50%;
-            transform: translate(100px, -100px);
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 300px;
-            height: 300px;
-            background: rgba(42, 157, 143, 0.1);
-            border-radius: 50%;
-            transform: translate(-50px, 50px);
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 56px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero-title span {
-            background: linear-gradient(135deg, var(--gold), var(--sand));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 18px;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary,
-        .btn-secondary {
-            padding: 16px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--gold), var(--sand));
-            color: var(--dark-blue);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--dark-blue);
-        }
-
-        /* Section */
-        .section {
-            padding: 80px 20px;
-        }
-
-        .section-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Filter Controls */
-        .filter-controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            background: var(--white);
-            color: var(--dark-blue);
-            border: 2px solid var(--gold);
-            padding: 12px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 14px;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: linear-gradient(135deg, var(--gold), var(--sand));
-            color: var(--dark-blue);
-            border-color: var(--gold);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title {
-            font-size: 42px;
-            font-weight: 900;
-            color: var(--dark-blue);
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--sand));
-            border-radius: 2px;
-        }
-
-        .view-all-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-
-        .view-all-link:hover {
-            gap: 15px;
-            color: var(--sand);
-        }
-
-        /* Products Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            cursor: pointer;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .product-image-container {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, var(--light-gray), #e8e8e8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-            pointer-events: none;
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.1);
-        }
-
-        .discount-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: var(--sand);
-            color: var(--white);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 13px;
-            pointer-events: none;
-        }
-
-        .product-info {
-            padding: 20px;
-            pointer-events: none;
-        }
-
-        .product-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--dark-blue);
-            margin-bottom: 10px;
-            min-height: 50px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .product-price {
-            font-size: 20px;
-            font-weight: 900;
-            color: var(--gold);
-            margin-bottom: 15px;
-        }
-
-        .original-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 14px;
-            margin-left: 10px;
-            font-weight: 500;
-        }
-
-        .product-actions {
-            display: flex;
-            gap: 10px;
-            pointer-events: auto;
-        }
-
-        .product-actions button,
-        .product-actions a {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            transition: all 0.3s;
-        }
-
-        .btn-cart {
-            background: linear-gradient(135deg, var(--dark-blue), var(--light-blue));
-            color: var(--white);
-        }
-
-        .btn-cart:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
-        }
-
-        .btn-whatsapp {
-            background: linear-gradient(135deg, #25D366, #20B358);
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        .btn-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .loading-message {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--gold);
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        .loading-spinner-icon {
-            font-size: 40px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Load More Button */
-        .load-more-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            animation: fadeIn 0.6s ease;
-        }
-
-        #loadMoreBtn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 16px 40px;
-            background: linear-gradient(135deg, var(--gold), #B8860B);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Cairo', sans-serif;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        #loadMoreBtn:hover {
-            background: linear-gradient(135deg, #E5C158, var(--gold));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        #loadMoreBtn:active {
-            transform: translateY(0);
-        }
-
-        #loadMoreBtn i {
-            font-size: 18px;
-            transition: transform 0.3s ease;
-        }
-
-        #loadMoreBtn:hover i {
-            transform: scale(1.1);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .product-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); transition: all 0.3s; cursor: pointer; user-select: none; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+        .product-image-container { width: 100%; height: 250px; background: linear-gradient(135deg, var(--light-gray), #e8e8e8); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+        .product-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; pointer-events: none; }
+        .product-card:hover .product-image { transform: scale(1.1); }
+        .discount-badge { position: absolute; top: 15px; left: 15px; background: var(--sand); color: var(--white); padding: 8px 15px; border-radius: 20px; font-weight: 700; font-size: 13px; pointer-events: none; }
+        .product-info { padding: 20px; pointer-events: none; }
+        .product-title { font-size: 16px; font-weight: 700; color: var(--dark-blue); margin-bottom: 10px; min-height: 50px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .product-price { font-size: 20px; font-weight: 900; color: var(--gold); margin-bottom: 15px; }
+        .original-price { text-decoration: line-through; color: #999; font-size: 14px; margin-left: 10px; font-weight: 500; }
+        .product-actions { display: flex; gap: 10px; pointer-events: auto; }
+        .product-actions button, .product-actions a { flex: 1; padding: 12px; border: none; border-radius: 12px; font-weight: 600; font-size: 13px; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.3s; }
+        .btn-cart { background: linear-gradient(135deg, var(--dark-blue), var(--light-blue)); color: var(--white); }
+        .btn-cart:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3); }
+        .btn-whatsapp { background: linear-gradient(135deg, #25D366, #20B358); color: var(--white); text-decoration: none; }
+        .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
+        .loading-message { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--gold); font-weight: 700; font-size: 18px; }
+        .loading-spinner-icon { font-size: 40px; animation: spin 1s linear infinite; margin-bottom: 20px; display: block; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .load-more-container { display: flex; justify-content: center; align-items: center; padding: 40px 20px; animation: fadeIn 0.6s ease; }
+        #loadMoreBtn { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 40px; background: linear-gradient(135deg, var(--gold), #B8860B); color: white; border: none; border-radius: 25px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); position: relative; overflow: hidden; }
+        #loadMoreBtn:hover { background: linear-gradient(135deg, #E5C158, var(--gold)); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); }
+        #loadMoreBtn:active { transform: translateY(0); }
+        #loadMoreBtn i { font-size: 18px; transition: transform 0.3s ease; }
+        #loadMoreBtn:hover i { transform: scale(1.1); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* 🔐 LEGAL FOOTER STYLES */
-        .legal-footer {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 60px 20px 30px;
-            margin-top: 80px;
-            border-top: 4px solid #f5576c;
-        }
-        .legal-footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .legal-footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        .legal-footer-section h3 {
-            font-size: 1.3em;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #f5576c;
-            padding-bottom: 10px;
-        }
-        .legal-footer-section ul {
-            list-style: none;
-        }
-        .legal-footer-section li {
-            margin: 12px 0;
-        }
-        .legal-footer-section a {
-            color: #e0e0e0;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .legal-footer-section a:hover {
-            color: #f5576c;
-            transform: translateX(5px);
-        }
-        .legal-divider {
-            border-top: 1px solid rgba(255,255,255,0.2);
-            margin: 30px 0;
-        }
-        .legal-footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
-        .legal-footer-bottom p {
-            margin: 10px 0;
-            font-size: 0.95em;
-            opacity: 0.9;
-        }
-        .legal-badges {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        .legal-badge {
-            background: rgba(245,87,108,0.2);
-            border: 1px solid #f5576c;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-        }
+        .legal-footer { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 60px 20px 30px; margin-top: 80px; border-top: 4px solid #f5576c; }
+        .legal-footer-container { max-width: 1200px; margin: 0 auto; }
+        .legal-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .legal-footer-section h3 { font-size: 1.3em; margin-bottom: 20px; border-bottom: 2px solid #f5576c; padding-bottom: 10px; }
+        .legal-footer-section ul { list-style: none; }
+        .legal-footer-section li { margin: 12px 0; }
+        .legal-footer-section a { color: #e0e0e0; text-decoration: none; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
+        .legal-footer-section a:hover { color: #f5576c; transform: translateX(5px); }
+        .legal-divider { border-top: 1px solid rgba(255,255,255,0.2); margin: 30px 0; }
+        .legal-footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); }
+        .legal-footer-bottom p { margin: 10px 0; font-size: 0.95em; opacity: 0.9; }
+        .legal-badges { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .legal-badge { background: rgba(245,87,108,0.2); border: 1px solid #f5576c; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 36px;
-            }
-
-            .hero-subtitle {
-                font-size: 14px;
-            }
-
-            .nav-menu {
-                gap: 15px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 20px;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-            }
-
-            .legal-nav-links,
-            .legal-contact-quick {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-                width: 100%;
-            }
-            .legal-nav-wrapper {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .floating-checkout-btn {
-                bottom: 20px;
-                left: 20px;
-                width: 60px;
-                height: 60px;
-                font-size: 24px;
-            }
-
-            .floating-checkout-badge {
-                width: 24px;
-                height: 24px;
-                font-size: 11px;
-            }
+            .hero-title { font-size: 36px; }
+            .hero-subtitle { font-size: 14px; }
+            .nav-menu { gap: 15px; }
+            .section-title { font-size: 28px; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+            .button-group { flex-direction: column; }
+            .btn-primary, .btn-secondary { width: 100%; }
+            .legal-nav-links, .legal-contact-quick { flex-direction: column; align-items: flex-start; gap: 10px; width: 100%; }
+            .legal-nav-wrapper { flex-direction: column; gap: 15px; }
+            .floating-checkout-btn { bottom: 20px; left: 20px; width: 60px; height: 60px; font-size: 24px; }
+            .floating-checkout-badge { width: 24px; height: 24px; font-size: 11px; }
         }
-
         @media (max-width: 480px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .main-nav {
-                margin: 0;
-                min-width: unset;
-                width: 100%;
-            }
-
-            .nav-menu {
-                gap: 10px;
-                font-size: 12px;
-            }
-
-            .hero {
-                padding: 60px 20px;
-            }
-
-            .hero-title {
-                font-size: 28px;
-            }
+            .header-content { flex-direction: column; gap: 15px; }
+            .main-nav { margin: 0; min-width: unset; width: 100%; }
+            .nav-menu { gap: 10px; font-size: 12px; }
+            .hero { padding: 60px 20px; }
+            .hero-title { font-size: 28px; }
         }
     </style>
 </head>
@@ -1000,17 +245,13 @@
     <header class="legal-header-nav">
         <div class="legal-nav-container">
             <div class="legal-nav-wrapper">
-                <a href="/index.html" class="legal-nav-title">
-                    🛒 متجر هدايا الإمارات
-                </a>
-                
+                <a href="/index.html" class="legal-nav-title">🛒 متجر هدايا الإمارات</a>
                 <ul class="legal-nav-links">
                     <li><a href="/legal/about.html">ℹ️ من نحن</a></li>
                     <li><a href="/legal/return-policy.html">🔄 الاسترجاع</a></li>
                     <li><a href="/legal/privacy-policy.html">🔐 الخصوصية</a></li>
                     <li><a href="/legal/shipping-policy.html">🚚 الشحن</a></li>
                 </ul>
-                
                 <div class="legal-contact-quick">
                     <a href="/legal/contact-us.html">📞 اتصل</a>
                     <a href="https://wa.me/201110760081" target="_blank">💬 واتساب</a>
@@ -1049,7 +290,7 @@
                 <nav class="main-nav">
                     <ul class="nav-menu">
                         <li><a href="./" class="nav-link active">🏠 الرئيسية</a></li>
-                        <li><a href="./products-showcase.html" class="nav-link">📚 المنتجات</a></li>
+                        <li><a href="./products-showcase.html" class="nav-link">📋 المنتجات</a></li>
                         <li><a href="./checkout.html" class="nav-link">🛒 السلة</a></li>
                         <li><a href="./en/" class="nav-link"><i class="fas fa-globe"></i> English</a></li>
                     </ul>
@@ -1118,7 +359,6 @@
     <footer class="legal-footer">
         <div class="legal-footer-container">
             <div class="legal-footer-grid">
-                <!-- الصفحات القانونية -->
                 <div class="legal-footer-section">
                     <h3>📄 البوليسات والشروط</h3>
                     <ul>
@@ -1128,8 +368,6 @@
                         <li><a href="/legal/shipping-policy.html" target="_blank">🚚 سياسة الشحن</a></li>
                     </ul>
                 </div>
-
-                <!-- طرق الاتصال -->
                 <div class="legal-footer-section">
                     <h3>📞 طرق الاتصال</h3>
                     <ul>
@@ -1139,10 +377,8 @@
                         <li><a href="/legal/contact-us.html" target="_blank">📞 اتصل بنا</a></li>
                     </ul>
                 </div>
-
-                <!-- الميزات -->
                 <div class="legal-footer-section">
-                    <h3>🌟 لماذا نخترنا</h3>
+                    <h3>🌟 لماذا نختارنا</h3>
                     <ul>
                         <li>✓ الجودة العالية</li>
                         <li>✓ الاسترجاع 14 يوم</li>
@@ -1151,9 +387,7 @@
                     </ul>
                 </div>
             </div>
-
             <div class="legal-divider"></div>
-
             <div class="legal-footer-bottom">
                 <div class="legal-badges">
                     <span class="legal-badge">🔒 آمن 100%</span>
@@ -1185,7 +419,7 @@
                     if (badge) badge.textContent = total;
                     if (floatingBadge) floatingBadge.textContent = total;
                 } catch (e) {
-                    console.error('Cart error:', e);
+                    console.error('رال السلة:', e);
                 }
             }
 
@@ -1243,7 +477,7 @@
                     card.setAttribute('data-product-id', product.id);
                     card.innerHTML = `
                         <div class="product-image-container">
-                            <img src="${product.image_link || 'https://via.placeholder.com/300x250/D4AF37/FFFFFF?text=Product'}" alt="${product.title} - 🛒 متجر هدايا الإمارات" class="product-image">
+                            <img src="${product.image_link || 'https://via.placeholder.com/300x250/D4AF37/FFFFFF?text=Product'}" alt="${product.title} - 🛒 متجر هدايا الإمارات" class="product-image" loading="lazy">
                             ${hasDiscount ? `<div class="discount-badge">خصم ${discountPercent}%</div>` : ''}
                         </div>
                         <div class="product-info">
@@ -1257,7 +491,7 @@
                                     <i class="fas fa-cart-plus"></i>
                                     اطلب
                                 </button>
-                                <a href="https://wa.me/201110760081" class="btn-whatsapp" target="_blank" rel="noopener">
+                                <a href="https://wa.me/201110760081?text=مرحباً%20أرغب%20في%20${encodeURIComponent(product.title)}" class="btn-whatsapp" target="_blank" rel="noopener">
                                     <i class="fab fa-whatsapp"></i>
                                 </a>
                             </div>
@@ -1354,7 +588,7 @@
                     alert('✅ تم إضافة "' + title + '" للسلة بسعر ' + (salePrice || price).toFixed(2) + ' د.إ\n\nاذهب للسلة الآن!');
                     window.location.href = './checkout.html';
                 } catch (e) {
-                    console.error('Add to cart error:', e);
+                    console.error('خطأ:', e);
                 }
             };
 
