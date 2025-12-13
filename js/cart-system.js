@@ -2,31 +2,58 @@
  * نظام السلة المتقدم
  * - إدارة كاملة للسلة
  * - تخزين آمن في localStorage
- * - دعم متعدد المتصفحات
- * Emirates Gifts v3.0
+ * - دعم متعدد المفاتيح
+ * Emirates Gifts v3.1
  */
 
 class CartSystem {
     constructor() {
-        // إعدادات التخزين
-        this.STORAGE_KEY = 'emirates_cart_data';
-        this.TOTAL_KEY = 'emirates_cart_total';
-        this.ITEMS_COUNT_KEY = 'emirates_cart_count';
+        // مفاتيح التخزين المحتملة (بالترتيب الأولوي)
+        this.STORAGE_KEYS = [
+            'emirates_cart_data',      // المفتاح الجديد
+            'emirates_shopping_cart',  // بديل 1
+            'emirates_cart',           // بديل 2
+            'cart'                     // بديل 3
+        ];
+        
+        this.TOTAL_KEYS = [
+            'emirates_cart_total',     // المفتاح الجديد
+            'totalPrice',              // بديل
+            'emirates_cart_total_price', // بديل
+            'total'                    // بديل
+        ];
         
         // تحميل البيانات عند الإنشاء
         this.cart = this.loadCart();
         this.total = this.calculateTotal();
         
-        console.log('🛒 نظام السلة بدأ بنجاح');
+        console.log('🛒 نظام السلة بدء بنجاح');
+        console.log('📦 عدد العناصر:', this.cart.length);
     }
     
     /**
-     * تحميل السلة من localStorage
+     * تحميل السلة من localStorage مع دعم المفاتيح المتعددة
      */
     loadCart() {
         try {
-            const stored = localStorage.getItem(this.STORAGE_KEY);
-            return stored ? JSON.parse(stored) : [];
+            // البحث عن المفاتيح الموجودة
+            for (const key of this.STORAGE_KEYS) {
+                const stored = localStorage.getItem(key);
+                if (stored) {
+                    try {
+                        const data = JSON.parse(stored);
+                        if (Array.isArray(data) && data.length > 0) {
+                            console.log(`✅ تم تحميل السلة من: ${key}`);
+                            return data;
+                        }
+                    } catch (e) {
+                        console.warn(`⚠️ خطأ في قراءة ${key}:`, e);
+                    }
+                }
+            }
+            
+            console.log('📦 السلة فارغة');
+            return [];
         } catch (error) {
             console.error('❌ خطأ تحميل السلة:', error);
             return [];
@@ -38,9 +65,16 @@ class CartSystem {
      */
     saveCart() {
         try {
-            localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.cart));
+            const data = JSON.stringify(this.cart);
+            
+            // حفظ في جميع المفاتيح للتوافقية
+            for (const key of this.STORAGE_KEYS) {
+                localStorage.setItem(key, data);
+            }
+            
             this.updateTotal();
             this.dispatchEvent('cartUpdated');
+            
             console.log('✅ تم حفظ السلة');
         } catch (error) {
             console.error('❌ خطأ حفظ السلة:', error);
@@ -56,21 +90,20 @@ class CartSystem {
             return false;
         }
         
-        // تحقق إذا المنتج موجود
-        const existingItem = this.cart.find(item => item.id === product.id);
+        // التحقق إذا المنتج موجود
+        const existingItem = this.cart.find(item => String(item.id) === String(product.id));
         
         if (existingItem) {
-            // زيادة الكمية
             existingItem.quantity = (parseInt(existingItem.quantity) || 1) + 1;
             console.log(`📦 تم زيادة كمية: ${product.title}`);
         } else {
-            // إضافة منتج جديد
             const cartItem = {
                 id: product.id,
                 title: product.title || 'منتج',
                 price: parseFloat(product.price || 0),
                 sale_price: parseFloat(product.sale_price || product.price || 0),
                 image_link: product.image_link || product.image || '',
+                image: product.image || product.image_link || '',
                 quantity: 1,
                 added_at: new Date().toISOString()
             };
@@ -87,7 +120,7 @@ class CartSystem {
      * تحديث كمية المنتج
      */
     updateQuantity(productId, quantity) {
-        const item = this.cart.find(item => item.id === productId);
+        const item = this.cart.find(item => String(item.id) === String(productId));
         
         if (!item) {
             console.error(`❌ المنتج ${productId} غير موجود`);
@@ -98,7 +131,6 @@ class CartSystem {
         item.quantity = quantity;
         
         this.saveCart();
-        console.log(`📝 تحديث كمية: ${item.title} = ${quantity}`);
         return true;
     }
     
@@ -106,7 +138,7 @@ class CartSystem {
      * حذف منتج من السلة
      */
     removeProduct(productId) {
-        const index = this.cart.findIndex(item => item.id === productId);
+        const index = this.cart.findIndex(item => String(item.id) === String(productId));
         
         if (index === -1) {
             console.error(`❌ المنتج ${productId} غير موجود`);
@@ -125,7 +157,7 @@ class CartSystem {
     clearCart() {
         this.cart = [];
         this.saveCart();
-        console.log('🧽 تم إفراغ السلة');
+        console.log('🯙 تم إفراغ السلة');
     }
     
     /**
@@ -134,7 +166,8 @@ class CartSystem {
     calculateTotal() {
         return this.cart.reduce((sum, item) => {
             const price = item.sale_price || item.price || 0;
-            return sum + (price * (parseInt(item.quantity) || 1));
+            const quantity = parseInt(item.quantity) || 1;
+            return sum + (price * quantity);
         }, 0);
     }
     
@@ -143,8 +176,13 @@ class CartSystem {
      */
     updateTotal() {
         this.total = this.calculateTotal();
-        localStorage.setItem(this.TOTAL_KEY, this.total.toFixed(2));
-        localStorage.setItem(this.ITEMS_COUNT_KEY, this.cart.length);
+        
+        // حفظ الإجمالي في المفاتيح المختلفة
+        const totalStr = this.total.toFixed(2);
+        for (const key of this.TOTAL_KEYS) {
+            localStorage.setItem(key, totalStr);
+        }
+        
         return this.total;
     }
     
@@ -152,7 +190,7 @@ class CartSystem {
      * الحصول على بيانات السلة
      */
     getCart() {
-        return [...this.cart]; // نسخة
+        return [...this.cart];
     }
     
     /**
@@ -170,21 +208,17 @@ class CartSystem {
     }
     
     /**
-     * إرسال حدث مخصص
+     * إرسال حدث
      */
     dispatchEvent(eventName) {
         const event = new CustomEvent(eventName, {
-            detail: {
-                cart: this.cart,
-                total: this.total,
-                count: this.cart.length
-            }
+            detail: { cart: this.cart, total: this.total, count: this.cart.length }
         });
         window.dispatchEvent(event);
     }
     
     /**
-     * الحصول على JSON للإرسال
+     * JSON للإرسال
      */
     toJSON() {
         return {
@@ -196,10 +230,9 @@ class CartSystem {
     }
 }
 
-// إنشاء instance عام
+// إنشاء instance
 window.cartSystem = new CartSystem();
 
-// تصدير للـ modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = CartSystem;
 }
