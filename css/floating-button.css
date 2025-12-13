@@ -1,0 +1,237 @@
+/**
+ * أنماط الزر العائم لإتمام الطلب
+ * Emirates Gifts Store - Floating Checkout Button Styles
+ */
+
+.floating-checkout-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    z-index: 999;
+    
+    /* تأثيرات الظهور/الاختفاء */
+    opacity: 0;
+    transform: translateY(100px) scale(0.8);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    pointer-events: none;
+}
+
+.floating-checkout-btn.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.floating-checkout-btn.hidden {
+    opacity: 0;
+    transform: translateY(100px) scale(0.8);
+    pointer-events: none;
+}
+
+/* محتوى الزر */
+.floating-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(30, 60, 114, 0.35);
+    transition: all 0.3s ease;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    min-height: 60px;
+}
+
+.floating-btn-content:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(30, 60, 114, 0.45);
+    border-color: rgba(212, 175, 55, 0.6);
+}
+
+.floating-btn-content:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 60, 114, 0.3);
+}
+
+/* ايقونة السلة */
+.floating-btn-icon {
+    position: relative;
+    font-size: 24px;
+    min-width: 28px;
+    text-align: center;
+    animation: cartPulse 0.6s ease-in-out;
+}
+
+/* وسام عدد العناصر */
+.floating-btn-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #FFD700, #D4AF37);
+    color: #1e3c72;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    animation: badgePop 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+/* نص الزر */
+.floating-btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.floating-btn-title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.floating-btn-price {
+    font-size: 13px;
+    color: #FFD700;
+    font-weight: 700;
+}
+
+/* سهم لليسار */
+.floating-btn-arrow {
+    margin-right: 4px;
+    font-size: 16px;
+    animation: arrowSlide 0.6s ease-in-out infinite;
+}
+
+/* التأثيرات */
+@keyframes cartPulse {
+    0% {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes badgePop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes arrowSlide {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-4px);
+    }
+}
+
+/* استجابة مباشر */
+@media (max-width: 768px) {
+    .floating-checkout-btn {
+        bottom: 20px;
+        right: 15px;
+    }
+    
+    .floating-btn-content {
+        padding: 10px 14px;
+        min-height: 56px;
+        gap: 10px;
+    }
+    
+    .floating-btn-icon {
+        font-size: 20px;
+    }
+    
+    .floating-btn-title {
+        font-size: 12px;
+    }
+    
+    .floating-btn-price {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-checkout-btn {
+        bottom: 15px;
+        right: 10px;
+    }
+    
+    .floating-btn-content {
+        padding: 8px 12px;
+        min-height: 52px;
+        gap: 8px;
+    }
+    
+    .floating-btn-text {
+        gap: 0;
+    }
+    
+    .floating-btn-title {
+        font-size: 11px;
+    }
+    
+    .floating-btn-price {
+        font-size: 10px;
+    }
+    
+    .floating-btn-icon {
+        font-size: 18px;
+    }
+    
+    .floating-btn-arrow {
+        display: none;
+    }
+}
+
+/* RTL Support للعربية */
+[dir="rtl"] .floating-checkout-btn {
+    right: auto;
+    left: 20px;
+}
+
+[dir="rtl"] .floating-btn-badge {
+    right: auto;
+    left: -8px;
+}
+
+[dir="rtl"] .floating-btn-arrow {
+    margin-right: 0;
+    margin-left: 4px;
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] @media (max-width: 768px) {
+    .floating-checkout-btn {
+        left: 15px;
+    }
+}
+
+[dir="rtl"] @media (max-width: 480px) {
+    .floating-checkout-btn {
+        left: 10px;
+    }
+}
