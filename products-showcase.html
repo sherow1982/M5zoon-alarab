@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- 🔒 STRICT CSP POLICY - NO INLINE CODE ALLOWED -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;">
     
     <title>جميع المنتجات - متجر هدايا الإمارات عالي الجودة</title>
     <meta name="description" content="استعرض جميع العطور والساعات والهدايا عالية الجودة في الإمارات. شحن خلال 1-3 أيام عمل وضمان إرجاع 14 يوم.">
@@ -110,7 +110,57 @@
             font-weight: 700;
             letter-spacing: 0.5px;
         }
-        
+
+        /* 🛒 FLOATING CART BUTTON */
+        .floating-cart-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #D4AF37, #B8860B);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            font-size: 28px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .floating-cart-btn:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .floating-cart-btn:active {
+            transform: scale(1.05);
+        }
+
+        .floating-cart-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #e74c3c;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 900;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
         @media (max-width: 768px) {
             #loadMoreBtn {
                 padding: 14px 28px;
@@ -123,6 +173,20 @@
             
             .load-more-container {
                 padding: 30px 15px;
+            }
+
+            .floating-cart-btn {
+                bottom: 20px;
+                left: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+
+            .floating-cart-badge {
+                width: 24px;
+                height: 24px;
+                font-size: 11px;
             }
         }
         
@@ -139,6 +203,12 @@
     </style>
 </head>
 <body>
+    <!-- 🛒 FLOATING CART BUTTON -->
+    <a href="./checkout.html" class="floating-cart-btn" title="اذهب إلى السلة" aria-label="الانتقال إلى صفحة السلة">
+        <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+        <span class="floating-cart-badge" id="floatingCartBadge">0</span>
+    </a>
+
     <div class="progress-bar" id="progressBar"></div>
     
     <div class="top-banner">
@@ -166,6 +236,7 @@
                     <ul>
                         <li><a href="./" class="nav-link">الرئيسية</a></li>
                         <li><a href="./products-showcase.html" class="nav-link active" aria-current="page">جميع المنتجات</a></li>
+                        <li><a href="./checkout.html" class="nav-link">🛒 السلة</a></li>
                         <li><a href="https://wa.me/201110760081" class="nav-link" target="_blank" rel="noopener">تواصل معنا</a></li>
                         <li><a href="./en/" class="nav-link english-link" target="_blank" rel="noopener"><i class="fas fa-globe" aria-hidden="true"></i> English</a></li>
                     </ul>
@@ -224,8 +295,8 @@
         <div class="products-grid" id="allProductsGrid" role="grid" aria-label="شبكة عرض المنتجات">
             <div class="loading-message" role="status" aria-live="polite">
                 <i class="fas fa-spinner" style="animation: spin 1s linear infinite;" aria-hidden="true"></i><br>
-                <h3>جارِ تحميل جميع المنتجات عالية الجودة...</h3>
-                <p style="color: #666; margin-top: 15px;">دعم شامل لجميع الروابط - يرجى الانتظار</p>
+                <h3>جاري تحميل جميع المنتجات عالية الجودة...</h3>
+                <p style="color: #666; margin-top: 15px;">دعم شامل لجميع الروابط - يرجاء الانتظار</p>
             </div>
         </div>
         
@@ -323,16 +394,6 @@
                         <li><i class="fas fa-clock" aria-hidden="true"></i><span>خدمة العملاء: 24/7</span></li>
                     </ul>
                 </div>
-
-                <div class="footer-section">
-                    <h3>سياسات قانونية</h3>
-                    <ul>
-                        <li><a href="./privacy-policy.html">سياسة الخصوصية</a></li>
-                        <li><a href="./terms-conditions.html">شروط وأحكام</a></li>
-                        <li><a href="./shipping-policy.html">سياسة الشحن</a></li>
-                        <li><a href="./return-policy.html">سياسة الإرجاع</a></li>
-                    </ul>
-                </div>
             </div>
 
             <div class="footer-bottom">
@@ -348,6 +409,39 @@
 
     <!-- Load external script safely -->
     <script src="./js/products-showcase.js"></script>
+    <script>
+        // بار التقدم
+        window.addEventListener('scroll', function() {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            const bar = document.getElementById('progressBar');
+            if (bar) {
+                bar.style.width = scrolled + '%';
+            }
+        });
+
+        // تحديث رقم السلة العائمة
+        function updateFloatingCartBadge() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
+                const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                const badge = document.getElementById('floatingCartBadge');
+                if (badge) {
+                    badge.textContent = total;
+                }
+            } catch (e) {
+                console.error('Cart error:', e);
+            }
+        }
+
+        // بالبداية
+        updateFloatingCartBadge();
+
+        // مراقبة التغييرات
+        document.addEventListener('storage', updateFloatingCartBadge);
+
+        // للطرق بباب أمر مخصصة للتحديث
+        window.updateFloatingCartBadge = updateFloatingCartBadge;
+    </script>
 
 </body>
 </html>
