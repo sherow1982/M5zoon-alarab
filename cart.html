@@ -3,40 +3,586 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>السلة - متجر هدايا الإمارات</title>
+    <title>سلة التسوق - متجر هدايا الإمارات</title>
     <meta name="description" content="سلة التسوق - عرض وإدارة منتجاتك المفضلة">
     
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/cart-styles.css">
     
     <style>
-        body {
-            background: #f5f5f5;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        :root {
+            --gold: #D4AF37;
+            --dark-blue: #1e3c72;
+            --light-blue: #2a5298;
+            --teal: #2a9d8f;
+            --sand: #f4a261;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --border: #e0e0e0;
+            --text: #333;
+            --text-light: #666;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, var(--light-gray) 0%, #f0f4f8 100%);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            sticky top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--sand));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 16px;
+            color: var(--dark-blue);
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: var(--gold);
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--dark-blue), var(--light-blue));
+            color: var(--white);
+        }
+
+        /* Main Content */
         .main-content {
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
         }
-        .page-title {
-            color: #1e3c72;
-            font-size: 28px;
-            margin-bottom: 30px;
+
+        .page-header {
             text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-title {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--dark-blue), var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+
+        /* Cart Container */
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* Cart Items */
+        .cart-items {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .cart-items-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--dark-blue), var(--light-blue));
+            color: var(--white);
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-item {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 100px 1fr 80px;
+            gap: 20px;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .cart-item:hover {
+            background: var(--light-gray);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            object-fit: cover;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .item-name {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--dark-blue);
+        }
+
+        .item-price {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--light-gray);
+            border-radius: 8px;
+            padding: 4px 8px;
+            width: fit-content;
+        }
+
+        .quantity-btn {
+            background: transparent;
+            border: none;
+            color: var(--gold);
+            font-weight: 700;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .quantity-btn:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .quantity-value {
+            font-weight: 600;
+            color: var(--text);
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .remove-btn {
+            background: #e74c3c;
+            color: var(--white);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .remove-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        /* Empty Cart */
+        .empty-cart {
+            padding: 80px 40px;
+            text-align: center;
+            background: var(--light-gray);
+        }
+
+        .empty-icon {
+            font-size: 80px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .empty-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+        }
+
+        .empty-text {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .empty-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--dark-blue), var(--light-blue));
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .empty-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 60, 114, 0.3);
+        }
+
+        /* Cart Summary */
+        .cart-summary {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .summary-row.total {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--gold);
+            padding-top: 15px;
+            border-top: 2px solid var(--border);
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .summary-value {
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--gold), var(--sand));
+            color: var(--dark-blue);
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .continue-btn {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            color: var(--dark-blue);
+            border: 2px solid var(--dark-blue);
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .continue-btn:hover {
+            background: var(--dark-blue);
+            color: var(--white);
+        }
+
+        .promo-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border);
+        }
+
+        .promo-label {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .promo-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .promo-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .promo-btn {
+            width: 100%;
+            padding: 8px;
+            background: var(--light-gray);
+            color: var(--text);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .promo-btn:hover {
+            background: var(--gold);
+            color: var(--white);
+            border-color: var(--gold);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-blue), #1a2a4a);
+            color: var(--white);
+            padding: 40px 20px 20px;
+            text-align: center;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--gold), #B8860B);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            font-size: 28px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .back-btn:active {
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                grid-template-columns: 80px 1fr 60px;
+                gap: 12px;
+            }
+
+            .item-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            .cart-summary {
+                position: static;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .back-btn {
+                bottom: 20px;
+                left: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--light-gray);
+            border-top: 5px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <!-- Back Button -->
+    <a href="./products-showcase.html" class="back-btn" title="العودة للتسوق" aria-label="العودة للمزيد من المنتجات">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+    </a>
+
+    <!-- Header -->
     <header class="header">
         <div class="header-container">
             <a href="./" class="logo">
                 <div class="logo-icon">
-                    <img src="./images/logo.svg" alt="هدايا الإمارات" style="width: 50px; height: 50px; object-fit: contain;">
+                    <img src="./images/logo.svg" alt="هدايا الإمارات" loading="eager">
                 </div>
-                <div>
+                <div class="logo-text">
                     <div class="logo-title">هدايا الإمارات</div>
                     <div class="logo-subtitle">Emirates Gifts</div>
                 </div>
@@ -46,26 +592,76 @@
                 <a href="./" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a>
                 <a href="./cart.html" class="nav-link active"><i class="fas fa-shopping-cart"></i> السلة</a>
                 <a href="./products-showcase.html" class="nav-link"><i class="fas fa-th-large"></i> جميع المنتجات</a>
-                <a href="./en/" class="nav-link" target="_blank" style="background: #1e3c72; color: white;"><i class="fas fa-globe"></i> English</a>
+                <a href="./en/" class="nav-link" target="_blank" rel="noopener"><i class="fas fa-globe"></i> English</a>
             </nav>
         </div>
     </header>
     
+    <!-- Main Content -->
     <main class="main-content">
-        <h1 class="page-title">🛒 سلة التسوق</h1>
-        <div id="cartContent" style="min-height: 400px;">
-            <div class="empty-cart">
-                <div class="empty-icon"><i class="fas fa-spinner fa-spin"></i></div>
-                <p>جاري تحميل السلة...</p>
+        <div class="page-header">
+            <h1 class="page-title">🛒 سلة التسوق</h1>
+            <p class="page-subtitle">إدارة منتجاتك بسهولة ويسر</p>
+        </div>
+        
+        <div class="cart-layout">
+            <!-- Cart Items Section -->
+            <div class="cart-items" id="cartContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل السلة...</p>
+                </div>
+            </div>
+            
+            <!-- Cart Summary -->
+            <div class="cart-summary" id="summaryContainer">
+                <div class="summary-title">📊 ملخص الطلب</div>
+                
+                <div class="summary-row">
+                    <span>عدد المنتجات:</span>
+                    <span class="summary-value" id="itemCount">0</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span>المجموع:</span>
+                    <span class="summary-value" id="subtotal">0 د.إ</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span>الشحن:</span>
+                    <span class="summary-value" id="shipping">50 د.إ</span>
+                </div>
+                
+                <div class="summary-row total">
+                    <span>الإجمالي:</span>
+                    <span id="totalPrice">0 د.إ</span>
+                </div>
+                
+                <button class="checkout-btn" onclick="window.location.href='./checkout.html'">
+                    <i class="fas fa-credit-card"></i>
+                    إتمام الطلب الآن
+                </button>
+                
+                <a href="./products-showcase.html" class="continue-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    مواصلة التسوق
+                </a>
+                
+                <div class="promo-section">
+                    <div class="promo-label">🎁 كود خصم</div>
+                    <input type="text" class="promo-input" placeholder="ادخل كود خصم (اختياري)">
+                    <button class="promo-btn">استخدم</button>
+                </div>
             </div>
         </div>
     </main>
     
-    <footer style="text-align: center; padding: 40px 20px; color: #666; border-top: 1px solid #eee; margin-top: 60px;">
-        <p>متجر هدايا الإمارات © 2025 | جميع الحقوق محفوظة</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>متجر هدايا الإمارات © 2025 | تواصل معنا: <a href="https://wa.me/201110760081" target="_blank" style="color: var(--gold); text-decoration: none; font-weight: 700;">واتساب</a></p>
     </footer>
     
-    <!-- الروابط -->
+    <!-- Scripts -->
     <script src="./js/cart-system.js"></script>
     <script src="./js/cart-page.js"></script>
     <script src="./js/add-to-cart.js"></script>
