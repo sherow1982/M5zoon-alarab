@@ -1,7 +1,7 @@
 /**
  * Emirates Gifts - Style Manager
  * Manages all CSS styles across the website
- * Handles theme switching, dynamic loading, and responsive design
+ * Integrates: Carousel, Funnels, Internal Links
  */
 
 class StyleManager {
@@ -9,9 +9,11 @@ class StyleManager {
         this.cssFiles = {
             home: '/css/home-premium.css',
             productDetails: '/css/product-details.css',
-            legal: '/css/legal-pages.css'
+            legal: '/css/legal-pages.css',
+            carouselFunnelsLinks: '/css/carousel-funnels-links.css'
         };
         this.currentTheme = localStorage.getItem('theme') || 'light';
+        this.systems = {};
         this.init();
     }
 
@@ -22,7 +24,9 @@ class StyleManager {
         this.setTheme(this.currentTheme);
         this.listenToSystemPreferences();
         this.loadResponsiveStyles();
+        this.loadCarouselFunnelsLinks();
         window.addEventListener('resize', () => this.handleResponsiveChange());
+        console.log('🎨 Style Manager initialized with all systems');
     }
 
     /**
@@ -48,11 +52,20 @@ class StyleManager {
     }
 
     /**
+     * Load carousel, funnels, and internal links CSS
+     */
+    loadCarouselFunnelsLinks() {
+        this.loadCSS(this.cssFiles.carouselFunnelsLinks);
+    }
+
+    /**
      * Load home page styles
      */
     loadHomeStyles() {
         this.loadCSS(this.cssFiles.home);
         this.applyHomePageOptimizations();
+        this.initializeCarousel();
+        this.initializeInternalLinks();
     }
 
     /**
@@ -61,6 +74,9 @@ class StyleManager {
     loadProductDetailsStyles() {
         this.loadCSS(this.cssFiles.productDetails);
         this.applyProductPageOptimizations();
+        this.initializeCarousel();
+        this.initializeFunnels();
+        this.initializeInternalLinks();
     }
 
     /**
@@ -69,6 +85,72 @@ class StyleManager {
     loadLegalPageStyles() {
         this.loadCSS(this.cssFiles.legal);
         this.applyLegalPageOptimizations();
+        this.initializeInternalLinks();
+    }
+
+    /**
+     * Initialize Carousel System
+     */
+    initializeCarousel() {
+        const carousels = document.querySelectorAll('[data-carousel]');
+        if (carousels.length > 0 && typeof CarouselManager !== 'undefined') {
+            carousels.forEach(carousel => {
+                const id = carousel.id || `carousel-${Math.random().toString(36).substr(2, 9)}`;
+                carousel.id = id;
+
+                const config = {
+                    autoplay: carousel.getAttribute('data-autoplay') !== 'false',
+                    autoplaySpeed: parseInt(carousel.getAttribute('data-speed')) || 5000,
+                    transitionSpeed: parseInt(carousel.getAttribute('data-transition')) || 600,
+                    enableDots: carousel.getAttribute('data-dots') !== 'false',
+                    enableArrows: carousel.getAttribute('data-arrows') !== 'false',
+                    enableTouchSwipe: carousel.getAttribute('data-touch') !== 'false'
+                };
+
+                const manager = new CarouselManager(config);
+                manager.init(`#${id}`);
+                console.log('🎠 Carousel initialized');
+            });
+        }
+    }
+
+    /**
+     * Initialize Funnels System
+     */
+    initializeFunnels() {
+        if (typeof FunnelTracker !== 'undefined') {
+            this.systems.funnel = new FunnelTracker({
+                funnelName: 'sales_funnel',
+                enableAnalytics: true,
+                storageType: 'sessionStorage'
+            });
+
+            const funnelCharts = document.querySelectorAll('[data-funnel-chart]');
+            funnelCharts.forEach(container => {
+                this.systems.funnel.renderFunnelChart(container.id);
+            });
+
+            console.log('📢 Funnels initialized');
+        }
+    }
+
+    /**
+     * Initialize Internal Links System
+     */
+    initializeInternalLinks() {
+        if (typeof InternalLinkSystem !== 'undefined') {
+            this.systems.links = new InternalLinkSystem({
+                enableAutoLinks: true,
+                maxLinksPerPage: 5
+            });
+
+            // Generate breadcrumbs
+            this.systems.links.generateBreadcrumbs(window.location.pathname);
+            // Generate related links
+            this.systems.links.generateRelatedLinks(document.body.innerText);
+
+            console.log('🔗 Internal Links initialized');
+        }
     }
 
     /**
@@ -100,7 +182,6 @@ class StyleManager {
             }
         }
 
-        // Listen for changes
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
             if (!localStorage.getItem('theme')) {
                 this.setTheme(e.matches ? 'dark' : 'light');
@@ -138,11 +219,8 @@ class StyleManager {
      * Apply home page optimizations
      */
     applyHomePageOptimizations() {
-        // Lazy load product images
         this.setupLazyLoading();
-        // Animate progress bar
         this.animateProgressBar();
-        // Setup animations
         this.setupScrollAnimations();
     }
 
@@ -150,9 +228,7 @@ class StyleManager {
      * Apply product page optimizations
      */
     applyProductPageOptimizations() {
-        // Image zoom effect
         this.setupImageZoom();
-        // Reviews animations
         this.animateReviews();
     }
 
@@ -160,9 +236,7 @@ class StyleManager {
      * Apply legal page optimizations
      */
     applyLegalPageOptimizations() {
-        // Table of contents
         this.generateTableOfContents();
-        // Smooth scrolling
         this.setupSmoothScrolling();
     }
 
@@ -317,15 +391,6 @@ class StyleManager {
     }
 
     /**
-     * Get computed style
-     * @param {element} element - DOM element
-     * @param {string} property - CSS property
-     */
-    getComputedStyle(element, property) {
-        return window.getComputedStyle(element).getPropertyValue(property);
-    }
-
-    /**
      * Apply RTL styles
      */
     applyRTLStyles() {
@@ -341,8 +406,21 @@ class StyleManager {
             theme: this.currentTheme,
             viewport: this.getViewport(window.innerWidth),
             direction: document.documentElement.dir,
-            language: document.documentElement.lang
+            language: document.documentElement.lang,
+            systems: Object.keys(this.systems)
         };
+    }
+
+    /**
+     * Get all system statistics
+     */
+    getSystemStats() {
+        const stats = {
+            carousel: this.systems.carousel ? ✅' Active' : ❌'Inactive',
+            funnels: this.systems.funnel ? this.systems.funnel.getConversionRate() + '%' : ❌'Inactive',
+            internalLinks: this.systems.links ? this.systems.links.getInternalLinkReport() : ❌'Inactive'
+        };
+        return stats;
     }
 }
 
@@ -359,3 +437,5 @@ if (document.readyState === 'loading') {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = StyleManager;
 }
+
+console.log('✅ Style Manager with Carousel, Funnels, Internal Links loaded');
