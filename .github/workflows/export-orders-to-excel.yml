@@ -1,0 +1,80 @@
+name: 📊 Export Orders to Excel
+
+on:
+  push:
+    paths:
+      - 'data/orders.jsonl'
+  workflow_dispatch:
+
+jobs:
+  export_to_excel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: 📦 Install dependencies
+        run: |
+          pip install openpyxl pandas
+      
+      - name: 🔄 Convert JSONL to Excel
+        run: |
+          python3 << 'EOF'
+          import json
+          import os
+          from datetime import datetime
+          import pandas as pd
+          
+          # Read orders from JSONL file
+          orders = []
+          jsonl_file = 'data/orders.jsonl'
+          
+          if os.path.exists(jsonl_file):
+              with open(jsonl_file, 'r', encoding='utf-8') as f:
+                  for line in f:
+                      if line.strip():
+                          try:
+                              order = json.loads(line)
+                              orders.append(order)
+                          except json.JSONDecodeError:
+                              pass
+          
+          # Create DataFrame
+          if orders:
+              df = pd.DataFrame(orders)
+              
+              # Reorder columns
+              cols = ['orderId', 'fullName', 'phone', 'city', 'items', 'total', 'date', 'savedAt']
+              df = df[[c for c in cols if c in df.columns]]
+              
+              # Rename columns to Arabic
+              df.columns = ['رقم الطلب', 'الاسم', 'الهاتف', 'المدينة', 'المنتجات', 'الإجمالي', 'التاريخ', 'تاريخ الحفظ']
+              
+              # Save to Excel
+              output_file = 'data/Orders.xlsx'
+              os.makedirs('data', exist_ok=True)
+              df.to_excel(output_file, index=False, sheet_name='الطلبيات')
+              print(f'✅ Excel file created: {output_file}')
+              print(f'📊 Total orders: {len(df)}')
+          else:
+              print('⚠️ No orders found')
+          EOF
+      
+      - name: 📤 Commit & Push Excel
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '📊 Update Orders.xlsx from orders.jsonl'
+          file_pattern: 'data/Orders.xlsx'
+          skip_dirty_check: false
+          skip_fetch: false
+          skip_checkout: false
+      
+      - name: ✅ Done
+        run: |
+          echo '✅ Orders exported to Excel successfully!'
+          echo '📁 File location: data/Orders.xlsx'
