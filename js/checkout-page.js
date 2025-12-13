@@ -1,7 +1,7 @@
 /**
  * منطق صفحة إتمام الطلب
- * مباشرة لـ Google Sheets
- * Emirates Gifts v4.2
+ * حفظ الطلبات مباشرة على GitHub
+ * Emirates Gifts v5.0
  */
 
 class CheckoutPage {
@@ -12,14 +12,15 @@ class CheckoutPage {
         this.summaryText = document.getElementById('summaryText');
         this.totalDisplay = document.getElementById('totalPriceDisplay');
         
-        // رابط Google Sheets الصحيح
-        this.SHEETS_ID = '18T87KMCzvInuRoqbjwSQzIRFtb4xW71_LVNOCK5iHp0';
-        this.GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm1YKCjS9845uRuAPSOodiTPf2sfSV5fQYBsuwVI2Ip06VNBGnR7KXg9TAeifbW_DvRQ/exec';
+        // GitHub API
+        this.GITHUB_OWNER = 'sherow1982';
+        this.GITHUB_REPO = 'emirates-gifts';
+        this.GITHUB_TOKEN = 'ghp_C9OKhVVLtJOYnHG8H3dV2mVX5qw8nH1kLU2r'; // استخدم env variable بدلا
         
         console.clear();
-        console.log('%c🌐 Google Sheets Connected', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c📄 Sheets ID:', 'color: #27ae60; font-size: 12px; font-weight: bold', this.SHEETS_ID);
-        console.log('%c🔗 Script URL:', 'color: #27ae60; font-size: 11px', this.GOOGLE_SCRIPT_URL.substring(0, 60) + '...');
+        console.log('%c📑 Orders System v5.0', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c📄 GitHub Repo: ' + this.GITHUB_OWNER + '/' + this.GITHUB_REPO, 'color: #27ae60; font-size: 12px; font-weight: bold');
+        console.log('%c💾 Saving orders to:', 'color: #27ae60; font-size: 11px', 'orders/ directory on GitHub');
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -148,6 +149,7 @@ class CheckoutPage {
         try {
             // جمع البيانات
             const orderData = {
+                orderId: '#' + new Date().getFullYear() + String(Math.floor(Math.random() * 1000000)).padStart(6, '0'),
                 fullName: document.querySelector('input[name="customer_name"]').value,
                 phone: phoneInput.value,
                 city: document.querySelector('select[name="emirate"]').value,
@@ -155,10 +157,10 @@ class CheckoutPage {
                 items: document.getElementById('p_name').value,
                 total: document.getElementById('p_price').value,
                 paymentMethod: 'cash',
-                notes: 'Online Order'
+                notes: 'Online Order',
+                date: new Date().toLocaleString('ar-AE'),
+                timestamp: new Date().toISOString()
             };
-            
-            orderData.orderId = '#' + new Date().getFullYear() + String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
             
             console.log('%c📋 ORDER DATA:', 'color: #9b59b6; font-weight: bold; font-size: 12px');
             console.table(orderData);
@@ -167,15 +169,16 @@ class CheckoutPage {
             this.backupOrderData(orderData);
             console.log('%c✅ Backup to localStorage: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
-            // 2. الإرسال لGoogle Sheets
-            this.sendToGoogleSheets(orderData);
-            console.log('%c✅ Sent to Google Sheets', 'color: #27ae60; font-weight: bold; font-size: 11px');
+            // 2. حفظ على GitHub
+            await this.saveToGitHub(orderData);
+            console.log('%c✅ Saved to GitHub: SUCCESS', 'color: #27ae60; font-weight: bold; font-size: 11px');
             
             // 3. الانتقال للصفحة التالية
             this.onOrderSuccess(orderData);
             
         } catch (error) {
             console.error('%c❌ ERROR:', 'color: #c0392b; font-weight: bold', error);
+            alert('حدث خطأ، لكن تم حفظ الطلب محلياً');
             this.submitBtn.disabled = false;
             this.submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيد الطلب';
         }
@@ -196,33 +199,113 @@ class CheckoutPage {
     }
     
     /**
-     * إرسال باستخدام sendBeacon (موثوق)
+     * حفظ على GitHub
      */
-    sendToGoogleSheets(orderData) {
+    async saveToGitHub(orderData) {
+        console.log('%c💸 Saving to GitHub...', 'color: #3498db; font-weight: bold; font-size: 11px');
+        
         try {
-            console.log('%c🌐 Sending to Google Sheets...', 'color: #3498db; font-weight: bold; font-size: 11px');
+            // إنشاء JSON
+            const filename = `orders/${orderData.orderId.replace('#', '')}-${Date.now()}.json`;
+            const content = JSON.stringify(orderData, null, 2);
+            const encodedContent = btoa(unescape(encodeURIComponent(content)));
             
-            // إنشاء URLSearchParams
-            const params = new URLSearchParams();
-            for (const [key, value] of Object.entries(orderData)) {
-                params.append(key, value);
+            // إرسال لGitHub API
+            const response = await fetch(
+                `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${filename}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${this.GITHUB_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `📅 New Order: ${orderData.orderId}`,
+                        content: encodedContent,
+                        branch: 'main'
+                    })
+                }
+            );
+            
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || 'GitHub API error');
             }
             
-            // الجريبة 1: sendBeacon (الأقوى و موثوقة)
-            if (navigator.sendBeacon) {
-                const success = navigator.sendBeacon(this.GOOGLE_SCRIPT_URL, params);
-                console.log('%c  ✅ sendBeacon queued:', 'color: #27ae60; font-weight: bold', success);
-            } else {
-                // العودة ل_fetch
-                fetch(this.GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    body: params,
-                    mode: 'no-cors',
-                    keepalive: true
-                }).catch(err => console.warn('⚠️ fetch:', err.message));
-            }
+            console.log('%c  ✅ Order saved:', 'color: #27ae60; font-weight: bold', filename);
+            
+            // تحديث التمام الرئيسية
+            await this.updateOrdersIndex(orderData);
+            
         } catch (error) {
-            console.error('%c⚠️ Google Sheets Error:', 'color: #e74c3c; font-weight: bold; font-size: 11px', error.message);
+            console.error('%c⚠️ GitHub Error:', 'color: #e74c3c; font-weight: bold', error.message);
+            throw error;
+        }
+    }
+    
+    /**
+     * تحديث ملف الطلبات JSON
+     */
+    async updateOrdersIndex(newOrder) {
+        try {
+            const indexFile = 'orders/orders.json';
+            
+            // قراءة الملف الحالي
+            const getResponse = await fetch(
+                `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${indexFile}`,
+                {
+                    headers: {
+                        'Authorization': `token ${this.GITHUB_TOKEN}`
+                    }
+                }
+            );
+            
+            let orders = [];
+            let sha = null;
+            
+            if (getResponse.ok) {
+                const fileData = await getResponse.json();
+                orders = JSON.parse(atob(fileData.content));
+                sha = fileData.sha;
+            }
+            
+            // إضافة الطلب الجديد
+            orders.push({
+                orderId: newOrder.orderId,
+                fullName: newOrder.fullName,
+                phone: newOrder.phone,
+                city: newOrder.city,
+                total: newOrder.total,
+                date: newOrder.date,
+                timestamp: newOrder.timestamp
+            });
+            
+            // الحفظ
+            const content = btoa(unescape(encodeURIComponent(JSON.stringify(orders, null, 2))));
+            
+            const updateResponse = await fetch(
+                `https://api.github.com/repos/${this.GITHUB_OWNER}/${this.GITHUB_REPO}/contents/${indexFile}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${this.GITHUB_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `📄 Update orders index`,
+                        content: content,
+                        sha: sha,
+                        branch: 'main'
+                    })
+                }
+            );
+            
+            if (updateResponse.ok) {
+                console.log('%c  ✅ Index updated', 'color: #27ae60; font-weight: bold');
+            }
+            
+        } catch (error) {
+            console.warn('⚠️ Index update error:', error.message);
         }
     }
     
@@ -233,11 +316,12 @@ class CheckoutPage {
         console.log('%c\n🎉 ORDER SUCCESS!', 'color: #27ae60; font-size: 14px; font-weight: bold; background: #ecf0f1; padding: 8px; border-radius: 3px');
         console.log('%c📝 Order #' + orderData.orderId, 'color: #27ae60; font-weight: bold');
         console.log('%c💰 Amount: ' + orderData.total + ' AED', 'color: #27ae60; font-weight: bold');
+        console.log('%c🃁 Saved to GitHub in orders/ directory', 'color: #27ae60; font-weight: bold');
         
         const finalOrderData = {
             number: orderData.orderId,
             amount: orderData.total,
-            date: new Date().toLocaleString('ar-AE'),
+            date: orderData.date,
             timestamp: Date.now()
         };
         
