@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar-AE" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ماناجر الطلبيات - زم localStorage</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .info-box strong {
+            color: #1976D2;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #2196F3;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #1976D2;
+        }
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+        .orders-list {
+            margin-top: 30px;
+        }
+        .order-item {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+        }
+        .order-id {
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 8px;
+        }
+        .order-details {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        .status {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .status.success {
+            background: #4CAF50;
+            color: white;
+        }
+        .status.error {
+            background: #f44336;
+            color: white;
+        }
+        .status.info {
+            background: #2196F3;
+            color: white;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📄 ماناجر الطلبيات</h1>
+        
+        <div class="info-box">
+            <strong>📚 شرح:</strong> هذه الصفحة للإدارة فقط. يمكنك رؤية الطلبيات المحفوظة محلياً ورفعها الى GitHub.
+        </div>
+        
+        <div>
+            <button class="btn btn-primary" onclick="displayOrders()">📄 عرض الطلبيات المحفوظة</button>
+            <button class="btn btn-primary" onclick="copyToClipboard()">📋 نسخ JSONL إلى الحافظة</button>
+            <button class="btn btn-danger" onclick="clearOrders()">🗑️ حذف الجميع</button>
+        </div>
+        
+        <div id="status"></div>
+        
+        <div id="ordersContainer" class="orders-list"></div>
+        
+        <div class="info-box" style="margin-top: 30px;">
+            <strong>💡 خطوات الرفع على GitHub:</strong>
+            <ol style="margin-right: 20px; margin-top: 10px;">
+                <li>اضغط "نسخ JSONL"</li>
+                <li>اذهب لي:
+                    <a href="https://github.com/sherow1982/emirates-gifts/blob/main/data/orders.jsonl" target="_blank" rel="noopener">
+                        🔓 GitHub orders.jsonl
+                    </a>
+                </li>
+                <li>اضغط على الايقونة (عدل) واختر Edit</li>
+                <li>الطق (Paste) محتويات JSONL</li>
+                <li>اضغط "Commit changes"</li>
+            </ol>
+        </div>
+        
+        <textarea id="jsonOutput" placeholder="JSONL data will appear here..." readonly></textarea>
+    </div>
+    
+    <script>
+        function displayOrders() {
+            const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
+            const container = document.getElementById('ordersContainer');
+            const status = document.getElementById('status');
+            
+            if (orders.length === 0) {
+                container.innerHTML = '<div class="status info">لا توجد طلبيات محفوظة حالياً</div>';
+                status.innerHTML = '';
+                return;
+            }
+            
+            let html = `<div class="status success">✅ عدد الطلبيات: ${orders.length}</div>`;
+            
+            orders.forEach((order, index) => {
+                html += `
+                    <div class="order-item">
+                        <div class="order-id">#${order.orderId}</div>
+                        <div class="order-details">
+                            <strong>الاسم:</strong> ${order.fullName}<br>
+                            <strong>الهاتف:</strong> ${order.phone}<br>
+                            <strong>المدينة:</strong> ${order.city}<br>
+                            <strong>الإجمالي:</strong> ${order.total}<br>
+                            <strong>المنتجات:</strong> ${order.items}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            status.innerHTML = '';
+        }
+        
+        function copyToClipboard() {
+            const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
+            const jsonlText = orders.map(order => JSON.stringify(order)).join('\n');
+            
+            document.getElementById('jsonOutput').value = jsonlText;
+            
+            // Copy to clipboard
+            const textarea = document.getElementById('jsonOutput');
+            textarea.select();
+            document.execCommand('copy');
+            
+            const status = document.getElementById('status');
+            status.innerHTML = '<div class="status success">✅ تم النسخ بنجاح!</div>';
+            setTimeout(() => {
+                status.innerHTML = '';
+            }, 3000);
+        }
+        
+        function clearOrders() {
+            if (confirm('هل أنت متأكد? سبف هذا لا يمكن التراجع عنه.')) {
+                localStorage.removeItem('emirates_orders');
+                localStorage.removeItem('emirates_orders_jsonl');
+                document.getElementById('ordersContainer').innerHTML = '<div class="status error">✅ تم حذف الجميع</div>';
+                document.getElementById('jsonOutput').value = '';
+            }
+        }
+        
+        // Display orders on page load
+        window.addEventListener('load', displayOrders);
+    </script>
+</body>
+</html>
