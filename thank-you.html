@@ -3,24 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شكراً لك - متجر هدايا الإمارات</title>
-    <meta name="description" content="شكراً لانضمامك لعائلة متجر هدايا الإمارات.">
+    <title>شكراً - متجر هدايا الإمارات</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
-    <link rel="apple-touch-icon" href="./images/logo.svg">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        html, body {
-            height: 100%;
-        }
+        html, body { height: 100%; }
         
         body {
             font-family: 'Cairo', sans-serif;
@@ -44,14 +36,8 @@
         }
         
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .success-icon {
@@ -69,14 +55,8 @@
         }
         
         @keyframes scaleIn {
-            from {
-                transform: scale(0);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
         
         h1 {
@@ -211,36 +191,12 @@
             color: #D4AF37;
         }
         
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #D4AF37;
-            pointer-events: none;
-        }
-        
         @media (max-width: 600px) {
-            .container {
-                padding: 40px 25px;
-            }
-            
-            h1 {
-                font-size: 24px;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .detail-row {
-                flex-direction: column;
-                gap: 5px;
-            }
+            .container { padding: 40px 25px; }
+            h1 { font-size: 24px; }
+            .cta-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .detail-row { flex-direction: column; gap: 5px; }
         }
     </style>
 </head>
@@ -260,7 +216,7 @@
         <div class="order-details">
             <div class="detail-row">
                 <strong>رقم الطلب:</strong>
-                <span id="orderNumber">#2025-001</span>
+                <span id="orderNumber">#-</span>
             </div>
             <div class="detail-divider"></div>
             <div class="detail-row">
@@ -310,81 +266,7 @@
         </div>
     </div>
     
-    <script>
-        // إظهار بيانات الطلب
-        document.addEventListener('DOMContentLoaded', () => {
-            // رقم الطلب
-            const orderNumber = '#' + new Date().getFullYear() + String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
-            document.getElementById('orderNumber').textContent = orderNumber;
-            
-            // المبلغ
-            const totalPrice = localStorage.getItem('emirates_cart_total') || localStorage.getItem('totalPrice') || '0';
-            document.getElementById('orderAmount').textContent = totalPrice + ' د.إ';
-            
-            // الوقت
-            const now = new Date();
-            const timeString = now.toLocaleString('ar-AE', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            document.getElementById('orderTime').textContent = timeString;
-            
-            // حفظ الطلب في localStorage
-            const orderData = {
-                number: orderNumber,
-                amount: totalPrice,
-                time: timeString,
-                timestamp: Date.now()
-            };
-            localStorage.setItem('lastOrder', JSON.stringify(orderData));
-            
-            // مأثرات النجاح
-            createConfetti();
-        });
-        
-        /**
-         * إنشاء مأثرات الاحتفال
-         */
-        function createConfetti() {
-            const colors = ['#D4AF37', '#25D366', '#1e3c72', '#2a5298', '#FFD700'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * window.innerWidth + 'px';
-                confetti.style.top = '-10px';
-                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animation = `fall ${2 + Math.random() * 1}s linear forwards`;
-                confetti.style.opacity = Math.random() * 0.7 + 0.3;
-                document.body.appendChild(confetti);
-                
-                setTimeout(() => confetti.remove(), 3500);
-            }
-        }
-        
-        // الرسوم المتحركة
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fall {
-                to {
-                    transform: translateY(100vh) rotate(360deg);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // تنظيف localStorage بعد 5 ثواني
-        setTimeout(() => {
-            localStorage.removeItem('emirates_shopping_cart');
-            localStorage.removeItem('emirates_cart');
-            localStorage.removeItem('cart');
-            localStorage.removeItem('emirates_cart_total');
-            localStorage.removeItem('totalPrice');
-        }, 5000);
-    </script>
+    <script src="./js/cart-system.js"></script>
+    <script src="./js/thank-you-page.js"></script>
 </body>
 </html>

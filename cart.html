@@ -3,12 +3,31 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سلة التسوق - متجر هدايا الإمارات</title>
-    <meta name="description" content="سلة التسوق الخاصة بك في متجر هدايا الإمارات. راجع منتجاتك واتمم الطلب.">
+    <title>السلة - متجر هدايا الإمارات</title>
+    <meta name="description" content="سلة التسوق - عرض وإدارة منتجاتك المفضلة">
     
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="./css/cart.css">
+    <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/cart-styles.css">
+    
+    <style>
+        body {
+            background: #f5f5f5;
+        }
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .page-title {
+            color: #1e3c72;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -24,37 +43,31 @@
             </a>
             
             <nav class="header-nav">
-                <a href="./" class="nav-link">
-                    <i class="fas fa-home"></i> الرئيسية
-                </a>
-                <a href="./products-showcase.html" class="nav-link">
-                    <i class="fas fa-th-large"></i> جميع المنتجات
-                </a>
-                <a href="./checkout.html" class="nav-link checkout-link">
-                    <i class="fas fa-credit-card"></i> إتمام الطلب
-                </a>
-                <a href="./en/" class="nav-link" target="_blank" style="background: #1e3c72; color: white;">
-                    <i class="fas fa-globe"></i> English
-                </a>
+                <a href="./" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a>
+                <a href="./cart.html" class="nav-link active"><i class="fas fa-shopping-cart"></i> السلة</a>
+                <a href="./products-showcase.html" class="nav-link"><i class="fas fa-th-large"></i> جميع المنتجات</a>
+                <a href="./en/" class="nav-link" target="_blank" style="background: #1e3c72; color: white;"><i class="fas fa-globe"></i> English</a>
             </nav>
         </div>
     </header>
     
     <main class="main-content">
-        <div class="cart-header">
-            <h1 class="cart-title">ud83d\uded2 سلة التسوق</h1>
-            <p class="cart-subtitle">راجع منتجاتك المختارة واتمم طلبك بسهولة</p>
-        </div>
-        
-        <div id="cartContent">
-            <div style="text-align: center; padding: 60px; color: #D4AF37;">
-                <i class="fas fa-spinner" style="font-size: 2rem; animation: spin 1s linear infinite; margin-bottom: 20px;"></i>
-                <div style="font-size: 1.2rem;">جارِ تحميل سلة التسوق...</div>
+        <h1 class="page-title">🛒 سلة التسوق</h1>
+        <div id="cartContent" style="min-height: 400px;">
+            <div class="empty-cart">
+                <div class="empty-icon"><i class="fas fa-spinner fa-spin"></i></div>
+                <p>جاري تحميل السلة...</p>
             </div>
         </div>
     </main>
-
-    <!-- External JS for cart logic -->
-    <script src="./js/cart.js" defer></script>
+    
+    <footer style="text-align: center; padding: 40px 20px; color: #666; border-top: 1px solid #eee; margin-top: 60px;">
+        <p>متجر هدايا الإمارات © 2025 | جميع الحقوق محفوظة</p>
+    </footer>
+    
+    <!-- الروابط -->
+    <script src="./js/cart-system.js"></script>
+    <script src="./js/cart-page.js"></script>
+    <script src="./js/add-to-cart.js"></script>
 </body>
 </html>

@@ -4,58 +4,156 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إتمام الطلب - متجر هدايا الإمارات</title>
-    <meta name="description" content="أتم طلبك بسهولة وأمان. شحن خلال 1-3 أيام عمل + ضمان إرجاع 14 يوم.">
+    <meta name="description" content="أتم طلبك بأمان تام">
     
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="./css/checkout.css">
+    <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
+    <link rel="stylesheet" href="./css/style.css">
     
     <style>
-        /* تنسيقات إضافية خاصة بالنموذج لضمان المظهر الجيد */
-        .checkout-form-container {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            max-width: 600px;
-            margin: 0 auto 40px;
+        body { background: #f5f5f5; }
+        
+        .checkout-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
-        .form-group { margin-bottom: 20px; text-align: right; }
-        .form-label { display: block; margin-bottom: 8px; font-weight: 700; color: #1e3c72; }
-        .form-input, .form-select, .form-textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
+        
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .checkout-header h1 {
+            color: #1e3c72;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .checkout-header p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .order-summary {
+            background: #f9f9f9;
+            padding: 15px;
             border-radius: 8px;
-            font-family: 'Cairo', sans-serif;
-            transition: all 0.3s;
+            margin-bottom: 25px;
+            border-left: 4px solid #D4AF37;
+        }
+        
+        .order-summary h3 {
+            color: #1e3c72;
+            margin: 0 0 10px 0;
             font-size: 16px;
         }
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            border-color: #D4AF37;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        
+        #summaryText {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
         }
+        
+        #totalPriceDisplay {
+            color: #D4AF37;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1e3c72;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #D4AF37;
+        }
+        
+        .form-group input.valid,
+        .form-group input.valid:focus {
+            border-color: #27ae60;
+        }
+        
+        .form-group input.invalid,
+        .form-group input.invalid:focus {
+            border-color: #e74c3c;
+        }
+        
+        .error-msg {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
         .submit-btn {
+            width: 100%;
+            padding: 14px;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
             color: white;
-            width: 100%;
-            padding: 15px;
             border: none;
             border-radius: 8px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             gap: 10px;
+            transition: all 0.3s;
         }
-        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3); }
-        .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
-        .error-msg { color: #dc3545; font-size: 12px; margin-top: 5px; display: none; }
-        .order-summary { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px dashed #1e3c72; }
+        
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .security-badge {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .security-badge i {
+            color: #27ae60;
+        }
     </style>
 </head>
 <body>
@@ -72,223 +170,81 @@
             </a>
             
             <nav class="header-nav">
-                <a href="./" class="nav-link">
-                    <i class="fas fa-home"></i> الرئيسية
-                </a>
-                <a href="./cart.html" class="nav-link">
-                    <i class="fas fa-shopping-cart"></i> السلة
-                </a>
-                <a href="./products-showcase.html" class="nav-link">
-                    <i class="fas fa-th-large"></i> جميع المنتجات
-                </a>
-                <a href="./en/" class="nav-link" target="_blank" style="background: #1e3c72; color: white;">
-                    <i class="fas fa-globe"></i> English
-                </a>
+                <a href="./" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a>
+                <a href="./cart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> السلة</a>
+                <a href="./products-showcase.html" class="nav-link"><i class="fas fa-th-large"></i> جميع المنتجات</a>
+                <a href="./en/" class="nav-link" target="_blank" style="background: #1e3c72; color: white;"><i class="fas fa-globe"></i> English</a>
             </nav>
         </div>
     </header>
     
-    <main class="main-content">
+    <div class="checkout-container">
         <div class="checkout-header">
-            <h1 class="checkout-title">💳 إتمام الطلب</h1>
-            <p class="checkout-subtitle">بيانات الشحن (الإمارات العربية المتحدة 🇦🇪)</p>
-            
-            <div style="background: linear-gradient(135deg, #25D366, #20B358); color: white; padding: 15px; border-radius: 12px; margin: 20px auto; display: inline-block; max-width: 600px;">
-                <i class="fas fa-truck"></i> شحن سريع لكل الإمارات خلال 1-3 أيام عمل
-            </div>
+            <h1>💳 إتمام الطلب</h1>
+            <p>بيانات الشحن (الإمارات العربية المتحدة 🇦🇪)</p>
         </div>
         
-        <div id="checkoutContent">
-            <div class="checkout-form-container">
+        <div class="form-container">
+            <div class="order-summary">
+                <h3>ملخص الطلب:</h3>
+                <div id="summaryText" style="min-height: 20px;">جاري تحميل...</div>
+                <div id="totalPriceDisplay" style="min-height: 20px;"></div>
+            </div>
+            
+            <form id="orderForm">
+                <!-- Hidden fields -->
+                <input type="hidden" id="p_name" name="product_name" value="">
+                <input type="hidden" id="p_price" name="total_price" value="">
+                <input type="hidden" id="o_date" name="order_date" value="">
                 
-                <!-- ملخص الطلب السريع -->
-                <div class="order-summary">
-                    <h3 style="margin: 0 0 10px 0; color: #1e3c72; font-size: 16px;">ملخص الطلب:</h3>
-                    <div id="summaryText" style="font-size: 14px; color: #555;">جاري تحميل السلة...</div>
-                    <div id="totalPriceDisplay" style="font-weight: bold; color: #D4AF37; margin-top: 5px; font-size: 18px;"></div>
+                <!-- Name -->
+                <div class="form-group">
+                    <label>الاسم بالكامل *</label>
+                    <input type="text" name="customer_name" required placeholder="مثال: محمد علي أحمد">
                 </div>
-
-                <form id="orderForm">
-                    <!-- حقول مخفية للبيانات -->
-                    <input type="hidden" name="product_name" id="p_name" value="">
-                    <input type="hidden" name="total_price" id="p_price" value="">
-                    <input type="hidden" name="order_date" id="o_date" value="">
-
-                    <!-- الاسم -->
-                    <div class="form-group">
-                        <label class="form-label">الاسم بالكامل</label>
-                        <input type="text" name="customer_name" class="form-input" required placeholder="الاسم الثلاثي">
-                    </div>
-
-                    <!-- رقم الهاتف (الإمارات) -->
-                    <div class="form-group">
-                        <label class="form-label">رقم الموبايل (الإمارات)</label>
-                        <input type="tel" name="phone" id="phoneInput" class="form-input" required placeholder="05xxxxxxxx" dir="ltr" maxlength="10">
-                        <div id="phoneError" class="error-msg">يرجى إدخال رقم هاتف إماراتي صحيح يبدأ بـ 05 (10 أرقام)</div>
-                    </div>
-
-                    <!-- الإمارة -->
-                    <div class="form-group">
-                        <label class="form-label">الإمارة</label>
-                        <select name="emirate" class="form-select" required>
-                            <option value="" disabled selected>اختر الإمارة...</option>
-                            <option value="Dubai">دبي (Dubai)</option>
-                            <option value="Abu Dhabi">أبوظبي (Abu Dhabi)</option>
-                            <option value="Sharjah">الشارقة (Sharjah)</option>
-                            <option value="Ajman">عجمان (Ajman)</option>
-                            <option value="Ras Al Khaimah">رأس الخيمة (RAK)</option>
-                            <option value="Fujairah">الفجيرة (Fujairah)</option>
-                            <option value="Umm Al Quwain">أم القيوين (UAQ)</option>
-                        </select>
-                    </div>
-
-                    <!-- العنوان -->
-                    <div class="form-group">
-                        <label class="form-label">العنوان بالتفصيل</label>
-                        <textarea name="address" class="form-textarea" required rows="2" placeholder="المنطقة، اسم الشارع، رقم المبنى/الفيلا..."></textarea>
-                    </div>
-
-                    <!-- زر الإرسال -->
-                    <button type="submit" id="submitBtn" class="submit-btn">
-                        <span>تأكيد الطلب الآن</span>
-                        <i class="fas fa-check-circle"></i>
-                    </button>
-                    
-                    <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #777;">
-                        <i class="fas fa-lock"></i> بياناتك مشفرة وآمنة 100%
-                    </p>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        // رابط السكريبت الخاص بك
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyWYpWnXV9wlo6sH-ABKR480ekh_9MsOSX0ypA9pMViSR7x5lDKCnBaVWwRr9pd_L2Nw/exec';
-        
-        // مفاتيح localStorage المحتملة
-        const STORAGE_KEYS = {
-            primary: 'emirates_shopping_cart',
-            fallback1: 'emirates_cart',
-            fallback2: 'cart',
-            total: 'emirates_cart_total',
-            totalFallback: 'totalPrice'
-        };
-
-        const form = document.getElementById('orderForm');
-        const phoneInput = document.getElementById('phoneInput');
-        const phoneError = document.getElementById('phoneError');
-        const submitBtn = document.getElementById('submitBtn');
-        
-        /**
-         * جلب بيانات السلة
-         */
-        function getCart() {
-            for (const key of [STORAGE_KEYS.primary, STORAGE_KEYS.fallback1, STORAGE_KEYS.fallback2]) {
-                const data = localStorage.getItem(key);
-                if (data) {
-                    try {
-                        return JSON.parse(data);
-                    } catch (e) {
-                        console.error(`❌ خطأ في قرائة ${key}:`, e);
-                    }
-                }
-            }
-            return [];
-        }
-        
-        /**
-         * جلب الإجمالي
-         */
-        function getTotal() {
-            for (const key of [STORAGE_KEYS.total, STORAGE_KEYS.totalFallback]) {
-                const data = localStorage.getItem(key);
-                if (data) return data;
-            }
-            return '0';
-        }
-
-        // 1. تحميل بيانات السلة عند فتح الصفحة
-        window.addEventListener('load', () => {
-            console.log('📦 بدء تحميل checkout...');
-            
-            // التاريخ
-            document.getElementById('o_date').value = new Date().toLocaleString('en-GB');
-
-            // جلب بيانات السلة
-            const cartItems = getCart();
-            const totalPrice = getTotal();
-            
-            console.log('📦 بيانات السلة:', { عدد: cartItems.length, إجمالي: totalPrice });
-            
-            if (!cartItems || cartItems.length === 0) {
-                console.log('❌ السلة فارغة');
-                document.getElementById('summaryText').innerHTML = '<span style="color:red">السلة فارغة!</span>';
-                submitBtn.disabled = true;
-                submitBtn.innerText = "السلة فارغة";
-                return;
-            }
-
-            // تجهيز نص المنتجات والسعر
-            const productNames = cartItems.map(item => `${item.title} (x${item.quantity || 1})`).join(' + ');
-
-            // تعبئة الحقول المخفية
-            document.getElementById('p_name').value = productNames;
-            document.getElementById('p_price').value = totalPrice;
-
-            // العرض للمستخدم
-            document.getElementById('summaryText').textContent = productNames;
-            document.getElementById('totalPriceDisplay').textContent = `الإجمالي: ${totalPrice} درهم`;
-            console.log('✅ بيانات السلة تمت بنجاح');
-        });
-
-        // 2. التحقق من رقم الهاتف الإماراتي (يبدأ بـ 05 وطوله 10 أرقام)
-        phoneInput.addEventListener('input', function() {
-            this.value = this.value.replace(/[^0-9]/g, ''); // أرقام فقط
-            
-            const uaeRegex = /^05\d{8}$/;
-            if (this.value.length > 0 && !uaeRegex.test(this.value)) {
-                phoneError.style.display = 'block';
-                this.style.borderColor = 'red';
-            } else {
-                phoneError.style.display = 'none';
-                this.style.borderColor = '#28a745'; // أخضر عند الصح
-            }
-        });
-
-        // 3. إرسال الطلب
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-
-            // تحقق نهائي
-            const uaeRegex = /^05\d{8}$/;
-            if (!uaeRegex.test(phoneInput.value)) {
-                alert('يرجى التأكد من رقم الهاتف (يجب أن يبدأ بـ 05 ويتكون من 10 أرقام)');
-                return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تسجيل الطلب...';
-
-            fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                // نجاح الطلب - تنظيف السلة وروح للصفحة الشكر مباشرة
-                localStorage.removeItem(STORAGE_KEYS.primary);
-                localStorage.removeItem(STORAGE_KEYS.fallback1);
-                localStorage.removeItem(STORAGE_KEYS.fallback2);
-                localStorage.removeItem(STORAGE_KEYS.total);
-                localStorage.removeItem(STORAGE_KEYS.totalFallback);
                 
-                // روح للابل (بدون alert)
-                window.location.href = "./thank-you.html";
-            })
-            .catch(error => {
-                console.error('Error!', error.message);
-                alert('حدث خطأ بسيط في الاتصال، لكن طلبك قد يكون وصل. يرجى المحاولة مرة أخرى أو التواصل عبر واتساب.');
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'تأكيد الطلب الآن';
-            });
-        });
-    </script>
+                <!-- Phone -->
+                <div class="form-group">
+                    <label>رقم الموبايل *</label>
+                    <input type="tel" name="phone" required placeholder="05xxxxxxxx" dir="ltr" maxlength="10">
+                    <div class="error-msg">يرجى إدخال رقم صحيح (05xxxxxxxx)</div>
+                </div>
+                
+                <!-- Emirate -->
+                <div class="form-group">
+                    <label>الإمارة *</label>
+                    <select name="emirate" required>
+                        <option value="" disabled selected>اختر الإمارة...</option>
+                        <option value="Dubai">دبي</option>
+                        <option value="Abu Dhabi">أبوظبي</option>
+                        <option value="Sharjah">الشارقة</option>
+                        <option value="Ajman">عجمان</option>
+                        <option value="Ras Al Khaimah">رأس الخيمة</option>
+                        <option value="Fujairah">الفجيرة</option>
+                        <option value="Umm Al Quwain">أم القيوين</option>
+                    </select>
+                </div>
+                
+                <!-- Address -->
+                <div class="form-group">
+                    <label>العنوان بالافصيل *</label>
+                    <textarea name="address" required rows="3" placeholder="المنطقة، الشارع، رقم المبنى"></textarea>
+                </div>
+                
+                <button type="submit" id="submitBtn" class="submit-btn">
+                    <i class="fas fa-check-circle"></i>
+                    <span>تأكيد الطلب</span>
+                </button>
+                
+                <div class="security-badge">
+                    <i class="fas fa-lock"></i> بياناتك مائنة وآمنة 100%
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="./js/cart-system.js"></script>
+    <script src="./js/checkout-page.js"></script>
 </body>
 </html>
