@@ -810,6 +810,8 @@
         (function() {
             'use strict';
 
+            let allProducts = [];
+
             function updateCartBadge() {
                 try {
                     const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
@@ -829,6 +831,7 @@
                     if (!response.ok) throw new Error('Failed to load products');
                     
                     const products = await response.json();
+                    allProducts = products;
                     const perfumes = products.filter(p => p.category === 'Perfumes').slice(0, 6);
                     
                     const grid = document.getElementById('perfumes-grid');
@@ -871,23 +874,7 @@
                         `;
                     }).join('');
 
-                    document.querySelectorAll('.product-card').forEach(card => {
-                        card.addEventListener('click', function(e) {
-                            if (!e.target.closest('.product-actions')) {
-                                const productId = this.getAttribute('data-product-id');
-                                goToCheckout(productId);
-                            }
-                        });
-
-                        card.querySelectorAll('[data-action="addcart"]').forEach(btn => {
-                            btn.addEventListener('click', function(e) {
-                                e.stopPropagation();
-                                const id = this.getAttribute('data-id');
-                                const title = this.getAttribute('data-title');
-                                addToCart(id, title);
-                            });
-                        });
-                    });
+                    setupProductEventHandlers();
                 } catch (error) {
                     console.error('Products loading error:', error);
                     const grid = document.getElementById('perfumes-grid');
@@ -895,6 +882,43 @@
                         grid.innerHTML = '<div class="loading-message" style="grid-column: 1/-1; color: #e74c3c;">خطأ في تحميل المنتجات</div>';
                     }
                 }
+            }
+
+            function setupProductEventHandlers() {
+                document.querySelectorAll('.product-card').forEach(card => {
+                    card.addEventListener('click', function(e) {
+                        if (!e.target.closest('.product-actions')) {
+                            const productId = this.getAttribute('data-product-id');
+                            const product = allProducts.find(p => String(p.id) === String(productId));
+                            if (product) {
+                                navigateToProduct(product);
+                            }
+                        }
+                    });
+
+                    card.querySelectorAll('[data-action="addcart"]').forEach(btn => {
+                        btn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            const id = this.getAttribute('data-id');
+                            const title = this.getAttribute('data-title');
+                            addToCart(id, title);
+                        });
+                    });
+                });
+            }
+
+            function navigateToProduct(product) {
+                const productSlug = (product.title || '')
+                    .toLowerCase()
+                    .replace(/[^\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFFa-z0-9\s]/g, '')
+                    .replace(/\s+/g, '-')
+                    .substring(0, 50)
+                    .trim();
+                
+                const categoryType = product.category === 'Perfumes' ? 'perfume' : 'watch';
+                const url = `./product-details.html?id=${product.id}&category=${categoryType}&slug=${productSlug || 'product'}`;
+                
+                window.location.href = url;
             }
 
             window.addToCart = function(id, title) {
@@ -916,26 +940,6 @@
                     alert('✅ تم إضافة "' + title + '" للسلة');
                 } catch (e) {
                     console.error('Add to cart error:', e);
-                }
-            };
-
-            window.goToCheckout = function(productId) {
-                try {
-                    let cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
-                    const found = cart.find(p => p.id == productId);
-                    if (!found) {
-                        cart.push({
-                            id: productId,
-                            title: 'Product',
-                            price: 0,
-                            quantity: 1
-                        });
-                        localStorage.setItem('emirates_cart', JSON.stringify(cart));
-                        updateCartBadge();
-                    }
-                    window.location.href = './checkout.html';
-                } catch (e) {
-                    console.error('Checkout error:', e);
                 }
             };
 
