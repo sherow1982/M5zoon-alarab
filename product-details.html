@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./css/product-details.css">
+    <link rel="stylesheet" href="./css/product-actions.css">
 
     <!-- JSON-LD Schema for Product - Will be enhanced with aggregateRating and reviews -->
     <script type="application/ld+json">
@@ -20,7 +21,7 @@
       "@context": "https://schema.org/",
       "@type": "Product",
       "name": "منتج من متجر هدايا الإمارات",
-      "image": "https://emirates-gifts.arabsad.com/images/product-default.jpg",
+      "image": "https://sherow1982.github.io/emirates-gifts/images/product-default.jpg",
       "description": "منتج فاخر من متجر هدايا الإمارات",
       "brand": {
         "@type": "Brand",
@@ -28,7 +29,7 @@
       },
       "offers": {
         "@type": "Offer",
-        "url": "https://emirates-gifts.arabsad.com/",
+        "url": "https://sherow1982.github.io/emirates-gifts/",
         "priceCurrency": "AED",
         "price": "0",
         "availability": "https://schema.org/InStock",
@@ -149,12 +150,17 @@
                         <div class="reviews-list" id="reviews-list"></div>
                     </div>
 
-                    <div class="action-buttons">
-                        <a href="#" id="whatsapp-btn" class="whatsapp-btn" target="_blank">
+                    <!-- 🛒 ADD TO CART SECTION -->
+                    <div class="action-buttons" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #eee;">
+                        <button id="add-to-cart-btn" class="add-to-cart-btn" style="width: 100%; margin-bottom: 15px;" aria-label="إضافة المنتج للسلة">
+                            <i class="fas fa-shopping-cart"></i>
+                            أضف للسلة
+                        </button>
+                        <a href="#" id="whatsapp-btn" class="whatsapp-btn" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px;" target="_blank">
                             <i class="fab fa-whatsapp"></i>
                             اطلب عبر الواتساب
                         </a>
-                        <a href="./" class="back-btn">
+                        <a href="./" class="back-btn" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
                             <i class="fas fa-home"></i>
                             العودة للمتجر
                         </a>
@@ -167,8 +173,14 @@
     <!-- Schema Enhancer Script - Adds aggregateRating and reviews to JSON-LD -->
     <script src="./js/schema-enhancer.js" defer></script>
     
-    <!-- External JS for product details logic -->
+    <!-- Cart Integration -->
+    <script src="./js/add-to-cart-integration.js" defer></script>
+    
+    <!-- Product Details Logic -->
     <script src="./js/product-details.js" defer></script>
+    
+    <!-- Product Details Cart Handler -->
+    <script src="./js/product-details-cart.js" defer></script>
 
 </body>
 </html>
