@@ -1,6 +1,6 @@
 /**
  * API Handler - Save Orders to GitHub
- * Deploy on: Vercel, Netlify, or Val.com
+ * GitHub Token should be in environment variable: GITHUB_TOKEN
  */
 
 const fetch = require('node-fetch');
@@ -18,17 +18,24 @@ module.exports = async (req, res) => {
         const { order } = req.body;
         if (!order) return res.status(400).json({ error: 'No order data' });
         
-        console.log(`📝 Saving order: ${order.orderId}`);
+        console.log(`🔔 Saving order: ${order.orderId}`);
         
         const OWNER = 'sherow1982';
         const REPO = 'emirates-gifts';
         const TOKEN = process.env.GITHUB_TOKEN;
         
-        // Save JSON
+        if (!TOKEN) {
+            return res.status(500).json({ 
+                error: 'GITHUB_TOKEN not configured',
+                success: false
+            });
+        }
+        
+        // 1. Save JSON
         const filename = `orders/${order.orderId.replace('#', '')}-${Date.now()}.json`;
         const content = Buffer.from(JSON.stringify(order, null, 2)).toString('base64');
         
-        await fetch(
+        const jsonResponse = await fetch(
             `https://api.github.com/repos/${OWNER}/${REPO}/contents/${filename}`,
             {
                 method: 'PUT',
@@ -43,7 +50,14 @@ module.exports = async (req, res) => {
             }
         );
         
-        // Update CSV
+        if (!jsonResponse.ok) {
+            const error = await jsonResponse.json();
+            throw new Error(`JSON save failed: ${error.message}`);
+        }
+        
+        console.log('✅ JSON saved');
+        
+        // 2. Update CSV
         const csvRow = `${order.orderId},${order.fullName},${order.phone},${order.city},"${order.items}",${order.total},${order.date}`;
         const csvFile = 'orders/new-orders.csv';
         
@@ -53,19 +67,26 @@ module.exports = async (req, res) => {
         try {
             const getRes = await fetch(
                 `https://api.github.com/repos/${OWNER}/${REPO}/contents/${csvFile}`,
-                { headers: { 'Authorization': `token ${TOKEN}` } }
+                { 
+                    headers: { 
+                        'Authorization': `token ${TOKEN}`
+                    } 
+                }
             );
+            
             if (getRes.ok) {
-                const data = await getRes.json();
-                sha = data.sha;
-                csvContent = Buffer.from(data.content, 'base64').toString('utf-8');
+                const fileData = await getRes.json();
+                sha = fileData.sha;
+                csvContent = Buffer.from(fileData.content, 'base64').toString('utf-8');
             }
-        } catch (e) {}
+        } catch (e) {
+            console.log('📝 CSV file not found, will create new');
+        }
         
         const newCSV = csvContent + (csvContent ? '\n' : '') + csvRow;
         const csvEncoded = Buffer.from(newCSV).toString('base64');
         
-        await fetch(
+        const csvResponse = await fetch(
             `https://api.github.com/repos/${OWNER}/${REPO}/contents/${csvFile}`,
             {
                 method: 'PUT',
@@ -74,12 +95,19 @@ module.exports = async (req, res) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    message: `📄 Add order row`,
+                    message: `📋 Add order row: ${order.orderId}`,
                     content: csvEncoded,
-                    sha: sha
+                    sha: sha || undefined
                 })
             }
         );
+        
+        if (!csvResponse.ok) {
+            const error = await csvResponse.json();
+            throw new Error(`CSV update failed: ${error.message}`);
+        }
+        
+        console.log('✅ CSV updated');
         
         return res.status(200).json({
             success: true,
@@ -88,7 +116,10 @@ module.exports = async (req, res) => {
         });
         
     } catch (error) {
-        console.error('❌ Error:', error);
-        return res.status(500).json({ error: error.message });
+        console.error('❌ Error:', error.message);
+        return res.status(500).json({ 
+            error: error.message,
+            success: false
+        });
     }
 };

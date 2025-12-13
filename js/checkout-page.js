@@ -1,7 +1,7 @@
 /**
  * منطلق صفحة إتمام الطلب
- * حفظ الطلبات على GitHub
- * Emirates Gifts v8.0
+ * حفظ الطلبات على GitHub تلقائياً
+ * Emirates Gifts v8.1 - Production Ready
  */
 
 class CheckoutPage {
@@ -12,16 +12,16 @@ class CheckoutPage {
         this.summaryText = document.getElementById('summaryText');
         this.totalDisplay = document.getElementById('totalPriceDisplay');
         
-        // API URL - يمكن تغييره
-        this.API_URL = window.API_URL || 'https://emirates-gifts-api.vercel.app/api/save-order';
+        // API URL
+        this.API_URL = '/api/save-order';
         
         if (chrome && chrome.runtime) {
             chrome.runtime.onMessage.addListener(() => false);
         }
         
         console.clear();
-        console.log('%c🏪 Emirates Gifts v8.0', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c✅ Orders saving to GitHub', 'color: #27ae60; font-size: 12px; font-weight: bold');
+        console.log('%c🏪 Emirates Gifts v8.1', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
+        console.log('%c✅ Orders auto-saving to GitHub', 'color: #27ae60; font-size: 12px; font-weight: bold');
         
         if (!this.form) {
             console.error('❌ Form not found');
@@ -42,6 +42,8 @@ class CheckoutPage {
         const items = this.cart.getCart();
         const total = this.cart.getTotal();
         
+        console.log('%c📦 Cart Data', 'color: #27ae60; font-weight: bold', { items: items.length, total });
+        
         if (items.length === 0) {
             this.showEmptyCart();
             return;
@@ -57,6 +59,7 @@ class CheckoutPage {
     }
     
     showEmptyCart() {
+        console.warn('⚠️ Empty Cart');
         this.summaryText.innerHTML = '<span style="color: #e74c3c;">السلة فارغة!</span>';
         this.submitBtn.disabled = true;
         this.submitBtn.textContent = 'لا توجد منتجات';
@@ -100,6 +103,8 @@ class CheckoutPage {
     }
     
     async submitOrder() {
+        console.log('%c📤 SUBMITTING ORDER...', 'color: #3498db; font-size: 13px; font-weight: bold; padding: 5px; background: #ecf0f1');
+        
         if (!this.form.checkValidity()) {
             alert('يرجى ملء جميع الحقول');
             return;
@@ -129,7 +134,7 @@ class CheckoutPage {
                 timestamp: new Date().toISOString()
             };
             
-            console.log('%c📝 Sending to API...', 'color: #3498db; font-weight: bold');
+            console.log('%c📝 Order #' + orderData.orderId, 'color: #9b59b6; font-weight: bold');
             
             const response = await fetch(this.API_URL, {
                 method: 'POST',
@@ -137,14 +142,18 @@ class CheckoutPage {
                 body: JSON.stringify({ order: orderData })
             });
             
-            if (response.ok) {
-                console.log('%c✅ Order saved to GitHub', 'color: #27ae60; font-weight: bold');
+            const result = await response.json();
+            
+            if (response.ok && result.success) {
+                console.log('%c✅ Order saved to GitHub!', 'color: #27ae60; font-weight: bold');
+                console.log('%c📁 File: orders/' + orderData.orderId.replace('#', ''), 'color: #27ae60; font-weight: bold; font-size: 10px');
+                this.onOrderSuccess(orderData);
+            } else {
+                throw new Error(result.error || 'Unknown error');
             }
             
-            this.onOrderSuccess(orderData);
-            
         } catch (error) {
-            console.error('❌ Error:', error);
+            console.error('%c❌ ERROR:', 'color: #c0392b; font-weight: bold', error.message);
             alert('تم استقبال طلبك بنجاح');
             this.submitBtn.disabled = false;
             this.submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيد الطلب';
@@ -152,12 +161,14 @@ class CheckoutPage {
     }
     
     onOrderSuccess(orderData) {
-        console.log('%c🎉 ORDER CONFIRMED!', 'color: #27ae60; font-size: 13px; font-weight: bold; padding: 5px; background: #ecf0f1');
-        console.log('%c✅ تم حفظ طلبك', 'color: #27ae60; font-weight: bold');
+        console.log('%c\n🎉 ORDER CONFIRMED!', 'color: #27ae60; font-size: 13px; font-weight: bold; background: #ecf0f1; padding: 5px');
+        console.log('%c✅ تم حفظ الطلب بنجاح', 'color: #27ae60; font-weight: bold');
+        console.log('%b🔗 https://github.com/sherow1982/emirates-gifts/tree/main/orders', 'color: #3498db; font-weight: bold; font-size: 10px');
         
         this.cart.clearCart();
         
         setTimeout(() => {
+            console.log('%c🚀 Redirecting...', 'color: #2a5298; font-weight: bold; font-size: 10px');
             window.location.href = './thank-you.html';
         }, 2000);
     }

@@ -1,9 +1,10 @@
 {
-  "env": [
+  "buildCommand": "echo 'No build required'",
+  "outputDirectory": "./",
+  "rewrites": [
     {
-      "key": "GITHUB_TOKEN",
-      "value": "",
-      "type": "secret"
+      "source": "/api/(.*)",
+      "destination": "/api/$1.js"
     }
   ]
 }
