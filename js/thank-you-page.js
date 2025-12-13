@@ -1,7 +1,7 @@
 /**
  * صفحة شكراً
  * عرض بيانات الطلبية الكاملة ومروحة الاحتفالات
- * Emirates Gifts v4.0 - Full Order Display
+ * Emirates Gifts v4.1 - Fixed Price Display
  */
 
 class ThankYouPage {
@@ -27,6 +27,21 @@ class ThankYouPage {
     }
     
     /**
+     * تحويل السعر للصيغة الصحيحة
+     */
+    normalizePrice(price) {
+        if (!price) return '0.00';
+        
+        // إذا كانت string مع "د.إ"
+        if (typeof price === 'string') {
+            return price.replace(/[^0-9.]/g, '');
+        }
+        
+        // إذا كانت رقم
+        return parseFloat(price).toFixed(2);
+    }
+    
+    /**
      * عرض بيانات الطلبية
      */
     displayOrderData() {
@@ -46,9 +61,13 @@ class ThankYouPage {
             console.log('%c📋 عرض الطلبية:', 'color: #3498db; font-weight: bold;', lastOrder);
             
             // عرض رقم الطلبية والمبلغ
-            this.orderNumberEl.textContent = lastOrder.orderId;
-            this.orderAmountEl.innerHTML = `💰 الإجمالي: <span style="color: #D4AF37; font-weight: 700;">${lastOrder.total}</span>`;
-            this.orderTimeEl.textContent = `🕓 ${lastOrder.date}`;
+            this.orderNumberEl.textContent = lastOrder.orderId || '#-';
+            
+            // احصل على الإجمالي بشكل صحيح
+            const totalPrice = this.normalizePrice(lastOrder.total);
+            this.orderAmountEl.innerHTML = `💰 الإجمالي: <span style="color: #D4AF37; font-weight: 700;">${totalPrice} د.إ</span>`;
+            
+            this.orderTimeEl.textContent = `🕓 ${lastOrder.date || new Date().toLocaleString('ar-AE')}`;
             
             // عرض بيانات العميل
             this.displayCustomerInfo(lastOrder);
@@ -84,22 +103,25 @@ class ThankYouPage {
         let html = '';
         
         items.forEach((item, index) => {
+            // احصل على السعر الصحيح
+            const price = this.normalizePrice(item.price);
+            
             html += `
                 <div class="product-item">
                     <div style="flex: 1;">
-                        <div class="product-name">• ${item.name}</div>
+                        <div class="product-name">• ${item.name || 'منتج'}</div>
                         <div style="font-size: 12px; color: #999; margin-top: 4px;">
-                            💵 ${item.price}
+                            💵 ${price} د.إ
                         </div>
                     </div>
                     <div class="product-qty" style="white-space: nowrap; margin-left: 10px;">
-                        x${item.quantity}
+                        x${item.quantity || 1}
                     </div>
                 </div>
             `;
         });
         
-        this.productsListEl.innerHTML = html;
+        this.productsListEl.innerHTML = html || '<div style="color: #999;">لا توجد منتجات</div>';
         this.productsSectionEl.style.display = 'block';
     }
     
@@ -109,7 +131,7 @@ class ThankYouPage {
     showDefaultData() {
         const now = new Date();
         this.orderNumberEl.textContent = '#' + new Date().getFullYear() + String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
-        this.orderAmountEl.innerHTML = `💰 الإجمالي: <span style="color: #D4AF37; font-weight: 700;">0 د.إ</span>`;
+        this.orderAmountEl.innerHTML = `💰 الإجمالي: <span style="color: #D4AF37; font-weight: 700;">0.00 د.إ</span>`;
         this.orderTimeEl.textContent = `🕓 ${now.toLocaleString('ar-AE')}`;
     }
     
@@ -142,6 +164,7 @@ class ThankYouPage {
             localStorage.removeItem('emirates_cart_data');
             localStorage.removeItem('emirates_cart_total');
             localStorage.removeItem('emirates_cart_count');
+            localStorage.removeItem('emirates_cart');
             console.log('%c✅ تم تنظيف بيانات السلة', 'color: #27ae60; font-weight: bold;');
         }, 5000);
     }
