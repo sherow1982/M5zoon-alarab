@@ -12,6 +12,32 @@
     <link rel="stylesheet" href="./css/style.css">
     
     <style>
+        /* 🔐 LEGAL HEADER & FOOTER STYLES */
+        .legal-header-nav { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px 20px; border-bottom: 4px solid #f5576c; }
+        .legal-nav-container { max-width: 1200px; margin: 0 auto; }
+        .legal-nav-wrapper { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .legal-nav-title { color: white; font-size: 1.3em; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .legal-nav-title:hover { color: #fff; }
+        .legal-nav-links { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; }
+        .legal-nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 5px; transition: all 0.3s; }
+        .legal-nav-links a:hover { background: rgba(255,255,255,0.2); }
+        .legal-contact-quick { display: flex; gap: 15px; flex-wrap: wrap; }
+        .legal-contact-quick a { color: white; text-decoration: none; padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 5px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 5px; }
+        .legal-contact-quick a:hover { background: rgba(255,255,255,0.2); }
+        .legal-footer { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 60px 20px 30px; margin-top: 80px; border-top: 4px solid #f5576c; }
+        .legal-footer-container { max-width: 1200px; margin: 0 auto; }
+        .legal-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .legal-footer-section h3 { font-size: 1.3em; margin-bottom: 20px; border-bottom: 2px solid #f5576c; padding-bottom: 10px; }
+        .legal-footer-section ul { list-style: none; }
+        .legal-footer-section li { margin: 12px 0; }
+        .legal-footer-section a { color: #e0e0e0; text-decoration: none; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
+        .legal-footer-section a:hover { color: #f5576c; transform: translateX(5px); }
+        .legal-divider { border-top: 1px solid rgba(255,255,255,0.2); margin: 30px 0; }
+        .legal-footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); }
+        .legal-footer-bottom p { margin: 10px 0; font-size: 0.95em; opacity: 0.9; }
+        .legal-badges { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .legal-badge { background: rgba(245,87,108,0.2); border: 1px solid #f5576c; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; }
+
         * {
             margin: 0;
             padding: 0;
@@ -220,7 +246,7 @@
             color: #27ae60;
         }
 
-        /* 🔙 BACK TO SHOP BUTTON - محسّن */
+        /* 🛒 BACK TO SHOP BUTTON */
         .back-to-shop-btn {
             position: fixed;
             bottom: 30px;
@@ -267,11 +293,37 @@
             .form-container {
                 padding: 20px;
             }
+            
+            .legal-nav-links,
+            .legal-contact-quick {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 🔙 BACK TO SHOP BUTTON -->
+    <!-- 🔐 PROFESSIONAL LEGAL HEADER -->
+    <header class="legal-header-nav">
+        <div class="legal-nav-container">
+            <div class="legal-nav-wrapper">
+                <a href="/index.html" class="legal-nav-title">🎁 الإمارات للهدايا</a>
+                <ul class="legal-nav-links">
+                    <li><a href="/legal/about.html">ℹ️ من نحن</a></li>
+                    <li><a href="/legal/return-policy.html">🔄 الاسترجاع</a></li>
+                    <li><a href="/legal/privacy-policy.html">🔐 الخصوصية</a></li>
+                    <li><a href="/legal/shipping-policy.html">🚚 الشحن</a></li>
+                </ul>
+                <div class="legal-contact-quick">
+                    <a href="/legal/contact-us.html">📞 اتصل</a>
+                    <a href="https://wa.me/201110760081" target="_blank">💬 واتساب</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 🛒 BACK TO SHOP BUTTON -->
     <a href="./products-showcase.html" class="back-to-shop-btn" title="العودة للمتجر" aria-label="العودة إلى صفحة المنتجات">
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
     </a>
@@ -370,6 +422,52 @@
             </form>
         </div>
     </div>
+
+    <!-- 🔐 PROFESSIONAL LEGAL FOOTER -->
+    <footer class="legal-footer">
+        <div class="legal-footer-container">
+            <div class="legal-footer-grid">
+                <div class="legal-footer-section">
+                    <h3>📄 البوليسات والشروط</h3>
+                    <ul>
+                        <li><a href="/legal/about.html" target="_blank">ℹ️ من نحن</a></li>
+                        <li><a href="/legal/return-policy.html" target="_blank">🔄 سياسة الاسترجاع</a></li>
+                        <li><a href="/legal/privacy-policy.html" target="_blank">🔐 سياسة الخصوصية</a></li>
+                        <li><a href="/legal/shipping-policy.html" target="_blank">🚚 سياسة الشحن</a></li>
+                    </ul>
+                </div>
+                <div class="legal-footer-section">
+                    <h3>📞 طرق الاتصال</h3>
+                    <ul>
+                        <li><a href="mailto:sherow1982@gmail.com">📧 sherow1982@gmail.com</a></li>
+                        <li><a href="mailto:info@arabsad.com">📧 info@arabsad.com</a></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank">💬 WhatsApp</a></li>
+                        <li><a href="/legal/contact-us.html" target="_blank">📞 اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="legal-footer-section">
+                    <h3>🌟 لماذا نخترنا</h3>
+                    <ul>
+                        <li>✓ الجودة العالية</li>
+                        <li>✓ الاسترجاع 14 يوم</li>
+                        <li>✓ شحن مجاني</li>
+                        <li>✓ دعم 24/7</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div class="legal-footer-bottom">
+                <div class="legal-badges">
+                    <span class="legal-badge">🔒 آمن 100%</span>
+                    <span class="legal-badge">✅ أصلي 100%</span>
+                    <span class="legal-badge">🚚 شحن سريع</span>
+                    <span class="legal-badge">⭐ موثوق</span>
+                </div>
+                <p>&copy; 2025 الإمارات للهدايا. جميع الحقوق محفوظة ©</p>
+                <p>آخر تحديث: ديسمبر 2025</p>
+            </div>
+        </div>
+    </footer>
     
     <!-- Scripts -->
     <script src="./js/cart-system.js"></script>
