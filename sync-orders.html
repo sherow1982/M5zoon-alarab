@@ -12,7 +12,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
             padding: 30px;
@@ -35,19 +35,22 @@
             color: #1976D2;
         }
         .btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
+            display: inline-block;
+            padding: 10px 16px;
+            margin: 5px;
             border: none;
             border-radius: 6px;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s;
+            font-weight: bold;
         }
         .btn-primary {
             background: #2196F3;
             color: white;
+            width: 100%;
+            margin: 10px 0;
+            display: block;
         }
         .btn-primary:hover {
             background: #1976D2;
@@ -59,28 +62,91 @@
         .btn-danger:hover {
             background: #d32f2f;
         }
+        .btn-success {
+            background: #4CAF50;
+            color: white;
+        }
+        .btn-success:hover {
+            background: #45a049;
+        }
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+            margin: 3px;
+        }
         .orders-list {
             margin-top: 30px;
         }
         .order-item {
             background: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 6px;
+            border: 2px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .order-item:hover {
+            border-color: #2196F3;
+            box-shadow: 0 3px 10px rgba(33, 150, 243, 0.2);
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
         }
         .order-id {
             font-weight: bold;
             color: #2196F3;
+            font-size: 16px;
+        }
+        .order-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .order-section {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #2196F3;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
             margin-bottom: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
         }
         .order-details {
-            font-size: 14px;
+            font-size: 13px;
             color: #666;
-            line-height: 1.6;
+            line-height: 1.8;
+        }
+        .order-details strong {
+            color: #333;
+            display: inline-block;
+            width: 120px;
+        }
+        .product-item {
+            background: #f5f5f5;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 4px;
+            border-right: 3px solid #4CAF50;
+        }
+        .product-link {
+            color: #2196F3;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .product-link:hover {
+            text-decoration: underline;
         }
         .status {
-            margin-top: 30px;
+            margin-top: 20px;
             padding: 15px;
             border-radius: 6px;
             text-align: center;
@@ -108,52 +174,73 @@
             border-radius: 6px;
             margin: 10px 0;
         }
-        .code-block {
-            background: #f5f5f5;
-            border: 1px solid #ddd;
+        .buttons-group {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .buttons-group .btn-primary {
+            width: auto;
+            margin: 0;
+            flex: 1;
+            min-width: 150px;
+        }
+        .price {
+            color: #d32f2f;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .quantity {
+            background: #fff3e0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: #e65100;
+            font-weight: bold;
+        }
+        .summary-card {
+            background: #e8f5e9;
+            border: 2px solid #4CAF50;
             padding: 15px;
-            border-radius: 6px;
-            margin: 10px 0;
-            overflow-x: auto;
-            font-size: 12px;
-            font-family: 'Courier New', monospace;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .summary-text {
+            font-size: 16px;
+            color: #2e7d32;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📄 ماناجر الطلبيات</h1>
+        <h1>📦 ماناجر الطلبيات</h1>
         
         <div class="info-box">
-            <strong>📚 شرح:</strong> هذه الصفحة للإدارة فقط. يمكنك رؤية الطلبيات المحفوظة محلياً ورفعها الى GitHub.
+            <strong>📚 شرح:</strong> إدارة كاملة للطلبيات المحفوظة. يمكنك حذف الطلبيات غير المرغوبة أو نسخ الطلبيات الجاهزة لرفعها على GitHub.
         </div>
         
-        <div>
-            <button class="btn btn-primary" onclick="displayOrders()">📄 عرض الطلبيات المحفوظة</button>
-            <button class="btn btn-primary" onclick="copyToClipboard()">📋 نسخ JSONL إلى الحافظة</button>
-            <button class="btn btn-danger" onclick="clearOrders()">🗑️ حذف الجميع</button>
+        <div class="buttons-group">
+            <button class="btn btn-primary" onclick="displayOrders()">📄 عرض الطلبيات</button>
+            <button class="btn btn-primary" onclick="copyToClipboard()">📋 نسخ JSONL</button>
+            <button class="btn btn-primary" onclick="clearOrders()" style="background: #f44336;">🗑️ حذف الجميع</button>
         </div>
         
         <div id="status"></div>
-        
+        <div id="summaryCard"></div>
         <div id="ordersContainer" class="orders-list"></div>
         
         <div class="info-box" style="margin-top: 30px;">
             <strong>💡 خطوات الرفع على GitHub:</strong>
             <ol style="margin-right: 20px; margin-top: 10px;">
-                <li>اضغط "نسخ JSONL"</li>
-                <li>اذهب لي:
-                    <a href="https://github.com/sherow1982/emirates-gifts/blob/main/data/orders.jsonl" target="_blank" rel="noopener">
-                        🔓 GitHub orders.jsonl
-                    </a>
-                </li>
-                <li>اضغط على الايقونة (عدل) واختر Edit</li>
-                <li>الطق (Paste) محتويات JSONL</li>
-                <li>اضغط "Commit changes"</li>
+                <li>اضغط "نسخ JSONL" واختر الطلبيات المطلوبة</li>
+                <li>اذهب لـ <a href="https://github.com/sherow1982/emirates-gifts/blob/main/data/orders.jsonl" target="_blank" rel="noopener">🔓 GitHub orders.jsonl</a></li>
+                <li>اضغط على أيقونة التعديل (Edit)</li>
+                <li>الصق البيانات وحفظ</li>
             </ol>
         </div>
         
-        <textarea id="jsonOutput" placeholder="JSONL data will appear here..." readonly></textarea>
+        <textarea id="jsonOutput" placeholder="سيظهر هنا JSONL..." readonly></textarea>
     </div>
     
     <script>
@@ -161,25 +248,79 @@
             const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
             const container = document.getElementById('ordersContainer');
             const status = document.getElementById('status');
+            const summaryCard = document.getElementById('summaryCard');
             
             if (orders.length === 0) {
-                container.innerHTML = '<div class="status info">لا توجد طلبيات محفوظة حالياً</div>';
+                container.innerHTML = '<div class="status info">❌ لا توجد طلبيات محفوظة حالياً</div>';
                 status.innerHTML = '';
+                summaryCard.innerHTML = '';
                 return;
             }
             
-            let html = `<div class="status success">✅ عدد الطلبيات: ${orders.length}</div>`;
+            // ملخص الطلبيات
+            const totalAmount = orders.reduce((sum, order) => {
+                const amount = parseFloat(order.total?.replace(/[^\d.]/g, '') || 0);
+                return sum + amount;
+            }, 0);
+            
+            summaryCard.innerHTML = `
+                <div class="summary-card">
+                    <div class="summary-text">
+                        ✅ إجمالي الطلبيات: <span style="color: #1976D2;">${orders.length}</span> | 
+                        💰 الإجمالي: <span style="color: #d32f2f;">${totalAmount.toFixed(2)} AED</span>
+                    </div>
+                </div>
+            `;
+            
+            let html = `<div class="status success">✅ تم تحميل ${orders.length} طلبية</div>`;
             
             orders.forEach((order, index) => {
+                const productsHtml = Array.isArray(order.items) 
+                    ? order.items.map((item, itemIndex) => `
+                        <div class="product-item">
+                            <div>📌 <strong>${item.name}</strong></div>
+                            <div>🔗 <a href="${item.url}" target="_blank" class="product-link">${item.url}</a></div>
+                            <div>💵 السعر: <span class="price">${item.price}</span></div>
+                            <div>📊 الكمية: <span class="quantity">${item.quantity} وحدة</span></div>
+                        </div>
+                    `).join('')
+                    : `<div class="product-item">${order.items}</div>`;
+                
                 html += `
                     <div class="order-item">
-                        <div class="order-id">#${order.orderId}</div>
-                        <div class="order-details">
-                            <strong>الاسم:</strong> ${order.fullName}<br>
-                            <strong>الهاتف:</strong> ${order.phone}<br>
-                            <strong>المدينة:</strong> ${order.city}<br>
-                            <strong>الإجمالي:</strong> ${order.total}<br>
-                            <strong>المنتجات:</strong> ${order.items}
+                        <div class="order-header">
+                            <div class="order-id">طلبية #${order.orderId}</div>
+                            <div class="order-actions">
+                                <button class="btn btn-success btn-small" onclick="copyOrderJSON(${index})">📋 نسخ</button>
+                                <button class="btn btn-danger btn-small" onclick="deleteOrder(${index})">🗑️ حذف</button>
+                            </div>
+                        </div>
+                        
+                        <div class="order-section">
+                            <div class="section-title">📍 بيانات العميل</div>
+                            <div class="order-details">
+                                <div><strong>الاسم:</strong> ${order.fullName}</div>
+                                <div><strong>الهاتف:</strong> ${order.phone}</div>
+                                <div><strong>المدينة:</strong> ${order.city}</div>
+                                <div><strong>العنوان:</strong> ${order.address}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="order-section">
+                            <div class="section-title">🛍️ المنتجات</div>
+                            ${productsHtml}
+                        </div>
+                        
+                        <div class="order-section">
+                            <div class="section-title">💰 الإجمالي</div>
+                            <div class="order-details">
+                                <span class="price" style="font-size: 18px;">${order.total}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="order-section" style="border-left-color: #999;">
+                            <div class="section-title">⏰ التاريخ</div>
+                            <div class="order-details">${order.date || 'غير محدد'}</div>
                         </div>
                     </div>
                 `;
@@ -189,30 +330,62 @@
             status.innerHTML = '';
         }
         
+        function deleteOrder(index) {
+            if (confirm('هل تريد حذف هذه الطلبية؟')) {
+                const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
+                orders.splice(index, 1);
+                localStorage.setItem('emirates_orders', JSON.stringify(orders));
+                
+                const status = document.getElementById('status');
+                status.innerHTML = '<div class="status success">✅ تم الحذف بنجاح!</div>';
+                setTimeout(() => {
+                    displayOrders();
+                }, 1000);
+            }
+        }
+        
+        function copyOrderJSON(index) {
+            const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
+            const orderJSON = JSON.stringify(orders[index]);
+            
+            const textarea = document.createElement('textarea');
+            textarea.value = orderJSON;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            
+            const status = document.getElementById('status');
+            status.innerHTML = '<div class="status success">✅ تم نسخ الطلبية!</div>';
+            setTimeout(() => {
+                status.innerHTML = '';
+            }, 2000);
+        }
+        
         function copyToClipboard() {
             const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
             const jsonlText = orders.map(order => JSON.stringify(order)).join('\n');
             
             document.getElementById('jsonOutput').value = jsonlText;
             
-            // Copy to clipboard
             const textarea = document.getElementById('jsonOutput');
             textarea.select();
             document.execCommand('copy');
             
             const status = document.getElementById('status');
-            status.innerHTML = '<div class="status success">✅ تم النسخ بنجاح!</div>';
+            status.innerHTML = '<div class="status success">✅ تم النسخ إلى الحافظة!</div>';
             setTimeout(() => {
                 status.innerHTML = '';
             }, 3000);
         }
         
         function clearOrders() {
-            if (confirm('هل أنت متأكد? سبف هذا لا يمكن التراجع عنه.')) {
+            if (confirm('⚠️ هل أنت متأكد؟ سيتم حذف جميع الطلبيات ولا يمكن التراجع!')) {
                 localStorage.removeItem('emirates_orders');
                 localStorage.removeItem('emirates_orders_jsonl');
-                document.getElementById('ordersContainer').innerHTML = '<div class="status error">✅ تم حذف الجميع</div>';
+                document.getElementById('ordersContainer').innerHTML = '<div class="status error">✅ تم حذف جميع الطلبيات</div>';
                 document.getElementById('jsonOutput').value = '';
+                document.getElementById('summaryCard').innerHTML = '';
             }
         }
         
