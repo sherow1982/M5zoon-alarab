@@ -54,7 +54,7 @@ jobs:
           
           # Create header if not exists
           if [ ! -f "$CSV_FILE" ]; then
-            echo $'\ufeffرقم الطلب,الاسم,الهاتف,المدينة,المنتجات,الإجمالي,التاريخ' > "$CSV_FILE"
+            printf "رقم الطلب,الاسم,الهاتف,المدينة,المنتجات,الإجمالي,التاريخ\n" > "$CSV_FILE"
           fi
           
           # Add new order row
