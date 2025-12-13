@@ -1,106 +1,403 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar-AE" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>من نحن - الإمارات للهدايا | Emirates Gifts</title>
-    <meta name="description" content="تعرّف على الإمارات للهدايا - متجر الهدايا الأول في الإمارات. نقدم أفضل الهدايا والمنتجات عالية الجودة بأسعار منافسة.">
-    <meta name="keywords" content="من نحن, عن متجر الهدايا, الإمارات للهدايا">
+    <title>من نحن - متجر هدايا الإمارات</title>
+    <meta name="description" content="تعرف على متجر هدايا الإمارات ورؤيتنا وقيمنا ">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f9f9f9;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 20px; text-align: center; }
-        header h1 { font-size: 3em; margin-bottom: 10px; }
-        header p { font-size: 1.3em; opacity: 0.9; }
-        .about-section { background: white; padding: 60px 40px; margin: 40px 0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .about-section h2 { color: #667eea; font-size: 2em; margin-bottom: 20px; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
-        .about-section p { margin: 15px 0; font-size: 1.1em; line-height: 1.8; }
-        .values { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin: 40px 0; }
-        .value-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; text-align: center; transition: transform 0.3s; }
-        .value-card:hover { transform: translateY(-10px); }
-        .value-card h3 { font-size: 1.5em; margin-bottom: 15px; }
-        .value-card p { opacity: 0.9; }
-        footer { background: #333; color: white; text-align: center; padding: 30px; margin-top: 60px; }
-        .highlight { color: #667eea; font-weight: bold; }
+        :root {
+            --dark-blue: #1e3c72;
+            --light-blue: #2a5298;
+            --gold: #D4AF37;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+        }
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #f0f4f8 100%);
+        }
+        /* Legal Header */
+        .legal-header-nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 20px;
+            border-bottom: 4px solid #f5576c;
+        }
+        .legal-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .legal-nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .legal-nav-title {
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legal-nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .legal-nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .legal-nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .legal-contact-quick {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .legal-contact-quick a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .legal-contact-quick a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        /* Content */
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 3em;
+            color: var(--dark-blue);
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold);
+            padding-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.8em;
+            color: var(--dark-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        .highlight {
+            color: var(--gold);
+            font-weight: bold;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .value-card {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(42,157,143,0.1) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid var(--gold);
+            text-align: center;
+        }
+        .value-card i {
+            font-size: 2.5em;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        .value-card h3 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        .features-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        .features-list li {
+            padding: 12px 0;
+            padding-right: 30px;
+            position: relative;
+            font-size: 1.1em;
+        }
+        .features-list li:before {
+            content: '\2713';
+            position: absolute;
+            right: 0;
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        .contact-section {
+            background: linear-gradient(135deg, var(--dark-blue), var(--light-blue));
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .contact-links a {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-links a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        /* Legal Footer */
+        .legal-footer {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 20px 30px;
+            margin-top: 80px;
+            border-top: 4px solid #f5576c;
+        }
+        .legal-footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .legal-footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .legal-footer-section h3 {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f5576c;
+            padding-bottom: 10px;
+        }
+        .legal-footer-section ul {
+            list-style: none;
+        }
+        .legal-footer-section li {
+            margin: 12px 0;
+        }
+        .legal-footer-section a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legal-footer-section a:hover {
+            color: #f5576c;
+            transform: translateX(5px);
+        }
+        .legal-divider {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin: 30px 0;
+        }
+        .legal-footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .legal-footer-bottom p {
+            margin: 10px 0;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+        .legal-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .legal-badge {
+            background: rgba(245,87,108,0.2);
+            border: 1px solid #f5576c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.3em; }
+            .container { margin: 30px auto; padding: 20px; }
+            .legal-nav-links { flex-direction: column; gap: 10px; }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>من نحن</h1>
-        <p>الإمارات للهدايا - متجرك الأول للهدايا المميزة</p>
-    </header>
-
-    <div class="container">
-        <div class="about-section">
-            <h2>🎁 نبذة عن الإمارات للهدايا</h2>
-            <p>
-                نحن <span class="highlight">الإمارات للهدايا</span> - متجر متخصص في توفير أفضل الهدايا والمنتجات عالية الجودة 
-                في دولة الإمارات العربية المتحدة. منذ تأسيسنا، التزمنا بتقديم تجربة تسوق استثنائية 
-                تجمع بين جودة المنتجات وخدمة العملاء الممتازة.
-            </p>
-            <p>
-                نعمل بشغف وإخلاص لجعل كل مناسبة خاصة بك أكثر جمالاً وتميزاً. من الهدايا البسيطة المعبّرة 
-                إلى الهدايا الفاخرة، نملك كل ما تحتاجه لإسعاد أحبائك.
-            </p>
-        </div>
-
-        <div class="about-section">
-            <h2>🎯 رؤيتنا وقيمنا</h2>
-            <div class="values">
-                <div class="value-card">
-                    <h3>الجودة العالية</h3>
-                    <p>نختار كل منتج بعناية فائقة لنضمن لك أفضل جودة وأطول عمر افتراضي</p>
-                </div>
-                <div class="value-card">
-                    <h3>خدمة ممتازة</h3>
-                    <p>فريقنا المخصص يعمل 24/7 لتلبية احتياجاتك والإجابة على استفساراتك</p>
-                </div>
-                <div class="value-card">
-                    <h3>أسعار منافسة</h3>
-                    <p>نوفر أفضل الأسعار دون التنازل عن جودة المنتجات والخدمات</p>
-                </div>
-                <div class="value-card">
-                    <h3>شحن سريع</h3>
-                    <p>نوصل طلبياتك بسرعة وأمان إلى كل أنحاء الإمارات</p>
-                </div>
-                <div class="value-card">
-                    <h3>سياسة عودة آمنة</h3>
-                    <p>نقدم سياسة استرجاع شاملة لراحتك النفسية والثقة بتعاملاتنا</p>
-                </div>
-                <div class="value-card">
-                    <h3>تنوع المنتجات</h3>
-                    <p>مجموعة كبيرة ومتنوعة من الهدايا لكل الأذواق والمناسبات</p>
+    <!-- Legal Header -->
+    <header class="legal-header-nav">
+        <div class="legal-nav-container">
+            <div class="legal-nav-wrapper">
+                <a href="/index.html" class="legal-nav-title">🎁 الإمارات للهدايا</a>
+                <ul class="legal-nav-links">
+                    <li><a href="/legal/about.html">ℹ️ من نحن</a></li>
+                    <li><a href="/legal/return-policy.html">🔄 الاسترجاع</a></li>
+                    <li><a href="/legal/privacy-policy.html">🔐 الخصوصية</a></li>
+                    <li><a href="/legal/shipping-policy.html">🚚 الشحن</a></li>
+                </ul>
+                <div class="legal-contact-quick">
+                    <a href="/legal/contact-us.html">📞 اتصل</a>
+                    <a href="https://wa.me/201110760081" target="_blank">💬 واتساب</a>
                 </div>
             </div>
         </div>
+    </header>
 
-        <div class="about-section">
-            <h2>💼 سبب اختيارك لنا؟</h2>
-            <p>✓ <strong>تجربة تسوق آمنة:</strong> جميع عملياتك الشرائية محمية وآمنة بنسبة 100%</p>
-            <p>✓ <strong>منتجات أصلية:</strong> جميع منتجاتنا أصلية وموثوقة من موردين معتمدين</p>
-            <p>✓ <strong>دعم عملاء استثنائي:</strong> فريقنا جاهز للمساعدة في أي وقت</p>
-            <p>✓ <strong>شحن مجاني:</strong> شحن مجاني لجميع أنحاء الإمارات</p>
-            <p>✓ <strong>عروض مستمرة:</strong> تمتع بعروض وتخفيفات حصرية طول السنة</p>
-            <p>✓ <strong>ضمان الرضا:</strong> إن لم تكن راضياً، نستعيد أموالك كاملة</p>
+    <!-- Main Content -->
+    <div class="container">
+        <h1>🌟 من نحن</h1>
+
+        <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">
+            مرحباً بك في <span class="highlight">متجر هدايا الإمارات</span>
+        </p>
+
+        <h2>🂡 رويتنا</h2>
+        <p>
+            نحن نسعى لتوفير أفضل العطور والهدايا الفاخرة لأهالينا في جميع أنحاء الإمارات بأسعار منافسة وتنافسية. كل منتجاتنا ماؤلوفة بعناية واهتمام لتلبية اذوقك الراقية.
+        </p>
+
+        <h2>🂌 قيمنا</h2>
+        <ul class="features-list">
+            <li>الطمأنينة من الجودة العالية 100%</li>
+            <li>عطور وهدايا أصلية من مصادر موثوقة</li>
+            <li>الاهتمام برضا العملاء واستعدادهم الكامل</li>
+            <li>شحن سريع وآمن موثوق</li>
+            <li>أسعار عادلة منافسة</li>
+            <li>دعم عملاء متاح 24/7</li>
+        </ul>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fas fa-star"></i>
+                <h3>الجودة</h3>
+                <p>كل منتج يخضع لمعايير عالية للجودة والنقاء</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>السرعة</h3>
+                <p>شحن من 1 إلى 3 أيام عمل لجميع أنحاء الإمارات</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-heart"></i>
+                <h3>الرعاية</h3>
+                <p>رضاك هو أعظم أولوياتنا وطلبنا هو أمرنا</p>
+            </div>
         </div>
 
-        <div class="about-section">
-            <h2>📞 تواصل معنا</h2>
-            <p>هل لديك أي أسئلة؟ نحن هنا للمساعدة!</p>
-            <p><strong>البريد الإلكتروني:</strong> <a href="mailto:sherow1982@gmail.com" style="color: #667eea; text-decoration: none;">sherow1982@gmail.com</a></p>
-            <p><strong>البريد البديل:</strong> <a href="mailto:info@arabsad.com" style="color: #667eea; text-decoration: none;">info@arabsad.com</a></p>
-            <p><strong>واتساب:</strong> <a href="https://wa.me/201110760081" style="color: #667eea; text-decoration: none;" target="_blank">تواصل معنا عبر واتساب</a></p>
+        <h2>🌞 ما نقدمه</h2>
+        <ul class="features-list">
+            <li>عطور عالمية من أفضل العلامات</li>
+            <li>ساعات فاخرة من ماركات معروفة</li>
+            <li>هدايا عبارة وملائمة للمناسبات</li>
+            <li>برامج وعروض مكسبة على مدار السنة</li>
+            <li>ضمان إرجاع 14 يوم بدون أسئلة</li>
+        </ul>
+
+        <div class="contact-section">
+            <h2 style="color: white; margin-top: 0;">📞 تواصل معنا</h2>
+            <p>لدينا فريق متخصص للإجابة على استفساراتك 24 ساعة مشروفيبح ها.
+            </p>
+            <div class="contact-links">
+                <a href="/legal/contact-us.html">📞 اتصل بنا</a>
+                <a href="https://wa.me/201110760081" target="_blank">💬 واتساب</a>
+                <a href="mailto:info@arabsad.com">📧 البريدالإلكتروني</a>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 الإمارات للهدايا. جميع الحقوق محفوظة.</p>
+    <!-- Legal Footer -->
+    <footer class="legal-footer">
+        <div class="legal-footer-container">
+            <div class="legal-footer-grid">
+                <div class="legal-footer-section">
+                    <h3>📄 البوليسات والشروط</h3>
+                    <ul>
+                        <li><a href="/legal/about.html" target="_blank">ℹ️ من نحن</a></li>
+                        <li><a href="/legal/return-policy.html" target="_blank">🔄 سياسة الاسترجاع</a></li>
+                        <li><a href="/legal/privacy-policy.html" target="_blank">🔐 سياسة الخصوصية</a></li>
+                        <li><a href="/legal/shipping-policy.html" target="_blank">🚚 سياسة الشحن</a></li>
+                    </ul>
+                </div>
+                <div class="legal-footer-section">
+                    <h3>📞 طرق الاتصال</h3>
+                    <ul>
+                        <li><a href="mailto:sherow1982@gmail.com">📧 sherow1982@gmail.com</a></li>
+                        <li><a href="mailto:info@arabsad.com">📧 info@arabsad.com</a></li>
+                        <li><a href="https://wa.me/201110760081" target="_blank">💬 WhatsApp</a></li>
+                        <li><a href="/legal/contact-us.html" target="_blank">📞 اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="legal-footer-section">
+                    <h3>🌟 لماذا نخترنا</h3>
+                    <ul>
+                        <li>✓ الجودة العالية</li>
+                        <li>✓ الاسترجاع 14 يوم</li>
+                        <li>✓ شحن مجاني</li>
+                        <li>✓ دعم 24/7</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div class="legal-footer-bottom">
+                <div class="legal-badges">
+                    <span class="legal-badge">🔒 آمن 100%</span>
+                    <span class="legal-badge">✅ أصلي 100%</span>
+                    <span class="legal-badge">🚚 شحن سريع</span>
+                    <span class="legal-badge">⭐ موثوق</span>
+                </div>
+                <p>&copy; 2025 الإمارات للهدايا. جميع الحقوق محفوظة ©</p>
+                <p>آخر تحديث: ديسمبر 2025</p>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
