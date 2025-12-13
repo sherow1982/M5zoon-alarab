@@ -332,6 +332,39 @@
             margin: 0 auto;
         }
 
+        /* Filter Controls */
+        .filter-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: var(--white);
+            color: var(--dark-blue);
+            border: 2px solid var(--gold);
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--sand));
+            color: var(--dark-blue);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -530,6 +563,65 @@
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
+        }
+
+        /* Load More Button */
+        .load-more-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        #loadMoreBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--gold), #B8860B);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #loadMoreBtn:hover {
+            background: linear-gradient(135deg, #E5C158, var(--gold));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        #loadMoreBtn:active {
+            transform: translateY(0);
+        }
+
+        #loadMoreBtn i {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        #loadMoreBtn:hover i {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Footer */
@@ -736,30 +828,43 @@
                 <h1 class="hero-title">🌸 عالم من<br><span>عطور وهدايا مبهرة</span></h1>
                 <p class="hero-subtitle">اختر أجود العطور والساعات والهدايا عالية الجودة بأسعار منافسة</p>
                 <div class="button-group">
-                    <a href="./products-showcase.html" class="btn-primary">
+                    <a href="#all-products" class="btn-primary">
                         <i class="fas fa-shopping-bag"></i>
-                        <span>ابدأ التسوق</span>
+                        <span>استعرض المنتجات</span>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="all-products">
             <div class="section-container">
-                <div id="perfumes-section">
-                    <div class="section-header">
-                        <h2 class="section-title">🌸 عطور مريبة</h2>
-                        <a href="./products-showcase.html" class="view-all-link">
-                            <span>تصفح الكل</span>
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
+                <div class="filter-controls" role="radiogroup" aria-label="فلترة المنتجات">
+                    <button class="filter-btn active" data-filter="all" role="radio" aria-checked="true">
+                        <i class="fas fa-th-large"></i>
+                        جميع المنتجات
+                    </button>
+                    <button class="filter-btn" data-filter="perfumes" role="radio" aria-checked="false">
+                        <i class="fas fa-spray-can"></i>
+                        العطور
+                    </button>
+                    <button class="filter-btn" data-filter="watches" role="radio" aria-checked="false">
+                        <i class="fas fa-clock"></i>
+                        الساعات
+                    </button>
+                </div>
+
+                <div class="products-grid" id="products-grid">
+                    <div class="loading-message">
+                        <i class="fas fa-spinner loading-spinner-icon"></i>
+                        جاري تحميل منتجاتك...
                     </div>
-                    <div class="products-grid" id="perfumes-grid">
-                        <div class="loading-message">
-                            <i class="fas fa-spinner loading-spinner-icon"></i>
-                            جاري تحميل منتجاتك...
-                        </div>
-                    </div>
+                </div>
+
+                <div class="load-more-container" id="loadMoreContainer" style="display:none;">
+                    <button id="loadMoreBtn" type="button" aria-label="تحميل المزيد من المنتجات">
+                        <i class="fas fa-chevron-down"></i>
+                        <span>تحميل المزيد</span>
+                    </button>
                 </div>
             </div>
         </section>
@@ -769,7 +874,7 @@
         <div class="footer-container">
             <div class="footer-links-nav">
                 <a href="./">🏠 الرئيسية</a>
-                <a href="./products-showcase.html">📚 المنتجات</a>
+                <a href="#all-products">📚 المنتجات</a>
                 <a href="./checkout.html">🛒 السلة</a>
                 <a href="./en/">🌍 English</a>
             </div>
@@ -811,6 +916,9 @@
             'use strict';
 
             let allProducts = [];
+            let displayedCount = 0;
+            const itemsPerLoad = 12;
+            let currentFilter = 'all';
 
             function updateCartBadge() {
                 try {
@@ -825,63 +933,108 @@
                 }
             }
 
-            async function loadProducts() {
+            async function loadAllProducts() {
                 try {
                     const response = await fetch('./data/products.json?v=' + Date.now());
                     if (!response.ok) throw new Error('Failed to load products');
                     
                     const products = await response.json();
                     allProducts = products;
-                    const perfumes = products.filter(p => p.category === 'Perfumes').slice(0, 6);
-                    
-                    const grid = document.getElementById('perfumes-grid');
-                    if (!grid) return;
-                    
-                    if (perfumes.length === 0) {
-                        grid.innerHTML = '<div class="loading-message" style="grid-column: 1/-1;">No products available</div>';
-                        return;
-                    }
-                    
-                    grid.innerHTML = perfumes.map(product => {
-                        const finalPrice = product.sale_price || product.price;
-                        const originalPrice = product.price;
-                        const hasDiscount = product.sale_price && product.sale_price < product.price;
-                        const discountPercent = hasDiscount ? Math.round(((originalPrice - finalPrice) / originalPrice) * 100) : 0;
-                        
-                        return `
-                            <div class="product-card" data-product-id="${product.id}">
-                                <div class="product-image-container">
-                                    <img src="${product.image_link || 'https://via.placeholder.com/300x250/D4AF37/FFFFFF?text=Product'}" alt="${product.title}" class="product-image">
-                                    ${hasDiscount ? `<div class="discount-badge">خصم ${discountPercent}%</div>` : ''}
-                                </div>
-                                <div class="product-info">
-                                    <div class="product-title">${product.title}</div>
-                                    <div class="product-price">
-                                        ${finalPrice.toFixed(2)} د.إ
-                                        ${hasDiscount ? `<span class="original-price">${originalPrice.toFixed(2)}</span>` : ''}
-                                    </div>
-                                    <div class="product-actions">
-                                        <button class="btn-cart" data-action="addcart" data-id="${product.id}" data-title="${product.title}">
-                                            <i class="fas fa-cart-plus"></i>
-                                            اطلب
-                                        </button>
-                                        <a href="https://wa.me/201110760081" class="btn-whatsapp" target="_blank" rel="noopener">
-                                            <i class="fab fa-whatsapp"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                    }).join('');
-
-                    setupProductEventHandlers();
+                    displayedCount = 0;
+                    loadMoreProducts();
+                    setupFilters();
                 } catch (error) {
                     console.error('Products loading error:', error);
-                    const grid = document.getElementById('perfumes-grid');
+                    const grid = document.getElementById('products-grid');
                     if (grid) {
                         grid.innerHTML = '<div class="loading-message" style="grid-column: 1/-1; color: #e74c3c;">خطأ في تحميل المنتجات</div>';
                     }
                 }
+            }
+
+            function getFilteredProducts() {
+                if (currentFilter === 'all') {
+                    return allProducts;
+                }
+                return allProducts.filter(p => p.category === (currentFilter === 'perfumes' ? 'Perfumes' : 'Watches'));
+            }
+
+            function loadMoreProducts() {
+                const filtered = getFilteredProducts();
+                const grid = document.getElementById('products-grid');
+                const loadMoreContainer = document.getElementById('loadMoreContainer');
+                
+                if (displayedCount === 0) {
+                    grid.innerHTML = '';
+                }
+
+                const newProducts = filtered.slice(displayedCount, displayedCount + itemsPerLoad);
+                
+                if (newProducts.length === 0 && displayedCount === 0) {
+                    grid.innerHTML = '<div class="loading-message" style="grid-column: 1/-1;">لا توجد منتجات</div>';
+                    loadMoreContainer.style.display = 'none';
+                    return;
+                }
+
+                newProducts.forEach(product => {
+                    const finalPrice = product.sale_price || product.price;
+                    const originalPrice = product.price;
+                    const hasDiscount = product.sale_price && product.sale_price < product.price;
+                    const discountPercent = hasDiscount ? Math.round(((originalPrice - finalPrice) / originalPrice) * 100) : 0;
+                    
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    card.setAttribute('data-product-id', product.id);
+                    card.innerHTML = `
+                        <div class="product-image-container">
+                            <img src="${product.image_link || 'https://via.placeholder.com/300x250/D4AF37/FFFFFF?text=Product'}" alt="${product.title}" class="product-image">
+                            ${hasDiscount ? `<div class="discount-badge">خصم ${discountPercent}%</div>` : ''}
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">${product.title}</div>
+                            <div class="product-price">
+                                ${finalPrice.toFixed(2)} د.إ
+                                ${hasDiscount ? `<span class="original-price">${originalPrice.toFixed(2)}</span>` : ''}
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-cart" data-action="addcart" data-id="${product.id}" data-title="${product.title}">
+                                    <i class="fas fa-cart-plus"></i>
+                                    اطلب
+                                </button>
+                                <a href="https://wa.me/201110760081" class="btn-whatsapp" target="_blank" rel="noopener">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+
+                displayedCount += newProducts.length;
+                
+                if (displayedCount >= filtered.length) {
+                    loadMoreContainer.style.display = 'none';
+                } else {
+                    loadMoreContainer.style.display = 'flex';
+                }
+
+                setupProductEventHandlers();
+            }
+
+            function setupFilters() {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('.filter-btn').forEach(b => {
+                            b.classList.remove('active');
+                            b.setAttribute('aria-checked', 'false');
+                        });
+                        this.classList.add('active');
+                        this.setAttribute('aria-checked', 'true');
+                        currentFilter = this.getAttribute('data-filter');
+                        displayedCount = 0;
+                        loadMoreProducts();
+                    });
+                });
             }
 
             function setupProductEventHandlers() {
@@ -943,6 +1096,8 @@
                 }
             };
 
+            document.getElementById('loadMoreBtn').addEventListener('click', loadMoreProducts);
+
             window.addEventListener('scroll', function() {
                 const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
                 const bar = document.getElementById('progressBar');
@@ -954,11 +1109,11 @@
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', function() {
                     updateCartBadge();
-                    loadProducts();
+                    loadAllProducts();
                 });
             } else {
                 updateCartBadge();
-                loadProducts();
+                loadAllProducts();
             }
         })();
     </script>
