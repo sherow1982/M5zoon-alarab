@@ -40,12 +40,85 @@
       }
     }
     </script>
+
+    <style>
+        /* 🛒 FLOATING CART BUTTON */
+        .floating-cart-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #D4AF37, #B8860B);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            font-size: 28px;
+            text-decoration: none;
+        }
+
+        .floating-cart-btn:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .floating-cart-btn:active {
+            transform: scale(1.05);
+        }
+
+        .floating-cart-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #e74c3c;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 900;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .floating-cart-btn {
+                bottom: 20px;
+                left: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+
+            .floating-cart-badge {
+                width: 24px;
+                height: 24px;
+                font-size: 11px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- 🛒 FLOATING CART BUTTON -->
+    <a href="./checkout.html" class="floating-cart-btn" title="اذهب إلى السلة" aria-label="الانتقال إلى صفحة السلة">
+        <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+        <span class="floating-cart-badge" id="floatingCartBadge">0</span>
+    </a>
+
     <header class="header">
         <div class="header-content">
             <a href="./" class="logo">
-                <div class="logo-title">🛍️ متجر هدايا الإمارات</div>
+                <div class="logo-title">🛒 متجر هدايا الإمارات</div>
             </a>
             <nav>
                 <ul class="nav-links">
@@ -70,7 +143,7 @@
                 <i class="fas fa-spinner"></i>
             </div>
             <h3>جارِ تحميل تفاصيل المنتج...</h3>
-            <p>يرجى الانتظار قليلاً</p>
+            <p>يرجاء الانتظار قليلاً</p>
         </div>
 
         <!-- Error State -->
@@ -181,6 +254,31 @@
     
     <!-- Product Details Cart Handler -->
     <script src="./js/product-details-cart.js" defer></script>
+
+    <script>
+        // تحديث رقم السلة العائمة
+        function updateFloatingCartBadge() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
+                const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                const badge = document.getElementById('floatingCartBadge');
+                if (badge) {
+                    badge.textContent = total;
+                }
+            } catch (e) {
+                console.error('خطأ في السلة:', e);
+            }
+        }
+
+        // بالبداية
+        updateFloatingCartBadge();
+
+        // مراقبة التغييرات
+        document.addEventListener('storage', updateFloatingCartBadge);
+
+        // للطرق بباب أمر مخصصة للتحديث
+        window.updateFloatingCartBadge = updateFloatingCartBadge;
+    </script>
 
 </body>
 </html>
