@@ -1,0 +1,72 @@
+name: 📝 Save Order
+
+on:
+  workflow_dispatch:
+    inputs:
+      orderId:
+        description: 'Order ID'
+        required: true
+      fullName:
+        description: 'Customer Name'
+        required: true
+      phone:
+        description: 'Phone Number'
+        required: true
+      city:
+        description: 'City'
+        required: true
+      items:
+        description: 'Items'
+        required: true
+      total:
+        description: 'Total Price'
+        required: true
+      date:
+        description: 'Date'
+        required: true
+
+jobs:
+  save_order:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+      
+      - name: 📝 Create Order JSON
+        run: |
+          mkdir -p orders
+          cat > "orders/${{ github.event.inputs.orderId }}-$(date +%s000).json" << 'EOF'
+          {
+            "orderId": "${{ github.event.inputs.orderId }}",
+            "fullName": "${{ github.event.inputs.fullName }}",
+            "phone": "${{ github.event.inputs.phone }}",
+            "city": "${{ github.event.inputs.city }}",
+            "items": "${{ github.event.inputs.items }}",
+            "total": "${{ github.event.inputs.total }}",
+            "date": "${{ github.event.inputs.date }}",
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+      
+      - name: 📊 Update CSV
+        run: |
+          CSV_FILE="orders/new-orders.csv"
+          
+          # Check if file exists
+          if [ ! -f "$CSV_FILE" ]; then
+            echo "رقم الطلب,الاسم,الهاتف,المدينة,المنتجات,الإجمالي,التاريخ" > "$CSV_FILE"
+          fi
+          
+          # Add new row
+          echo "${{ github.event.inputs.orderId }},${{ github.event.inputs.fullName }},${{ github.event.inputs.phone }},${{ github.event.inputs.city }},\"${{ github.event.inputs.items }}\",${{ github.event.inputs.total }},${{ github.event.inputs.date }}" >> "$CSV_FILE"
+      
+      - name: 🔄 Commit & Push
+        run: |
+          git config user.name "bot-emirates"
+          git config user.email "orders@emirates-gifts.local"
+          git add orders/
+          git commit -m "📦 New order: ${{ github.event.inputs.orderId }}"
+          git push
+      
+      - name: ✅ Done
+        run: echo "Order saved successfully! 🎉"
