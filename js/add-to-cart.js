@@ -1,8 +1,7 @@
 /**
- * منطلق إضافة المنتج للسلة
+ * منطلق إضافة المنتج للسلة - محسّنة
  * يعمل على جميع صفحات المنتجات
- * ليحول للخروج مباشرة
- * Emirates Gifts v3.3
+ * Emirates Gifts v3.4 - Fixed undefined & navigation
  */
 
 class AddToCart {
@@ -23,7 +22,6 @@ class AddToCart {
         });
         
         console.log('%c✅ نظام إضافة للسلة فعال', 'color: #27ae60; font-weight: bold');
-        console.log('%c🚍 التحويل الفوري للخروج', 'color: #3498db; font-weight: bold');
     }
     
     /**
@@ -33,7 +31,7 @@ class AddToCart {
         event.preventDefault();
         
         const btn = event.target.closest('.add-to-cart-btn');
-        const container = btn.closest('[data-product]') || btn.closest('[data-product-id]');
+        const container = btn.closest('[data-product]') || btn.closest('[data-product-id]') || btn.closest('.product-card') || btn.closest('.product-item');
         
         if (!container) {
             console.error('❌ لم أجد بيانات المنتج');
@@ -41,7 +39,7 @@ class AddToCart {
             return;
         }
         
-        // استخراج البيانات
+        // استخراج البيانات بشكل آمن (بدون undefined)
         const product = this.extractProductData(container);
         
         if (!product || !product.id) {
@@ -50,37 +48,80 @@ class AddToCart {
             return;
         }
         
-        console.log('%c🐛 بيانات المنتج:', product);
+        // التحقق من البيانات
+        if (!product.title || product.title === 'undefined' || product.title.trim() === '') {
+            console.warn('⚠️ اسم المنتج غير تام');
+            product.title = 'منتج';
+        }
+        
+        if (product.price <= 0) {
+            console.warn('⚠️ السعر غير محدد');
+            product.price = 0;
+        }
+        
+        console.log('%c📦 بيانات المنتج:', 'color: #3498db; font-weight: bold', product);
         
         // إضافة للسلة
         const success = this.cart.addProduct(product);
         
         if (success) {
             console.log('%c✅ تم الإضافة', 'color: #27ae60; font-weight: bold', product.title);
-            this.showNotification(`تم الإضافة "‎${product.title}‎" ✅`, 'success');
+            this.showNotification(`تم الإضافة "‮${product.title}‭" ✅`, 'success');
             this.animateButton(btn);
             
-            // التحويل الفوري للخروج
+            // الثلاثيات - الدهاب للخروج مباشرة (بلا تأخير)
             setTimeout(() => {
-                console.log('%c🚍 الإعادة التوجيه للخروج...', 'color: #e74c3c; font-weight: bold; font-size: 12px');
+                console.log('%c🚀 الذهاب للخروج...', 'color: #e74c3c; font-weight: bold');
                 window.location.href = './checkout.html';
-            }, 1000);
+            }, 500);
         } else {
             this.showNotification('فشل إضافة المنتج', 'error');
         }
     }
     
     /**
-     * استخراج بيانات المنتج من DOM
+     * استخراج بيانات المنتج بآمان (بدون undefined)
      */
     extractProductData(container) {
+        // البحث في data attributes
+        let productId = container.dataset.productId || container.dataset.id;
+        let productTitle = container.dataset.productTitle || container.dataset.title;
+        let productPrice = container.dataset.productPrice || container.dataset.price;
+        let productSalePrice = container.dataset.salePrice || container.dataset.productSalePrice;
+        let productImage = container.dataset.productImage || container.dataset.image;
+        
+        // البحث في DOM elements إذا لم تكن موجودة
+        if (!productTitle) {
+            const titleElement = container.querySelector('h2, h3, [class*="title"], [class*="name"]');
+            if (titleElement) {
+                productTitle = titleElement.textContent.trim();
+            }
+        }
+        
+        if (!productPrice) {
+            const priceElement = container.querySelector('[data-price], [class*="price"], .cost');
+            if (priceElement) {
+                const match = priceElement.textContent.match(/\d+\.?\d*/);
+                if (match) productPrice = match[0];
+            }
+        }
+        
+        if (!productImage) {
+            const imgElement = container.querySelector('img');
+            if (imgElement) {
+                productImage = imgElement.src || imgElement.dataset.src;
+            }
+        }
+        
+        // الصيغة النهايبية - بدون undefined
         return {
-            id: container.dataset.productId || container.dataset.id || this.generateId(),
-            title: container.dataset.productTitle || container.querySelector('h2, h3, .title')?.textContent?.trim(),
-            price: parseFloat(container.dataset.productPrice || container.querySelector('[data-price]')?.textContent?.match(/\d+\.?\d*/)?.[0] || 0),
-            sale_price: parseFloat(container.dataset.salePrice || container.dataset.productSalePrice || container.querySelector('[data-sale-price]')?.textContent?.match(/\d+\.?\d*/)?.[0] || 0),
-            image_link: container.dataset.productImage || container.querySelector('img')?.src,
-            image: container.dataset.productImage || container.querySelector('img')?.src,
+            id: productId || this.generateId(),
+            title: productTitle && productTitle !== 'undefined' ? productTitle : 'منتج',
+            price: parseFloat(productPrice) || 0,
+            sale_price: parseFloat(productSalePrice) || parseFloat(productPrice) || 0,
+            image_link: productImage,
+            image: productImage,
+            url: container.querySelector('a')?.href,
             quantity: 1
         };
     }
