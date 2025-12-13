@@ -1,7 +1,7 @@
 /**
  * منطق صفحة إتمام الطلب
  * مباشرة لـ Google Sheets
- * Emirates Gifts v4.1
+ * Emirates Gifts v4.2
  */
 
 class CheckoutPage {
@@ -12,13 +12,14 @@ class CheckoutPage {
         this.summaryText = document.getElementById('summaryText');
         this.totalDisplay = document.getElementById('totalPriceDisplay');
         
-        // رابط Google Sheets
+        // رابط Google Sheets الصحيح
         this.SHEETS_ID = '18T87KMCzvInuRoqbjwSQzIRFtb4xW71_LVNOCK5iHp0';
-        this.GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyWYpWnXV9wlo6sH-ABKR480ekh_9MsOSX0ypA9pMViSR7x5lDKCnBaVWwRr9pd_L2Nw/exec';
+        this.GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm1YKCjS9845uRuAPSOodiTPf2sfSV5fQYBsuwVI2Ip06VNBGnR7KXg9TAeifbW_DvRQ/exec';
         
         console.clear();
         console.log('%c🌐 Google Sheets Connected', 'color: #2a5298; font-size: 14px; font-weight: bold; padding: 10px; background: #ecf0f1');
-        console.log('%c📄 Sheets ID: ' + this.SHEETS_ID, 'color: #27ae60; font-size: 11px; font-weight: bold');
+        console.log('%c📄 Sheets ID:', 'color: #27ae60; font-size: 12px; font-weight: bold', this.SHEETS_ID);
+        console.log('%c🔗 Script URL:', 'color: #27ae60; font-size: 11px', this.GOOGLE_SCRIPT_URL.substring(0, 60) + '...');
         
         if (!this.form) {
             console.error('❌ Form not found');
