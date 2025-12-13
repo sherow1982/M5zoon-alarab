@@ -1,0 +1,9 @@
+{
+  "env": [
+    {
+      "key": "GITHUB_TOKEN",
+      "value": "",
+      "type": "secret"
+    }
+  ]
+}
