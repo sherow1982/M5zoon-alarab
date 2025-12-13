@@ -1,12 +1,19 @@
 /**
- * Emirates Gifts - SEO Optimizer
- * Advanced SEO optimization for Google ranking
- * Handles schema markup, meta tags, structured data
+ * SEO Optimizer - Comprehensive SEO Management
+ * Integrates: Schema Markup, Meta Tags, Analytics, Internal Links, Carousel, Funnels
  */
 
 class SEOOptimizer {
     constructor(config = {}) {
-        this.config = config;
+        this.config = {
+            googleAnalyticsId: config.googleAnalyticsId,
+            googleSearchConsoleToken: config.googleSearchConsoleToken,
+            facebookPixelId: config.facebookPixelId,
+            enableCarouselTracking: config.enableCarouselTracking !== false,
+            enableFunnelTracking: config.enableFunnelTracking !== false,
+            enableLinkTracking: config.enableLinkTracking !== false,
+            ...config
+        };
         this.init();
     }
 
@@ -22,6 +29,11 @@ class SEOOptimizer {
         this.addSitemap();
         this.addRobotsTxt();
         this.setupAnalytics();
+        this.setupCarouselTracking();
+        this.setupFunnelTracking();
+        this.setupLinkTracking();
+        this.setupArabicSEO();
+        this.logSEOStatus();
     }
 
     /**
@@ -220,7 +232,7 @@ class SEOOptimizer {
             document.head.appendChild(script);
 
             window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
+            function gtag() { window.dataLayer.push(arguments); }
             gtag('js', new Date());
             gtag('config', this.config.googleAnalyticsId, {
                 'page_path': window.location.pathname,
@@ -233,6 +245,50 @@ class SEOOptimizer {
     }
 
     /**
+     * Setup Carousel Tracking
+     */
+    setupCarouselTracking() {
+        if (!this.config.enableCarouselTracking) return;
+        document.addEventListener('carousel-slide', (e) => {
+            this.trackEvent('carousel_slide', {
+                'slide_index': e.detail?.index || 0,
+                'slide_count': e.detail?.total || 1
+            });
+        });
+    }
+
+    /**
+     * Setup Funnel Tracking
+     */
+    setupFunnelTracking() {
+        if (!this.config.enableFunnelTracking) return;
+        document.addEventListener('funnel-step', (e) => {
+            this.trackEvent('funnel_step', {
+                'step_name': e.detail?.step || 'unknown',
+                'step_position': e.detail?.position || 0
+            });
+        });
+    }
+
+    /**
+     * Setup Link Tracking
+     */
+    setupLinkTracking() {
+        if (!this.config.enableLinkTracking) return;
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a');
+            if (link && link.href) {
+                const isInternal = new URL(link.href, window.location.origin).origin === window.location.origin;
+                this.trackEvent('link_click', {
+                    'link_url': link.href,
+                    'link_text': link.textContent,
+                    'link_type': isInternal ? 'internal' : 'external'
+                });
+            }
+        });
+    }
+
+    /**
      * Track event
      * @param {string} eventName - Event name
      * @param {object} params - Event parameters
@@ -240,6 +296,9 @@ class SEOOptimizer {
     trackEvent(eventName, params = {}) {
         if (window.gtag) {
             window.gtag('event', eventName, params);
+        }
+        if (window.fbq) {
+            window.fbq('trackEvent', eventName, params);
         }
     }
 
@@ -371,8 +430,13 @@ class SEOOptimizer {
             hasOpenGraph: !!document.querySelector('meta[property="og:title"]'),
             hasSchemaMarkup: !!document.querySelector('script[type="application/ld+json"]'),
             hasCanonical: !!document.querySelector('link[rel="canonical"]'),
+            internalLinks: document.querySelectorAll('a[href^="/"]').length,
+            externalLinks: document.querySelectorAll('a[href^="http"]:not([href*="' + window.location.hostname + '"])').length,
             language: document.documentElement.lang,
-            direction: document.documentElement.dir
+            direction: document.documentElement.dir,
+            carouselTracking: this.config.enableCarouselTracking,
+            funnelTracking: this.config.enableFunnelTracking,
+            linkTracking: this.config.enableLinkTracking
         };
     }
 
@@ -388,16 +452,26 @@ class SEOOptimizer {
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         const config = window.seoConfig || {};
-        window.seoOptimizer = new SEOOptimizer(config);
-        window.seoOptimizer.setupArabicSEO();
+        window.seoOptimizer = new SEOOptimizer({
+            ...config,
+            enableCarouselTracking: true,
+            enableFunnelTracking: true,
+            enableLinkTracking: true
+        });
     });
 } else {
     const config = window.seoConfig || {};
-    window.seoOptimizer = new SEOOptimizer(config);
-    window.seoOptimizer.setupArabicSEO();
+    window.seoOptimizer = new SEOOptimizer({
+        ...config,
+        enableCarouselTracking: true,
+        enableFunnelTracking: true,
+        enableLinkTracking: true
+    });
 }
 
 // Export for module systems
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = SEOOptimizer;
 }
+
+console.log('✅ SEO Optimizer with Carousel, Funnels, Internal Links integration loaded');
