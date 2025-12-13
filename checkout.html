@@ -154,9 +154,55 @@
         .security-badge i {
             color: #27ae60;
         }
+
+        /* 👌 BACK TO SHOP BUTTON */
+        .back-to-shop-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #D4AF37, #B8860B);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            font-size: 28px;
+            text-decoration: none;
+        }
+
+        .back-to-shop-btn:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .back-to-shop-btn:active {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .back-to-shop-btn {
+                bottom: 20px;
+                left: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- 👌 BACK TO SHOP BUTTON -->
+    <a href="./products-showcase.html" class="back-to-shop-btn" title="العودة للمزيد من المنتجات" aria-label="العودة إلى صفحة المنتجات">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+    </a>
+
     <header class="header">
         <div class="header-container">
             <a href="./" class="logo">
@@ -171,7 +217,6 @@
             
             <nav class="header-nav">
                 <a href="./" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a>
-                <a href="./cart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> السلة</a>
                 <a href="./products-showcase.html" class="nav-link"><i class="fas fa-th-large"></i> جميع المنتجات</a>
                 <a href="./en/" class="nav-link" target="_blank" style="background: #1e3c72; color: white;"><i class="fas fa-globe"></i> English</a>
             </nav>
@@ -207,7 +252,7 @@
                 <div class="form-group">
                     <label>رقم الموبايل *</label>
                     <input type="tel" name="phone" required placeholder="05xxxxxxxx" dir="ltr" maxlength="10">
-                    <div class="error-msg">يرجى إدخال رقم صحيح (05xxxxxxxx)</div>
+                    <div class="error-msg">يرجاء إدخال رقم صحيح (05xxxxxxxx)</div>
                 </div>
                 
                 <!-- Emirate -->
