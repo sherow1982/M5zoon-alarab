@@ -375,7 +375,7 @@
     <script src="./js/cart-system.js"></script>
     <script>
         /**
-         * صفحة إتمام الطلب - محسّنة
+         * صفحة إتمام الطلب - محسّنة v2.1
          */
         class CheckoutPage {
             constructor() {
@@ -496,10 +496,9 @@
                     // احذف السلة
                     this.cart.clearCart();
                     
-                    // اذهب للشكر
+                    // اذهب لصفحة الشكر 🎉
                     setTimeout(() => {
-                        alert('✅ تم استقبال طلبك بنجاح!\nسيتم التواصل معك قريباً');
-                        window.location.href = './products-showcase.html';
+                        window.location.href = './thank-you.html';
                     }, 500);
                     
                 } catch (error) {
