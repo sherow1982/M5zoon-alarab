@@ -276,6 +276,7 @@
         .product-link {
             color: #2196F3;
             text-decoration: none;
+            font-size: 12px;
         }
         
         .product-link:hover {
@@ -418,20 +419,29 @@
         // الكلمة السرية
         const SECRET_PASSWORD = '123321';
         
+        /**
+         * تحويل السعر للصيغة الصحيحة
+         */
+        function normalizePrice(price) {
+            if (!price) return '0.00';
+            if (typeof price === 'string') {
+                return price.replace(/[^0-9.]/g, '');
+            }
+            return parseFloat(price).toFixed(2);
+        }
+        
         // التحقق من كلمة المرور
         function checkPassword() {
             const passwordInput = document.getElementById('passwordInput');
             const errorMsg = document.getElementById('errorMsg');
             
             if (passwordInput.value === SECRET_PASSWORD) {
-                // كلمة مرور صحيحة
                 sessionStorage.setItem('authenticated', 'true');
                 document.getElementById('passwordScreen').style.display = 'none';
                 document.getElementById('mainContent').classList.add('show');
                 errorMsg.style.display = 'none';
                 displayOrders();
             } else {
-                // كلمة مرور غير صحيحة
                 errorMsg.style.display = 'block';
                 passwordInput.value = '';
                 passwordInput.focus();
@@ -470,7 +480,7 @@
             
             // ملخص الطلبيات
             const totalAmount = orders.reduce((sum, order) => {
-                const amount = parseFloat(order.total?.replace(/[^\d.]/g, '') || 0);
+                const amount = parseFloat(normalizePrice(order.total));
                 return sum + amount;
             }, 0);
             
@@ -487,15 +497,18 @@
             
             orders.forEach((order, index) => {
                 const productsHtml = Array.isArray(order.items) 
-                    ? order.items.map((item, itemIndex) => `
+                    ? order.items.map((item, itemIndex) => {
+                        const price = normalizePrice(item.price);
+                        return `
                         <div class="product-item">
                             <div>📌 <strong>${item.name}</strong></div>
-                            <div>🔗 <a href="${item.url}" target="_blank" class="product-link">${item.url}</a></div>
-                            <div>💵 السعر: <span class="price">${item.price}</span></div>
-                            <div>📊 الكمية: <span class="quantity">${item.quantity} وحدة</span></div>
+                            <div>💵 السعر: <span class="price">${price} د.إ</span></div>
+                            <div>📊 الكمية: <span class="quantity">x${item.quantity}</span></div>
                         </div>
-                    `).join('')
+                    `}).join('')
                     : `<div class="product-item">${order.items}</div>`;
+                
+                const totalPrice = normalizePrice(order.total);
                 
                 html += `
                     <div class="order-item">
@@ -525,7 +538,7 @@
                         <div class="order-section">
                             <div class="section-title">💰 الإجمالي</div>
                             <div class="order-details">
-                                <span class="price" style="font-size: 18px;">${order.total}</span>
+                                <span class="price" style="font-size: 18px;">${totalPrice} د.إ</span>
                             </div>
                         </div>
                         
