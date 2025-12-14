@@ -316,7 +316,7 @@
                     <li><a href="/legal/shipping-policy.html">🚚 الشحن</a></li>
                 </ul>
                 <div class="legal-contact-quick">
-                    <a href="/legal/contact-us.html">📞 اتصل</a>
+                    <a href="/legal/contact-us.html">📃 اتصل</a>
                     <a href="https://wa.me/201110760081" target="_blank">💬 واتساب</a>
                 </div>
             </div>
@@ -408,7 +408,7 @@
                 <!-- Address -->
                 <div class="form-group">
                     <label>العنوان بالتفصيل *</label>
-                    <textarea name="address" required rows="3" placeholder="المنطقة، الشارع، رقم المبنى"></textarea>
+                    <textarea name="address" required rows="3" placeholder="المنطقة, الشارع, رقم المبنى"></textarea>
                 </div>
                 
                 <button type="submit" id="submitBtn" class="submit-btn">
@@ -437,12 +437,12 @@
                     </ul>
                 </div>
                 <div class="legal-footer-section">
-                    <h3>📞 طرق الاتصال</h3>
+                    <h3>📃 طرق الاتصال</h3>
                     <ul>
-                        <li><a href="mailto:sherow1982@gmail.com">📧 sherow1982@gmail.com</a></li>
-                        <li><a href="mailto:info@arabsad.com">📧 info@arabsad.com</a></li>
+                        <li><a href="mailto:sherow1982@gmail.com">📄 sherow1982@gmail.com</a></li>
+                        <li><a href="mailto:info@arabsad.com">📄 info@arabsad.com</a></li>
                         <li><a href="https://wa.me/201110760081" target="_blank">💬 WhatsApp</a></li>
-                        <li><a href="/legal/contact-us.html" target="_blank">📞 اتصل بنا</a></li>
+                        <li><a href="/legal/contact-us.html" target="_blank">📃 اتصل بنا</a></li>
                     </ul>
                 </div>
                 <div class="legal-footer-section">
@@ -461,7 +461,7 @@
                     <span class="legal-badge">🔒 آمن 100%</span>
                     <span class="legal-badge">✅ أصلي 100%</span>
                     <span class="legal-badge">🚚 شحن سريع</span>
-                    <span class="legal-badge">⭐ موثوق</span>
+                    <span class="legal-badge">⎭ موثوق</span>
                 </div>
                 <p>&copy; 2025 الإمارات للهدايا. جميع الحقوق محفوظة ©</p>
                 <p>آخر تحديث: ديسمبر 2025</p>
@@ -470,16 +470,16 @@
     </footer>
     
     <!-- Scripts -->
-    <script src="./js/cart-system.js"></script>
+    <script src="./js/cart-system.js" defer></script>
     <script>
         /**
          * صفحة إتمام الطلب - محسّنة v2.1
+         * ✅ FIXED: Use cart-system.js for unified cart data
          */
         class CheckoutPage {
             constructor() {
                 this.form = document.getElementById('orderForm');
                 this.submitBtn = document.getElementById('submitBtn');
-                this.cart = window.cartSystem;
                 this.summaryContainer = document.getElementById('summaryContainer');
                 this.summaryItems = document.getElementById('summaryItems');
                 this.totalDisplay = document.getElementById('totalPriceDisplay');
@@ -490,43 +490,66 @@
             }
             
             init() {
+                // Wait for cart-system.js to load
+                if (typeof window.cartSystem === 'undefined') {
+                    console.log('⏳ Waiting for cart-system.js...');
+                    setTimeout(() => this.init(), 100);
+                    return;
+                }
+                
                 this.loadCartData();
                 this.setupValidation();
                 this.setupFormSubmit();
             }
             
             loadCartData() {
-                const items = this.cart.getCart();
-                const total = this.cart.getTotal();
-                
-                if (items.length === 0) {
-                    this.summaryContainer.style.display = 'none';
+                try {
+                    const items = window.cartSystem.getCart();
+                    const total = window.cartSystem.getTotal();
+                    
+                    console.log('📦 Cart data:', { items, total });
+                    
+                    if (!items || items.length === 0) {
+                        this.summaryContainer.style.display = 'none';
+                        this.emptyMessage.style.display = 'block';
+                        this.submitBtn.disabled = true;
+                        this.form.style.opacity = '0.5';
+                        this.form.style.pointerEvents = 'none';
+                        console.warn('⚠️ Cart is empty');
+                        return;
+                    }
+                    
+                    // Display products
+                    this.summaryItems.innerHTML = items.map(item => {
+                        const itemTotal = ((item.sale_price || item.price || 0) * (item.quantity || 1)).toFixed(2);
+                        return `
+                            <div class="summary-item">
+                                <span class="item-name">${item.title || item.name || 'منتج'}</span>
+                                <span class="item-qty">x${item.quantity || 1}</span>
+                                <span class="item-price">${itemTotal} د.إ</span>
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    // Display total
+                    this.totalDisplay.textContent = total.toFixed(2) + ' د.إ';
+                    
+                    // Save data
+                    document.getElementById('p_name').value = items.map(i => i.title || i.name || 'منتج').join(' + ');
+                    document.getElementById('p_price').value = total.toFixed(2);
+                    document.getElementById('o_date').value = new Date().toLocaleString('ar-AE');
+                    
+                    this.summaryContainer.style.display = 'block';
+                    this.emptyMessage.style.display = 'none';
+                    this.submitBtn.disabled = false;
+                    this.form.style.opacity = '1';
+                    this.form.style.pointerEvents = 'auto';
+                    
+                    console.log('✅ Cart data loaded successfully');
+                } catch (e) {
+                    console.error('❌ Error loading cart data:', e);
                     this.emptyMessage.style.display = 'block';
-                    this.submitBtn.disabled = true;
-                    this.form.style.opacity = '0.5';
-                    this.form.style.pointerEvents = 'none';
-                    return;
                 }
-                
-                // عرض المنتجات
-                this.summaryItems.innerHTML = items.map(item => `
-                    <div class="summary-item">
-                        <span class="item-name">${item.title}</span>
-                        <span class="item-qty">x${item.quantity}</span>
-                        <span class="item-price">${((item.sale_price || item.price || 0) * (item.quantity || 1)).toFixed(2)} د.إ</span>
-                    </div>
-                `).join('');
-                
-                // عرض الإجمالي
-                this.totalDisplay.textContent = total.toFixed(2) + ' د.إ';
-                
-                // احفظ البيانات
-                document.getElementById('p_name').value = items.map(i => i.title).join(' + ');
-                document.getElementById('p_price').value = total.toFixed(2);
-                document.getElementById('o_date').value = new Date().toLocaleString('ar-AE');
-                
-                this.summaryContainer.style.display = 'block';
-                this.emptyMessage.style.display = 'none';
             }
             
             setupValidation() {
@@ -571,7 +594,7 @@
                 this.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري...';
                 
                 try {
-                    const cartItems = this.cart.getCart();
+                    const cartItems = window.cartSystem.getCart();
                     const orderData = {
                         orderId: 'ORD-' + new Date().getFullYear() + String(Math.floor(Math.random() * 1000000)).padStart(6, '0'),
                         fullName: document.querySelector('input[name="customer_name"]').value,
@@ -579,22 +602,22 @@
                         city: document.querySelector('select[name="emirate"]').value,
                         address: document.querySelector('textarea[name="address"]').value,
                         items: cartItems,
-                        total: this.cart.getTotal().toFixed(2),
+                        total: window.cartSystem.getTotal().toFixed(2),
                         date: new Date().toLocaleString('ar-AE'),
                         savedAt: new Date().toISOString()
                     };
                     
-                    // احفظ الطلب
+                    // Save order
                     const orders = JSON.parse(localStorage.getItem('emirates_orders') || '[]');
                     orders.push(orderData);
                     localStorage.setItem('emirates_orders', JSON.stringify(orders));
                     
                     console.log('✅ Order saved:', orderData);
                     
-                    // احذف السلة
-                    this.cart.clearCart();
+                    // Clear cart
+                    window.cartSystem.clearCart();
                     
-                    // اذهب لصفحة الشكر 🎉
+                    // Go to thank you page
                     setTimeout(() => {
                         window.location.href = './thank-you.html';
                     }, 500);
@@ -608,7 +631,7 @@
             }
         }
         
-        // تهيئة الصفحة
+        // Initialize page
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => new CheckoutPage());
         } else {
