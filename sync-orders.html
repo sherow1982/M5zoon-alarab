@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ماناجر الطلبيات - زم localStorage</title>
+    <title>📦 مانجر الطلبيات - تزام localStorage</title>
     <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             padding: 20px;
             min-height: 100vh;
@@ -17,8 +21,7 @@
             justify-content: center;
             align-items: center;
         }
-        
-        /* شاشة دخول كلمة المرور */
+
         .password-screen {
             background: white;
             padding: 50px 40px;
@@ -29,47 +32,47 @@
             text-align: center;
             animation: slideUp 0.6s ease-out;
         }
-        
+
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .password-screen h1 {
             color: #1e3c72;
             font-size: 28px;
             margin-bottom: 10px;
             font-weight: 700;
         }
-        
+
         .password-screen p {
             color: #666;
             font-size: 14px;
             margin-bottom: 30px;
         }
-        
+
         .password-input-group {
             margin-bottom: 20px;
         }
-        
+
         .password-input-group input {
             width: 100%;
             padding: 14px 16px;
             font-size: 16px;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Cairo', sans-serif;
             transition: all 0.3s;
             text-align: center;
             letter-spacing: 2px;
         }
-        
+
         .password-input-group input:focus {
             outline: none;
             border-color: #2a5298;
             box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
         }
-        
+
         .login-btn {
             width: 100%;
             padding: 14px;
@@ -81,18 +84,14 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Cairo', sans-serif;
         }
-        
+
         .login-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(30, 60, 114, 0.3);
         }
-        
-        .login-btn:active {
-            transform: translateY(0);
-        }
-        
+
         .error-msg {
             color: #f44336;
             font-size: 13px;
@@ -100,46 +99,46 @@
             display: none;
             animation: shake 0.5s ease-in-out;
         }
-        
+
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-5px); }
             75% { transform: translateX(5px); }
         }
-        
-        /* شاشة إدارة الطلبيات */
+
         .container {
             max-width: 900px;
             margin: 0 auto;
             background: white;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             display: none;
         }
-        
+
         .container.show {
             display: block;
         }
-        
+
         h1 {
             color: #333;
             margin-bottom: 20px;
             text-align: center;
         }
-        
+
         .info-box {
             background: #e3f2fd;
             border-left: 4px solid #2196F3;
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 4px;
+            font-size: 14px;
         }
-        
+
         .info-box strong {
             color: #1976D2;
         }
-        
+
         .btn {
             display: inline-block;
             padding: 10px 16px;
@@ -150,8 +149,9 @@
             cursor: pointer;
             transition: all 0.3s;
             font-weight: bold;
+            font-family: 'Cairo', sans-serif;
         }
-        
+
         .btn-primary {
             background: #2196F3;
             color: white;
@@ -159,50 +159,58 @@
             margin: 10px 0;
             display: block;
         }
-        
+
         .btn-primary:hover {
             background: #1976D2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
         }
-        
+
         .btn-danger {
             background: #f44336;
             color: white;
         }
-        
+
         .btn-danger:hover {
             background: #d32f2f;
         }
-        
+
         .btn-success {
             background: #4CAF50;
             color: white;
         }
-        
+
         .btn-success:hover {
             background: #45a049;
         }
-        
+
         .btn-small {
             padding: 6px 12px;
             font-size: 12px;
             margin: 3px;
+            width: auto;
         }
-        
+
         .btn-logout {
             background: #ff9800;
             color: white;
             float: left;
             margin-bottom: 20px;
+            width: auto;
         }
-        
+
         .btn-logout:hover {
             background: #e68900;
         }
-        
+
+        .clear-float {
+            clear: both;
+        }
+
         .orders-list {
             margin-top: 30px;
         }
-        
+
         .order-item {
             background: #f9f9f9;
             border: 2px solid #ddd;
@@ -211,12 +219,12 @@
             border-radius: 8px;
             transition: all 0.3s;
         }
-        
+
         .order-item:hover {
             border-color: #2196F3;
             box-shadow: 0 3px 10px rgba(33, 150, 243, 0.2);
         }
-        
+
         .order-header {
             display: flex;
             justify-content: space-between;
@@ -224,19 +232,22 @@
             margin-bottom: 15px;
             border-bottom: 2px solid #e0e0e0;
             padding-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        
+
         .order-id {
             font-weight: bold;
             color: #2196F3;
             font-size: 16px;
         }
-        
+
         .order-actions {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
-        
+
         .order-section {
             margin-bottom: 15px;
             padding: 12px;
@@ -244,7 +255,7 @@
             border-radius: 6px;
             border-left: 3px solid #2196F3;
         }
-        
+
         .section-title {
             font-weight: bold;
             color: #333;
@@ -252,19 +263,23 @@
             font-size: 14px;
             text-transform: uppercase;
         }
-        
+
         .order-details {
             font-size: 13px;
             color: #666;
             line-height: 1.8;
         }
-        
+
+        .order-details div {
+            margin-bottom: 5px;
+        }
+
         .order-details strong {
             color: #333;
             display: inline-block;
-            width: 120px;
+            min-width: 100px;
         }
-        
+
         .product-item {
             background: #f5f5f5;
             padding: 10px;
@@ -272,17 +287,7 @@
             border-radius: 4px;
             border-right: 3px solid #4CAF50;
         }
-        
-        .product-link {
-            color: #2196F3;
-            text-decoration: none;
-            font-size: 12px;
-        }
-        
-        .product-link:hover {
-            text-decoration: underline;
-        }
-        
+
         .status {
             margin-top: 20px;
             padding: 15px;
@@ -290,22 +295,22 @@
             text-align: center;
             font-weight: bold;
         }
-        
+
         .status.success {
             background: #4CAF50;
             color: white;
         }
-        
+
         .status.error {
             background: #f44336;
             color: white;
         }
-        
-        .status.info {
-            background: #2196F3;
+
+        .status.warning {
+            background: #ff9800;
             color: white;
         }
-        
+
         textarea {
             width: 100%;
             height: 200px;
@@ -315,28 +320,29 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             margin: 10px 0;
+            resize: vertical;
         }
-        
+
         .buttons-group {
             display: flex;
             gap: 10px;
             margin: 15px 0;
             flex-wrap: wrap;
         }
-        
+
         .buttons-group .btn-primary {
             width: auto;
             margin: 0;
             flex: 1;
             min-width: 150px;
         }
-        
+
         .price {
             color: #d32f2f;
             font-weight: bold;
             font-size: 15px;
         }
-        
+
         .quantity {
             background: #fff3e0;
             padding: 4px 8px;
@@ -344,7 +350,7 @@
             color: #e65100;
             font-weight: bold;
         }
-        
+
         .summary-card {
             background: #e8f5e9;
             border: 2px solid #4CAF50;
@@ -352,44 +358,60 @@
             border-radius: 8px;
             margin-bottom: 20px;
         }
-        
+
         .summary-text {
             font-size: 16px;
             color: #2e7d32;
             font-weight: bold;
         }
-        
+
+        ol {
+            margin-right: 20px;
+            margin-top: 10px;
+        }
+
+        ol li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 600px) {
             .container { padding: 20px; }
             .order-header { flex-direction: column; align-items: flex-start; }
-            .order-actions { margin-top: 10px; }
+            .order-actions { width: 100%; }
             .password-screen { padding: 30px 20px; }
+            .btn-logout { width: 100%; float: none; margin-bottom: 15px; }
+            .buttons-group { flex-direction: column; }
+            .buttons-group .btn-primary { width: 100%; }
         }
     </style>
 </head>
 <body>
-    <!-- شاشة دخول كلمة المرور -->
     <div class="password-screen" id="passwordScreen">
-        <h1>🔏 إدارة الطلبيات</h1>
+        <h1>🔐 إدارة الطلبيات</h1>
         <p>الرجاء إدخال كلمة المرور</p>
-        
         <div class="password-input-group">
             <input type="password" id="passwordInput" placeholder="كلمة المرور" onkeypress="handlePasswordKeyPress(event)">
             <div class="error-msg" id="errorMsg">❌ كلمة مرور غير صحيحة</div>
         </div>
-        
         <button class="login-btn" onclick="checkPassword()">دخول</button>
     </div>
-    
-    <!-- محتوى إدارة الطلبيات -->
+
     <div class="container" id="mainContent">
         <button class="btn btn-logout" onclick="logout()">🚀 تسجيل خروج</button>
-        <div style="clear: both;"></div>
-        
-        <h1>📦 ماناجر الطلبيات</h1>
+        <div class="clear-float"></div>
+        <h1>📦 مانجر الطلبيات</h1>
         
         <div class="info-box">
-            <strong>📚 شرح:</strong> إدارة كاملة للطلبيات المحفوظة. يمكنك حذف الطلبيات غير المرغوبة أو نسخ الطلبيات الجاهزة لرفعها على GitHub.
+            <strong>📚 شرح:</strong> إدارة كاملة للطلبيات المحفوظة. يمكنك حذف الطلبيات غير المرغوبة أو نسخ الطلبيات لرفعها على GitHub.
         </div>
         
         <div class="buttons-group">
@@ -404,8 +426,8 @@
         
         <div class="info-box" style="margin-top: 30px;">
             <strong>💡 خطوات الرفع على GitHub:</strong>
-            <ol style="margin-right: 20px; margin-top: 10px;">
-                <li>اضغط "نسخ JSONL" واختر الطلبيات المطلوبة</li>
+            <ol>
+                <li>اضغط "نسخ JSONL"</li>
                 <li>اذهب لـ <a href="https://github.com/sherow1982/emirates-gifts/blob/main/data/orders.jsonl" target="_blank" rel="noopener">🔓 GitHub orders.jsonl</a></li>
                 <li>اضغط على أيقونة التعديل (Edit)</li>
                 <li>الصق البيانات وحفظ</li>
@@ -414,48 +436,41 @@
         
         <textarea id="jsonOutput" placeholder="سيظهر هنا JSONL..." readonly></textarea>
     </div>
-    
+
     <script>
-        // الكلمة السرية
+        // كلمة المرور - لا تشلها!
         const SECRET_PASSWORD = '123321';
-        
-        /**
-         * تحويل السعر للصيغة الصحيحة
-         */
+
         function normalizePrice(price) {
             if (!price) return '0.00';
             if (typeof price === 'string') {
-                return price.replace(/[^0-9.]/g, '');
+                const clean = price.replace(/[^0-9.]/g, '');
+                return clean || '0.00';
             }
-            return parseFloat(price).toFixed(2);
+            return parseFloat(price || 0).toFixed(2);
         }
-        
-        // التحقق من كلمة المرور
+
         function checkPassword() {
-            const passwordInput = document.getElementById('passwordInput');
-            const errorMsg = document.getElementById('errorMsg');
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('errorMsg');
             
-            if (passwordInput.value === SECRET_PASSWORD) {
+            if (input.value === SECRET_PASSWORD) {
                 sessionStorage.setItem('authenticated', 'true');
                 document.getElementById('passwordScreen').style.display = 'none';
                 document.getElementById('mainContent').classList.add('show');
-                errorMsg.style.display = 'none';
+                error.style.display = 'none';
                 displayOrders();
             } else {
-                errorMsg.style.display = 'block';
-                passwordInput.value = '';
-                passwordInput.focus();
+                error.style.display = 'block';
+                input.value = '';
+                input.focus();
             }
         }
-        
-        // معالجة الضغط على Enter
+
         function handlePasswordKeyPress(event) {
-            if (event.key === 'Enter') {
-                checkPassword();
-            }
+            if (event.key === 'Enter') checkPassword();
         }
-        
-        // تسجيل خروج
+
         function logout() {
             sessionStorage.removeItem('authenticated');
             document.getElementById('passwordScreen').style.display = 'block';
@@ -463,161 +478,130 @@
             document.getElementById('passwordInput').value = '';
             document.getElementById('passwordInput').focus();
         }
-        
-        // عرض الطلبيات
+
         function displayOrders() {
             const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
             const container = document.getElementById('ordersContainer');
-            const status = document.getElementById('status');
             const summaryCard = document.getElementById('summaryCard');
-            
-            if (orders.length === 0) {
-                container.innerHTML = '<div class="status info">❌ لا توجد طلبيات محفوظة حالياً</div>';
-                status.innerHTML = '';
+
+            if (!orders || orders.length === 0) {
+                container.innerHTML = '<div class="status warning">❌ لا توجد طلبيات محفوظة</div>';
                 summaryCard.innerHTML = '';
                 return;
             }
-            
-            // ملخص الطلبيات
-            const totalAmount = orders.reduce((sum, order) => {
-                const amount = parseFloat(normalizePrice(order.total));
-                return sum + amount;
+
+            const total = orders.reduce((sum, order) => {
+                const amount = parseFloat(normalizePrice(order.total || 0));
+                return sum + (isNaN(amount) ? 0 : amount);
             }, 0);
-            
+
             summaryCard.innerHTML = `
                 <div class="summary-card">
                     <div class="summary-text">
-                        ✅ إجمالي الطلبيات: <span style="color: #1976D2;">${orders.length}</span> | 
-                        💰 الإجمالي: <span style="color: #d32f2f;">${totalAmount.toFixed(2)} AED</span>
+                        ✅ الطلبيات: <span style="color: #1976D2;">${orders.length}</span> | 
+                        💰 الإجمالي: <span style="color: #d32f2f;">${total.toFixed(2)} AED</span>
                     </div>
                 </div>
             `;
-            
+
             let html = `<div class="status success">✅ تم تحميل ${orders.length} طلبية</div>`;
-            
+
             orders.forEach((order, index) => {
-                const productsHtml = Array.isArray(order.items) 
-                    ? order.items.map((item, itemIndex) => {
-                        const price = normalizePrice(item.price);
+                let productsHtml = '';
+                if (Array.isArray(order.items) && order.items.length > 0) {
+                    productsHtml = order.items.map(item => {
+                        const price = normalizePrice(item.price || 0);
                         return `
-                        <div class="product-item">
-                            <div>📌 <strong>${item.name}</strong></div>
-                            <div>💵 السعر: <span class="price">${price} د.إ</span></div>
-                            <div>📊 الكمية: <span class="quantity">x${item.quantity}</span></div>
-                        </div>
-                    `}).join('')
-                    : `<div class="product-item">${order.items}</div>`;
-                
-                const totalPrice = normalizePrice(order.total);
-                
+                            <div class="product-item">
+                                <div>📦 <strong>${item.name || 'Product'}</strong></div>
+                                <div>💵 ${price} د.إ <span class="quantity">x${item.quantity || 1}</span></div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+
+                const totalPrice = normalizePrice(order.total || 0);
+
                 html += `
                     <div class="order-item">
                         <div class="order-header">
-                            <div class="order-id">طلبية #${order.orderId}</div>
+                            <div class="order-id">#${order.orderId || 'N/A'}</div>
                             <div class="order-actions">
-                                <button class="btn btn-success btn-small" onclick="copyOrderJSON(${index})">📋 نسخ</button>
+                                <button class="btn btn-success btn-small" onclick="copyOrder(${index})">📋 نسخ</button>
                                 <button class="btn btn-danger btn-small" onclick="deleteOrder(${index})">🗑️ حذف</button>
                             </div>
                         </div>
-                        
+
                         <div class="order-section">
-                            <div class="section-title">📍 بيانات العميل</div>
+                            <div class="section-title">👤 البيانات</div>
                             <div class="order-details">
-                                <div><strong>الاسم:</strong> ${order.fullName}</div>
-                                <div><strong>الهاتف:</strong> ${order.phone}</div>
-                                <div><strong>المدينة:</strong> ${order.city}</div>
-                                <div><strong>العنوان:</strong> ${order.address}</div>
+                                <div><strong>الاسم:</strong> ${order.fullName || '-'}</div>
+                                <div><strong>الهاتف:</strong> ${order.phone || '-'}</div>
+                                <div><strong>المدينة:</strong> ${order.city || '-'}</div>
+                                <div><strong>العنوان:</strong> ${order.address || '-'}</div>
                             </div>
                         </div>
-                        
+
                         <div class="order-section">
                             <div class="section-title">🛍️ المنتجات</div>
                             ${productsHtml}
                         </div>
-                        
+
                         <div class="order-section">
                             <div class="section-title">💰 الإجمالي</div>
-                            <div class="order-details">
-                                <span class="price" style="font-size: 18px;">${totalPrice} د.إ</span>
-                            </div>
-                        </div>
-                        
-                        <div class="order-section" style="border-left-color: #999;">
-                            <div class="section-title">⏰ التاريخ</div>
-                            <div class="order-details">${order.date || 'غير محدد'}</div>
+                            <span class="price" style="font-size: 18px;">${totalPrice} د.إ</span>
                         </div>
                     </div>
                 `;
             });
-            
+
             container.innerHTML = html;
-            status.innerHTML = '';
         }
-        
-        // حذف طلبية
+
         function deleteOrder(index) {
-            if (confirm('هل تريد حذف هذه الطلبية؟')) {
+            if (confirm('حذف هذه الطلبية؟')) {
                 const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
                 orders.splice(index, 1);
                 localStorage.setItem('emirates_orders', JSON.stringify(orders));
-                
-                const status = document.getElementById('status');
-                status.innerHTML = '<div class="status success">✅ تم الحذف بنجاح!</div>';
-                setTimeout(() => {
-                    displayOrders();
-                }, 1000);
+                displayOrders();
             }
         }
-        
-        // نسخ طلبية
-        function copyOrderJSON(index) {
+
+        function copyOrder(index) {
             const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
-            const orderJSON = JSON.stringify(orders[index]);
-            
-            const textarea = document.createElement('textarea');
-            textarea.value = orderJSON;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            
-            const status = document.getElementById('status');
-            status.innerHTML = '<div class="status success">✅ تم نسخ الطلبية!</div>';
-            setTimeout(() => {
-                status.innerHTML = '';
-            }, 2000);
+            if (orders[index]) {
+                const txt = document.createElement('textarea');
+                txt.value = JSON.stringify(orders[index]);
+                document.body.appendChild(txt);
+                txt.select();
+                document.execCommand('copy');
+                document.body.removeChild(txt);
+                alert('✅ تم النسخ');
+            }
         }
-        
-        // نسخ البيانات
+
         function copyToClipboard() {
             const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
-            const jsonlText = orders.map(order => JSON.stringify(order)).join('\n');
-            
-            document.getElementById('jsonOutput').value = jsonlText;
-            
-            const textarea = document.getElementById('jsonOutput');
-            textarea.select();
+            if (orders.length === 0) {
+                alert('❌ لا توجد طلبيات');
+                return;
+            }
+            const jsonl = orders.map(o => JSON.stringify(o)).join('\n');
+            document.getElementById('jsonOutput').value = jsonl;
+            document.getElementById('jsonOutput').select();
             document.execCommand('copy');
-            
-            const status = document.getElementById('status');
-            status.innerHTML = '<div class="status success">✅ تم النسخ إلى الحافظة!</div>';
-            setTimeout(() => {
-                status.innerHTML = '';
-            }, 3000);
+            alert('✅ تم النسخ');
         }
-        
-        // حذف الجميع
+
         function clearOrders() {
-            if (confirm('⚠️ هل أنت متأكد؟ سيتم حذف جميع الطلبيات ولا يمكن التراجع!')) {
+            if (confirm('⚠️ حذف جميع الطلبيات؟')) {
                 localStorage.removeItem('emirates_orders');
-                localStorage.removeItem('emirates_orders_jsonl');
-                document.getElementById('ordersContainer').innerHTML = '<div class="status error">✅ تم حذف جميع الطلبيات</div>';
-                document.getElementById('jsonOutput').value = '';
+                document.getElementById('ordersContainer').innerHTML = '<div class="status error">✅ تم الحذف</div>';
                 document.getElementById('summaryCard').innerHTML = '';
+                document.getElementById('jsonOutput').value = '';
             }
         }
-        
-        // التحقق من التوثيق عند التحميل
+
         window.addEventListener('load', () => {
             if (sessionStorage.getItem('authenticated') === 'true') {
                 document.getElementById('passwordScreen').style.display = 'none';
