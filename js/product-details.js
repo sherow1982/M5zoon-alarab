@@ -192,13 +192,20 @@ function displayProduct(product) {
     const whatsappBtn = document.getElementById('whatsapp-btn');
     if (whatsappBtn) whatsappBtn.href = `https://wa.me/201110760081?text=${whatsappMessage}`;
 
-    // Add to cart button handler
+    // Store product data for cart button
+    window.currentProduct = product;
+
+    // Add to cart button handler - SINGLE HANDLER ONLY
     const cartBtn = document.getElementById('add-to-cart-btn');
     if (cartBtn) {
-        cartBtn.onclick = function(e) {
+        // Remove any previous listeners
+        const newCartBtn = cartBtn.cloneNode(true);
+        cartBtn.parentNode.replaceChild(newCartBtn, cartBtn);
+        
+        newCartBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            addToCart(product);
-        };
+            addToCartHandler(product);
+        });
     }
 
     // Show product container and hide loading/error
@@ -231,20 +238,34 @@ function displayProduct(product) {
 }
 
 /**
- * Add product to cart
+ * Add product to cart - SINGLE HANDLER
  */
-function addToCart(product) {
+function addToCartHandler(product) {
     try {
         const { id, name, sale_price, price, image, image_link, imageUrl, category } = product;
         const productPrice = parseFloat(sale_price || price || 0);
         const productImage = image || image_link || imageUrl || '';
-        const quantity = window.quantityCounter ? window.quantityCounter.getQuantity() : 1;
+        
+        // احصل على الكمية من العداد
+        let quantity = 1;
+        if (window.quantityCounter && window.quantityCounter.getQuantity) {
+            quantity = window.quantityCounter.getQuantity();
+        } else {
+            // Fallback: try to get from input directly
+            const qtyInput = document.querySelector('[data-quantity-counter] input[type="number"]');
+            if (qtyInput) {
+                quantity = parseInt(qtyInput.value) || 1;
+            }
+        }
+
+        console.log('📐 Adding to cart. Quantity:', quantity);
 
         let cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
         
         const existingItem = cart.find(item => item.id === id);
         if (existingItem) {
             existingItem.quantity += quantity;
+            console.log('♾️ Updated existing item. New quantity:', existingItem.quantity);
         } else {
             cart.push({
                 id: id,
@@ -254,6 +275,7 @@ function addToCart(product) {
                 quantity: quantity,
                 category: category
             });
+            console.log('🌟 Added new item. Quantity:', quantity);
         }
         
         localStorage.setItem('emirates_cart', JSON.stringify(cart));
