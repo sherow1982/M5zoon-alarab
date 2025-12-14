@@ -1,447 +1,504 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar-AE" dir="rtl">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شكراً - متجر هدايا الإمارات</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>شكراً لـ طلبك | 🛒 متجر هدايا الإمارات</title>
+    <meta name="description" content="شكراً علا طلبك - سيتم ترسل طلبة قريباً">
     <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- 🔧 Runtime Error Handler -->
+    <script src="./js/runtime-error-handler.js" type="text/javascript"></script>
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        html, body { height: 100%; }
-        
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .container {
+        body {
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .thank-you-container {
             background: white;
-            border-radius: 20px;
-            padding: 50px 40px;
-            max-width: 700px;
-            width: 100%;
+            border-radius: 16px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.8s ease-out;
-            position: relative;
+            max-width: 600px;
+            width: 100%;
+            padding: 60px 40px;
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
         }
         
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .success-icon {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 30px;
-            background: linear-gradient(135deg, #25D366, #20B358);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 60px;
-            color: white;
-            animation: scaleIn 0.6s ease-out 0.2s backwards;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 1s ease-in-out infinite;
         }
         
-        @keyframes scaleIn {
-            from { transform: scale(0); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
         
-        h1 {
+        .thank-you-container h1 {
             color: #1e3c72;
-            font-size: 32px;
-            margin-bottom: 15px;
-            font-weight: 700;
-            animation: fadeIn 0.8s ease-out 0.3s backwards;
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            line-height: 1.2;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .subtitle {
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 35px;
-            line-height: 1.6;
-        }
-        
-        /* ملخص الطلبية */
-        .order-summary {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e8e9eb 100%);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border-left: 4px solid #D4AF37;
-        }
-        
-        .order-number {
-            font-size: 18px;
-            color: #1e3c72;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        
-        .order-amount {
-            font-size: 24px;
+        .order-id {
             color: #D4AF37;
+            font-size: 24px;
             font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            margin: 20px 0;
+        }
+        
+        .thank-you-container p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .status-box {
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            text-align: right;
+        }
+        
+        .status-title {
+            color: #2e7d32;
+            font-weight: 700;
+            font-size: 16px;
             margin-bottom: 10px;
         }
         
-        .order-time {
-            font-size: 13px;
-            color: #999;
-        }
-        
-        /* بيانات العميل */
-        .customer-info {
-            background: #f0f4f8;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border-right: 4px solid #2a5298;
-        }
-        
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
+        .status-content {
+            color: #558b2f;
             font-size: 14px;
-            color: #555;
-            border-bottom: 1px solid #e0e0e0;
+            line-height: 1.8;
         }
         
-        .info-row:last-child {
-            border-bottom: none;
-        }
-        
-        .info-row strong {
-            color: #1e3c72;
-            font-weight: 600;
-            min-width: 100px;
-        }
-        
-        .info-row span {
-            text-align: left;
-            word-break: break-word;
-        }
-        
-        /* المنتجات */
-        .products-section {
-            background: #fff8f0;
+        .next-steps {
+            background: linear-gradient(135deg, #f3e5f5, #ede7f6);
+            border-right: 5px solid #9c27b0;
             padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border-right: 4px solid #ff9800;
+            border-radius: 8px;
+            margin: 25px 0;
+            text-align: right;
         }
         
-        .products-section h3 {
-            color: #1e3c72;
+        .next-steps-title {
+            color: #6a1b9a;
+            font-weight: 700;
+            font-size: 16px;
             margin-bottom: 15px;
+        }
+        
+        .steps-list {
+            list-style: none;
+            text-align: right;
+        }
+        
+        .steps-list li {
+            color: #7b1fa2;
+            margin: 10px 0;
+            font-size: 14px;
+            padding-right: 25px;
+            position: relative;
+        }
+        
+        .steps-list li:before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: #9c27b0;
+            font-weight: bold;
             font-size: 16px;
         }
         
-        .product-item {
-            background: white;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            border-left: 3px solid #ff9800;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-        }
-        
-        .product-name {
-            color: #333;
-            font-weight: 600;
-        }
-        
-        .product-qty {
-            background: #ffe0b2;
-            color: #e65100;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 12px;
-        }
-        
-        /* معلومات البريد والتوسيل */
-        .shipping-info {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        .contact-info {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 5px solid #2196F3;
             padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border-right: 4px solid #25D366;
+            border-radius: 8px;
+            margin: 25px 0;
+            text-align: right;
         }
         
-        .shipping-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
+        .contact-title {
+            color: #1565c0;
+            font-weight: 700;
+            font-size: 16px;
             margin-bottom: 12px;
-            font-size: 13px;
-            color: #2e7d32;
         }
         
-        .shipping-item:last-child {
-            margin-bottom: 0;
+        .contact-item {
+            color: #1976d2;
+            font-size: 14px;
+            margin: 8px 0;
         }
         
-        .shipping-item i {
-            color: #25D366;
-            font-size: 18px;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        
-        .shipping-item strong {
+        .contact-item a {
+            color: #1565c0;
+            text-decoration: none;
             font-weight: 600;
+            transition: all 0.3s;
         }
         
-        /* الأزرار */
-        .cta-buttons {
+        .contact-item a:hover {
+            color: #0d47a1;
+            text-decoration: underline;
+        }
+        
+        .buttons-container {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 25px;
+            margin: 30px 0;
         }
         
         .btn {
-            padding: 13px 28px;
-            border-radius: 10px;
-            font-size: 14px;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
             font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Cairo', sans-serif;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Cairo', sans-serif;
         }
         
         .btn-primary {
             background: linear-gradient(135deg, #1e3c72, #2a5298);
             color: white;
-            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.2);
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(30, 60, 114, 0.3);
         }
         
         .btn-secondary {
-            background: #f0f0f0;
-            color: #1e3c72;
-            border: 2px solid #1e3c72;
+            background: linear-gradient(135deg, #D4AF37, #B8860B);
+            color: white;
         }
         
         .btn-secondary:hover {
-            background: #1e3c72;
-            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
         }
         
-        .btn-copy {
-            background: #e3f2fd;
-            color: #1976d2;
-            border: 1px solid #1976d2;
-            padding: 8px 16px;
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+        
+        .feature-item:hover {
+            border-color: #D4AF37;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        
+        .feature-text {
+            color: #333;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .order-summary {
+            background: linear-gradient(135deg, #fff8e1, #fffde7);
+            border: 2px solid #fbc02d;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            text-align: right;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f9a825;
+            color: #f57f17;
+            font-size: 14px;
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-item strong {
+            font-weight: 700;
+            color: #e65100;
+        }
+        
+        .footer-text {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
             font-size: 12px;
         }
         
-        .btn-copy:hover {
-            background: #1976d2;
-            color: white;
-        }
-        
-        /* قسم الاتصال */
-        .contact-section {
-            border-top: 2px solid #eee;
-            padding-top: 25px;
-            margin-top: 25px;
-        }
-        
-        .contact-section h3 {
-            color: #1e3c72;
-            font-size: 16px;
-            margin-bottom: 18px;
-        }
-        
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #2a5298;
-            text-decoration: none;
-            font-size: 13px;
-            transition: all 0.3s ease;
-            padding: 8px 12px;
-            border-radius: 6px;
-            background: #f0f4f8;
-        }
-        
-        .contact-link:hover {
-            color: white;
-            background: #2a5298;
-        }
-        
-        .contact-link i {
-            font-size: 16px;
-        }
-        
         @media (max-width: 600px) {
-            .container { padding: 35px 20px; }
-            h1 { font-size: 24px; }
-            .cta-buttons { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
-            .info-row { flex-direction: column; gap: 5px; }
-            .product-item { flex-direction: column; align-items: flex-start; }
-            .product-qty { margin-top: 8px; }
+            .thank-you-container {
+                padding: 40px 25px;
+            }
+            
+            .thank-you-container h1 {
+                font-size: 28px;
+            }
+            
+            .order-id {
+                font-size: 18px;
+            }
+            
+            .success-icon {
+                font-size: 60px;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="success-icon">
-            <i class="fas fa-check"></i>
-        </div>
+    <div class="thank-you-container">
+        <!-- Success Icon -->
+        <div class="success-icon">✅</div>
         
-        <h1>🎉 شكراً لاختيارك</h1>
+        <!-- Main Message -->
+        <h1>🌟 شكراً علـ طلبك!</h1>
+        <div class="order-id" id="orderIdDisplay">--</div>
         
-        <p class="subtitle">
-            تم استقبال طلبك بنجاح ✌️<br>
-            سيتم البدء بالعمل عليه فوراً
-        </p>
+        <div class="divider"></div>
         
-        <!-- ملخص الطلبية -->
-        <div class="order-summary">
-            <div class="order-number">12️⃣ رقم الطلبية: <span id="orderNumber">#-</span></div>
-            <div class="order-amount" id="orderAmount">الإجمالي: 0 د.إ</div>
-            <div class="order-time" id="orderTime">-</div>
-            <button class="btn btn-copy" onclick="copyOrderID()" style="margin-top: 12px; width: 100%;">
-                <i class="fas fa-copy"></i>
-                نسخ رقم الطلبية
-            </button>
-        </div>
-        
-        <!-- بيانات العميل -->
-        <div class="customer-info" id="customerInfo" style="display: none;">
-            <div class="info-row">
-                <strong>👤 الاسم:</strong>
-                <span id="customerName">-</span>
-            </div>
-            <div class="info-row">
-                <strong>☎️ الهاتف:</strong>
-                <span id="customerPhone">-</span>
-            </div>
-            <div class="info-row">
-                <strong>🏢 المدينة:</strong>
-                <span id="customerCity">-</span>
-            </div>
-            <div class="info-row">
-                <strong>📍 العنوان:</strong>
-                <span id="customerAddress">-</span>
+        <!-- Status Box -->
+        <div class="status-box">
+            <div class="status-title">🙋 حالة طلبك</div>
+            <div class="status-content">
+                طلبك مقبول بنجاح! سيسلم عريقه عن طريق WhatsApp أو بريد إلكتروني.
             </div>
         </div>
         
-        <!-- المنتجات -->
-        <div class="products-section" id="productsSection" style="display: none;">
-            <h3>🛍️ المنتجات المطلوبة</h3>
-            <div id="productsList"></div>
+        <!-- Order Summary -->
+        <div id="orderSummary"></div>
+        
+        <!-- Next Steps -->
+        <div class="next-steps">
+            <div class="next-steps-title">📄 الخطوات القادمة</div>
+            <ul class="steps-list">
+                <li>الرجاء انتظر التأكيد</li>
+                <li>سيصلك البيانات كاملة</li>
+                <li>الطلب يوصل خلال 1-3 أيام</li>
+            </ul>
         </div>
         
-        <!-- معلومات التوسيل -->
-        <div class="shipping-info">
-            <div class="shipping-item">
-                <i class="fas fa-truck"></i>
-                <div>
-                    🚚 التوصيل خلال <strong>1-3 أيام عمل</strong>
-                </div>
+        <!-- Features -->
+        <div class="features">
+            <div class="feature-item">
+                <div class="feature-icon">🚚</div>
+                <div class="feature-text">شحن سريع</div>
             </div>
-            <div class="shipping-item">
-                <i class="fas fa-undo"></i>
-                <div>
-                    ✅ ضمان إرجاع <strong>14 يوم</strong> مع مردود مصاريف الشحن
-                </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔄</div>
+                <div class="feature-text">استبدال 14 يوم</div>
             </div>
-            <div class="shipping-item">
-                <i class="fas fa-headset"></i>
-                <div>
-                    📞 دعم <strong>24/7</strong> عبر WhatsApp
-                </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔐</div>
+                <div class="feature-text">آمن 100%</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🌟</div>
+                <div class="feature-text">دعم 24/7</div>
             </div>
         </div>
         
-        <!-- الأزرار -->
-        <div class="cta-buttons">
-            <a href="./" class="btn btn-primary">
-                <i class="fas fa-home"></i>
-                العودة للمتجر
-            </a>
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <div class="contact-title">📃 هل عندك استفسارات؟</div>
+            <div class="contact-item">
+                💬 <a href="https://wa.me/201110760081" target="_blank">WhatsApp</a>
+            </div>
+            <div class="contact-item">
+                📬 <a href="mailto:info@arabsad.com">info@arabsad.com</a>
+            </div>
+            <div class="contact-item">
+                📃 <a href="./index.html">الرجوع للمتجر</a>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="buttons-container">
             <a href="./products-showcase.html" class="btn btn-secondary">
                 <i class="fas fa-shopping-bag"></i>
-                استمتع بالتسوق
+                اشتر مزيداً
+            </a>
+            <a href="./index.html" class="btn btn-primary">
+                <i class="fas fa-home"></i>
+                الرئيسية
             </a>
         </div>
         
-        <!-- قسم الاتصال -->
-        <div class="contact-section">
-            <h3>📞 للتواصل معنا:</h3>
-            <div class="contact-links">
-                <a href="https://wa.me/201110760081" class="contact-link" target="_blank" rel="noopener">
-                    <i class="fab fa-whatsapp"></i>
-                    WhatsApp
-                </a>
-                <a href="mailto:info@emirates-gifts.com" class="contact-link">
-                    <i class="fas fa-envelope"></i>
-                    بريد
-                </a>
-                <a href="tel:+201110760081" class="contact-link">
-                    <i class="fas fa-phone"></i>
-                    هاتف
-                </a>
-            </div>
+        <!-- Footer Text -->
+        <div class="footer-text">
+            شكراً لاختيارك متجر هدايا الإمارات 🎁
         </div>
     </div>
     
-    <script src="./js/cart-system.js"></script>
-    <script src="./js/thank-you-page.js"></script>
-    
+    <script src="./js/cart-system.js" defer></script>
     <script>
-        function copyOrderID() {
-            const orderID = document.getElementById('orderNumber').textContent;
-            navigator.clipboard.writeText(orderID).then(() => {
-                alert('تم نسخ رقم الطلبية: ' + orderID);
-            });
+        /**
+         * 🙋 Thank You Page - Professional Implementation
+         */
+        
+        class ThankYouPage {
+            constructor() {
+                console.log('🙋 Thank You Page Initializing...');
+                this.init();
+            }
+            
+            init() {
+                // Wait for cart system
+                if (typeof window.cartSystem === 'undefined') {
+                    setTimeout(() => this.init(), 100);
+                    return;
+                }
+                
+                this.displayOrderInfo();
+            }
+            
+            displayOrderInfo() {
+                try {
+                    const orders = JSON.parse(localStorage.getItem('emirates_orders') || '[]');
+                    
+                    if (orders.length === 0) {
+                        console.warn('⚠️ No orders found');
+                        return;
+                    }
+                    
+                    // Get last order
+                    const lastOrder = orders[orders.length - 1];
+                    
+                    // Display Order ID
+                    const orderIdDisplay = document.getElementById('orderIdDisplay');
+                    if (orderIdDisplay && lastOrder.orderId) {
+                        orderIdDisplay.textContent = `رقم طلبك: ${lastOrder.orderId}`;
+                    }
+                    
+                    // Display Order Summary
+                    this.displayOrderSummary(lastOrder);
+                    
+                    console.log('✅ Order info displayed:', lastOrder);
+                } catch (error) {
+                    console.error('❌ Error displaying order:', error);
+                }
+            }
+            
+            displayOrderSummary(order) {
+                const summaryDiv = document.getElementById('orderSummary');
+                
+                if (!summaryDiv) return;
+                
+                let html = '<div class="order-summary">';
+                
+                // Customer Info
+                if (order.fullName) {
+                    html += `<div class="summary-item"><span>👤 العميل:</span> <strong>${order.fullName}</strong></div>`;
+                }
+                
+                if (order.phone) {
+                    html += `<div class="summary-item"><span>📃 الهاتف:</span> <strong>${order.phone}</strong></div>`;
+                }
+                
+                if (order.city) {
+                    html += `<div class="summary-item"><span>📍 المنطقة:</span> <strong>${order.city}</strong></div>`;
+                }
+                
+                // Items Count
+                const itemsCount = (order.items && order.items.length) || 0;
+                html += `<div class="summary-item"><span>📦 عدد المنتجات:</span> <strong>${itemsCount} منتج</strong></div>`;
+                
+                // Total Price
+                const total = parseFloat(order.total || 0);
+                html += `<div class="summary-item" style="border-bottom: 2px solid #f9a825; font-size: 16px;"><span>💵 الإجمالي:</span> <strong style="color: #e65100; font-size: 18px;">${total.toFixed(2)} د.إ</strong></div>`;
+                
+                html += '</div>';
+                summaryDiv.innerHTML = html;
+            }
+        }
+        
+        // Initialize when DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => new ThankYouPage());
+        } else {
+            new ThankYouPage();
         }
     </script>
 </body>
