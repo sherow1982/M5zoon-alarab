@@ -85,6 +85,16 @@ async function loadProductData() {
 }
 
 /**
+ * Generates a product link (URL)
+ * @param {object} product - Product object
+ * @returns {string} Product URL
+ */
+function generateProductLink(product) {
+    const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+    return `${baseUrl}/product-details.html?id=${product.id}`;
+}
+
+/**
  * Displays the fetched product data on the page.
  * @param {object} product - The product data object
  */
@@ -109,6 +119,7 @@ function displayProduct(product) {
     const productTitle = name || title || 'Product';
     const productImage = image || image_link || imageUrl || '';
     const productDesc = description || `${productTitle} - منتج عالي الجودة`;
+    const productUrl = generateProductLink(product);
 
     // Calculate prices
     const oldPrice = parseFloat(original_price || price || 0);
@@ -187,13 +198,18 @@ function displayProduct(product) {
 
     // Update WhatsApp link
     const whatsappMessage = encodeURIComponent(
-        `مرحبا, أرغب في طلب:\n${productTitle}\nالسعر: ${newPrice.toFixed(0)} د.إ`
+        `مرحبا, أرغب في طلب:\n${productTitle}\nالسعر: ${newPrice.toFixed(0)} د.إ\nالرابط: ${productUrl}`
     );
     const whatsappBtn = document.getElementById('whatsapp-btn');
     if (whatsappBtn) whatsappBtn.href = `https://wa.me/201110760081?text=${whatsappMessage}`;
 
-    // Store product data for cart button
-    window.currentProduct = product;
+    // Store product data for cart button - شامل اسم المنتج والرابط
+    window.currentProduct = {
+        ...product,
+        productName: productTitle,
+        productUrl: productUrl,
+        productLink: productUrl
+    };
 
     // Add to cart button handler - SINGLE HANDLER ONLY
     const cartBtn = document.getElementById('add-to-cart-btn');
@@ -204,7 +220,7 @@ function displayProduct(product) {
         
         newCartBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            addToCartHandler(product);
+            addToCartHandler(product, productTitle, productUrl);
         });
     }
 
@@ -238,13 +254,14 @@ function displayProduct(product) {
 }
 
 /**
- * Add product to cart - SINGLE HANDLER
+ * Add product to cart - SINGLE HANDLER (with product name & URL)
  */
-function addToCartHandler(product) {
+function addToCartHandler(product, productName, productUrl) {
     try {
         const { id, name, sale_price, price, image, image_link, imageUrl, category } = product;
         const productPrice = parseFloat(sale_price || price || 0);
         const productImage = image || image_link || imageUrl || '';
+        const finalProductName = productName || name;
         
         // احصل على الكمية من العداد
         let quantity = 1;
@@ -269,16 +286,26 @@ function addToCartHandler(product) {
         } else {
             cart.push({
                 id: id,
-                name: name,
+                name: finalProductName,
                 price: productPrice,
                 image: productImage,
                 quantity: quantity,
-                category: category
+                category: category,
+                url: productUrl,
+                link: productUrl
             });
             console.log('🌟 Added new item. Quantity:', quantity);
         }
         
         localStorage.setItem('emirates_cart', JSON.stringify(cart));
+        
+        // Log cart item with name and URL
+        console.log('📦 Cart item saved:', {
+            name: finalProductName,
+            url: productUrl,
+            quantity: quantity,
+            price: productPrice
+        });
         
         // Update cart badge
         if (window.updateFloatingCartBadge) {
@@ -289,16 +316,17 @@ function addToCartHandler(product) {
         if (window.funnelTracker) {
             window.funnelTracker.trackAddToCart({
                 productId: id,
-                productName: name,
+                productName: finalProductName,
                 quantity: quantity,
-                price: productPrice
+                price: productPrice,
+                url: productUrl
             });
         }
         
-        // Show notification
-        showNotification(`تم إضافة "${name}" x${quantity} للسلة! 😊`);
+        // Show notification with product name
+        showNotification(`تم إضافة "${finalProductName}" x${quantity} للسلة! 😊`);
         
-        console.log('✅ منتج مضاف:', name, 'الكمية:', quantity);
+        console.log('✅ منتج مضاف:', finalProductName, 'الرابط:', productUrl, 'الكمية:', quantity);
     } catch (e) {
         console.error('خطأ في إضافة للسلة:', e);
         showNotification('حدث خطأ! يرجا محاولة مرة أخرى.', 'error');
