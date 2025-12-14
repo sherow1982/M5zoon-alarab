@@ -375,8 +375,8 @@
             </div>
             
             <form id="orderForm">
-                <!-- Hidden fields -->
-                <input type="hidden" id="p_name" name="product_name" value="">
+                <!-- Hidden fields - Fixed to save items array -->
+                <input type="hidden" id="cartItemsJSON" name="cart_items_json" value="">
                 <input type="hidden" id="p_price" name="total_price" value="">
                 <input type="hidden" id="o_date" name="order_date" value="">
                 
@@ -476,8 +476,9 @@
     <script src="./js/cart-system.js" defer></script>
     <script>
         /**
-         * صفحة إتمام الطلب - محسّنة v2.1
-         * ✅ FIXED: Use cart-system.js for unified cart data
+         * صفحة إتمام الطلب - محسّنة v3.0 FIXED
+         * ✅ FIXED: Properly save cart items JSON for dashboard display
+         * ✅ Each item: id, title, category, price, sale_price, quantity
          */
         class CheckoutPage {
             constructor() {
@@ -537,8 +538,8 @@
                     // Display total
                     this.totalDisplay.textContent = total.toFixed(2) + ' د.إ';
                     
-                    // Save data
-                    document.getElementById('p_name').value = items.map(i => i.title || i.name || 'منتج').join(' + ');
+                    // FIXED: Save entire items array as JSON
+                    document.getElementById('cartItemsJSON').value = JSON.stringify(items);
                     document.getElementById('p_price').value = total.toFixed(2);
                     document.getElementById('o_date').value = new Date().toLocaleString('ar-AE');
                     
@@ -597,25 +598,33 @@
                 this.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري...';
                 
                 try {
-                    const cartItems = window.cartSystem.getCart();
+                    // FIXED: Get actual items array
+                    const cartItemsJSON = document.getElementById('cartItemsJSON').value;
+                    const cartItems = JSON.parse(cartItemsJSON);
+                    
                     const orderData = {
                         orderId: 'ORD-' + new Date().getFullYear() + String(Math.floor(Math.random() * 1000000)).padStart(6, '0'),
                         fullName: document.querySelector('input[name="customer_name"]').value,
                         phone: phoneInput.value,
                         city: document.querySelector('select[name="emirate"]').value,
                         address: document.querySelector('textarea[name="address"]').value,
-                        items: cartItems,
-                        total: window.cartSystem.getTotal().toFixed(2),
+                        items: cartItems,  // ✅ Full cart items array
+                        itemCount: cartItems.length,  // ✅ Number of unique products
+                        totalQuantity: cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0),  // ✅ Total quantity
+                        total: parseFloat(document.getElementById('p_price').value),  // ✅ Total price
                         date: new Date().toLocaleString('ar-AE'),
                         savedAt: new Date().toISOString()
                     };
+                    
+                    console.log('💾 Saving order:', orderData);
                     
                     // Save order
                     const orders = JSON.parse(localStorage.getItem('emirates_orders') || '[]');
                     orders.push(orderData);
                     localStorage.setItem('emirates_orders', JSON.stringify(orders));
                     
-                    console.log('✅ Order saved:', orderData);
+                    console.log('✅ Order saved to localStorage');
+                    console.log('📊 Total orders:', orders.length);
                     
                     // Clear cart
                     window.cartSystem.clearCart();
