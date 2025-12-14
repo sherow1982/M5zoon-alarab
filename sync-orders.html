@@ -327,6 +327,7 @@
             border-right: 3px solid #ff9800;
             font-size: 12px;
             color: #333;
+            word-break: break-word;
         }
         
         .product-name {
@@ -468,6 +469,7 @@
     <script>
         /**
          * 📄 Professional Orders Manager - With Products Display
+         * ✅ FIXED: Now correctly displays product titles from cart-system.js
          */
         
         // Password Configuration
@@ -565,7 +567,7 @@
                 </div>
             `;
             
-            let html = `<div class="status success">✅ زم تحميل ${orders.length} طلبية</div>`;
+            let html = `<div class="status success">✅ تم تحميل ${orders.length} طلبية</div>`;
             
             orders.forEach((order, index) => {
                 const totalPrice = normalizePrice(order.total || 0);
@@ -575,10 +577,16 @@
                 if (order.items && order.items.length > 0) {
                     productsHtml = '<div class="products-section"><div class="section-title">📦 المنتجات</div>';
                     order.items.forEach(item => {
+                        // ✅ FIXED: Check 'title' first (from cart-system.js), then fallback to 'name'
+                        const productName = (item.title || item.name || item.productName || 'منتج').toString().trim();
+                        const quantity = item.quantity || 1;
+                        
+                        console.log('✅ Product from order:', { title: productName, qty: quantity });
+                        
                         productsHtml += `
                             <div class="product-item">
-                                <div class="product-name">📊 ${item.name || 'منتج'}</div>
-                                <span class="product-qty">عدد: ${item.quantity || 1}</span>
+                                <div class="product-name">📋 ${productName}</div>
+                                <span class="product-qty">عدد: ${quantity}</span>
                             </div>
                         `;
                     });
