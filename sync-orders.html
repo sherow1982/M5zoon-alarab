@@ -312,6 +312,38 @@
             min-width: 100px;
         }
         
+        .products-section {
+            background: #fff3e0;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #ff9800;
+        }
+        
+        .product-item {
+            background: white;
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 4px;
+            border-right: 3px solid #ff9800;
+            font-size: 12px;
+            color: #333;
+        }
+        
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .product-qty {
+            background: #fff9c4;
+            color: #f57f17;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 11px;
+            display: inline-block;
+        }
+        
         .btn-small {
             padding: 6px 12px;
             font-size: 12px;
@@ -435,7 +467,7 @@
     
     <script>
         /**
-         * 📄 Professional Orders Manager - Password Fixed
+         * 📄 Professional Orders Manager - With Products Display
          */
         
         // Password Configuration
@@ -538,6 +570,21 @@
             orders.forEach((order, index) => {
                 const totalPrice = normalizePrice(order.total || 0);
                 
+                // Build products list
+                let productsHtml = '';
+                if (order.items && order.items.length > 0) {
+                    productsHtml = '<div class="products-section"><div class="section-title">📦 المنتجات</div>';
+                    order.items.forEach(item => {
+                        productsHtml += `
+                            <div class="product-item">
+                                <div class="product-name">📊 ${item.name || 'منتج'}</div>
+                                <span class="product-qty">عدد: ${item.quantity || 1}</span>
+                            </div>
+                        `;
+                    });
+                    productsHtml += '</div>';
+                }
+                
                 html += `
                     <div class="order-item">
                         <div class="order-header">
@@ -558,12 +605,7 @@
                             </div>
                         </div>
                         
-                        <div class="order-section">
-                            <div class="section-title">🛒 عدد المنتجات</div>
-                            <div class="order-details">
-                                ${(order.items && order.items.length) || 0} منتج
-                            </div>
-                        </div>
+                        ${productsHtml}
                         
                         <div class="order-section">
                             <div class="section-title">💵 الإجمالي</div>
