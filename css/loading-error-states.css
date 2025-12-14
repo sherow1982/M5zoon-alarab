@@ -1,0 +1,331 @@
+/* ========================================
+   LOADING & ERROR STATES CSS
+   Pure CSS Solution - No Font Awesome Required
+   ======================================== */
+
+/* General Container Styles */
+.loading-container,
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    border-radius: 12px;
+    margin: 40px 0;
+    min-height: 300px;
+}
+
+.loading-container.hide,
+.error-container.hide {
+    display: none !important;
+}
+
+/* ========================================
+   LOADING STATE
+   ======================================== */
+
+.loading-container {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+/* Animated spinner using CSS */
+.loading-spinner::before {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 4px solid #e0e0e0;
+    border-top-color: #D4AF37;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-container h3 {
+    margin: 20px 0 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e3c72;
+}
+
+.loading-container p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Pulse animation for loading effect */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.loading-container {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* ========================================
+   ERROR STATE
+   ======================================== */
+
+.error-container {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+}
+
+/* Error icon using CSS (triangle with exclamation mark) */
+.error-container::before {
+    content: '!';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.error-container h3 {
+    margin: 20px 0 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #c0152f;
+}
+
+.error-container p {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #D4AF37 0%, #c99c1f 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, #e6c200 0%, #d4af37 100%);
+}
+
+.back-btn:active {
+    transform: translateY(0);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .loading-container,
+    .error-container {
+        padding: 40px 15px;
+        min-height: 250px;
+        margin: 20px 0;
+    }
+
+    .loading-spinner::before {
+        width: 50px;
+        height: 50px;
+        border-width: 3px;
+    }
+
+    .loading-container h3,
+    .error-container h3 {
+        font-size: 16px;
+    }
+
+    .error-container::before {
+        width: 70px;
+        height: 70px;
+        font-size: 40px;
+    }
+
+    .back-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .loading-container,
+    .error-container {
+        padding: 30px 10px;
+        min-height: 200px;
+    }
+
+    .loading-spinner::before {
+        width: 40px;
+        height: 40px;
+        border-width: 2px;
+    }
+
+    .loading-container h3,
+    .error-container h3 {
+        font-size: 14px;
+    }
+
+    .loading-container p,
+    .error-container p {
+        font-size: 12px;
+    }
+
+    .error-container::before {
+        width: 60px;
+        height: 60px;
+        font-size: 32px;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .loading-spinner::before {
+        animation: none;
+        border-top-color: transparent;
+        border-right-color: #D4AF37;
+    }
+
+    .loading-container {
+        animation: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .loading-container {
+        background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+    }
+
+    .loading-container h3 {
+        color: #D4AF37;
+    }
+
+    .loading-container p {
+        color: #aaa;
+    }
+
+    .loading-spinner::before {
+        border-color: #444;
+        border-top-color: #D4AF37;
+    }
+
+    .error-container {
+        background: linear-gradient(135deg, #3a2a2a 0%, #2a1f1f 100%);
+    }
+
+    .error-container h3 {
+        color: #ff6b6b;
+    }
+
+    .error-container p {
+        color: #aaa;
+    }
+}
+
+/* ========================================
+   ALTERNATIVE ICON STYLES
+   ======================================== */
+
+/* For error icon as warning triangle */
+.error-icon-triangle::before {
+    content: '⚠️';
+    font-size: 64px;
+    margin-bottom: 20px;
+    display: block;
+    background: none;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+}
+
+/* For error icon as X mark */
+.error-icon-x::before {
+    content: '✕';
+    font-size: 64px;
+    margin-bottom: 20px;
+    display: block;
+    background: none;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+    color: #e74c3c;
+}
+
+/* Multiple spinner animation variations */
+@keyframes spin-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Dots loading animation */
+@keyframes dots {
+    0%, 20% {
+        content: '•';
+    }
+    40% {
+        content: '••';
+    }
+    60% {
+        content: '•••';
+    }
+    80%, 100% {
+        content: '';
+    }
+}
