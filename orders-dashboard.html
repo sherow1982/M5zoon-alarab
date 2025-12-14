@@ -168,7 +168,7 @@
         .order-info {
             margin-bottom: 15px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
         }
         
@@ -176,6 +176,7 @@
             color: #667eea;
             font-size: 16px;
             min-width: 20px;
+            margin-top: 2px;
         }
         
         .order-info .label {
@@ -189,6 +190,7 @@
             color: #333;
             font-weight: 600;
             flex-grow: 1;
+            word-break: break-word;
         }
         
         .order-items {
@@ -198,7 +200,33 @@
             margin-bottom: 15px;
             font-size: 13px;
             color: #555;
-            line-height: 1.6;
+            line-height: 1.8;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .order-item-row {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .order-item-row:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name-qty {
+            flex: 1;
+            font-weight: 600;
+        }
+        
+        .item-price {
+            color: #667eea;
+            font-weight: 700;
+            min-width: 60px;
+            text-align: left;
         }
         
         .order-total {
@@ -380,36 +408,42 @@
     </div>
     
     <script>
+        /**
+         * لوحة الطلبيات - محسّنة v4.0
+         * ✅ FIXED: Read from localStorage directly
+         * ✅ Display items array with proper product names and prices
+         */
         let allOrders = [];
         
-        async function loadOrders() {
+        function loadOrders() {
             try {
-                const response = await fetch('https://raw.githubusercontent.com/sherow1982/emirates-gifts/main/data/orders.jsonl');
-                const text = await response.text();
+                console.log('📑 Loading orders from localStorage...');
                 
-                allOrders = [];
-                const lines = text.trim().split('\n');
+                // 📄 Read from localStorage
+                const ordersJSON = localStorage.getItem('emirates_orders');
                 
-                for (const line of lines) {
-                    if (line.trim()) {
-                        try {
-                            const order = JSON.parse(line);
-                            allOrders.push(order);
-                        } catch (e) {
-                            console.error('Failed to parse order:', e);
-                        }
-                    }
+                if (!ordersJSON) {
+                    console.warn('⚠️ No orders in localStorage');
+                    displayEmptyState();
+                    return;
                 }
                 
+                allOrders = JSON.parse(ordersJSON);
+                console.log('✅ Loaded ' + allOrders.length + ' orders');
+                
                 // Sort by date descending (newest first)
-                allOrders.sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
+                allOrders.sort((a, b) => {
+                    const timeA = new Date(b.savedAt || b.date).getTime();
+                    const timeB = new Date(a.savedAt || a.date).getTime();
+                    return timeA - timeB;
+                });
                 
                 updateStats();
                 updateFilters();
                 displayOrders(allOrders);
                 
             } catch (error) {
-                console.error('Error loading orders:', error);
+                console.error('❌ Error loading orders:', error);
                 document.getElementById('ordersContainer').innerHTML = `
                     <div class="empty-state">
                         <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
@@ -419,21 +453,30 @@
             }
         }
         
+        function displayEmptyState() {
+            document.getElementById('ordersContainer').innerHTML = `
+                <div class="empty-state">
+                    <div class="icon"><i class="fas fa-inbox"></i></div>
+                    <p>لا توجد طلبيات بعد</p>
+                </div>
+            `;
+        }
+        
         function updateStats() {
             document.getElementById('totalOrders').textContent = allOrders.length;
             
             let totalRevenue = 0;
             allOrders.forEach(order => {
-                const amount = parseFloat(order.total);
+                const amount = parseFloat(order.total || 0);
                 if (!isNaN(amount)) totalRevenue += amount;
             });
             document.getElementById('totalRevenue').textContent = totalRevenue.toFixed(0) + ' AED';
             
-            const cities = new Set(allOrders.map(o => o.city));
+            const cities = new Set(allOrders.map(o => o.city || o.emirate || '-'));
             document.getElementById('uniqueCities').textContent = cities.size;
             
             if (allOrders.length > 0) {
-                const lastTime = new Date(allOrders[0].savedAt);
+                const lastTime = new Date(allOrders[0].savedAt || allOrders[0].date);
                 const now = new Date();
                 const diff = Math.floor((now - lastTime) / 1000 / 60);
                 
@@ -448,17 +491,20 @@
         }
         
         function updateFilters() {
-            const cities = [...new Set(allOrders.map(o => o.city))].sort();
+            const cities = [...new Set(allOrders.map(o => o.city || o.emirate || '-'))].sort();
             const citySelect = document.getElementById('cityFilter');
             const currentValue = citySelect.value;
             
+            // Clear existing options except first
+            while (citySelect.options.length > 1) {
+                citySelect.remove(1);
+            }
+            
             cities.forEach(city => {
-                if (!citySelect.querySelector(`option[value="${city}"]`)) {
-                    const option = document.createElement('option');
-                    option.value = city;
-                    option.textContent = city;
-                    citySelect.appendChild(option);
-                }
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                citySelect.appendChild(option);
             });
             
             citySelect.value = currentValue;
@@ -466,64 +512,82 @@
         
         function displayOrders(orders) {
             if (orders.length === 0) {
-                document.getElementById('ordersContainer').innerHTML = `
-                    <div class="empty-state">
-                        <div class="icon"><i class="fas fa-inbox"></i></div>
-                        <p>لا توجد طلبيات بعد</p>
-                    </div>
-                `;
+                displayEmptyState();
                 return;
             }
             
-            const html = orders.map((order, index) => `
-                <div class="order-card" style="animation-delay: ${index * 0.1}s">
-                    <div class="order-header">
-                        <div class="order-id">
-                            ${order.orderId}
-                            <span class="badge new">طلب جديد</span>
+            const html = orders.map((order, index) => {
+                // 📄 Process items array
+                let itemsHTML = '';
+                
+                if (Array.isArray(order.items) && order.items.length > 0) {
+                    itemsHTML = order.items.map(item => `
+                        <div class="order-item-row">
+                            <span class="item-name-qty">${item.title || item.name || 'منتج'} <small>(x${item.quantity || 1})</small></span>
+                            <span class="item-price">${((item.sale_price || item.price || 0) * (item.quantity || 1)).toFixed(2)} د.إ</span>
                         </div>
-                        <div class="order-time">
-                            <i class="fas fa-clock"></i> ${formatTime(order.savedAt)}
+                    `).join('');
+                } else if (typeof order.items === 'string') {
+                    // Fallback for string items
+                    itemsHTML = `<div class="order-item-row"><span>${order.items}</span></div>`;
+                } else {
+                    itemsHTML = `<div class="order-item-row"><span>لم تحدث بيانات</span></div>`;
+                }
+                
+                return `
+                    <div class="order-card" style="animation-delay: ${index * 0.1}s">
+                        <div class="order-header">
+                            <div class="order-id">
+                                ${order.orderId || 'طلب ' + (index + 1)}
+                                <span class="badge new">طلب جديد</span>
+                            </div>
+                            <div class="order-time">
+                                <i class="fas fa-clock"></i> ${formatTime(order.savedAt || order.date)}
+                            </div>
+                        </div>
+                        <div class="order-body">
+                            <div class="order-info">
+                                <div class="icon"><i class="fas fa-user"></i></div>
+                                <div class="label">المشتري:</div>
+                                <div class="value">${order.fullName || order.customer_name || '-'}</div>
+                            </div>
+                            <div class="order-info">
+                                <div class="icon"><i class="fas fa-phone"></i></div>
+                                <div class="label">الهاتف:</div>
+                                <div class="value">${order.phone || '-'}</div>
+                            </div>
+                            <div class="order-info">
+                                <div class="icon"><i class="fas fa-location-dot"></i></div>
+                                <div class="label">المدينة:</div>
+                                <div class="value">${order.city || order.emirate || '-'}</div>
+                            </div>
+                            <div class="order-items">
+                                <strong>📄 المنتجات:</strong>
+                                ${itemsHTML}
+                            </div>
+                            <div class="order-total">💵 ${order.total || '0'} د.إ</div>
                         </div>
                     </div>
-                    <div class="order-body">
-                        <div class="order-info">
-                            <div class="icon"><i class="fas fa-user"></i></div>
-                            <div class="label">المشتري:</div>
-                            <div class="value">${order.fullName}</div>
-                        </div>
-                        <div class="order-info">
-                            <div class="icon"><i class="fas fa-phone"></i></div>
-                            <div class="label">الهاتف:</div>
-                            <div class="value">${order.phone}</div>
-                        </div>
-                        <div class="order-info">
-                            <div class="icon"><i class="fas fa-location-dot"></i></div>
-                            <div class="label">المدينة:</div>
-                            <div class="value">${order.city}</div>
-                        </div>
-                        <div class="order-items">
-                            <strong>📄 المنتجات:</strong>
-                            <br>${order.items}
-                        </div>
-                        <div class="order-total">💵 ${order.total}</div>
-                    </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
             
             document.getElementById('ordersContainer').innerHTML = `<div class="orders-grid">${html}</div>`;
         }
         
         function formatTime(isoString) {
-            const date = new Date(isoString);
-            return date.toLocaleString('ar-AE', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
+            try {
+                const date = new Date(isoString);
+                return date.toLocaleString('ar-AE', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+            } catch (e) {
+                return isoString;
+            }
         }
         
         function filterOrders() {
@@ -531,9 +595,10 @@
             const selectedCity = document.getElementById('cityFilter').value;
             
             let filtered = allOrders.filter(order => {
-                const matchSearch = order.fullName.toLowerCase().includes(searchText) || 
-                                  order.orderId.toLowerCase().includes(searchText);
-                const matchCity = !selectedCity || order.city === selectedCity;
+                const fullName = (order.fullName || order.customer_name || '').toLowerCase();
+                const orderId = (order.orderId || '').toLowerCase();
+                const matchSearch = fullName.includes(searchText) || orderId.includes(searchText);
+                const matchCity = !selectedCity || (order.city || order.emirate || '') === selectedCity;
                 return matchSearch && matchCity;
             });
             
@@ -546,8 +611,10 @@
         // Load orders on page load
         loadOrders();
         
-        // Refresh every 30 seconds
-        setInterval(loadOrders, 30000);
+        // Refresh every 10 seconds
+        setInterval(loadOrders, 10000);
+        
+        console.log('📄 Orders Dashboard Ready');
     </script>
 </body>
 </html>
