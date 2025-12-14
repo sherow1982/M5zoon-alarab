@@ -155,6 +155,7 @@
             font-weight: 600;
             font-size: 14px;
             margin-bottom: 5px;
+            word-break: break-word;
         }
         
         .product-qty {
@@ -403,7 +404,7 @@
         
         <!-- Products Box -->
         <div class="products-box" id="productsBox" style="display: none;">
-            <div class="products-title">🙊 المنتجات المدلبة</div>
+            <div class="products-title">📦 المنتجات المطلوبة</div>
             <div class="products-list" id="productsList"></div>
         </div>
         
@@ -476,6 +477,7 @@
     <script>
         /**
          * 🙋 Thank You Page - Professional Implementation with Products
+         * ✅ FIXED: Now correctly displays product titles from cart-system.js
          */
         
         class ThankYouPage {
@@ -537,10 +539,16 @@
                 let html = '';
                 
                 order.items.forEach(item => {
+                    // ✅ FIXED: Check 'title' first (from cart-system.js), then fallback to 'name'
+                    const productName = (item.title || item.name || item.productName || 'منتج').toString().trim();
+                    const quantity = item.quantity || 1;
+                    
+                    console.log('✅ Displaying product:', { title: productName, qty: quantity });
+                    
                     html += `
                         <div class="product-item">
-                            <div class="product-name">📊 ${item.name || 'منتج'}</div>
-                            <span class="product-qty">عدد: ${item.quantity || 1}</span>
+                            <div class="product-name">📊 ${productName}</div>
+                            <span class="product-qty">عدد: ${quantity}</span>
                         </div>
                     `;
                 });
