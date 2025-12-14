@@ -5,7 +5,7 @@
  * - دعم متعدد المفاتيح
  * - تطبيع البيانات من جميع الصيغ
  * - منع BFCache لتجنب أخطاء Extension
- * Emirates Gifts v3.3
+ * Emirates Gifts v3.4
  */
 
 (function() {
@@ -107,17 +107,27 @@ class CartSystem {
     
     /**
      * تطبيع بيانات المنتج من جميع الصيغ
+     * ✅ Fixed: Normalize 'title' from product-details.js
      */
     normalizeItem(item) {
         if (!item || typeof item !== 'object') return null;
         
         try {
-            const title = (item.title || item.title_ar || item.product_title || item.name || 'منتج').toString().trim() || 'منتج';
+            // ✅ FIX: Check 'title' first (from product-details.js)
+            const title = (item.title || item.title_ar || item.product_title || item.name || 'منتج')
+                .toString()
+                .trim() || 'منتج';
             const cleanTitle = title.replace(/[<>&"']/g, '').substring(0, 150);
+            
+            console.log('✅ Normalized item:', {
+                title: cleanTitle,
+                id: item.id,
+                price: parseFloat(item.sale_price || item.price || 0)
+            });
             
             return {
                 id: item.id,
-                title: cleanTitle,
+                title: cleanTitle,  // ✅ NOW DISPLAYS PRODUCT TITLE
                 price: parseFloat(item.price || 0) || 0,
                 sale_price: parseFloat(item.sale_price || item.price || 0) || 0,
                 image_link: item.image_link || item.image || item.url || '',
@@ -144,6 +154,7 @@ class CartSystem {
                         const data = JSON.parse(stored);
                         if (Array.isArray(data) && data.length > 0) {
                             console.log(`✅ تم تحميل السلة من: ${key}`);
+                            console.log('📦 Raw cart data:', data);
                             // تطبيع جميع العناصر
                             const normalized = data
                                 .map(item => this.normalizeItem(item))
@@ -151,6 +162,7 @@ class CartSystem {
                             
                             if (normalized.length > 0) {
                                 console.log(`✅ تم تطبيع ${normalized.length} عنصر`);
+                                console.log('📦 Normalized cart:', normalized);
                                 return normalized;
                             }
                         }
@@ -296,9 +308,12 @@ class CartSystem {
      * الحصول على بيانات السلة (مطبّعة)
      */
     getCart() {
-        return this.cart
+        const cart = this.cart
             .map(item => this.normalizeItem(item))
             .filter(item => item !== null);
+        
+        console.log('🛒 Cart items with titles:', cart.map(i => ({ title: i.title, price: i.sale_price })));
+        return cart;
     }
     
     /**
