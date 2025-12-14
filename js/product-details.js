@@ -116,7 +116,8 @@ function displayProduct(product) {
         discount = 0
     } = product;
 
-    const productTitle = name || title || 'Product';
+    // ✅ Use title as primary, fallback to name
+    const productTitle = title || name || 'Product';
     const productImage = image || image_link || imageUrl || '';
     const productDesc = description || `${productTitle} - منتج عالي الجودة`;
     const productUrl = generateProductLink(product);
@@ -203,10 +204,10 @@ function displayProduct(product) {
     const whatsappBtn = document.getElementById('whatsapp-btn');
     if (whatsappBtn) whatsappBtn.href = `https://wa.me/201110760081?text=${whatsappMessage}`;
 
-    // Store product data for cart button - شامل اسم المنتج والرابط
+    // Store product data for cart button - with title for cart consistency
     window.currentProduct = {
         ...product,
-        productName: productTitle,
+        title: productTitle,
         productUrl: productUrl,
         productLink: productUrl
     };
@@ -254,14 +255,16 @@ function displayProduct(product) {
 }
 
 /**
- * Add product to cart - SINGLE HANDLER (with product name & URL)
+ * Add product to cart - SINGLE HANDLER (with product title & URL)
+ * ✅ NOW COMPATIBLE WITH cart-system.js
  */
-function addToCartHandler(product, productName, productUrl) {
+function addToCartHandler(product, productTitle, productUrl) {
     try {
-        const { id, name, sale_price, price, image, image_link, imageUrl, category } = product;
+        const { id, title, name, sale_price, price, image, image_link, imageUrl, category } = product;
         const productPrice = parseFloat(sale_price || price || 0);
         const productImage = image || image_link || imageUrl || '';
-        const finalProductName = productName || name;
+        // ✅ Use title for cart consistency
+        const finalProductTitle = productTitle || title || name;
         
         // احصل على الكمية من العداد
         let quantity = 1;
@@ -277,6 +280,7 @@ function addToCartHandler(product, productName, productUrl) {
 
         console.log('📐 Adding to cart. Quantity:', quantity);
 
+        // ✅ Save to emirates_cart (for checkout.html)
         let cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
         
         const existingItem = cart.find(item => item.id === id);
@@ -286,8 +290,9 @@ function addToCartHandler(product, productName, productUrl) {
         } else {
             cart.push({
                 id: id,
-                name: finalProductName,
+                title: finalProductTitle,  // ✅ Use title
                 price: productPrice,
+                sale_price: productPrice,  // ✅ Add sale_price for checkout
                 image: productImage,
                 quantity: quantity,
                 category: category,
@@ -299,9 +304,9 @@ function addToCartHandler(product, productName, productUrl) {
         
         localStorage.setItem('emirates_cart', JSON.stringify(cart));
         
-        // Log cart item with name and URL
+        // Log cart item with title and URL
         console.log('📦 Cart item saved:', {
-            name: finalProductName,
+            title: finalProductTitle,
             url: productUrl,
             quantity: quantity,
             price: productPrice
@@ -316,17 +321,17 @@ function addToCartHandler(product, productName, productUrl) {
         if (window.funnelTracker) {
             window.funnelTracker.trackAddToCart({
                 productId: id,
-                productName: finalProductName,
+                productTitle: finalProductTitle,
                 quantity: quantity,
                 price: productPrice,
                 url: productUrl
             });
         }
         
-        // Show notification with product name
-        showNotification(`تم إضافة "${finalProductName}" x${quantity} للسلة! 😊`);
+        // Show notification with product title
+        showNotification(`تم إضافة "${finalProductTitle}" x${quantity} للسلة! 😊`);
         
-        console.log('✅ منتج مضاف:', finalProductName, 'الرابط:', productUrl, 'الكمية:', quantity);
+        console.log('✅ منتج مضاف:', finalProductTitle, 'الرابط:', productUrl, 'الكمية:', quantity);
     } catch (e) {
         console.error('خطأ في إضافة للسلة:', e);
         showNotification('حدث خطأ! يرجا محاولة مرة أخرى.', 'error');
@@ -383,7 +388,7 @@ function injectSchema(product) {
         url
     } = product;
 
-    const productTitle = name || title || 'Product';
+    const productTitle = title || name || 'Product';
     const productImage = image || image_link || imageUrl || '';
     const currentPrice = parseFloat(sale_price || price || 0);
     const url_final = window.location.href;
