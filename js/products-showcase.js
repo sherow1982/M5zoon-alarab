@@ -1,4 +1,4 @@
-// 🛒 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.5 - FIXED PRICING
+// 🛒 EMIRATES GIFTS PRODUCTS SHOWCASE - ZERO INLINE CODE v2.6 - PRODUCT TITLE FROM DOM
 
 (function() {
     'use strict';
@@ -8,7 +8,7 @@
     const warn = isDev ? console.warn.bind(console) : () => {};
     const error = console.error.bind(console);
     
-    log('🛒 EMIRATES PRODUCTS SHOWCASE v2.5 - FIXED PRICING');
+    log('🛒 EMIRATES PRODUCTS SHOWCASE v2.6 - PRODUCT TITLE FROM DOM');
     
     // Strict popup blocking
     window.alert = function() { log('🚫 Alert blocked'); return undefined; };
@@ -34,6 +34,44 @@
     let loadingAttempts = 0;
     const maxAttempts = 3;
     const itemsPerLoad = 12;
+    
+    // ✨ NEW: Extract product title from DOM if available
+    function getProductTitleFromDOM() {
+        try {
+            // Try to get from product-title h1
+            const titleElement = document.querySelector('h1.product-title');
+            if (titleElement) {
+                const title = titleElement.textContent.trim();
+                if (title) {
+                    log('👻 Product title from DOM:', title);
+                    return title;
+                }
+            }
+            
+            // Try alternative selectors
+            const altSelectors = [
+                '#product-title',
+                '.product-title',
+                '[data-product-title]',
+                'h1[data-id="product-title"]',
+                '[role="heading"][data-product="title"]'
+            ];
+            
+            for (const selector of altSelectors) {
+                const el = document.querySelector(selector);
+                if (el) {
+                    const title = el.textContent.trim();
+                    if (title && title.length > 3) {
+                        log('👻 Product title from alt selector:', selector, title);
+                        return title;
+                    }
+                }
+            }
+        } catch (e) {
+            warn('⚠️ Error extracting product title from DOM:', e);
+        }
+        return null;
+    }
     
     // Enhanced image error handler (ZERO INLINE)
     function setupSecureImageHandler(imgElement) {
@@ -61,12 +99,14 @@
         
         const finalPrice = parseFloat(product.sale_price || product.price || 0);
         const originalPrice = parseFloat(product.price || 0);
+        
+        // ✨ FIXED: Use title from product object (which now has DOM title if available)
         const productTitle = (product.title || product.title_ar || 'منتج مميز').trim();
         const productId = product.id || 'unknown';
         
         const productSlug = productTitle
             .toLowerCase()
-            .replace(/[^\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFFa-z0-9\s]/g, '')
+            .replace(/[^\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF a-z0-9\s]/g, '')
             .replace(/\s+/g, '-')
             .substring(0, 50)
             .trim();
@@ -74,8 +114,8 @@
         const productUrl = `https://emirates-gifts.arabsad.com/product-details.html?id=${productId}&category=${product.category_type || (product.category === 'Perfumes' ? 'perfume' : 'watch')}&slug=${productSlug || 'product'}`;
         
         let message = `🛒 *طلب من متجر هدايا الإمارات*\n`;
-        message += `━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
-        message += `📝 *اسم المنتج:*\n${productTitle}\n\n`;
+        message += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+        message += `📃 *اسم المنتج:*\n${productTitle}\n\n`;
         message += `🆔 *كود المنتج:* ${productId}\n\n`;
         message += `💰 *السعر:* ${finalPrice.toFixed(2)} د.إ\n`;
         
@@ -87,12 +127,12 @@
         }
         
         message += `\n🔗 *رابط المنتج:*\n${productUrl}\n\n`;
-        message += `🏪 *المتجر:* هدايا الإمارات Emirates Gifts\n`;
+        message += `🎪 *المتجر:* هدايا الإمارات Emirates Gifts\n`;
         message += `🚚 *التوصيل:* خلال 1-3 أيام عمل\n`;
         message += `🔄 *ضمان الإرجاع:* 14 يوم + مصاريف الشحن\n`;
         message += `✅ *ضمان الجودة:* 100% أصلي ومعتمد\n\n`;
-        message += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-        message += `رجاءً تأكيد الطلب وإرسال بيانات التوصيل:\n`;
+        message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+        message += `رجاءاً تأكيد الطلب وإرسال بيانات التوصيل:\n`;
         message += `• الاسم الكامل\n`;
         message += `• رقم الهاتف (الإمارات)\n`;
         message += `• العنوان التفصيلي\n`;
@@ -101,7 +141,7 @@
         return message;
     }
     
-    // 📊 Inject SEO Schema Markup
+    // 📃 Inject SEO Schema Markup
     function injectSeoSchema(products) {
         try {
             document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
@@ -217,11 +257,26 @@
                 throw new Error('No products data returned');
             }
             
-            const normalizedProducts = allProducts.map(product => ({
-                ...product,
-                category_type: product.category === 'Perfumes' ? 'perfume' : 'watch',
-                icon: product.category === 'Perfumes' ? '🌸' : '⏰'
-            }));
+            // ✨ ENHANCED: Try to get product title from DOM for each product
+            const normalizedProducts = allProducts.map((product, index) => {
+                // Get title from DOM if this is the first product on a product page
+                let productTitle = product.title || product.title_ar || 'منتج';
+                
+                if (index === 0) {
+                    const domTitle = getProductTitleFromDOM();
+                    if (domTitle) {
+                        productTitle = domTitle;
+                        log('👻 Using DOM title for first product:', productTitle);
+                    }
+                }
+                
+                return {
+                    ...product,
+                    title: productTitle,  // ✨ FIXED: Ensure title is set
+                    category_type: product.category === 'Perfumes' ? 'perfume' : 'watch',
+                    icon: product.category === 'Perfumes' ? '🌸' : '⏰'
+                };
+            });
             
             currentProducts = normalizedProducts;
             filteredProducts = normalizedProducts;
@@ -272,6 +327,7 @@
                     Math.round(((originalPrice - finalPrice) / originalPrice) * 100) : 0;
                     
                 const productId = String(product.id || Date.now());
+                // ✨ FIXED: Use title from product object
                 const productTitle = (product.title || product.title_ar || 'منتج مميز')
                     .replace(/[<>&"']/g, '')
                     .substring(0, 100);
@@ -310,7 +366,7 @@
                                         data-product-id="${productId}"
                                         data-product-title="${productTitle}"
                                         type="button"
-                                        aria-label="إضافة ${productTitle} إلى السلة والذهاب للطلب">
+                                        aria-label="إضافة ${productTitle} للسلة والذهاب للطلب">
                                     <i class="fas fa-cart-plus" aria-hidden="true"></i> اطلب الآن
                                 </button>
                                 <a href="https://wa.me/201110760081?text=${encodeURIComponent(whatsappMessage)}" 
@@ -458,7 +514,7 @@
         if (product && product.title) {
             const slug = (product.title || product.title_ar || '')
                 .toLowerCase()
-                .replace(/[^\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFFa-z0-9\s]/g, '')
+                .replace(/[^\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF a-z0-9\s]/g, '')
                 .replace(/\s+/g, '-')
                 .substring(0, 50)
                 .trim();
@@ -481,8 +537,8 @@
     }
     
     /**
-     * ✅ NEW: Add to cart AND redirect to checkout
-     * FIXED: Use sale_price with proper fallback
+     * ✅ FIXED: Add to cart AND redirect to checkout
+     * FIXED: Use sale_price with proper fallback + CAPTURE TITLE
      */
     function addToCartAndCheckout(productId) {
         const product = currentProducts.find(p => p && String(p.id) === String(productId));
@@ -513,12 +569,15 @@
             const displayPrice = parseFloat(product.sale_price || product.price || 0);
             const actualPrice = parseFloat(product.price || 0);
             
+            // ✨ FIXED TITLE: Capture title from product object (which now includes DOM title if available)
+            const productTitle = (product.title || product.title_ar || 'منتج').substring(0, 100).trim();
+            
             if (existingIndex !== -1) {
                 cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
             } else {
                 cart.push({
                     id: productId,
-                    title: (product.title || product.title_ar || 'منتج').substring(0, 100),
+                    title: productTitle,  // ✨ USE CAPTURED TITLE
                     price: actualPrice,
                     sale_price: displayPrice,
                     image_link: product.image_link || '',
@@ -534,8 +593,8 @@
             localStorage.setItem('emirates_cart_data', JSON.stringify(cart));
             updateCartBadgeSecurely();
             
-            log(`✅ Added to cart: ${product.title} (Price: ${displayPrice})`);
-            showSecureNotification(`✅ تم إضافة "${product.title}" والانتقال للطلب...`);
+            log(`✅ Added to cart: ${productTitle} (Price: ${displayPrice})`);
+            showSecureNotification(`✅ تم إضافة "${productTitle}" والانتقال للطلب...`);
             
             // 🚀 Redirect to checkout after 1 second
             setTimeout(() => {
@@ -644,7 +703,7 @@
             if (perfumesBtn) perfumesBtn.innerHTML = `<i class="fas fa-spray-can" aria-hidden="true"></i> العطور (${perfumeCount})`;
             if (watchesBtn) watchesBtn.innerHTML = `<i class="fas fa-clock" aria-hidden="true"></i> الساعات (${watchCount})`;
             
-            log(`📊 Products: All(${currentProducts.length}) Perfumes(${perfumeCount}) Watches(${watchCount})`);
+            log(`📃 Products: All(${currentProducts.length}) Perfumes(${perfumeCount}) Watches(${watchCount})`);
         } catch (error) {
             error('❌ Filter counts error:', error);
         }
@@ -743,7 +802,7 @@
                    style="font-size: 3rem; margin-bottom: 20px; color: #e74c3c;" 
                    aria-hidden="true"></i><br>
                 <h3 style="color: #1B2951; margin: 15px 0;">❌ خطأ في تحميل المنتجات</h3>
-                <p style="color: #666; margin: 15px 0;">عذراً، لم نتمكن من تحميل المنتجات</p>
+                <p style="color: #666; margin: 15px 0;">عذراً, لم نتمكن من تحميل المنتجات</p>
                 <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
                     <a href="./" 
                        style="color: white; background: linear-gradient(135deg, #D4AF37, #B8860B); text-decoration: none; font-weight: bold; padding: 15px 30px; border-radius: 15px; display: inline-flex; align-items: center; gap: 8px;">
@@ -773,7 +832,7 @@
                    style="font-size: 3rem; margin-bottom: 20px; color: #D4AF37;" 
                    aria-hidden="true"></i><br>
                 <h3 style="color: #1B2951; margin: 15px 0;">لا توجد منتجات</h3>
-                <p style="color: #666; margin: 15px 0;">رجاءً اعد لاحقاً</p>
+                <p style="color: #666; margin: 15px 0;">رجاؤا اعد لاحقاً</p>
             </div>
         `;
     }
@@ -800,7 +859,7 @@
      * Enhanced initialization
      */
     function initializeProductsShowcaseSecurely() {
-        log('🛒 Zero Inline Code Products Showcase Init v2.5 - FIXED PRICING...');
+        log('🛒 Zero Inline Code Products Showcase Init v2.6 - PRODUCT TITLE FROM DOM...');
         
         try {
             updateCartBadgeSecurely();
@@ -817,7 +876,7 @@
                 }, 16);
             }, { passive: true });
             
-            log('✅ Products Showcase v2.5 initialized with Fixed Pricing');
+            log('✅ Products Showcase v2.6 initialized with Product Title from DOM');
             
         } catch (initError) {
             error('❌ Initialization error:', initError);
@@ -846,7 +905,7 @@
     // Secure global exports
     if (typeof window !== 'undefined') {
         window.EmiratesShowcaseSecure = Object.freeze({
-            version: '2.5.0-fixed-pricing',
+            version: '2.6.0-product-title-from-dom',
             navigateToProduct: navigateToProductDetailsSecurely,
             addToCart: addToCartAndCheckout,
             updateCartBadge: updateCartBadgeSecurely,
@@ -856,6 +915,6 @@
         });
     }
     
-    log('✅ Emirates Products Showcase v2.5 - WITH FIXED PRICING');
+    log('✅ Emirates Products Showcase v2.6 - WITH PRODUCT TITLE FROM DOM');
     
 })();
