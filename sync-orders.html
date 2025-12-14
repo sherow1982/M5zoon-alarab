@@ -435,22 +435,49 @@
     
     <script>
         /**
-         * 📄 Professional Orders Manager v2 - Enhanced Edition
+         * 📄 Professional Orders Manager - Password Fixed
          */
         
+        // Password Configuration
         const SECRET_PASSWORD = '123321';
+        
+        // Immediately initialize
+        function init() {
+            const loginScreen = document.getElementById('loginScreen');
+            const mainContent = document.getElementById('mainContent');
+            
+            if (loginScreen && mainContent) {
+                // Check authentication on load
+                const isAuth = sessionStorage.getItem('authenticated') === 'true';
+                if (isAuth) {
+                    loginScreen.style.display = 'none';
+                    mainContent.classList.add('show');
+                    setTimeout(() => displayOrders(), 100);
+                } else {
+                    loginScreen.style.display = 'block';
+                    mainContent.classList.remove('show');
+                    document.getElementById('passwordInput').focus();
+                }
+            }
+        }
         
         function checkPassword() {
             const input = document.getElementById('passwordInput');
             const error = document.getElementById('errorMsg');
+            const enteredPassword = input.value.trim();
             
-            if (input.value === SECRET_PASSWORD) {
+            console.log('Password Check:', enteredPassword === SECRET_PASSWORD);
+            
+            if (enteredPassword === SECRET_PASSWORD) {
+                // Password is correct
                 sessionStorage.setItem('authenticated', 'true');
                 document.getElementById('loginScreen').style.display = 'none';
                 document.getElementById('mainContent').classList.add('show');
                 error.style.display = 'none';
+                input.value = '';
                 displayOrders();
             } else {
+                // Password is wrong
                 error.style.display = 'block';
                 input.value = '';
                 input.focus();
@@ -458,7 +485,10 @@
         }
         
         function handlePasswordKeyPress(event) {
-            if (event.key === 'Enter') checkPassword();
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                checkPassword();
+            }
         }
         
         function logout() {
@@ -574,8 +604,7 @@
                 alert('❌ لا توجد طلبيات');
                 return;
             }
-            const jsonl = orders.map(o => JSON.stringify(o)).join('
-');
+            const jsonl = orders.map(o => JSON.stringify(o)).join('\n');
             document.getElementById('jsonOutput').value = jsonl;
             document.getElementById('jsonOutput').select();
             document.execCommand('copy');
@@ -591,15 +620,12 @@
             }
         }
         
-        window.addEventListener('load', () => {
-            if (sessionStorage.getItem('authenticated') === 'true') {
-                document.getElementById('loginScreen').style.display = 'none';
-                document.getElementById('mainContent').classList.add('show');
-                displayOrders();
-            } else {
-                document.getElementById('passwordInput').focus();
-            }
-        });
+        // Initialize on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     </script>
 </body>
 </html>
