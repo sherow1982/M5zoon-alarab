@@ -10,7 +10,7 @@ function generateUAEKeywordDescription(productName, category) {
     const qualityKeywords = ['عالي الجودة', 'أصلي 100%', 'فاخر', 'متميز', 'متخصص'];
     
     let description = `${productName} - منتج متميز من متجر هدايا الإمارات.\n\n`;
-    description += `متجر هدايا الإمارات يقدم المه ${productName} بأفضل جودة لجميع عملائنا في الإمارات.\n\n`;
+    description += `متجر هدايا الإمارات يقدم المهن ${productName} بأفضل جودة لجميع عملائنا في الإمارات.\n\n`;
     
     if (category === 'Perfumes') {
         description += `عطر متميز ✓ أصلي 100% ✓ موثوق من متجر هدايا الإمارات.\n`;
@@ -132,7 +132,7 @@ function displayProduct(product) {
     const enhancedDescription = generateUAEKeywordDescription(productTitle, category);
 
     // Update page title and meta description
-    const pageTitle = `🛒 ${productTitle} | متجر هدايا الإمارات`;
+    const pageTitle = `🛍️ ${productTitle} | متجر هدايا الإمارات`;
     const metaDescription = `اشتري ${productTitle} من متجر هدايا الإمارات - ${category === 'Perfumes' ? 'عطور' : 'ساعات'} عالية الجودة. شحن سريع إلى دبي وأبوظبي والشارقة. ضمان 14 يوم + استرجاع مجاني.`;
     
     document.title = pageTitle;
@@ -145,7 +145,7 @@ function displayProduct(product) {
     const canonicalEl = document.getElementById('canonical-url');
     if (canonicalEl) canonicalEl.setAttribute('href', window.location.href);
 
-    // Update carousel images (NEW)
+    // Update carousel images
     for (let i = 0; i < 3; i++) {
         const carouselImg = document.querySelector(`#carousel-item-${i} img`);
         if (carouselImg) {
@@ -204,24 +204,32 @@ function displayProduct(product) {
     const whatsappBtn = document.getElementById('whatsapp-btn');
     if (whatsappBtn) whatsappBtn.href = `https://wa.me/201110760081?text=${whatsappMessage}`;
 
-    // Store product data for cart button - with title for cart consistency
+    // Store product data for cart button
     window.currentProduct = {
-        ...product,
+        id: id,
         title: productTitle,
+        name: productTitle,
+        price: newPrice,
+        sale_price: newPrice,
+        image: productImage,
+        image_link: productImage,
+        category: category,
         productUrl: productUrl,
         productLink: productUrl
     };
 
-    // Add to cart button handler - SINGLE HANDLER ONLY
+    console.log('✅ Stored product data:', window.currentProduct);
+
+    // Add to cart button handler - DIRECT IMPLEMENTATION
     const cartBtn = document.getElementById('add-to-cart-btn');
     if (cartBtn) {
-        // Remove any previous listeners
+        // Remove any previous listeners by cloning
         const newCartBtn = cartBtn.cloneNode(true);
         cartBtn.parentNode.replaceChild(newCartBtn, cartBtn);
         
         newCartBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            addToCartHandler(product, productTitle, productUrl);
+            addToCartHandler(window.currentProduct);
         });
     }
 
@@ -255,86 +263,113 @@ function displayProduct(product) {
 }
 
 /**
- * Add product to cart - SINGLE HANDLER (with product title & URL)
- * ✅ NOW COMPATIBLE WITH cart-system.js
+ * ✅ Add product to cart - WITH FULL ERROR CHECKING
  */
-function addToCartHandler(product, productTitle, productUrl) {
+function addToCartHandler(product) {
+    console.log('🛒 Add to cart handler called with product:', product);
+    
+    if (!product) {
+        console.error('❌ Product data missing!');
+        showNotification('لم يتم العثور على بيانات المنتج', 'error');
+        return;
+    }
+
     try {
-        const { id, title, name, sale_price, price, image, image_link, imageUrl, category } = product;
+        const {
+            id = null,
+            title = 'منتج',
+            name = 'منتج',
+            sale_price = 0,
+            price = 0,
+            image = '',
+            image_link = '',
+            category = 'عام'
+        } = product;
+
+        // Validation
+        if (!id) {
+            console.error('❌ Product ID is required!');
+            showNotification('معرف المنتج غير موجود', 'error');
+            return;
+        }
+
+        const productTitle = title || name || 'منتج';
         const productPrice = parseFloat(sale_price || price || 0);
-        const productImage = image || image_link || imageUrl || '';
-        // ✅ Use title for cart consistency
-        const finalProductTitle = productTitle || title || name;
-        
-        // احصل على الكمية من العداد
+        const productImage = image || image_link || '';
+
+        // Get quantity from UI
         let quantity = 1;
-        if (window.quantityCounter && window.quantityCounter.getQuantity) {
+        if (window.quantityCounter && typeof window.quantityCounter.getQuantity === 'function') {
             quantity = window.quantityCounter.getQuantity();
         } else {
-            // Fallback: try to get from input directly
             const qtyInput = document.querySelector('[data-quantity-counter] input[type="number"]');
             if (qtyInput) {
                 quantity = parseInt(qtyInput.value) || 1;
             }
         }
 
-        console.log('📐 Adding to cart. Quantity:', quantity);
+        console.log('📦 Adding to cart:', {
+            id,
+            title: productTitle,
+            price: productPrice,
+            quantity,
+            image: productImage
+        });
 
-        // ✅ Save to emirates_cart (for checkout.html)
+        // Save to emirates_cart
         let cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
         
-        const existingItem = cart.find(item => item.id === id);
+        const existingItem = cart.find(item => String(item.id) === String(id));
         if (existingItem) {
             existingItem.quantity += quantity;
-            console.log('♾️ Updated existing item. New quantity:', existingItem.quantity);
+            console.log('✅ Updated existing item. New quantity:', existingItem.quantity);
         } else {
             cart.push({
                 id: id,
-                title: finalProductTitle,  // ✅ Use title
+                title: productTitle,
                 price: productPrice,
-                sale_price: productPrice,  // ✅ Add sale_price for checkout
+                sale_price: productPrice,
                 image: productImage,
                 quantity: quantity,
-                category: category,
-                url: productUrl,
-                link: productUrl
+                category: category
             });
-            console.log('🌟 Added new item. Quantity:', quantity);
+            console.log('✅ Added new item. Quantity:', quantity);
         }
         
         localStorage.setItem('emirates_cart', JSON.stringify(cart));
         
-        // Log cart item with title and URL
-        console.log('📦 Cart item saved:', {
-            title: finalProductTitle,
-            url: productUrl,
-            quantity: quantity,
-            price: productPrice
-        });
+        // Also save to emirates_cart_data for compatibility
+        localStorage.setItem('emirates_cart_data', JSON.stringify(cart));
         
-        // Update cart badge
+        // Update floating badge
         if (window.updateFloatingCartBadge) {
             window.updateFloatingCartBadge();
+        } else {
+            // Manual update if function not available
+            const badge = document.getElementById('floatingCartBadge');
+            if (badge) {
+                const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+                badge.textContent = total;
+            }
         }
         
         // Track to funnel
         if (window.funnelTracker) {
             window.funnelTracker.trackAddToCart({
                 productId: id,
-                productTitle: finalProductTitle,
+                productTitle: productTitle,
                 quantity: quantity,
-                price: productPrice,
-                url: productUrl
+                price: productPrice
             });
         }
         
-        // Show notification with product title
-        showNotification(`تم إضافة "${finalProductTitle}" x${quantity} للسلة! 😊`);
+        // Show notification
+        showNotification(`✅ تمت إضافة "${productTitle}" x${quantity} للسلة!`);
         
-        console.log('✅ منتج مضاف:', finalProductTitle, 'الرابط:', productUrl, 'الكمية:', quantity);
-    } catch (e) {
-        console.error('خطأ في إضافة للسلة:', e);
-        showNotification('حدث خطأ! يرجا محاولة مرة أخرى.', 'error');
+        console.log('✅ Product added successfully!');
+    } catch (error) {
+        console.error('❌ Error adding to cart:', error);
+        showNotification('حدث خطأ! يرجى محاولة مرة أخرى.', 'error');
     }
 }
 
@@ -407,7 +442,7 @@ function injectSchema(product) {
         "brand": {
             "@type": "Brand",
             "@id": "https://emirates-gifts.arabsad.com/#brand",
-            "name": "🛒 متجر هدايا الإمارات"
+            "name": "🛍️ متجر هدايا الإمارات"
         },
         "category": category || "منتج",
         "offers": {
@@ -422,7 +457,7 @@ function injectSchema(product) {
             "seller": {
                 "@type": "Organization",
                 "@id": "https://emirates-gifts.arabsad.com/#organization",
-                "name": "🛒 متجر هدايا الإمارات",
+                "name": "🛍️ متجر هدايا الإمارات",
                 "areaServed": ["AE-DU", "AE-AZ", "AE-SH", "AE-AJ", "AE-FU", "AE-RK", "AE-UM"]
             }
         },
