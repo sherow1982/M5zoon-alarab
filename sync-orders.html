@@ -3,58 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📦 مانجر الطلبيات - تزام localStorage</title>
+    <title>📄 مانجر الطلبيات - نظام الاختزان</title>
     <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- 🔧 Runtime Error Handler -->
+    <script src="./js/runtime-error-handler.js" type="text/javascript"></script>
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            padding: 20px;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 20px;
         }
-
-        .password-screen {
+        
+        .login-screen {
             background: white;
             padding: 50px 40px;
             border-radius: 15px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             max-width: 450px;
             width: 100%;
+            margin: 50px auto;
             text-align: center;
             animation: slideUp 0.6s ease-out;
         }
-
+        
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .password-screen h1 {
+        
+        .login-screen h1 {
             color: #1e3c72;
             font-size: 28px;
             margin-bottom: 10px;
             font-weight: 700;
         }
-
-        .password-screen p {
+        
+        .login-screen p {
             color: #666;
             font-size: 14px;
             margin-bottom: 30px;
         }
-
+        
         .password-input-group {
             margin-bottom: 20px;
         }
-
+        
         .password-input-group input {
             width: 100%;
             padding: 14px 16px;
@@ -66,13 +70,13 @@
             text-align: center;
             letter-spacing: 2px;
         }
-
+        
         .password-input-group input:focus {
             outline: none;
             border-color: #2a5298;
             box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
         }
-
+        
         .login-btn {
             width: 100%;
             padding: 14px;
@@ -86,12 +90,12 @@
             transition: all 0.3s;
             font-family: 'Cairo', sans-serif;
         }
-
+        
         .login-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(30, 60, 114, 0.3);
         }
-
+        
         .error-msg {
             color: #f44336;
             font-size: 13px;
@@ -99,33 +103,58 @@
             display: none;
             animation: shake 0.5s ease-in-out;
         }
-
+        
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-5px); }
             75% { transform: translateX(5px); }
         }
-
-        .container {
-            max-width: 900px;
+        
+        .main-container {
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             display: none;
         }
-
-        .container.show {
+        
+        .main-container.show {
             display: block;
         }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-
+        
+        .header h1 {
+            color: #1e3c72;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logout-btn {
+            background: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #e68900;
+            transform: translateY(-2px);
+        }
+        
         .info-box {
             background: #e3f2fd;
             border-left: 4px solid #2196F3;
@@ -133,84 +162,87 @@
             margin-bottom: 20px;
             border-radius: 4px;
             font-size: 14px;
+            color: #1565c0;
         }
-
+        
         .info-box strong {
-            color: #1976D2;
+            color: #0d47a1;
         }
-
+        
+        .buttons-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
         .btn {
-            display: inline-block;
-            padding: 10px 16px;
-            margin: 5px;
+            padding: 12px 20px;
             border: none;
             border-radius: 6px;
             font-size: 14px;
             cursor: pointer;
+            font-weight: 600;
             transition: all 0.3s;
-            font-weight: bold;
             font-family: 'Cairo', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-
+        
         .btn-primary {
             background: #2196F3;
             color: white;
-            width: 100%;
-            margin: 10px 0;
-            display: block;
+            flex: 1;
+            min-width: 150px;
+            justify-content: center;
         }
-
+        
         .btn-primary:hover {
             background: #1976D2;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
         }
-
+        
         .btn-danger {
             background: #f44336;
             color: white;
+            flex: 1;
+            min-width: 150px;
+            justify-content: center;
         }
-
+        
         .btn-danger:hover {
             background: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
         }
-
-        .btn-success {
-            background: #4CAF50;
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #45a049;
-        }
-
-        .btn-small {
-            padding: 6px 12px;
-            font-size: 12px;
-            margin: 3px;
-            width: auto;
-        }
-
-        .btn-logout {
-            background: #ff9800;
-            color: white;
-            float: left;
+        
+        .summary-card {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            border-radius: 8px;
             margin-bottom: 20px;
-            width: auto;
+            text-align: center;
         }
-
-        .btn-logout:hover {
-            background: #e68900;
+        
+        .summary-text {
+            font-size: 16px;
+            color: #2e7d32;
+            font-weight: bold;
         }
-
-        .clear-float {
-            clear: both;
+        
+        .summary-text span {
+            font-size: 20px;
+            color: #1b5e20;
+            margin: 0 8px;
         }
-
+        
         .orders-list {
             margin-top: 30px;
         }
-
+        
         .order-item {
             background: #f9f9f9;
             border: 2px solid #ddd;
@@ -219,12 +251,12 @@
             border-radius: 8px;
             transition: all 0.3s;
         }
-
+        
         .order-item:hover {
             border-color: #2196F3;
             box-shadow: 0 3px 10px rgba(33, 150, 243, 0.2);
         }
-
+        
         .order-header {
             display: flex;
             justify-content: space-between;
@@ -235,19 +267,19 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-
+        
         .order-id {
             font-weight: bold;
             color: #2196F3;
             font-size: 16px;
         }
-
+        
         .order-actions {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
-
+        
         .order-section {
             margin-bottom: 15px;
             padding: 12px;
@@ -255,7 +287,7 @@
             border-radius: 6px;
             border-left: 3px solid #2196F3;
         }
-
+        
         .section-title {
             font-weight: bold;
             color: #333;
@@ -263,54 +295,58 @@
             font-size: 14px;
             text-transform: uppercase;
         }
-
+        
         .order-details {
             font-size: 13px;
             color: #666;
             line-height: 1.8;
         }
-
+        
         .order-details div {
             margin-bottom: 5px;
         }
-
+        
         .order-details strong {
             color: #333;
             display: inline-block;
             min-width: 100px;
         }
-
-        .product-item {
-            background: #f5f5f5;
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 4px;
-            border-right: 3px solid #4CAF50;
+        
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+            margin: 3px;
+            width: auto;
         }
-
+        
+        .btn-success {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #45a049;
+        }
+        
         .status {
             margin-top: 20px;
             padding: 15px;
             border-radius: 6px;
             text-align: center;
             font-weight: bold;
+            margin-bottom: 20px;
         }
-
+        
         .status.success {
             background: #4CAF50;
             color: white;
         }
-
-        .status.error {
-            background: #f44336;
-            color: white;
-        }
-
+        
         .status.warning {
             background: #ff9800;
             color: white;
         }
-
+        
         textarea {
             width: 100%;
             height: 200px;
@@ -322,80 +358,39 @@
             margin: 10px 0;
             resize: vertical;
         }
-
-        .buttons-group {
-            display: flex;
-            gap: 10px;
-            margin: 15px 0;
-            flex-wrap: wrap;
-        }
-
-        .buttons-group .btn-primary {
-            width: auto;
-            margin: 0;
-            flex: 1;
-            min-width: 150px;
-        }
-
-        .price {
-            color: #d32f2f;
-            font-weight: bold;
-            font-size: 15px;
-        }
-
-        .quantity {
-            background: #fff3e0;
-            padding: 4px 8px;
-            border-radius: 4px;
-            color: #e65100;
-            font-weight: bold;
-        }
-
-        .summary-card {
-            background: #e8f5e9;
-            border: 2px solid #4CAF50;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .summary-text {
-            font-size: 16px;
-            color: #2e7d32;
-            font-weight: bold;
-        }
-
-        ol {
-            margin-right: 20px;
-            margin-top: 10px;
-        }
-
-        ol li {
-            margin-bottom: 8px;
-        }
-
-        a {
-            color: #2196F3;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
+        
         @media (max-width: 600px) {
-            .container { padding: 20px; }
-            .order-header { flex-direction: column; align-items: flex-start; }
-            .order-actions { width: 100%; }
-            .password-screen { padding: 30px 20px; }
-            .btn-logout { width: 100%; float: none; margin-bottom: 15px; }
-            .buttons-group { flex-direction: column; }
-            .buttons-group .btn-primary { width: 100%; }
+            .main-container {
+                padding: 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .buttons-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .login-screen {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="password-screen" id="passwordScreen">
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
         <h1>🔐 إدارة الطلبيات</h1>
         <p>الرجاء إدخال كلمة المرور</p>
         <div class="password-input-group">
@@ -404,59 +399,54 @@
         </div>
         <button class="login-btn" onclick="checkPassword()">دخول</button>
     </div>
-
-    <div class="container" id="mainContent">
-        <button class="btn btn-logout" onclick="logout()">🚀 تسجيل خروج</button>
-        <div class="clear-float"></div>
-        <h1>📦 مانجر الطلبيات</h1>
-        
-        <div class="info-box">
-            <strong>📚 شرح:</strong> إدارة كاملة للطلبيات المحفوظة. يمكنك حذف الطلبيات غير المرغوبة أو نسخ الطلبيات لرفعها على GitHub.
+    
+    <!-- Main Container -->
+    <div class="main-container" id="mainContent">
+        <!-- Header -->
+        <div class="header">
+            <h1>📄 مانجر الطلبيات</h1>
+            <button class="logout-btn" onclick="logout()">🚶 تسجيل خروج</button>
         </div>
         
+        <!-- Info Box -->
+        <div class="info-box">
+            <strong>📄 الوظيفة:</strong> إدارة كاملة للطلبيات المحفوظة. يمكنك حذف الطلبيات أو نسخها للرفع على GitHub.
+        </div>
+        
+        <!-- Buttons -->
         <div class="buttons-group">
             <button class="btn btn-primary" onclick="displayOrders()">📄 عرض الطلبيات</button>
             <button class="btn btn-primary" onclick="copyToClipboard()">📋 نسخ JSONL</button>
-            <button class="btn btn-primary" onclick="clearOrders()" style="background: #f44336;">🗑️ حذف الجميع</button>
+            <button class="btn btn-danger" onclick="clearOrders()"><i class="fas fa-trash"></i> حذف الجميع</button>
         </div>
         
-        <div id="status"></div>
+        <!-- Summary -->
         <div id="summaryCard"></div>
+        
+        <!-- Status -->
+        <div id="status"></div>
+        
+        <!-- Orders List -->
         <div id="ordersContainer" class="orders-list"></div>
         
-        <div class="info-box" style="margin-top: 30px;">
-            <strong>💡 خطوات الرفع على GitHub:</strong>
-            <ol>
-                <li>اضغط "نسخ JSONL"</li>
-                <li>اذهب لـ <a href="https://github.com/sherow1982/emirates-gifts/blob/main/data/orders.jsonl" target="_blank" rel="noopener">🔓 GitHub orders.jsonl</a></li>
-                <li>اضغط على أيقونة التعديل (Edit)</li>
-                <li>الصق البيانات وحفظ</li>
-            </ol>
-        </div>
-        
-        <textarea id="jsonOutput" placeholder="سيظهر هنا JSONL..." readonly></textarea>
+        <!-- JSON Output -->
+        <textarea id="jsonOutput" placeholder="JSONL Output" readonly></textarea>
     </div>
-
+    
     <script>
-        // كلمة المرور - لا تشلها!
+        /**
+         * 📄 Professional Orders Manager v2 - Enhanced Edition
+         */
+        
         const SECRET_PASSWORD = '123321';
-
-        function normalizePrice(price) {
-            if (!price) return '0.00';
-            if (typeof price === 'string') {
-                const clean = price.replace(/[^0-9.]/g, '');
-                return clean || '0.00';
-            }
-            return parseFloat(price || 0).toFixed(2);
-        }
-
+        
         function checkPassword() {
             const input = document.getElementById('passwordInput');
             const error = document.getElementById('errorMsg');
             
             if (input.value === SECRET_PASSWORD) {
                 sessionStorage.setItem('authenticated', 'true');
-                document.getElementById('passwordScreen').style.display = 'none';
+                document.getElementById('loginScreen').style.display = 'none';
                 document.getElementById('mainContent').classList.add('show');
                 error.style.display = 'none';
                 displayOrders();
@@ -466,74 +456,70 @@
                 input.focus();
             }
         }
-
+        
         function handlePasswordKeyPress(event) {
             if (event.key === 'Enter') checkPassword();
         }
-
+        
         function logout() {
             sessionStorage.removeItem('authenticated');
-            document.getElementById('passwordScreen').style.display = 'block';
+            document.getElementById('loginScreen').style.display = 'block';
             document.getElementById('mainContent').classList.remove('show');
             document.getElementById('passwordInput').value = '';
             document.getElementById('passwordInput').focus();
         }
-
+        
+        function normalizePrice(price) {
+            if (!price) return '0.00';
+            if (typeof price === 'string') {
+                const clean = price.replace(/[^0-9.]/g, '');
+                return clean || '0.00';
+            }
+            return parseFloat(price || 0).toFixed(2);
+        }
+        
         function displayOrders() {
             const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
             const container = document.getElementById('ordersContainer');
             const summaryCard = document.getElementById('summaryCard');
-
+            
             if (!orders || orders.length === 0) {
                 container.innerHTML = '<div class="status warning">❌ لا توجد طلبيات محفوظة</div>';
                 summaryCard.innerHTML = '';
                 return;
             }
-
+            
             const total = orders.reduce((sum, order) => {
                 const amount = parseFloat(normalizePrice(order.total || 0));
                 return sum + (isNaN(amount) ? 0 : amount);
             }, 0);
-
+            
             summaryCard.innerHTML = `
                 <div class="summary-card">
                     <div class="summary-text">
-                        ✅ الطلبيات: <span style="color: #1976D2;">${orders.length}</span> | 
-                        💰 الإجمالي: <span style="color: #d32f2f;">${total.toFixed(2)} AED</span>
+                        ✅ الطلبيات: <span>${orders.length}</span> | 
+                        💵 الإجمالي: <span>${total.toFixed(2)} AED</span>
                     </div>
                 </div>
             `;
-
-            let html = `<div class="status success">✅ تم تحميل ${orders.length} طلبية</div>`;
-
+            
+            let html = `<div class="status success">✅ زم تحميل ${orders.length} طلبية</div>`;
+            
             orders.forEach((order, index) => {
-                let productsHtml = '';
-                if (Array.isArray(order.items) && order.items.length > 0) {
-                    productsHtml = order.items.map(item => {
-                        const price = normalizePrice(item.price || 0);
-                        return `
-                            <div class="product-item">
-                                <div>📦 <strong>${item.name || 'Product'}</strong></div>
-                                <div>💵 ${price} د.إ <span class="quantity">x${item.quantity || 1}</span></div>
-                            </div>
-                        `;
-                    }).join('');
-                }
-
                 const totalPrice = normalizePrice(order.total || 0);
-
+                
                 html += `
                     <div class="order-item">
                         <div class="order-header">
                             <div class="order-id">#${order.orderId || 'N/A'}</div>
                             <div class="order-actions">
-                                <button class="btn btn-success btn-small" onclick="copyOrder(${index})">📋 نسخ</button>
-                                <button class="btn btn-danger btn-small" onclick="deleteOrder(${index})">🗑️ حذف</button>
+                                <button class="btn btn-success btn-small" onclick="copyOrder(${index})"><i class="fas fa-copy"></i> نسخ</button>
+                                <button class="btn btn-danger btn-small" onclick="deleteOrder(${index})"><i class="fas fa-trash"></i> حذف</button>
                             </div>
                         </div>
-
+                        
                         <div class="order-section">
-                            <div class="section-title">👤 البيانات</div>
+                            <div class="section-title">👤 بيانات العميل</div>
                             <div class="order-details">
                                 <div><strong>الاسم:</strong> ${order.fullName || '-'}</div>
                                 <div><strong>الهاتف:</strong> ${order.phone || '-'}</div>
@@ -541,23 +527,25 @@
                                 <div><strong>العنوان:</strong> ${order.address || '-'}</div>
                             </div>
                         </div>
-
+                        
                         <div class="order-section">
-                            <div class="section-title">🛍️ المنتجات</div>
-                            ${productsHtml}
+                            <div class="section-title">🛒 عدد المنتجات</div>
+                            <div class="order-details">
+                                ${(order.items && order.items.length) || 0} منتج
+                            </div>
                         </div>
-
+                        
                         <div class="order-section">
-                            <div class="section-title">💰 الإجمالي</div>
-                            <span class="price" style="font-size: 18px;">${totalPrice} د.إ</span>
+                            <div class="section-title">💵 الإجمالي</div>
+                            <span style="font-size: 18px; color: #d32f2f; font-weight: bold;">${totalPrice} د.إ</span>
                         </div>
                     </div>
                 `;
             });
-
+            
             container.innerHTML = html;
         }
-
+        
         function deleteOrder(index) {
             if (confirm('حذف هذه الطلبية؟')) {
                 const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
@@ -566,7 +554,7 @@
                 displayOrders();
             }
         }
-
+        
         function copyOrder(index) {
             const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
             if (orders[index]) {
@@ -579,32 +567,33 @@
                 alert('✅ تم النسخ');
             }
         }
-
+        
         function copyToClipboard() {
             const orders = JSON.parse(localStorage.getItem('emirates_orders')) || [];
             if (orders.length === 0) {
                 alert('❌ لا توجد طلبيات');
                 return;
             }
-            const jsonl = orders.map(o => JSON.stringify(o)).join('\n');
+            const jsonl = orders.map(o => JSON.stringify(o)).join('
+');
             document.getElementById('jsonOutput').value = jsonl;
             document.getElementById('jsonOutput').select();
             document.execCommand('copy');
-            alert('✅ تم النسخ');
+            alert('✅ تم نسخ JSONL');
         }
-
+        
         function clearOrders() {
             if (confirm('⚠️ حذف جميع الطلبيات؟')) {
                 localStorage.removeItem('emirates_orders');
-                document.getElementById('ordersContainer').innerHTML = '<div class="status error">✅ تم الحذف</div>';
+                document.getElementById('ordersContainer').innerHTML = '<div class="status warning">✅ تم الحذف</div>';
                 document.getElementById('summaryCard').innerHTML = '';
                 document.getElementById('jsonOutput').value = '';
             }
         }
-
+        
         window.addEventListener('load', () => {
             if (sessionStorage.getItem('authenticated') === 'true') {
-                document.getElementById('passwordScreen').style.display = 'none';
+                document.getElementById('loginScreen').style.display = 'none';
                 document.getElementById('mainContent').classList.add('show');
                 displayOrders();
             } else {
