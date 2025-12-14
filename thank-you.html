@@ -38,6 +38,8 @@
             padding: 60px 40px;
             text-align: center;
             animation: slideUp 0.6s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         @keyframes slideUp {
@@ -111,6 +113,58 @@
             color: #558b2f;
             font-size: 14px;
             line-height: 1.8;
+        }
+        
+        .products-box {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            text-align: right;
+        }
+        
+        .products-title {
+            color: #e65100;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .products-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .product-item {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border-right: 4px solid #ff9800;
+            text-align: right;
+            transition: all 0.3s;
+        }
+        
+        .product-item:hover {
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.2);
+        }
+        
+        .product-name {
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .product-qty {
+            background: #fff9c4;
+            color: #f57f17;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 12px;
+            display: inline-block;
         }
         
         .next-steps {
@@ -347,6 +401,12 @@
             </div>
         </div>
         
+        <!-- Products Box -->
+        <div class="products-box" id="productsBox" style="display: none;">
+            <div class="products-title">🙊 المنتجات المدلبة</div>
+            <div class="products-list" id="productsList"></div>
+        </div>
+        
         <!-- Order Summary -->
         <div id="orderSummary"></div>
         
@@ -415,7 +475,7 @@
     <script src="./js/cart-system.js" defer></script>
     <script>
         /**
-         * 🙋 Thank You Page - Professional Implementation
+         * 🙋 Thank You Page - Professional Implementation with Products
          */
         
         class ThankYouPage {
@@ -452,6 +512,9 @@
                         orderIdDisplay.textContent = `رقم طلبك: ${lastOrder.orderId}`;
                     }
                     
+                    // Display Products
+                    this.displayProducts(lastOrder);
+                    
                     // Display Order Summary
                     this.displayOrderSummary(lastOrder);
                     
@@ -459,6 +522,30 @@
                 } catch (error) {
                     console.error('❌ Error displaying order:', error);
                 }
+            }
+            
+            displayProducts(order) {
+                const productsBox = document.getElementById('productsBox');
+                const productsList = document.getElementById('productsList');
+                
+                if (!order.items || order.items.length === 0) {
+                    productsBox.style.display = 'none';
+                    return;
+                }
+                
+                productsBox.style.display = 'block';
+                let html = '';
+                
+                order.items.forEach(item => {
+                    html += `
+                        <div class="product-item">
+                            <div class="product-name">📊 ${item.name || 'منتج'}</div>
+                            <span class="product-qty">عدد: ${item.quantity || 1}</span>
+                        </div>
+                    `;
+                });
+                
+                productsList.innerHTML = html;
             }
             
             displayOrderSummary(order) {
