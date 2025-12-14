@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./css/product-details.css">
     <link rel="stylesheet" href="./css/product-actions.css">
     <link rel="stylesheet" href="./css/loading-error-states.css">
+    <link rel="stylesheet" href="./css/product-carousel-quantity.css">
 
     <!-- JSON-LD Schema for Product -->
     <script type="application/ld+json">
@@ -136,9 +137,23 @@
 
         .product-container.hide { display: none; }
         .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .product-image-container { position: relative; width: 100%; height: 400px; background: #f0f0f0; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .product-main-image { width: 100%; height: 100%; object-fit: cover; }
-        .discount-badge { position: absolute; top: 20px; left: 20px; background: #f4a261; color: white; padding: 10px 20px; border-radius: 20px; font-weight: 700; }
+        
+        /* CAROUSEL STYLES */
+        .product-image-container { position: relative; width: 100%; background: #f0f0f0; border-radius: 10px; overflow: hidden; }
+        .carousel-container { position: relative; width: 100%; height: 500px; overflow: hidden; }
+        .carousel-item { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .carousel-item.active { opacity: 1; }
+        .carousel-item img { width: 100%; height: 100%; object-fit: cover; }
+        .carousel-prev, .carousel-next { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: rgba(255,255,255,0.9); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #333; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+        .carousel-prev { left: 20px; }
+        .carousel-next { right: 20px; }
+        .carousel-prev:hover, .carousel-next:hover { background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transform: translateY(-50%) scale(1.1); }
+        .carousel-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+        .carousel-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.6); background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s ease; }
+        .carousel-dot:hover { background: rgba(255,255,255,0.6); transform: scale(1.2); }
+        .carousel-dot.active { background: white; border-color: white; width: 32px; border-radius: 6px; }
+        
+        .discount-badge { position: absolute; top: 20px; left: 20px; background: #f4a261; color: white; padding: 10px 20px; border-radius: 20px; font-weight: 700; z-index: 5; }
 
         .product-info-section { padding: 20px; }
         .product-title { font-size: 28px; font-weight: 900; color: #1e3c72; margin-bottom: 15px; }
@@ -148,6 +163,16 @@
         .old-price { text-decoration: line-through; color: #999; font-size: 16px; margin-right: 10px; }
         .current-price { font-size: 32px; font-weight: 900; color: #D4AF37; }
         .savings { color: #27ae60; font-weight: 600; margin-left: 20px; }
+
+        /* QUANTITY COUNTER */
+        .quantity-section { margin: 30px 0; padding: 20px; background: #f9f9f9; border-radius: 8px; }
+        .quantity-label { font-size: 16px; font-weight: 700; color: #1e3c72; margin-bottom: 15px; display: block; }
+        .quantity-counter { display: flex; align-items: center; gap: 10px; background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 8px; width: fit-content; }
+        .qty-btn { width: 38px; height: 38px; border: 1px solid #ddd; background: white; color: #333; border-radius: 6px; cursor: pointer; font-size: 18px; font-weight: bold; transition: all 0.2s ease; }
+        .qty-btn:hover:not(:disabled) { background: #D4AF37; color: white; border-color: #D4AF37; transform: scale(1.05); }
+        .qty-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .qty-input { width: 60px; height: 38px; border: 1px solid #ddd; border-radius: 6px; text-align: center; font-size: 16px; font-weight: 600; }
+        .qty-input:focus { outline: none; border-color: #D4AF37; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
 
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 30px 0; }
         .feature-item { padding: 15px; background: #f9f9f9; border-radius: 8px; text-align: center; font-size: 13px; }
@@ -174,7 +199,7 @@
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .product-layout { grid-template-columns: 1fr; gap: 20px; }
-            .product-image-container { height: 300px; }
+            .carousel-container { height: 350px; }
             .product-title { font-size: 22px; }
             .current-price { font-size: 24px; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
@@ -187,6 +212,9 @@
             .nav-links { gap: 10px; }
             .nav-link { font-size: 12px; }
             .breadcrumb { font-size: 12px; }
+            .carousel-prev, .carousel-next { width: 40px; height: 40px; font-size: 20px; }
+            .carousel-prev { left: 10px; }
+            .carousel-next { right: 10px; }
         }
 
         @media (max-width: 480px) {
@@ -196,6 +224,7 @@
             .policy-buttons { grid-template-columns: 1fr; }
             .legal-nav-title { font-size: 1.1em; }
             .action-buttons button, .action-buttons a { padding: 12px 16px; font-size: 13px; }
+            .carousel-container { height: 250px; }
         }
     </style>
 </head>
@@ -266,13 +295,28 @@
         <!-- Product Details -->
         <div class="product-container hide" id="product-container">
             <div class="product-layout">
+                <!-- IMAGE CAROUSEL -->
                 <div class="product-image-section">
-                    <div class="product-image-container">
-                        <img id="product-image" src="" alt="" class="product-main-image">
+                    <div class="product-image-container" data-product-carousel>
+                        <div class="carousel-container">
+                            <div class="carousel-item active" id="carousel-item-0">
+                                <img src="" alt="صورة المنتج" class="carousel-image">
+                            </div>
+                            <div class="carousel-item" id="carousel-item-1">
+                                <img src="" alt="صورة المنتج 2" class="carousel-image">
+                            </div>
+                            <div class="carousel-item" id="carousel-item-2">
+                                <img src="" alt="صورة المنتج 3" class="carousel-image">
+                            </div>
+                        </div>
+                        <button class="carousel-prev" data-carousel-prev>‹</button>
+                        <button class="carousel-next" data-carousel-next>›</button>
+                        <div class="carousel-dots" data-carousel-dots></div>
                         <div class="discount-badge" id="discount-badge">-0%</div>
                     </div>
                 </div>
 
+                <!-- PRODUCT INFO -->
                 <div class="product-info-section">
                     <h1 class="product-title" id="product-title">اسم المنتج</h1>
                     <span class="category-badge" id="category-badge">عطور</span>
@@ -281,6 +325,16 @@
                         <span class="old-price" id="old-price">0 د.إ</span>
                         <span class="current-price" id="current-price">0 د.إ</span>
                         <span class="savings" id="savings">وفر 0 د.إ</span>
+                    </div>
+
+                    <!-- QUANTITY COUNTER -->
+                    <div class="quantity-section">
+                        <label class="quantity-label">📦 عدد القطع:</label>
+                        <div class="quantity-counter" data-quantity-counter>
+                            <button class="qty-btn" data-quantity-minus>−</button>
+                            <input type="number" class="qty-input" min="1" max="100" value="1">
+                            <button class="qty-btn" data-quantity-plus>+</button>
+                        </div>
                     </div>
 
                     <div class="features-grid">
@@ -378,6 +432,7 @@
 
     <script src="./js/schema-enhancer.js" defer></script>
     <script src="./js/add-to-cart-integration.js" defer></script>
+    <script src="./js/product-carousel-funnel.js" defer></script>
     <script src="./js/product-details.js" defer></script>
     <script src="./js/product-details-cart.js" defer></script>
 
@@ -420,6 +475,9 @@
             };
 
             window.generateProductDescription = generateProductDescription;
+
+            // Initialize carousel and quantity counter
+            console.log('✅ Product details page loaded with carousel and quantity counter');
         });
     </script>
 </body>
