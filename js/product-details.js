@@ -124,47 +124,73 @@ function displayProduct(product) {
     const metaDescription = `اشتري ${productTitle} من متجر هدايا الإمارات - ${category === 'Perfumes' ? 'عطور' : 'ساعات'} عالية الجودة. شحن سريع إلى دبي وأبوظبي والشارقة. ضمان 14 يوم + استرجاع مجاني.`;
     
     document.title = pageTitle;
-    document.getElementById('page-title').textContent = pageTitle;
-    document.getElementById('page-description').setAttribute('content', metaDescription);
-    document.getElementById('canonical-url').setAttribute('href', window.location.href);
+    const pageTitleEl = document.getElementById('page-title');
+    if (pageTitleEl) pageTitleEl.textContent = pageTitle;
+    
+    const pageDescEl = document.getElementById('page-description');
+    if (pageDescEl) pageDescEl.setAttribute('content', metaDescription);
+    
+    const canonicalEl = document.getElementById('canonical-url');
+    if (canonicalEl) canonicalEl.setAttribute('href', window.location.href);
 
-    // Update DOM elements
-    document.getElementById('product-image').src = productImage;
-    document.getElementById('product-image').alt = productTitle;
-    document.getElementById('product-title').textContent = productTitle;
-    document.getElementById('breadcrumb-product').textContent = productTitle;
-    document.getElementById('category-badge').textContent = category || 'منتج';
+    // Update carousel images (NEW)
+    for (let i = 0; i < 3; i++) {
+        const carouselImg = document.querySelector(`#carousel-item-${i} img`);
+        if (carouselImg) {
+            carouselImg.src = productImage;
+            carouselImg.alt = productTitle;
+        }
+    }
+
+    // Update title
+    const productTitleEl = document.getElementById('product-title');
+    if (productTitleEl) productTitleEl.textContent = productTitle;
+    
+    const breadcrumbEl = document.getElementById('breadcrumb-product');
+    if (breadcrumbEl) breadcrumbEl.textContent = productTitle;
+    
+    const categoryEl = document.getElementById('category-badge');
+    if (categoryEl) categoryEl.textContent = category || 'منتج';
 
     // Update prices
-    document.getElementById('old-price').textContent = `${oldPrice.toFixed(0)} د.إ`;
-    document.getElementById('current-price').textContent = `${newPrice.toFixed(0)} د.إ`;
+    const oldPriceEl = document.getElementById('old-price');
+    if (oldPriceEl) oldPriceEl.textContent = `${oldPrice.toFixed(0)} د.إ`;
+    
+    const currentPriceEl = document.getElementById('current-price');
+    if (currentPriceEl) currentPriceEl.textContent = `${newPrice.toFixed(0)} د.إ`;
     
     // Update discount badge
     const discountBadge = document.getElementById('discount-badge');
-    if (discountPercent > 0) {
-        discountBadge.textContent = `-${discountPercent}%`;
-        discountBadge.style.display = 'block';
-    } else {
-        discountBadge.style.display = 'none';
+    if (discountBadge) {
+        if (discountPercent > 0) {
+            discountBadge.textContent = `-${discountPercent}%`;
+            discountBadge.style.display = 'block';
+        } else {
+            discountBadge.style.display = 'none';
+        }
     }
 
     // Update savings
     const savingsEl = document.getElementById('savings');
-    if (savings > 0) {
-        savingsEl.textContent = `وفر ${savings.toFixed(0)} د.إ`;
-        savingsEl.style.display = 'inline-block';
-    } else {
-        savingsEl.style.display = 'none';
+    if (savingsEl) {
+        if (savings > 0) {
+            savingsEl.textContent = `وفر ${savings.toFixed(0)} د.إ`;
+            savingsEl.style.display = 'inline-block';
+        } else {
+            savingsEl.style.display = 'none';
+        }
     }
 
     // Update description with UAE keywords
-    document.getElementById('product-description-text').textContent = enhancedDescription;
+    const descEl = document.getElementById('product-description-text');
+    if (descEl) descEl.textContent = enhancedDescription;
 
     // Update WhatsApp link
     const whatsappMessage = encodeURIComponent(
         `مرحبا, أرغب في طلب:\n${productTitle}\nالسعر: ${newPrice.toFixed(0)} د.إ`
     );
-    document.getElementById('whatsapp-btn').href = `https://wa.me/201110760081?text=${whatsappMessage}`;
+    const whatsappBtn = document.getElementById('whatsapp-btn');
+    if (whatsappBtn) whatsappBtn.href = `https://wa.me/201110760081?text=${whatsappMessage}`;
 
     // Add to cart button handler
     const cartBtn = document.getElementById('add-to-cart-btn');
@@ -176,9 +202,30 @@ function displayProduct(product) {
     }
 
     // Show product container and hide loading/error
-    document.getElementById('loading-container').classList.add('hide');
-    document.getElementById('error-container').classList.add('hide');
-    document.getElementById('product-container').classList.remove('hide');
+    const loadingContainer = document.getElementById('loading-container');
+    if (loadingContainer) loadingContainer.classList.add('hide');
+    
+    const errorContainer = document.getElementById('error-container');
+    if (errorContainer) errorContainer.classList.add('hide');
+    
+    const productContainer = document.getElementById('product-container');
+    if (productContainer) productContainer.classList.remove('hide');
+
+    // Initialize carousel after product loads
+    if (window.productCarousel) {
+        console.log('✅ Carousel ready');
+    }
+
+    // Initialize quantity counter after product loads
+    if (window.quantityCounter) {
+        console.log('✅ Quantity counter ready');
+    }
+
+    // Track funnel view
+    if (window.funnelTracker) {
+        window.funnelTracker.trackView();
+        console.log('📊 Funnel view tracked');
+    }
 
     console.log('✅ Product displayed successfully:', productTitle);
 }
@@ -191,19 +238,20 @@ function addToCart(product) {
         const { id, name, sale_price, price, image, image_link, imageUrl, category } = product;
         const productPrice = parseFloat(sale_price || price || 0);
         const productImage = image || image_link || imageUrl || '';
+        const quantity = window.quantityCounter ? window.quantityCounter.getQuantity() : 1;
 
         let cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
         
         const existingItem = cart.find(item => item.id === id);
         if (existingItem) {
-            existingItem.quantity += 1;
+            existingItem.quantity += quantity;
         } else {
             cart.push({
                 id: id,
                 name: name,
                 price: productPrice,
                 image: productImage,
-                quantity: 1,
+                quantity: quantity,
                 category: category
             });
         }
@@ -215,10 +263,20 @@ function addToCart(product) {
             window.updateFloatingCartBadge();
         }
         
-        // Show notification
-        showNotification(`تم إضافة "${name}" للسلة! 😊`);
+        // Track to funnel
+        if (window.funnelTracker) {
+            window.funnelTracker.trackAddToCart({
+                productId: id,
+                productName: name,
+                quantity: quantity,
+                price: productPrice
+            });
+        }
         
-        console.log('✅ منتج مضاف:', name);
+        // Show notification
+        showNotification(`تم إضافة "${name}" x${quantity} للسلة! 😊`);
+        
+        console.log('✅ منتج مضاف:', name, 'الكمية:', quantity);
     } catch (e) {
         console.error('خطأ في إضافة للسلة:', e);
         showNotification('حدث خطأ! يرجا محاولة مرة أخرى.', 'error');
@@ -374,7 +432,13 @@ function injectSchema(product) {
  */
 function showError(message) {
     const errorContainer = document.getElementById('error-container');
-    errorContainer.querySelector('p').textContent = message;
-    document.getElementById('loading-container').classList.add('hide');
-    errorContainer.classList.remove('hide');
+    if (errorContainer) {
+        const errorP = errorContainer.querySelector('p');
+        if (errorP) errorP.textContent = message;
+    }
+    
+    const loadingContainer = document.getElementById('loading-container');
+    if (loadingContainer) loadingContainer.classList.add('hide');
+    
+    if (errorContainer) errorContainer.classList.remove('hide');
 }
