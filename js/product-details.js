@@ -17,7 +17,7 @@ function generateUAEKeywordDescription(productName, category) {
         description += `عطر عالي الجودة موفر الآن لجميع الإمارات - دبي, ابو ظبي, الشارقة, عجمان وباقي أنحاء الدولة.\n\n`;
     } else if (category === 'Watches') {
         description += `ساعة فاخرة ✓ أصلي 100% ✓ موثوق من متجر هدايا الإمارات.\n`;
-        description += `ساعات عالية الجودة موفرة الآن في شتى مدن الإمارات - دبي, ابو ظبي, الشارقة والأمارات الأخرى.\n\n`;
+        description += `ساعات عالية الجودة موفرة الآن في شتى مدن الإمارات - دبي, ابو ظبي, الشارقة والامارات الأخرى.\n\n`;
     }
     
     description += `شحن سريع خلال 1-3 أيام عمل ✓ ضمان إرجاع 14 يوم ✓ دعم عملاء 24/7.\n`;
@@ -162,9 +162,18 @@ function displayProduct(product) {
 
     // Update WhatsApp link
     const whatsappMessage = encodeURIComponent(
-        `مرحباً, أرغب في طلب:\n${productTitle}\nالسعر: ${newPrice.toFixed(0)} د.إ`
+        `مرحبا, أرغب في طلب:\n${productTitle}\nالسعر: ${newPrice.toFixed(0)} د.إ`
     );
     document.getElementById('whatsapp-btn').href = `https://wa.me/201110760081?text=${whatsappMessage}`;
+
+    // Add to cart button handler
+    const cartBtn = document.getElementById('add-to-cart-btn');
+    if (cartBtn) {
+        cartBtn.onclick = function(e) {
+            e.preventDefault();
+            addToCart(product);
+        };
+    }
 
     // Show product container and hide loading/error
     document.getElementById('loading-container').classList.add('hide');
@@ -172,6 +181,76 @@ function displayProduct(product) {
     document.getElementById('product-container').classList.remove('hide');
 
     console.log('✅ Product displayed successfully:', productTitle);
+}
+
+/**
+ * Add product to cart
+ */
+function addToCart(product) {
+    try {
+        const { id, name, sale_price, price, image, image_link, imageUrl, category } = product;
+        const productPrice = parseFloat(sale_price || price || 0);
+        const productImage = image || image_link || imageUrl || '';
+
+        let cart = JSON.parse(localStorage.getItem('emirates_cart') || '[]');
+        
+        const existingItem = cart.find(item => item.id === id);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                id: id,
+                name: name,
+                price: productPrice,
+                image: productImage,
+                quantity: 1,
+                category: category
+            });
+        }
+        
+        localStorage.setItem('emirates_cart', JSON.stringify(cart));
+        
+        // Update cart badge
+        if (window.updateFloatingCartBadge) {
+            window.updateFloatingCartBadge();
+        }
+        
+        // Show notification
+        showNotification(`تم إضافة "${name}" للسلة! 😊`);
+        
+        console.log('✅ منتج مضاف:', name);
+    } catch (e) {
+        console.error('خطأ في إضافة للسلة:', e);
+        showNotification('حدث خطأ! يرجا محاولة مرة أخرى.', 'error');
+    }
+}
+
+/**
+ * Show notification
+ */
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: ${type === 'error' ? '#e74c3c' : '#27ae60'};
+      color: white;
+      padding: 16px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10000;
+      max-width: 400px;
+      animation: slideIn 0.3s ease;
+      font-family: 'Cairo', sans-serif;
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
 }
 
 /**
